@@ -1,0 +1,32 @@
+# Experiment A (docs/analysis_plan.md): decoders B1-B3 x calibration amount, per subject, H1.
+# Values fixed by the plan are restated here; the remaining entries are implementation
+# details the plan leaves open. Nothing here is tuned on any data.
+
+calibration_runs: [1, 2, 3, 6]        # every combination of this many T runs (6, 15, 20, 1)
+
+b1_band_power:
+  welch_segment_s: 1.0                # 250 samples at 250 Hz
+  welch_overlap: 0.5
+  welch_window: hann
+  welch_detrend: constant
+  # Frequency bins with lo <= f < hi (1 Hz resolution), so 13 Hz is counted once.
+  bands_hz: [[8, 13], [13, 30]]
+  logistic_C: 1.0                     # L2 (l1_ratio = 0)
+
+b2_csp:
+  covariance_estimator: scm           # per-trial sample covariance
+  class_mean: arithmetic
+  n_filters: 6                        # 3 from each end of the generalized eigenvalue spectrum
+  # LDA: solver lsqr, Ledoit-Wolf automatic shrinkage (shrinkage="auto")
+
+b3_tangent_space:
+  covariance_estimator: oas
+  logistic_C: 1.0                     # L2 (l1_ratio = 0)
+
+logistic_max_iter: 1000               # lbfgs; generous so every fit converges
+h1:
+  calibration_runs: 1
+  difference: [B3, B2]                # B3 - B2 balanced accuracy, subject value = mean over combinations
+  alternative: greater                # exact one-sided sign-flip test, 2^9 patterns
+
+output_dir: results/exp_a
