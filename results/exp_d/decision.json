@@ -1,0 +1,511 @@
+{
+  "schema": 1,
+  "status": "exploratory",
+  "reference_bottleneck": 8,
+  "variants": {
+    "maxent": {
+      "families": {
+        "common": {
+          "target": 3.0,
+          "utility": {
+            "mean": -0.025785723580785583,
+            "lower_95": -0.05148585317697127,
+            "sign_flip_pvalue": 0.94140625,
+            "per_subject": {
+              "1": -0.06215291750503016,
+              "2": 0.0028169014084507005,
+              "3": -0.07995735607675913,
+              "4": -0.08260481712756462,
+              "5": 0.009780219780219701,
+              "6": 0.011423670668953556,
+              "7": 0.020432741375790986,
+              "8": -0.044117647058823484,
+              "9": -0.007692307692307776
+            },
+            "passed": false
+          },
+          "protection": {
+            "strongest_both_scenarios": {
+              "mean": 0.16339015981499658,
+              "lower_95": 0.14527107578825937,
+              "sign_flip_pvalue": 0.001953125,
+              "per_subject": {
+                "1": 0.17554347826086952,
+                "2": 0.11257936507936495,
+                "3": 0.15743819266837167,
+                "4": 0.13877490336009513,
+                "5": 0.21637323943661968,
+                "6": 0.18089655172413788,
+                "7": 0.14771241830065363,
+                "8": 0.17151785714285706,
+                "9": 0.1696754323619996
+              },
+              "baseline": {
+                "scenario": "main",
+                "attacker": "rbf_svm",
+                "ba": 0.6190743150267592
+              },
+              "defended": {
+                "scenario": "main",
+                "attacker": "rbf_svm",
+                "ba": 0.4556841552117628
+              },
+              "passed": true
+            },
+            "main": {
+              "mean": 0.16339015981499658,
+              "lower_95": 0.14527107578825937,
+              "sign_flip_pvalue": 0.001953125,
+              "per_subject": {
+                "1": 0.17554347826086952,
+                "2": 0.11257936507936495,
+                "3": 0.15743819266837167,
+                "4": 0.13877490336009513,
+                "5": 0.21637323943661968,
+                "6": 0.18089655172413788,
+                "7": 0.14771241830065363,
+                "8": 0.17151785714285706,
+                "9": 0.1696754323619996
+              },
+              "baseline": {
+                "scenario": "main",
+                "attacker": "rbf_svm",
+                "ba": 0.6190743150267592
+              },
+              "defended": {
+                "scenario": "main",
+                "attacker": "rbf_svm",
+                "ba": 0.4556841552117628
+              },
+              "passed": true
+            }
+          },
+          "accepted": false,
+          "status": "not_accepted",
+          "epochs": 40,
+          "protection_rule_passed": true,
+          "selected_point": {
+            "task_ba": 0.6858817614223017,
+            "identity_ba": 0.4556841552117628,
+            "identity_main_ba": 0.4556841552117628,
+            "identity_auxiliary_ba": 0.25519680371164294,
+            "head_main_ba_diagnostic": 0.13402211741041176,
+            "head_auxiliary_ba_diagnostic": 0.1337325510907426
+          }
+        },
+        "rc": {
+          "target": 0.03,
+          "utility": {
+            "mean": -0.03325262190394451,
+            "lower_95": -0.06490595259151177,
+            "sign_flip_pvalue": 0.95703125,
+            "per_subject": {
+              "1": -0.05134808853118722,
+              "2": 0.023943661971830954,
+              "3": -0.10447761194029836,
+              "4": -0.09943502824858752,
+              "5": -0.011978021978022113,
+              "6": -0.029262435677529952,
+              "7": 0.046131863645641924,
+              "8": -0.05900178253119448,
+              "9": -0.013846153846153841
+            },
+            "passed": false
+          },
+          "protection": {
+            "strongest_both_scenarios": {
+              "mean": 0.032688514156779876,
+              "lower_95": 0.003177572021421649,
+              "sign_flip_pvalue": 0.02734375,
+              "per_subject": {
+                "1": -0.0222222222222222,
+                "2": 0.06138888888888894,
+                "3": 0.002600170502983834,
+                "4": 0.003270889087124529,
+                "5": 0.04489436619718323,
+                "6": 0.029379310344827603,
+                "7": 0.1339052287581699,
+                "8": 0.05066964285714287,
+                "9": -0.009689647003079838
+              },
+              "baseline": {
+                "scenario": "main",
+                "attacker": "rbf_svm",
+                "ba": 0.42693139972184563
+              },
+              "defended": {
+                "scenario": "main",
+                "attacker": "rbf_svm",
+                "ba": 0.3942428855650657
+              },
+              "passed": false
+            },
+            "main": {
+              "mean": 0.032688514156779876,
+              "lower_95": 0.003177572021421649,
+              "sign_flip_pvalue": 0.02734375,
+              "per_subject": {
+                "1": -0.0222222222222222,
+                "2": 0.06138888888888894,
+                "3": 0.002600170502983834,
+                "4": 0.003270889087124529,
+                "5": 0.04489436619718323,
+                "6": 0.029379310344827603,
+                "7": 0.1339052287581699,
+                "8": 0.05066964285714287,
+                "9": -0.009689647003079838
+              },
+              "baseline": {
+                "scenario": "main",
+                "attacker": "rbf_svm",
+                "ba": 0.42693139972184563
+              },
+              "defended": {
+                "scenario": "main",
+                "attacker": "rbf_svm",
+                "ba": 0.3942428855650657
+              },
+              "passed": false
+            }
+          },
+          "accepted": false,
+          "status": "not_accepted",
+          "epochs": 20,
+          "protection_rule_passed": false,
+          "selected_point": {
+            "task_ba": 0.6840445148643455,
+            "identity_ba": 0.3942428855650657,
+            "identity_main_ba": 0.3942428855650657,
+            "identity_auxiliary_ba": 0.17401871124753207,
+            "head_main_ba_diagnostic": 0.152840150336151,
+            "head_auxiliary_ba_diagnostic": 0.1526607407331631
+          }
+        }
+      },
+      "protection_both_families": false,
+      "baseline_p0": {
+        "scenario": "main",
+        "attacker": "rbf_svm",
+        "ba": 1.0
+      },
+      "baseline_at_chance": false,
+      "accepted_both_families": false
+    },
+    "ensemble": {
+      "families": {
+        "common": {
+          "target": 0.03,
+          "utility": {
+            "mean": -0.003942060983331756,
+            "lower_95": -0.023321802598572396,
+            "sign_flip_pvalue": 0.650390625,
+            "per_subject": {
+              "1": -0.009839034205231245,
+              "2": 0.014084507042253502,
+              "3": -0.05496801705756926,
+              "4": -0.0571513529586678,
+              "5": 0.016813186813186665,
+              "6": 0.017735849056603747,
+              "7": 0.01318636456419675,
+              "8": 4.4563279857356974e-05,
+              "9": 0.024615384615384484
+            },
+            "passed": true
+          },
+          "protection": {
+            "strongest_both_scenarios": {
+              "mean": 0.04538613033364362,
+              "lower_95": 0.020378351389691417,
+              "sign_flip_pvalue": 0.009765625,
+              "per_subject": {
+                "1": 0.027657004830917875,
+                "2": 0.05380952380952375,
+                "3": -0.0015771526001705505,
+                "4": -0.0036277133511745108,
+                "5": 0.08254841549295777,
+                "6": 0.09317241379310337,
+                "7": 0.004003267973856195,
+                "8": 0.056919642857142794,
+                "9": 0.09556977019663593
+              },
+              "baseline": {
+                "scenario": "main",
+                "attacker": "rbf_svm",
+                "ba": 0.6190743150267592
+              },
+              "defended": {
+                "scenario": "main",
+                "attacker": "rbf_svm",
+                "ba": 0.5736881846931157
+              },
+              "passed": false
+            },
+            "main": {
+              "mean": 0.04538613033364362,
+              "lower_95": 0.020378351389691417,
+              "sign_flip_pvalue": 0.009765625,
+              "per_subject": {
+                "1": 0.027657004830917875,
+                "2": 0.05380952380952375,
+                "3": -0.0015771526001705505,
+                "4": -0.0036277133511745108,
+                "5": 0.08254841549295777,
+                "6": 0.09317241379310337,
+                "7": 0.004003267973856195,
+                "8": 0.056919642857142794,
+                "9": 0.09556977019663593
+              },
+              "baseline": {
+                "scenario": "main",
+                "attacker": "rbf_svm",
+                "ba": 0.6190743150267592
+              },
+              "defended": {
+                "scenario": "main",
+                "attacker": "rbf_svm",
+                "ba": 0.5736881846931157
+              },
+              "passed": false
+            }
+          },
+          "accepted": false,
+          "status": "not_accepted",
+          "epochs": 40,
+          "protection_rule_passed": false,
+          "selected_point": {
+            "task_ba": 0.7077254240197555,
+            "identity_ba": 0.5736881846931157,
+            "identity_main_ba": 0.5736881846931157,
+            "identity_auxiliary_ba": 0.42335966134070596,
+            "head_main_ba_diagnostic": 0.14739815571409012,
+            "head_auxiliary_ba_diagnostic": 0.14724929654252614
+          }
+        },
+        "rc": {
+          "target": 0.1,
+          "utility": {
+            "mean": -0.038611036117751324,
+            "lower_95": -0.07143298094781284,
+            "sign_flip_pvalue": 0.97265625,
+            "per_subject": {
+              "1": -0.049959758551307853,
+              "2": 0.004225352112676051,
+              "3": -0.11933901918976542,
+              "4": -0.11165625929229861,
+              "5": -0.0030769230769231992,
+              "6": -0.03890222984562608,
+              "7": 0.044396815676668644,
+              "8": -0.05164884135472381,
+              "9": -0.021538461538461617
+            },
+            "passed": false
+          },
+          "protection": {
+            "strongest_both_scenarios": {
+              "mean": 0.030614104847301458,
+              "lower_95": -0.0013473198163395546,
+              "sign_flip_pvalue": 0.0546875,
+              "per_subject": {
+                "1": -0.029468599033816406,
+                "2": 0.06547619047619058,
+                "3": -0.007566069906223383,
+                "4": -0.02274754683318464,
+                "5": 0.04066901408450707,
+                "6": 0.02075862068965517,
+                "7": 0.13063725490196076,
+                "8": 0.06888392857142855,
+                "9": 0.00888415067519538
+              },
+              "baseline": {
+                "scenario": "main",
+                "attacker": "rbf_svm",
+                "ba": 0.42693139972184563
+              },
+              "defended": {
+                "scenario": "main",
+                "attacker": "rbf_svm",
+                "ba": 0.39631729487454415
+              },
+              "passed": false
+            },
+            "main": {
+              "mean": 0.030614104847301458,
+              "lower_95": -0.0013473198163395546,
+              "sign_flip_pvalue": 0.0546875,
+              "per_subject": {
+                "1": -0.029468599033816406,
+                "2": 0.06547619047619058,
+                "3": -0.007566069906223383,
+                "4": -0.02274754683318464,
+                "5": 0.04066901408450707,
+                "6": 0.02075862068965517,
+                "7": 0.13063725490196076,
+                "8": 0.06888392857142855,
+                "9": 0.00888415067519538
+              },
+              "baseline": {
+                "scenario": "main",
+                "attacker": "rbf_svm",
+                "ba": 0.42693139972184563
+              },
+              "defended": {
+                "scenario": "main",
+                "attacker": "rbf_svm",
+                "ba": 0.39631729487454415
+              },
+              "passed": false
+            }
+          },
+          "accepted": false,
+          "status": "not_accepted",
+          "epochs": 40,
+          "protection_rule_passed": false,
+          "selected_point": {
+            "task_ba": 0.6786861006505387,
+            "identity_ba": 0.39631729487454415,
+            "identity_main_ba": 0.39631729487454415,
+            "identity_auxiliary_ba": 0.16454170603855256,
+            "head_main_ba_diagnostic": 0.11514924868082002,
+            "head_auxiliary_ba_diagnostic": 0.11502324934230276
+          }
+        }
+      },
+      "protection_both_families": false,
+      "baseline_p0": {
+        "scenario": "main",
+        "attacker": "rbf_svm",
+        "ba": 1.0
+      },
+      "baseline_at_chance": false,
+      "accepted_both_families": false
+    }
+  },
+  "question_i": {
+    "rule": "protection_rule",
+    "answer": false
+  },
+  "question_ii": {
+    "rule": "not_dominant",
+    "families": {
+      "common": {
+        "points": [
+          {
+            "variant": "maxent",
+            "source": "exp_d",
+            "target": 3.0,
+            "epochs": 40,
+            "task_ba": 0.6858817614223017,
+            "identity_ba": 0.4556841552117628,
+            "comparator_d": [
+              1,
+              2,
+              4,
+              8,
+              16,
+              32
+            ],
+            "comparator_min_identity_ba": 0.2533841965064537,
+            "dominates": false
+          },
+          {
+            "variant": "ensemble",
+            "source": "exp_d",
+            "target": 0.03,
+            "epochs": 40,
+            "task_ba": 0.7077254240197555,
+            "identity_ba": 0.5736881846931157,
+            "comparator_d": [
+              2,
+              4,
+              8
+            ],
+            "comparator_min_identity_ba": 0.32488423060237054,
+            "dominates": false
+          },
+          {
+            "variant": "grl_ce",
+            "source": "exp_b",
+            "target": 0.01,
+            "epochs": null,
+            "task_ba": 0.7112422301659238,
+            "identity_ba": 0.62612217645234,
+            "comparator_d": [
+              2,
+              8
+            ],
+            "comparator_min_identity_ba": 0.32488423060237054,
+            "dominates": false
+          }
+        ],
+        "any_dominates": false
+      },
+      "rc": {
+        "points": [
+          {
+            "variant": "maxent",
+            "source": "exp_d",
+            "target": 0.03,
+            "epochs": 20,
+            "task_ba": 0.6840445148643455,
+            "identity_ba": 0.3942428855650657,
+            "comparator_d": [
+              1,
+              2,
+              4,
+              8,
+              16,
+              32
+            ],
+            "comparator_min_identity_ba": 0.20859049153387058,
+            "dominates": false
+          },
+          {
+            "variant": "ensemble",
+            "source": "exp_d",
+            "target": 0.1,
+            "epochs": 40,
+            "task_ba": 0.6786861006505387,
+            "identity_ba": 0.39631729487454415,
+            "comparator_d": [
+              1,
+              2,
+              4,
+              8,
+              16,
+              32
+            ],
+            "comparator_min_identity_ba": 0.20859049153387058,
+            "dominates": false
+          },
+          {
+            "variant": "grl_ce",
+            "source": "exp_b",
+            "target": 0.01,
+            "epochs": null,
+            "task_ba": 0.7179276509321783,
+            "identity_ba": 0.4266774825969699,
+            "comparator_d": [
+              4
+            ],
+            "comparator_min_identity_ba": 0.3079467360306596,
+            "dominates": false
+          }
+        ],
+        "any_dominates": false
+      }
+    },
+    "answer": false
+  },
+  "exp_b_p2_consistency": {
+    "common": {
+      "task_ba_diff": 0.0,
+      "identity_ba_diff": 0.0
+    },
+    "rc": {
+      "task_ba_diff": 0.0,
+      "identity_ba_diff": 0.0
+    }
+  },
+  "interpretation": "Protection is judged only with independent attackers against the same family's d = 8 task-only encoder; co-trained head BA is diagnostic.",
+  "selection_hash": "b12cb45cab562c163acff887f2c533182f0710b2abe94098d0beca537f01498f"
+}
