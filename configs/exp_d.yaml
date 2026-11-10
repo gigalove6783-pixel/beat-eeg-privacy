@@ -1,0 +1,71 @@
+# Experiment D (plan v2, exploratory). Fixed before any Experiment-D session-E
+# evaluation; every value below was chosen without E data. CPU-only.
+#
+# Shared with Experiment B: seeds, lambda grid, encoder/optimizer settings,
+# attackers and statistics are read from configs/exp_b.yaml at run time and
+# merged into this config (and its hash), so D cannot drift from B silently.
+inherit_from_exp_b: [seeds, lambdas, training, attackers, statistics]
+workers: 4            # shared CPU with Experiment E
+torch_threads: 1
+
+# D1: task-only encoders 253 -> 64 -> d. Epoch budget per (d, family) is the
+# fold/seed-mean T-CV task BA argmax over 1..training.max_epochs (40), ties to
+# fewer epochs (B's choose_epochs). d = 8 reproduces B's P2 / P2-RC exactly.
+bottlenecks: [1, 2, 4, 8, 16, 32]
+reference_bottleneck: 8
+
+# D2: adversarial variants at d = reference_bottleneck. Epoch budget and lambda
+# are chosen jointly from epoch_grid x lambdas (each budget trained from
+# scratch, lambda ramped as in B over that budget).
+epoch_grid: [5, 10, 20, 40]
+variants:
+  maxent:
+    # Simultaneous updates with B's single Adam optimizer: each minibatch, the
+    # adversary minimizes identity cross-entropy on the detached bottleneck
+    # (weight 1, as B's head); the encoder minimizes ramp(lambda) times the
+    # cross-entropy from the uniform distribution to the adversary posterior,
+    # computed with the adversary's parameters detached (Roy & Boddeti 2019).
+    updates: simultaneous
+    head_diagnostic: single_head_argmax
+  ensemble:
+    heads: 5
+    # Gradient reversal, as in B: the bottleneck enters every head through a
+    # reversal of strength ramp(lambda) / heads and the head losses are summed,
+    # so each head trains on its own full cross-entropy and the encoder
+    # receives -ramp(lambda) times the gradient of the heads' mean CE.
+    penalty: reversal_of_mean_cross_entropy
+    # At the start of every epoch e >= 2, head (e - 2) mod heads is
+    # re-initialized (PyTorch default init from the seeded global RNG) and its
+    # Adam state is cleared.
+    refresh: one_head_per_epoch_rotation_from_epoch_2
+    # Frozen-model diagnostic identity head: argmax of the mean head posterior.
+    head_diagnostic: mean_posterior_argmax
+
+selection:
+  # B's operating-point rule: eligible if fold/seed-mean T-CV task BA is at most
+  # statistics.utility_margin below the same family's d = 8 task-only encoder;
+  # minimize strongest-attacker identity BA (attacker-wise fold/seed/direction
+  # mean, then max over attackers).
+  tie_order: [identity_ba_ascending, task_ba_descending, lambda_ascending, epochs_ascending]
+  # Lambda curves (figure, final retraining): each lambda keeps the epoch
+  # budget that the same rule picks among that lambda's eligible budgets; a
+  # lambda with no eligible budget keeps its highest-task-BA budget (ties to
+  # fewer epochs). The selected operating point lies on its curve.
+  curve_epochs: per_lambda_operating_rule_else_max_task
+
+decision:
+  # Question (i) uses B's Protection bullet literally (strongest-attacker drop
+  # >= protection_drop for both-scenario and main-only winners, one-sided 95%
+  # lower bound of the paired per-subject recall difference > 0) with B's
+  # baseline-at-chance withholding on P0. As in B, it is answered true only if
+  # some variant passes in both the common and RC families; per-family results,
+  # B's utility test and full acceptance are reported alongside.
+  question_i: protection_rule
+  # Question (ii): an adversarial operating point dominates if its
+  # strongest-attacker identity BA (both scenarios) is strictly lower than that
+  # of every task-only bottleneck of the same family with equal or higher E
+  # task BA. An empty comparator set does not count as dominance.
+  frontier_empty_comparator_set: not_dominant
+  # GRL-CE reference: B's T-selected P3 / P3-RC points from results/exp_b
+  # (not retrained).
+  grl_reference: results/exp_b/tradeoff.csv

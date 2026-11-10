@@ -1,0 +1,721 @@
+{
+  "schema": 1,
+  "phase": "T_only_development",
+  "sessions": [
+    "T"
+  ],
+  "config": {
+    "inherit_from_exp_b": [
+      "seeds",
+      "lambdas",
+      "training",
+      "attackers",
+      "statistics"
+    ],
+    "workers": 4,
+    "torch_threads": 1,
+    "bottlenecks": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32
+    ],
+    "reference_bottleneck": 8,
+    "epoch_grid": [
+      5,
+      10,
+      20,
+      40
+    ],
+    "variants": {
+      "maxent": {
+        "updates": "simultaneous",
+        "head_diagnostic": "single_head_argmax"
+      },
+      "ensemble": {
+        "heads": 5,
+        "penalty": "reversal_of_mean_cross_entropy",
+        "refresh": "one_head_per_epoch_rotation_from_epoch_2",
+        "head_diagnostic": "mean_posterior_argmax"
+      }
+    },
+    "selection": {
+      "tie_order": [
+        "identity_ba_ascending",
+        "task_ba_descending",
+        "lambda_ascending",
+        "epochs_ascending"
+      ],
+      "curve_epochs": "per_lambda_operating_rule_else_max_task"
+    },
+    "decision": {
+      "question_i": "protection_rule",
+      "frontier_empty_comparator_set": "not_dominant",
+      "grl_reference": "results/exp_b/tradeoff.csv"
+    },
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "lambdas": [
+      0.01,
+      0.03,
+      0.1,
+      0.3,
+      1.0,
+      3.0
+    ],
+    "training": {
+      "optimizer": "adam",
+      "learning_rate": 0.001,
+      "weight_decay": 0.0,
+      "batch_size": 128,
+      "max_epochs": 40,
+      "checkpoint_interval": 1,
+      "encoder_hidden": 64,
+      "bottleneck": 8,
+      "identity_hidden": 16,
+      "linear_C": 1.0,
+      "linear_max_iter": 2000
+    },
+    "attackers": {
+      "logistic_C": 1.0,
+      "logistic_max_iter": 2000,
+      "svm_C": [
+        0.1,
+        1.0,
+        10.0
+      ],
+      "svm_gamma": [
+        "scale",
+        0.01,
+        0.1
+      ],
+      "inner_folds": 3,
+      "mlp_hidden": [
+        32
+      ],
+      "mlp_alpha": 0.01,
+      "mlp_solver": "lbfgs",
+      "mlp_max_iter": 50000,
+      "mlp_max_fun": 1000000
+    },
+    "statistics": {
+      "bootstrap_samples": 2000,
+      "confidence": 0.95,
+      "utility_margin": 0.05,
+      "protection_drop": 0.05,
+      "chance": 0.1111111111111111,
+      "baseline_at_chance": "strongest_mean_le_chance",
+      "task_aggregation": "subject_mean"
+    }
+  },
+  "config_hash": "0ca433d9a6f24da8e3debf09ee761fdd92f2280348d4a13bb638d560466bf598",
+  "source_hash": "716eb4b8968f19cd68ca77ccdab11439c3bc56026ebbdf720363578d6e0aa438",
+  "training_hash": "c983826c9ad05f568c8ff407eb5566fd814f975d02f9133cbfd91df37f93fea0",
+  "retained_trials": 1163,
+  "d1_budgets": {
+    "common": {
+      "1": 16,
+      "2": 11,
+      "4": 11,
+      "8": 8,
+      "16": 7,
+      "32": 7
+    },
+    "rc": {
+      "1": 18,
+      "2": 8,
+      "4": 6,
+      "8": 5,
+      "16": 5,
+      "32": 5
+    }
+  },
+  "variants": {
+    "maxent": {
+      "common": {
+        "status": "selected",
+        "target": 3.0,
+        "epochs": 40,
+        "task_ba": 0.6795864063919619,
+        "identity_ba": 0.31329131259686815,
+        "adversary_ba": 0.16177048260381593,
+        "reference_task_ba": 0.6989192186414408,
+        "eligible": [
+          {
+            "target": 3.0,
+            "epochs": 40
+          },
+          {
+            "target": 1.0,
+            "epochs": 40
+          },
+          {
+            "target": 0.3,
+            "epochs": 40
+          },
+          {
+            "target": 0.1,
+            "epochs": 40
+          },
+          {
+            "target": 0.03,
+            "epochs": 40
+          },
+          {
+            "target": 3.0,
+            "epochs": 20
+          },
+          {
+            "target": 0.01,
+            "epochs": 40
+          },
+          {
+            "target": 1.0,
+            "epochs": 20
+          },
+          {
+            "target": 0.3,
+            "epochs": 20
+          },
+          {
+            "target": 0.3,
+            "epochs": 5
+          },
+          {
+            "target": 1.0,
+            "epochs": 5
+          },
+          {
+            "target": 3.0,
+            "epochs": 5
+          },
+          {
+            "target": 0.1,
+            "epochs": 20
+          },
+          {
+            "target": 0.1,
+            "epochs": 5
+          },
+          {
+            "target": 0.03,
+            "epochs": 20
+          },
+          {
+            "target": 0.03,
+            "epochs": 5
+          },
+          {
+            "target": 0.01,
+            "epochs": 5
+          },
+          {
+            "target": 0.01,
+            "epochs": 20
+          },
+          {
+            "target": 1.0,
+            "epochs": 10
+          },
+          {
+            "target": 3.0,
+            "epochs": 10
+          },
+          {
+            "target": 0.3,
+            "epochs": 10
+          },
+          {
+            "target": 0.1,
+            "epochs": 10
+          },
+          {
+            "target": 0.03,
+            "epochs": 10
+          },
+          {
+            "target": 0.01,
+            "epochs": 10
+          }
+        ],
+        "curve": [
+          {
+            "target": 0.01,
+            "epochs": 40,
+            "eligible": true
+          },
+          {
+            "target": 0.03,
+            "epochs": 40,
+            "eligible": true
+          },
+          {
+            "target": 0.1,
+            "epochs": 40,
+            "eligible": true
+          },
+          {
+            "target": 0.3,
+            "epochs": 40,
+            "eligible": true
+          },
+          {
+            "target": 1.0,
+            "epochs": 40,
+            "eligible": true
+          },
+          {
+            "target": 3.0,
+            "epochs": 40,
+            "eligible": true
+          }
+        ]
+      },
+      "rc": {
+        "status": "selected",
+        "target": 0.03,
+        "epochs": 20,
+        "task_ba": 0.6868083613916948,
+        "identity_ba": 0.18190522954411842,
+        "adversary_ba": 0.1659787691732136,
+        "reference_task_ba": 0.7070281518892629,
+        "eligible": [
+          {
+            "target": 0.03,
+            "epochs": 20
+          },
+          {
+            "target": 0.03,
+            "epochs": 40
+          },
+          {
+            "target": 0.01,
+            "epochs": 20
+          },
+          {
+            "target": 0.3,
+            "epochs": 20
+          },
+          {
+            "target": 0.01,
+            "epochs": 40
+          },
+          {
+            "target": 0.1,
+            "epochs": 40
+          },
+          {
+            "target": 1.0,
+            "epochs": 10
+          },
+          {
+            "target": 0.1,
+            "epochs": 20
+          },
+          {
+            "target": 3.0,
+            "epochs": 10
+          },
+          {
+            "target": 0.3,
+            "epochs": 5
+          },
+          {
+            "target": 3.0,
+            "epochs": 5
+          },
+          {
+            "target": 0.3,
+            "epochs": 40
+          },
+          {
+            "target": 3.0,
+            "epochs": 20
+          },
+          {
+            "target": 0.03,
+            "epochs": 5
+          },
+          {
+            "target": 1.0,
+            "epochs": 5
+          },
+          {
+            "target": 0.1,
+            "epochs": 5
+          },
+          {
+            "target": 0.01,
+            "epochs": 10
+          },
+          {
+            "target": 0.03,
+            "epochs": 10
+          },
+          {
+            "target": 1.0,
+            "epochs": 20
+          },
+          {
+            "target": 3.0,
+            "epochs": 40
+          },
+          {
+            "target": 0.1,
+            "epochs": 10
+          },
+          {
+            "target": 0.01,
+            "epochs": 5
+          },
+          {
+            "target": 0.3,
+            "epochs": 10
+          },
+          {
+            "target": 1.0,
+            "epochs": 40
+          }
+        ],
+        "curve": [
+          {
+            "target": 0.01,
+            "epochs": 20,
+            "eligible": true
+          },
+          {
+            "target": 0.03,
+            "epochs": 20,
+            "eligible": true
+          },
+          {
+            "target": 0.1,
+            "epochs": 40,
+            "eligible": true
+          },
+          {
+            "target": 0.3,
+            "epochs": 20,
+            "eligible": true
+          },
+          {
+            "target": 1.0,
+            "epochs": 10,
+            "eligible": true
+          },
+          {
+            "target": 3.0,
+            "epochs": 10,
+            "eligible": true
+          }
+        ]
+      }
+    },
+    "ensemble": {
+      "common": {
+        "status": "selected",
+        "target": 0.03,
+        "epochs": 40,
+        "task_ba": 0.690907821602266,
+        "identity_ba": 0.49873937790604456,
+        "adversary_ba": 0.11992644700978033,
+        "reference_task_ba": 0.6989192186414408,
+        "eligible": [
+          {
+            "target": 0.03,
+            "epochs": 40
+          },
+          {
+            "target": 0.1,
+            "epochs": 40
+          },
+          {
+            "target": 0.1,
+            "epochs": 20
+          },
+          {
+            "target": 0.01,
+            "epochs": 40
+          },
+          {
+            "target": 0.03,
+            "epochs": 20
+          },
+          {
+            "target": 0.01,
+            "epochs": 5
+          },
+          {
+            "target": 0.03,
+            "epochs": 5
+          },
+          {
+            "target": 0.01,
+            "epochs": 20
+          },
+          {
+            "target": 0.01,
+            "epochs": 10
+          },
+          {
+            "target": 0.03,
+            "epochs": 10
+          },
+          {
+            "target": 0.1,
+            "epochs": 10
+          },
+          {
+            "target": 0.1,
+            "epochs": 5
+          },
+          {
+            "target": 0.3,
+            "epochs": 20
+          },
+          {
+            "target": 0.3,
+            "epochs": 40
+          },
+          {
+            "target": 0.3,
+            "epochs": 10
+          },
+          {
+            "target": 0.3,
+            "epochs": 5
+          },
+          {
+            "target": 3.0,
+            "epochs": 40
+          },
+          {
+            "target": 1.0,
+            "epochs": 40
+          },
+          {
+            "target": 3.0,
+            "epochs": 20
+          },
+          {
+            "target": 1.0,
+            "epochs": 20
+          },
+          {
+            "target": 1.0,
+            "epochs": 10
+          },
+          {
+            "target": 1.0,
+            "epochs": 5
+          },
+          {
+            "target": 3.0,
+            "epochs": 10
+          },
+          {
+            "target": 3.0,
+            "epochs": 5
+          }
+        ],
+        "curve": [
+          {
+            "target": 0.01,
+            "epochs": 40,
+            "eligible": true
+          },
+          {
+            "target": 0.03,
+            "epochs": 40,
+            "eligible": true
+          },
+          {
+            "target": 0.1,
+            "epochs": 40,
+            "eligible": true
+          },
+          {
+            "target": 0.3,
+            "epochs": 20,
+            "eligible": true
+          },
+          {
+            "target": 1.0,
+            "epochs": 40,
+            "eligible": true
+          },
+          {
+            "target": 3.0,
+            "epochs": 40,
+            "eligible": true
+          }
+        ]
+      },
+      "rc": {
+        "status": "selected",
+        "target": 0.1,
+        "epochs": 40,
+        "task_ba": 0.68493265993266,
+        "identity_ba": 0.18203550050772274,
+        "adversary_ba": 0.12203429800652023,
+        "reference_task_ba": 0.7070281518892629,
+        "eligible": [
+          {
+            "target": 0.1,
+            "epochs": 40
+          },
+          {
+            "target": 0.03,
+            "epochs": 20
+          },
+          {
+            "target": 0.3,
+            "epochs": 20
+          },
+          {
+            "target": 0.01,
+            "epochs": 20
+          },
+          {
+            "target": 0.01,
+            "epochs": 40
+          },
+          {
+            "target": 0.1,
+            "epochs": 20
+          },
+          {
+            "target": 0.03,
+            "epochs": 40
+          },
+          {
+            "target": 1.0,
+            "epochs": 5
+          },
+          {
+            "target": 1.0,
+            "epochs": 20
+          },
+          {
+            "target": 3.0,
+            "epochs": 40
+          },
+          {
+            "target": 0.03,
+            "epochs": 10
+          },
+          {
+            "target": 0.3,
+            "epochs": 40
+          },
+          {
+            "target": 1.0,
+            "epochs": 10
+          },
+          {
+            "target": 0.01,
+            "epochs": 10
+          },
+          {
+            "target": 0.3,
+            "epochs": 5
+          },
+          {
+            "target": 0.1,
+            "epochs": 10
+          },
+          {
+            "target": 0.03,
+            "epochs": 5
+          },
+          {
+            "target": 0.1,
+            "epochs": 5
+          },
+          {
+            "target": 3.0,
+            "epochs": 5
+          },
+          {
+            "target": 1.0,
+            "epochs": 40
+          },
+          {
+            "target": 0.3,
+            "epochs": 10
+          },
+          {
+            "target": 0.01,
+            "epochs": 5
+          },
+          {
+            "target": 3.0,
+            "epochs": 20
+          },
+          {
+            "target": 3.0,
+            "epochs": 10
+          }
+        ],
+        "curve": [
+          {
+            "target": 0.01,
+            "epochs": 20,
+            "eligible": true
+          },
+          {
+            "target": 0.03,
+            "epochs": 20,
+            "eligible": true
+          },
+          {
+            "target": 0.1,
+            "epochs": 40,
+            "eligible": true
+          },
+          {
+            "target": 0.3,
+            "epochs": 20,
+            "eligible": true
+          },
+          {
+            "target": 1.0,
+            "epochs": 5,
+            "eligible": true
+          },
+          {
+            "target": 3.0,
+            "epochs": 40,
+            "eligible": true
+          }
+        ]
+      }
+    }
+  },
+  "attacker_convergence": {
+    "mlp_fits": 6480,
+    "mlp_nonconverged": 0,
+    "warning_counts": {}
+  },
+  "wall_seconds": 1962.7032528999262,
+  "rules": {
+    "epoch_tie": "earliest",
+    "joint_tie": [
+      "identity_ba_ascending",
+      "task_ba_descending",
+      "lambda_ascending",
+      "epochs_ascending"
+    ],
+    "curve_epochs": "per_lambda_operating_rule_else_max_task",
+    "task_weighting": "equal_subject_fold_seed",
+    "identity_weighting": "equal_direction_fold_seed_then_max_attacker"
+  },
+  "command_wall_seconds": 1963.7697291998193
+}

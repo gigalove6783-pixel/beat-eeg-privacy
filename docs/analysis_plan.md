@@ -150,3 +150,64 @@ One model pooled over the 9 subjects, trained on T and evaluated on E.
    instead of T cross-validation.
 6. Schedule: results by 2026-11-15; interactive demo, report and explainer
    follow the presentation.
+
+## Follow-up experiments D and E (plan v2, 2026-11-10)
+
+Status: **exploratory.** D and E were designed after the session-E results of
+experiments A–C and reuse the same session E, which already shaped their
+motivation. Their settings, code and T-only selections are committed before
+their own E runs (seal 2, recorded in `docs/decision_log.md`). A confirmatory
+replication on untouched data (Lee2019 / OpenBMI, 54 subjects, two days) is
+planned separately once data access is verified.
+
+Motivation: experiment B found that a gradient-reversal identity adversary is
+fooled (co-trained head identity BA 0.026 at λ = 1) while independent attackers
+reach 0.95. Published EEG identity-removal results on the same dataset report
+near-zero identity accuracy measured with a co-trained identifier (e.g.
+ID-RemovalNet, IJCAI 2025: 0.04% for EEGNet on BCI IV 2a). Two objections must
+be answered before generalizing: only plain gradient reversal on Riemannian
+features was tested, and the bottleneck dimension (8) was arbitrary.
+
+### Experiment D: is the H2 failure specific to plain gradient reversal?
+
+- Same data, families (common, RC), inputs (253-d tangent vectors), encoder
+  (253→64→d), attackers, scenarios, seeds and statistics as experiment B.
+- D1 bottleneck sweep: task-only encoders with d ∈ {1, 2, 4, 8, 16, 32}; the
+  epoch budget per d and family is chosen as in B (fold-mean T-CV task BA).
+- D2 adversarial variants at d = 8, λ ∈ {0.01, 0.03, 0.1, 0.3, 1, 3}:
+  - GRL-CE: experiment B's P3 / P3-RC (reference).
+  - MaxEnt: the adversary minimizes identity cross-entropy; the encoder pushes
+    the adversary posterior toward the uniform distribution instead of
+    maximizing the adversary's loss (Roy & Boddeti, CVPR 2019).
+  - Ensemble-refresh: 5 adversary heads trained in parallel; the encoder is
+    penalized through their mean; one head is re-initialized each epoch in
+    rotation.
+  - To avoid an under-trained adversary, epoch budget and λ are chosen jointly
+    in T-CV from epochs {5, 10, 20, 40} by B's operating-point rule (task BA at
+    most 5 pp below the d = 8 task-only encoder of the same family; lowest
+    strongest-attacker identity BA).
+- Reported: E task BA, strongest independent-attacker identity BA (main and
+  auxiliary), co-trained head identity BA as a diagnostic.
+- Questions: (i) does any variant pass B's protection rule against the d = 8
+  task-only encoder of its family? (ii) frontier dominance: does any
+  adversarial operating point have lower strongest-attacker identity BA than
+  every task-only bottleneck with equal or higher task BA?
+
+### Experiment E: co-trained identifier vs independent attacker in a deep model
+
+- EEGNet-8,2 (Lawhern et al., 2018), pooled over the 9 subjects, trained on all
+  retained T trials; same trials, channels, window and causal 8–30 Hz filter,
+  decimated to 125 Hz.
+- Alignment: none, or per-subject Euclidean alignment with the subject's T
+  reference (He & Wu, 2019), the deep-model analogue of recentering.
+- Identity identifier: two fully connected layers on the EEGNet feature,
+  attached through gradient reversal; λ ∈ {0, 0.03, 0.1, 0.3, 1, 3}; 3 seeds;
+  fixed training budget from `configs/exp_e.yaml`; every λ is reported
+  (descriptive, no selection on E).
+- Reported per λ: E task BA; identity accuracy of the co-trained identifier on
+  E (the metric used by co-trained evaluations); strongest independent-attacker
+  identity BA on the frozen feature (main and auxiliary scenarios).
+- Question: does near-zero or below-chance co-trained identifier accuracy
+  coincide with high independent-attacker identity BA in a deep model?
+- This is not a reproduction of ID-RemovalNet; it tests the evaluation metric
+  on a common backbone that such methods build on.

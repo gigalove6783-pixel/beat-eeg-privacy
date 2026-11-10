@@ -1,0 +1,86 @@
+status: exploratory; not an ID-RemovalNet reproduction; seal 2 required before final
+alignments:
+- none
+- ea
+lambdas:
+- 0.0
+- 0.03
+- 0.1
+- 0.3
+- 1.0
+- 3.0
+seeds:
+- 0
+- 1
+- 2
+workers: 2
+torch_threads: 1
+input:
+  channels: 22
+  samples: 375
+  sampling_hz: 125
+  decimation: 2
+  preprocessing: retained causal 8-30 Hz trials; take every second sample; no new
+    filter
+alignment:
+  covariance: per-trial temporal centering; XX^T/(samples-1); arithmetic mean over
+    subject training T
+  eigenvalue_relative_floor: 1.0e-10
+architecture:
+  name: EEGNet-8,2
+  temporal_filters: 8
+  depth_multiplier: 2
+  pointwise_filters: 16
+  temporal_kernel: 64
+  separable_kernel: 16
+  pooling:
+  - 4
+  - 8
+  dropout: 0.5
+  dropout_type: elementwise
+  batchnorm_epsilon: 0.001
+  batchnorm_momentum: 0.01
+  spatial_max_norm: 1.0
+  task_max_norm: 0.25
+  identifier_hidden: 64
+  feature: flattened post-pooling EEGNet output before task classifier; 176 dimensions
+  kernel_note: reference 128-Hz default kernels retained at 125 Hz (512 ms and 128
+    ms); same padding
+  reference: https://github.com/vlawhern/arl-eegmodels/blob/master/EEGModels.py
+training:
+  optimizer: adam
+  learning_rate: 0.001
+  weight_decay: 0.0
+  batch_size: 32
+  budget_epochs:
+    none: 40
+    ea: 40
+  identifier_loss: unweighted identity CE at every lambda including zero; GRL scales
+    only encoder gradient
+  schedule: lambda*(2/(1+exp(-10*p))-1); p spans all optimizer steps from zero to
+    one
+pilot:
+  held_out_runs:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  seeds:
+  - 0
+  epoch_candidates:
+  - 10
+  - 20
+  - 40
+  selection: maximum fold-and-seed-mean subject-mean task BA at lambda zero; earliest
+    epoch breaks ties
+  benchmark: all retained T training at selected budget plus B attackers fitted on
+    T halves and all T
+attackers_source: configs/exp_b.yaml
+statistics:
+  bootstrap_samples: 2000
+  confidence: 0.95
+  chance: 0.1111111111111111
+  utility_margin: 0.05
+  protection_drop: 0.05

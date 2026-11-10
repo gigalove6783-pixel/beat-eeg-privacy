@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "budgets": {
+    "none": 40,
+    "ea": 40
+  },
+  "config_hash": "b3233f06e6773973895fbab85501b56f0ed5bc557c72792d6a5d8ac9f58d37a9",
+  "attackers_hash": "b859034c0cd6e26ac6bcd7d9dcba2a347b947737faeed391eef9210c7bf0cabf",
+  "source_hash": "c7d9357eb79405f28a5a34e69e2c6455cfa5ce4064d005882c13bf416bae65e2",
+  "training_hash": "fbfd8bb5b27cce4ee90bc00571063d468582ee64fa724ae41ba58519efc7a722",
+  "retained_T": 1163,
+  "session_scope": [
+    "T"
+  ],
+  "model_count": 36,
+  "benchmarks": [
+    {
+      "alignment": "none",
+      "training_seconds": 84.97916839993559,
+      "attack_fit_seconds": [
+        0.8163246000185609,
+        0.8233452001586556,
+        2.3054172000847757
+      ],
+      "measured_model_seconds": 89.36604249989614,
+      "mlp_convergence": [
+        {
+          "converged": true,
+          "iterations": 96,
+          "loss": 0.004300076514482498,
+          "warning": ""
+        },
+        {
+          "converged": true,
+          "iterations": 106,
+          "loss": 0.0042072562500834465,
+          "warning": ""
+        },
+        {
+          "converged": true,
+          "iterations": 109,
+          "loss": 0.004440343473106623,
+          "warning": ""
+        }
+      ]
+    },
+    {
+      "alignment": "ea",
+      "training_seconds": 84.43346150009893,
+      "attack_fit_seconds": [
+        0.8036789000034332,
+        0.8315709000453353,
+        2.493178900098428
+      ],
+      "measured_model_seconds": 89.31205620011315,
+      "mlp_convergence": [
+        {
+          "converged": true,
+          "iterations": 86,
+          "loss": 0.003896437119692564,
+          "warning": ""
+        },
+        {
+          "converged": true,
+          "iterations": 71,
+          "loss": 0.004421866498887539,
+          "warning": ""
+        },
+        {
+          "converged": true,
+          "iterations": 91,
+          "loss": 0.004786396399140358,
+          "warning": ""
+        }
+      ]
+    }
+  ],
+  "workers": 2,
+  "projected_final_hours": 0.558369058437529,
+  "projection_allowance": 1.25,
+  "projection_caveat": "T-feature attack fit proxy; E distributions, convergence and CPU contention can change runtime",
+  "exceeds_four_hours": false,
+  "wall_seconds": 490.4127658000216
+}
