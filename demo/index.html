@@ -14,9 +14,13 @@
   <div class="wrap topbar-inner">
     <span class="brand">BEAT</span>
     <nav aria-label="Sections">
+      <a href="#glance">Study</a>
       <a href="#replay">Replay</a>
-      <a href="#fooled">Fooled adversary</a>
-      <a href="#charts">Trade-offs</a>
+      <a href="#fooled">Pitfall 1</a>
+      <a href="#frontier">Frontier</a>
+      <a href="#pitfall2">Pitfall 2</a>
+      <a href="#replication">Replication</a>
+      <a href="#checklist">Checklist</a>
       <a href="#method">Method</a>
     </nav>
   </div>
@@ -29,33 +33,78 @@
   <p class="lede">A BCI turns imagined left- or right-hand movement into commands and often sends
     something off the device: a feature vector, a command, or both. We measured how well an
     eavesdropper can tell <strong>which of 9 people</strong> produced what was sent, and whether
-    that can be reduced without hurting control.</p>
+    that can be reduced without hurting control. A sealed replication then re-tested the main
+    claims on <strong>54 people</strong>.</p>
   <p class="ba-note"><span class="term">Identity score</span> = balanced accuracy of an attacker
-    naming the right person out of 9. Chance is <b data-h="chance" data-fmt="2">–</b>; 1.00 means
-    everyone is identified.</p>
+    naming the right person. Chance is <b data-h="chance" data-fmt="2">–</b> for 9 users<span data-l> and
+    <b data-h="l_chance" data-fmt="3">–</b> for 54</span>; 1.00 means everyone is identified.</p>
+
+  <p class="ba-note">Every result carries its evidence level:
+    <span class="badge conf">Confirmatory</span> = pre-registered and sealed before the held-out data were scored;
+    <span class="badge expl">Exploratory</span> = fixed before its own run but hypothesis-generating.
+    Hover or focus a number to see its source file.</p>
 
   <ol class="findings">
     <li class="finding">
       <span class="finding-num" aria-hidden="true">1</span>
-      <h2>Raw features identify everyone</h2>
+      <p class="finding-tag"><span data-evidence="exp_b"></span></p>
+      <h2>Raw features identify all 9 users</h2>
       <p class="big"><b data-h="raw_identity" data-fmt="2">–</b><span class="unit">identity score</span></p>
-      <p>Sending the 253-d feature vector lets an attacker name every user. Per-user recentering
+      <p>Sending the 253-d feature vector lets an attacker name every one of the 9 users in this closed set. Per-user recentering
         still leaves <b data-h="raw_rc_identity" data-fmt="3">–</b>.</p>
+      <p class="l-line" data-l><span data-evidence="exp_l"></span> <b>54 users:</b> raw features still give
+        <b data-h="l_raw" data-fmt="3">–</b> (strongest attacker).</p>
     </li>
     <li class="finding">
       <span class="finding-num" aria-hidden="true">2</span>
-      <h2>A small task bottleneck protects, and control improves</h2>
-      <p class="big"><b data-h="bottleneck_rc_identity" data-fmt="2">–</b><span class="unit">identity score, bottleneck + recentering</span></p>
-      <p>An 8-d task-only bottleneck gives <b data-h="bottleneck_identity" data-fmt="2">–</b>, with
-        recentering <b data-h="bottleneck_rc_identity" data-fmt="2">–</b>, while left/right accuracy
-        rises from <b data-h="raw_task" data-fmt="3">–</b> to <b data-h="bottleneck_rc_task" data-fmt="3">–</b>.</p>
+      <p class="finding-tag"><span data-evidence="exp_d"></span></p>
+      <h2>A narrow bottleneck reduces exposure most, but not to chance</h2>
+      <p class="big"><b data-h="d1_identity_range" data-fmt="range2">–</b><span class="unit">identity score, one number per trial (d = 1): about twice chance</span></p>
+      <p>Of all defences tested, a task-only bottleneck sending a single number per trial left the
+        least identity, at left/right accuracy <b data-h="d1_task_range" data-fmt="range3">–</b>;
+        no adversarially trained variant beat it. Users remain identifiable above chance.
+        <a href="#frontier">See the frontier</a></p>
+      <p class="l-line" data-l><span data-evidence="exp_l"></span> <b>54 users (C2 supported):</b> a recentred
+        bottleneck (d = 8) lowered identity from <b data-h="l_raw" data-fmt="3">–</b> to
+        <b data-h="l_bottleneck" data-fmt="3">–</b> with left/right accuracy non-inferior (<b data-h="l_utility" data-fmt="pp1">–</b>); still far above chance.</p>
     </li>
     <li class="finding">
       <span class="finding-num" aria-hidden="true">3</span>
-      <h2>Even left/right/hold commands leak</h2>
+      <p class="finding-tag"><span data-evidence="exp_c"></span></p>
+      <h2>Left/right/hold commands leaked on 9 users</h2>
       <p class="big"><b data-h="cmd_k20_range" data-fmt="range2">–</b><span class="unit">after 20 commands</span></p>
       <p>One command: <b data-h="cmd_k1_range" data-fmt="range2">–</b>. Above twice chance within
         5 commands in <b data-h="cmd_within5" data-fmt="ofn">–</b> model/threshold settings.</p>
+      <p class="l-line" data-l><span data-evidence="exp_l"></span> <b>54 users (C3 not supported):</b>
+        <b data-h="l_cmd_k20" data-fmt="3">–</b> after 20 commands vs twice chance
+        <b data-h="l_twice_chance" data-fmt="3">–</b>; not significant after Holm's correction
+        (p = <b data-h="l_c3_holm" data-fmt="pval">–</b>).</p>
+    </li>
+  </ol>
+
+  <h2 class="pitfalls-title">Two evaluation practices that overstate protection<span data-l>, both confirmed on 54 users</span></h2>
+  <ol class="findings findings-2" start="4">
+    <li class="finding pitfall">
+      <span class="finding-num" aria-hidden="true">4</span>
+      <p class="finding-tag"><span data-evidence="exp_b"></span></p>
+      <h2>Pitfall 1: trusting the co-trained adversary</h2>
+      <p class="big"><b data-h="head_lambda1" data-fmt="2" class="c-head">–</b> <span class="arrow" aria-hidden="true">vs</span> <b data-h="independent_lambda1" data-fmt="2" class="c-ind">–</b><span class="unit">identity score at λ = 1: co-trained head vs independent attacker, same frozen outputs</span></p>
+      <p>The head trained alongside the defence reports far below chance; attackers retrained afterwards
+        identify almost all 9 users. <a href="#fooled">Explore across λ</a></p>
+      <p class="l-line" data-l><span data-evidence="exp_l"></span> <b>54 users (C1 supported):</b> co-trained head
+        <b data-h="l_head" data-fmt="3">–</b> vs strongest independent attacker
+        <b data-h="l_independent" data-fmt="3">–</b> at λ = 1.</p>
+    </li>
+    <li class="finding pitfall">
+      <span class="finding-num" aria-hidden="true">5</span>
+      <p class="finding-tag"><span data-evidence="exp_g"></span></p>
+      <h2>Pitfall 2: attacking only with reference-session data</h2>
+      <p class="big"><b data-h="g_repro.ours_defended" data-fmt="pctv">–</b> <span class="arrow" aria-hidden="true">→</span> <b data-h="g_enrol_n1" data-fmt="pct2" class="c-ind">–</b><span class="unit">identification of a published defence: its own protocol vs one labelled deployment trial per user</span></p>
+      <p>Five labelled trials per user: <b data-h="g_enrol_n5" data-fmt="pct2">–</b>.
+        <a href="#pitfall2">See the enrolment curve</a></p>
+      <p class="l-line" data-l><span data-evidence="exp_l"></span> <b>54 users (C4 supported):</b> reference-session
+        benchmark <b data-h="l_benchmark" data-fmt="pct2">–</b>; five labelled trials per user
+        <b data-h="l_enrol5" data-fmt="pct1">–</b>.</p>
     </li>
   </ol>
 
@@ -71,8 +120,20 @@
   </aside>
 </section>
 
+<section id="glance" class="panel alt" aria-labelledby="glance-title">
+  <div class="wrap">
+    <h2 id="glance-title">The study at a glance</h2>
+    <p class="section-lede">Seven experiments on one question. A–G use the 9 users of BCI Competition IV 2a;
+      L repeats the key claims on 54 users. The attacker sees only what the device sends, trains its own
+      classifiers and names the user; it never sees raw EEG or account metadata.</p>
+    <ol class="glance" id="glance-list"></ol>
+    <p class="note" id="glance-note"></p>
+  </div>
+</section>
+
 <section id="replay" class="panel" aria-labelledby="replay-title">
   <div class="wrap">
+    <p class="section-tag"><span data-evidence="exp_c"></span> Experiment C</p>
     <h2 id="replay-title">Replay: steer the arm, watch the eavesdropper</h2>
     <p class="section-lede">Recorded session-E trials drive a one-joint arm: <b>left</b> −5°,
       <b>right</b> +5°, <b>hold</b> when the decoder's confidence is below τ. One episode is 20
@@ -161,25 +222,32 @@
 
 <section id="fooled" class="panel alt" aria-labelledby="fooled-title">
   <div class="wrap">
-    <h2 id="fooled-title">The fooled adversary</h2>
-    <p class="section-lede">We also trained the model with an identity adversary (gradient
-      reversal, strength λ). The adversary trained alongside the model reports that identity is
-      hidden. Attackers trained afterwards on the frozen outputs disagree.</p>
+    <p class="section-tag">Experiments B, D and E</p>
+    <h2 id="fooled-title">Pitfall 1: the fooled adversary</h2>
+    <p class="section-lede">A common defence trains the model together with an identity adversary
+      (strength λ) and reports that adversary's score as the privacy result. We compare it, at every λ,
+      with attackers retrained afterwards on the same frozen outputs. Pick a study: the pre-registered
+      gradient-reversal models of B, the stronger adversaries of D, or an end-to-end EEGNet in E.</p>
+    <div class="controls p1-controls" role="group" aria-label="Pitfall 1 chart options">
+      <fieldset class="ctl">
+        <legend>Study</legend>
+        <div class="seg" id="p1-study" role="radiogroup" aria-label="Study"></div>
+      </fieldset>
+      <fieldset class="ctl">
+        <legend>Family</legend>
+        <div class="seg" id="fooled-family" role="radiogroup" aria-label="Model family"></div>
+      </fieldset>
+    </div>
     <div class="fooled-grid">
       <div class="card">
         <div class="card-head">
-          <div class="seg" id="fooled-family" role="radiogroup" aria-label="Model family">
-            <label><input type="radio" name="fam" value="P3" checked><span>Bottleneck + adversary</span></label>
-            <label><input type="radio" name="fam" value="P3-RC"><span>+ recentering</span></label>
-          </div>
+          <h3 id="p1-title">–</h3>
+          <p class="hint" id="p1-badge"></p>
         </div>
         <p class="chart-legend" id="fooled-legend"></p>
         <div class="chart" id="fooled-chart"></div>
         <details class="table-toggle"><summary>Show as table</summary><div id="fooled-table"></div></details>
-        <p class="note">Both lines are means over 5 model seeds. The head line is the co-trained
-          head's main-scenario score. “Strongest” is the maximum over the three independent attackers
-          and both scenarios: main = trained and tested within session E (runs 1–3 ↔ 4–6, averaged over
-          both directions); auxiliary = trained on session-T outputs, tested on E.</p>
+        <p class="note" id="p1-note"></p>
       </div>
       <div class="card fooled-readout">
         <label for="lambda" class="mini-label">Adversary strength λ</label>
@@ -187,7 +255,7 @@
         <output id="lambda-out" for="lambda" class="lambda-out"></output>
         <div class="verdicts">
           <div class="verdict v-head">
-            <p class="v-label">Co-trained adversary head says</p>
+            <p class="v-label" id="v-head-label">Co-trained adversary head says</p>
             <p class="v-num" id="v-head">–</p>
             <p class="v-sub" id="v-head-sub"></p>
           </div>
@@ -197,29 +265,46 @@
             <p class="v-sub" id="v-ind-sub"></p>
           </div>
         </div>
-        <p class="note">Judged by its own training head the model looks private; judged by an
-          independent attacker it leaks more as λ grows. Cross-validation on session T alone
-          therefore selected λ = <b data-h="selected_lambda" data-fmt="raw">–</b>, effectively no adversary.
-          Pre-registered hypothesis H2 was <b>not supported</b>.</p>
+        <p class="v-task" id="v-task"></p>
+        <p class="note" id="p1-takeaway"></p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="charts" class="panel" aria-labelledby="charts-title">
+<section id="frontier" class="panel" aria-labelledby="frontier-title">
   <div class="wrap">
-    <h2 id="charts-title">Utility versus exposure</h2>
-    <div class="chart-grid">
-      <div class="card">
-        <div class="card-head">
-          <h3>Control accuracy vs identity exposure</h3>
-          <p class="hint">Better models sit top-left: high left/right accuracy, low identity score.</p>
-        </div>
-        <div class="toggles" id="trade-toggles" role="group" aria-label="Show model families"></div>
-        <div class="toggles exp-toggles" id="trade-exps" role="group" aria-label="Experiments"></div>
-        <div class="chart" id="trade-chart"></div>
-        <details class="table-toggle"><summary>Show as table</summary><div id="trade-table"></div></details>
+    <p class="section-tag">Experiments B and D</p>
+    <h2 id="frontier-title">A simple bottleneck is hard to beat</h2>
+    <p class="section-lede">Each point is one model: how well it decodes left/right (up is better) against
+      how well the strongest independent attacker names the user from what it transmits (left is more
+      private). A task-only bottleneck that keeps just <i>d</i> numbers per trial is compared with three
+      adversarial defences across their strengths λ.</p>
+    <div class="card">
+      <div class="card-head">
+        <h3>Utility–identity frontier</h3>
+        <p class="hint" id="frontier-badges"></p>
       </div>
+      <div class="seg-row">
+        <div class="seg" id="frontier-family" role="radiogroup" aria-label="Model family"></div>
+      </div>
+      <div class="toggles" id="frontier-toggles" role="group" aria-label="Show defences"></div>
+      <p class="chart-legend" id="frontier-legend"></p>
+      <div class="chart" id="frontier-chart"></div>
+      <details class="table-toggle"><summary>Show as table</summary><div id="frontier-table"></div></details>
+      <p class="note" id="frontier-note"></p>
+    </div>
+  </div>
+</section>
+
+<section id="commands" class="panel alt" aria-labelledby="commands-title">
+  <div class="wrap">
+    <p class="section-tag"><span data-evidence="exp_c"></span> Experiment C</p>
+    <h2 id="commands-title">Commands accumulate identity</h2>
+    <p class="section-lede">Sending only left/right/hold leaks about an order of magnitude less per message
+      than sending features, but it does not vanish: identity leakage generally grows the longer an eavesdropper watches the
+      command stream, though not monotonically.</p>
+    <div class="chart-grid one">
       <div class="card">
         <div class="card-head">
           <h3>Identity exposure vs observation length</h3>
@@ -236,8 +321,70 @@
     </div>
     <p class="note">Points: 5-seed means of the strongest independent attacker, i.e. the maximum over
       the three attackers and both scenarios (main = session E runs 1–3 ↔ 4–6, averaged over both
-      directions; auxiliary = trained on session-T outputs, tested on E). Bars and bands: the 95%
+      directions; auxiliary = trained on session-T outputs, tested on E). Bands: the 95%
       intervals reported in the result tables. Session E, held out until the seal.</p>
+  </div>
+</section>
+
+<section id="pitfall2" class="panel" aria-labelledby="pitfall2-title">
+  <div class="wrap">
+    <p class="section-tag"><span data-evidence="exp_g"></span> Experiment G</p>
+    <h2 id="pitfall2-title">Pitfall 2: a published defence, re-identified with a few labels</h2>
+    <p class="section-lede">A training-free defence published for this dataset is fitted on a reference
+      session and evaluated with attackers trained on that session. We re-implemented it, reproduced its
+      result, then gave the attacker what a real service may hold: a few labelled trials per user from the
+      deployment period.</p>
+    <div class="p2-grid">
+      <div class="card">
+        <div class="card-head">
+          <h3>Identification vs labelled deployment trials per user</h3>
+        </div>
+        <div class="controls p2-controls" role="group" aria-label="Enrolment chart options">
+          <div class="ctl">
+            <label for="p2-attacker">Attacker</label>
+            <select id="p2-attacker"></select>
+          </div>
+          <fieldset class="ctl">
+            <legend>Test trials per guess</legend>
+            <div class="seg" id="p2-k" role="radiogroup" aria-label="Test trials per guess"></div>
+          </fieldset>
+        </div>
+        <p class="chart-legend" id="p2-legend"></p>
+        <div class="chart" id="p2-chart"></div>
+        <details class="table-toggle"><summary>Show as table</summary><div id="p2-table"></div></details>
+        <p class="note" id="p2-note"></p>
+      </div>
+      <div class="card p2-side">
+        <h3>The defence works on its own terms</h3>
+        <p class="hint">Tangent-space SVM, session 1 → session 2, the paper's protocol.</p>
+        <div class="repro" id="p2-repro"></div>
+        <h3 class="mt">…but not against deployment-period labels</h3>
+        <dl class="stats stats-2" id="p2-stats"></dl>
+        <details class="table-toggle"><summary>All attackers by scenario</summary><div id="p2-scen"></div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="replication" class="panel alt" aria-labelledby="replication-title">
+  <div class="wrap">
+    <p class="section-tag"><span data-evidence="exp_l"></span> Experiment L</p>
+    <h2 id="replication-title">Pre-registered replication on 54 users</h2>
+    <p class="section-lede" id="repl-lede"></p>
+    <div class="repl-status" id="repl-status" aria-live="polite"></div>
+    <ol class="claims" id="repl-claims"></ol>
+    <p class="note" id="repl-note"></p>
+  </div>
+</section>
+
+<section id="checklist" class="panel" aria-labelledby="checklist-title">
+  <div class="wrap">
+    <h2 id="checklist-title">Audit checklist for identity-protection claims</h2>
+    <p class="section-lede">Distilled from both pitfalls. Tick the items your own evaluation already
+      covers; each links to the evidence on this page. Nothing you tick is stored or sent.</p>
+    <p class="check-count" id="check-count" aria-live="polite"></p>
+    <ol class="checklist" id="checklist-list"></ol>
+    <p class="note" id="checklist-source"></p>
   </div>
 </section>
 
@@ -280,7 +427,11 @@
       <a class="btn" href="#" aria-disabled="true" data-placeholder="report">Report (link coming)</a>
       <a class="btn" href="#" aria-disabled="true" data-placeholder="code">Code (link coming)</a>
     </p>
-    <div id="exp-status" class="exp-status" aria-live="polite"></div>
+    <h3 id="timeline-title" class="timeline-title">Pre-registration timeline</h3>
+    <p class="hint">Each seal is a Git commit that fixed the plan, configuration, code and training-data-only
+      choices before the corresponding held-out data were scored.</p>
+    <ol class="timeline" id="timeline" aria-labelledby="timeline-title"></ol>
+    <p class="note" id="timeline-source"></p>
   </div>
 </section>
 </main>
@@ -296,6 +447,7 @@
   </div>
 </footer>
 <div id="tooltip" class="tooltip" role="status" hidden></div>
-<script type="module" src="app.js"></script>
+<script src="data/results.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
