@@ -1,0 +1,147 @@
+{
+  "label": "EXPLORATORY - Experiment K (not confirmatory; conditional on the fitted systems)",
+  "datasets": {
+    "bnci2014_001": {
+      "conditions": [
+        "P0",
+        "P2-RC_d8",
+        "P3_lambda1"
+      ],
+      "k": [
+        1,
+        2,
+        5,
+        10,
+        20,
+        36,
+        72
+      ],
+      "battery_k": [
+        1,
+        5,
+        20,
+        36
+      ],
+      "groupings": {
+        "g2": 2,
+        "g3": 3,
+        "g5": 5,
+        "gall": 9
+      }
+    },
+    "lee2019": {
+      "conditions": [
+        "P0",
+        "P2-RC_d8",
+        "P3_lambda1"
+      ],
+      "k": [
+        1,
+        2,
+        5,
+        10,
+        20,
+        50,
+        100
+      ],
+      "battery_k": [
+        1,
+        5,
+        20,
+        50
+      ],
+      "groupings": {
+        "g2": 2,
+        "g3": 3,
+        "g5": 5,
+        "g9": 9,
+        "gall": 54
+      }
+    }
+  },
+  "taus": [
+    0.5,
+    0.8
+  ],
+  "model_seeds": [
+    0,
+    1,
+    2
+  ],
+  "postprocessing_seeds": [
+    0,
+    1,
+    2
+  ],
+  "undefended_only": [
+    "P3_lambda1"
+  ],
+  "defences": {
+    "bnci2014_001": [
+      "none",
+      "rr_q0.1",
+      "rr_q0.25",
+      "rr_q0.5",
+      "rr_q0.75",
+      "eqm_g2",
+      "eqm_g3",
+      "eqm_g5",
+      "eqm_gall",
+      "eqc_g2",
+      "eqc_g3",
+      "eqc_g5",
+      "eqc_gall"
+    ],
+    "lee2019": [
+      "none",
+      "rr_q0.1",
+      "rr_q0.25",
+      "rr_q0.5",
+      "rr_q0.75",
+      "eqm_g2",
+      "eqm_g3",
+      "eqm_g5",
+      "eqm_g9",
+      "eqm_gall",
+      "eqc_g2",
+      "eqc_g3",
+      "eqc_g5",
+      "eqc_g9",
+      "eqc_gall"
+    ]
+  },
+  "scenarios": {
+    "within_day": "deployment-day segment A -> segment B, both directions (C/L \"main\")",
+    "cross_day": "cross-fitted calibration day -> deployment day (C/L \"auxiliary\")",
+    "cross_day_insample": "in-sample calibration day -> deployment day (contrast only)"
+  },
+  "views": [
+    "blind",
+    "aware"
+  ],
+  "attackers": {
+    "undefended": "battery (logistic, rbf_svm, mlp) x views + Bayes (cat_blind, cat_aware, markov_blind, markov_aware)",
+    "defended": "Bayes attackers only",
+    "operating_points": {
+      "defences": [
+        "rr_q0.5",
+        "eqm_g3",
+        "eqc_g3"
+      ],
+      "conditions": [
+        "P0",
+        "P2-RC_d8"
+      ],
+      "postprocessing_seeds": [
+        0
+      ]
+    }
+  },
+  "metrics": [
+    "N-way identification BA (mean per-user recall)",
+    "within-group identification (group given) and excess over 1/|own group|"
+  ],
+  "bayes_cells": 36,
+  "battery_jobs": 2880,
+  "note": "P3 lambda=1 (2a: B's stored lambda-1 OOF and final outputs, no refit) is undefended only."
+}

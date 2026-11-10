@@ -1,0 +1,19 @@
+{
+  "label": "EXPLORATORY - Experiment K (not confirmatory; conditional on the fitted systems)",
+  "rows": 69160,
+  "battery_jobs": 1152,
+  "battery_not_evaluable": 0,
+  "eq_fit_max_equalization_residual": 2.540551239552335e-14,
+  "eq_fit_max_duality_gap": 1.8041124150158794e-15,
+  "lp_synthetic_max_equalization_residual": 7.771561172376096e-16,
+  "lp_synthetic_max_abs_optimum_error": 1.1102230246251565e-16,
+  "reproduction_max_abs_difference": 0.0,
+  "cells_rerun_wall_seconds": 1907.251024799887,
+  "battery_source": "artifacts/exp_k/battery_results.joblib (stored by the run stage)",
+  "first_run_wall_seconds": 5795.556338499999,
+  "memory": {
+    "cells": {
+      "min_free_mib": 8241.01953125
+    }
+  }
+}

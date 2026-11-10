@@ -1,0 +1,17 @@
+variant,stream,attacker,k,within_group_ba,chance
+marginal,undefended,cat_blind,50,0.99375,0.3333333333333333
+marginal,undefended,cat_aware,50,1.0,0.3333333333333333
+marginal,undefended,markov_blind,50,0.99375,0.3333333333333333
+marginal,undefended,markov_aware,50,1.0,0.3333333333333333
+marginal,defended,cat_blind,50,0.3333333333333333,0.3333333333333333
+marginal,defended,cat_aware,50,0.8104166666666667,0.3333333333333333
+marginal,defended,markov_blind,50,0.33541666666666664,0.3333333333333333
+marginal,defended,markov_aware,50,0.8208333333333333,0.3333333333333333
+confusion,undefended,cat_blind,50,1.0,0.3333333333333333
+confusion,undefended,cat_aware,50,1.0,0.3333333333333333
+confusion,undefended,markov_blind,50,1.0,0.3333333333333333
+confusion,undefended,markov_aware,50,1.0,0.3333333333333333
+confusion,defended,cat_blind,50,0.30416666666666664,0.3333333333333333
+confusion,defended,cat_aware,50,0.2854166666666667,0.3333333333333333
+confusion,defended,markov_blind,50,0.3104166666666667,0.3333333333333333
+confusion,defended,markov_aware,50,0.28958333333333336,0.3333333333333333

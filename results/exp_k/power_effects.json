@@ -1,0 +1,34 @@
+{
+  "label": "EXPLORATORY - Experiment K (not confirmatory; conditional on the fitted systems)",
+  "model": "simulate_days",
+  "theta_file": "power_theta.npz",
+  "calibration_scope": "simulate_days draws outputs i.i.d. given (user, target) within a day, with no within-day drift and no sequential dependence. calibrate_effect fits (shrink, drift_sd) by least squares to the source's undefended Bayes N-way BA of the categorical attackers (cat_blind, cat_aware) within-day and cross-day. For K's Lee2019 source the fitted model reproduces the cross-day targets but underfits within-day identification at small k (power_calibration_fit.csv). The power function is therefore calibrated for cross-day statistics with categorical attackers - M's candidates cal_to_dep and dep_to_dep are both cross-day; the Markov attackers in the simulated candidate set see no sequential structure, and within-day statistics at small k would be understated.",
+  "calibration_fit": "power_calibration_fit.csv",
+  "effects": {
+    "lee2019|P2-RC_d8|tau0.8": {
+      "source": {
+        "dataset": "lee2019",
+        "condition": "P2-RC_d8",
+        "tau": 0.8
+      },
+      "shrink": 0.75,
+      "drift_sd": 0.45,
+      "sse": 0.007417014514031785,
+      "observed": {
+        "within_day|cat_blind|5": 0.10910493827160493,
+        "within_day|cat_blind|20": 0.14506172839506173,
+        "within_day|cat_blind|50": 0.17746913580246915,
+        "within_day|cat_aware|5": 0.12808641975308643,
+        "within_day|cat_aware|20": 0.18641975308641978,
+        "within_day|cat_aware|50": 0.2376543209876543,
+        "cross_day|cat_blind|5": 0.04953703703703703,
+        "cross_day|cat_blind|20": 0.07407407407407407,
+        "cross_day|cat_blind|50": 0.06790123456790123,
+        "cross_day|cat_aware|5": 0.05030864197530865,
+        "cross_day|cat_aware|20": 0.08209876543209876,
+        "cross_day|cat_aware|50": 0.10185185185185185
+      },
+      "users_in_pool": 54
+    }
+  }
+}

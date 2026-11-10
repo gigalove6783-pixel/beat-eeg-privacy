@@ -1,0 +1,3 @@
+cut,battery_jobs_removed,description,applied_at
+battery_operating_points,1728,existing battery at the defended operating points,projection
+power_grid_reduced,0,power calibration on the first source only; M4 grid n_sim halved,power stage (--drop)

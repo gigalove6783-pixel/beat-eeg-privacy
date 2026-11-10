@@ -1,0 +1,36 @@
+{
+  "label": "EXPLORATORY - Experiment K (not confirmatory; conditional on the fitted systems)",
+  "limit_seconds": 10800,
+  "workers": 3,
+  "stages": [
+    {
+      "cuts": [],
+      "bayes_work_s": 1710.9677507503332,
+      "battery_work_s": 20017.99486072641,
+      "power_work_s": 4959.646065685898,
+      "projected_run_wall_s": 11270.253615484435,
+      "pilot_wall_s": 390.4746794998646,
+      "total_wall_s": 11660.7282949843,
+      "battery_jobs": 2880
+    },
+    {
+      "cuts": [
+        "battery_operating_points"
+      ],
+      "bayes_work_s": 1710.9677507503332,
+      "battery_work_s": 8813.789920770563,
+      "power_work_s": 4959.646065685898,
+      "projected_run_wall_s": 6601.834890502831,
+      "pilot_wall_s": 390.4746794998646,
+      "total_wall_s": 6992.309570002695,
+      "battery_jobs": 1152
+    }
+  ],
+  "drop_list": [
+    "battery_operating_points"
+  ],
+  "fits": true,
+  "basis": "Measured pilot units (real P2-RC tau 0.8 seed 0 cells and battery profiles) x declared counts; parallel parts divided by the worker count; safety factor 1.25.",
+  "free_mib_at_projection": 10881.890625,
+  "pilot_memory": null
+}
