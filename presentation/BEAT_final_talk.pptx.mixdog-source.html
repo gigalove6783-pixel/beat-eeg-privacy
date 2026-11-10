@@ -1,0 +1,286 @@
+<!-- BRIEF
+subject/audience/action: BEAT 결과 발표 · 교수님과 심사자 앞에서 발표자 혼자 13분 안에 설명 · 청중이 "BCI 전송물은 신원을 드러내고, 흔한 평가 방식 두 가지는 보호를 과대평가한다"는 결론과 그 근거(사전등록과 54명 확증 재현)를 받아들이게 한다
+concept: 연구 결과 발표, 흰 바탕에 그림과 같은 Okabe-Ito 색 의미(파랑=함께 학습한 식별기, 주황빨강=독립 공격자, 초록=과제 병목)
+reading mode: presentation · argument mode: pyramid
+directions: A 흰 바탕 학술 발표, 그림 팔레트와 같은 색 의미, 굵은 한국어 단언형 제목 · B 남색 바탕 전면 · selected: A · why: 요약 그림이 흰 바탕으로 렌더링되어 있어 흰 바탕이어야 그림이 이어져 보인다
+style: custom academic · palette: hue 210 · accent hue 20 · accent: #D55E00 · type: MODE presentation → body 12pt · script: ko · pairing: weight · fonts: safe
+motif: 상단 파란 섹션 표지와 단언형 제목, 오른쪽 수치 패널 · rhythm: anchor, breathing, dense, breathing, dense, dense, dense, dense, dense, dense, dense, breathing, anchor
+sources: docs/report.md · results/ (커밋 b19e30f, 91278bd) · docs/decision_log.md · docs/analysis_plan.md
+facts: F1 BCI IV 2a 9명 22채널 서로 다른 날 두 세션 — docs/report.md §3
+  · F2 Lee2019/OpenBMI 54명 20채널 두 세션 — docs/analysis_plan.md plan v3
+  · F3 원시 특징 식별 정확도 1.00 그리고 재중심화 후 0.998 (9명) 253차원 — results/exp_b/tradeoff.csv P0 P0-RC
+  · F4 원시 특징 식별 정확도 0.994 (54명) — results/exp_l/decision.json claims.C2
+  · F5 우연 수준 0.111 (1/9) 그리고 0.019 (1/54) — 정의
+  · F6 함께 학습한 식별기 0.026 대 독립 공격자 0.951 λ = 1 — results/exp_b/adversary_comparison.csv
+  · F7 EEGNet 식별기 0.11–0.19 대 독립 공격자 0.44–0.58 — results/exp_e/lambda_summary.csv
+  · F8 54명 C1 식별기 0.040 대 공격자 0.514 Holm p 8.9×10⁻²⁶ — results/exp_l/decision.json claims.C1
+  · F9 d = 1 병목 식별 0.25 과제 0.71 (9명) — results/exp_d/tradeoff.csv D1-d1
+  · F10 d = 1 병목 식별 0.057 과제 0.70 (54명) — results/exp_l/dimension_sweep.csv 그리고 task_summary.csv P2_d1
+  · F11 54명 C2 0.994 → 0.340 과제 −0.6%p 하한 −2.3%p 허용 한계 −5%p Holm p 4.6×10⁻⁵ — results/exp_l/decision.json claims.C2
+  · F12 명령 5개 이내 24개 설정 중 22개가 우연의 2배 도달 — results/exp_c/observation_threshold.csv
+  · F13 명령 20개 식별 0.21–0.48 — results/exp_c/observation_strongest.csv
+  · F14 54명 C3 명령 20개 0.085 Holm p 0.21 — results/exp_l/decision.json claims.C3
+  · F15 공개 방어 재현 90.8% → 11.1% — results/exp_g/bnci/paper_table1_comparison.csv
+  · F16 배포 라벨 1개 81.75% 그리고 5개 97.11% — results/exp_g/bnci/enrolment_averaged.csv
+  · F17 54명 C4 기준 세션 1.34% (논문 2.4%) 라벨 1개 82.8% 라벨 5개 92.7% Holm p 4.5×10⁻³⁵ — results/exp_l/decision.json claims.C4 그리고 reproduction.json 그리고 enrolment.csv
+  · F18 사전등록 주장 4개 중 3개 지지 유의수준 0.05 seed 5개 — results/exp_l/decision.json
+  · F19 H1 0.689 대 0.669 p = 0.10 보정 1 run — results/exp_a/h1.json
+  · F20 H2 선택된 λ = 0.01 — results/exp_b/decision.json
+  · F21 봉인 3회 6ab5668 b216b7d 9757c3f 테스트 109개 — docs/decision_log.md
+  · F22 최근접 선행 연구 arXiv 2610.15626 — docs/related_work.md
+  · F23 감사 체크리스트 10개 항목 중 5개 요약 — docs/report.md §9
+  · F24 독립 공격자 3종 — docs/report.md §4.4
+  · F25 함정 1 그리고 함정 2 — docs/report.md §6.3 §6.5
+  · F26 감사 질문 3개 — 발표 구성
+  · F27 발표일 2026년 11월 16일 — 사용자 일정
+slide plan: 1 job: cover · move: 청중이 주제와 주장을 한 문장으로 잡는다 · composition: 남색 표지에 큰 단언형 제목, 아래에 부제와 팀 정보, 바닥에 뇌파 선 장식 · carriers: title, subtitle, team line · texture: statement · rhythm: anchor
+  · 2 job: problem · relationship: flow · move: BCI가 무엇을 밖으로 보내고 공격자가 어디에 서는지 안다 · composition: 위쪽 네 칸 흐름도와 전송물 아래 공격자 칸, 아래쪽 질문 카드 세 개 · carriers: flow diagram, attacker box, question cards · texture: diagram · rhythm: breathing
+  · 3 job: method · relationship: parallel · move: 데이터와 공격자와 사전등록 방식을 믿을 만하다고 본다 · composition: 같은 형식의 세 열 카드와 하단 지표 정의 띠 · carriers: three cards, metric band · texture: prose · rhythm: dense
+  · 4 job: evidence · relationship: contrast · move: 원시 특징이 거의 모든 사용자를 식별한다는 것을 숫자로 본다 · composition: 두 개의 큰 수치를 좌우로 놓고 각각 우연 수준을 아래 표기 · carriers: two hero numbers, chance labels, note · texture: numbers · rhythm: breathing
+  · 5 job: evidence · relationship: tradeoff · move: 좁은 병목이 가장 잘 막지만 완전하지 않다는 것을 본다 · composition: 왼쪽 큰 그림, 오른쪽 수치 패널 세 칸 · carriers: frontier figure, stat panel · texture: chart · rhythm: dense
+  · 6 job: evidence · relationship: contrast · move: 함께 학습한 식별기가 보호를 과대평가한다는 함정 1을 본다 · composition: 왼쪽 그림, 오른쪽 세 실험의 대비 수치 · carriers: pitfall figure, contrast stats · texture: chart · rhythm: dense
+  · 7 job: evidence · relationship: accumulation · move: 명령만 보내도 관찰이 쌓이면 신원이 드러난다는 것을 본다 · composition: 왼쪽 그림, 오른쪽 수치와 54명 확증의 실패 표기 · carriers: observation figure, stat panel · texture: chart · rhythm: dense
+  · 8 job: evidence · relationship: contrast · move: 기준 세션 공격자만 시험한 방어가 배포 라벨로 뚫린다는 함정 2를 본다 · composition: 왼쪽 그림, 오른쪽 재현과 재식별 수치, 해석 주의 문장 · carriers: enrolment figure, stat panel, caveat · texture: chart · rhythm: dense
+  · 9 job: evidence · relationship: verdict · move: 54명 확증 재현에서 4개 중 3개가 지지됐음을 판정과 함께 본다 · composition: 큰 확증 그림 한 장과 하단 판정 조건 설명 · carriers: confirmatory figure, caption · texture: chart · rhythm: dense
+  · 10 job: integrity · relationship: ledger · move: 지지되지 않은 가설도 공개했고 봉인 장치가 있었다는 것을 안다 · composition: 왼쪽 가설 판정 표, 오른쪽 무결성 장치 목록 · carriers: table, integrity list · texture: table · rhythm: dense
+  · 11 job: recommendation · relationship: sequence · move: 보호 주장을 검증하는 다섯 가지 확인 항목을 가져간다 · composition: 번호 원과 항목 다섯 줄 · carriers: numbered checklist · texture: list · rhythm: dense
+  · 12 job: limits · relationship: boundary · move: 결과가 적용되는 범위와 적용되지 않는 범위를 안다 · composition: 아이콘과 한계 다섯 줄 · carriers: icon list · texture: list · rhythm: breathing
+  · 13 job: closing · move: 세 가지 결론과 산출물을 기억하고 질문으로 넘어간다 · composition: 남색 바탕에 결론 세 줄, 아래 산출물 칩 네 개, 질문 안내 · carriers: takeaways, deliverable chips, Q&A line · texture: statement · rhythm: anchor
+-->
+<html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0;padding:0}
+.slide{width:1920px;height:1080px;position:relative;overflow:hidden;background:#FFFFFF;color:#1B1F24;font-family:'Malgun Gothic','Noto Sans KR',sans-serif;word-break:keep-all;overflow-wrap:break-word}
+.kicker{position:absolute;left:96px;top:60px;font-size:24px;font-weight:700;color:#0072B2}
+.title{position:absolute;left:96px;top:100px;width:1728px;font-size:50px;line-height:1.25;font-weight:700;color:#14202E;text-wrap:balance}
+.foot{position:absolute;left:96px;top:1028px;font-size:20px;color:#6B7480}
+.pg{position:absolute;right:96px;top:1028px;font-size:20px;color:#6B7480}
+.fig{position:absolute;left:64px;top:236px;width:1280px;height:720px;object-fit:contain}
+.panel{position:absolute;left:1392px;top:250px;width:456px;display:flex;flex-direction:column;gap:28px}
+.stat{border-left:6px solid #0072B2;padding:6px 0 6px 22px}
+.stat .lab{font-size:24px;line-height:1.4;color:#3A4450}
+.stat .val{font-size:46px;line-height:1.2;font-weight:700;color:#14202E;margin-top:4px}
+.stat .sub{font-size:24px;line-height:1.4;color:#5B6470;margin-top:12px}
+.note{font-size:24px;line-height:1.5;color:#3A4450;text-wrap:pretty}
+.stat .note{margin-top:12px}
+.blue{color:#0072B2}.red{color:#D55E00}.green{color:#007A5A}
+.stat.red{border-left-color:#D55E00}.stat.green{border-left-color:#009E73}.stat.gray{border-left-color:#8A939E}
+.badge{display:inline-block;font-size:20px;font-weight:700;padding:6px 14px;border-radius:8px}
+</style></head><body>
+
+<section class="slide" style="background:#0E2238">
+  <div style="position:absolute;left:120px;top:150px;font-size:26px;font-weight:700;color:#7FB8E6">BEAT 프로젝트 결과 발표</div>
+  <div style="position:absolute;left:120px;top:220px;width:1560px;font-size:76px;line-height:1.2;font-weight:700;color:#FFFFFF;text-wrap:balance">BCI가 밖으로 보내는 신호는 사용자가 누구인지 드러낸다</div>
+  <div style="position:absolute;left:120px;top:460px;width:1500px;font-size:32px;line-height:1.5;color:#CFE0F2;text-wrap:pretty">운동상상 EEG 전송물의 신원 노출 감사, 그리고 보호 효과를 과대평가하는 두 가지 평가 함정</div>
+  <svg style="position:absolute;left:0;top:640px;width:1920px;height:150px" viewBox="0 0 1920 150" data-alt="뇌파를 닮은 장식 곡선">
+    <path d="M0 75 C 60 75, 80 30, 120 75 S 180 120, 220 75 S 300 20, 340 75 S 420 135, 470 75 S 540 50, 590 75 S 660 10, 720 75 S 800 140, 860 75 S 940 45, 990 75 S 1060 25, 1110 75 S 1190 125, 1250 75 S 1330 55, 1380 75 S 1450 15, 1510 75 S 1590 130, 1650 75 S 1730 50, 1780 75 S 1860 40, 1920 75" fill="none" stroke="#2F5D8C" stroke-width="4"/>
+  </svg>
+  <div style="position:absolute;left:120px;top:860px;font-size:30px;font-weight:700;color:#FFFFFF">BEAT 팀 · 이동현 · 장규범</div>
+  <div style="position:absolute;left:120px;top:928px;font-size:26px;color:#A9C4DE">2026년 11월 16일</div>
+  <aside class="notes">안녕하세요, BEAT 팀 이동현입니다. 저희는 뇌–컴퓨터 인터페이스, 즉 BCI가 기기 밖으로 보내는 정보만으로 사용자가 누구인지 알아낼 수 있는지를 측정했습니다. 결론부터 말씀드리면, 알아낼 수 있습니다. 그리고 보호 기법의 효과를 재는 흔한 방법 두 가지가 실제보다 안전하게 보이게 만든다는 것도 확인했습니다. 모든 분석은 결과를 보기 전에 Git 커밋으로 봉인했고, 마지막에는 54명 데이터로 확증 재현을 했습니다.</aside>
+</section>
+
+<section class="slide">
+  <div class="kicker">문제</div>
+  <div class="title">BCI는 해독 결과를 기기 밖으로 보내고, 공격자는 그 전송물만 본다</div>
+  <div style="position:absolute;left:160px;top:270px;width:1600px;display:grid;grid-template-columns:340px 80px 340px 80px 340px 80px 340px;grid-template-rows:170px 64px 120px;align-items:center">
+    <div style="grid-column:1;grid-row:1;height:150px;border:2px solid #C9D3DE;border-radius:14px;background:#F4F7FA;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center"><div style="font-size:30px;font-weight:700">EEG 헤드셋</div><div style="font-size:24px;color:#5B6470">운동상상 뇌파 측정</div></div>
+    <div style="grid-column:2;grid-row:1;text-align:center;font-size:40px;color:#8A939E">→</div>
+    <div style="grid-column:3;grid-row:1;height:150px;border:2px solid #C9D3DE;border-radius:14px;background:#F4F7FA;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center"><div style="font-size:30px;font-weight:700">해독기</div><div style="font-size:24px;color:#5B6470">기기 안에서 손 판별</div></div>
+    <div style="grid-column:4;grid-row:1;text-align:center;font-size:40px;color:#8A939E">→</div>
+    <div style="grid-column:5;grid-row:1;height:150px;border:3px solid #0072B2;border-radius:14px;background:#E8F2FA;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center"><div style="font-size:30px;font-weight:700;color:#0B4F80">전송물</div><div style="font-size:24px;color:#1F4E70">특징 벡터 또는 명령</div></div>
+    <div style="grid-column:6;grid-row:1;text-align:center;font-size:40px;color:#8A939E">→</div>
+    <div style="grid-column:7;grid-row:1;height:150px;border:2px solid #C9D3DE;border-radius:14px;background:#F4F7FA;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center"><div style="font-size:30px;font-weight:700">앱 · 로봇팔</div><div style="font-size:24px;color:#5B6470">명령을 받아 동작</div></div>
+    <div style="grid-column:5;grid-row:2;text-align:center;font-size:40px;color:#D55E00">↑</div>
+    <div style="grid-column:4 / span 3;grid-row:3;height:110px;border:3px dashed #D55E00;border-radius:14px;background:#FDF1E9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center"><div style="font-size:26px;font-weight:700;color:#9A3F00">공격자: 전송물만 엿보고</div><div style="font-size:26px;font-weight:700;color:#9A3F00">"이 사람이 누구인가"를 맞힌다</div></div>
+  </div>
+  <div style="position:absolute;left:96px;top:690px;width:1728px;display:flex;gap:36px">
+    <div style="flex:1;height:250px;border-radius:16px;background:#F4F7FA;padding:30px 32px">
+      <div style="font-size:30px;font-weight:700;color:#0072B2">얼마나 새는가</div>
+      <div class="note" style="margin-top:14px;font-size:24px">특징 벡터와 명령에서 사용자 신원이 얼마나 드러나는가</div>
+    </div>
+    <div style="flex:1;height:250px;border-radius:16px;background:#F4F7FA;padding:30px 32px">
+      <div style="font-size:30px;font-weight:700;color:#007A5A">줄일 수 있는가</div>
+      <div class="note" style="margin-top:14px;font-size:24px">왼손·오른손 해독 성능을 지키면서 노출을 낮출 수 있는가</div>
+    </div>
+    <div style="flex:1;height:250px;border-radius:16px;background:#F4F7FA;padding:30px 32px">
+      <div style="font-size:30px;font-weight:700;color:#D55E00">제대로 재고 있는가</div>
+      <div class="note" style="margin-top:14px;font-size:24px">보호 효과를 재는 평가 방식이 실제 위험을 반영하는가</div>
+    </div>
+  </div>
+  <div class="foot">BEAT · 운동상상 EEG 신원 노출 감사</div><div class="pg">2</div>
+  <aside class="notes">BCI는 머리에 쓴 기기에서 뇌파를 해독한 뒤, 그 결과를 휴대폰이나 클라우드, 로봇팔로 보냅니다. 이때 밖으로 나가는 것은 특징 벡터이거나 왼쪽·오른쪽·정지 같은 명령입니다. 저희는 이 전송물만 볼 수 있는 공격자를 가정했습니다. 질문은 세 가지입니다. 얼마나 새는가, 성능을 지키면서 줄일 수 있는가, 그리고 보호 효과를 제대로 재고 있는가입니다. 세 번째 질문이 이 발표의 핵심입니다.</aside>
+</section>
+
+<section class="slide">
+  <div class="kicker">방법</div>
+  <div class="title">평가 데이터를 열기 전에 분석을 봉인하고, 공격자는 따로 학습시켰다</div>
+  <div style="position:absolute;left:96px;top:270px;width:1728px;display:flex;gap:36px">
+    <div style="flex:1;height:470px;border-top:6px solid #0072B2;background:#F4F7FA;border-radius:0 0 16px 16px;padding:34px 34px">
+      <div style="font-size:32px;font-weight:700">공개 데이터 두 종</div>
+      <div class="note" style="margin-top:20px;font-size:28px"><b>BCI IV 2a</b>: 9명, 22채널, 서로 다른 날 기록한 두 세션</div>
+      <div class="note" style="margin-top:16px;font-size:28px"><b>Lee2019/OpenBMI</b>: 54명, 20채널, 두 세션. 확증 재현에만 사용</div>
+    </div>
+    <div style="flex:1;height:470px;border-top:6px solid #D55E00;background:#F4F7FA;border-radius:0 0 16px 16px;padding:34px 34px">
+      <div style="font-size:32px;font-weight:700">독립 공격자 3종</div>
+      <div class="note" style="margin-top:20px;font-size:28px">로지스틱 회귀, RBF SVM, MLP</div>
+      <div class="note" style="margin-top:16px;font-size:28px">방어 모델을 고정한 뒤 그 출력만으로 처음부터 학습한다. 방어와 함께 학습된 식별기의 점수는 증거로 쓰지 않는다</div>
+    </div>
+    <div style="flex:1;height:470px;border-top:6px solid #009E73;background:#F4F7FA;border-radius:0 0 16px 16px;padding:34px 34px">
+      <div style="font-size:32px;font-weight:700">사전등록과 봉인 3회</div>
+      <div class="note" style="margin-top:20px;font-size:28px">계획, 코드, 학습 데이터만으로 한 선택을 커밋한 뒤에 평가 데이터를 연다</div>
+      <div class="note" style="margin-top:16px;font-size:28px">판정 규칙을 미리 정하고, 실패한 가설과 편차도 결정 로그에 공개한다</div>
+    </div>
+  </div>
+  <div style="position:absolute;left:96px;top:800px;width:1728px;height:130px;border-radius:16px;background:#14202E;display:flex;align-items:center;padding:0 40px;font-size:26px;line-height:1.45;color:#FFFFFF">지표: 신원 balanced accuracy. 공격자가 사용자를 맞힌 비율이며, 우연 수준은 1/사용자 수 (9명이면 0.111, 54명이면 0.019)</div>
+  <div class="foot">BEAT · 운동상상 EEG 신원 노출 감사</div><div class="pg">3</div>
+  <aside class="notes">데이터는 공개 데이터 두 종을 썼습니다. 9명짜리 BCI Competition IV 2a로 모든 탐색과 1차 확증을 했고, 54명짜리 Lee2019 데이터는 마지막 확증 재현에만 썼습니다. 공격자는 로지스틱 회귀, RBF SVM, MLP 세 가지이고, 방어 모델을 고정한 뒤 그 출력만으로 따로 학습시킵니다. 모든 분석은 평가 데이터를 열기 전에 계획과 코드를 커밋해 봉인했고, 봉인은 세 번 했습니다. 지표는 balanced accuracy이고, 우연 수준은 사용자 수의 역수입니다.</aside>
+</section>
+
+<section class="slide">
+  <div class="kicker">결과 · 특징 누출</div>
+  <div class="title">가공하지 않은 특징 벡터는 사실상 모든 사용자를 식별한다</div>
+  <div style="position:absolute;left:96px;top:300px;width:1728px;display:flex;gap:48px">
+    <div style="flex:1;height:470px;border-radius:20px;background:#F4F7FA;padding:44px 48px">
+      <div style="font-size:28px;font-weight:700;color:#3A4450">BCI IV 2a · 9명</div>
+      <div style="font-size:150px;line-height:1.1;font-weight:700;color:#D55E00;margin-top:24px">1.00</div>
+      <div style="font-size:26px;line-height:1.45;color:#3A4450;margin-top:28px">우연 수준 0.111 · 사용자별 재중심화 뒤에도 0.998</div>
+    </div>
+    <div style="flex:1;height:470px;border-radius:20px;background:#F4F7FA;padding:44px 48px">
+      <div style="font-size:28px;font-weight:700;color:#3A4450">Lee2019 · 54명</div>
+      <div style="font-size:150px;line-height:1.1;font-weight:700;color:#D55E00;margin-top:24px">0.994</div>
+      <div style="font-size:26px;line-height:1.45;color:#3A4450;margin-top:28px">우연 수준 0.019 · 봉인된 확증 실험의 기준 조건</div>
+    </div>
+  </div>
+  <div class="note" style="position:absolute;left:96px;top:820px;width:1728px;font-size:26px">전송물: 253차원 리만 접공간 특징 벡터 · 값은 독립 공격자 3종 중 가장 강한 공격자의 신원 balanced accuracy</div>
+  <div class="foot">BEAT · 운동상상 EEG 신원 노출 감사</div><div class="pg">4</div>
+  <aside class="notes">먼저 아무 방어도 하지 않은 경우입니다. 운동상상 해독에 흔히 쓰는 253차원 리만 접공간 특징을 그대로 보내면, 9명 데이터에서는 공격자가 전원을 맞혔고, 54명 데이터에서도 99.4%를 맞혔습니다. 사용자별로 평균을 빼는 재중심화를 해도 0.998이었습니다. 즉 해독용 특징 자체가 사실상 지문 역할을 합니다.</aside>
+</section>
+
+<section class="slide">
+  <div class="kicker">결과 · 방어 비교</div>
+  <div class="title">좁은 과제 병목이 노출을 가장 많이 줄였지만, 우연 수준까지는 아니다</div>
+  <img class="fig" src="figures/fig2_utility_identity_frontier.png" alt="과제 정확도와 신원 노출의 trade-off 그림. 병목 너비 d가 좁을수록 노출이 낮고, 적대적 방어 점들은 병목 곡선보다 낫지 않다">
+  <div class="panel">
+    <div class="stat green"><div class="lab">병목 너비 d = 1, BCI IV 2a 9명</div><div class="val">식별 0.25</div><div class="sub">과제 정확도 0.71 유지</div></div>
+    <div class="stat green"><div class="lab">병목 너비 d = 1, Lee2019 54명</div><div class="val">식별 0.057</div><div class="sub">과제 정확도 0.70 · 우연의 약 3배</div></div>
+    <div class="stat gray"><div class="lab">적대적 학습 3종</div><div class="note" style="margin-top:16px">gradient reversal, MaxEnt, ensemble refresh 모두 이 단순한 기준선을 넘지 못했다 (탐색적)</div></div>
+  </div>
+  <div class="foot">BEAT · 운동상상 EEG 신원 노출 감사</div><div class="pg">5</div>
+  <aside class="notes">그렇다면 줄일 수 있을까요. 가로축은 해독 정확도, 세로축은 신원 노출입니다. 초록 선은 왼손·오른손 판별에 필요한 정보만 남기도록 특징을 d차원으로 좁힌 과제 병목입니다. 1차원까지 좁히면 9명에서 0.25, 54명에서 0.057까지 내려가면서 해독 정확도는 거의 그대로입니다. 신원을 지우도록 적대적으로 학습하는 방법 세 가지는 이 단순한 기준선을 넘지 못했습니다. 다만 가장 좋은 경우도 우연 수준보다 높아서, 완전한 익명화는 아닙니다. 적대 학습 비교는 탐색적 결과입니다.</aside>
+</section>
+
+<section class="slide">
+  <div class="kicker">함정 1</div>
+  <div class="title">방어와 함께 학습된 식별기는 "안전하다"고 말하지만, 독립 공격자는 다시 맞힌다</div>
+  <img class="fig" src="figures/fig1_pitfall1_head_vs_attacker.png" alt="적대 강도 λ별로 함께 학습된 식별기 점수와 독립 공격자 점수를 비교한 그림. 모든 실험에서 독립 공격자가 훨씬 높다" style="top:262px;width:1244px;height:700px">
+  <div class="panel" style="top:290px">
+    <div class="stat"><div class="lab">gradient reversal, λ = 1, 9명</div><div class="val"><span class="blue">0.026</span> 대 <span class="red">0.951</span></div><div class="sub">함께 학습한 식별기 대 독립 공격자</div></div>
+    <div class="stat"><div class="lab">EEGNet, 9명 (탐색적)</div><div class="val" style="font-size:36px;white-space:nowrap"><span class="blue">0.11–0.19</span> 대 <span class="red">0.44–0.58</span></div></div>
+    <div class="stat red"><div class="lab">54명 확증 C1</div><div class="val"><span class="blue">0.040</span> 대 <span class="red">0.514</span></div><div class="sub" style="white-space:nowrap">Holm p = 8.9×10⁻²⁶</div></div>
+  </div>
+  <div class="foot">BEAT · 운동상상 EEG 신원 노출 감사</div><div class="pg">6</div>
+  <aside class="notes">첫 번째 함정입니다. 적대적 방어는 신원을 맞히는 식별기를 함께 학습시키고, 그 식별기가 못 맞히게 만듭니다. 그 식별기의 점수만 보면 0.026, 우연보다도 낮아 안전해 보입니다. 그런데 같은 출력을 받아 공격자를 새로 학습시키면 0.951을 맞힙니다. 식별기가 속았을 뿐 정보는 그대로 남아 있었던 것입니다. 이 현상은 EEGNet에서도 나타났고, 54명 확증 실험에서도 0.040 대 0.514로 사전 기준을 통과했습니다.</aside>
+</section>
+
+<section class="slide">
+  <div class="kicker">결과 · 명령 누출</div>
+  <div class="title">왼쪽·오른쪽·정지 명령만 보내도, 관찰이 쌓이면 신원이 드러난다</div>
+  <img class="fig" src="figures/fig3_command_accumulation.png" alt="연속으로 관찰한 출력 수 k에 따른 신원 노출 그림. 명령만 보내도 k가 커지면 노출이 증가한다">
+  <div class="panel">
+    <div class="stat"><div class="lab">명령 5개 이내, 9명</div><div class="val">24개 중 22개</div><div class="sub">모델·임계값 설정이 우연의 2배에 도달 (점추정)</div></div>
+    <div class="stat"><div class="lab">명령 20개, 9명</div><div class="val">식별 0.21–0.48</div><div class="sub">우연 수준 0.111</div></div>
+    <div class="stat gray"><div class="lab">54명 확증 C3</div><div class="val">지지 안 됨</div><div class="sub">명령 20개에서 0.085였지만</div><div class="sub" style="margin-top:0;white-space:nowrap">보정 뒤 Holm p = 0.21</div></div>
+  </div>
+  <div class="foot">BEAT · 운동상상 EEG 신원 노출 감사</div><div class="pg">7</div>
+  <aside class="notes">특징 대신 명령만 보내면 안전할까요. 왼쪽 그림은 특징, 오른쪽은 명령만 보냈을 때입니다. 명령 하나로는 거의 못 맞히지만, 같은 사람의 명령을 연속으로 모으면 노출이 커집니다. 9명 데이터에서는 명령 5개 안에 24개 설정 중 22개가 우연의 두 배에 도달했습니다. 다만 54명 확증 실험에서는 명령 20개에서 0.085, 우연의 약 4.6배였지만 다중비교 보정 뒤 사전 기준을 넘지 못했습니다. 그래서 이 주장은 54명에서 지지되지 않았다고 그대로 보고합니다.</aside>
+</section>
+
+<section class="slide">
+  <div class="kicker">함정 2</div>
+  <div class="title">기준 세션 공격자만으로 시험한 방어는, 배포 기간 라벨 몇 개로 뚫린다</div>
+  <img class="fig" src="figures/fig4_pitfall2_enrolment.png" alt="배포 기간 라벨 수에 따른 재식별 정확도 그림. 논문 조건에서는 11.1%로 막히지만 라벨 1개로 82%, 5개로 97%가 식별된다">
+  <div class="panel">
+    <div class="stat"><div class="lab">공개 방어 재현 (arXiv 2610.15626)</div><div class="val">90.8% → 11.1%</div><div class="sub">논문 조건 그대로, 9명</div></div>
+    <div class="stat red"><div class="lab">배포 기간 라벨, 사용자당</div><div class="val red">1개 81.75%</div><div class="val red" style="margin-top:0">5개 97.11%</div></div>
+    <div class="stat red"><div class="lab">54명 확증 C4</div><div class="val" style="font-size:40px">1.34% → 92.7%</div><div class="sub">논문 조건 재현 뒤 라벨 5개</div><div class="sub" style="margin-top:0;white-space:nowrap">Holm p = 4.5×10⁻³⁵</div></div>
+  </div>
+  <div class="note" style="position:absolute;left:96px;top:966px;width:1728px;font-size:24px">논문이 틀렸다는 뜻이 아니라, 공격자가 배포 기간 라벨을 가질 수 있다는 다른 위협 모델에서는 보호가 유지되지 않는다는 뜻이다</div>
+  <div class="foot">BEAT · 운동상상 EEG 신원 노출 감사</div><div class="pg">8</div>
+  <aside class="notes">두 번째 함정입니다. 최근 발표된, 학습 없이 신호를 변환하는 방어 기법을 재현했습니다. 논문 조건에서는 식별률이 90.8%에서 11.1%로 떨어져, 논문 결과가 그대로 재현됐습니다. 그런데 논문의 공격자는 과거 기준 세션 라벨만 가집니다. 실제 서비스에서는 공격자가 배포 기간의 출력 몇 개에 이름표를 붙일 수 있습니다. 그러면 사용자당 1개로 81.75%, 5개로 97.11%가 다시 식별됩니다. 54명에서도 1.34%에서 92.7%로 확증됐습니다. 논문이 틀렸다는 뜻이 아니라, 위협 모델을 명시해야 한다는 뜻입니다.</aside>
+</section>
+
+<section class="slide">
+  <div class="kicker">확증 재현 · Lee2019 54명</div>
+  <div class="title">54명 확증 재현에서 사전등록한 주장 4개 중 3개가 지지됐다</div>
+  <img src="figures/fig6_lee2019_confirmatory.png" alt="Lee2019 54명 확증 결과 그림. C1, C2, C4는 지지, C3는 지지되지 않음" style="position:absolute;left:256px;top:214px;width:1408px;height:792px;object-fit:contain">
+  <div class="foot">BEAT · Holm 보정, 유의수준 0.05, seed 5개, 봉인 커밋 9757c3f 이후 처음 연 세션 2</div><div class="pg">9</div>
+  <aside class="notes">마지막으로, 9명에서 얻은 결론을 54명 데이터로 확증했습니다. 결과를 보기 전에 주장 네 개와 판정 기준을 봉인했고, 네 주장 전체에 Holm 보정을 적용했습니다. C1 함께 학습한 식별기의 과소평가, C2 과제 병목의 노출 감소, C4 배포 라벨을 이용한 재식별은 지지됐습니다. C3 명령 누적은 방향은 같았지만 보정 뒤 기준을 넘지 못해 지지되지 않았습니다.</aside>
+</section>
+
+<section class="slide">
+  <div class="kicker">연구 무결성</div>
+  <div class="title">지지되지 않은 가설과 실행 중 문제도 그대로 보고했다</div>
+  <table style="position:absolute;left:96px;top:240px;width:1728px;border-collapse:collapse;font-size:27px;line-height:1.4">
+    <tr style="background:#14202E;color:#FFFFFF"><th style="text-align:left;padding:18px 24px;width:780px">사전등록 가설</th><th style="text-align:left;padding:18px 24px;width:620px">결과</th><th style="text-align:left;padding:18px 24px">판정</th></tr>
+    <tr style="background:#F4F7FA"><td style="padding:22px 24px">H1 접공간 해독기가 CSP보다 낫다, 보정 1 run</td><td style="padding:22px 24px">0.689 대 0.669, p = 0.10</td><td style="padding:22px 24px;font-weight:700;color:#9A3F00">지지 안 됨</td></tr>
+    <tr><td style="padding:22px 24px">H2 적대 학습이 재중심화보다 노출을 더 줄인다</td><td style="padding:22px 24px">선택된 λ = 0.01, 차이 없음</td><td style="padding:22px 24px;font-weight:700;color:#9A3F00">지지 안 됨</td></tr>
+    <tr style="background:#F4F7FA"><td style="padding:22px 24px">C3 54명에서 명령 관찰이 길수록 노출이 커진다</td><td style="padding:22px 24px">명령 20개 0.085, Holm p = 0.21</td><td style="padding:22px 24px;font-weight:700;color:#9A3F00">지지 안 됨</td></tr>
+  </table>
+  <div style="position:absolute;left:96px;top:640px;font-size:30px;font-weight:700">무결성 장치</div>
+  <div style="position:absolute;left:96px;top:700px;width:1728px;display:flex;gap:28px">
+    <div style="flex:1;height:230px;border-radius:16px;background:#F4F7FA;padding:28px 30px"><div style="font-size:28px;font-weight:700;color:#0072B2">봉인 커밋 3개</div><div class="note" style="margin-top:24px">6ab5668, b216b7d, 9757c3f</div></div>
+    <div style="flex:1;height:230px;border-radius:16px;background:#F4F7FA;padding:28px 30px"><div style="font-size:28px;font-weight:700;color:#0072B2">테스트 109개와 CI</div><div class="note" style="margin-top:24px">평가 데이터 누출 차단 테스트 포함</div></div>
+    <div style="flex:1;height:230px;border-radius:16px;background:#F4F7FA;padding:28px 30px"><div style="font-size:28px;font-weight:700;color:#0072B2">봉인 해시 검증</div><div class="note" style="margin-top:24px">봉인과 다르면 세션 2 파일을 열지 않는다</div></div>
+    <div style="flex:1;height:230px;border-radius:16px;background:#F4F7FA;padding:28px 30px"><div style="font-size:28px;font-weight:700;color:#0072B2">실패 기록 보존</div><div class="note" style="margin-top:24px">메모리 부족으로 멈춘 실행도 남기고 같은 분석을 재실행</div></div>
+  </div>
+  <div class="foot">BEAT · 운동상상 EEG 신원 노출 감사</div><div class="pg">10</div>
+  <aside class="notes">저희는 실패도 결과로 보고했습니다. 처음 세운 가설 H1과 H2는 사전 규칙상 지지되지 않았고, 54명의 C3도 지지되지 않았습니다. 봉인 커밋 세 개는 결정 로그에 해시와 함께 남아 있고, 확증 실행 코드는 봉인된 파일과 바이트 단위로 같지 않으면 평가 데이터를 열지 않습니다. 실행 중 메모리 부족으로 한 번 멈췄는데, 판정 전에 멈췄기 때문에 같은 분석을 그대로 다시 돌렸고, 그 과정도 기록으로 공개했습니다.</aside>
+</section>
+
+<section class="slide">
+  <div class="kicker">제안 · 감사 체크리스트</div>
+  <div class="title">신원 보호를 주장하려면 적어도 다섯 가지를 확인해야 한다</div>
+  <div style="position:absolute;left:96px;top:250px;width:1728px;display:flex;flex-direction:column;gap:22px">
+    <div style="display:flex;align-items:center;gap:32px;height:122px;border-radius:14px;background:#F4F7FA;padding:0 34px"><div style="width:64px;height:64px;border-radius:50%;background:#D55E00;color:#FFFFFF;font-size:30px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none">1</div><div><div style="font-size:30px;font-weight:700">독립 공격자로 다시 공격한다</div><div class="note" style="font-size:24px;margin-top:4px">방어와 함께 학습된 식별기의 점수는 증거가 아니다</div></div></div>
+    <div style="display:flex;align-items:center;gap:32px;height:122px;border-radius:14px;background:#F4F7FA;padding:0 34px"><div style="width:64px;height:64px;border-radius:50%;background:#D55E00;color:#FFFFFF;font-size:30px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none">2</div><div><div style="font-size:30px;font-weight:700">배포 기간 라벨을 가진 공격자를 시험한다</div><div class="note" style="font-size:24px;margin-top:4px">라벨 수에 따른 재식별 곡선을 함께 보고한다</div></div></div>
+    <div style="display:flex;align-items:center;gap:32px;height:122px;border-radius:14px;background:#F4F7FA;padding:0 34px"><div style="width:64px;height:64px;border-radius:50%;background:#D55E00;color:#FFFFFF;font-size:30px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none">3</div><div><div style="font-size:30px;font-weight:700">단순한 기준선과 비교한다</div><div class="note" style="font-size:24px;margin-top:4px">과제 병목과 사용자별 재중심화를 먼저 이겨야 한다</div></div></div>
+    <div style="display:flex;align-items:center;gap:32px;height:122px;border-radius:14px;background:#F4F7FA;padding:0 34px"><div style="width:64px;height:64px;border-radius:50%;background:#D55E00;color:#FFFFFF;font-size:30px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none">4</div><div><div style="font-size:30px;font-weight:700">관찰 길이를 늘려 본다</div><div class="note" style="font-size:24px;margin-top:4px">메시지 하나 기준의 수치는 노출을 과소평가한다</div></div></div>
+    <div style="display:flex;align-items:center;gap:32px;height:122px;border-radius:14px;background:#F4F7FA;padding:0 34px"><div style="width:64px;height:64px;border-radius:50%;background:#D55E00;color:#FFFFFF;font-size:30px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none">5</div><div><div style="font-size:30px;font-weight:700">우연 수준, 사용자 수, 시나리오를 함께 밝힌다</div><div class="note" style="font-size:24px;margin-top:4px">공격자의 실패를 익명화로 표현하지 않는다</div></div></div>
+  </div>
+  <div class="foot">BEAT · 전체 10개 항목은 기술보고서 §9</div><div class="pg">11</div>
+  <aside class="notes">두 함정에서 얻은 교훈을 체크리스트로 정리했습니다. 첫째, 독립 공격자로 다시 공격해야 합니다. 둘째, 배포 기간 라벨을 가진 공격자를 시험해야 합니다. 셋째, 단순한 기준선과 비교해야 합니다. 넷째, 관찰 길이를 늘려 봐야 합니다. 다섯째, 우연 수준과 사용자 수, 시나리오를 함께 밝혀야 합니다. 기술보고서에는 사전등록을 포함해 열 가지 항목으로 정리돼 있습니다.</aside>
+</section>
+
+<section class="slide">
+  <div class="kicker">한계</div>
+  <div class="title">결과는 공개 데이터의 재생 실험과 이 공격자들에 한정된다</div>
+  <div style="position:absolute;left:96px;top:250px;width:1728px;display:flex;flex-direction:column;gap:44px">
+    <div style="display:flex;align-items:center;gap:30px"><i data-icon="users" data-sw="2" style="width:56px;height:56px;color:#0072B2;flex:none"></i><div><div style="font-size:30px;font-weight:700">닫힌 집합 식별</div><div class="note" style="font-size:24px">9명과 54명 안에서 누구인지 고르는 문제이며, 처음 보는 사람을 판별하는 열린 집합 인증은 아니다</div></div></div>
+    <div style="display:flex;align-items:center;gap:30px"><i data-icon="repeat" data-sw="2" style="width:56px;height:56px;color:#0072B2;flex:none"></i><div><div style="font-size:30px;font-weight:700">재생 실험</div><div class="note" style="font-size:24px">로봇팔은 기록된 뇌파를 재생해 움직였고, 사람이 피드백을 받는 폐루프 제어는 하지 않았다</div></div></div>
+    <div style="display:flex;align-items:center;gap:30px"><i data-icon="crosshair" data-sw="2" style="width:56px;height:56px;color:#0072B2;flex:none"></i><div><div style="font-size:30px;font-weight:700">공격자 범위</div><div class="note" style="font-size:24px">공격자 3종 기준의 값이며, 더 강한 공격자는 더 많이 식별할 수 있다. 낮은 값은 하한일 뿐이다</div></div></div>
+    <div style="display:flex;align-items:center;gap:30px"><i data-icon="flask-conical" data-sw="2" style="width:56px;height:56px;color:#0072B2;flex:none"></i><div><div style="font-size:30px;font-weight:700">탐색적 결과 구분</div><div class="note" style="font-size:24px">적대 학습 비교, EEGNet, 공개 방어 재현은 이미 본 데이터를 다시 쓴 탐색적 결과다</div></div></div>
+    <div style="display:flex;align-items:center;gap:30px"><i data-icon="shield" data-sw="2" style="width:56px;height:56px;color:#0072B2;flex:none"></i><div><div style="font-size:30px;font-weight:700">형식적 보장 없음</div><div class="note" style="font-size:24px">어떤 방어도 차등 프라이버시 같은 수학적 보장을 제공하지 않는다</div></div></div>
+  </div>
+  <div class="foot">BEAT · 운동상상 EEG 신원 노출 감사</div><div class="pg">12</div>
+  <aside class="notes">한계도 분명히 말씀드리겠습니다. 이 결과는 정해진 사용자 집단 안에서 누구인지 고르는 닫힌 집합 식별입니다. 로봇팔은 기록된 뇌파를 재생한 것이고, 실시간 폐루프 제어는 아닙니다. 공격자는 세 종류만 썼기 때문에, 저희 수치는 노출의 하한으로 봐야 합니다. 일부 결과는 탐색적이고, 어떤 방어도 수학적 프라이버시 보장을 주지는 않습니다.</aside>
+</section>
+
+<section class="slide" style="background:#0E2238">
+  <div style="position:absolute;left:120px;top:110px;font-size:26px;font-weight:700;color:#7FB8E6">정리</div>
+  <div style="position:absolute;left:120px;top:160px;width:1680px;font-size:52px;line-height:1.25;font-weight:700;color:#FFFFFF;text-wrap:balance">BCI 프라이버시는 결과뿐 아니라 평가 방식까지 함께 보고해야 한다</div>
+  <div style="position:absolute;left:120px;top:350px;width:1680px;display:flex;flex-direction:column;gap:48px">
+    <div style="display:flex;gap:30px;align-items:baseline"><div style="font-size:44px;font-weight:700;color:#F0A35E;width:60px;flex:none">1</div><div style="font-size:32px;line-height:1.45;color:#FFFFFF">전송물은 신원을 드러낸다. 원시 특징은 54명 중 0.994를 식별했다</div></div>
+    <div style="display:flex;gap:30px;align-items:baseline"><div style="font-size:44px;font-weight:700;color:#F0A35E;width:60px;flex:none">2</div><div style="font-size:32px;line-height:1.45;color:#FFFFFF">가장 단순한 과제 병목이 가장 잘 막았지만, 우연 수준까지 내리지는 못했다</div></div>
+    <div style="display:flex;gap:30px;align-items:baseline"><div style="font-size:44px;font-weight:700;color:#F0A35E;width:60px;flex:none">3</div><div style="font-size:32px;line-height:1.45;color:#FFFFFF">함께 학습한 식별기와 기준 세션 공격자는 보호를 과대평가한다. 두 함정 모두 54명에서 확증됐다</div></div>
+  </div>
+  <div style="position:absolute;left:120px;top:770px;width:1680px;display:flex;gap:24px">
+    <div style="padding:14px 26px;border-radius:999px;border:2px solid #4D79A6;font-size:24px;color:#DCE8F4">GitHub 저장소 · CI</div>
+    <div style="padding:14px 26px;border-radius:999px;border:2px solid #4D79A6;font-size:24px;color:#DCE8F4">기술보고서</div>
+    <div style="padding:14px 26px;border-radius:999px;border:2px solid #4D79A6;font-size:24px;color:#DCE8F4">인터랙티브 웹 데모</div>
+    <div style="padding:14px 26px;border-radius:999px;border:2px solid #4D79A6;font-size:24px;color:#DCE8F4">한국어 해설서</div>
+  </div>
+  <div style="position:absolute;left:120px;top:930px;font-size:30px;font-weight:700;color:#FFFFFF">감사합니다. 질문을 받겠습니다</div>
+  <aside class="notes">정리하겠습니다. 첫째, BCI 전송물은 신원을 드러냅니다. 둘째, 가장 단순한 과제 병목이 가장 잘 막았지만 완전하지는 않습니다. 셋째, 함께 학습한 식별기와 기준 세션 공격자로 평가하면 보호가 과대평가되고, 이 두 함정은 54명 데이터에서 확증됐습니다. 코드와 결과, 기술보고서, 웹 데모는 저장소에 정리해 두었습니다. 감사합니다. 질문을 받겠습니다.</aside>
+</section>
+
+</body></html>
