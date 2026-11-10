@@ -618,7 +618,10 @@ def m_study():
                 grid.append(dict(at, **cell, reading=eq_reading(cell["undefended"],
                                                                 cell["reduction"], own)))
     report = track(ROOT / REPORT).read_text(encoding="utf-8")
-    section = re.search(r"^### (\d+\.\d+) Study M\b", report, re.M).group(1)
+    heading = re.search(r"^### ((\d+\.\d+) Study M\b.*)$", report, re.M)
+    section = heading.group(2)
+    # GitHub-style heading anchor, so the link opens the M section rather than the report's top.
+    anchor = re.sub(r"[^\w\- ]", "", heading.group(1).strip().lower()).replace(" ", "-")
     return dict(
         evidence=dict(decisions="confirmatory", estimates="estimate"),
         users=n, chance=clean(1 / n), alpha=dec["alpha"], claims=claims,
@@ -629,7 +632,7 @@ def m_study():
         top1_source=src(MK, tau=m3["tau"], scenario=m3["scenario"], attacker=m3["attacker"],
                         k=m3["k_star"]),
         eq_source=src(MI, defence="eq", statistic=f"{excess}_*"),
-        report_source=src(REPORT, section=section))
+        report_source=src(REPORT, section=section), report_anchor=anchor)
 
 
 # ---------------------------------------------------------------- headline numbers

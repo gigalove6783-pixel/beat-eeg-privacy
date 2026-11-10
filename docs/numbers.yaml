@@ -117,6 +117,7 @@ numbers:
     format: {kind: sci, digits: 1}
     text: "8.9 × 10⁻²⁶"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["Holm p = 8.9 × 10⁻²⁶</span></div></div>"]
       docs/explainer_ko.md: ["54명 C1(격차 47.4%p), Holm p = 8.9 × 10⁻²⁶"]
       README.md: ["Holm 8.9 × 10⁻²⁶"]
   - id: L_C1_holm_latex
@@ -130,6 +131,7 @@ numbers:
     format: {kind: sci, digits: 1}
     text: "4.6 × 10⁻⁵"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["허용 한계 −5%p), Holm p = 4.6 × 10⁻⁵</div>"]
       docs/explainer_ko.md: ["허용 한계 −5%p), Holm p = 4.6 × 10⁻⁵"]
       README.md: ["Holm 4.6 × 10⁻⁵"]
   - id: L_C3_k20_within_day
@@ -265,6 +267,7 @@ numbers:
     format: {kind: sci, digits: 1}
     text: "4.5 × 10⁻³⁵"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["<br>Holm p = 4.5 × 10⁻³⁵</div>"]
       docs/explainer_ko.md: ["C4: 기준 세션 → 배포 라벨 5개, Holm p = 4.5 × 10⁻³⁵"]
       README.md: ["Holm 4.5 × 10⁻³⁵"]
 
@@ -875,7 +878,7 @@ numbers:
     format: {kind: fixed, digits: 2}
     text: "0.60"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["간 −0.002–0.032, Yang2025 1일차 같은 날, τ* = 0.60)", "기준: P2-RC d = 8, τ* = 0.60, 명령 50개, 순위 &gt; 0.5", "\"padding:12px 14px;font-weight:700;background:#F4F7FA\">τ* = 0.60<br>명령", "유용성 단서 (2–3일차, τ* = 0.60)"]
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["Yang2025 1일차 개발 자료(같은 날, τ* = 0.60): 재보정만 한 경우 대비 EQ 비용 0.015 (구간 −0.002–0.032)", "기준: P2-RC d = 8, τ* = 0.60, 명령 50개, 순위 &gt; 0.5", "\"padding:12px 14px;font-weight:700;background:#F4F7FA\">τ* = 0.60<br>명령", "유용성 단서 (2–3일차, τ* = 0.60)"]
       docs/explainer_ko.md: ["| τ* = 0.60 | M의 정지 임계값"]
       README.md: ["P2-RC at τ* = 0.60, target-aware Bayes attacker", "τ* = 0.60 is the grid value",
                   "On Yang2025 recording day 1 at τ* = 0.60"]
@@ -944,7 +947,7 @@ numbers:
     format: {kind: fixed, digits: 4}
     text: "0.0136"
     in:
-      docs/explainer_ko.md: ["Holm p 0.0136), M2", "주장 p 0.0068, Holm p 0.0136", "| 0.0068 → 0.0136 |", "M1 2 × 0.0068 = 0.0136", "Holm p 0.0136으로", "보정 뒤 0.0068, Holm p 0.0136"]
+      docs/explainer_ko.md: ["Holm p 0.0136, 화면에는 반올림한 0.014)", "주장 p 0.0068, Holm p 0.0136", "| 0.0068 → 0.0136 |", "M1 2 × 0.0068 = 0.0136", "Holm p 0.0136으로", "보정 뒤 0.0068, Holm p 0.0136"]
       README.md: ["| 0.0068; Holm 0.0136 |", "| 0.0068 | 0.0136 | Supported |", "(Holm p 0.0136; threshold 10/51)"]
       docs/report.md: ["| 0.0068 | 0.0136 | Supported |"]
   - id: M_M1_day23_logistic
@@ -998,7 +1001,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.064"
     in:
-      docs/explainer_ko.md: ["head 0.064, 관측 격차 0.093–0.096", "| M2 head 0.064 / 격차 0.095 / 0.093 / 0.096 |", "0.161, head 0.064, 관측 격차 0.095 / 0.093 / 0.096", "공동 학습 head는 0.064라"]
+      docs/explainer_ko.md: ["| M2 head 0.064 / 격차 0.095 / 0.093 / 0.096 |", "0.161, head 0.064, 관측 격차 0.095 / 0.093 / 0.096", "공동 학습 head는 0.064라"]
       README.md: ["| 0.161 vs 0.064 (gaps", "0.161 vs head 0.064", "0.161, head 0.064)"]
       docs/report.md: ["0.161, head 0.064)"]
   - id: M_M2_gap_logistic
@@ -1015,31 +1018,31 @@ numbers:
     text: "0.093"
     in:
       presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["새 51명: 격차 0.093–0.096이 봉인한 하한 0.10 미만 →", "정 없이 보고합니다. 새 51명의 확증 판정 M2에서는 다른 날 격차가 0.093에서 0.096으로, 봉인한 하한 0.10에 못 미쳐 지지되지 않았습니다", "격차 0.093–0.096: 모두 0보다 크지만", "위로 맞힌 비율은 0.061입니다. M2는 지지되지 않았습니다. 격차는 0.093에서 0.096으로 모두 양수였지만, 봉인한 관측 하한 0.10에 못 미"]
-      docs/explainer_ko.md: ["head 0.064, 관측 격차 0.093–0.096", "M2 지지 안 됨(격차 0.093–0.096 < 0.10", "| M2 head 0.064 / 격차 0.095 / 0.093 / 0.096 |", "관측 격차 0.095 / 0.093 / 0.096", "관측 격차가 0.093–0.096으로", "관측 격차가 0.093–0.096이라", "관측 격차가 0.095, 0.093, 0.096입니다"]
+      docs/explainer_ko.md: ["새 51명 격차 0.093–0.096이 봉인한 하한 0.10 미만", "M2 지지 안 됨(격차 0.093–0.096 < 0.10", "| M2 head 0.064 / 격차 0.095 / 0.093 / 0.096 |", "관측 격차 0.095 / 0.093 / 0.096", "관측 격차가 0.093–0.096으로", "관측 격차가 0.093–0.096이라", "관측 격차가 0.095, 0.093, 0.096입니다"]
       README.md: ["(M2: 0.093–0.096, not supported)", "(gaps 0.093–0.096, below the 0.10 floor)",
                   "0.093–0.096, below the sealed 0.10 floor (M2", "head were 0.093–0.096,",
                   "gaps 0.095 / 0.093 / 0.096 < 0.10", "Gaps 0.095 / 0.093 / 0.096 (attackers"]
       docs/report.md: ["sealed 0.10 floor across days (0.093–0.096)", "the gaps were 0.093–0.096, below the sealed 0.10 floor (claim M2",
                        "(gaps 0.093–0.096 below the 0.10 floor)", "Gaps 0.095 / 0.093 / 0.096 (attackers",
-                       "(M2, 0.093–0.096, against 0.717 within day 1)", "head by only 0.093–0.096, below the sealed 0.10 floor"]
+                       "(M2, 0.093–0.096, against 0.717 within day 1)", "co-trained head were 0.093–0.096, below the sealed 0.10 floor"]
   - id: M_M2_gap_max
     value: {file: results/exp_m/decision.json, json: M2.best_gap}
     format: {kind: fixed, digits: 3}
     text: "0.096"
     in:
       presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["새 51명: 격차 0.093–0.096이 봉인한 하한 0.10 미만 →", "니다. 새 51명의 확증 판정 M2에서는 다른 날 격차가 0.093에서 0.096으로, 봉인한 하한 0.10에 못 미쳐 지지되지 않았습니다. 1일차 같은", "격차 0.093–0.096: 모두 0보다 크지만", "은 0.061입니다. M2는 지지되지 않았습니다. 격차는 0.093에서 0.096으로 모두 양수였지만, 봉인한 관측 하한 0.10에 못 미쳐 규칙상 검정"]
-      docs/explainer_ko.md: ["head 0.064, 관측 격차 0.093–0.096", "M2 지지 안 됨(격차 0.093–0.096 < 0.10", "| M2 head 0.064 / 격차 0.095 / 0.093 / 0.096 |", "관측 격차 0.095 / 0.093 / 0.096", "관측 격차가 0.093–0.096으로", "관측 격차가 0.093–0.096이라", "관측 격차가 0.095, 0.093, 0.096입니다"]
+      docs/explainer_ko.md: ["새 51명 격차 0.093–0.096이 봉인한 하한 0.10 미만", "M2 지지 안 됨(격차 0.093–0.096 < 0.10", "| M2 head 0.064 / 격차 0.095 / 0.093 / 0.096 |", "관측 격차 0.095 / 0.093 / 0.096", "관측 격차가 0.093–0.096으로", "관측 격차가 0.093–0.096이라", "관측 격차가 0.095, 0.093, 0.096입니다"]
       README.md: ["(M2: 0.093–0.096, not supported)", "(gaps 0.093–0.096, below the 0.10 floor)",
                   "0.093–0.096, below the sealed 0.10 floor (M2", "head were 0.093–0.096,",
                   "gaps 0.095 / 0.093 / 0.096 < 0.10"]
       docs/report.md: ["sealed 0.10 floor across days (0.093–0.096)", "(gaps 0.093–0.096 below the 0.10 floor)",
-                       "Gaps 0.095 / 0.093 / 0.096 (attackers", "head by only 0.093–0.096, below the sealed 0.10 floor"]
+                       "Gaps 0.095 / 0.093 / 0.096 (attackers", "co-trained head were 0.093–0.096, below the sealed 0.10 floor"]
   - id: M_M2_p
     value: {file: results/exp_m/decision.json, json: p.M2}
     format: {kind: fixed, digits: 0}
     text: "1"
     in:
-      docs/explainer_ko.md: ["< 0.10, p = 1)", "검정 없음, p = 1 |", "| 1 → 1(규칙상", "M2 1 > α = 0.05", "규칙상 검정 없이 p = 1, 지지 안 됨입니다(Q68)"]
+      docs/explainer_ko.md: ["검정한 공격자 없음, 규칙상 p = 1)", "검정 없음, p = 1 |", "| 1 → 1(규칙상", "M2 1 > α = 0.05", "규칙상 검정 없이 p = 1, 지지 안 됨입니다(Q68)"]
       README.md: ["| 1 by rule; Holm 1 |", "| 1 (by rule) | 1 | Not supported |"]
       docs/report.md: ["| 1 (by rule) | 1 | Not supported |"]
   - id: M_M2_p_holm
@@ -1055,7 +1058,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.649"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["순위 0.649 대 명령 1개 0.538, Holm p = 1.1×10⁻⁴", "0.014입니다. M3도 지지됐습니다. 명령 50개에서 본인의 순위는 0.649로, 명령 1개일 때 0.538보다 높았습니다. 다만 순위는 식별률이 아"]
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["순위 0.649 대 명령 1개 0.538, Holm p = 1.1 × 10⁻⁴", "0.014입니다. M3도 지지됐습니다. 명령 50개에서 본인의 순위는 0.649로, 명령 1개일 때 0.538보다 높았습니다. 다만 순위는 식별률이 아"]
       docs/explainer_ko.md: ["순위 0.649 대 명령 1개 0.538", "| M3 0.649 (0.588–0.711) 대 0.538 (0.503–0.572) |", "명령 50개 순위 0.649(0.588–0.711), 명령 1개 0.538(0.503–0.572)", "0.649는 우연 0.5와", "본인 순위 0.649 대 명령 1개 0.538", "0.649(0.588–0.711)로 우연 0.5와 명령 1개의 0.538보다"]
       README.md: ["(M3: 0.649 at 50 commands against 0.538 at 1)", "| 0.649 vs 0.538, supported;",
                   "percentile rank is 0.649 at 50 commands against 0.538 at", "| 0.649 (0.588–0.711) at 50 commands vs 0.538 (0.503–0.572) at 1 |",
@@ -1083,7 +1086,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.538"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["순위 0.649 대 명령 1개 0.538, Holm p = 1.1×10⁻⁴", "됐습니다. 명령 50개에서 본인의 순위는 0.649로, 명령 1개일 때 0.538보다 높았습니다. 다만 순위는 식별률이 아닙니다. 1순위로 맞힌 비율은"]
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["순위 0.649 대 명령 1개 0.538, Holm p = 1.1 × 10⁻⁴", "됐습니다. 명령 50개에서 본인의 순위는 0.649로, 명령 1개일 때 0.538보다 높았습니다. 다만 순위는 식별률이 아닙니다. 1순위로 맞힌 비율은"]
       docs/explainer_ko.md: ["순위 0.649 대 명령 1개 0.538", "대 0.538 (0.503–0.572) |", "명령 1개 0.538(0.503–0.572)", "본인 순위 0.649 대 명령 1개 0.538", "명령 1개의 0.538보다"]
       README.md: ["(M3: 0.649 at 50 commands against 0.538 at 1)", "| 0.649 vs 0.538, supported;",
                   "vs 0.538 (0.503–0.572) at 1"]
@@ -1151,7 +1154,8 @@ numbers:
     format: {kind: sci, digits: 1}
     text: "1.1 × 10⁻⁴"
     in:
-      docs/explainer_ko.md: ["Holm p 1.1 × 10⁻⁴). EQ·RR", "주장 p 3.7 × 10⁻⁵, Holm p 1.1 × 10⁻⁴", "| 3.7 × 10⁻⁵ → 1.1 × 10⁻⁴ |", "3 × 3.7 × 10⁻⁵ ≈ 1.1 × 10⁻⁴", "Holm p 1.1 × 10⁻⁴로"]
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.538, Holm p = 1.1 × 10⁻⁴<br>"]
+      docs/explainer_ko.md: ["Holm p 1.1 × 10⁻⁴, 그 아래", "주장 p 3.7 × 10⁻⁵, Holm p 1.1 × 10⁻⁴", "| 3.7 × 10⁻⁵ → 1.1 × 10⁻⁴ |", "3 × 3.7 × 10⁻⁵ ≈ 1.1 × 10⁻⁴", "Holm p 1.1 × 10⁻⁴로"]
       README.md: ["| 3.7 × 10⁻⁵; Holm 1.1 × 10⁻⁴ |", "| 3.7 × 10⁻⁵ | 1.1 × 10⁻⁴ | Supported |", "(Holm p 1.1 × 10⁻⁴)"]
   - id: M_M3_p_holm_latex
     value: {file: results/exp_m/decision.json, json: p_holm.M3}
@@ -1167,8 +1171,9 @@ numbers:
     text: "0.061"
     in:
       presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["순위는 식별률이 아니다: top-1 0.061", "보다 높았습니다. 다만 순위는 식별률이 아닙니다. 1순위로 맞힌 비율은 0.061입니다. M2는 지지되지 않았습니다. 격차는 0.093에서 0.096으로"]
-      docs/explainer_ko.md: ["| M3 1등 적중 0.061 (0.037–0.085) |", "0.061(0.037–0.085)이고", "0.061(0.037–0.085)로"]
-      README.md: ["top-1 at 50 commands 0.061 (chance 1/51)", "is 0.061 (chance 1/51)", "Top-1 identification at 50 commands is 0.061"]
+      docs/explainer_ko.md: ["| M3 1등 적중 0.061 (0.037–0.085) |", "0.061(0.037–0.085)이고", "0.061(0.037–0.085)로", "그 아래 \"순위는 식별률이 아니다: top-1 0.061\")", "같은 설정의 1등 적중은 0.061(우연 0.020)"]
+      README.md: ["top-1 at 50 commands 0.061 (chance 1/51)", "is 0.061 (chance 1/51)", "Top-1 identification at 50 commands is 0.061",
+                  "rate: top-1 identification at 50 commands is 0.061"]
       docs/report.md: ["not an identification rate (top-1 0.061)", "Top-1 identification at 50 commands is 0.061", "top-1 rate at 50 commands is 0.061"]
   - id: M_M3_top1_k50_low
     value: {file: results/exp_m/final_estimates_k_curves.csv, column: top1_ci_low,
@@ -1385,7 +1390,7 @@ numbers:
     text: "0.086"
     in:
       presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["방어 없음 가중 유용성 −0.041 [−0.086, 0.004]는 0을 포함한다 (w = 1.5)."]
-      docs/explainer_ko.md: ["| −0.041(−0.086–0.004) |", "구간(−0.086–0.004)"]
+      docs/explainer_ko.md: ["| −0.041(−0.086–0.004) |", "구간(−0.086–0.004)", "방어 없음의 구간(−0.086–0.004)은 0을 포함"]
       README.md: ["−0.041 (−0.086 to 0.004"]
       docs/report.md: ["−0.041 (−0.086 to 0.004"]
   - id: M_util_undefended_high
@@ -1395,7 +1400,7 @@ numbers:
     text: "0.004"
     in:
       presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["방어 없음 가중 유용성 −0.041 [−0.086, 0.004]는 0을 포함한다 (w = 1.5)."]
-      docs/explainer_ko.md: ["| −0.041(−0.086–0.004) |", "구간(−0.086–0.004)"]
+      docs/explainer_ko.md: ["| −0.041(−0.086–0.004) |", "구간(−0.086–0.004)", "방어 없음의 구간(−0.086–0.004)은 0을 포함"]
       README.md: ["−0.041 (−0.086 to 0.004"]
       docs/report.md: ["−0.041 (−0.086 to 0.004"]
   - id: M_net_undefended
@@ -1405,7 +1410,7 @@ numbers:
     text: "0.073"
     in:
       presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["+0.073 [0.039, 0.106]"]
-      docs/explainer_ko.md: ["| 0.073(0.039–0.106) |", "0.300 − 0.227 = 0.073", "0.073(0.039–0.106)으로 양수"]
+      docs/explainer_ko.md: ["| 0.073(0.039–0.106) |", "0.300 − 0.227 = 0.073", "0.073(0.039–0.106)으로 양수", "순전진은 +0.073 |"]
       README.md: ["net progress is +0.073 (0.039–0.106)"]
       docs/report.md: ["net progress is +0.073 (0.039–0.106)"]
   - id: M_net_undefended_low
@@ -1686,7 +1691,7 @@ numbers:
     format: {kind: fixed, digits: 1, scale: -100}
     text: "2.3"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["): 0.994 → 0.340, 과제 정확도 변화 −0.6%p (하한 −2.3%p, 허용 한계 −5%p), Holm p = 4.6×10⁻⁵"]
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["): 0.994 → 0.340, 과제 정확도 변화 −0.6%p (하한 −2.3%p, 허용 한계 −5%p), Holm p = 4.6 × 10⁻⁵"]
       docs/explainer_ko.md: ["(하한 −2.3%p"]
   - id: K_itr_eqc3
     value: {file: results/exp_k/frontier.csv, column: itr_bits_per_min,
@@ -1870,7 +1875,7 @@ numbers:
     text: "0.717"
     in:
       presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["(1일차 같은 날 격차는 0.717)", "하한 0.10에 못 미쳐 지지되지 않았습니다. 1일차 같은 날 격차는 0.717이었습니다. 함께 학습된 식별기의 점수는 보호의 증거가 아닙니다."]
-      docs/explainer_ko.md: ["실제 최고 격차 0.717", "1일차 같은 날 게이트의 격차는 0.717이었습니다"]
+      docs/explainer_ko.md: ["실제 최고 격차 0.717", "1일차 같은 날 게이트의 격차는 0.717이었습니다", "괄호로 1일차 같은 날 격차 0.717"]
       README.md: ["day-1 gate: gap 0.717", "0.717 within day 1 (M2's development gate)", "within day 1 the gap was 0.717"]
       docs/report.md: ["against 0.717 within day 1 (§6.10)", "Within day 1 the gap was 0.717", "(M2, 0.093–0.096, against 0.717 within day 1)"]
       README.md: ["day-1 gate: gap 0.717", "0.717 within day 1 (M2's development gate)", "within day 1 the gap was 0.717"]
@@ -1947,6 +1952,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.014"
     in:
+      docs/explainer_ko.md: ["화면에는 반올림한 0.014)"]
       presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["Holm p = 0.014", "공격자의 재현율이 0.345로 기준 0.196을 넘었고, Holm p는 0.014입니다. M3도 지지됐습니다. 명령 50개에서 본인의 순위는 0.649로"]
   - id: L_C4_paper_accuracy
     value: {file: results/exp_l/reproduction.json, json: paper_accuracy}

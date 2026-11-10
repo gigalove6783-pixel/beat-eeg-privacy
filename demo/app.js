@@ -970,6 +970,8 @@ const M_TIMELINE = (() => {
   const verdicts = `${MIDS.map((c) => `${c} ${M_PHRASE[c]}: ${mVerdict(c)}`).join("; ")}.${closing}`;
   document.querySelectorAll("[data-m=title]").forEach((n) => { n.textContent = `${title}.`; n.title = `Source: ${M.source.file}`; });
   document.querySelectorAll("[data-m=verdicts]").forEach((n) => { n.textContent = verdicts; });
+  const reportM = `../${M.report_source.file}#${M.report_anchor}`;
+  document.querySelectorAll("[data-m=report-link]").forEach((n) => { n.href = reportM; });
   $("#m-title").textContent = title;
   $("#m-lede").textContent = `보정일(1일차)에 등록한 공격자를 배포일(2·3일차)에 시험한 다른 날(cross-day) 조건이다. `
     + `판정은 봉인 4에서 고정한 규칙(Holm, α = ${M.alpha})으로 내렸고, 독립 재계산 감사를 통과했다.${closing}`;
@@ -1006,9 +1008,10 @@ const M_TIMELINE = (() => {
     + "배포일끼리(2·3일차 사이) 또는 같은 날 절반 사이에서 EQ 자체의 초과가 0과 구별된다는 조건도 붙는다. "
     + `출처: 판정·p·M1–M3 관측값 <code>${M.source.file}</code>; 사용자 수·기준 10/N·하한 <code>${M.config_source.file}</code>; `
     + `top-1 <code>${M.top1_source.file}</code>; EQ 격자 <code>${M.eq_source.file}</code>; 보정일 격차 <code>${M.gate_source.file}</code>. `
-    + `<a href="../${M.source.file}">${M.source.file}</a> · <a href="../${M.report_source.file}">기술 보고서 §${M.report_source.where.section}</a>`;
+    + `<a href="../${M.source.file}">${M.source.file}</a> · <a href="${reportM}">기술 보고서 §${M.report_source.where.section}</a>`;
 
   const caveats = [
+    `M1은 로지스틱(${f3(m1.attackers.logistic)})과 RBF SVM(${f3(m1.attackers.rbf_svm)}) 공격자에 기대고 있다. 독립 감사에 따르면 MLP(${f3(m1.attackers.mlp)}) 공격자 하나만으로는 ×3 Holm 보정 뒤 통과하지 못한다.`,
     `M3의 순위는 식별률이 아니다. 명령 ${m3.k_star}개에서 본인을 1순위로 맞힌 비율(top-1, 사전등록한 추정치)은 ${mci(m3.top1_k_star)}이고, 우연 수준은 1/${M.users} = ${f3(M.chance)}이다.`,
     `M2의 '지지 안 됨'은 '격차 없음'이 아니다. 다른 날 격차 ${m2.gaps.length}개는 모두 양수(${f3(Math.min(...m2.gaps))}–${f3(Math.max(...m2.gaps))})였지만 봉인된 하한 ${m2.margin.toFixed(2)}에 못 미쳐 규칙상 검정하지 않았다(p = 1). 보정일 같은 날 격차: ${f3(m2.day1_within_day_gap)}.`,
   ];
