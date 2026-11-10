@@ -1,0 +1,15 @@
+raw_dir: data/raw/bnci2014_001
+processed_dir: data/processed
+subjects: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+sessions: [T, E]
+# .mat class code -> model label (left hand = 0, right hand = 1)
+labels: {1: 0, 2: 1}
+n_eeg_channels: 22
+sfreq: 250
+cue_after_trial_start_s: 2.0
+window_after_cue_s: [1.0, 4.0]
+bandpass_hz: [8.0, 30.0]
+filter_order: 4
+# A trial is non-finite if any raw sample is non-finite within this span before its window or inside it.
+nonfinite_guard_s: 1.0
+covariance_estimator: oas

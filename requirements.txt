@@ -1,0 +1,11 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.15.0+cpu
+numpy==2.5.4
+scipy==1.18.1
+scikit-learn==1.9.1
+pyriemann==0.12
+pandas==3.1.1
+matplotlib==3.11.2
+statsmodels==0.15.0
+PyYAML==6.0.3
+pytest==9.2.0
