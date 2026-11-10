@@ -198,7 +198,9 @@ cannot be edited:
 ```
 
 **CI** (`.github/workflows/ci.yml`) runs `pytest -m "not data"` on every push and pull request,
-on Ubuntu with Python 3.12 and the CPU-only PyTorch from `requirements.txt`. It covers the
+on Windows (where the experiments ran) and Ubuntu, with Python 3.12 and the CPU-only PyTorch from
+`requirements.txt`. The sealed `beat/exp_l.py` reads memory through the Windows API, so its
+end-to-end test is skipped, with that reason, on Ubuntu and runs on Windows. It covers the
 leakage guards, the feature, model, attack and statistics units, and the synthetic end-to-end
 runs of each experiment. It never downloads EEG and uses no secrets, so it does not reproduce
 the reported numbers. Those require the data scripts and experiment commands above.

@@ -14,8 +14,13 @@ concurrency:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        # Windows is where the experiments ran; Linux checks portability of everything else.
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 40
     env:
       MPLBACKEND: Agg
       PYTHONDONTWRITEBYTECODE: "1"
