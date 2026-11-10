@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BEAT · Does a brain–computer interface reveal who you are?</title>
+<meta name="description" content="Interactive results of the BEAT project: identity leakage from motor-imagery BCI outputs.">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%232b59c3'/%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <span class="brand">BEAT</span>
+    <nav aria-label="Sections">
+      <a href="#replay">Replay</a>
+      <a href="#fooled">Fooled adversary</a>
+      <a href="#charts">Trade-offs</a>
+      <a href="#method">Method</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero wrap" aria-labelledby="hero-title">
+  <p class="eyebrow">Motor-imagery BCI · privacy study · pre-registered</p>
+  <h1 id="hero-title">Does a brain–computer interface reveal <em>who</em> you are?</h1>
+  <p class="lede">A BCI turns imagined left- or right-hand movement into commands and often sends
+    something off the device: a feature vector, a command, or both. We measured how well an
+    eavesdropper can tell <strong>which of 9 people</strong> produced what was sent, and whether
+    that can be reduced without hurting control.</p>
+  <p class="ba-note"><span class="term">Identity score</span> = balanced accuracy of an attacker
+    naming the right person out of 9. Chance is <b data-h="chance" data-fmt="2">–</b>; 1.00 means
+    everyone is identified.</p>
+
+  <ol class="findings">
+    <li class="finding">
+      <span class="finding-num" aria-hidden="true">1</span>
+      <h2>Raw features identify everyone</h2>
+      <p class="big"><b data-h="raw_identity" data-fmt="2">–</b><span class="unit">identity score</span></p>
+      <p>Sending the 253-d feature vector lets an attacker name every user. Per-user recentering
+        still leaves <b data-h="raw_rc_identity" data-fmt="3">–</b>.</p>
+    </li>
+    <li class="finding">
+      <span class="finding-num" aria-hidden="true">2</span>
+      <h2>A small task bottleneck protects, and control improves</h2>
+      <p class="big"><b data-h="bottleneck_rc_identity" data-fmt="2">–</b><span class="unit">identity score, bottleneck + recentering</span></p>
+      <p>An 8-d task-only bottleneck gives <b data-h="bottleneck_identity" data-fmt="2">–</b>, with
+        recentering <b data-h="bottleneck_rc_identity" data-fmt="2">–</b>, while left/right accuracy
+        rises from <b data-h="raw_task" data-fmt="3">–</b> to <b data-h="bottleneck_rc_task" data-fmt="3">–</b>.</p>
+    </li>
+    <li class="finding">
+      <span class="finding-num" aria-hidden="true">3</span>
+      <h2>Even left/right/hold commands leak</h2>
+      <p class="big"><b data-h="cmd_k20_range" data-fmt="range2">–</b><span class="unit">after 20 commands</span></p>
+      <p>One command: <b data-h="cmd_k1_range" data-fmt="range2">–</b>. Above twice chance within
+        5 commands in <b data-h="cmd_within5" data-fmt="ofn">–</b> model/threshold settings.</p>
+    </li>
+  </ol>
+
+  <aside class="limits" aria-labelledby="limits-title">
+    <h2 id="limits-title">What this does not show</h2>
+    <ul>
+      <li>A 9-person closed set (BCI Competition IV 2a), not a population.</li>
+      <li>Arm control is a replay of recorded EEG, not closed-loop control with a person.</li>
+      <li>An attacker's failure is not anonymization.</li>
+      <li>Device compromise, identifying metadata and unobserved sensitive attributes are out of scope.</li>
+      <li>Replay processing time is not online latency.</li>
+    </ul>
+  </aside>
+</section>
+
+<section id="replay" class="panel" aria-labelledby="replay-title">
+  <div class="wrap">
+    <h2 id="replay-title">Replay: steer the arm, watch the eavesdropper</h2>
+    <p class="section-lede">Recorded session-E trials drive a one-joint arm: <b>left</b> −5°,
+      <b>right</b> +5°, <b>hold</b> when the decoder's confidence is below τ. One episode is 20
+      trials. Meanwhile an independently trained attacker sees only what is transmitted and guesses
+      who the user is from each group of <i>k</i> consecutive outputs. Every value shown is a stored
+      result; nothing is re-computed from EEG.</p>
+
+    <form class="controls" id="replay-controls" onsubmit="return false">
+      <fieldset class="ctl ctl-subject">
+        <legend>User</legend>
+        <div class="seg" id="ctl-subject" role="radiogroup" aria-label="User"></div>
+      </fieldset>
+      <div class="ctl">
+        <label for="ctl-condition">Model</label>
+        <select id="ctl-condition"></select>
+      </div>
+      <fieldset class="ctl">
+        <legend>Transmitted</legend>
+        <div class="seg" id="ctl-mode" role="radiogroup" aria-label="Transmitted">
+          <label><input type="radio" name="mode" value="command" checked><span>Commands</span></label>
+          <label><input type="radio" name="mode" value="feature"><span>Features</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="ctl">
+        <legend>Hold threshold τ</legend>
+        <div class="seg" id="ctl-tau" role="radiogroup" aria-label="Hold threshold tau"></div>
+      </fieldset>
+      <details class="ctl ctl-more">
+        <summary>More</summary>
+        <div class="more-grid">
+          <label for="ctl-run">E run</label><select id="ctl-run"></select>
+          <label for="ctl-seed">Model seed</label><select id="ctl-seed"></select>
+        </div>
+      </details>
+    </form>
+
+    <div class="replay-grid">
+      <div class="card arm-card">
+        <div class="card-head">
+          <h3>Arm</h3>
+          <p class="legend-inline"><span class="sw sw-arm"></span>arm <span class="sw sw-target"></span>target</p>
+        </div>
+        <svg id="arm-svg" viewBox="0 0 320 190" role="img" aria-labelledby="arm-desc">
+          <desc id="arm-desc">Virtual arm angle and target angle at the current step.</desc>
+        </svg>
+        <p class="readout" id="arm-readout" aria-live="polite"></p>
+        <div class="player">
+          <button type="button" id="btn-reset" class="btn icon" aria-label="Back to start">⏮</button>
+          <button type="button" id="btn-play" class="btn primary" aria-label="Play">▶ Play</button>
+          <button type="button" id="btn-step" class="btn icon" aria-label="Next trial">⏭</button>
+          <label class="scrub"><span class="sr">Trial</span>
+            <input type="range" id="scrub" min="0" max="20" value="0" step="1"></label>
+          <output id="scrub-out" for="scrub">0 / 20</output>
+        </div>
+      </div>
+
+      <div class="card traj-card">
+        <div class="card-head"><h3>Trajectory over the episode</h3></div>
+        <svg id="traj-svg" viewBox="0 0 520 220" role="img" aria-labelledby="traj-desc">
+          <desc id="traj-desc">Arm angle and target angle across the 20 trials of the episode.</desc>
+        </svg>
+        <div class="cmd-strip-wrap">
+          <p class="mini-label">Command per trial <span class="key"><span class="k-ok">correct</span> <span class="k-bad">wrong direction</span> <span class="k-hold">hold</span></span></p>
+          <ol class="cmd-strip" id="cmd-strip" aria-label="Commands per trial"></ol>
+        </div>
+      </div>
+
+      <div class="card attack-card">
+        <div class="card-head">
+          <h3>Receiver-side identity attacker</h3>
+          <p class="hint" id="attack-hint"></p>
+        </div>
+        <div id="attack-rows" class="attack-rows"></div>
+        <p class="note" id="attack-note"></p>
+      </div>
+
+      <div class="card stats-card">
+        <div class="card-head"><h3>Across all 9 users, this setting</h3></div>
+        <dl class="stats" id="replay-stats"></dl>
+        <p class="note">Episode means over 9 users × 5 seeds (<code>control_summary.csv</code>) and the
+          strongest attacker's seed-mean identity score (<code>observation_strongest.csv</code>).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fooled" class="panel alt" aria-labelledby="fooled-title">
+  <div class="wrap">
+    <h2 id="fooled-title">The fooled adversary</h2>
+    <p class="section-lede">We also trained the model with an identity adversary (gradient
+      reversal, strength λ). The adversary trained alongside the model reports that identity is
+      hidden. Attackers trained afterwards on the frozen outputs disagree.</p>
+    <div class="fooled-grid">
+      <div class="card">
+        <div class="card-head">
+          <div class="seg" id="fooled-family" role="radiogroup" aria-label="Model family">
+            <label><input type="radio" name="fam" value="P3" checked><span>Bottleneck + adversary</span></label>
+            <label><input type="radio" name="fam" value="P3-RC"><span>+ recentering</span></label>
+          </div>
+        </div>
+        <p class="chart-legend" id="fooled-legend"></p>
+        <div class="chart" id="fooled-chart"></div>
+        <details class="table-toggle"><summary>Show as table</summary><div id="fooled-table"></div></details>
+        <p class="note">Both lines are means over 5 model seeds. The head line is the co-trained
+          head's main-scenario score. “Strongest” is the maximum over the three independent attackers
+          and both scenarios: main = trained and tested within session E (runs 1–3 ↔ 4–6, averaged over
+          both directions); auxiliary = trained on session-T outputs, tested on E.</p>
+      </div>
+      <div class="card fooled-readout">
+        <label for="lambda" class="mini-label">Adversary strength λ</label>
+        <input type="range" id="lambda" min="0" max="5" step="1" value="4">
+        <output id="lambda-out" for="lambda" class="lambda-out"></output>
+        <div class="verdicts">
+          <div class="verdict v-head">
+            <p class="v-label">Co-trained adversary head says</p>
+            <p class="v-num" id="v-head">–</p>
+            <p class="v-sub" id="v-head-sub"></p>
+          </div>
+          <div class="verdict v-ind">
+            <p class="v-label">Independent attacker finds</p>
+            <p class="v-num" id="v-ind">–</p>
+            <p class="v-sub" id="v-ind-sub"></p>
+          </div>
+        </div>
+        <p class="note">Judged by its own training head the model looks private; judged by an
+          independent attacker it leaks more as λ grows. Cross-validation on session T alone
+          therefore selected λ = <b data-h="selected_lambda" data-fmt="raw">–</b>, effectively no adversary.
+          Pre-registered hypothesis H2 was <b>not supported</b>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="charts" class="panel" aria-labelledby="charts-title">
+  <div class="wrap">
+    <h2 id="charts-title">Utility versus exposure</h2>
+    <div class="chart-grid">
+      <div class="card">
+        <div class="card-head">
+          <h3>Control accuracy vs identity exposure</h3>
+          <p class="hint">Better models sit top-left: high left/right accuracy, low identity score.</p>
+        </div>
+        <div class="toggles" id="trade-toggles" role="group" aria-label="Show model families"></div>
+        <div class="toggles exp-toggles" id="trade-exps" role="group" aria-label="Experiments"></div>
+        <div class="chart" id="trade-chart"></div>
+        <details class="table-toggle"><summary>Show as table</summary><div id="trade-table"></div></details>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <h3>Identity exposure vs observation length</h3>
+          <p class="hint">How much the attacker gains from seeing <i>k</i> consecutive outputs.</p>
+        </div>
+        <div class="seg-row">
+          <div class="seg" id="obs-stream" role="radiogroup" aria-label="Attacker sees"></div>
+          <div class="seg" id="obs-tau" role="radiogroup" aria-label="Hold threshold tau"></div>
+        </div>
+        <div class="toggles" id="obs-toggles" role="group" aria-label="Show models"></div>
+        <div class="chart" id="obs-chart"></div>
+        <details class="table-toggle"><summary>Show as table</summary><div id="obs-table"></div></details>
+      </div>
+    </div>
+    <p class="note">Points: 5-seed means of the strongest independent attacker, i.e. the maximum over
+      the three attackers and both scenarios (main = session E runs 1–3 ↔ 4–6, averaged over both
+      directions; auxiliary = trained on session-T outputs, tested on E). Bars and bands: the 95%
+      intervals reported in the result tables. Session E, held out until the seal.</p>
+  </div>
+</section>
+
+<section id="method" class="panel alt" aria-labelledby="method-title">
+  <div class="wrap">
+    <h2 id="method-title">Method and integrity</h2>
+    <ul class="strip">
+      <li>
+        <h3>Pre-registered seal</h3>
+        <p>Plan, configs, code and all session-T choices were committed before session E was
+          evaluated: <code id="seal-hash">–</code>.</p>
+      </li>
+      <li>
+        <h3>Independent attackers</h3>
+        <p>Logistic regression, RBF SVM and MLP, retrained on frozen outputs. Training-time
+          adversary heads are reported, never used as evidence.</p>
+      </li>
+      <li>
+        <h3>Failures reported</h3>
+        <p>H1 (1 calibration run: Riemannian <b data-h="h1.b3" data-fmt="3">–</b> vs CSP <b data-h="h1.b2" data-fmt="3">–</b>,
+          p = <b data-h="h1.p" data-fmt="2">–</b>) and H2 were not supported and are reported as results.</p>
+      </li>
+      <li>
+        <h3>Disclosed deviation</h3>
+        <p>The sealed artifact-rejection rule held <b data-h="sealed_gate_e_hold" data-fmt="pct">–</b> of
+          E trials (<b data-h="sealed_gate_worst.hold" data-fmt="pct">–</b> for
+          S<b data-h="sealed_gate_worst.subject" data-fmt="raw">–</b>) versus
+          <b data-h="sealed_gate_t_hold" data-fmt="pct">–</b> of T, reacting to cross-day drift. The
+          primary analysis holds only non-finite trials; the sealed rule is still reported.</p>
+      </li>
+      <li>
+        <h3>Replay checks</h3>
+        <p>Feature and command transmission gave identical commands in
+          <b data-h="transmission.passed" data-fmt="raw">–</b>/<b data-h="transmission.settings" data-fmt="raw">–</b>
+          settings. Median processing <b data-h="timing_median_ms" data-fmt="rangems">–</b> per trial
+          (laptop CPU, replay).</p>
+      </li>
+    </ul>
+    <p class="links">
+      <a class="btn" href="#" aria-disabled="true" data-placeholder="report">Report (link coming)</a>
+      <a class="btn" href="#" aria-disabled="true" data-placeholder="code">Code (link coming)</a>
+    </p>
+    <div id="exp-status" class="exp-status" aria-live="polite"></div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><b>Data licence.</b> Built on BNCI2014-001 / BCI Competition IV 2a (CC BY-ND 4.0). This demo
+      ships no raw EEG, covariances or per-trial features or representations: only decoded commands
+      (left/right/hold), trial labels, attacker predictions and aggregated results.</p>
+    <p>Every number is exported from the project's result files by
+      <code>scripts/export_demo_data.py</code>; <a href="data/results.json">results.json</a> lists
+      each source file and its hash. BEAT team, 2026.</p>
+  </div>
+</footer>
+<div id="tooltip" class="tooltip" role="status" hidden></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
