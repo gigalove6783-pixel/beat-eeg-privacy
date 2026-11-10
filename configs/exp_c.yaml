@@ -1,0 +1,54 @@
+# Experiment C (H3). Fixed before any session-E evaluation; every value the plan
+# leaves open is decided here without E data. Seeds come from B's OOF manifest
+# (artifacts/exp_b/oof/manifest.json); attacker settings from the `attackers`
+# section of configs/exp_b.yaml.
+conditions: [P0, P0-RC, P2, P2-RC, P3, P3-RC]
+taus: [0.5, 0.6, 0.7, 0.8]          # 0.5 = no-hold control
+workers: 6                          # parallel attack jobs (replay itself runs serially for timing)
+torch_threads: 1
+temperature:
+  # Single temperature per condition/seed minimizing the NLL of B's selected
+  # T out-of-fold logits; bounded scalar search over log(T).
+  bounds: [0.05, 20.0]
+  tolerance: 1.0e-6
+rejection:
+  # Per subject s: d = Riemannian distance between a trial's OAS covariance and
+  # the Riemannian mean of s's finite, not artifact-flagged T covariances.
+  # Reject (hold) when d > median(d_T) + z * 1.4826 * MAD(d_T), where d_T are
+  # those T trials' distances. Non-finite trials are always held.
+  z: 3.0
+controller:
+  step_deg: 5.0
+  range_deg: 90.0                   # a move that would leave +/-range is blocked and counted out-of-range
+  # Arm and target restart at 0 deg at each block of 20 trials within a run.
+  # Runs hold 24 left/right trials: trials after the last complete block are
+  # replayed (commands, timing, attacks) but not scored as an episode.
+  episode_length: 20
+  reach_tolerance_deg: 10.0
+  # Wrong-direction moves count executed steps only; blocked attempts are
+  # counted as out-of-range commands.
+  # Unnecessary movement = executed degrees of moves that do not reduce
+  # |angle - target| (target after the current trial's label).
+transmission:
+  # Feature mode: rejected/non-finite trials are sent as a null representation;
+  # the receiver applies the model's affine task head, identified exactly from
+  # the frozen model's own T outputs (no labels) and verified on every row.
+  head_tolerance: 1.0e-3            # max |logit| error of the identified head
+  replay_tolerance: 1.0e-4          # live per-trial logits vs B's saved outputs (reported)
+timing:
+  # Each run's raw EEG is streamed through the causal filter with carried state;
+  # the streamed float32 window must match the cached trial window:
+  # max|stream - cached| / max|cached| per trial.
+  stream_tolerance: 1.0e-5
+observation:
+  k: [1, 5, 10, 20]
+  # Groups are k consecutive outputs within one run (recorded order); training
+  # groups slide with stride 1, test groups do not overlap.
+  train_stride: 1
+  min_valid_outputs: 1              # feature groups need >= 1 non-null representation
+  chance: 0.1111111111111111
+  threshold_factor: 2.0             # report smallest k whose seed-mean strongest BA >= 2/9
+statistics:
+  bootstrap_samples: 2000           # runs resampled within subject; seed-mean interval
+  confidence: 0.95
+  seed: 0

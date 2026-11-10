@@ -1,0 +1,39 @@
+{
+  "phase": "dev",
+  "sessions": [
+    "T"
+  ],
+  "conditions": [
+    "P0",
+    "P0-RC",
+    "P2",
+    "P2-RC",
+    "P3",
+    "P3-RC"
+  ],
+  "no_operating_point": [],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "taus": [
+    0.5,
+    0.6,
+    0.7,
+    0.8
+  ],
+  "t_trials": 1296,
+  "t_hold_rate_gate": 0.033950617283950615,
+  "stream_trials": 1296,
+  "stream_window_max_rel_error": 0.0,
+  "stream_matches_cache": true,
+  "wall_seconds": 10.151999399997294,
+  "notes": [
+    "Smoke replay uses B's T out-of-fold logits; trials without an OOF row (B-excluded) are held.",
+    "Dev inference timing excludes the frozen model (final models do not exist yet).",
+    "Replay timing of recorded trials on this CPU (filter = causal SOS filtering of the trial window's raw samples streamed with filter state carried through the run, plus float32 cast; samples between windows are streamed outside the timed path; inference = covariance, rejection rule and frozen model; control = temperature, tau decision and arm step); not online latency."
+  ]
+}
