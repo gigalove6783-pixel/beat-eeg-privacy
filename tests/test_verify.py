@@ -149,7 +149,8 @@ def test_seals_detect_change_made_in_a_merge_resolution(seal_repo):
     git(seal_repo, "checkout", "-q", "-")
     write(seal_repo / "tests" / "test_b.py", "assert 2\n")
     commit(seal_repo, "main")
-    git(seal_repo, "merge", "-q", "--no-commit", "--no-ff", "side")
+    git(seal_repo, "-c", "user.name=t", "-c", "user.email=t@example.org",
+        "merge", "-q", "--no-commit", "--no-ff", "side")
     write(seal_repo / "beat" / "a.py", "x = 3\n")
     commit(seal_repo, "merge with an edited sealed file")
     errors = verify.check_seals(seal_repo, "manifest.yaml")
