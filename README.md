@@ -1,5 +1,7 @@
 # BEAT: does a motor-imagery BCI reveal who you are?
 
+[![CI](https://github.com/gigalove6783-pixel/beat-eeg-privacy/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/gigalove6783-pixel/beat-eeg-privacy/actions/workflows/ci.yml)
+
 > **What this does not show.** Results come from a 9-person closed set (BCI Competition IV 2a).
 > Arm control is a replay of recorded EEG, not closed-loop control with a person. An attacker's
 > failure is not anonymization. Device compromise, direct identifying metadata and unobserved
@@ -93,6 +95,29 @@ been timed as a single run.
 
 Raw EEG and per-subject features are not redistributed: the dataset is licensed CC BY-ND 4.0, and
 `data/` and `artifacts/` are excluded from Git.
+
+## Reproducing / tests
+
+The tests need no EEG data: apart from one loader check, every test generates synthetic signals in
+pytest's temporary directory. Two markers are assigned in `conftest.py` (the sealed test files are
+not edited):
+
+- `data`: reads the raw BNCI2014-001 files under `data/` (`tests/test_foundation.py::test_loaded_trial_counts_and_shape`).
+- `slow`: full synthetic development + final pipeline round trips (`test_synthetic_*final*`),
+  about 25 s to 2 min each.
+
+```powershell
+.venv\Scripts\python -m pytest                              # everything; `data` tests skip without data/
+.venv\Scripts\python -m pytest -m "not data"                # what CI runs
+.venv\Scripts\python -m pytest -m "not data and not slow"   # quick check, about a minute
+```
+
+**CI** (`.github/workflows/ci.yml`) runs on every push and pull request: Ubuntu, Python 3.12,
+CPU-only PyTorch from `requirements.txt`, `pytest -m "not data"`. It covers the leakage guards
+(every defended fit step rejects session-E trials), feature/model/attack/statistics units, and the
+synthetic end-to-end runs of each experiment. It never downloads the dataset and uses no
+secrets, so it does not reproduce the reported numbers; those require `scripts\download_data.py`
+and `python -m beat.run_all` locally.
 
 ## References
 
