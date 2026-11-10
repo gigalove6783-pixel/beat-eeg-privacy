@@ -10,3 +10,5 @@
 *.joblib binary
 *.mat binary
 *.bdf binary
+*.tsq binary
+*.tsr binary

@@ -1,0 +1,22 @@
+{
+  "commit": "e88154c6f0b3d1a7887f2368763808fc91d9a81a",
+  "imprint_sha256": "ecc7e5657c70ae1efb0cf4ce8596679584acc2d26727622b0a8a662251ca81c6",
+  "token_time": "Nov 10 20:26:22 2026 GMT",
+  "command": [
+    "C:\\Program Files\\Git\\usr\\bin\\openssl.exe",
+    "ts",
+    "-verify",
+    "-digest",
+    "ecc7e5657c70ae1efb0cf4ce8596679584acc2d26727622b0a8a662251ca81c6",
+    "-in",
+    "results\\exp_m\\seal4_timestamp\\seal4.tsr",
+    "-CAfile",
+    "results\\exp_m\\seal4_timestamp\\cacert.pem",
+    "-untrusted",
+    "results\\exp_m\\seal4_timestamp\\tsa.crt"
+  ],
+  "exit_code": 0,
+  "output": "Verification: OK\nUsing configuration from /usr/ssl/openssl.cnf\nWarning: certificate from 'results\\exp_m\\seal4_timestamp\\tsa.crt' with subject '/O=Free TSA/OU=TSA/description=This certificate digitally signs documents and time stamp requests made using the freetsa.org online services/CN=www.freetsa.org/emailAddress=busilezas@mailbox.org/L=Wuerzburg/C=DE/ST=Bayern' is not a CA cert",
+  "openssl_version": "OpenSSL 3.5.7 9 Jun 2026 (Library: OpenSSL 3.5.7 9 Jun 2026)",
+  "verified_utc": "2026-11-10T20:26:36.608+00:00"
+}

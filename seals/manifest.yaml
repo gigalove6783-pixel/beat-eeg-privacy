@@ -3,7 +3,9 @@
 # Seals 1-3 are self-attested: annotated Git tags on commits that the project made itself, all on
 # 2026-11-10. No third party timestamped them. The check below shows that the sealed files were not
 # changed after their seal except by the sanctioned commits listed here; it cannot show when a
-# commit was made.
+# commit was made. Seal 4 additionally carries an RFC 3161 timestamp from FreeTSA over the SHA-256 of
+# its 40-character commit id (token time 2026-11-10 20:26:22 GMT), stored with its verification
+# record in results/exp_m/seal4_timestamp/.
 #
 # Sealed scope of a seal = the files present in its commit that match `scope` (shared by all
 # seals) or that seal's own `selections`:
@@ -52,6 +54,16 @@ seals:
     source: "docs/decision_log.md, entries 'Seal 3' and 'Seal 3 commit'; beat/exp_l.py verify_seal"
     selections:
       - results/exp_l/*
+  - name: seal-4
+    tag: seal-4
+    commit: e88154c6f0b3d1a7887f2368763808fc91d9a81a
+    covers: "Pre-registration M (confirmatory Yang2025 replication, claims M1-M3), frozen lane-K code and config, exp_m code and config, recording-day-1-only selections; recording days 2-3 not downloaded"
+    source: "docs/decision_log.md, entries 'Seal-4 design disclosure' and 'Seal 4'; docs/preregistration_m.md; results/exp_m/seal4_timestamp/"
+    selections:
+      - docs/preregistration_m.md
+      - scripts/fetch_yang2025.py
+      - checksums/yang2025_day1.sha256
+      - results/exp_m/*
 
 sanctioned:
   - commit: 3157c57eb68c10acb978ffde9bed55726636ebfb
