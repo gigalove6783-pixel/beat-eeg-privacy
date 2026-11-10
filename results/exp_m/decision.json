@@ -1,0 +1,102 @@
+{
+  "alpha": 0.05,
+  "holm_family": [
+    "M1",
+    "M2",
+    "M3"
+  ],
+  "p": {
+    "M1": 0.00678013641085835,
+    "M2": 1.0,
+    "M3": 3.734644837537148e-05
+  },
+  "p_holm": {
+    "M3": 0.00011203934512611443,
+    "M1": 0.0135602728217167,
+    "M2": 1.0
+  },
+  "not_evaluable": [],
+  "missing_user_days": [],
+  "supported": {
+    "M3": true,
+    "M1": true,
+    "M2": false
+  },
+  "M1": {
+    "evaluable": true,
+    "missing": 0,
+    "p": 0.00678013641085835,
+    "threshold": 0.19607843137254902,
+    "strongest": 0.3446499655138437,
+    "attackers": {
+      "cal_to_dep/logistic": 0.3446499655138437,
+      "cal_to_dep/rbf_svm": 0.34337767267711106,
+      "cal_to_dep/mlp": 0.27311631687851023
+    },
+    "scenario": "cal_to_dep"
+  },
+  "M1_dep_to_dep_estimate": {
+    "evaluable": true,
+    "missing": 0,
+    "p": 0.0001647427780679973,
+    "threshold": 0.19607843137254902,
+    "strongest": 0.4190481062931551,
+    "attackers": {
+      "dep_to_dep/logistic": 0.4190481062931551,
+      "dep_to_dep/rbf_svm": 0.40724108223369226,
+      "dep_to_dep/mlp": 0.37143072703891505
+    }
+  },
+  "M2": {
+    "evaluable": true,
+    "missing": 0,
+    "p": 1.0,
+    "gaps": [
+      0.09543929636451066,
+      0.09338524573596993,
+      0.09646985977314089
+    ],
+    "best_gap": 0.09646985977314089,
+    "head": 0.06435468990671474,
+    "battery": [
+      0.15979398627122543,
+      0.15773993564268468,
+      0.16082454967985563
+    ],
+    "status": "confirmatory",
+    "scenario": "cal_to_dep"
+  },
+  "M3": {
+    "evaluable": true,
+    "missing": 0,
+    "p": 3.734644837537148e-05,
+    "p_vs_chance": 5.7115192501890345e-06,
+    "p_vs_k_base": 3.734644837537148e-05,
+    "t_vs_chance": 4.875154608200433,
+    "t_vs_k_base": 4.317233232593849,
+    "rank_k_star": {
+      "mean": 0.6491125894802366,
+      "ci_low": 0.5876783428974346,
+      "ci_high": 0.7105468360630387,
+      "missing": 0
+    },
+    "rank_k_base": {
+      "mean": 0.537523653906007,
+      "ci_low": 0.5028126711155227,
+      "ci_high": 0.5722346366964912,
+      "missing": 0
+    },
+    "permutation_p": 9.999000099990002e-05,
+    "permutation_p_components": [
+      9.999000099990002e-05,
+      9.999000099990002e-05
+    ],
+    "status": "confirmatory",
+    "scenario": "cal_to_dep",
+    "tau": 0.6,
+    "attacker": "cat_aware",
+    "k_star": 50,
+    "k_base": 1
+  },
+  "seconds": 196.91512899985537
+}
