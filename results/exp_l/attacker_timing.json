@@ -1,0 +1,80 @@
+[
+  {
+    "setting": "full_B",
+    "seconds": 70.1454350000713,
+    "n_train": 5400,
+    "n_test": 5400,
+    "identities": 54,
+    "dimension": 210,
+    "config": {
+      "logistic_C": 1.0,
+      "logistic_max_iter": 2000,
+      "svm_C": [
+        0.1,
+        1.0,
+        10.0
+      ],
+      "svm_gamma": [
+        "scale",
+        0.01,
+        0.1
+      ],
+      "inner_folds": 3,
+      "mlp_hidden": [
+        32
+      ],
+      "mlp_alpha": 0.01,
+      "mlp_solver": "lbfgs",
+      "mlp_max_iter": 50000,
+      "mlp_max_fun": 1000000
+    },
+    "mlp_convergence": {
+      "converged": true,
+      "iterations": 18,
+      "loss": 0.0008576812136109784,
+      "warning": ""
+    },
+    "ba": {
+      "logistic": 0.9738888888888889,
+      "rbf_svm": 0.9705555555555555,
+      "mlp": 0.9124074074074073
+    }
+  },
+  {
+    "setting": "proposed",
+    "seconds": 12.448960799956694,
+    "n_train": 5400,
+    "n_test": 5400,
+    "identities": 54,
+    "dimension": 210,
+    "config": {
+      "logistic_C": 1.0,
+      "logistic_max_iter": 2000,
+      "svm_C": [
+        1.0
+      ],
+      "svm_gamma": [
+        "scale"
+      ],
+      "inner_folds": 3,
+      "mlp_hidden": [
+        32
+      ],
+      "mlp_alpha": 0.01,
+      "mlp_solver": "lbfgs",
+      "mlp_max_iter": 500,
+      "mlp_max_fun": 10000
+    },
+    "mlp_convergence": {
+      "converged": true,
+      "iterations": 18,
+      "loss": 0.0008576812136109784,
+      "warning": ""
+    },
+    "ba": {
+      "logistic": 0.9738888888888889,
+      "rbf_svm": 0.9703703703703704,
+      "mlp": 0.9124074074074073
+    }
+  }
+]

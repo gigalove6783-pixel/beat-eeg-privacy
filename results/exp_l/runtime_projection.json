@@ -1,0 +1,154 @@
+{
+  "status": "measured_projection",
+  "projected_final_hours": 0.6113000122540251,
+  "breakdown": {
+    "representation": {
+      "jobs": 90,
+      "measured_profiles": 16,
+      "projected_work_seconds": 1848.7029463029467,
+      "projected_wall_hours": 0.1628960943198878
+    },
+    "feature_groups": {
+      "jobs": 108,
+      "measured_profiles": 24,
+      "projected_work_seconds": 1021.2016872027889,
+      "projected_wall_hours": 0.08998187983141472
+    },
+    "command_groups": {
+      "jobs": 228,
+      "measured_profiles": 48,
+      "projected_work_seconds": 2240.081459401874,
+      "projected_wall_hours": 0.19738191115273063
+    },
+    "enrolment": {
+      "jobs": 112,
+      "measured_profiles": 18,
+      "projected_work_seconds": 351.6928920019418,
+      "projected_wall_hours": 0.03098896911575237
+    },
+    "N_scaling": {
+      "jobs": 48,
+      "measured_profiles": 8,
+      "projected_work_seconds": 120.31439939746633,
+      "projected_wall_hours": 0.010601349336021821
+    },
+    "benchmark": {
+      "jobs": 2,
+      "measured_profiles": 2,
+      "projected_work_seconds": 47.39661190006882,
+      "projected_wall_hours": 0.004176291803914036
+    }
+  },
+  "job_counts": {
+    "representation": 90,
+    "feature_groups": 108,
+    "command_groups": 228,
+    "enrolment": 112,
+    "N_scaling": 48,
+    "benchmark": 2,
+    "total": 588
+  },
+  "measured_profiles": 116,
+  "effective_parallelism": 3.1524917668487453,
+  "scheduling": {
+    "workers": 6,
+    "requested_workers": 6,
+    "wall_seconds": 417.8959364001639,
+    "minimum_free_mib": 10541.89453125,
+    "initial_memory": {
+      "available_mib": 12124.0859375,
+      "rss_mib": 1042.3671875,
+      "peak_mib": 8030.59765625
+    }
+  },
+  "projected_serial_preparation_seconds": 410.08891289960593,
+  "measured_reporting_kernel_seconds": 4.89574719988741,
+  "preparation": [
+    {
+      "stage": "covariance",
+      "seconds": 9.350593799725175
+    },
+    {
+      "stage": "model",
+      "key": "P0",
+      "seed": 0,
+      "seconds": 7.946621200069785
+    },
+    {
+      "stage": "model",
+      "key": "P2_d1",
+      "seed": 0,
+      "seconds": 14.39279989991337
+    },
+    {
+      "stage": "model",
+      "key": "P2_d8",
+      "seed": 0,
+      "seconds": 5.573852599831298
+    },
+    {
+      "stage": "model",
+      "key": "P3_lambda0.1",
+      "seed": 0,
+      "seconds": 6.227607999928296
+    },
+    {
+      "stage": "model",
+      "key": "P3_lambda1",
+      "seed": 0,
+      "seconds": 13.206447300035506
+    },
+    {
+      "stage": "model",
+      "key": "P3_lambda3",
+      "seed": 0,
+      "seconds": 7.4539038999937475
+    },
+    {
+      "stage": "model",
+      "key": "P0-RC",
+      "seed": 0,
+      "seconds": 8.090494600124657
+    },
+    {
+      "stage": "model",
+      "key": "P2-RC_d1",
+      "seed": 0,
+      "seconds": 9.675995300058275
+    },
+    {
+      "stage": "model",
+      "key": "P2-RC_d8",
+      "seed": 0,
+      "seconds": 7.707049099961296
+    },
+    {
+      "stage": "G",
+      "seconds": 102.19376819999889,
+      "peak_mib": 8030.59765625
+    }
+  ],
+  "max_worker_peak_mib": 1082.26171875,
+  "failed_profiles": [],
+  "attacker_settings": {
+    "logistic_C": 1.0,
+    "logistic_max_iter": 2000,
+    "svm_C": [
+      1.0
+    ],
+    "svm_gamma": [
+      "scale"
+    ],
+    "inner_folds": 3,
+    "mlp_hidden": [
+      32
+    ],
+    "mlp_alpha": 0.01,
+    "mlp_solver": "lbfgs",
+    "mlp_max_iter": 500,
+    "mlp_max_fun": 10000
+  },
+  "projection_basis": "Measured S1 job profiles at actual row counts/dimensions; weighted by sealed job counts and observed parallel throughput",
+  "limits": "S1 stand-ins reuse S1 outputs for auxiliary test timing only; no scientific scores. One seed/direction per profile; S2 difficulty and full report I/O unmeasured.",
+  "session2_opened": false
+}

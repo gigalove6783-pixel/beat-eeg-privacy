@@ -211,3 +211,196 @@ features was tested, and the bottleneck dimension (8) was arbitrary.
   coincide with high independent-attacker identity BA in a deep model?
 - This is not a reproduction of ID-RemovalNet; it tests the evaluation metric
   on a common backbone that such methods build on.
+
+### Experiment G (exploratory on BCI IV 2a): a reference-session-fitted defense
+
+Muhaimin & Nagarajan (arXiv 2610.15626) fit a four-stage Riemannian transform
+on session 1 and evaluate classifiers trained on defended session 1 against
+defended session 2. Experiment G re-implements the transform from the paper,
+reproduces that protocol, and re-evaluates the same defended data with
+classifiers trained on labelled deployment-session trials (first half of
+session 2, first n per participant for the enrolment curve; tested on the
+second half; both directions). Results are threat-model dependent and do not
+show the paper's own results to be wrong.
+
+## Confirmatory replication on Lee2019 / OpenBMI (plan v3, 2026-11-10)
+
+Status: **confirmatory.** Session 2 of Lee2019 has not been analysed. This
+section, the code and every session-1-only selection are committed before any
+session-2 analysis (seal 3, recorded in `docs/decision_log.md`). This is a
+prospective replication of exploratory findings: λ = 1, d = 8, n = 5 and the
+20 pp / 2 × chance / 10 × chance thresholds were fixed before any Lee2019
+outcome analysis, motivated by the BCI IV 2a results. The thresholds are
+predeclared operational criteria, not established privacy standards.
+
+Report every sealed C1–C4 result and component criterion, including
+unsupported claims, failed benchmark gates, missing cells and computational
+failures. Publish the complete attacker/scenario/seed/direction results rather
+than only maxima. Before seal 3, freeze the analysis manifest, numerical
+settings, runtime limits and failure-handling rules.
+
+Report trial exclusions and usable group counts by participant, session and
+phase. Form groups in recorded order without bridging excluded trials or phase
+boundaries; discard incomplete terminal groups deterministically. If any of
+the 54 identities lacks observations required for a claim, mark that claim not
+evaluable rather than silently dropping the identity or changing chance.
+
+Session-2 findings cannot change primary preprocessing, exclusions,
+thresholds, attackers or stopping rules. Any amendment is dated and justified,
+retains the sealed analysis, and labels the amended analysis exploratory. A
+parameter-free change is not automatically outcome-independent.
+
+### Data and splits
+
+- 54 participants, 2 sessions on different days. Reduced by
+  `scripts/prepare_lee2019.py`: 20 motor channels (FC5/3/1/2/4/6, C5/3/1/z/2/4/6,
+  CP5/3/1/z/2/4/6), causal 8–30 Hz Butterworth at 1000 Hz, decimated to 250 Hz,
+  1–4 s after the cue. Raw-file SHA-256 in `data/processed/lee2019/SHA256SUMS`.
+- Each session has an offline phase and an online phase of 100 trials
+  (50 left, 50 right). Blocks: offline trials 1–50 = block 1, 51–100 = block 2,
+  online 1–50 = block 3, 51–100 = block 4. Exclusion: exclude trials whose
+  reducer-generated `finite` flag is false, indicating a non-finite raw
+  motor-channel sample within the analysis epoch or its preceding 1 s guard.
+  Zero replacement before filtering does not restore eligibility. No official
+  artifact flags exist. Labels are the cue labels (`y_dec`):
+  every session-1 phase of all 54 participants has exactly 50 left and 50
+  right trials, which online classifier decisions would not produce.
+- Session 1 = T for every defended-side fitted component and model-selection
+  decision. Leave-one-block-out CV holds out the corresponding 50-trial block
+  across all participants; fitted components are recomputed using only that
+  fold's training blocks. These blocks are analytical subdivisions of two
+  phases, not independent recording runs.
+- Session 2 = E for frozen-system evaluation. Deployment attackers may fit
+  preprocessing, classifiers and the sealed inner-CV searches using only their
+  designated labelled training phase. They never use their test phase for
+  fitting or tuning.
+- The primary deployment estimand equally averages offline→online and
+  online→offline identity performance. Report both directions separately. This
+  is within-day, cross-phase retrospective linkage; only offline→online
+  respects acquisition chronology. Online feedback makes the phases
+  non-interchangeable experimental conditions. The auxiliary scenario trains
+  attackers on session-1 outputs and evaluates session 2.
+- Identity chance = 1/54 (1.85%); 2 × chance = 3.70%.
+
+### Methods carried over unchanged unless stated
+
+Experiment B's conditions, encoder, ramp schedule, attackers, seeds, budget
+rule and statistics (`configs/exp_b.yaml`), applied to the 210-d tangent space
+of 20 channels; Experiment C's command rule (temperature from session-1 CV,
+τ ∈ {0.5, 0.6, 0.7, 0.8}) and observation-length grouping
+(k ∈ {1, 5, 10, 20}, groups within a phase); Experiment G's transform at the
+paper's OpenBMI operating point (0.9, 0.60, 0.6, 0.2). Attacker settings whose
+projected runtime is impractical are fixed from session-1 timing before seal 3
+and recorded in the config.
+
+### Confirmatory claims and decision rules
+
+For each fixed attacker and scenario, first average recall within participant
+over the specified seeds and, for the deployment scenario, equally over the two
+directions. Identity BA is the mean of these 54 participant recalls.
+"Strongest" means the maximum of these cohort-level BAs over the sealed
+attacker/scenario set; never a maximum separately within each participant or
+seed.
+
+Let `T(v, a)` be the one-sided t-test p-value for the mean of the 54
+participant values `v` exceeding `a` (53 degrees of freedom). These are
+approximate, conditional analyses of the fitted systems and enrolled identity
+set, not uncertainty over retraining or new cohorts. Let `j, l` index the
+J = 6 combinations of logistic regression, RBF SVM and MLP with the deployment
+and auxiliary scenarios; `r[P, j]` the participant-recall vector for
+representation P; `h` the co-trained head's recall vector on the matched
+evaluation outputs; `u` the participant task-BA difference P2-RC − P0;
+`c[k, j]` the command-recall vector at observation length k; `g[j]` the K = 4
+deployment attackers of C4. Claim-level p-values (Bonferroni products capped
+at 1):
+
+- `p1 = min(1, J · min_j T(r[P3, j] − h, 0))`
+- `p2 = max{ T(u, −0.05), min(1, J · min_j max_l T(r[P0, j] − r[P2-RC, l], 0)) }`
+- `p3 = min(1, J · min_j max{ T(c[20, j], 2/54), max_l T(c[20, j] − c[1, l], 0) })`
+- `p4 = min(1, K · min_j T(g[j], 10/54))`
+
+Set p1 or p2 to 1 if its observed strongest-BA difference is below 0.20; the
+20 pp requirements concern observed effect sizes and do not establish a
+population effect of at least 20 pp. Set p4 to 1 if C4's benchmark gate fails.
+Apply Holm's step-down procedure at familywise α = 0.05 to the four
+claim-level p-values; C1–C4 are decided by these tests, not by unadjusted
+winner intervals. Nominal 95% intervals are descriptive. Missing required cells
+make the affected claim not evaluable; they do not shrink the sealed family.
+
+Descriptive bootstrap intervals resample complete participant-summary vectors
+within each predeclared enrolled identity set, using 10,000 replicates and
+seed 42. The set contains 54 participants except in the N-scaling analyses,
+where it contains the fixed N-participant subset. Use identical
+participant-index draws across paired summaries within the same identity set.
+Resampling changes participant weights, not the fixed label space. Missing
+required participant, seed or direction cells make the affected summary not
+evaluable; they never reduce the predeclared identity set. Intervals are
+conditional on the fitted systems; blocks, overlapping windows, directions and
+training seeds are not independent replicates.
+
+- **C1 (co-trained evaluation understates exposure).** For the gradient-reversal
+  model P3 (common family, d = 8, λ = 1 fixed before Lee2019 outcome analysis,
+  motivated by the BCI IV 2a findings), the strongest independent classifier's
+  identity BA exceeds the co-trained head's identity BA on the same evaluation
+  outputs by at least 20 pp, and p1 passes the Holm procedure.
+- **C2 (a recentred task-only bottleneck reduces measured exposure relative to
+  full tangent features).** P2-RC (recentred, task-only bottleneck, d = 8)
+  versus P0 (full tangent vector): strongest identity BA at least 20 pp lower,
+  task BA non-inferior by the −5 pp margin, both through p2 under Holm. The
+  d = 1 variant is reported as secondary (no decision).
+- **C3 (longer command observations increase measured identity exposure).** For
+  P2-RC command-only transmission at τ = 0.5, test jointly that the strongest
+  identity BA at k = 20 exceeds 2/54 and exceeds the strongest BA at k = 1,
+  using p3 under Holm. Both observation lengths use the same eligible
+  test-trial support.
+- **C4 (five deployment labels permit residual identification under the
+  reduced preprocessing pipeline).** Fit the Experiment G transform on session 1
+  at (0.9, 0.60, 0.6, 0.2), then freeze it. Evaluate paper_ts_svm,
+  beat_logistic, beat_rbf_svm and beat_mlp, each trained using only the first
+  five retained, chronologically ordered defended trials per participant in
+  the training phase; all attacker-fitted preprocessing uses only those
+  enrolment trials. Evaluate k = 1 on the opposite phase and average the two
+  directions equally. C4 requires p4 to pass the Holm procedure.
+  **Benchmark gate:** under S1→S2 training and testing on the same reduced
+  pipeline, the fixed paper-style tangent-space SVM must have defended accuracy
+  A with |A − 0.024| ≤ 0.05. This intentionally coarse range (0–7.4%) is a
+  benchmark-consistency gate, not an equivalence test or evidence of faithful
+  reproduction; the causal 1–4 s reduced epochs differ from the paper's
+  preprocessing, so this is an adapted replication. Report undefended and
+  defended reference-session accuracies, every deployment attacker result and
+  the benchmark gap regardless of the gate. If the gate fails, C4 is not
+  evaluable and p4 = 1 stays in Holm. Neither preprocessing nor the gate may
+  change after session-2 evaluation. Conclusions concern these attackers, this
+  pipeline and this labelled-enrolment threat model, not universal protection
+  or a refutation of the paper's stated threat model.
+
+### Reported without a decision
+
+Confirmatory cells (C1–C4) use all five seeds. To keep the final run feasible
+on one laptop CPU, the following descriptive analyses use seeds 0–2 and are
+restricted as listed (fixed before seal 3 from session-1 timing):
+
+- Enrolment curves, n ∈ {1, 2, 5, 10, 20, all}, for the Experiment G transform
+  (defended and undefended) and for P0-RC.
+- Bottleneck dimension d ∈ {1, 8} for P2 and P2-RC.
+- Co-trained head versus independent classifiers for P3 (common family) at
+  λ ∈ {0.1, 1, 3}.
+- Observation-length curves, k ∈ {1, 5, 10, 20}, for P0, P2-RC and P3
+  (λ = 1): features, and commands at τ ∈ {0.5, 0.8}.
+- Identification versus the number of enrolled participants,
+  N ∈ {9, 18, 27, 54} (participant subsets drawn with seed 42), for P0 and
+  P2-RC in the deployment scenario.
+- Control metrics for P0, P2-RC and P3 (λ = 1) at τ ∈ {0.5, 0.6, 0.7, 0.8}.
+
+Attacker settings (session-1 timing on 5,400 × 210-d training sets): the RBF
+SVM uses fixed C = 1 and gamma = "scale" instead of B's grid (identity BA
+0.9704 versus 0.9706 for the full grid on session 1, 12 s versus 70 s per
+fit); the MLP limits are max_iter = 500 and max_fun = 10,000 (converged in
+18 iterations).
+
+### Not pursued
+
+A per-command randomized-response release with a formal identification bound
+was considered and set aside for this phase: meaningful formal guarantees over
+tens of commands require privacy budgets that make the commands nearly random,
+so it would not change the practical conclusions.
