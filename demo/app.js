@@ -935,6 +935,87 @@ onResize($("#p2-chart"), drawP2);
   $("#checklist-source").textContent = `Source: ${DATA.checklist.source.file} §${DATA.checklist.source.where.section}.`;
 }
 
+// ------------------------------------------------------------------ study M: sealed cross-day replication
+// Verdict wording and fixed claim phrases are the pre-committed text of docs/decision_log.md (7b14cee).
+const M = DATA.m_study;
+const MC = M.claims;
+const MIDS = Object.keys(MC);
+const M_PHRASE = {
+  M1: "원 특징의 다른 날 식별(사전등록상 저위험 재현)",
+  M2: "독립 공격자와 공동 학습 head의 격차가 0보다 크고 관측값이 0.10 이상",
+  M3: "본인의 순위가 우연보다 높고 명령 1개일 때보다 높다",
+};
+const mVerdict = (c) => (MC[c].supported ? "지지" : "지지 안 됨");
+// Holm p as in the write-ups: three decimals, scientific below 0.001.
+const mp = (v) => {
+  if (v === 1) return "1";
+  if (v >= 1e-3) return v.toFixed(3);
+  const [m, e] = v.toExponential(1).split("e");
+  return `${m}×10${[...String(Number(e))].map((ch) => SUP[ch]).join("")}`;
+};
+const ms3 = (v) => `${v < 0 ? "−" : ""}${Math.abs(v).toFixed(3)}`;
+const mci = ([m, lo, hi]) => `${ms3(m)} [${ms3(lo)}, ${ms3(hi)}]`;
+const M_TIMELINE = (() => {
+  const gaps = MC.M2.gaps;
+  return MIDS.map((c) => `${c} <span lang="ko">${mVerdict(c)}</span> (${c === "M2"
+    ? `gaps ${f3(Math.min(...gaps))}–${f3(Math.max(...gaps))} below the ${MC.M2.margin.toFixed(2)} floor; p = 1 by rule`
+    : `Holm p ${mp(MC[c].p_holm)}`})`).join(" · ");
+})();
+{
+  const nSup = MIDS.filter((c) => MC[c].supported).length, nAll = MIDS.length;
+  const title = `새 사용자 ${M.users}명, 다른 날: 사전등록한 주장 ${nAll}개${nSup === nAll ? "가 모두 지지됐다"
+    : nSup === 0 ? "가 모두 지지되지 않았다" : ` 중 ${nSup}개가 지지됐다`}`;
+  const sup = MIDS.filter((c) => MC[c].supported), rest = MIDS.filter((c) => !MC[c].supported);
+  const closing = sup.length && rest.length ? ` 다른 날에는 ${sup.join("·")}만 재현됐다. ${rest.join("·")}는 같은 날 조건의 결과로 남는다.` : "";
+  const verdicts = `${MIDS.map((c) => `${c} ${M_PHRASE[c]}: ${mVerdict(c)}`).join("; ")}.${closing}`;
+  document.querySelectorAll("[data-m=title]").forEach((n) => { n.textContent = `${title}.`; n.title = `Source: ${M.source.file}`; });
+  document.querySelectorAll("[data-m=verdicts]").forEach((n) => { n.textContent = verdicts; });
+  $("#m-title").textContent = title;
+  $("#m-lede").textContent = `보정일(1일차)에 등록한 공격자를 배포일(2·3일차)에 시험한 다른 날(cross-day) 조건이다. `
+    + `판정은 봉인 4에서 고정한 규칙(Holm, α = ${M.alpha})으로 내렸고, 독립 재계산 감사를 통과했다.${closing}`;
+
+  const A = { logistic: "로지스틱", rbf_svm: "RBF SVM", mlp: "MLP" };
+  const m1 = MC.M1, m2 = MC.M2, m3 = MC.M3;
+  const [best, ...others] = Object.entries(m1.attackers).sort((a, b) => b[1] - a[1]);
+  const observed = {
+    M1: `최강 공격자 평균 재현율 ${f3(best[1])} (${A[best[0]]}; ${others.map(([a, v]) => `${A[a]} ${f3(v)}`).join(", ")}), 기준 ${m1.threshold_factor}/${M.users} = ${f3(m1.threshold)}`,
+    M2: `격차 ${f3(Math.min(...m2.gaps))}–${f3(Math.max(...m2.gaps))} (독립 공격자 ${f3(Math.min(...m2.battery))}–${f3(Math.max(...m2.battery))}, head ${f3(m2.head)}), 봉인된 하한 ${m2.margin.toFixed(2)} 미만이라 검정하지 않음`,
+    M3: `명령 ${m3.k_star}개 백분위 순위 ${mci(m3.rank_k_star)}, 명령 ${m3.k_base}개 ${mci(m3.rank_k_base)} (τ* = ${m3.tau.toFixed(2)}, ${m3.attacker})`,
+  };
+  table($("#m-table"), ["주장", "사전등록한 기준", "관측값 (다른 날)", "Holm p", "판정"],
+    MIDS.map((c) => [c, M_PHRASE[c], observed[c], c === "M2" ? "1 (규칙상)" : mp(MC[c].p_holm), mVerdict(c)]));
+  $("#m-table").querySelectorAll("tbody tr").forEach((tr, i) => tr.lastChild.classList.add(MC[MIDS[i]].supported ? "m-yes" : "m-no"));
+
+  // EQ: the reading rule over every pre-registered cell; no single cell is "the" EQ result.
+  const E = M.eq, [tStar, tSec] = E.taus, kLo = Math.min(...E.ks), kHi = Math.max(...E.ks), nA = E.attackers.length;
+  const cells = (tau, k) => E.grid.filter((c) => c.tau === tau && (k == null || c.k === k));
+  const incl0 = ([, lo, hi]) => lo <= 0 && 0 <= hi;
+  const same = cells(tStar, kHi).filter((c) => c.reading === "same_direction").length;
+  const red0 = cells(tStar, kLo).filter((c) => incl0(c.reduction)).length;
+  const sec = cells(tSec), secNo = sec.filter((c) => c.reading === "no_exposure").length;
+  $("#m-eq").textContent = `EQ·RR은 사전등록한 추정치, 판정 없음. EQ 판독 규칙을 사전등록한 격자 전체(g = ${E.g}, Bayes 공격자 ${nA}종 × 명령 ${E.ks.join("·")}개 × τ = ${tStar.toFixed(2)}(τ*)·${tSec})에 적용하면, `
+    + `τ*·명령 ${kHi}개에서는 공격자 ${nA}종 중 ${same}종이 'K와 같은 방향'이었다. `
+    + `τ*·명령 ${kLo}개에서는 ${red0 === nA ? "모든 공격자에서" : `공격자 ${nA}종 중 ${red0}종에서`} EQ의 감소가 0과 구별되지 않았다. `
+    + `τ = ${tSec}에서는 ${secNo === sec.length ? `${sec.length}칸 모두` : `${sec.length}칸 중 ${secNo}칸에서`} '막을 노출이 구별되지 않아 EQ 효과를 말할 수 없다'.`;
+  const READ = { same_direction: "K와 같은 방향", no_reduction: "막을 노출은 구별됐지만 EQ의 감소는 0과 구별되지 않았다", no_exposure: "막을 노출이 구별되지 않아 EQ 효과를 말할 수 없다" };
+  table($("#m-grid"), ["τ", "명령 수", "공격자", `방어 없음 그룹 내 초과`, "EQ 그룹 내 초과", "감소", "판독"],
+    E.grid.map((c) => [c.tau === tStar ? `${tStar.toFixed(2)} (τ*)` : String(c.tau), String(c.k), c.attacker,
+      mci(c.undefended), mci(c.defended), mci(c.reduction), READ[c.reading]]));
+
+  $("#m-note").innerHTML = `표와 격자의 값은 다른 날(보정일 등록 → 배포일 시험) 값이며, 구간은 평균 [95% 구간]이다. 그룹 내 초과는 g = ${E.g}이다. 'K와 같은 방향'에는 `
+    + "배포일끼리(2·3일차 사이) 또는 같은 날 절반 사이에서 EQ 자체의 초과가 0과 구별된다는 조건도 붙는다. "
+    + `출처: 판정·p·M1–M3 관측값 <code>${M.source.file}</code>; 사용자 수·기준 10/N·하한 <code>${M.config_source.file}</code>; `
+    + `top-1 <code>${M.top1_source.file}</code>; EQ 격자 <code>${M.eq_source.file}</code>; 보정일 격차 <code>${M.gate_source.file}</code>. `
+    + `<a href="../${M.source.file}">${M.source.file}</a> · <a href="../${M.report_source.file}">기술 보고서 §${M.report_source.where.section}</a>`;
+
+  const caveats = [
+    `M3의 순위는 식별률이 아니다. 명령 ${m3.k_star}개에서 본인을 1순위로 맞힌 비율(top-1, 사전등록한 추정치)은 ${mci(m3.top1_k_star)}이고, 우연 수준은 1/${M.users} = ${f3(M.chance)}이다.`,
+    `M2의 '지지 안 됨'은 '격차 없음'이 아니다. 다른 날 격차 ${m2.gaps.length}개는 모두 양수(${f3(Math.min(...m2.gaps))}–${f3(Math.max(...m2.gaps))})였지만 봉인된 하한 ${m2.margin.toFixed(2)}에 못 미쳐 규칙상 검정하지 않았다(p = 1). 보정일 같은 날 격차: ${f3(m2.day1_within_day_gap)}.`,
+  ];
+  const ul = $("#m-caveats");
+  caveats.forEach((t) => el("li", { text: t }, ul));
+}
+
 // ------------------------------------------------------------------ pre-registration timeline
 {
   const list = $("#timeline");
@@ -946,6 +1027,7 @@ onResize($("#p2-chart"), drawP2);
     el("h4", { text: ev.title }, li);
     el("p", { class: "tl-meta", html: `${tierBadge(ev.evidence)} ${ev.experiments.map((e) => EXP_LETTER[e]).join(", ")}${done ? "" : " · <span class=\"status pending\">Pending</span>"}` }, li);
     el("p", { text: ev.text }, li);
+    if (ev.result === "exp_m") el("p", { class: "tl-result", html: M_TIMELINE }, li);
     if (ev.commit) {
       const p = el("p", { class: "tl-commit" }, li);
       const code = el("code", { text: ev.commit.slice(0, 7), title: ev.commit }, p);

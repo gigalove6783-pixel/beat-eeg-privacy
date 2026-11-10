@@ -15,6 +15,7 @@
     <span class="brand">BEAT</span>
     <nav aria-label="Sections">
       <a href="#intro" lang="ko">v2 요지</a>
+      <a href="#m-result" lang="ko">M 결과</a>
       <a href="#k-frontier">K: RR vs EQ</a>
       <a href="#glance">Study</a>
       <a href="#replay">Replay</a>
@@ -51,8 +52,8 @@
       <a href="#k-frontier">바로 아래 패널</a>에서 무작위 응답(RR)과 비교할 수 있다.</li>
     <li><b>v1 결과 (영문 패널).</b> 9명(BCI IV 2a)과 54명(Lee2019)을 대상으로 한 재생 시연, 함정 1·2,
       유용성–신원 경계, 봉인된 재현(L)과 감사 체크리스트를 담았다. 각 수치에 within-day / cross-day를 표시했다.</li>
-    <li><span class="badge conf">Confirmatory-sealed</span> <b>새 사용자 51명(연구 M, 봉인 4).</b>
-      사전등록은 시각 인증까지 끝났고, 결과는 아직 없다.</li>
+    <li><span class="badge conf">Confirmatory-sealed</span> <b data-m="title">–</b>
+      <span data-m="verdicts"></span> <a href="#m-result">연구 M 결과 카드</a></li>
   </ul>
   <p class="links">
     <a class="btn" href="../README.md">README</a>
@@ -61,6 +62,26 @@
     <a class="btn" href="../presentation/BEAT_v2_talk.pdf">v2 발표 자료 (PDF)</a>
     <a class="btn" href="../docs/explainer_ko.md">쉬운 해설 (docs/explainer_ko.md)</a>
   </p>
+</section>
+
+<section id="m-result" class="panel" lang="ko" aria-labelledby="m-title">
+  <div class="wrap">
+    <p class="section-tag"><span class="badge conf">Confirmatory-sealed</span> 연구 M · 봉인 4 · 다른 날 (cross-day)</p>
+    <h2 id="m-title" data-m="title">–</h2>
+    <p class="section-lede" id="m-lede"></p>
+    <div class="card">
+      <div class="card-head">
+        <h3 id="m-table-title">사전등록한 주장과 판정</h3>
+        <p class="hint"><span class="badge conf">Confirmatory-sealed</span></p>
+      </div>
+      <div id="m-table"></div>
+      <p class="m-eq"><span class="badge est">Pre-registered estimate</span> <span id="m-eq"></span></p>
+      <details class="table-toggle"><summary>EQ 격자 전체 보기</summary><div id="m-grid"></div></details>
+      <p class="note" id="m-note"></p>
+    </div>
+    <h3 class="k-limits-title">읽을 때 주의할 점</h3>
+    <ul class="k-limits" id="m-caveats"></ul>
+  </div>
 </section>
 
 <section id="k-frontier" class="panel" lang="ko" aria-labelledby="k-title">
@@ -121,7 +142,7 @@
 
   <p class="ba-note">Every result carries one of three evidence tiers (as in README.md):
     <span class="badge conf">Confirmatory-sealed</span> = decided by a rule committed before the held-out data were scored (seals 1, 3 and 4);
-    <span class="badge est">Pre-registered estimate</span> = fixed in a sealed plan and reported without a verdict (C's command values; L's and B's cross-day values);
+    <span class="badge est">Pre-registered estimate</span> = fixed in a sealed plan and reported without a verdict (C's command values; L's and B's cross-day values; M's EQ/RR and utility values);
     <span class="badge expl">Exploratory</span> = not pre-registered, or computed on data that had already shaped the analysis (D, E, G, K).
     Every value also names its scenario, within-day or cross-day. Hover a number to see its source file.</p>
 

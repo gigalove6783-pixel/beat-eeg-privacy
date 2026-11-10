@@ -861,6 +861,687 @@ numbers:
       README.md: ["0.69 at α/3 if days 2–3 keep 55%"]
       docs/report.md: ["0.69 at α/3 if days 2–3 keep 55%"]
 
+  # ---------------------------------------------------------------- M final (seal 4; case b)
+  # Decisions (confirmatory-sealed): results/exp_m/decision.json.
+  - id: M_M1_logistic
+    value: {file: results/exp_m/decision.json, json: M1.attackers.cal_to_dep/logistic}
+    format: {kind: fixed, digits: 3}
+    text: "0.345"
+    in:
+      docs/explainer_ko.md: ["로지스틱 0.345 대 기준 0.196", "| M1 0.345 / 0.343 / 0.273 대 0.196 |", "로지스틱 0.345, RBF SVM 0.343, MLP 0.273, 기준 10/51 = 0.196", "가장 강한 공격자 0.345 대 기준 0.196", "가장 강한 로지스틱은 0.345, RBF SVM은 0.343"]
+      README.md: ["(M1: 0.345 against 10/51)", "| 0.345 (logistic), supported; day 2 ↔ 3: 0.419 |",
+                  "identify users on days 2–3 at 0.345", "| 0.345 (logistic; RBF-SVM 0.343, MLP 0.273) vs 10/51 |",
+                  "Strongest attacker 0.345 (logistic; RBF-SVM 0.343, MLP 0.273) vs 10/51",
+                  "RBF-SVM attackers (0.345, 0.343)"]
+      docs/report.md: ["re-identified users on days 2–3 at 0.345 (threshold 10/51)", "identify users on days 2–3 at 0.345 (claim M1",
+                       "Strongest attacker 0.345 (logistic; RBF-SVM 0.343, MLP 0.273) vs 10/51", "(M1, 0.345 against 10/51)",
+                       "logistic regression (0.345) and RBF-SVM (0.343)"]
+  - id: M_M1_rbf_svm
+    value: {file: results/exp_m/decision.json, json: M1.attackers.cal_to_dep/rbf_svm}
+    format: {kind: fixed, digits: 3}
+    text: "0.343"
+    in:
+      docs/explainer_ko.md: ["| M1 0.345 / 0.343 / 0.273 대 0.196 |", "로지스틱 0.345, RBF SVM 0.343, MLP 0.273", "가장 강한 로지스틱은 0.345, RBF SVM은 0.343"]
+      README.md: ["RBF-SVM 0.343, MLP 0.273", "(0.345, 0.343)"]
+      docs/report.md: ["RBF-SVM 0.343, MLP 0.273", "RBF-SVM (0.343)"]
+  - id: M_M1_mlp
+    value: {file: results/exp_m/decision.json, json: M1.attackers.cal_to_dep/mlp}
+    format: {kind: fixed, digits: 3}
+    text: "0.273"
+    in:
+      docs/explainer_ko.md: ["| M1 0.345 / 0.343 / 0.273 대 0.196 |", "RBF SVM 0.343, MLP 0.273, 기준", "MLP는 0.273으로"]
+      README.md: ["MLP 0.273) vs 10/51", "the MLP attacker (0.273) alone"]
+      docs/report.md: ["MLP 0.273) vs 10/51", "the MLP attacker (0.273) alone"]
+  - id: M_M1_p
+    value: {file: results/exp_m/decision.json, json: p.M1}
+    format: {kind: fixed, digits: 4}
+    text: "0.0068"
+    in:
+      docs/explainer_ko.md: ["주장 p 0.0068, Holm p 0.0136", "| 0.0068 → 0.0136 |", "주장 p 0.0068은", "M1 0.0068 ≤ α/2", "M1 2 × 0.0068 = 0.0136", "보정 뒤 0.0068, Holm p 0.0136"]
+      README.md: ["| 0.0068; Holm 0.0136 |", "| 0.0068 | 0.0136 | Supported |"]
+      docs/report.md: ["| 0.0068 | 0.0136 | Supported |"]
+  - id: M_M1_p_holm
+    value: {file: results/exp_m/decision.json, json: p_holm.M1}
+    format: {kind: fixed, digits: 4}
+    text: "0.0136"
+    in:
+      docs/explainer_ko.md: ["Holm p 0.0136), M2", "주장 p 0.0068, Holm p 0.0136", "| 0.0068 → 0.0136 |", "M1 2 × 0.0068 = 0.0136", "Holm p 0.0136으로", "보정 뒤 0.0068, Holm p 0.0136"]
+      README.md: ["| 0.0068; Holm 0.0136 |", "| 0.0068 | 0.0136 | Supported |", "(Holm p 0.0136; threshold 10/51)"]
+      docs/report.md: ["| 0.0068 | 0.0136 | Supported |"]
+  - id: M_M1_day23_logistic
+    value: {file: results/exp_m/decision.json, json: M1_dep_to_dep_estimate.strongest}
+    format: {kind: fixed, digits: 3}
+    text: "0.419"
+    in:
+      docs/explainer_ko.md: ["| M1 2↔3일차 0.419 |", "로지스틱 0.419(p 1.6 × 10⁻⁴)"]
+      README.md: ["day 2 ↔ 3: 0.419 |", "test on the other): 0.419 (logistic)"]
+      docs/report.md: ["test on the other): 0.419 (logistic)"]
+  - id: M_M1_day23_p
+    value: {file: results/exp_m/decision.json, json: M1_dep_to_dep_estimate.p}
+    format: {kind: sci, digits: 1}
+    text: "1.6 × 10⁻⁴"
+    in:
+      docs/explainer_ko.md: ["로지스틱, p 1.6 × 10⁻⁴", "로지스틱 0.419(p 1.6 × 10⁻⁴)"]
+      README.md: ["0.419 (logistic), p 1.6 × 10⁻⁴"]
+  - id: M_M1_day23_p_latex
+    value: {file: results/exp_m/decision.json, json: M1_dep_to_dep_estimate.p}
+    format: {kind: sci_latex, digits: 1}
+    text: "1.6 \\times 10^{-4}"
+    in:
+      docs/report.md: ["0.419 (logistic), $p = 1.6 \\times 10^{-4}$"]
+  - id: M_M2_battery_logistic
+    value: {file: results/exp_m/decision.json, json: M2.battery.0}
+    format: {kind: fixed, digits: 3}
+    text: "0.160"
+    in:
+      docs/explainer_ko.md: ["독립 공격자 0.160 / 0.158 / 0.161 − head", "독립 공격자 0.160 / 0.158 / 0.161, head 0.064", "0.160, 0.158, 0.161이고 공동 학습 head는 0.064"]
+      README.md: ["Attackers 0.160 / 0.158 / 0.161 vs head 0.064", "(attackers 0.160 / 0.158 / 0.161, head 0.064)"]
+      docs/report.md: ["(attackers 0.160 / 0.158 / 0.161, head 0.064)"]
+  - id: M_M2_battery_rbf_svm
+    value: {file: results/exp_m/decision.json, json: M2.battery.1}
+    format: {kind: fixed, digits: 3}
+    text: "0.158"
+    in:
+      docs/explainer_ko.md: ["독립 공격자 0.160 / 0.158 / 0.161 − head", "독립 공격자 0.160 / 0.158 / 0.161, head 0.064", "0.160, 0.158, 0.161이고 공동 학습 head는 0.064"]
+      README.md: ["Attackers 0.160 / 0.158 / 0.161 vs head 0.064", "(attackers 0.160 / 0.158 / 0.161, head 0.064)"]
+      docs/report.md: ["(attackers 0.160 / 0.158 / 0.161, head 0.064)"]
+  - id: M_M2_battery_mlp
+    value: {file: results/exp_m/decision.json, json: M2.battery.2}
+    format: {kind: fixed, digits: 3}
+    text: "0.161"
+    in:
+      docs/explainer_ko.md: ["독립 공격자 0.160 / 0.158 / 0.161 − head", "독립 공격자 0.160 / 0.158 / 0.161, head 0.064", "0.160, 0.158, 0.161이고 공동 학습 head는 0.064"]
+      README.md: ["Attackers 0.160 / 0.158 / 0.161 vs head 0.064", "(attackers 0.160 / 0.158 / 0.161, head 0.064)",
+                  "| 0.161 vs 0.064 (gaps 0.093–0.096"]
+      docs/report.md: ["(attackers 0.160 / 0.158 / 0.161, head 0.064)"]
+  - id: M_M2_head
+    value: {file: results/exp_m/decision.json, json: M2.head}
+    format: {kind: fixed, digits: 3}
+    text: "0.064"
+    in:
+      docs/explainer_ko.md: ["head 0.064, 관측 격차 0.093–0.096", "| M2 head 0.064 / 격차 0.095 / 0.093 / 0.096 |", "0.161, head 0.064, 관측 격차 0.095 / 0.093 / 0.096", "공동 학습 head는 0.064라"]
+      README.md: ["| 0.161 vs 0.064 (gaps", "0.161 vs head 0.064", "0.161, head 0.064)"]
+      docs/report.md: ["0.161, head 0.064)"]
+  - id: M_M2_gap_logistic
+    value: {file: results/exp_m/decision.json, json: M2.gaps.0}
+    format: {kind: fixed, digits: 3}
+    text: "0.095"
+    in:
+      docs/explainer_ko.md: ["| M2 head 0.064 / 격차 0.095 / 0.093 / 0.096 |", "관측 격차 0.095 / 0.093 / 0.096", "관측 격차가 0.095, 0.093, 0.096입니다"]
+      README.md: ["gaps 0.095 / 0.093 / 0.096 < 0.10", "Gaps 0.095 / 0.093 / 0.096 (attackers"]
+      docs/report.md: ["Gaps 0.095 / 0.093 / 0.096 (attackers"]
+  - id: M_M2_gap_min
+    value: {file: results/exp_m/decision.json, json: M2.gaps.1}
+    format: {kind: fixed, digits: 3}
+    text: "0.093"
+    in:
+      docs/explainer_ko.md: ["head 0.064, 관측 격차 0.093–0.096", "M2 지지 안 됨(격차 0.093–0.096 < 0.10", "| M2 head 0.064 / 격차 0.095 / 0.093 / 0.096 |", "관측 격차 0.095 / 0.093 / 0.096", "관측 격차가 0.093–0.096으로", "관측 격차가 0.093–0.096이라", "관측 격차가 0.095, 0.093, 0.096입니다"]
+      README.md: ["(M2: 0.093–0.096, not supported)", "(gaps 0.093–0.096, below the 0.10 floor)",
+                  "0.093–0.096, below the sealed 0.10 floor (M2", "head were 0.093–0.096,",
+                  "gaps 0.095 / 0.093 / 0.096 < 0.10", "Gaps 0.095 / 0.093 / 0.096 (attackers"]
+      docs/report.md: ["sealed 0.10 floor across days (0.093–0.096)", "the gaps were 0.093–0.096, below the sealed 0.10 floor (claim M2",
+                       "(gaps 0.093–0.096 below the 0.10 floor)", "Gaps 0.095 / 0.093 / 0.096 (attackers",
+                       "(M2, 0.093–0.096, against 0.717 within day 1)", "head by only 0.093–0.096, below the sealed 0.10 floor"]
+  - id: M_M2_gap_max
+    value: {file: results/exp_m/decision.json, json: M2.best_gap}
+    format: {kind: fixed, digits: 3}
+    text: "0.096"
+    in:
+      docs/explainer_ko.md: ["head 0.064, 관측 격차 0.093–0.096", "M2 지지 안 됨(격차 0.093–0.096 < 0.10", "| M2 head 0.064 / 격차 0.095 / 0.093 / 0.096 |", "관측 격차 0.095 / 0.093 / 0.096", "관측 격차가 0.093–0.096으로", "관측 격차가 0.093–0.096이라", "관측 격차가 0.095, 0.093, 0.096입니다"]
+      README.md: ["(M2: 0.093–0.096, not supported)", "(gaps 0.093–0.096, below the 0.10 floor)",
+                  "0.093–0.096, below the sealed 0.10 floor (M2", "head were 0.093–0.096,",
+                  "gaps 0.095 / 0.093 / 0.096 < 0.10"]
+      docs/report.md: ["sealed 0.10 floor across days (0.093–0.096)", "(gaps 0.093–0.096 below the 0.10 floor)",
+                       "Gaps 0.095 / 0.093 / 0.096 (attackers", "head by only 0.093–0.096, below the sealed 0.10 floor"]
+  - id: M_M2_p
+    value: {file: results/exp_m/decision.json, json: p.M2}
+    format: {kind: fixed, digits: 0}
+    text: "1"
+    in:
+      docs/explainer_ko.md: ["< 0.10, p = 1)", "검정 없음, p = 1 |", "| 1 → 1(규칙상", "M2 1 > α = 0.05", "규칙상 검정 없이 p = 1, 지지 안 됨입니다(Q68)"]
+      README.md: ["| 1 by rule; Holm 1 |", "| 1 (by rule) | 1 | Not supported |"]
+      docs/report.md: ["| 1 (by rule) | 1 | Not supported |"]
+  - id: M_M2_p_holm
+    value: {file: results/exp_m/decision.json, json: p_holm.M2}
+    format: {kind: fixed, digits: 0}
+    text: "1"
+    in:
+      docs/explainer_ko.md: ["| 1 → 1(규칙상"]
+      README.md: ["| 1 by rule; Holm 1 |", "| 1 (by rule) | 1 | Not supported |"]
+      docs/report.md: ["| 1 (by rule) | 1 | Not supported |"]
+  - id: M_M3_rank_k50
+    value: {file: results/exp_m/decision.json, json: M3.rank_k_star.mean}
+    format: {kind: fixed, digits: 3}
+    text: "0.649"
+    in:
+      docs/explainer_ko.md: ["순위 0.649 대 명령 1개 0.538", "| M3 0.649 (0.588–0.711) 대 0.538 (0.503–0.572) |", "명령 50개 순위 0.649(0.588–0.711), 명령 1개 0.538(0.503–0.572)", "0.649는 우연 0.5와", "본인 순위 0.649 대 명령 1개 0.538", "0.649(0.588–0.711)로 우연 0.5와 명령 1개의 0.538보다"]
+      README.md: ["(M3: 0.649 at 50 commands against 0.538 at 1)", "| 0.649 vs 0.538, supported;",
+                  "percentile rank is 0.649 at 50 commands against 0.538 at", "| 0.649 (0.588–0.711) at 50 commands vs 0.538 (0.503–0.572) at 1 |",
+                  "Mean percentile rank 0.649 (0.588–0.711) at 50 commands vs 0.538 (0.503–0.572) at 1"]
+      docs/report.md: ["rose from 0.538 with one command to 0.649 with 50", "Mean percentile rank 0.649 (0.588–0.711) at 50 commands vs 0.538 (0.503–0.572) at 1",
+                       "(0.649 versus 0.538)"]
+  - id: M_M3_rank_k50_low
+    value: {file: results/exp_m/decision.json, json: M3.rank_k_star.ci_low}
+    format: {kind: fixed, digits: 3}
+    text: "0.588"
+    in:
+      docs/explainer_ko.md: ["| M3 0.649 (0.588–0.711) 대", "순위 0.649(0.588–0.711), 명령", "0.649(0.588–0.711)로 우연"]
+      README.md: ["0.649 (0.588–0.711) at 50 commands"]
+      docs/report.md: ["0.649 (0.588–0.711) at 50 commands"]
+  - id: M_M3_rank_k50_high
+    value: {file: results/exp_m/decision.json, json: M3.rank_k_star.ci_high}
+    format: {kind: fixed, digits: 3}
+    text: "0.711"
+    in:
+      docs/explainer_ko.md: ["| M3 0.649 (0.588–0.711) 대", "순위 0.649(0.588–0.711), 명령", "0.649(0.588–0.711)로 우연"]
+      README.md: ["0.649 (0.588–0.711) at 50 commands"]
+      docs/report.md: ["0.649 (0.588–0.711) at 50 commands"]
+  - id: M_M3_rank_k1
+    value: {file: results/exp_m/decision.json, json: M3.rank_k_base.mean}
+    format: {kind: fixed, digits: 3}
+    text: "0.538"
+    in:
+      docs/explainer_ko.md: ["순위 0.649 대 명령 1개 0.538", "대 0.538 (0.503–0.572) |", "명령 1개 0.538(0.503–0.572)", "본인 순위 0.649 대 명령 1개 0.538", "명령 1개의 0.538보다"]
+      README.md: ["(M3: 0.649 at 50 commands against 0.538 at 1)", "| 0.649 vs 0.538, supported;",
+                  "vs 0.538 (0.503–0.572) at 1"]
+      docs/report.md: ["rose from 0.538 with one command", "vs 0.538 (0.503–0.572) at 1", "(0.649 versus 0.538)"]
+  - id: M_M3_rank_k1_low
+    value: {file: results/exp_m/decision.json, json: M3.rank_k_base.ci_low}
+    format: {kind: fixed, digits: 3}
+    text: "0.503"
+    in:
+      docs/explainer_ko.md: ["대 0.538 (0.503–0.572) |", "명령 1개 0.538(0.503–0.572)"]
+      README.md: ["0.538 (0.503–0.572) at 1"]
+      docs/report.md: ["0.538 (0.503–0.572) at 1"]
+  - id: M_M3_rank_k1_high
+    value: {file: results/exp_m/decision.json, json: M3.rank_k_base.ci_high}
+    format: {kind: fixed, digits: 3}
+    text: "0.572"
+    in:
+      docs/explainer_ko.md: ["대 0.538 (0.503–0.572) |", "명령 1개 0.538(0.503–0.572)"]
+      README.md: ["0.538 (0.503–0.572) at 1"]
+      docs/report.md: ["0.538 (0.503–0.572) at 1"]
+  - id: M_M3_t_chance
+    value: {file: results/exp_m/decision.json, json: M3.t_vs_chance}
+    format: {kind: fixed, digits: 2}
+    text: "4.88"
+    in:
+      docs/explainer_ko.md: ["t 4.88, 명령 1개와 비교한 짝 t 4.32"]
+      README.md: ["t = 4.88 vs 0.5, paired t = 4.32"]
+      docs/report.md: ["$t = 4.88$ vs 0.5"]
+  - id: M_M3_t_k1
+    value: {file: results/exp_m/decision.json, json: M3.t_vs_k_base}
+    format: {kind: fixed, digits: 2}
+    text: "4.32"
+    in:
+      docs/explainer_ko.md: ["t 4.88, 명령 1개와 비교한 짝 t 4.32"]
+      README.md: ["paired t = 4.32"]
+      docs/report.md: ["paired $t = 4.32$"]
+  - id: M_M3_perm_p
+    value: {file: results/exp_m/decision.json, json: M3.permutation_p}
+    format: {kind: sci, digits: 1}
+    text: "1.0 × 10⁻⁴"
+    in:
+      docs/explainer_ko.md: ["순열 p 1.0 × 10⁻⁴"]
+      README.md: ["permutation p 1.0 × 10⁻⁴"]
+  - id: M_M3_perm_p_latex
+    value: {file: results/exp_m/decision.json, json: M3.permutation_p}
+    format: {kind: sci_latex, digits: 1}
+    text: "1.0 \\times 10^{-4}"
+    in:
+      docs/report.md: ["permutation $p = 1.0 \\times 10^{-4}$"]
+  - id: M_M3_p
+    value: {file: results/exp_m/decision.json, json: p.M3}
+    format: {kind: sci, digits: 1}
+    text: "3.7 × 10⁻⁵"
+    in:
+      docs/explainer_ko.md: ["주장 p 3.7 × 10⁻⁵, Holm p 1.1 × 10⁻⁴", "주장 p 3.7 × 10⁻⁵로 α/3 기준도", "| 3.7 × 10⁻⁵ → 1.1 × 10⁻⁴ |", "M3 3.7 × 10⁻⁵ ≤ α/3", "3 × 3.7 × 10⁻⁵ ≈ 1.1 × 10⁻⁴", "주장 p 3.7 × 10⁻⁵로 α/3도"]
+      README.md: ["| 3.7 × 10⁻⁵; Holm 1.1 × 10⁻⁴ |", "| 3.7 × 10⁻⁵ | 1.1 × 10⁻⁴ | Supported |"]
+  - id: M_M3_p_latex
+    value: {file: results/exp_m/decision.json, json: p.M3}
+    format: {kind: sci_latex, digits: 1}
+    text: "3.7 \\times 10^{-5}"
+    in:
+      docs/report.md: ["| $3.7 \\times 10^{-5}$ | $1.1 \\times 10^{-4}$ | Supported |"]
+  - id: M_M3_p_holm
+    value: {file: results/exp_m/decision.json, json: p_holm.M3}
+    format: {kind: sci, digits: 1}
+    text: "1.1 × 10⁻⁴"
+    in:
+      docs/explainer_ko.md: ["Holm p 1.1 × 10⁻⁴). EQ·RR", "주장 p 3.7 × 10⁻⁵, Holm p 1.1 × 10⁻⁴", "| 3.7 × 10⁻⁵ → 1.1 × 10⁻⁴ |", "3 × 3.7 × 10⁻⁵ ≈ 1.1 × 10⁻⁴", "Holm p 1.1 × 10⁻⁴로"]
+      README.md: ["| 3.7 × 10⁻⁵; Holm 1.1 × 10⁻⁴ |", "| 3.7 × 10⁻⁵ | 1.1 × 10⁻⁴ | Supported |", "(Holm p 1.1 × 10⁻⁴)"]
+  - id: M_M3_p_holm_latex
+    value: {file: results/exp_m/decision.json, json: p_holm.M3}
+    format: {kind: sci_latex, digits: 1}
+    text: "1.1 \\times 10^{-4}"
+    in:
+      docs/report.md: ["| $3.7 \\times 10^{-5}$ | $1.1 \\times 10^{-4}$ | Supported |"]
+  # Pre-registered estimates: results/exp_m/final_estimates_{k_curves,identification,utility}.csv.
+  - id: M_M3_top1_k50
+    value: {file: results/exp_m/final_estimates_k_curves.csv, column: top1_mean,
+            where: {tau: 0.6, scenario: cal_to_dep, attacker: cat_aware, k: 50}}
+    format: {kind: fixed, digits: 3}
+    text: "0.061"
+    in:
+      docs/explainer_ko.md: ["| M3 1등 적중 0.061 (0.037–0.085) |", "0.061(0.037–0.085)이고", "0.061(0.037–0.085)로"]
+      README.md: ["top-1 at 50 commands 0.061 (chance 1/51)", "is 0.061 (chance 1/51)", "Top-1 identification at 50 commands is 0.061"]
+      docs/report.md: ["not an identification rate (top-1 0.061)", "Top-1 identification at 50 commands is 0.061", "top-1 rate at 50 commands is 0.061"]
+  - id: M_M3_top1_k50_low
+    value: {file: results/exp_m/final_estimates_k_curves.csv, column: top1_ci_low,
+            where: {tau: 0.6, scenario: cal_to_dep, attacker: cat_aware, k: 50}}
+    format: {kind: fixed, digits: 3}
+    text: "0.037"
+    in:
+      docs/explainer_ko.md: ["| M3 1등 적중 0.061 (0.037–0.085) |", "0.061(0.037–0.085)이고", "0.061(0.037–0.085)로"]
+      README.md: ["(0.037–0.085; chance 1/51)"]
+      docs/report.md: ["(0.037–0.085; chance 1/51)"]
+  - id: M_M3_top1_k50_high
+    value: {file: results/exp_m/final_estimates_k_curves.csv, column: top1_ci_high,
+            where: {tau: 0.6, scenario: cal_to_dep, attacker: cat_aware, k: 50}}
+    format: {kind: fixed, digits: 3}
+    text: "0.085"
+    in:
+      docs/explainer_ko.md: ["| M3 1등 적중 0.061 (0.037–0.085) |", "0.061(0.037–0.085)이고", "0.061(0.037–0.085)로"]
+      README.md: ["(0.037–0.085; chance 1/51)"]
+      docs/report.md: ["(0.037–0.085; chance 1/51)"]
+  - id: M_EQ_cell_undefended
+    value: {file: results/exp_m/final_estimates_identification.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, attacker: cat_aware, k: 50, statistic: g3_excess_undefended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.101"
+    in:
+      docs/explainer_ko.md: ["| EQ 0.101 → −0.008, 감소 0.109 (0.007–0.211) |", "방어 없음 0.101(0.022–0.181) → EQ −0.008(−0.058–0.042)", "0.101 → −0.008, 감소 0.109(0.007–0.211)"]
+      README.md: ["falls from 0.101 (0.022–0.181) to −0.008"]
+      docs/report.md: ["falls from 0.101 (0.022–0.181) to −0.008 (−0.058 to 0.042)"]
+  - id: M_EQ_cell_undefended_low
+    value: {file: results/exp_m/final_estimates_identification.csv, column: ci_low,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, attacker: cat_aware, k: 50, statistic: g3_excess_undefended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.022"
+    in:
+      docs/explainer_ko.md: ["0.101(0.022–0.181)"]
+      README.md: ["0.101 (0.022–0.181)"]
+      docs/report.md: ["0.101 (0.022–0.181)"]
+  - id: M_EQ_cell_undefended_high
+    value: {file: results/exp_m/final_estimates_identification.csv, column: ci_high,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, attacker: cat_aware, k: 50, statistic: g3_excess_undefended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.181"
+    in:
+      docs/explainer_ko.md: ["0.101(0.022–0.181)"]
+      README.md: ["0.101 (0.022–0.181)"]
+      docs/report.md: ["0.101 (0.022–0.181)"]
+  - id: M_EQ_cell_defended
+    value: {file: results/exp_m/final_estimates_identification.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, attacker: cat_aware, k: 50, statistic: g3_excess_defended}}
+    format: {kind: fixed, digits: 3, scale: -1}
+    text: "0.008"
+    in:
+      docs/explainer_ko.md: ["| EQ 0.101 → −0.008, 감소", "→ EQ −0.008(−0.058–0.042)", "0.101 → −0.008, 감소 0.109(0.007–0.211)"]
+      README.md: ["to −0.008"]
+      docs/report.md: ["to −0.008 (−0.058 to 0.042)"]
+  - id: M_EQ_cell_defended_low
+    value: {file: results/exp_m/final_estimates_identification.csv, column: ci_low,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, attacker: cat_aware, k: 50, statistic: g3_excess_defended}}
+    format: {kind: fixed, digits: 3, scale: -1}
+    text: "0.058"
+    in:
+      docs/explainer_ko.md: ["EQ −0.008(−0.058–0.042)"]
+      README.md: ["(−0.058 to 0.042)"]
+      docs/report.md: ["(−0.058 to 0.042)"]
+  - id: M_EQ_cell_defended_high
+    value: {file: results/exp_m/final_estimates_identification.csv, column: ci_high,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, attacker: cat_aware, k: 50, statistic: g3_excess_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.042"
+    in:
+      docs/explainer_ko.md: ["EQ −0.008(−0.058–0.042)"]
+      README.md: ["(−0.058 to 0.042)"]
+      docs/report.md: ["(−0.058 to 0.042)"]
+  - id: M_EQ_cell_reduction
+    value: {file: results/exp_m/final_estimates_identification.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, attacker: cat_aware, k: 50, statistic: g3_excess_reduction}}
+    format: {kind: fixed, digits: 3}
+    text: "0.109"
+    in:
+      docs/explainer_ko.md: ["감소 0.109 (0.007–0.211) |", "감소 0.109(0.007–0.211). EQ", "0.101 → −0.008, 감소 0.109(0.007–0.211)"]
+      README.md: ["a reduction of 0.109 (0.007–0.211)"]
+      docs/report.md: ["a reduction of 0.109 (0.007–0.211)"]
+  - id: M_EQ_cell_reduction_low
+    value: {file: results/exp_m/final_estimates_identification.csv, column: ci_low,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, attacker: cat_aware, k: 50, statistic: g3_excess_reduction}}
+    format: {kind: fixed, digits: 3}
+    text: "0.007"
+    in:
+      docs/explainer_ko.md: ["감소 0.109 (0.007–0.211) |", "감소 0.109(0.007–0.211). EQ", "0.101 → −0.008, 감소 0.109(0.007–0.211)"]
+      README.md: ["0.109 (0.007–0.211)"]
+      docs/report.md: ["0.109 (0.007–0.211)"]
+  - id: M_EQ_cell_reduction_high
+    value: {file: results/exp_m/final_estimates_identification.csv, column: ci_high,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, attacker: cat_aware, k: 50, statistic: g3_excess_reduction}}
+    format: {kind: fixed, digits: 3}
+    text: "0.211"
+    in:
+      docs/explainer_ko.md: ["감소 0.109 (0.007–0.211) |", "감소 0.109(0.007–0.211). EQ", "0.101 → −0.008, 감소 0.109(0.007–0.211)"]
+      README.md: ["0.109 (0.007–0.211)"]
+      docs/report.md: ["0.109 (0.007–0.211)"]
+  - id: M_EQ_cell_day23
+    value: {file: results/exp_m/final_estimates_identification.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: dep_to_dep, attacker: cat_aware, k: 50, statistic: g3_excess_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.059"
+    in:
+      docs/explainer_ko.md: ["| EQ 자신의 초과 0.059 / 0.181 |", "dep_to_dep 0.059(0.007–0.110)"]
+      README.md: ["EQ's own excess stays 0.059"]
+      docs/report.md: ["EQ's own excess stays 0.059 (0.007–0.110)"]
+  - id: M_EQ_cell_day23_low
+    value: {file: results/exp_m/final_estimates_identification.csv, column: ci_low,
+            where: {tau: 0.6, defence: eq, scenario: dep_to_dep, attacker: cat_aware, k: 50, statistic: g3_excess_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.007"
+    in:
+      docs/explainer_ko.md: ["dep_to_dep 0.059(0.007–0.110)"]
+      README.md: ["(0.007–0.110) between days 2 and 3"]
+      docs/report.md: ["0.059 (0.007–0.110)"]
+  - id: M_EQ_cell_day23_high
+    value: {file: results/exp_m/final_estimates_identification.csv, column: ci_high,
+            where: {tau: 0.6, defence: eq, scenario: dep_to_dep, attacker: cat_aware, k: 50, statistic: g3_excess_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.110"
+    in:
+      docs/explainer_ko.md: ["dep_to_dep 0.059(0.007–0.110)"]
+      README.md: ["(0.007–0.110) between days 2 and 3"]
+      docs/report.md: ["0.059 (0.007–0.110)"]
+  - id: M_EQ_cell_halves
+    value: {file: results/exp_m/final_estimates_identification.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: same_day_halves, attacker: cat_aware, k: 50, statistic: g3_excess_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.181"
+    in:
+      docs/explainer_ko.md: ["| EQ 자신의 초과 0.059 / 0.181 |", "same_day_halves 0.181(0.108–0.253)"]
+      README.md: ["0.181 (0.108–0.253) within one day"]
+      docs/report.md: ["0.181 (0.108–0.253) within one day"]
+  - id: M_EQ_cell_halves_low
+    value: {file: results/exp_m/final_estimates_identification.csv, column: ci_low,
+            where: {tau: 0.6, defence: eq, scenario: same_day_halves, attacker: cat_aware, k: 50, statistic: g3_excess_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.108"
+    in:
+      docs/explainer_ko.md: ["same_day_halves 0.181(0.108–0.253)"]
+      README.md: ["0.181 (0.108–0.253)"]
+      docs/report.md: ["0.181 (0.108–0.253)"]
+  - id: M_EQ_cell_halves_high
+    value: {file: results/exp_m/final_estimates_identification.csv, column: ci_high,
+            where: {tau: 0.6, defence: eq, scenario: same_day_halves, attacker: cat_aware, k: 50, statistic: g3_excess_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.253"
+    in:
+      docs/explainer_ko.md: ["same_day_halves 0.181(0.108–0.253)"]
+      README.md: ["0.181 (0.108–0.253)"]
+      docs/report.md: ["0.181 (0.108–0.253)"]
+  - id: M_EQ_nway_k20_undefended
+    value: {file: results/exp_m/final_estimates_identification.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, attacker: cat_aware, k: 20, statistic: nway_undefended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.041"
+    in:
+      docs/explainer_ko.md: ["| N-way 0.041 → 0.062 / 0.061 → 0.066 |", "명령 20개 0.041 → 0.062"]
+      README.md: ["0.041 → 0.062 at"]
+      docs/report.md: ["goes from 0.041 to 0.062 at $k = 20$"]
+  - id: M_EQ_nway_k20_defended
+    value: {file: results/exp_m/final_estimates_identification.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, attacker: cat_aware, k: 20, statistic: nway_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.062"
+    in:
+      docs/explainer_ko.md: ["| N-way 0.041 → 0.062 / 0.061 → 0.066 |", "명령 20개 0.041 → 0.062"]
+      README.md: ["0.041 → 0.062 at"]
+      docs/report.md: ["goes from 0.041 to 0.062 at $k = 20$"]
+  - id: M_EQ_nway_k50_undefended
+    value: {file: results/exp_m/final_estimates_identification.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, attacker: cat_aware, k: 50, statistic: nway_undefended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.061"
+    in:
+      docs/explainer_ko.md: ["| N-way 0.041 → 0.062 / 0.061 → 0.066 |", "명령 50개 0.061 → 0.066으로", "(명령 50개 0.061 → 0.066)"]
+      README.md: ["0.061 → 0.066 at 50"]
+      docs/report.md: ["from 0.061 to 0.066 at $k = 50$"]
+  - id: M_EQ_nway_k50_defended
+    value: {file: results/exp_m/final_estimates_identification.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, attacker: cat_aware, k: 50, statistic: nway_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.066"
+    in:
+      docs/explainer_ko.md: ["| N-way 0.041 → 0.062 / 0.061 → 0.066 |", "명령 50개 0.061 → 0.066으로", "(명령 50개 0.061 → 0.066)"]
+      README.md: ["0.061 → 0.066 at 50"]
+      docs/report.md: ["from 0.061 to 0.066 at $k = 50$"]
+  - id: M_util_undefended
+    value: {file: results/exp_m/final_estimates_utility.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: utility_undefended}}
+    format: {kind: fixed, digits: 3, scale: -1}
+    text: "0.041"
+    in:
+      docs/explainer_ko.md: ["방어 없음 가중 유용성 −0.041(0 포함)", "| 가중 유용성 −0.041 / 0.011 / 0.020 |", "| −0.041(−0.086–0.004) |", "0.300 − 1.5 × 0.227 ≈ −0.041"]
+      README.md: ["undefended weighted utility −0.041 (−0.086 to 0.004; w = 1.5)"]
+      docs/report.md: ["Undefended weighted utility is −0.041 (−0.086 to 0.004; $w = 1.5$)"]
+  - id: M_util_undefended_low
+    value: {file: results/exp_m/final_estimates_utility.csv, column: ci_low,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: utility_undefended}}
+    format: {kind: fixed, digits: 3, scale: -1}
+    text: "0.086"
+    in:
+      docs/explainer_ko.md: ["| −0.041(−0.086–0.004) |", "구간(−0.086–0.004)"]
+      README.md: ["−0.041 (−0.086 to 0.004"]
+      docs/report.md: ["−0.041 (−0.086 to 0.004"]
+  - id: M_util_undefended_high
+    value: {file: results/exp_m/final_estimates_utility.csv, column: ci_high,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: utility_undefended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.004"
+    in:
+      docs/explainer_ko.md: ["| −0.041(−0.086–0.004) |", "구간(−0.086–0.004)"]
+      README.md: ["−0.041 (−0.086 to 0.004"]
+      docs/report.md: ["−0.041 (−0.086 to 0.004"]
+  - id: M_net_undefended
+    value: {file: results/exp_m/final_estimates_utility.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: net_undefended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.073"
+    in:
+      docs/explainer_ko.md: ["| 0.073(0.039–0.106) |", "0.300 − 0.227 = 0.073", "0.073(0.039–0.106)으로 양수"]
+      README.md: ["net progress is +0.073 (0.039–0.106)"]
+      docs/report.md: ["net progress is +0.073 (0.039–0.106)"]
+  - id: M_net_undefended_low
+    value: {file: results/exp_m/final_estimates_utility.csv, column: ci_low,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: net_undefended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.039"
+    in:
+      docs/explainer_ko.md: ["| 0.073(0.039–0.106) |", "0.073(0.039–0.106)으로 양수"]
+      README.md: ["+0.073 (0.039–0.106)"]
+      docs/report.md: ["+0.073 (0.039–0.106)"]
+  - id: M_net_undefended_high
+    value: {file: results/exp_m/final_estimates_utility.csv, column: ci_high,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: net_undefended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.106"
+    in:
+      docs/explainer_ko.md: ["| 0.073(0.039–0.106) |", "0.073(0.039–0.106)으로 양수"]
+      README.md: ["+0.073 (0.039–0.106)"]
+      docs/report.md: ["+0.073 (0.039–0.106)"]
+  - id: M_util_eq
+    value: {file: results/exp_m/final_estimates_utility.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: utility_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.020"
+    in:
+      docs/explainer_ko.md: ["| 가중 유용성 −0.041 / 0.011 / 0.020 |", "| 0.020(−0.003–0.043) |"]
+      README.md: ["EQ 0.020 (−0.003 to 0.043), recalibration only 0.011"]
+      docs/report.md: ["EQ gives 0.020 (−0.003 to 0.043) and recalibration only 0.011"]
+  - id: M_util_eq_low
+    value: {file: results/exp_m/final_estimates_utility.csv, column: ci_low,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: utility_defended}}
+    format: {kind: fixed, digits: 3, scale: -1}
+    text: "0.003"
+    in:
+      docs/explainer_ko.md: ["| 0.020(−0.003–0.043) |"]
+      README.md: ["0.020 (−0.003 to 0.043)"]
+      docs/report.md: ["0.020 (−0.003 to 0.043)"]
+  - id: M_util_eq_high
+    value: {file: results/exp_m/final_estimates_utility.csv, column: ci_high,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: utility_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.043"
+    in:
+      docs/explainer_ko.md: ["| 0.020(−0.003–0.043) |"]
+      README.md: ["0.020 (−0.003 to 0.043)"]
+      docs/report.md: ["0.020 (−0.003 to 0.043)"]
+  - id: M_util_recal
+    value: {file: results/exp_m/final_estimates_utility.csv, column: mean,
+            where: {tau: 0.6, defence: recal, scenario: cal_to_dep, statistic: utility_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.011"
+    in:
+      docs/explainer_ko.md: ["| 가중 유용성 −0.041 / 0.011 / 0.020 |", "| 재보정만 | 0.680 | 0.124 | 0.073 | 0.011 |"]
+      README.md: ["recalibration only 0.011"]
+      docs/report.md: ["recalibration only 0.011"]
+  - id: M_util_privacy_cost
+    value: {file: results/exp_m/final_estimates_utility.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: utility_privacy_cost}}
+    format: {kind: fixed, digits: 3, scale: -1}
+    text: "0.009"
+    in:
+      docs/explainer_ko.md: ["| EQ 비용 −0.009 / +0.022 |", "−0.009(−0.026–0.008, 0 포함)", "−0.009(0 포함)지만"]
+      README.md: ["only is −0.009 (−0.026 to 0.008) in weighted"]
+      docs/report.md: ["only is −0.009 (−0.026 to 0.008) in weighted utility"]
+  - id: M_util_privacy_cost_low
+    value: {file: results/exp_m/final_estimates_utility.csv, column: ci_low,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: utility_privacy_cost}}
+    format: {kind: fixed, digits: 3, scale: -1}
+    text: "0.026"
+    in:
+      docs/explainer_ko.md: ["−0.009(−0.026–0.008, 0 포함)"]
+      README.md: ["−0.009 (−0.026 to 0.008)"]
+      docs/report.md: ["−0.009 (−0.026 to 0.008)"]
+  - id: M_util_privacy_cost_high
+    value: {file: results/exp_m/final_estimates_utility.csv, column: ci_high,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: utility_privacy_cost}}
+    format: {kind: fixed, digits: 3}
+    text: "0.008"
+    in:
+      docs/explainer_ko.md: ["−0.009(−0.026–0.008, 0 포함)"]
+      README.md: ["−0.009 (−0.026 to 0.008)"]
+      docs/report.md: ["−0.009 (−0.026 to 0.008)"]
+  - id: M_net_privacy_cost
+    value: {file: results/exp_m/final_estimates_utility.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: net_privacy_cost}}
+    format: {kind: fixed, digits: 3}
+    text: "0.022"
+    in:
+      docs/explainer_ko.md: ["| EQ 비용 −0.009 / +0.022 |", "순전진으로 +0.022(0.012–0.032)", "순전진으로는 +0.022(0.012–0.032)"]
+      README.md: ["+0.022 (0.012–0.032) in net progress"]
+      docs/report.md: ["+0.022 (0.012–0.032) in net progress"]
+  - id: M_net_privacy_cost_low
+    value: {file: results/exp_m/final_estimates_utility.csv, column: ci_low,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: net_privacy_cost}}
+    format: {kind: fixed, digits: 3}
+    text: "0.012"
+    in:
+      docs/explainer_ko.md: ["순전진으로 +0.022(0.012–0.032)", "순전진으로는 +0.022(0.012–0.032)"]
+      README.md: ["+0.022 (0.012–0.032)"]
+      docs/report.md: ["+0.022 (0.012–0.032)"]
+  - id: M_net_privacy_cost_high
+    value: {file: results/exp_m/final_estimates_utility.csv, column: ci_high,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: net_privacy_cost}}
+    format: {kind: fixed, digits: 3}
+    text: "0.032"
+    in:
+      docs/explainer_ko.md: ["순전진으로 +0.022(0.012–0.032)", "순전진으로는 +0.022(0.012–0.032)"]
+      README.md: ["+0.022 (0.012–0.032)"]
+      docs/report.md: ["+0.022 (0.012–0.032)"]
+  - id: M_hold_undefended
+    value: {file: results/exp_m/final_estimates_utility.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: hold_undefended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.473"
+    in:
+      docs/explainer_ko.md: ["대 0.473(최종 모델)", "| 정지율 0.473 / 0.680 / 0.825 |", "| 방어 없음 | 0.473 | 0.227 |", "1 − 0.473 − 0.227 ≈ 0.300", "0.473은 1일차 전체로", "정지 0.473, 틀림 0.227"]
+      README.md: ["hold rate undefended 0.473, recalibration only 0.680, EQ 0.825", "falls from 0.723 to 0.473",
+                  "and 0.473 from the"]
+      docs/report.md: ["Hold rates are 0.473 undefended, 0.680 with recalibration only and 0.825 with EQ",
+                       "0.473 from the final model on days 2–3", "falls from 0.723 to 0.473"]
+  - id: M_hold_recal
+    value: {file: results/exp_m/final_estimates_utility.csv, column: mean,
+            where: {tau: 0.6, defence: recal, scenario: cal_to_dep, statistic: hold_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.680"
+    in:
+      docs/explainer_ko.md: ["| 정지율 0.473 / 0.680 / 0.825 |", "| 재보정만 | 0.680 |"]
+      README.md: ["recalibration only 0.680, EQ 0.825"]
+      docs/report.md: ["0.680 with recalibration only"]
+  - id: M_hold_eq
+    value: {file: results/exp_m/final_estimates_utility.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: hold_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.825"
+    in:
+      docs/explainer_ko.md: ["| 정지율 0.473 / 0.680 / 0.825 |", "| EQ g = 3 | 0.825 |"]
+      README.md: ["EQ 0.825"]
+      docs/report.md: ["0.825 with EQ"]
+  - id: M_wrong_undefended
+    value: {file: results/exp_m/final_estimates_utility.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: wrong_undefended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.227"
+    in:
+      docs/explainer_ko.md: ["| 방어 없음 | 0.473 | 0.227 |", "1 − 0.473 − 0.227 ≈ 0.300", "0.300 − 0.227 = 0.073", "0.300 − 1.5 × 0.227 ≈ −0.041", "(틀림 0.092 → 0.227)", "정지 0.473, 틀림 0.227"]
+      README.md: ["from 0.092 on day 1 to 0.227", "rise from 0.092 to 0.227"]
+      docs/report.md: ["(wrong moves 0.092 on day 1, 0.227 on days 2–3)", "wrong moves rise from 0.092 to 0.227"]
+  - id: M_dev_hold_rate_fraction
+    value: {file: results/exp_m/selection.json, json: gates.tau.hold_rate}
+    format: {kind: fixed, digits: 3}
+    text: "0.723"
+    in:
+      docs/explainer_ko.md: ["정지율 0.723(1일차 교차적합)", "1일차 0.723은 다른 모델", "1일차 정지율 0.723은", "정지율의 경우 1일차 0.723은"]
+      README.md: ["falls from 0.723 to 0.473", "The day-1 hold rate of 0.723"]
+      docs/report.md: ["The day-1 hold rate of 0.723", "falls from 0.723 to 0.473"]
+
+  # Explainer-only M values (decision.json, final_estimates_utility.csv).
+  - id: M_M1_threshold
+    value: {file: results/exp_m/decision.json, json: M1.threshold}
+    format: {kind: fixed, digits: 3}
+    text: "0.196"
+    in:
+      docs/explainer_ko.md: ["로지스틱 0.345 대 기준 0.196", "| M1 0.345 / 0.343 / 0.273 대 0.196 |", "기준 10/51 = 0.196", "기준 0.196을 크게 넘었습니다", "가장 강한 공격자 0.345 대 기준 0.196", "둘 다 기준 0.196을 크게 넘었고"]
+  - id: M_wrong_recal
+    value: {file: results/exp_m/final_estimates_utility.csv, column: mean,
+            where: {tau: 0.6, defence: recal, scenario: cal_to_dep, statistic: wrong_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.124"
+    in:
+      docs/explainer_ko.md: ["| 재보정만 | 0.680 | 0.124 | 0.073 | 0.011 |"]
+  - id: M_net_recal
+    value: {file: results/exp_m/final_estimates_utility.csv, column: mean,
+            where: {tau: 0.6, defence: recal, scenario: cal_to_dep, statistic: net_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.073"
+    in:
+      docs/explainer_ko.md: ["| 재보정만 | 0.680 | 0.124 | 0.073 | 0.011 |"]
+  - id: M_wrong_eq
+    value: {file: results/exp_m/final_estimates_utility.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: wrong_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.062"
+    in:
+      docs/explainer_ko.md: ["| EQ g = 3 | 0.825 | 0.062 | 0.051 |"]
+  - id: M_net_eq
+    value: {file: results/exp_m/final_estimates_utility.csv, column: mean,
+            where: {tau: 0.6, defence: eq, scenario: cal_to_dep, statistic: net_defended}}
+    format: {kind: fixed, digits: 3}
+    text: "0.051"
+    in:
+      docs/explainer_ko.md: ["| EQ g = 3 | 0.825 | 0.062 | 0.051 |"]
+
   # ---------------------------------------------------------------- explainer v2 (docs/explainer_ko.md)
   - id: 2a_P0_within_day
     value: {file: results/exp_b/tradeoff.csv, column: identity_ba, where: {condition: P0, target: 0.0}}
@@ -1088,7 +1769,11 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.717"
     in:
-      docs/explainer_ko.md: ["실제 최고 격차 0.717"]
+      docs/explainer_ko.md: ["실제 최고 격차 0.717", "1일차 같은 날 게이트의 격차는 0.717이었습니다"]
+      README.md: ["day-1 gate: gap 0.717", "0.717 within day 1 (M2's development gate)", "within day 1 the gap was 0.717"]
+      docs/report.md: ["against 0.717 within day 1 (§6.10)", "Within day 1 the gap was 0.717", "(M2, 0.093–0.096, against 0.717 within day 1)"]
+      README.md: ["day-1 gate: gap 0.717", "0.717 within day 1 (M2's development gate)", "within day 1 the gap was 0.717"]
+      docs/report.md: ["against 0.717 within day 1 (§6.10)", "Within day 1 the gap was 0.717", "(M2, 0.093–0.096, against 0.717 within day 1)"]
   - id: M_gate_m3_rank
     value: {file: results/exp_m/selection.json, json: gates.M3.real.rank_k_star.mean}
     format: {kind: fixed, digits: 3}

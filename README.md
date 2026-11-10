@@ -13,7 +13,16 @@ result and on its own defence, and tests it on 51 new users under a time-stamped
   deployment day it only reduces it (0.316 → 0.150) (*exploratory*).
 - **New users.** A confirmatory cross-day replication on 51 users who were not used in any earlier
   BEAT analysis (Yang2025) was sealed on 2026-11-10 (UTC), and an RFC 3161 token from FreeTSA
-  timestamps the seal. Its final run is in progress, and no result is reported yet.
+  timestamps the seal. Two of its three claims were supported (*confirmatory-sealed*): raw
+  features re-identify users across days (M1: 0.345 against 10/51), and the true user's rank
+  rises with the number of commands (M3: 0.649 at 50 commands against 0.538 at 1). The gap of
+  pitfall 1 stayed below its sealed 0.10 floor across days (M2: 0.093–0.096, not supported).
+
+For study M the pre-committed wording of outcome case (b) applies (`docs/decision_log.md`, commit
+`7b14cee`): "새 사용자 51명, 다른 날: 사전등록한 주장 3개 중 2개가 지지됐다" (M1 supported, M2 not
+supported, M3 supported) and "다른 날에는 M1·M3만 재현됐다. M2는 같은 날 조건의 결과로 남는다." In
+English: 51 new users on different days, 2 of 3 pre-registered claims supported; across days only
+M1 and M3 replicated, and M2 remains a result of the within-day condition.
 
 The thesis was fixed before any final output of study M was read (`docs/decision_log.md`, entry of
 2026-11-11, commit `7b14cee`): "BCI 전송물의 신원 노출과 방어 효과는 공격자가 어느 날의 기록으로
@@ -54,8 +63,16 @@ on the deployment day.
 >   exactly 3 on Lee2019), and group membership stays revealed.
 > - **M's decoder is weak.** On Yang2025 the shared decoder reaches day-1 task BA 0.578 / 0.582 /
 >   0.565 (P0 / P2-RC / P3; chance 0.5) and at τ* = 0.60 holds 72.3% of trials (*pre-registered
->   estimates* from day-1 development data). Nothing was tuned on Yang2025. M1 does not depend on the decoder, but M3 and
->   the EQ estimates describe a system that holds about 72% of trials, not a more accurate one.
+>   estimates* from day-1 development data); on days 2–3 the final models decode at 0.555 /
+>   0.544 / 0.552, with 10–12 of 51 users below 0.5. Nothing was tuned on Yang2025. M1 does not
+>   depend on the decoder, but M3 and the EQ estimates describe a weak system that held about 72%
+>   of day-1 trials, not a more accurate one.
+> - **M's limits.** M1 rests on the logistic and RBF-SVM attackers (0.345, 0.343); according to
+>   the independent audit, the MLP attacker (0.273) alone would not pass after the ×3 Holm
+>   correction. EQ's estimates differ across the pre-registered grid of attackers, command counts
+>   and thresholds, so no single cell is the EQ result. The hold threshold τ* was calibrated on day
+>   1 and is miscalibrated on later days: the hold rate falls from 0.723 to 0.473 and wrong moves
+>   rise from 0.092 to 0.227.
 > - **Self-attested seals 1–3.** Seals 1–3 are Git commits and tags made by the project itself,
 >   all on 2026-11-10. No third party timestamped them, so they show the order of commits, not
 >   when held-out data were first seen. Seal 4 (study M) also has an RFC 3161 timestamp, but the
@@ -84,11 +101,14 @@ the cross-fitted calibration day.
 | Commands, P2-RC, τ = 0.8, strongest Bayes attacker, 20 / 100 commands | L | 0.186 / 0.278 | 0.082 / 0.117 | *exploratory* (K) |
 | EQ (g = 3): within-group excess, undefended → EQ, 20 commands | L | 0.316 → 0.150 | 0.112 → 0.009 | *exploratory* (K) |
 | Commands, 20 commands, all models and τ | 2a | 0.211–0.478 | — | *pre-registered estimate*, descriptive (C, H3) |
-| Claims M1–M3 on 51 new users | M | — | sealed; result pending | *confirmatory-sealed* (seal 4) |
+| M1: full 190-d features, strongest attacker, day 1 → days 2–3 (threshold 10/51) | M | — | 0.345 (logistic), supported; day 2 ↔ 3: 0.419 | M1: *confirmatory-sealed*; day 2 ↔ 3: *pre-registered estimate* |
+| M2: strongest independent attacker vs co-trained head, P3 λ = 1 | M | day-1 gate: gap 0.717 | 0.161 vs 0.064 (gaps 0.093–0.096, below the 0.10 floor), not supported | *confirmatory-sealed* (M2); day-1 gap: sealed development gate |
+| M3: true user's mean percentile rank, P2-RC τ* = 0.60, 50 vs 1 command | M | — | 0.649 vs 0.538, supported; top-1 at 50 commands 0.061 (chance 1/51) | M3: *confirmatory-sealed*; top-1: *pre-registered estimate* |
 
 Sources: `results/exp_l/identity_summary.csv` and `decision.json`, `results/exp_b/identity_final.csv`
 (auxiliary rows) and `results/exp_d/tradeoff.csv`, `results/exp_r/cross_day_table.csv`, `results/exp_k/frontier.csv` and `identity_curves.csv`,
-`results/exp_c/observation_strongest.csv`. Intervals are 95% intervals over users.
+`results/exp_c/observation_strongest.csv`, `results/exp_m/decision.json`, `selection.json` and
+`final_estimates_k_curves.csv`. Intervals are 95% intervals over users.
 
 ### Findings in detail
 
@@ -97,7 +117,8 @@ Sources: `results/exp_l/identity_summary.csv` and `decision.json`, `results/exp_
    *confirmatory-sealed*) and 0.994 on 54 users (L, *confirmatory-sealed*) within a day. Across
    days the same attackers reach 0.951 on 2a (logistic regression in all five seeds; B's sealed
    auxiliary rows, *pre-registered estimate*) and 0.520 on 54 users (logistic regression;
-   0.510 RBF-SVM, 0.368 MLP; *pre-registered estimate*).
+   0.510 RBF-SVM, 0.368 MLP; *pre-registered estimate*). On 51 new users, full 190-d features
+   enrolled on day 1 identify users on days 2–3 at 0.345 (M1, *confirmatory-sealed*, supported).
 2. **A narrow task-only bottleneck protected best, but identity stayed above chance.** On 2a, a
    1-d bottleneck gives 0.253 (common) / 0.209 (recentred) at task BA 0.707 / 0.706 (within-day).
    No T-CV-selected adversarial defence beat it (D, *exploratory*). On 54 users, the 1-d values
@@ -114,7 +135,9 @@ Sources: `results/exp_l/identity_summary.csv` and `decision.json`, `results/exp_
    C1's 20 pp that no verdict decides on their own. Both pitfalls were confirmed on 54 users in
    the within-day setting;
    across days the strongest independent attacker reaches 0.239 against the
-   head's 0.040 (*pre-registered estimate*).
+   head's 0.040 (*pre-registered estimate*). On 51 new users across days the gaps were
+   0.093–0.096, below the sealed 0.10 floor (M2, *confirmatory-sealed*, not supported), against
+   0.717 within day 1 (M2's development gate).
 4. **Commands leak on 2a; the 54-user confirmation failed.** On 2a, within session E,
    left/right/hold commands alone exceed twice chance within five commands in 22 of 24 settings,
    and reach 0.211–0.478 at 20 commands (C, H3, *pre-registered estimate*, descriptive). On 54
@@ -133,6 +156,8 @@ Sources: `results/exp_l/identity_summary.csv` and `decision.json`, `results/exp_
    estimates of L at 20 commands exceed twice chance: 0.069 (95% interval 0.043–0.100) for full
    features, 0.065 (0.036–0.099) for P2-RC and 0.075 (0.052–0.099) for P3 (strongest attacker
    per representation; *pre-registered estimate*, 3 seeds; the P2-RC interval reaches below 2/54).
+   On 51 new users across days, M3 tested the true user's rank rather than identification and
+   was supported (finding 8); C3 stays not supported.
 5. **Pitfall 2: reference-session-only attackers.** A training-free defence from a recent arXiv
    preprint (Muhaimin & Nagarajan, 2026) reproduces on its own cross-session protocol
    (90.8% → 11.1% identification). One or five labelled deployment trials per user, attacking
@@ -159,14 +184,22 @@ Sources: `results/exp_l/identity_summary.csv` and `decision.json`, `results/exp_
    non-converged confirmatory MLP attackers with a larger budget. In a pilot of six refits, one
    per claim × scenario type, every refit converged, and identity BA changed by between −0.019
    and +0.002. The full refit is still running.
-8. **51 new users, sealed (M, *confirmatory-sealed*; result pending).** The pre-registration
-   was sealed at commit `e88154c` (tag `seal-4`; commit time 2026-11-10 20:25:51 UTC), and
-   FreeTSA's RFC 3161 token shows that the commit existed no later than 2026-11-10 20:26:22
-   GMT. According to the decision log, no recording-day-2/3 byte was requested before the token
-   time; the request log behind that statement is self-attested.
-   Pre-committed wording for the current state (outcome case d): "사전등록은 시각 인증까지
-   끝났고, 결과는 아직 없다" — the pre-registration is complete up to its timestamp, and there is
-   no result yet. See [Study M](#study-m-cross-day-replication-on-51-new-users-sealed-result-pending).
+8. **51 new users, sealed and time-stamped: 2 of 3 claims supported (M,
+   *confirmatory-sealed*).** The pre-registration was sealed at commit `e88154c` (tag `seal-4`;
+   commit time 2026-11-10 20:25:51 UTC), and FreeTSA's RFC 3161 token shows that the commit
+   existed no later than 2026-11-10 20:26:22 GMT. Every recording-day-2/3 request in the
+   self-attested request log came after the token time. Pre-committed wording (case b):
+   "새 사용자 51명, 다른 날: 사전등록한 주장 3개 중 2개가 지지됐다" / "다른 날에는 M1·M3만
+   재현됐다. M2는 같은 날 조건의 결과로 남는다."
+   - M1 supported: full features enrolled on day 1 identify users on days 2–3 at 0.345
+     (Holm p 0.0136; threshold 10/51).
+   - M2 not supported: the independent-attacker gaps over the co-trained head were 0.093–0.096,
+     below the sealed 0.10 floor. The gaps are positive; they are not "no gap".
+   - M3 supported: the true user's mean percentile rank is 0.649 at 50 commands against 0.538 at
+     1 command (Holm p 1.1 × 10⁻⁴). The rank is not an identification rate: top-1 at 50 commands
+     is 0.061 (chance 1/51).
+
+   See [Study M](#study-m-cross-day-replication-on-51-new-users-sealed-2-of-3-claims-supported).
 
 **Position.** High identifiability of EEG is long known from EEG biometrics, and pitfall 1 is the
 effect Elazar and Goldberg showed for text. What BEAT adds is a pre-registered audit of a task
@@ -204,9 +237,9 @@ M as pre-registered estimates without a verdict. See [`docs/related_work.md`](do
 | C2 | L | Recentred 8-d bottleneck (P2-RC) ≥ 20 pp below full features (P0), task BA non-inferior (−5 pp) | Within-day 0.994 → 0.340 (cross-day 0.520 → 0.054), cross-day a pre-registered estimate; task −0.62 pp (lower bound −2.27 pp) | Holm 4.6 × 10⁻⁵ | Supported |
 | C3 | L | P2-RC commands at τ = 0.5: strongest BA at 20 commands exceeds 2/54 and exceeds that at 1 command | Within-day 0.085 vs 0.037 (cross-day 0.019–0.029 at 20), cross-day a pre-registered estimate | Holm 0.21 | **Not supported** |
 | C4 | L | Five deployment labels per user exceed 10/54 against the preprint's defence (benchmark gate first) | 92.7% within-day; benchmark gate passed (1.34% vs 2.4%) | Holm 4.5 × 10⁻³⁵ | Supported |
-| M1 | M | 원 특징의 다른 날 식별(사전등록상 저위험 재현): cross-day, the strongest of three attackers on full 190-d features exceeds 10/51 | — | — | Result pending |
-| M2 | M | 독립 공격자와 공동 학습 head의 격차가 0보다 크고 관측값이 0.10 이상: cross-day, P3 λ = 1 | — | — | Result pending |
-| M3 | M | 본인의 순위가 우연보다 높고 명령 1개일 때보다 높다: cross-day, P2-RC at τ* = 0.60, target-aware Bayes attacker, mean percentile rank of the true user at 50 commands > 0.5 and > that at 1 command | — | — | Result pending |
+| M1 | M | 원 특징의 다른 날 식별(사전등록상 저위험 재현): cross-day, the strongest of three attackers on full 190-d features exceeds 10/51 | 0.345 (logistic; RBF-SVM 0.343, MLP 0.273) vs 10/51 | 0.0068; Holm 0.0136 | Supported |
+| M2 | M | 독립 공격자와 공동 학습 head의 격차가 0보다 크고 관측값이 0.10 이상: cross-day, P3 λ = 1 | Attackers 0.160 / 0.158 / 0.161 vs head 0.064; gaps 0.095 / 0.093 / 0.096 < 0.10, so no attacker was tested | 1 by rule; Holm 1 | **Not supported** |
+| M3 | M | 본인의 순위가 우연보다 높고 명령 1개일 때보다 높다: cross-day, P2-RC at τ* = 0.60, target-aware Bayes attacker, mean percentile rank of the true user at 50 commands > 0.5 and > that at 1 command | 0.649 (0.588–0.711) at 50 commands vs 0.538 (0.503–0.572) at 1 | 3.7 × 10⁻⁵; Holm 1.1 × 10⁻⁴ | Supported |
 
 H1 and H2 are tested on 9 users. C1–C4 (54 users) and M1–M3 (51 users) are each decided by
 Holm's procedure at α = 0.05 (`docs/analysis_plan.md`, plan v3; `docs/preregistration_m.md` §6). The Korean M wording is the pre-committed fixed phrase for each claim
@@ -219,7 +252,8 @@ Holm's procedure at α = 0.05 (`docs/analysis_plan.md`, plan v3; `docs/preregist
   reported as "identified from commands alone".
 
 Sources: `results/exp_a/h1.json`, `results/exp_b/decision.json`,
-`results/exp_c/observation_strongest.csv`, `results/exp_b/identity_final.csv` (2a cross-day:
+`results/exp_c/observation_strongest.csv`, `results/exp_m/decision.json` (M1–M3),
+`results/exp_b/identity_final.csv` (2a cross-day:
 rows with scenario = auxiliary; also in `results/exp_d/tradeoff.csv`),
 `results/exp_l/decision.json` and `results/exp_l/identity_summary.csv` (L cross-day: rows with
 scenario = auxiliary). Sections 5, 6.7 and 6.10 of the [report](docs/report.md) give the full
@@ -329,7 +363,7 @@ R reads L's result files and does not re-decide any of L's claims (`beat/exp_r.p
 
   The full refit is running, and its results are not reported yet.
 
-### Study M: cross-day replication on 51 new users (sealed; result pending)
+### Study M: cross-day replication on 51 new users (sealed; 2 of 3 claims supported)
 
 | Item | Pre-registered design (`docs/preregistration_m.md`, `configs/exp_m.yaml`) |
 |---|---|
@@ -359,17 +393,77 @@ R reads L's result files and does not re-decide any of L's claims (`beat/exp_r.p
   - The sealed final stage refuses to run unless the tag, the token, the seal manifest and the
     byte equality of every sealed file check out. It runs unchanged from a clean clone at a path
     without spaces, because OpenSSL splits a path with a space (`docs/decision_log.md`).
-- **Disclosures** (`docs/preregistration_m.md` §2, §12).
+- **Procedure** (`docs/decision_log.md`, entries of the post-seal run and the audit).
+  - All 51 users × 3 recording days were available; no user-day is missing
+    (`results/exp_m/decision.json`, `missing_user_days`).
+  - The day-2/3 fetch made 511 requests, all later than the token time (first request
+    20:38:01.593Z; `results/exp_m/download_log_day23.jsonl`).
+  - Both the fetch and the final stage ran from a clean clone of the sealed code. The final stage
+    ran once (attempt 1, exit 0; `results/exp_m/final_attempts.jsonl`), and its outputs were
+    copied back byte-identical.
+  - An independent audit recomputed every statistic, p-value and decision from the stored final
+    models with its own code and found them equal to `decision.json` (PASS).
+- **Disclosures** (`docs/preregistration_m.md` §2, §12; `docs/decision_log.md`).
   - Before seal 4, member names and sizes of all three days were listed, but no day-2/3 member
     bytes were requested. The pre-M0 listing requests were not logged.
   - Day-1 identity results were inspected before τ*, the claims and the gates were frozen.
   - The dataset paper and its decoding statistics had been read.
-  - The byte-range request log is self-attested.
-- **Result (pre-committed wording, case d).** "사전등록은 시각 인증까지 끝났고, 결과는 아직
-  없다" / "다른 날 재현은 봉인된 상태이며 결과는 나오는 대로 그대로 공개한다." In English: the
-  pre-registration is complete up to its timestamp, and there is no result yet. The cross-day
-  replication stays sealed, and its results will be published as they come out. No partial
-  numbers from recording days 2–3 are reported.
+  - Fetch attempt 1 ran with `--subjects 1` in the project folder and stopped in the timestamp
+    guard with 0 requests.
+  - Free RAM dipped to 2.94 GB during the fetch, below the plan's 8 GB floor; the outputs are
+    unaffected.
+  - The byte-range request log, and so every request time above, is self-attested.
+- **Result (pre-committed wording, case b).** "새 사용자 51명, 다른 날: 사전등록한 주장 3개 중
+  2개가 지지됐다" / "다른 날에는 M1·M3만 재현됐다. M2는 같은 날 조건의 결과로 남는다." In English:
+  51 new users on different days, 2 of 3 pre-registered claims supported; across days only M1
+  and M3 replicated, and M2 remains a result of the within-day condition. Decisions
+  (cross-day, day 1 → days 2–3; Holm over M1–M3 at α = 0.05; `results/exp_m/decision.json`):
+
+  | Claim | Fixed phrase | Effect | Claim p | Holm p | Verdict |
+  |---|---|---|---|---|---|
+  | M1 | 원 특징의 다른 날 식별(사전등록상 저위험 재현) | Strongest attacker 0.345 (logistic; RBF-SVM 0.343, MLP 0.273) vs 10/51 | 0.0068 | 0.0136 | Supported |
+  | M2 | 독립 공격자와 공동 학습 head의 격차가 0보다 크고 관측값이 0.10 이상 | Gaps 0.095 / 0.093 / 0.096 (attackers 0.160 / 0.158 / 0.161, head 0.064), below the 0.10 floor, so no attacker was tested | 1 (by rule) | 1 | Not supported |
+  | M3 | 본인의 순위가 우연보다 높고 명령 1개일 때보다 높다 | Mean percentile rank 0.649 (0.588–0.711) at 50 commands vs 0.538 (0.503–0.572) at 1; t = 4.88 vs 0.5, paired t = 4.32, permutation p 1.0 × 10⁻⁴ | 3.7 × 10⁻⁵ | 1.1 × 10⁻⁴ | Supported |
+
+  - M2's gaps are positive, so the result is not "no gap"; within day 1 the gap was 0.717
+    (development gate, `results/exp_m/selection.json`).
+  - M3's rank is not an identification rate. Top-1 identification at 50 commands is 0.061
+    (0.037–0.085; chance 1/51) (`final_estimates_k_curves.csv`, *pre-registered estimate*).
+- **Pre-registered estimates (사전등록한 추정치, 판정 없음).**
+  - M1 between days 2 and 3 (enrol on one, test on the other): 0.419 (logistic), p 1.6 × 10⁻⁴.
+  - EQ (g = 3): the pre-committed reading rule applied to every pre-registered cell, four Bayes
+    attackers × k = 20, 50 × τ = 0.60, 0.5 (`final_estimates_identification.csv`). The rule names
+    no primary cell, so no single cell is "the" EQ result:
+    - τ* = 0.60, k = 50: "K와 같은 방향" (same direction as K) for 3 of 4 attackers; for the
+      command-only categorical attacker the reduction interval includes 0;
+    - τ* = 0.60, k = 20: the reduction interval includes 0 for every attacker ("막을 노출은
+      구별됐지만 EQ의 감소는 0과 구별되지 않았다", or, for the command-only categorical attacker,
+      whose undefended interval also includes 0, "막을 노출이 구별되지 않아 EQ 효과를 말할 수
+      없다");
+    - τ = 0.5: "막을 노출이 구별되지 않아 EQ 효과를 말할 수 없다" (no EQ effect can be stated) in
+      every cell.
+
+    One cell as an example, not as the result (target-aware categorical attacker, τ* = 0.60,
+    k = 50): across days the within-group excess falls from 0.101 (0.022–0.181) to −0.008
+    (−0.058 to 0.042), a reduction of 0.109 (0.007–0.211), while EQ's own excess stays 0.059
+    (0.007–0.110) between days 2 and 3 and 0.181 (0.108–0.253) within one day.
+  - EQ does not lower N-way identification: for the same attacker at τ* = 0.60, 0.041 → 0.062 at
+    20 commands and 0.061 → 0.066 at 50.
+  - Utility on days 2–3 at τ* = 0.60 (the three scenarios score the same trials;
+    `final_estimates_utility.csv`):
+    - undefended weighted utility −0.041 (−0.086 to 0.004; w = 1.5), an interval that includes 0,
+      while undefended net progress is +0.073 (0.039–0.106);
+    - EQ 0.020 (−0.003 to 0.043), recalibration only 0.011;
+    - EQ's privacy cost against recalibration only is −0.009 (−0.026 to 0.008) in weighted
+      utility but +0.022 (0.012–0.032) in net progress, so EQ's privacy is not free;
+    - hold rate undefended 0.473, recalibration only 0.680, EQ 0.825.
+
+    The day-1 hold rate of 0.723 came from the cross-fitted day-1 models, and 0.473 from the
+    final model on days 2–3, so the two are different models. The τ rule calibrated on day 1
+    holds less and errs more on later days: wrong moves rise from 0.092 on day 1 to 0.227.
+  - Decoding on days 2–3 (final models, argmax BA over users, days and seeds;
+    `results/exp_m/final_task.csv`): P0 0.555, P2-RC 0.544, P3 0.552, with 10–12 of 51 users
+    below 0.5. These are not comparable with the day-1 cross-fitted values above.
 
 ## Audit checklist (short form)
 
@@ -409,7 +503,7 @@ The full list of ten items, with evidence for each, is in
   | — | — | G at the preprint's published operating point | Exploratory |
   | Seal 3 | `9757c3f` | Plan v3: L, claims C1–C4; session 2 unopened | Confirmatory |
   | — | — | K and R on 2a and Lee2019 (already analysed) | Exploratory |
-  | Seal 4 | `e88154c` | Study M: claims M1–M3, estimates; recording days 2–3 not downloaded; RFC 3161 token 2026-11-10 20:26:22 GMT | Confirmatory (result pending) |
+  | Seal 4 | `e88154c` | Study M: claims M1–M3, estimates; recording days 2–3 not downloaded; RFC 3161 token 2026-11-10 20:26:22 GMT | Confirmatory (M1, M3 supported; M2 not supported) |
 
   Each fit step on the defended side raises `LeakageError` if it receives held-out trials, and
   the tests enforce this. [`seals/manifest.yaml`](seals/manifest.yaml) lists the sealed files of
@@ -436,8 +530,9 @@ The full list of ten items, with evidence for each, is in
   - 286 of 586 MLP fits (45 of 85 confirmatory) did not converge within the fixed budget. Their
     predictions were kept, as the sealed rule requires.
   - M's first post-seal fetch stopped in the sealed timestamp guard before any day-2/3 request
-    was made, because OpenSSL split the project path at its space. The sealed stages now run
-    unchanged from a clone at a path without spaces.
+    was made, because OpenSSL split the project path at its space (that attempt ran with
+    `--subjects 1`). The sealed stages then ran unchanged from a clone at a path without
+    spaces. During the fetch free RAM dipped to 2.94 GB, below the plan's 8 GB floor.
 
   Details: [`docs/analysis_plan.md`](docs/analysis_plan.md) (plans v1–v3, decision rules) and
   [`docs/decision_log.md`](docs/decision_log.md) (seals, deviations, run history).
@@ -495,7 +590,7 @@ file as a stream (about 66 GB, nothing written to disk) and compares it with the
 | L | `python -m beat.exp_l dev`, then `timing`, then `final --seal-commit 9757c3fceca585db3f56530d54091ab0fa28ce0b` | 34.3 min (6 workers requested, 5 scheduled) |
 | K | `python -m beat.exp_k pilot`, then `run` (needs B's and L's stored outputs in `artifacts/`) | 97 min first run |
 | R | `python -m beat.exp_r crossday`; MLP refits: `pilot`, then `run` | not yet timed |
-| M | `python scripts/fetch_yang2025.py` (day 1), `python -m beat.exp_m dev`, then `streams`; after seal 4: `python scripts/fetch_yang2025.py --days 2 3 --seal-commit e88154c6f0b3d1a7887f2368763808fc91d9a81a`, then `python -m beat.exp_m final --seal-commit e88154c6f0b3d1a7887f2368763808fc91d9a81a --result-dir results/exp_m --artifact-dir artifacts/exp_m` | final run in progress |
+| M | `python scripts/fetch_yang2025.py` (day 1), `python -m beat.exp_m dev`, then `streams`; after seal 4: `python scripts/fetch_yang2025.py --days 2 3 --seal-commit e88154c6f0b3d1a7887f2368763808fc91d9a81a`, then `python -m beat.exp_m final --seal-commit e88154c6f0b3d1a7887f2368763808fc91d9a81a --result-dir results/exp_m --artifact-dir artifacts/exp_m` | final stage 22:36:31–22:39:54 UTC, one attempt (`results/exp_m/final_attempts.jsonl`); day-2/3 fetch about 2 h |
 | Figures | `python scripts/make_summary_figures.py` | — |
 
 - **Machine.** Times were measured on an 8-thread laptop CPU without a GPU. The whole chain has

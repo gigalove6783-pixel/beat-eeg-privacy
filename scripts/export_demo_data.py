@@ -8,8 +8,10 @@ features, representations or logits (BNCI2014-001 is CC BY-ND 4.0).
 Story data (all aggregate): experiment status and evidence level (report §5), EEGNet
 identifier vs independent attackers (results/exp_e/lambda_summary.csv), the experiment-G
 enrolment, scenario and reproduction tables, the audit checklist (report §9), the
-pre-registration timeline (docs/decision_log.md), the Lee2019 replication and experiment K's
-randomized-response vs equalized-decoding frontier (results/exp_k/frontier.csv). The
+pre-registration timeline (docs/decision_log.md), the Lee2019 replication, experiment K's
+randomized-response vs equalized-decoding frontier (results/exp_k/frontier.csv) and study M's
+sealed decisions and pre-registered EQ estimates (results/exp_m/decision.json and
+final_estimates_*.csv). The
 replication stays "pending" until results/exp_l/decision.json exists; re-running this
 script then fills in the claim decisions without any change to the page.
 
@@ -272,6 +274,7 @@ def timeline(lee_status):
     d4, s3 = log_entry(log, r"Seal 3 commit: `([0-9a-f]{40})`")
     _, s4 = log_entry(log, r"Seal 4: commit `([0-9a-f]{40})`.*?token time (\d{4}-\d\d-\d\d) "
                            r"(\d\d:\d\d:\d\d) GMT")
+    d5, _ = log_entry(log, r"Independent audit of study M's final run: PASS")
     return dict(source=src(LOG), events=[
         dict(kind="seal", label="Seal 1", date=d1, commit=s1.group(1), tests=int(s1.group(2)),
              title="Plan v1 sealed", evidence="confirmatory", experiments=["exp_a", "exp_b", "exp_c"],
@@ -294,10 +297,10 @@ def timeline(lee_status):
              text="Claims C1–C4 decided by Holm's procedure on 54 users."),
         dict(kind="seal", label="Seal 4", date=f"{s4.group(2)} {s4.group(3)} UTC (RFC 3161)",
              commit=s4.group(1), title="Study M sealed and time-stamped", evidence="confirmatory",
-             experiments=["exp_m"],
+             experiments=["exp_m"], result="exp_m",
              text="Cross-day claims M1–M3 on 51 new users (Yang2025) fixed; an RFC 3161 token from "
-                  "FreeTSA time-stamps the seal commit. The final run is in progress and no result "
-                  "is reported yet."),
+                  "FreeTSA time-stamps the seal commit. The final run passed an independent "
+                  f"recomputation ({d5}):"),
     ])
 
 
@@ -543,6 +546,90 @@ def k_frontier():
         source=src(KF, **where, k=k), chance_source=src(KC, **where, metric="nway",
                                                       family_set="bayes", k=k),
         figure="results/figures/summary_ko/fig9_k_rr_eq_frontier.png")
+
+
+# ---------------------------------------------------------------- study M (sealed, cross-day)
+
+MC, MD, MS = "configs/exp_m.yaml", "results/exp_m/decision.json", "results/exp_m/selection.json"
+MI, MK = "results/exp_m/final_estimates_identification.csv", "results/exp_m/final_estimates_k_curves.csv"
+
+
+def interval(frame: pd.DataFrame, mean="mean", low="ci_low", high="ci_high", **where) -> list:
+    rows = frame.loc[np.logical_and.reduce([frame[k] == v for k, v in where.items()])]
+    if len(rows) != 1:
+        raise ValueError(f"Expected one study-M row for {where}, found {len(rows)}")
+    r = rows.iloc[0]
+    return [clean(r[mean]), clean(r[low]), clean(r[high])]
+
+
+def eq_reading(undefended, reduction, own) -> str:
+    """EQ reading rule fixed in docs/decision_log.md (7b14cee; phrase added at the M audit)."""
+    if undefended[1] <= 0 <= undefended[2]:
+        return "no_exposure"
+    if reduction[1] <= 0 <= reduction[2]:
+        return "no_reduction"
+    if reduction[1] > 0 and any(lo > 0 or hi < 0 for _, lo, hi in own):
+        return "same_direction"
+    raise ValueError("Study-M EQ cell falls outside the pre-committed reading phrases")
+
+
+def m_study():
+    """Study M's sealed decisions and pre-registered estimates (aggregates only)."""
+    cfg = yaml.safe_load(track(ROOT / MC).read_text(encoding="utf-8"))
+    dec = read_json(ROOT / MD)
+    gate = read_json(ROOT / MS)["gates"]["M2"]["real"]
+    n, m1, m2, m3 = len(cfg["subjects"]), dec["M1"], dec["M2"], dec["M3"]
+    if (dec["not_evaluable"] or dec["missing_user_days"]
+            or abs(m1["threshold"] - cfg["m1"]["threshold_factor"] / n) > 1e-12
+            or (m3["tau"], m3["attacker"], m3["k_star"], m3["k_base"])
+            != (cfg["tau_star"], cfg["m3"]["attacker"], cfg["m3"]["k_star"], cfg["m3"]["k_base"])
+            or (max(m2["gaps"]) < cfg["m2"]["margin"]) != (m2["p"] == 1.0)):
+        raise ValueError(f"{MD} disagrees with {MC}")
+    claims = {c: dict(supported=dec["supported"][c], p=clean(dec["p"][c]),
+                      p_holm=clean(dec["p_holm"][c]), scenario=dec[c]["scenario"])
+              for c in dec["holm_family"]}
+    claims["M1"].update(threshold=clean(m1["threshold"]), threshold_factor=cfg["m1"]["threshold_factor"],
+                        strongest=clean(m1["strongest"]),
+                        attackers={a.split("/")[1]: clean(v) for a, v in m1["attackers"].items()})
+    claims["M2"].update(gaps=[clean(g) for g in m2["gaps"]], head=clean(m2["head"]),
+                        battery=[clean(b) for b in m2["battery"]], margin=cfg["m2"]["margin"],
+                        day1_within_day_gap=clean(gate["best_gap"]))
+    kc = read_csv(ROOT / MK)
+    claims["M3"].update(
+        tau=m3["tau"], attacker=m3["attacker"], k_star=m3["k_star"], k_base=m3["k_base"],
+        rank_k_star=[clean(m3["rank_k_star"][f]) for f in ("mean", "ci_low", "ci_high")],
+        rank_k_base=[clean(m3["rank_k_base"][f]) for f in ("mean", "ci_low", "ci_high")],
+        top1_k_star=interval(kc, "top1_mean", "top1_ci_low", "top1_ci_high", tau=m3["tau"],
+                             scenario=m3["scenario"], attacker=m3["attacker"], k=m3["k_star"]))
+    # Every pre-registered EQ cell (g, attackers, k, tau* and the secondary tau), read by the rule.
+    est, ident = cfg["estimates"], read_csv(ROOT / MI)
+    eq = ident[ident.defence == "eq"]
+    excess = f"g{est['g']}_excess"
+    taus = (cfg["tau_star"], cfg["tau_rule"]["secondary_tau"])
+    grid = []
+    for tau in taus:
+        for k in est["ks"]:
+            for a in cfg["bayes_attackers"]:
+                at = dict(tau=tau, k=k, attacker=a)
+                cell = {s: interval(eq, scenario="cal_to_dep", statistic=f"{excess}_{s}", **at)
+                        for s in ("undefended", "defended", "reduction")}
+                own = [interval(eq, scenario=s, statistic=f"{excess}_defended", **at)
+                       for s in ("dep_to_dep", "same_day_halves")]
+                grid.append(dict(at, **cell, reading=eq_reading(cell["undefended"],
+                                                                cell["reduction"], own)))
+    report = track(ROOT / REPORT).read_text(encoding="utf-8")
+    section = re.search(r"^### (\d+\.\d+) Study M\b", report, re.M).group(1)
+    return dict(
+        evidence=dict(decisions="confirmatory", estimates="estimate"),
+        users=n, chance=clean(1 / n), alpha=dec["alpha"], claims=claims,
+        eq=dict(g=est["g"], ks=est["ks"], taus=list(taus), attackers=cfg["bayes_attackers"],
+                scenario="cal_to_dep", grid=grid),
+        source=src(MD), config_source=src(MC, keys="subjects, m1, m2, m3, tau_star, estimates"),
+        gate_source=src(MS, key="gates.M2.real.best_gap"),
+        top1_source=src(MK, tau=m3["tau"], scenario=m3["scenario"], attacker=m3["attacker"],
+                        k=m3["k_star"]),
+        eq_source=src(MI, defence="eq", statistic=f"{excess}_*"),
+        report_source=src(REPORT, section=section))
 
 
 # ---------------------------------------------------------------- headline numbers
@@ -801,6 +888,7 @@ def main():
         checklist=checklist(),
         lee2019=lee2019(seals["events"][4]["commit"]),
         k_frontier=k_frontier(),
+        m_study=m_study(),
         tradeoff=dict(rows=data["tradeoff"], source="results/<exp>/tradeoff.csv"),
         adversary=dict(rows=data["adversary"], source="results/<exp>/adversary_comparison.csv"),
         observation=dict(rows=data["observation"],
