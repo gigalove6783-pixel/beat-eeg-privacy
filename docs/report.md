@@ -1,0 +1,432 @@
+# What a Motor-Imagery BCI Reveals About Its User: A Pre-Registered Audit of Identity Leakage, Defences and Two Evaluation Pitfalls
+
+**이동현, 장규범** (BEAT team, School of Biomedical Engineering)
+
+Technical report, November 2026 · Code and results: `gigalove6783-pixel/beat-eeg-privacy`
+
+> **Status of this draft.** Experiments A–E and G are complete on BCI Competition IV 2a. The confirmatory Lee2019/OpenBMI replication (L) has not been evaluated yet; its section contains a marked placeholder (`> PENDING`). Every number in this report is taken from a file in `results/` or `docs/`; the source is named in each table caption or next to the claim.
+
+## Abstract
+
+A motor-imagery (MI) brain–computer interface (BCI) usually transmits a feature vector, a decoded command, or both. We measure how much of the user's identity such transmissions reveal, test defences, and examine how protection is evaluated. All analyses were pre-registered and sealed by Git commits before the held-out session was scored. On BCI Competition IV 2a (9 users), 253-dimensional Riemannian tangent features identify every user (balanced accuracy, BA, 1.00; 0.998 after per-subject recentring; chance 0.11). Two common evaluation practices overstate protection. First, an identity adversary co-trained with a gradient-reversal defence reports 0.026 BA while independently retrained attackers recover 0.95 from the same frozen outputs; in an exploratory EEGNet study, the co-trained identifier falls to 0.11–0.19 while independent attackers reach 0.44–0.58. Second, a published training-free defence that we reproduce on its own protocol (90.8% → 11.1%) is re-identified at 81.75% with one labelled deployment-period trial per user and 97.11% with five. In exploratory comparisons, no selected adversarial variant dominated a narrow task-only bottleneck, and no defence reached chance. Left/right/hold commands alone also leak identity, increasingly over longer observations. We distil these results into an audit checklist. A pre-registered 54-user replication is pending.
+
+## 1 Introduction
+
+MI-BCIs decode imagined hand movements from EEG. In assistive and consumer deployments, decoding is often split between a wearable device and a host, phone or cloud service, so a representation of the signal leaves the device. EEG carries stable person-specific structure; across MI corpora, undefended attackers re-identify users with high accuracy [4–6]. What the device transmits is therefore a potential biometric identifier, even when the application only needs "left" or "right".
+
+The original question of this project (proposal of 2026-10-09, `BEAT 프로젝트 기획안.pdf`) was whether identity cues in transmitted MI representations can be reduced *beyond* a non-learned per-subject Riemannian recentring baseline while losing at most 5 percentage points (pp) of left/right decoding accuracy, and how much identity remains when only discrete commands are sent. The proposal already committed to two measurement choices that turned out to matter: attackers are trained on outputs collected *after* deployment rather than on the defence's training distribution, and adversarial training is credited only for its gain over recentring.
+
+While answering that question we found that the answer depends heavily on how protection is measured. This report therefore has two goals: an audit of identity leakage and defences in an MI pipeline, and a demonstration, on the same data, of two evaluation practices that overstate protection.
+
+**Contributions.**
+
+1. **Leakage audit of MI transmissions (confirmatory on 2a, pre-registered).** Full tangent-space features identify all nine users; per-subject recentring alone does not change this for an attacker who collects deployment-period outputs (§6.2).
+2. **Pitfall 1: co-trained evaluation.** Within one pre-registered protocol, we show side by side at every adversarial strength that the identity head trained with a gradient-reversal defence falls to or below chance while independently retrained attackers recover identity from the same frozen outputs (B, confirmatory; D, exploratory) (§6.3). The gap reappears in an end-to-end EEGNet with and without Euclidean alignment (E, exploratory), where the identifier approaches but does not fall below chance (§6.6).
+3. **A simple baseline is hard to beat (exploratory).** A task-only bottleneck of width $d=1$–$4$ is not dominated on the utility–identity frontier by any T-CV-selected gradient-reversal, maximum-entropy or ensemble-refresh operating point; across all 36 adversarial settings, none combines higher task BA with lower identity BA than these bottlenecks. Its best identity BA, 0.21–0.25, is still about twice chance (§6.2).
+4. **Command streams leak (confirmatory on 2a).** Left/right/hold commands alone identify users above chance; in 22 of 24 model/threshold settings, five commands exceed twice chance (§6.4).
+5. **Pitfall 2: reference-session-only attackers (exploratory).** We re-implement a published training-free Riemannian defence [6], reproduce its reference-session result, and show that one to five labelled deployment-period trials per user re-identify its output (§6.5).
+6. **An audit checklist** distilled from both pitfalls (§9), and a sealed confirmatory replication on 54 users (Lee2019/OpenBMI) whose results are pending (§6.7).
+
+The project reports failures as results: the pre-registered hypotheses H1 and H2 were not supported (§6.1, §6.2).
+
+**Related work.** The co-trained-adversary pitfall is known outside EEG: Elazar and Goldberg showed that adversarial removal can drive the training adversary to chance while a post-hoc attacker still recovers demographic attributes from the frozen encodings [9], and Barrett et al. stressed that the post-hoc attacker must be evaluated on genuinely separate data [10]. Song and Shmatikov showed that censored representations still leak [12]; Roy and Boddeti proposed a maximum-entropy adversary objective [11], which we test. In EEG, identity-protection results are measured in several incompatible ways. ID-RemovalNet reports user identification on BCI IV 2a falling from 91.50% to 0.04% using an identifier attached to the backbone, without an independently retrained attacker [2]; on nine users this value is far below chance (11.1%), which shows a systematically wrong identifier rather than removed identity. Özdenizci et al. also measure only the co-trained adversary, for cross-subject transfer rather than privacy [7]. Meng et al. [1], NeuroPriv [3] and SAFE [4] use independently trained attackers, and SAFE reports that identity BA on 2a recovers from 0.161–0.186 to 0.686 when the attacker trains and tests on protected data. An unreviewed multi-corpus benchmark reports that domain-adversarial defences that look effective under generic probes fail under encoder fine-tuning [5]. Muhaimin and Nagarajan propose a training-free Riemannian transform fitted on a reference session and evaluated defended-versus-defended across sessions [6]; this is the defence we re-audit in experiment G. Euclidean alignment and Riemannian recentring [18–20] reduce identity as a side effect but leave it far above chance [6]. Differential-privacy mechanisms for EEG [15, 16] either do not measure re-identification or were not evaluated here. We found no opened source that studies identity leakage from decoded command streams. Values across these works use different metrics, attackers and splits and are not directly comparable (`docs/related_work.md`).
+
+## 2 Threat model
+
+**System.** A pooled MI decoder runs on a device. It transmits, per trial, either a *feature* vector (the full tangent vector or a low-dimensional bottleneck) or a *command* in {left, right, hold}. The defence is fitted once on calibration data (session T) and then frozen.
+
+**Adversary.** The adversary observes the transmitted messages and wants to know which enrolled user produced them (closed-set identification among the nine users of BCI IV 2a, chance $1/9 \approx 0.111$; among 54 users in L, chance $1/54 \approx 0.0185$). It does not compromise the device, does not see raw EEG, and does not use metadata such as account names. It trains its own classifiers and tunes them only on its own training data.
+
+**Labelled-data assumptions.** Every scenario assumes the adversary holds some messages labelled with user identity, for example from an enrolment step, a support log or a linked account. The scenarios differ in *when* those labels were collected.
+
+| Scenario | Attacker training data | Attacker test data | Role |
+|---|---|---|---|
+| **Main / post-deployment** (A–D) | Frozen outputs of session-E runs 1–3 of each user | Runs 4–6 of session E, and the reverse; directions averaged | Primary; adversary collects labelled outputs after deployment |
+| **Auxiliary** (A–D) | Frozen outputs of session T | Session E (another day) | Cross-day; never sufficient alone to establish protection |
+| **Reference-session** (G, as in [6]) | Defended session 1 | Defended session 2 | The published defence's own threat model |
+| **Deployment enrolment** (G, L-C4) | First $n \in \{1,2,5,10,20,\text{all}\}$ defended trials per user from one half of the deployment session | The other half; both directions averaged | Measures how many deployment-period labels defeat a reference-session-fitted defence |
+
+**Co-trained head.** For adversarially trained models, the identity head trained jointly with the encoder is reported as a *diagnostic* only. The pre-registered rule states that a low head score is not evidence of protection (`docs/analysis_plan.md`, Experiment B).
+
+**Out of scope.** Device compromise, identifying metadata, unobserved sensitive attributes, open-set verification and white-box or adaptive encoder attacks. An attacker's failure in any scenario is not evidence of anonymity.
+
+## 3 Data
+
+**BCI Competition IV 2a / BNCI2014-001** (experiments A–G). Nine users, two sessions (T and E) recorded on different days, 22 EEG channels at 250 Hz (3 EOG channels excluded). For A–E we use left- versus right-hand trials, 6 MI runs × 24 trials per session (144 per user and session), analysed 1–4 s after the cue with a causal 4th-order 8–30 Hz Butterworth band-pass applied per run (`configs/data.yaml`). Trials with the official artifact flag or any non-finite sample are excluded from A, B and D; 1,163 T trials are retained (`results/exp_e/dev_selection.json`). Experiment C replays all 1,296 E trials (`results/exp_c/summary.json`). Experiment G follows the protocol of [6] instead: all four MI classes, artifact-flagged trials retained (288 trials per session), cue + [0, 4) s, 5th-order zero-phase 8–30 Hz filtering (`beat/exp_g.py`, `AMBIGUITIES`). Files come from the TU Graz host of the BNCI release, with SHA-256 checksums (`docs/decision_log.md`). The data are licensed CC BY-ND 4.0 and are not redistributed.
+
+**Lee2019 / OpenBMI** (experiment L, confirmatory). 54 participants, two sessions on different days, each with an offline and an online phase of 100 trials (50 left, 50 right). Data were reduced to 20 motor channels, causal 8–30 Hz filtering, decimation to 250 Hz and 1–4 s epochs by `scripts/prepare_lee2019.py`. Only file shapes and session-1 label balance were inspected before seal 3; session 2 has not been opened (`results/exp_l/session_access.json`: `"session2_opened": false`).
+
+## 4 Methods
+
+### 4.1 Representations and decoders
+
+For a trial $X \in \mathbb{R}^{22 \times 750}$ we estimate an OAS-shrunk covariance $C$. The Riemannian tangent vector at a fixed reference $C_{\text{ref}}$ (the Riemannian mean of the training covariances, not updated at test time) is
+
+$$\mathbf{s}(C) = \operatorname{upper}\!\left(\log\!\left(C_{\text{ref}}^{-1/2}\, C\, C_{\text{ref}}^{-1/2}\right)\right) \in \mathbb{R}^{253},$$
+
+with off-diagonal entries weighted by $\sqrt{2}$ [Barachant 2012]. **Per-subject recentring** (RC) replaces $C$ by $M_s^{-1/2} C M_s^{-1/2}$, where $M_s$ is the Riemannian mean of user $s$'s T covariances [18]; it needs no labels and no training.
+
+**Experiment A** compares three per-subject decoders: B1 band power (log Welch power in 8–13 and 13–30 Hz per channel, logistic regression), B2 CSP (6 filters, log-variance, shrinkage LDA) [Ramoser 2000] and B3 tangent space + logistic regression, each fitted on every combination of 1, 2, 3 or 6 T runs and scored on all E trials (`configs/exp_a.yaml`).
+
+**Experiments B–D** use one model pooled over the nine users, trained on T and frozen:
+
+| Condition | Transmitted representation | Training |
+|---|---|---|
+| P0 / P0-RC | 253-d tangent vector, common reference / recentred | linear task classifier |
+| P2 / P2-RC | $d$-dim bottleneck of an MLP encoder 253→64→$d$ ($d=8$ in B) | task loss only |
+| P3 / P3-RC | same encoder, $d=8$ | task loss + gradient-reversal identity adversary |
+
+The encoder is trained with Adam (learning rate $10^{-3}$, batch 128, at most 40 epochs, 5 seeds; `configs/exp_b.yaml`). For P3 the encoder minimises $\mathcal{L}_{\text{task}} - \lambda_p \mathcal{L}_{\text{id}}$ through a gradient-reversal layer [Ganin 2015], where $\mathcal{L}_{\text{id}}$ is the cross-entropy of a 9-way identity head with one hidden layer (16 units), and
+
+$$\lambda_p = \lambda\left(\frac{2}{1+e^{-10p}} - 1\right),\qquad \lambda \in \{0.01, 0.03, 0.1, 0.3, 1, 3\},$$
+
+with $p$ the training progress.
+
+### 4.2 Defences compared in experiment D (exploratory)
+
+- **D1, task-only bottleneck sweep:** P2 / P2-RC with $d \in \{1, 2, 4, 8, 16, 32\}$; the epoch budget per $d$ and family is chosen by T cross-validation (CV) task BA. $d=8$ reproduces B's P2 exactly (`results/exp_d/decision.json`, `exp_b_p2_consistency`: differences 0.0).
+- **GRL-CE:** B's P3 / P3-RC (reference, not retrained).
+- **MaxEnt** [11]: the adversary minimises identity cross-entropy; the encoder minimises $\lambda_p \cdot \mathrm{CE}(\mathcal{U}, q_\phi(\cdot\mid z))$, pushing the adversary posterior toward the uniform distribution $\mathcal{U}$.
+- **Ensemble-refresh:** five adversary heads behind gradient reversal; the encoder is penalised through their mean cross-entropy; from epoch 2 one head is re-initialised per epoch in rotation (`configs/exp_d.yaml`).
+
+For MaxEnt and ensemble-refresh, epoch budget (5, 10, 20, 40) and $\lambda$ are selected jointly in T-CV to avoid an under-trained adversary.
+
+### 4.3 The reference-session-fitted defence of experiment G (exploratory)
+
+We re-implemented the four-stage training-free transform of Muhaimin and Nagarajan [6] from its text (`beat/exp_g.py`, `FourStageDefense`): (1) per-subject Riemannian mean alignment toward the pooled mean, (2) per-subject tangent-space scatter whitening, (3) alignment of the 8–30 Hz band component, and (4) a final re-alignment, with strengths $(\gamma_1, \gamma_2, \alpha, \beta) = (0.9, 0.35, 0.6, 0.0)$, the published BCI IV 2a operating point (`configs/exp_g.yaml`). All statistics are fitted on session 1 and never updated. The paper underspecifies several details; our 18 interpretations (covariance formula, filter padding, CSP and XDAWN configurations, among others) are listed verbatim in `beat/exp_g.py` (`AMBIGUITIES`) and in `results/exp_g/bnci/summary.json`. Attackers: the paper-style tangent-space SVM (`paper_ts_svm`), XDAWN-SVM, CSP-SVM and CSP-LDA, plus our logistic regression, RBF-SVM and MLP attackers. SPDNet-ID and MI utility decoders were not run, so G does not measure the defence's decoding cost.
+
+### 4.4 Attackers
+
+Independent attackers are retrained for every representation, scenario and seed on the frozen outputs: multinomial logistic regression ($C=1$), an RBF-SVM with $C \in \{0.1, 1, 10\}$ and $\gamma \in \{\text{scale}, 0.01, 0.1\}$ tuned by 3-fold inner CV on the attacker's own training data, and an MLP (32 hidden units, L-BFGS) distinct from the adversary head (`configs/exp_b.yaml`). Identity BA is the mean per-user recall. The **strongest attacker** is the maximum seed-mean identity BA over attackers *and* scenarios.
+
+### 4.5 Commands and replayed arm control (experiment C)
+
+Each frozen B model issues one command per trial: left → −5°, right → +5°, and hold when the temperature-scaled maximum probability is below $\tau \in \{0.5, 0.6, 0.7, 0.8\}$ ($\tau = 0.5$ is the no-hold control). The temperature is fitted on T out-of-fold logits. E trials of each run are replayed in recorded order through a one-joint virtual arm (range ±90°) in episodes of 20 trials. Labels define only the target trajectory used for scoring. Two transmission modes use the same models, trials and $\tau$: *feature mode* sends the representation, *command mode* sends only left/right/hold. Observation-length attacks group $k \in \{1, 5, 10, 20\}$ consecutive outputs of one user: feature attackers use the mean and standard deviation of the $k$ representations; command attackers use hold rate, left/right bias, run lengths and transition frequencies (`configs/exp_c.yaml`). Training groups slide with stride 1 and test groups do not overlap.
+
+### 4.6 Statistics
+
+Per-user values are the unit of inference ($n=9$). H1 uses an exact one-sided sign-flip test over $2^9 = 512$ sign patterns. Utility non-inferiority (B, D) requires the one-sided 95% lower bound of the paired per-user task-BA difference to exceed −5 pp. Protection requires the strongest-attacker identity BA to drop by at least 5 pp *and* the one-sided 95% lower bound of the paired per-user identity-recall difference to exceed 0, in the main scenario and over both scenarios, in both the common and the RC family. Intervals for identity BA come from 2,000 bootstrap resamples of runs within user. In L, claim-level p-values are Bonferroni-adjusted within claims and combined with Holm's procedure at familywise $\alpha = 0.05$ (`docs/analysis_plan.md`, plan v3).
+
+### 4.7 Pre-registration and seals
+
+Every fitted step on the defended side uses session-T data only; fit entry points raise `LeakageError` on E trials, which the test suite enforces. Three seals fix the plan, configurations, code and T-only selections before evaluation (`docs/decision_log.md`):
+
+| Seal | Commit | Fixes | Status of analyses |
+|---|---|---|---|
+| E seal | `6ab5668` | Plan v1, A–C; 47 tests passed | **Confirmatory** (A, B, C) |
+| E seal 2 | `b216b7d` | Plan v2, D and E; 73 tests passed | **Exploratory**: reuses session E, which already shaped D and E |
+| — | none | G at the published operating point; no selection on session 2 | **Exploratory** |
+| Seal 3 | not yet recorded | Plan v3, Lee2019 claims C1–C4 | **Confirmatory**; session 2 unopened |
+
+A and B final runs were produced at commit `e6c13c8` with `sealed_paths_clean: true` (`results/exp_a/h1.json`). All deviations are listed in Appendix A.
+
+## 5 Experimental status at a glance
+
+| Exp. | Question | Status | Outcome |
+|---|---|---|---|
+| A | Tangent space vs CSP at 1 calibration run (H1) | Confirmatory | Not supported |
+| B | GRL reduces identity beyond recentring at ≤ 5 pp cost (H2) | Confirmatory | Not supported (both families) |
+| C | Residual identity in command streams (H3) | Confirmatory (descriptive) | Quantified; above chance |
+| D | Is the H2 failure specific to plain GRL? | Exploratory | No variant passes; no adversarial point dominates task-only |
+| E | Co-trained identifier vs independent attacker in EEGNet | Exploratory (descriptive, no selection) | Gap reappears: identifier 0.11–0.19 vs independent 0.44–0.58 at high $\lambda$; never below chance |
+| G | Reference-session-fitted defence under deployment enrolment | Exploratory | Reproduced; re-identified with 1–5 labels |
+| L | Replication of C1–C4 on 54 users | Confirmatory | Pending |
+
+## 6 Results
+
+### 6.1 Experiment A: decoding baseline (confirmatory)
+
+| Decoder | 1 run | 2 runs | 3 runs | 6 runs |
+|---|---|---|---|---|
+| B1 band power | 0.573 | 0.618 | 0.638 | 0.663 |
+| B2 CSP | 0.669 | 0.698 | 0.712 | 0.735 |
+| B3 tangent space | 0.689 | 0.719 | 0.731 | 0.758 |
+
+*Table 1. Mean session-E balanced accuracy over nine users by number of T calibration runs (`results/exp_a/summary.csv`).*
+
+With one calibration run, B3 exceeded B2 by 2.0 pp on average (median 2.7 pp; 6 of 9 users higher), exact one-sided sign-flip $p = 0.10$ (`results/exp_a/h1.json`). **H1 is not supported** by the pre-registered rule. Spread between users is large: 1-run B3 ranges from 0.524 to 0.909 (`results/exp_a/summary.csv`). These per-subject decoders set the utility scale for the pooled models below.
+
+![Calibration curve](../results/figures/exp_a_calibration.png)
+
+*Figure 1. Session-E balanced accuracy versus calibration runs (`results/figures/exp_a_calibration.png`).*
+
+### 6.2 Feature leakage and defences (B confirmatory, D exploratory)
+
+**Raw features identify every user.** Transmitting the 253-d tangent vector gives strongest-attacker identity BA 1.00 in the main scenario; after per-subject recentring it is 0.998 (95% interval 0.995–1.00) (`results/exp_b/tradeoff.csv`). Recentring does reduce *cross-day* identification: the auxiliary T→E attacker falls from 0.951 (P0) to 0.342 (P0-RC) (`results/exp_d/tradeoff.csv`). This contrast shows that recentring mainly removes a user-specific offset that is stable within a session but not across days; it does not remove identity from the data an attacker collects after deployment.
+
+**H2 (confirmatory).** T-CV selected $\lambda = 0.01$ in both families, effectively no adversary. Utility was non-inferior (common: mean −0.04 pp, lower bound −0.21 pp; RC: +0.06 pp), but protection failed: identity BA 0.626 for P3 versus 0.619 for P2, and 0.427 versus 0.427 for P3-RC versus P2-RC (`results/exp_b/decision.json`). **H2 is not supported.** The reason the CV rule picked the smallest $\lambda$ is pitfall 1 (§6.3).
+
+**A narrow task-only bottleneck is the most effective defence tested (exploratory).**
+
+| Family | $d$ | Task BA | Identity BA (strongest) | Identity BA (auxiliary T→E) |
+|---|---|---|---|---|
+| common | P0 (253) | 0.679 | 1.000 | 0.951 |
+| common | 1 | 0.707 | 0.253 | 0.161 |
+| common | 2 | 0.711 | 0.325 | 0.238 |
+| common | 4 | 0.710 | 0.455 | 0.308 |
+| common | 8 | 0.712 | 0.619 | 0.455 |
+| common | 32 | 0.707 | 0.886 | 0.733 |
+| RC | P0-RC (253) | 0.672 | 0.998 | 0.342 |
+| RC | 1 | 0.706 | 0.209 | 0.145 |
+| RC | 2 | 0.711 | 0.252 | 0.146 |
+| RC | 4 | 0.718 | 0.308 | 0.155 |
+| RC | 8 | 0.717 | 0.427 | 0.177 |
+| RC | 32 | 0.713 | 0.714 | 0.202 |
+
+*Table 2. Task-only bottleneck sweep (D1; $d=16$ omitted, see source). Session-E task BA and identity BA, seed means; chance 0.111 (`results/exp_d/tradeoff.csv`).*
+
+Identity BA rises monotonically with bottleneck width while task BA stays within 0.705–0.718 for every $d$; every bottleneck decodes better than the full tangent vector (0.672–0.679). At $d=1$ the strongest attacker reaches 0.253 (common) and 0.209 (RC) at task BA 0.707 and 0.706. This is the lowest identity exposure observed in A–D, but it remains about twice chance: a single scalar per trial still carries user information.
+
+| Variant (family) | Selected $\lambda$ / epochs | Task BA | Identity BA | Co-trained head BA | Utility rule | Protection rule |
+|---|---|---|---|---|---|---|
+| GRL-CE (common) | 0.01 / B budget | 0.711 | 0.626 | 0.167 | pass | fail |
+| MaxEnt (common) | 3 / 40 | 0.686 | 0.456 | 0.134 | fail (lower bound −5.15 pp) | pass (−16.3 pp, $p=0.002$) |
+| Ensemble (common) | 0.03 / 40 | 0.708 | 0.574 | 0.147 | pass | fail (−4.5 pp) |
+| GRL-CE (RC) | 0.01 / B budget | 0.718 | 0.427 | 0.132 | pass | fail |
+| MaxEnt (RC) | 0.03 / 20 | 0.684 | 0.394 | 0.153 | fail | fail (−3.3 pp) |
+| Ensemble (RC) | 0.1 / 40 | 0.679 | 0.396 | 0.115 | fail | fail (−3.1 pp) |
+
+*Table 3. T-CV-selected adversarial operating points at $d=8$ (D2) compared with the $d=8$ task-only encoder of the same family; protection is the identity drop relative to that encoder (`results/exp_d/decision.json`, `results/exp_d/tradeoff.csv`; GRL-CE from `results/exp_b/adversary_comparison.csv`).*
+
+The two pre-registered questions of D were both answered *false* (`results/exp_d/decision.json`). (i) No variant passed the protection rule in both families; MaxEnt passed in the common family only, and failed the utility margin there. (ii) No selected adversarial operating point dominated the task-only frontier in the pre-registered sense (lower identity BA than every task-only bottleneck with equal or higher task BA): every selected adversarial point has a task-only bottleneck of equal or higher task BA with lower identity BA (comparator minima 0.253 common and 0.209 RC). As an additional descriptive check over all 36 adversarial points (every $\lambda$, not only the selected ones), 30 are dominated by some task-only bottleneck. The remaining six (GRL-CE at $\lambda \in \{0.1, 0.3\}$; GRL-CE-RC at $\lambda \in \{0.3, 1, 3\}$; ensemble-RC at $\lambda = 1$) exceed the best task-only task BA by at most 0.41 pp (0.722 versus 0.718) while their identity BA, 0.42–0.88, is well above that of the $d=4$ bottleneck of the same family (0.455 common, 0.308 RC) (computed from `results/exp_d/tradeoff.csv` and `results/exp_b/tradeoff.csv`). Conversely, two GRL-CE points ($\lambda = 0.1, 0.3$) dominate the wide common-family bottlenecks $d = 16$ and $d = 32$, so the advantage of the task-only baseline holds at narrow widths, not at every width. The "frontier dominance" of the simple baseline is therefore an exploratory, nine-user result for this encoder family. It does not show that adversarial training cannot work in general.
+
+![Utility versus identity frontier](../results/exp_d/frontier.png)
+
+*Figure 2. Utility–identity frontier of task-only bottlenecks and adversarial variants, both families (`results/exp_d/frontier.png`). Experiment B's version is `results/figures/exp_b_tradeoff.png`.*
+
+### 6.3 Pitfall 1: co-trained evaluation understates exposure
+
+In experiment B, increasing $\lambda$ made the co-trained identity head look increasingly successful and the transmitted features increasingly identifying (Table 4, Figure 3). At $\lambda = 1$ the head scored 0.026 identity BA, far *below* chance, while an independently retrained MLP on the same frozen outputs scored 0.951 (`results/exp_b/adversary_comparison.csv`). Judged by its own head, the high-$\lambda$ model is the most private; judged by an independent attacker, it leaks more than the task-only bottleneck (0.619). This pattern was first seen in T-only development, before the seal (head 0.08–0.11 versus independent logistic regression up to 0.995; `docs/decision_log.md`), and was confirmed on session E.
+
+| $\lambda$ | 0.01 | 0.03 | 0.1 | 0.3 | 1 | 3 |
+|---|---|---|---|---|---|---|
+| Co-trained head, P3 | 0.167 | 0.152 | 0.128 | 0.098 | 0.026 | 0.051 |
+| Independent strongest, P3 | 0.626 | 0.650 | 0.756 | 0.884 | 0.951 | 0.953 |
+| Co-trained head, P3-RC | 0.132 | 0.132 | 0.127 | 0.124 | 0.113 | 0.100 |
+| Independent strongest, P3-RC | 0.427 | 0.425 | 0.426 | 0.428 | 0.433 | 0.454 |
+
+*Table 4. Identity BA of the co-trained head (main scenario) and of the strongest independent attacker on the same frozen session-E outputs (`results/exp_b/adversary_comparison.csv`). Chance 0.111.*
+
+The same gap appears with the stronger adversaries of experiment D (exploratory). At every $\lambda$, co-trained heads scored 0.12–0.28 in the common family while independent attackers reached 0.46–0.90, and 0.12–0.16 versus 0.38–0.42 in the RC family; at the selected operating points the heads scored 0.115–0.153 against independent 0.394–0.574 (`results/exp_d/tradeoff.csv`). MaxEnt, whose objective targets a uniform posterior rather than a wrong one, avoided below-chance head scores but still left the head and the independent attackers far apart.
+
+**Interpretation.** A co-trained head measures whether *that* head, trained against a moving encoder, can read identity. A below-chance score means the encoder has learned to mislead that head systematically, which is itself information about identity. Our data show that this metric can rank models in the opposite order of independent attackers. Experiment E (§6.6) finds the same gap for an EEGNet backbone with a co-trained identifier, the setting of published EEG identity-removal work [2], although there the identifier stays at or slightly above chance rather than below it.
+
+![Adversary head versus independent attackers](../results/exp_b/adversary_vs_independent.png)
+
+*Figure 3. Co-trained head versus independent attackers across $\lambda$ (`results/exp_b/adversary_vs_independent.png`).*
+
+### 6.4 Experiment C: commands leak, and leakage grows with observation length (confirmatory)
+
+**Commands alone identify users above chance.** A single command identifies the user at 0.156–0.198 BA across the six models and four thresholds (chance 0.111). With 20 consecutive commands the strongest attacker reaches 0.211–0.478 (`results/exp_c/observation_strongest.csv`). In 22 of 24 model/$\tau$ settings, five commands already exceed twice chance ($2/9 \approx 0.222$); the exceptions are P0-RC at $\tau = 0.5$ (never reached by $k = 20$) and P0-RC at $\tau = 0.6$ (reached at $k = 10$) (`results/exp_c/observation_threshold.csv`). If one requires the lower 95% bound rather than the point estimate to exceed $2/9$, several recentred settings need $k = 10$ or do not reach the threshold (same file, `smallest_k_lower_bound`), so the five-command figure should be read as a point estimate.
+
+| Model | Command, $k=1$ ($\tau=0.5$ / $0.8$) | Command, $k=20$ ($\tau=0.5$ / $0.8$) | Feature, $k=1$ | Feature, $k=20$ |
+|---|---|---|---|---|
+| P0 | 0.197 / 0.156 | 0.341 / 0.352 | 1.000 | 1.000 |
+| P0-RC | 0.156 / 0.168 | 0.211 / 0.352 | 0.999 | 1.000 |
+| P2 | 0.190 / 0.174 | 0.307 / 0.474 | 0.624 | 0.867 |
+| P2-RC | 0.165 / 0.178 | 0.244 / 0.304 | 0.431 | 0.711 |
+| P3 | 0.190 / 0.174 | 0.319 / 0.478 | 0.625 | 0.867 |
+| P3-RC | 0.165 / 0.179 | 0.248 / 0.304 | 0.430 | 0.715 |
+
+*Table 5. Strongest-attacker identity BA by transmission mode and observation length $k$ (`results/exp_c/observation_strongest.csv`). Chance 0.111.*
+
+Command-mode leakage is roughly an order of magnitude below feature-mode leakage at $k = 1$, but it does not vanish and generally grows with $k$. The growth is not strictly monotonic: for example, P2-RC at $\tau = 0.5$ gives 0.267 at $k = 10$ and 0.244 at $k = 20$ (`results/exp_c/observation_strongest.csv`), within the bootstrap intervals. Higher $\tau$ tends to increase command leakage at $k = 20$ for the bottleneck models (P2: 0.307 → 0.474), consistent with the hold pattern itself being user-specific. Feature-mode leakage grows strongly with $k$ for bottlenecks (P2-RC: 0.431 → 0.711), so averaging several messages erases much of the protection that a single message suggests.
+
+![Identity versus observation length](../results/figures/exp_c_observation_length.png)
+
+*Figure 4. Identity BA versus observation length for feature and command transmission; the command curve shows $\tau = 0.5$ with the $\tau$ range shaded (`results/figures/exp_c_observation_length.png`).*
+
+**Replayed arm control.** Without holds ($\tau = 0.5$), the mean absolute angle error per 20-trial episode was 18.5–23.3° with 5.8–6.6 wrong-direction moves. At $\tau = 0.8$, 60–79% of commands were held, wrong-direction moves fell to 0.5–1.2, and the angle error to 11.2–12.3° (`results/exp_c/control_summary.csv`). The recentred bottleneck models (P2-RC, P3-RC) had the lowest error at $\tau = 0.5$ (18.5–18.6°). Feature and command transmission produced identical trajectories in all 108 episodes of every model, seed and threshold, and the live replay matched the saved model outputs (maximum absolute logit difference $1.4 \times 10^{-6}$) (`results/exp_c/transmission_check.csv`, `results/exp_c/summary.json`). Median processing time was 1.13–1.34 ms per trial (95th percentile 2.08–2.44 ms) on a laptop CPU (`results/exp_c/timing_summary.csv`). This is replay timing, not online latency, and the arm was not controlled by a person in closed loop.
+
+**Disclosed deviation.** The sealed artifact-rejection rule held 3.4% of T trials but 35% of E trials (99.3% for user 5), because it reacts to cross-day drift rather than artifacts. The primary C analysis therefore holds only non-finite trials (none occurred: `results/exp_c/rejection_rates.csv`); the sealed rule is still reported in `results/exp_c/sealed_gate/` (Appendix A, deviation 7).
+
+### 6.5 Pitfall 2: reference-session-only attackers (experiment G, exploratory)
+
+**Reproduction on the published protocol.** With the paper's fixed tangent-space SVM, our re-implementation gives 90.82% undefended and 11.11% defended identification for session 1 → session 2, against 90.8% and 11.1% reported in [6]; the reverse direction gives 10.92% (paper 11.1%) (`results/exp_g/bnci/paper_table1_comparison.csv`). Other attacker rows are marked non-comparable because the paper's XDAWN filter count was chosen on the evaluation session and its CSP settings are underspecified; we do not report differences for those rows. Averaged over both directions, every reference-session attacker on defended data scored 4.7–11.7% at $k = 1$, against 76.5–97.8% on undefended data (`results/exp_g/bnci/identity_averaged.csv`). Under its own threat model, the defence works as reported.
+
+**Deployment-period labels defeat it.** When the attacker trains on labelled *defended* trials from the deployment session (first half) and tests on the second half, identification is essentially unchanged by the defence: 97.5–99.9% on defended versus 96.5–100% on undefended data at $k = 1$ (`results/exp_g/bnci/identity_averaged.csv`). Per-user recall reductions under this scenario are at most 0.23 pp (exact sign-flip $p \ge 0.125$), against 65–93 pp under the reference-session scenario ($p \le 0.004$) (`results/exp_g/bnci/paired_subject_recall.csv`).
+
+| Labelled trials per user, $n$ | 1 | 2 | 5 | 10 | 20 | all |
+|---|---|---|---|---|---|---|
+| Logistic regression | 81.75 | 88.62 | 97.11 | 99.38 | 99.65 | 99.92 |
+| Paper tangent-space SVM | 66.82 | 74.15 | 88.66 | 95.52 | 97.65 | 99.77 |
+| RBF-SVM | n/e | n/e | 94.68 | 97.26 | 99.07 | 99.77 |
+| MLP | n/e | n/e | 90.32 | 95.64 | 98.61 | 99.88 |
+
+*Table 6. Identification accuracy (%) on defended data versus enrolment size, single-trial test ($k=1$), both directions averaged; chance 11.1%. n/e: not evaluable because $n$ is below the 3 inner CV folds (`results/exp_g/bnci/enrolment_averaged.csv`).*
+
+One labelled defended trial per user gives 81.75% identification, and five give 97.11% (Table 6, Figure 5). Undefended data at $n=1$ give 88.08% with the same attacker, so the defence costs the attacker about 6 pp at one label and essentially nothing at five or more (same file). The mechanism summary agrees: the defence raises the ratio of within-user to between-user distances in tangent space from 0.51 to 0.88, which shrinks but does not close the gap between users (`results/exp_g/bnci/mechanism.csv`).
+
+**Interpretation.** These results do not show that the paper's reference-session results are wrong; we reproduce them. They show that the protection is specific to a threat model in which the attacker never obtains a labelled deployment-period sample. A transform fitted once and frozen maps each user's deployment-period data consistently, so a few labelled samples from the same period suffice. For this dataset, preprocessing and these attackers, protection depends on the attacker's labelled-data access, and a reference-session-only evaluation does not bound the risk under enrolment. The 2a results concern a 9-person closed set; the 54-user test is claim C4 of L.
+
+![Enrolment curve](../results/exp_g/bnci/enrolment_curve.png)
+
+*Figure 5. Identification versus number of labelled deployment-period trials per user, defended and undefended (`results/exp_g/bnci/enrolment_curve.png`). Identification versus test aggregation is in `results/exp_g/bnci/identity_vs_k.png`.*
+
+### 6.6 Experiment E: co-trained identifier versus independent attacker in EEGNet (exploratory)
+
+EEGNet-8,2 [Lawhern 2018] is trained pooled over the nine users on all 1,163 retained T trials (decimated to 125 Hz; 176-d feature), with or without per-subject Euclidean alignment [20]. A two-layer identity identifier is attached through gradient reversal, $\lambda \in \{0, 0.03, 0.1, 0.3, 1, 3\}$, 3 seeds, fixed 40-epoch budget from T-only piloting (`configs/exp_e.yaml`, `results/exp_e/dev_selection.json`). Every $\lambda$ is reported; nothing is selected on E. This is not a reproduction of ID-RemovalNet [2]; it tests the evaluation metric on a backbone such methods build on.
+
+The identifier is trained with the encoder on T and scored on all 1,183 retained E trials, so its score is a cross-day measure, comparable in data access with the auxiliary scenario. The independent attackers and scenarios are those of B (§4.4). In total 36 models (2 alignments × 6 $\lambda$ × 3 seeds) were trained, and all 108 attacker-MLP fits converged (`results/exp_e/summary.json`: `model_count`, `mlp_fits`, `mlp_nonconverged`). The final run used the import-based entry point recorded for D and E (Appendix A); the decision log records no other E-specific deviation.
+
+| Alignment | $\lambda$ | Task BA | Co-trained identifier | Strongest independent, main | Strongest independent, auxiliary |
+|---|---|---|---|---|---|
+| none | 0 | 0.689 | 0.567 | 0.671 | 0.691 |
+| none | 0.03 | 0.680 | 0.365 | 0.634 | 0.673 |
+| none | 0.1 | 0.697 | 0.332 | 0.591 | 0.618 |
+| none | 0.3 | 0.682 | 0.273 | 0.611 | 0.617 |
+| none | 1 | 0.539 | **0.113** | 0.426 | 0.444 |
+| none | 3 | 0.517 | **0.123** | 0.484 | 0.458 |
+| EA | 0 | 0.739 | 0.409 | 0.583 | 0.471 |
+| EA | 0.03 | 0.743 | 0.265 | 0.498 | 0.377 |
+| EA | 0.1 | 0.732 | **0.182** | 0.499 | 0.337 |
+| EA | 0.3 | 0.729 | **0.190** | 0.570 | 0.359 |
+| EA | 1 | 0.717 | **0.188** | 0.563 | 0.306 |
+| EA | 3 | 0.622 | **0.139** | 0.577 | 0.243 |
+
+*Table 7. Experiment E (exploratory): session-E task BA (subject mean) and identity BA of the co-trained identifier and of the strongest independent attacker on the same frozen 176-d EEGNet features, seed means over 3 seeds. Identity chance 0.111; task chance 0.5. Bold: identifier within 0.08 of chance (`results/exp_e/lambda_summary.csv`).*
+
+**The co-trained identifier understates exposure in EEGNet as well.** As $\lambda$ grows, the identifier's score approaches chance: 0.113–0.123 without alignment at $\lambda \ge 1$, and 0.139–0.190 with EA at $\lambda \ge 0.1$ (identification accuracy 0.116–0.195). On the same frozen features the strongest independent attacker reaches 0.444–0.484 without alignment and 0.499–0.577 with EA (Table 7, Figures 6 and 7). With EA at $\lambda = 1$, for example, the identifier reports 0.188 while an independent attacker reaches 0.563, at task BA 0.717. The gap is not only a matter of data access. An auxiliary attacker trained, like the identifier, on T and tested on E still scores 0.444 against the identifier's 0.113 (no alignment, $\lambda = 1$) and 0.306 against 0.188 (EA, $\lambda = 1$). Unlike B, however, the identifier never fell *below* chance (minimum 0.113). E therefore reproduces the gap of pitfall 1 in an end-to-end CNN, but not its below-chance signature, and it does not reproduce the near-zero identifier accuracy reported for ID-RemovalNet [2].
+
+**Without alignment, a near-chance identifier coincides with failed decoding.** At $\lambda \in \{1, 3\}$ without alignment, task BA falls to 0.539 and 0.517 ($\kappa$ 0.078 and 0.034), close to the binary chance level, while independent attackers still identify users at 0.444–0.484 (`results/exp_e/lambda_summary.csv`). These settings are not usable operating points. With EA, task BA stays between 0.717 and 0.743 up to $\lambda = 1$ and drops to 0.622 at $\lambda = 3$.
+
+| Alignment | $\lambda$ | Utility change, pp (lower bound) | Identity drop, pp (lower bound; $p$) | Utility non-inferior | Protection rule |
+|---|---|---|---|---|---|
+| none | 0.03 | −0.97 (−2.01) | 1.77 (−2.55; 0.227) | yes | fail |
+| none | 0.1 | +0.79 (−1.19) | 7.30 (1.97; 0.021) | yes | pass |
+| none | 0.3 | −0.71 (−2.42) | 7.38 (1.22; 0.029) | yes | pass |
+| none | 1 | −15.06 (−23.35) | 24.64 (14.64; 0.002) | no | pass |
+| none | 3 | −17.23 (−26.97) | 20.70 (11.48; 0.006) | no | pass |
+| EA | 0.03 | +0.38 (−1.13) | 8.45 (3.91; 0.006) | yes | pass |
+| EA | 0.1 | −0.69 (−2.14) | 8.35 (3.02; 0.012) | yes | pass |
+| EA | 0.3 | −0.93 (−2.06) | 1.28 (−5.71; 0.373) | yes | fail |
+| EA | 1 | −2.13 (−5.66) | 1.93 (−4.70; 0.301) | no | fail |
+| EA | 3 | −11.68 (−15.87) | 0.57 (−8.33; 0.459) | no | fail |
+
+*Table 8. Each $\lambda$ compared with $\lambda = 0$ of the same alignment (descriptive, unadjusted). Utility: mean paired per-user change in task BA with its one-sided 95% lower bound. Identity drop: decrease of the strongest independent attacker's identity BA, with the lower bound and exact sign-flip $p$ of the per-user recall differences. Thresholds are B's (−5 pp utility margin; drop ≥ 5 pp with lower bound > 0), as fixed in `configs/exp_e.yaml` (`results/exp_e/summary.json`, `paired_vs_lambda_zero`).*
+
+**Some settings give modest protection relative to $\lambda = 0$.** Four of ten settings combine non-inferior utility with an identity drop that meets B's thresholds: no alignment at $\lambda = 0.1$ and $0.3$ (−7.3 and −7.4 pp) and EA at $\lambda = 0.03$ and $0.1$ (−8.5 and −8.4 pp) (Table 8). Plan v2 declares E descriptive with no selection on E, and these are ten unadjusted comparisons on reused session-E data, so they are not a decision. At these four points identity BA is still 0.50–0.62, about 4.5–5.6 times chance.
+
+**Alignment and the identifier mainly remove cross-day identity.** At $\lambda = 0$, EA lowers the main-scenario attacker modestly (0.671 → 0.583) and the auxiliary attacker strongly (0.691 → 0.471). With EA, the auxiliary score keeps falling as $\lambda$ grows (0.471 → 0.243), whereas the main-scenario attacker, which holds labelled deployment-period outputs, stays between 0.498 and 0.583 at every $\lambda$ (Table 7). The alignment reference and the identifier are both fitted on T. Our interpretation, not tested directly, is that they suppress identity cues that carry over from T, while identity within the deployment period remains. This parallels the recentring contrast of §6.2 and pitfall 2 (§6.5).
+
+**Comparison with the tangent-space models (descriptive).** EEGNet with EA has the highest task BA of any *pooled* model in this project: 0.743 at $\lambda = 0.03$ and 0.739 at $\lambda = 0$, against at most 0.722 for the pooled tangent-space models of B and D (`results/exp_b/tradeoff.csv`, `results/exp_d/tradeoff.csv`). Per-subject tangent-space decoders calibrated on all six T runs reach 0.758 (Table 1). The 176-d EEGNet feature at $\lambda = 0$ is less identifying than the 253-d tangent vector (strongest 0.583–0.691 versus 1.00), but more identifying than the narrow task-only bottlenecks of D (0.209–0.455 for $d \le 4$; Table 2). No EEGNet bottleneck sweep was run, so it is untested whether a narrow EEGNet bottleneck would match or beat the adversarial settings. The two model families differ in input (filtered, decimated EEG versus covariance matrices), feature width, number of seeds (3 versus 5) and status (B confirmatory; D and E exploratory), so these comparisons do not rank the methods.
+
+![Identifier versus independent attackers, EEGNet with EA](../results/exp_e/identifier_vs_independent_ea.png)
+
+*Figure 6. Experiment E with Euclidean alignment: co-trained identifier BA, strongest independent identity BA and task BA across $\lambda$; dotted line, identity chance (`results/exp_e/identifier_vs_independent_ea.png`).*
+
+![Identifier versus independent attackers, EEGNet without alignment](../results/exp_e/identifier_vs_independent_none.png)
+
+*Figure 7. As Figure 6, without alignment (`results/exp_e/identifier_vs_independent_none.png`).*
+
+### 6.7 Confirmatory replication on Lee2019/OpenBMI (experiment L)
+
+Plan v3 fixes four claims, all predeclared from the 2a findings with thresholds chosen before any Lee2019 outcome analysis (`docs/analysis_plan.md`): **C1**, for P3 at $\lambda = 1$, $d = 8$, the strongest independent attacker exceeds the co-trained head by at least 20 pp; **C2**, P2-RC ($d=8$) has strongest identity BA at least 20 pp below P0 with task BA non-inferior at −5 pp; **C3**, P2-RC command-only identity at $\tau = 0.5$ and $k = 20$ exceeds $2/54$ and exceeds $k = 1$; **C4**, the G transform at the OpenBMI operating point (0.9, 0.60, 0.6, 0.2), attacked with five labelled deployment trials per participant, exceeds $10/54$, subject to a benchmark gate (defended reference-session tangent-SVM accuracy within ±5 pp of 2.4%). Holm's procedure at $\alpha = 0.05$ decides C1–C4. Chance is $1/54 = 1.85\%$.
+
+> PENDING (seal 3 and the L final run; sources `results/exp_l/seal.json`, `results/exp_l/decision.json`, `results/exp_l/identity_summary.csv`, `results/exp_l/head_vs_independent.csv`, `results/exp_l/smallest_k_twice_chance.csv`, `results/exp_l/task_summary.csv`, `results/exp_l/exclusions.csv`): insert the seal-3 commit hash; trial exclusions and usable group counts; for C1–C4 the observed effect, the claim-level p-value, the Holm-adjusted decision (supported / not supported / not evaluable) and every component criterion; the C4 benchmark-gate value and gate outcome; undefended and defended reference-session accuracies. Then insert the descriptive results without decisions: enrolment curves ($n \in \{1,2,5,10,20,\text{all}\}$), $d \in \{1, 8\}$, head versus independent at $\lambda \in \{0.1, 1, 3\}$, observation-length curves, identification versus number of enrolled users $N \in \{9, 18, 27, 54\}$, and control metrics. Figures: `results/exp_l/head_vs_independent.png`, `results/exp_l/tradeoff.png`, `results/exp_l/observation_length.png`, `results/exp_l/enrolment.png`. Report unsupported claims and failed gates with the same prominence as supported ones, and revise §1 contributions, the abstract and §7 accordingly.
+
+## 7 Discussion
+
+**What the evidence supports.** On BCI IV 2a, the transmitted representation, not the decoder's accuracy, determines identity exposure. Full tangent features are a near-perfect identifier, and recentring alone does not change that for an attacker with deployment-period labels. A narrow task-only bottleneck lowered exposure the most among the defences we tested, at no measured decoding cost. Adversarial removal, in three variants, did not beat it. In EEGNet (exploratory), some gradient-reversal settings lowered identity BA by 7–8 pp relative to $\lambda = 0$ at non-inferior utility, but identity stayed at 0.50–0.62, and no EEGNet bottleneck was available for comparison.
+
+**Why the evaluation matters more than the defence.** Both pitfalls measure protection against an attacker weaker than a plausible one. A co-trained head is optimised against by the very encoder it evaluates; a reference-session attacker never sees data from the period it attacks. In both cases the reported number (0.026 BA; 11.1%) differed from the independent, deployment-period number (0.951 BA; 81.75–97.11%) by a margin that changes the conclusion. The first pitfall is not specific to a shallow encoder on Riemannian features: in EEGNet, a near-chance identifier (0.188 with EA at $\lambda = 1$) coexisted with independent attackers at 0.563. E also shows a quieter variant of the second pitfall: defences fitted on T reduced the cross-day attacker much more than the attacker holding deployment-period labels (Table 7). The fixes are inexpensive: retrain attackers on frozen outputs, and test with a few labelled deployment-period samples. Neither requires new methods, only a different evaluation protocol.
+
+**Commands are not a safe harbour.** Sending only left/right/hold reduces leakage by about an order of magnitude per message, but identity accumulates over a stream, and confidence-based holding, a common safety feature, can increase it. Any privacy claim for a command-only BCI should state the observation length it covers.
+
+**Inference versus fact.** Our explanation for the below-chance co-trained head (the encoder learns to mislead a specific head rather than to remove identity) is an interpretation consistent with Table 4 and with [9]; we did not test it directly. The interpretation of recentring as removing a within-session offset rests on the contrast between main and auxiliary scenarios (Table 2), not on a dedicated experiment; the same holds for the corresponding reading of EA and the identifier in E. Why the EEGNet identifier approached chance without falling below it, unlike the tangent-space head of B, was not investigated; architecture, training budget and the identifier's capacity all differ.
+
+## 8 Limitations
+
+- **Closed set of nine users (A–G).** All 2a results are closed-set identification among nine people. Chance is high (0.111) and statistical power is low ($n=9$; the smallest exact sign-flip p-value is $1/512$). The results do not transfer automatically to larger populations or open-set verification. Experiment L addresses scale (54 users) but is pending.
+- **Exploratory status of D, E and G.** D and E reuse session E, which had already shaped their motivation; G was added after the literature review and evaluates on both 2a sessions. Their settings were fixed before their own runs, but they are hypothesis-generating. The L claims are their prospective test. E in particular uses one architecture, three seeds and no EEGNet bottleneck sweep, and is not a reproduction of ID-RemovalNet [2].
+- **Main scenario is within-session.** The main attacker trains and tests on runs of the same session E. Cross-day evidence comes from the auxiliary scenario, which the plan deems insufficient alone. Leakage statements in this report name their scenario.
+- **Replay, not closed-loop control.** The virtual arm replays recorded EEG; users did not receive feedback from it. Processing times are replay times on a laptop CPU, not online latency.
+- **Attacker family.** Attackers are logistic regression, RBF-SVM and MLP on transmitted outputs (plus covariance-space attackers in G). We did not evaluate white-box, adaptive encoder fine-tuning or deep sequence attackers [5]. Any identity BA here is a lower bound on what a stronger attacker could achieve; a low value is not anonymity.
+- **Experiment G re-implementation.** The defence was re-implemented from the paper's text with 18 documented interpretations; SPDNet-ID and the decoding-utility evaluation were not run, so the defence's utility cost is not measured here. G uses the paper's preprocessing, which differs from A–E.
+- **No formal privacy guarantee.** None of the defences provides a formal bound. A randomised-response release for commands was considered and set aside (`docs/analysis_plan.md`, "Not pursued").
+- **Data licence.** BNCI2014-001 is CC BY-ND 4.0; raw EEG and per-subject features are not redistributed, so reproduction requires downloading the data.
+
+## 9 Audit checklist for identity-protection claims in BCIs
+
+Derived from pitfalls 1 and 2 and from the design of experiments B, C and G.
+
+1. **Independent attackers.** Retrain several attackers from scratch on the *frozen* outputs of the defended system, tuned only on their own training data. Report co-trained head scores, if at all, beside them and never as evidence.
+2. **Sanity-check near- and below-chance scores.** An identity score well below chance indicates a systematically misled identifier; treat it as a warning, not a success. A co-trained score near chance is not reassuring either: in E it coexisted with independent attackers at 0.44–0.58 (§6.6).
+3. **Deployment-period labels.** Evaluate an attacker that holds a few labelled outputs from the deployment period, and report an enrolment curve ($n = 1, 2, 5, \ldots$ per user), not only reference-session attacks.
+4. **Name the scenario.** State for every number whether attacker training and test data come from the same session, a different day, or the defence's training distribution. A training-distribution-only scenario never establishes protection; in B and E, defences fitted on T lowered the cross-day attacker far more than the deployment-period one (§6.2, §6.6).
+5. **Simple baselines.** Compare against a task-only bottleneck sweep and per-subject recentring or alignment before crediting an adversarial objective with any gain.
+6. **Observation length.** Report identity versus the number of observed messages, for features and for commands; a single-message number understates exposure.
+7. **Strongest attacker, full table.** Report the maximum over attackers and scenarios, and publish the full attacker × scenario × seed table, not only maxima.
+8. **Chance and population.** State chance, the number of identities and closed versus open set; do not describe an attacker's failure as anonymisation.
+9. **Utility on the same footing.** Measure task performance on the same held-out data with a predeclared non-inferiority margin, at every reported privacy setting; a near-chance identifier at near-chance task accuracy (E without alignment, $\lambda \ge 1$) is not a privacy–utility operating point.
+10. **Pre-register and seal.** Fix the analysis, code and training-data-only selections by commit before scoring held-out data, and report deviations and failures.
+
+## 10 Reproducibility statement
+
+All code, configurations, result tables and figures are in the repository. The analysis plan (`docs/analysis_plan.md`, versions 1–3) and the append-only decision log (`docs/decision_log.md`) record hypotheses, decision rules, seal commits and deviations. The pipeline is reproduced with
+
+```powershell
+python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
+.venv\Scripts\python scripts\download_data.py   # about 750 MB, SHA-256 printed
+.venv\Scripts\python -m pytest
+.venv\Scripts\python -m beat.run_all            # all tables and figures
+```
+
+(`README.md`). Stage times on an 8-thread laptop CPU without GPU were A 2 min, B 3 + 4 min, C 13 min per gate variant and D 13.3 min (`README.md`, `docs/decision_log.md`); the E final run took 43 min with two workers (`results/exp_e/summary.json`, `wall_seconds`). CI runs the synthetic test suite (`pytest -m "not data"`) on every push; it does not download EEG and therefore does not reproduce the reported numbers. Lee2019 preparation uses `scripts/prepare_lee2019.py`, with raw-file checksums in `data/processed/lee2019/SHA256SUMS`. The data are not redistributed (CC BY-ND 4.0).
+
+## References
+
+Works [1]–[20] are those verified in `docs/related_work.md` (status labels and access dates there). Entries marked † are cited from `README.md` or `docs/analysis_plan.md` and were not part of that verification.
+
+1. L. Meng, X. Jiang, J. Huang, W. Li, H. Luo, D. Wu. User identity protection in EEG-based brain–computer interfaces. *IEEE Trans. Neural Syst. Rehabil. Eng.*, 2023. doi:10.1109/TNSRE.2023.3310883
+2. H. Wang, J. Ruan, C. Fan, Y. Cheng, Z. Lv. ID-RemovalNet: Identity removal network for EEG privacy protection with enhancing decoding tasks. *Proc. IJCAI-25*, pp. 4209–4217, 2025. doi:10.24963/ijcai.2025/469
+3. S. S. Gomasta, B. Chhaglani, P. Shenoy. NeuroPriv: Adversarial representation learning for privacy in wearable EEG systems. arXiv:2609.00390, 2026 (preprint).
+4. N. Mehlman, S. Narayanan. Task-preserving EEG anonymization using latent feature masking. *IEEE J. Biomed. Health Inform.*, 2026 (accepted). doi:10.1109/JBHI.2026.3704845
+5. M. S. Mondair. Subject re-identification leakage in motor-imagery BCI models: a multi-corpus, audit-clean benchmark of attacks and defenses. GitHub technical report (unreviewed). https://github.com/manrajmondair/bci-identity-leakage
+6. S. S. Muhaimin, A. Nagarajan. Riemannian suppression of cross-session identity leakage in motor-imagery EEG. arXiv:2610.15626, 2026 (preprint).
+7. O. Özdenizci, Y. Wang, T. Koike-Akino, D. Erdoğmuş. Learning invariant representations from EEG via adversarial inference. *IEEE Access*, 8:27074–27085, 2020. doi:10.1109/ACCESS.2020.2971600
+8. (Not cited; listed as not opened in `docs/related_work.md`.)
+9. Y. Elazar, Y. Goldberg. Adversarial removal of demographic attributes from text data. *Proc. EMNLP*, 2018. doi:10.18653/v1/D18-1002
+10. M. Barrett, Y. Kementchedjhieva, Y. Elazar, D. Elliott, A. Søgaard. Adversarial removal of demographic attributes revisited. *Proc. EMNLP-IJCNLP*, pp. 6330–6335, 2019.
+11. P. C. Roy, V. N. Boddeti. Mitigating information leakage in image representations: a maximum entropy approach. *Proc. CVPR*, 2019.
+12. C. Song, V. Shmatikov. Overlearning reveals sensitive attributes. *Proc. ICLR*, 2020.
+13. E. Maiorana, P. Campisi. Longitudinal evaluation of EEG-based biometric recognition. *IEEE Trans. Inf. Forensics Security*, 2018. doi:10.1109/TIFS.2017.2778010
+14. I. Martinovic, D. Davies, M. Frank, D. Perito, T. Ros, D. Song. On the feasibility of side-channel attacks with brain-computer interfaces. *Proc. 21st USENIX Security Symp.*, pp. 143–158, 2012.
+15. N. Sadiq, M. Toorani. Differentially private EEG feature anonymization: a privacy–utility case study in clinical neurophysiology. arXiv:2609.11777, 2026 (preprint).
+16. A. Bay, S. Şengül Ayan, S. Demir. A sensitivity-aware privacy budget selection framework for EEG data under local differential privacy. *EURASIP J. Inf. Security*, 2026 (early version). doi:10.1186/s13635-026-00242-w
+17. K. Xia et al. Privacy-preserving brain-computer interfaces: a systematic review. *IEEE Trans. Comput. Soc. Syst.*, 10(5):2312–2324, 2023. doi:10.1109/TCSS.2022.3184818
+18. P. Zanini, M. Congedo, C. Jutten, S. Said, Y. Berthoumieu. Transfer learning: a Riemannian geometry framework with applications to brain–computer interfaces. *IEEE Trans. Biomed. Eng.*, 65(5):1107–1116, 2018. doi:10.1109/TBME.2017.2742541
+19. P. L. C. Rodrigues, C. Jutten, M. Congedo. Riemannian Procrustes analysis: transfer learning for brain–computer interfaces. *IEEE Trans. Biomed. Eng.*, 66(8):2390–2401. doi:10.1109/TBME.2018.2889705
+20. H. He, D. Wu. Transfer learning for brain–computer interfaces: a Euclidean space data alignment approach. *IEEE Trans. Biomed. Eng.* doi:10.1109/TBME.2019.2913914
+
+Additional references:
+
+- [Barachant 2012] A. Barachant et al. Multiclass brain–computer interface classification by Riemannian geometry. *IEEE Trans. Biomed. Eng.*, 2012. †
+- [Ramoser 2000] H. Ramoser, J. Müller-Gerking, G. Pfurtscheller. Optimal spatial filtering of single trial EEG during imagined hand movement. *IEEE Trans. Rehabil. Eng.*, 2000. †
+- [Ganin 2015] Y. Ganin, V. Lempitsky. Unsupervised domain adaptation by backpropagation. *Proc. ICML*, 2015. †
+- [Lawhern 2018] V. J. Lawhern et al. EEGNet: a compact convolutional neural network for EEG-based brain–computer interfaces. *J. Neural Eng.*, 2018. † (bibliographic details to be verified)
+- [BNCI2014-001] BCI Competition IV Data Set 2a; BNCI Horizon 2020, BNCI2014-001. †
+- [Lee2019] M.-H. Lee et al. EEG dataset and OpenBMI toolbox for three BCI paradigms. *GigaScience*, 2019. † (bibliographic details to be verified)
+
+## Appendix A: Deviations and technical events
+
+All entries are from `docs/analysis_plan.md` ("Deviations from the 2026-10-09 proposal") and `docs/decision_log.md`.
+
+| # | When | Deviation or event | Reason | Effect on conclusions |
+|---|---|---|---|---|
+| 1 | Plan v1 (pre-seal) | Causal filtering in all experiments; no separate non-causal analysis | Online-compatible processing | None; G uses the paper's zero-phase filter |
+| 2 | Plan v1 | Data from the TU Graz host of the same BNCI files, with checksums | BNCI website unreachable | None |
+| 3 | Plan v1 | Dropped mixed-effects regression, chronological calibration conditions, continuous-command auxiliary, unseen-user and external-dataset extensions | Schedule | Narrower scope; external dataset later added as L |
+| 4 | Plan v1 | Observation-length training groups slide with stride 1 | More training groups | None |
+| 5 | Plan v1 | SVM attacker hyperparameters tuned within the attacker's own training data, not T-CV | Attacker independence | None |
+| 6 | Plan v1 | Results by 2026-11-15; demo, report and explainer after the presentation | Schedule | None |
+| — | Pre-seal | Protection requires both the strongest-over-scenarios and the main-scenario comparison to pass | Operationalises "auxiliary alone never establishes protection" | Stricter rule |
+| — | Pre-seal | T-only development showed the co-trained head at or below chance while independent attackers rose with $\lambda$; head scores added as diagnostics, per-epoch checkpoints and MLP convergence added | Known failure of GRL removal; no E data involved | Origin of pitfall 1 |
+| — | Pre-seal | One loader sanity check scored per-subject tangent space + logistic regression (6 T runs) on E (mean BA 0.758) | Validate trial extraction | Equals A's B3 at 6 runs; no setting chosen from it |
+| 7 | Post-seal | Experiment C's sealed rejection rule (median + 3·MAD Riemannian distance) held 3.4% of T but 35% of E (user 5: 99.3%); primary C analysis holds only non-finite trials; sealed rule still reported in `results/exp_c/sealed_gate/` | Rule detected cross-day drift, not artifacts; replacement has no E-tunable parameter | C primary results use the replacement; sealed-variant feature-mode main cells for user 5 not evaluable |
+| — | Post-seal 2 | `python -m beat.exp_d final` failed with a joblib pickling error; D and E final runs started through an import without editing sealed code | Editing would invalidate the sealed source hash | None |
+| — | Post-seal 2 | First import-based D run stalled after a worker died; cancelled before writing any table and restarted unchanged | Memory pressure from concurrent jobs | None; no result from the stalled run was read |
+| — | Plan v3 | Lee2019 raw files deleted after reduction; raw SHA-256 retained | Disk space (~66 GB) | Reduced epochs cannot be re-derived without re-download |
+| — | Plan v3 | L uses fixed RBF-SVM ($C=1$, $\gamma$ = scale) and capped MLP iterations, fixed from session-1 timing (identity BA 0.9704 vs 0.9706 for the full grid on session 1) | Runtime on one laptop CPU | Attacker set fixed before seal 3 |
+| — | Plan v3 | Confirmatory plan reviewed by an independent reviewer instead of the advisor agent | Advisor reviews refused by a safety classifier | None |
