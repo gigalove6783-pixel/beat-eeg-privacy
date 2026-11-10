@@ -56,59 +56,59 @@ L 577.212632 251.551475
    <g id="line2d_4">
     <path d="M 833.320421 211.779148 
 L 833.320421 251.551475 
-" clip-path="url(#pbced1e4645)" style="fill: none; stroke: #bdbdbd; stroke-width: 1.5; stroke-linecap: square"/>
+" clip-path="url(#pbced1e4645)" style="fill: none; stroke: #0072b2; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
    <g id="patch_3">
-    <path d="M 148.232084 450.413115 
-L 261.152337 450.413115 
-Q 268.137095 450.413115 268.137095 442.458649 
+    <path d="M 148.232084 461.019069 
+L 261.152337 461.019069 
+Q 268.137095 461.019069 268.137095 453.064603 
 L 268.137095 256.854452 
 Q 268.137095 248.899987 261.152337 248.899987 
 L 148.232084 248.899987 
 Q 141.247326 248.899987 141.247326 256.854452 
-L 141.247326 442.458649 
-Q 141.247326 450.413115 148.232084 450.413115 
+L 141.247326 453.064603 
+Q 141.247326 461.019069 148.232084 461.019069 
 z
 " clip-path="url(#pbced1e4645)" style="fill: #ffffff; stroke: #0072b2; stroke-width: 2.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
-    <path d="M 381.057347 450.413115 
-L 493.9776 450.413115 
-Q 500.962358 450.413115 500.962358 442.458649 
+    <path d="M 381.057347 461.019069 
+L 493.9776 461.019069 
+Q 500.962358 461.019069 500.962358 453.064603 
 L 500.962358 256.854452 
 Q 500.962358 248.899987 493.9776 248.899987 
 L 381.057347 248.899987 
 Q 374.072589 248.899987 374.072589 256.854452 
-L 374.072589 442.458649 
-Q 374.072589 450.413115 381.057347 450.413115 
+L 374.072589 453.064603 
+Q 374.072589 461.019069 381.057347 461.019069 
 z
 " clip-path="url(#pbced1e4645)" style="fill: #ffffff; stroke: #e69f00; stroke-width: 2.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
-    <path d="M 520.752505 450.413115 
-L 633.672758 450.413115 
-Q 640.657516 450.413115 640.657516 442.458649 
+    <path d="M 520.752505 461.019069 
+L 633.672758 461.019069 
+Q 640.657516 461.019069 640.657516 453.064603 
 L 640.657516 256.854452 
 Q 640.657516 248.899987 633.672758 248.899987 
 L 520.752505 248.899987 
 Q 513.767747 248.899987 513.767747 256.854452 
-L 513.767747 442.458649 
-Q 513.767747 450.413115 520.752505 450.413115 
+L 513.767747 453.064603 
+Q 513.767747 461.019069 520.752505 461.019069 
 z
 " clip-path="url(#pbced1e4645)" style="fill: #ffffff; stroke: #e69f00; stroke-width: 2.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
-    <path d="M 776.860295 450.413115 
-L 889.780547 450.413115 
-Q 896.765305 450.413115 896.765305 442.458649 
+    <path d="M 776.860295 461.019069 
+L 889.780547 461.019069 
+Q 896.765305 461.019069 896.765305 453.064603 
 L 896.765305 256.854452 
 Q 896.765305 248.899987 889.780547 248.899987 
 L 776.860295 248.899987 
 Q 769.875537 248.899987 769.875537 256.854452 
-L 769.875537 442.458649 
-Q 769.875537 450.413115 776.860295 450.413115 
+L 769.875537 453.064603 
+Q 769.875537 461.019069 776.860295 461.019069 
 z
-" clip-path="url(#pbced1e4645)" style="fill: #ffffff; stroke-dasharray: 8.14,3.52; stroke-dashoffset: 0; stroke: #bdbdbd; stroke-width: 2.2; stroke-linejoin: miter"/>
+" clip-path="url(#pbced1e4645)" style="fill: #ffffff; stroke: #0072b2; stroke-width: 2.2; stroke-linejoin: miter"/>
    </g>
    <g id="PathCollection_1">
     <defs>
@@ -143,24 +143,16 @@ z
     <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif" transform="translate(259.96203 162.076277)">plan v2 · 73 tests passed</text>
    </g>
    <g id="PathCollection_3">
-    <defs>
-     <path id="m8501833e7b" d="M 0 10.723805 
-L 10.723805 0 
-L 0 -10.723805 
-L -10.723805 0 
-z
-" style="stroke: #5a5a5a; stroke-width: 2"/>
-    </defs>
     <g clip-path="url(#pbced1e4645)">
-     <use xlink:href="#m8501833e7b" x="705.266526" y="211.779148" style="fill: #ffffff; stroke: #5a5a5a; stroke-width: 2"/>
+     <use xlink:href="#m9628397afc" x="705.266526" y="211.779148" style="stroke: #000000; stroke-width: 2"/>
     </g>
    </g>
    <g id="text_5">
-    <text style="font-weight: 700; font-size: 14px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #5a5a5a" x="705.266526" y="126.636714" transform="rotate(-0 705.266526 126.636714)">Seal 3</text>
+    <text style="font-weight: 700; font-size: 14px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle" x="705.266526" y="126.636714" transform="rotate(-0 705.266526 126.636714)">Seal 3</text>
    </g>
    <g id="text_6">
-    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; fill: #5a5a5a" transform="translate(665.52387 147.542957)">not yet recorded</text>
-    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; fill: #5a5a5a" transform="translate(648.110354 162.062527)">plan v3 (claims C1–C4)</text>
+    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif" transform="translate(653.086136 148.697957)">9757c3f · 2026-11-10</text>
+    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif" transform="translate(641.065198 162.076277)">plan v3 · 109 tests passed</text>
    </g>
    <g id="PathCollection_4">
     <defs>
@@ -241,44 +233,34 @@ z
     <text style="font-size: 10.5px; font-family: 'Arial', 'DejaVu Sans', sans-serif; fill: #333333" transform="translate(553.279194 414.110653)">1–5 labels</text>
    </g>
    <g id="PathCollection_7">
-    <defs>
-     <path id="ma4b5366472" d="M 0 4.1833 
-C 1.109424 4.1833 2.173559 3.742521 2.95804 2.95804 
-C 3.742521 2.173559 4.1833 1.109424 4.1833 0 
-C 4.1833 -1.109424 3.742521 -2.173559 2.95804 -2.95804 
-C 2.173559 -3.742521 1.109424 -4.1833 0 -4.1833 
-C -1.109424 -4.1833 -2.173559 -3.742521 -2.95804 -2.95804 
-C -3.742521 -2.173559 -4.1833 -1.109424 -4.1833 0 
-C -4.1833 1.109424 -3.742521 2.173559 -2.95804 2.95804 
-C -2.173559 3.742521 -1.109424 4.1833 0 4.1833 
-z
-" style="stroke: #bdbdbd"/>
-    </defs>
     <g clip-path="url(#pbced1e4645)">
-     <use xlink:href="#ma4b5366472" x="833.320421" y="211.779148" style="fill: #bdbdbd; stroke: #bdbdbd"/>
+     <use xlink:href="#m625faaf149" x="833.320421" y="211.779148" style="fill: #0072b2; stroke: #0072b2"/>
     </g>
    </g>
    <g id="text_16">
     <text style="font-weight: 700; font-size: 13px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle" x="833.320421" y="276.41364" transform="rotate(-0 833.320421 276.41364)">L · Lee2019</text>
    </g>
    <g id="text_17">
-    <text style="font-weight: 700; font-size: 10px; font-family: 'Arial', 'DejaVu Sans', sans-serif; fill: #5a5a5a" transform="translate(793.137609 332.497195)">CONFIRMATORY</text>
-    <text style="font-weight: 700; font-size: 10px; font-family: 'Arial', 'DejaVu Sans', sans-serif; fill: #5a5a5a" transform="translate(807.209484 343.380984)">(PENDING)</text>
+    <text style="font-weight: 700; font-size: 10px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #0072b2" x="833.320421" y="331.747683" transform="rotate(-0 833.320421 331.747683)">CONFIRMATORY</text>
    </g>
    <g id="text_18">
-    <text style="font-size: 10.5px; font-family: 'Arial', 'DejaVu Sans', sans-serif; fill: #333333" transform="translate(788.090851 375.000819)">54 users; session 2</text>
-    <text style="font-size: 10.5px; font-family: 'Arial', 'DejaVu Sans', sans-serif; fill: #333333" transform="translate(792.171905 387.495204)">unopened; claims</text>
-    <text style="font-size: 10.5px; font-family: 'Arial', 'DejaVu Sans', sans-serif; fill: #333333" transform="translate(794.80839 400.30787)">C1–C4 by Holm,</text>
-    <text style="font-size: 10.5px; font-family: 'Arial', 'DejaVu Sans', sans-serif; fill: #333333" transform="translate(814.084913 414.110653)">α = 0.05</text>
+    <text style="font-size: 10.5px; font-family: 'Arial', 'DejaVu Sans', sans-serif; fill: #333333" transform="translate(784.301827 375.049217)">54 users; C1, C2, C4</text>
+    <text style="font-size: 10.5px; font-family: 'Arial', 'DejaVu Sans', sans-serif; fill: #333333" transform="translate(791.587843 387.559188)">supported; C3 not</text>
+    <text style="font-size: 10.5px; font-family: 'Arial', 'DejaVu Sans', sans-serif; fill: #333333" transform="translate(792.766632 400.30787)">supported (Holm)</text>
+   </g>
+   <g id="text_19">
+    <text style="font-style: italic; font-size: 9px; font-family: 'Arial', 'DejaVu Sans', sans-serif; fill: #5a5a5a" transform="translate(785.289952 426.11487)">run 1 stopped by sealed</text>
+    <text style="font-style: italic; font-size: 9px; font-family: 'Arial', 'DejaVu Sans', sans-serif; fill: #5a5a5a" transform="translate(779.542609 436.205417)">memory guard; unchanged</text>
+    <text style="font-style: italic; font-size: 9px; font-family: 'Arial', 'DejaVu Sans', sans-serif; fill: #5a5a5a" transform="translate(821.318077 446.369089)">re-run</text>
    </g>
   </g>
-  <g id="text_19">
+  <g id="text_20">
    <text style="font-weight: 700; font-size: 18px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="18.432" y="26.064492" transform="rotate(-0 18.432 26.064492)">Confirmatory claims are sealed before their evaluation data are opened</text>
   </g>
-  <g id="text_20">
+  <g id="text_21">
    <text style="font-size: 13px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #5a5a5a" x="18.432" y="53.535719" transform="rotate(-0 18.432 53.535719)">Order of seals and analyses in docs/decision_log.md; exploratory work reuses data already seen and makes no confirmatory claim.</text>
   </g>
-  <g id="text_21">
+  <g id="text_22">
    <g id="patch_7">
     <path d="M 733.049437 512.7438 
 L 907.776 512.7438 
@@ -294,8 +276,8 @@ z
    </g>
    <text style="font-weight: 700; font-size: 10.5px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #ffffff" x="907.776" y="506.859083" transform="rotate(-0 907.776 506.859083)">CONFIRMATORY + EXPLORATORY</text>
   </g>
-  <g id="text_22">
-   <text style="font-size: 9.5px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #5a5a5a" x="18.432" y="507.069347" transform="rotate(-0 18.432 507.069347)">Source: docs/decision_log.md (commits, dates, test counts); status per docs/report.md §4.7, §5</text>
+  <g id="text_23">
+   <text style="font-size: 9.5px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #5a5a5a" x="18.432" y="507.069347" transform="rotate(-0 18.432 507.069347)">Source: docs/decision_log.md (commits, dates, test counts, run attempts); L decisions from results/exp_l/decision.json</text>
   </g>
  </g>
  <defs>

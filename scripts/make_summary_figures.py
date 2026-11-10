@@ -1,17 +1,20 @@
 """Summary figures for slides, README and the technical report.
 
-Builds five figures from committed result files only and writes PNG (200 dpi)
+Builds seven figures from committed result files only and writes PNG (200 dpi)
 and SVG to ``results/figures/summary/``:
 
     python scripts/make_summary_figures.py
 
-Inputs: results/exp_b, exp_c, exp_d, exp_e, exp_g/bnci tables and the seal
-records in docs/decision_log.md. ``results/exp_l/`` is deliberately not read;
-``panel_lee2019`` is a stub for a later panel.
+Inputs: results/exp_b, exp_c, exp_d, exp_e, exp_g/bnci and exp_l tables and the
+seal records in docs/decision_log.md. The five-seed co-trained head score of
+experiment L is recomputed from results/exp_l/head_predictions.csv.gz with the
+project's own ``beat.exp_l.recalls`` and participant bootstrap ``interval``.
 """
 from __future__ import annotations
 
+import json
 import re
+import sys
 from pathlib import Path
 
 import matplotlib
@@ -19,10 +22,13 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 import pandas as pd  # noqa: E402
+import yaml  # noqa: E402
 from matplotlib.lines import Line2D  # noqa: E402
 from matplotlib.patches import FancyBboxPatch  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from beat.exp_l import interval, recalls  # noqa: E402
 RES = ROOT / "results"
 OUT = RES / "figures" / "summary"
 
@@ -468,26 +474,34 @@ def load_seals():
     seal2_date, m2 = find(r"\*\*E seal 2\*\*: commit `([0-9a-f]{7})[0-9a-f]*`.*?(\d+) tests passed")
     ab_date, m_ab = find(r"A and B final runs completed at commit `([0-9a-f]{7})`")
     g_date, _ = find(r"Experiment G added")
-    seal3_date, m3 = find(r"\*\*Seal 3\*\*: commit `([0-9a-f]{7})")
-    if not (m1 and m2 and m_ab and g_date):
+    _, m3_tests = find(r"\*\*Seal 3\*\*.*?(\d+) tests passed")
+    seal3_date, m3 = find(r"Seal 3 commit: `([0-9a-f]{7})[0-9a-f]*`")
+    _, m_l1 = find(r"Final attempt 1 of L .*?stopped .*?sealed guard `MemoryError")
+    _, m_l2 = find(r"Final attempt 2 of L completed")
+    if not (m1 and m2 and m_ab and g_date and m3 and m3_tests):
         raise ValueError("decision_log.md: expected seal/result entries not found")
     return dict(
         seal1=(m1.group(1), seal1_date, m1.group(2)),
         seal2=(m2.group(1), seal2_date, m2.group(2)),
         ab=(m_ab.group(1), ab_date),
         g=g_date,
-        seal3=(m3.group(1), seal3_date) if m3 else None,
+        seal3=(m3.group(1), seal3_date, m3_tests.group(1)),
+        l_rerun=bool(m_l1 and m_l2),
     )
 
 
 def fig_timeline():
     s = load_seals()
+    decisions = json.loads((RES / "exp_l" / "decision.json").read_text())["claims"]
+    supported = [c for c, v in decisions.items() if v["decision"] == "supported"]
+    rejected = [c for c, v in decisions.items() if v["decision"] == "not_supported"]
     fig = new_figure(
         "Confirmatory claims are sealed before their evaluation data are opened",
         "Order of seals and analyses in docs/decision_log.md; exploratory work reuses data "
         "already seen and makes no confirmatory claim.",
         "CONFIRMATORY + EXPLORATORY",
-        "docs/decision_log.md (commits, dates, test counts); status per docs/report.md §4.7, §5",
+        "docs/decision_log.md (commits, dates, test counts, run attempts); "
+        "L decisions from results/exp_l/decision.json",
     )
     ax = fig.add_axes([0.02, 0.08, 0.96, 0.78])
     ax.set_xlim(-0.6, 7.0)
@@ -496,27 +510,17 @@ def fig_timeline():
     ax.annotate("", xy=(6.98, 0), xytext=(-0.55, 0),
                 arrowprops=dict(arrowstyle="-|>", color="black", lw=1.6), zorder=1)
 
-    seal3 = s["seal3"]
     seals = [
-        (0, "E seal 1", f"{s['seal1'][0]} · {s['seal1'][1]}\nplan v1 · {s['seal1'][2]} tests passed",
-         True),
-        (2, "E seal 2", f"{s['seal2'][0]} · {s['seal2'][1]}\nplan v2 · {s['seal2'][2]} tests passed",
-         True),
-        (5.3, "Seal 3",
-         f"{seal3[0]} · {seal3[1]}\nplan v3" if seal3 else "not yet recorded\nplan v3 (claims C1–C4)",
-         bool(seal3)),
+        (0, "E seal 1", f"{s['seal1'][0]} · {s['seal1'][1]}\nplan v1 · {s['seal1'][2]} tests passed"),
+        (2, "E seal 2", f"{s['seal2'][0]} · {s['seal2'][1]}\nplan v2 · {s['seal2'][2]} tests passed"),
+        (5.3, "Seal 3", f"{s['seal3'][0]} · {s['seal3'][1]}\nplan v3 · {s['seal3'][2]} tests passed"),
     ]
-    for x, name, detail, done in seals:
-        colour = "black" if done else C["muted"]
-        ax.scatter(x, 0, marker="D", s=230, color=colour if done else "white",
-                   edgecolor=colour, lw=2, zorder=3)
-        ax.text(x, 0.62, name, ha="center", va="bottom", size=LABEL_SIZE + 1, weight="bold",
-                color=colour)
-        ax.text(x, 0.56, detail, ha="center", va="top", size=NOTE_SIZE + 0.5, color=colour,
-                linespacing=1.4)
+    for x, name, detail in seals:
+        ax.scatter(x, 0, marker="D", s=230, color="black", lw=2, zorder=3)
+        ax.text(x, 0.62, name, ha="center", va="bottom", size=LABEL_SIZE + 1, weight="bold")
+        ax.text(x, 0.56, detail, ha="center", va="top", size=NOTE_SIZE + 0.5, linespacing=1.4)
 
-    status_colour = {"Confirmatory": C["head"], "Exploratory": C["grl"],
-                     "Confirmatory\n(pending)": C["pending"]}
+    status_colour = {"Confirmatory": C["head"], "Exploratory": C["grl"]}
     analyses = [
         (1, "A · B · C", "Confirmatory",
          f"A, B final at {s['ab'][0]};\nH1, H2 not supported;\ncommands leak\nabove chance"),
@@ -524,39 +528,287 @@ def fig_timeline():
          "reuse session E;\nno defence passes;\nhead–attacker\ngap recurs"),
         (4.2, "G · published\ndefence", "Exploratory",
          "no seal; paper's\noperating point;\nre-identified with\n1–5 labels"),
-        (6.4, "L · Lee2019", "Confirmatory\n(pending)",
-         "54 users; session 2\nunopened; claims\nC1–C4 by Holm,\nα = 0.05"),
+        (6.4, "L · Lee2019", "Confirmatory",
+         f"54 users; {', '.join(supported)}\nsupported; {', '.join(rejected)} not\n"
+         "supported (Holm)"),
     ]
-    box_w, box_h, top = 1.05, 1.48, -0.3
+    box_w, box_h, top = 1.05, 1.56, -0.3
     for x, name, status, detail in analyses:
         colour = status_colour[status]
         ax.plot([x, x], [0, top], color=colour, lw=1.5, zorder=1)
         ax.scatter(x, 0, s=70, color=colour, zorder=3)
         ax.add_patch(FancyBboxPatch((x - box_w / 2, top - box_h), box_w, box_h,
                                     boxstyle="round,pad=0.02,rounding_size=0.06",
-                                    fc="white", ec=colour, lw=2.2, zorder=2,
-                                    ls="--" if "pending" in status else "-"))
+                                    fc="white", ec=colour, lw=2.2, zorder=2))
         ax.text(x, top - 0.1, name, ha="center", va="top", size=LABEL_SIZE,
                 weight="bold", zorder=3, linespacing=1.15)
         ax.text(x, top - 0.55, status.upper(), ha="center", va="top", size=NOTE_SIZE - 0.5,
-                weight="bold", color=colour if "pending" not in status else C["muted"],
-                zorder=3)
+                weight="bold", color=colour, zorder=3)
         ax.text(x, top - 0.86, detail, ha="center", va="top", size=NOTE_SIZE,
                 color="#333333", zorder=3, linespacing=1.3)
+    if s["l_rerun"]:
+        ax.text(6.4, top - box_h + 0.07, "run 1 stopped by sealed\nmemory guard; unchanged\n"
+                "re-run", ha="center", va="bottom", size=NOTE_SIZE - 1.5, color=C["muted"],
+                style="italic", zorder=3, linespacing=1.2)
     save(fig, "fig5_preregistration_timeline")
 
 
 # ----------------------------------------------------------------------------
-# Later: Lee2019 / OpenBMI (experiment L). Not called; results/exp_l/ is not read.
+# Figure 6: experiment L, confirmatory claims C1-C4 (Lee2019/OpenBMI, 54 users)
 # ----------------------------------------------------------------------------
-def panel_lee2019(ax):
-    """Placeholder for the Lee2019 confirmatory panel (claims C1-C4).
+L_N = 54
+L_CHANCE = 1 / L_N
+# Pre-registered plan-v3 thresholds (docs/report.md §6.7).
+C1_MIN_GAP, C2_MIN_GAP, C2_TASK_MARGIN = 0.20, 0.20, -0.05
+C3_FLOOR, C4_FLOOR = 2 / L_N, 10 / L_N
+ATTACKER_NAME = {"logistic": "logistic regression", "beat_logistic": "logistic regression",
+                 "rbf_svm": "RBF-SVM", "beat_rbf_svm": "RBF-SVM", "mlp": "MLP",
+                 "beat_mlp": "MLP", "paper_ts_svm": "paper's tangent-space SVM"}
 
-    Intended content once seal 3 and the L final run exist: per-claim observed
-    effect against its pre-registered threshold, Holm-adjusted decision, chance
-    1/54. Sources will be results/exp_l/decision.json and identity_summary.csv.
-    """
-    raise NotImplementedError("Lee2019 results are pending (seal 3 not recorded).")
+
+def strongest(ident, **sel):
+    """The single sealed-maximum row of identity_summary.csv for one cell."""
+    rows = ident[ident.strongest]
+    for col, val in sel.items():
+        rows = rows[rows[col] == val]
+    if len(rows) != 1:
+        raise ValueError(f"identity_summary.csv: expected one strongest row for {sel}")
+    return rows.iloc[0]
+
+
+def load_lee2019():
+    L = RES / "exp_l"
+    decision = json.loads((L / "decision.json").read_text())["claims"]
+    ident = pd.read_csv(L / "identity_summary.csv", dtype={"enrolment": str})
+    task = pd.read_csv(L / "task_summary.csv").set_index("key")["mean"]
+    repro = json.loads((L / "reproduction.json").read_text())
+    rep = dict(kind="representation", mode="feature", enrolled=L_N)
+    c1_att = strongest(ident, key="P3_lambda1", **rep)
+    # Five-seed head score on the same seeds as the confirmatory attacker row; the
+    # three-seed head_vs_independent.csv pair is descriptive only.
+    seeds = [int(v) for v in c1_att.seeds.split(",")]
+    heads = pd.read_csv(L / "head_predictions.csv.gz")
+    heads = heads[(heads.key == "P3_lambda1") & heads.seed.isin(seeds)]
+    cfg = yaml.safe_load((ROOT / "configs" / "exp_l.yaml").read_text())
+    head_ci = interval(heads, cfg, sorted(cfg["subjects"]), seeds,
+                       sorted(heads.direction.unique()))
+    head = dict(ba=float(recalls(heads).mean()), ci_low=head_ci[0], ci_high=head_ci[1])
+    obs = dict(kind="observation", key="P2-RC_d8", mode="command", tau=0.5)
+    return dict(
+        decision=decision, task=task, repro=repro, head=head, c1_att=c1_att,
+        p0=strongest(ident, key="P0", **rep), p2rc=strongest(ident, key="P2-RC_d8", **rep),
+        c3=[strongest(ident, k=k, **obs) for k in (1, 20)],
+        c4_ref=strongest(ident, kind="benchmark", key="G"),
+        c4=[strongest(ident, kind="enrolment", key="G", enrolment=n) for n in ("1", "2", "5")],
+    )
+
+
+def fmt_p(p):
+    if p >= 0.01:
+        return f"{p:.2f}"
+    mant, exp = f"{p:.1e}".split("e")
+    return f"{mant} × 10$^{{{int(exp)}}}$"
+
+
+def decision_badge(ax, claim):
+    supported = claim["decision"] == "supported"
+    text = ("SUPPORTED" if supported else "NOT SUPPORTED") + f"  ·  Holm p = {fmt_p(claim['holm_p'])}"
+    ax.text(1.0, 1.04, text, transform=ax.transAxes, ha="right", va="bottom",
+            size=NOTE_SIZE - 0.5, weight="bold", color="white" if supported else "black",
+            bbox=dict(boxstyle="round,pad=0.3", fc="#222222" if supported else "white",
+                      ec="#222222", lw=1.2))
+
+
+def interval_rows(ax, rows, xmax):
+    """Rows top to bottom: (label, value, low, high, colour). Label sits above its interval."""
+    n = len(rows)
+    for i, (label, v, lo, hi, colour) in enumerate(rows):
+        y = n - 1 - i
+        ax.plot([lo, hi], [y, y], color=colour, lw=3.2, alpha=0.45, solid_capstyle="butt",
+                zorder=3)
+        ax.scatter(v, y, s=60, color=colour, zorder=4, clip_on=False)
+        right = hi + 0.012 * xmax < 0.86 * xmax
+        ax.text(hi + 0.012 * xmax if right else lo - 0.012 * xmax, y, f"{v:.3f}",
+                ha="left" if right else "right", va="center", size=NOTE_SIZE, weight="bold",
+                color=colour, zorder=4)
+        ax.text(0.004 * xmax, y + 0.4, label, ha="left", va="bottom", size=NOTE_SIZE,
+                color="#333333", zorder=4,
+                bbox=dict(boxstyle="square,pad=0.1", fc="white", ec="none"))
+    ax.set_ylim(-0.55, n - 0.05)
+    ax.set_yticks([])
+    ax.set_xlim(0, xmax)
+    ax.grid(axis="y", visible=False)
+    ax.spines["left"].set_visible(False)
+    ax.axvline(L_CHANCE, color=C["chance"], ls=":", lw=1.6, zorder=1)
+
+
+def threshold_line(ax, x):
+    ax.axvline(x, color="black", ls="-.", lw=1.3, zorder=2)
+
+
+def pp(x):
+    return f"{x * 100:+.1f}".replace("-", "−") + " pp"
+
+
+def fig_lee2019():
+    d = load_lee2019()
+    dec = d["decision"]
+    ok = sum(v["decision"] == "supported" for v in dec.values())
+    fig = new_figure(
+        f"Confirmatory replication on 54 users: {ok} of {len(dec)} pre-registered claims hold",
+        "Lee2019/OpenBMI, five seeds, Holm at α = 0.05. Both pitfalls and the bottleneck result "
+        "replicate; command accumulation does not pass correction.",
+        "CONFIRMATORY",
+        "results/exp_l/decision.json, identity_summary.csv, task_summary.csv, "
+        "head_predictions.csv.gz, reproduction.json",
+    )
+    axes = fig.subplots(2, 2, gridspec_kw=dict(height_ratios=[1, 1.3]))
+    fig.subplots_adjust(left=0.035, right=0.985, top=0.80, bottom=0.175, wspace=0.10,
+                        hspace=0.5)
+    (a1, a2), (a3, a4) = axes
+
+    # C1: co-trained head vs strongest independent attacker (P3, λ = 1).
+    h, att = d["head"], d["c1_att"]
+    interval_rows(a1, [
+        ("Co-trained identity head (gradient reversal, λ = 1)", h["ba"], h["ci_low"],
+         h["ci_high"], C["head"]),
+        (f"Strongest independent attacker ({ATTACKER_NAME[att.attacker]}), same outputs",
+         att.ba, att.ci_low, att.ci_high, C["attacker"]),
+    ], 1.0)
+    a1.text(0.985, 0.5, f"gap {pp(att.ba - h['ba'])}\n"
+            f"required ≥ {C1_MIN_GAP * 100:.0f} pp", transform=a1.transAxes, ha="right",
+            va="center", size=NOTE_SIZE + 0.5, weight="bold")
+    a1.set_title("C1 · Pitfall 1: head vs attacker", size=LABEL_SIZE - 0.5)
+    decision_badge(a1, dec["C1"])
+
+    # C2: recentred bottleneck vs no defence, with task non-inferiority.
+    p0, p2 = d["p0"], d["p2rc"]
+    util = dec["C2"]["utility"]
+    interval_rows(a2, [
+        (f"No defence (P0) · task BA {d['task']['P0']:.3f}", p0.ba, p0.ci_low, p0.ci_high,
+         C["raw"]),
+        (f"Recentred bottleneck d = 8 (P2-RC) · task BA {d['task']['P2-RC_d8']:.3f}", p2.ba,
+         p2.ci_low, p2.ci_high, C["task"]),
+    ], 1.0)
+    a2.text(0.985, 0.04, f"identity {pp(p2.ba - p0.ba)} (required ≤ −{C2_MIN_GAP * 100:.0f} pp)\n"
+            f"task {pp(util['mean'])}, lower bound {pp(util['lower'])}\n"
+            f"(non-inferiority margin {pp(C2_TASK_MARGIN)})",
+            transform=a2.transAxes, ha="right", va="bottom", size=NOTE_SIZE, weight="bold",
+            linespacing=1.3)
+    a2.set_title("C2 · Bottleneck vs no defence", size=LABEL_SIZE - 0.5)
+    decision_badge(a2, dec["C2"])
+
+    # C3: commands only, P2-RC d = 8, τ = 0.5, k = 1 vs k = 20.
+    k1, k20 = d["c3"]
+    interval_rows(a3, [
+        ("1 command observed", k1.ba, k1.ci_low, k1.ci_high, C["task"]),
+        ("20 consecutive commands observed", k20.ba, k20.ci_low, k20.ci_high, C["task"]),
+    ], 0.25)
+    threshold_line(a3, C3_FLOOR)
+    a3.text(0.985, 0.5, "k = 20 exceeds k = 1, but its\nmargin over 2/54 is not\n"
+            "significant after correction", transform=a3.transAxes, ha="right", va="center",
+            size=NOTE_SIZE, weight="bold", linespacing=1.3)
+    a3.set_title("C3 · Commands only (P2-RC, τ = 0.5)", size=LABEL_SIZE - 0.5)
+    decision_badge(a3, dec["C3"])
+
+    # C4: published defence (G) vs deployment enrolment, with the reference-session gate.
+    ref = d["c4_ref"]
+    rows = [(f"Reference-session attacker ({ATTACKER_NAME[ref.attacker]}): "
+             f"{ref.ba:.2%}; paper {d['repro']['paper_accuracy']:.1%}", ref.ba, ref.ci_low,
+             ref.ci_high, C["head"])]
+    for r, n in zip(d["c4"], ("1", "2", "5")):
+        label = f"{n} labelled deployment trial{'s' if n != '1' else ''} per user"
+        rows.append((label + (" (tested)" if n == "5" else ""), r.ba, r.ci_low, r.ci_high,
+                     C["head"]))
+    interval_rows(a4, rows, 1.0)
+    a4.scatter(d["repro"]["paper_accuracy"], len(rows) - 1, marker="*", s=230,
+               color=C["grl"], edgecolor="black", lw=0.7, zorder=5)
+    threshold_line(a4, C4_FLOOR)
+    a4.set_title("C4 · Pitfall 2: published defence", size=LABEL_SIZE - 0.5)
+    decision_badge(a4, dec["C4"])
+
+    for ax in (a3, a4):
+        ax.set_xlabel("Identity balanced accuracy (strongest attacker)", size=LABEL_SIZE - 1)
+    handles = [
+        Line2D([], [], color=C["muted"], lw=3.2, alpha=0.45, marker="o", mfc=C["muted"],
+               mec=C["muted"], label="Estimate with 95% participant-bootstrap interval"),
+        Line2D([], [], color=C["chance"], ls=":", lw=1.6, label="Chance (1/54)"),
+        Line2D([], [], color="black", ls="-.", lw=1.3,
+               label="Pre-registered floor (C3: 2/54, C4: 10/54)"),
+        Line2D([], [], marker="*", ls="", ms=14, mfc=C["grl"], mec="black",
+               label="Paper's reported result"),
+    ]
+    fig.legend(handles=handles, loc="lower center", ncol=4, bbox_to_anchor=(0.5, 0.045),
+               columnspacing=1.6, fontsize=NOTE_SIZE + 0.5)
+    save(fig, "fig6_lee2019_confirmatory")
+
+
+# ----------------------------------------------------------------------------
+# Figure 7: identity vs number of enrolled users (L, descriptive) and 2a reference
+# ----------------------------------------------------------------------------
+L_ENROLLED = [9, 18, 27, 54]
+N_SERIES = [("P0", "P0", "No defence (P0)", C["raw"]),
+            ("P2-RC_d8", "P2-RC", "Recentred bottleneck d = 8 (P2-RC)", C["task"])]
+
+
+def load_crowd():
+    ident = pd.read_csv(RES / "exp_l" / "identity_summary.csv")
+    rows = ident[(ident.kind == "enrolled") & ident.strongest]
+    two_a = pd.read_csv(RES / "exp_b" / "tradeoff.csv").set_index("condition")
+    return rows, two_a
+
+
+def fig_crowd():
+    rows, two_a = load_crowd()
+    series = {key: rows[rows.key == key].set_index("enrolled").loc[L_ENROLLED]
+              for key, *_ in N_SERIES}
+    p2 = series["P2-RC_d8"]
+    fig = new_figure(
+        "More users lower identity accuracy, but leakage relative to chance grows",
+        f"Recentred bottleneck: {p2.ba[9]:.2f} with 9 users ({p2.ba[9] * 9:.1f}× chance), "
+        f"{p2.ba[54]:.2f} with 54 users ({p2.ba[54] * 54:.1f}× chance); "
+        f"BCI IV 2a's 9 users: {two_a.identity_ba['P2-RC']:.2f}.",
+        "DESCRIPTIVE",
+        "results/exp_l/identity_summary.csv (enrolled subsets, seeds 0–2); "
+        "results/exp_b/tradeoff.csv (BCI IV 2a)",
+    )
+    axes = fig.subplots(1, 2)
+    fig.subplots_adjust(left=0.075, right=0.985, top=0.80, bottom=0.25, wspace=0.2)
+    xs = pd.Series(L_ENROLLED, dtype=float)
+    for ax, scale in zip(axes, ("ba", "ratio")):
+        for key, two_a_key, _, colour in N_SERIES:
+            s = series[key]
+            f = xs.values if scale == "ratio" else 1.0
+            ax.fill_between(L_ENROLLED, s.ci_low * f, s.ci_high * f, color=colour, alpha=0.15,
+                            lw=0, zorder=2)
+            ax.plot(L_ENROLLED, s.ba * f, color=colour, lw=2.4, marker="o", ms=7, zorder=3)
+            v = two_a.identity_ba[two_a_key] * (9 if scale == "ratio" else 1)
+            ax.scatter(9, v, marker="D", s=70, facecolor="white", edgecolor=colour, lw=2,
+                       zorder=4)
+        ax.set_xticks(L_ENROLLED)
+        ax.set_xlim(5, 58)
+        ax.set_xlabel("Users the attacker must tell apart (N)")
+    a, b = axes
+    grid = pd.Series(range(5, 59), dtype=float)
+    a.plot(grid, 1 / grid, color=C["chance"], ls=":", lw=1.6, zorder=1)
+    a.text(40, 1 / 40 + 0.015, "chance (1/N)", size=NOTE_SIZE, color=C["chance"])
+    a.set_ylim(0, 1.05)
+    a.set_ylabel("Identity balanced accuracy\n(strongest attacker)")
+    a.set_title("Accuracy")
+    b.axhline(1, color=C["chance"], ls=":", lw=1.6, zorder=1)
+    b.text(56, 1.6, "chance", size=NOTE_SIZE, color=C["chance"], ha="right")
+    b.set_ylim(0, 60)
+    b.set_ylabel("Times chance (accuracy × N)")
+    b.set_title("Relative to chance")
+    handles = [Line2D([], [], color=c, lw=2.4, marker="o", label=f"{lbl}, Lee2019 subsets")
+               for _, _, lbl, c in N_SERIES] + [
+        Line2D([], [], color=C["muted"], marker="D", ls="", mfc="white", mew=2, ms=8,
+               label="Same model on BCI IV 2a (9 users, experiment B)"),
+        Line2D([], [], color=C["muted"], lw=8, alpha=0.3, label="95% participant-bootstrap interval"),
+    ]
+    fig.legend(handles=handles, loc="lower center", ncol=2, bbox_to_anchor=(0.5, 0.045),
+               columnspacing=3.0, fontsize=NOTE_SIZE + 0.5)
+    save(fig, "fig7_lee2019_users")
 
 
 def main():
@@ -565,6 +817,8 @@ def main():
     fig_commands()
     fig_enrolment()
     fig_timeline()
+    fig_lee2019()
+    fig_crowd()
     for p in sorted(OUT.glob("*")):
         print(p.relative_to(ROOT))
 
