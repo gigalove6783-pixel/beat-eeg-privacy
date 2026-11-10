@@ -1,0 +1,165 @@
+b10151c87d7375e5a230eca21852780e5ee722f4bc9a7260dc564d937f2bbde4  WBCIC_SHU Motor Imagery dataset/CHANGES
+4683c31975c8b86cfd1e0395425979243e7ddb93d1ffaa3614967f42b4448b94  WBCIC_SHU Motor Imagery dataset/LICENSE
+a2fae5813ad4083212553140c864d22010434ab6a285071d59730a902a842f15  WBCIC_SHU Motor Imagery dataset/README.md
+bf557fb79b35d05ab87cc8354e47ea0c470472bd7cb661af19b958c63c28f0df  WBCIC_SHU Motor Imagery dataset/dataset_description.json
+3bd7c032340bd82f6f5806dbae62fd17da97877e21b9ecd6a3a7a9c89c12b25f  WBCIC_SHU Motor Imagery dataset/participants.json
+1f2fbad3bc2a27e0c2174fb569c041f8be8b7d39aa7eb5aa2759a465a17ca164  WBCIC_SHU Motor Imagery dataset/participants_2C.tsv
+c0229f3d75a07b48f4db5497be53963b36351f2ec56906a4f14afc5954320693  WBCIC_SHU Motor Imagery dataset/participants_3C.tsv
+76bc908a83bc02651648179ba0ada24cfce6e08cf80797e19b012e89287f764c  WBCIC_SHU Motor Imagery dataset/task-motorimagery_channels.tsv
+186eb054505a83b03b9ff4dbd9071d08de5afbeecdbc3466295e47d2bf05d9e1  WBCIC_SHU Motor Imagery dataset/task-motorimagery_coordsystem.json
+09c82c0a31a6e94e5dbd03b34744fece93b7472760b6eaa63213125165640ba7  WBCIC_SHU Motor Imagery dataset/task-motorimagery_eeg.json
+dc8b7a89c895d17a911ac62ccff2a48528a62a26f610fe8cd7a1431690150cac  WBCIC_SHU Motor Imagery dataset/task-motorimagery_electrodes.tsv
+e6cf73bac1edd0b15eaa30f5ec7a498354884dbe61e14c71682b1f1523e85cf9  WBCIC_SHU Motor Imagery dataset/task-motorimagery_events.json
+b12154047ed2587adb6f04ac9282576f42246f681e7e777a5ede01253420d80a  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-001/ses-01/eeg/evt.bdf
+a7902b8e500695a009564728a71a331bab65f2feb22fc448411793cb67be676a  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-001/ses-01/eeg/data.bdf
+efba179f90b19b399a63f88360ec884bd9ac20596fc725384c71b8b1e14508d3  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-002/ses-01/eeg/evt.bdf
+fcdd52d6584ea3eac99b423b10d8a2157b746934368803363dd144c3b4e41d47  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-002/ses-01/eeg/data.bdf
+49ef9604b8d51602583ecb654596ed3c37c9c97a4db9ac85a4205dcc48243a87  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-003/ses-01/eeg/evt.bdf
+28c592f406d168c6e2a5111a91861fc668a1fabffa9a5dc6719b78764fd1195b  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-003/ses-01/eeg/data.bdf
+3b9de7bba64586f030803309508086a4031fecf77dce6ae3cb495ebd1fd69e4f  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-004/ses-01/eeg/evt.bdf
+04322129f2e5d7a1937c2edadaea44c0dd96a18a477c152daf0c2cda5f15a23f  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-004/ses-01/eeg/data.bdf
+8474d11afcca9c52542c5034497aaf0b8c18b2450f4ad1228a48821171139124  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-005/ses-01/eeg/evt.bdf
+e2744f79f20dec99d328e421ab5e90868bc24c138c3d22de552e0efb49548044  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-005/ses-01/eeg/data.bdf
+87943f613373179cf3629116618cdfff6c1d584e4451bf1cbedb573f98f0f516  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-006/ses-01/eeg/evt.bdf
+0410dac3cfe78aee2c81fa29b8560bb733c562dce79e07372575bcb4701c4c19  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-006/ses-01/eeg/data.bdf
+d47b017bf66d9bdc5a16826934d4be26b65ca2ed2ce7566446e7dfb9e4280f5c  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-007/ses-01/eeg/evt.bdf
+a3dd7dfc059aa5a5f537f97bb5cb8640b5d3db9ab2fb942c0bc6c0309d4552cf  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-007/ses-01/eeg/data.bdf
+ce042caf5e7447fd73c70644299ea9502ffc56705ac7f96a1d58ef41c26df776  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-008/ses-01/eeg/evt.bdf
+8b4c2a978f81ef8e433396067f4b0c1181199db10ea85874a026daca63523b42  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-008/ses-01/eeg/data.bdf
+2636102b98dcc41f2e70a0e7e13af59db8b562226772fe8b1f77c64ffa5bcf43  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-009/ses-01/eeg/evt.bdf
+2ce6f87f371d9cd4cba69898c00417854280008ba60526a81848b9d711a229de  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-009/ses-01/eeg/data.bdf
+2063e94b883ef5fbae484430006c8afd3751f8819fa8ee983acc311380e132cb  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-010/ses-01/eeg/evt.bdf
+85e72c057870caaf743687399ea92dac09f7c267b57cf84ca4db84a8f2a28276  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-010/ses-01/eeg/data.bdf
+0f7d3e00723ac239f49fde76dd73810291817b40312acd5332fd2975a6fe0304  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-011/ses-01/eeg/evt.bdf
+d577eca9a8f99a6239edd922533329c68b4328f4e0f41e0d06bb7b40f4594e6f  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-011/ses-01/eeg/data.bdf
+9d9aee41b231018619a6675be2cfc3aec6e1130ffa817eef2f0639ce6b303bda  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-012/ses-01/eeg/evt.bdf
+6721d843321f81942fd68e8299d6f098a24fd6fdeaf2f16c51ef58af70120e9e  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-012/ses-01/eeg/data.bdf
+dc941de0c7bb7516976657327e8e0f05ababda5ad50e3167dde392bca9220ef4  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-013/ses-01/eeg/evt.bdf
+817e95a12fc254dee0f8169629c9ea1166014ffba9b1c17e1326c0e25cb7558f  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-013/ses-01/eeg/data.bdf
+018b2245d2720ea51a6a2f549eaa3f27a4d8bf98bb665f9e8803ee48db0ff933  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-014/ses-01/eeg/evt.bdf
+2ae0f9cb01ad738c2fb41cbcb530214a82aff9ecd832e0f45c7e6e31f903cda2  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-014/ses-01/eeg/data.bdf
+3a43abce926d5503291f6e1fcf53251e5d567bc3311afe32b80cd0c0419c22f0  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-015/ses-01/eeg/evt.bdf
+47a6d1de2ce93e07ea2eeb50a72c0144fb6df9f79a8fd4d2d1258a7e37e608e8  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-015/ses-01/eeg/data.bdf
+1ac6f3eb055a794b33ac1c98b0b880b718cc5f8848e24310234eeecdb661e62c  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-016/ses-01/eeg/evt.bdf
+6eed9fa9079f73a751cc7cc5a38dbb688b0c4ac99063cb630dbcd13088f32cad  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-016/ses-01/eeg/data.bdf
+be0e88958d819dbef1f4b66a37827aac25d9b5c74d501b503014c83eca2ff64f  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-017/ses-01/eeg/evt.bdf
+09e00aa88ee33d56164a823cebb1ceedf92390052dcbe6cd4359ef52f9e426b8  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-017/ses-01/eeg/data.bdf
+093b2f3a238fc151fcfd0bb131178fd3c0b529a6c80b3fdfa70bdd83fa7176c5  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-018/ses-01/eeg/evt.bdf
+f57326ad184ca48d8af8d9d817ed06ef8ba6c7cf1883f04609572fdfcadad8b3  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-018/ses-01/eeg/data.bdf
+3b933bed18acf52502264740bc93a86e7111eefa47e6bf92f0a25971aa18afd5  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-019/ses-01/eeg/evt.bdf
+18304f8ac679301d91dc3bae089c97182e227cd8cb52dc3b37b6a02e31761feb  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-019/ses-01/eeg/data.bdf
+e807398e8155575d93648515fb66c43a7294cd61b2f83fbac9d62f1bb4e6b03a  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-020/ses-01/eeg/evt.bdf
+835419ae4112ee291ae4ddecb49ef9dede9d15d11a9b7e4c6623db0e08fb2a11  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-020/ses-01/eeg/data.bdf
+2d487d62d3293e5048462b9971942e95c1c36e70ed4be03cf42eb41304a6613c  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-021/ses-01/eeg/evt.bdf
+54053781b7cdb0463e270c825b3f4e1a2c6cf3294877a94fd9d5a1afc1193173  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-021/ses-01/eeg/data.bdf
+868aeb6e0759b397d70ef30e13a8a9cb359e42d47abacf73b90ce2721c0b9c0a  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-022/ses-01/eeg/evt.bdf
+3db447b70ecab49069393b6b4dc3211b4b3f12f928ad80b4410e1c7ad2be28b9  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-022/ses-01/eeg/data.bdf
+6b14c599b5d457ed9b39e00f919fd41dd3953630ff21f26b7fc86c2dcbbd7078  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-023/ses-01/eeg/evt.bdf
+72cec07f7dfe8c14e0ba18d618a8a5e51071b1b0a6b1951ed1b6bb909cd91f23  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-023/ses-01/eeg/data.bdf
+29d0c3299efb9a50e97ef65d785a51d842c0eb225a477f3cb00b71b3fc138f64  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-024/ses-01/eeg/evt.bdf
+3b39b4b7a3a21d48d7b798a1d55805cdd1547d6d492489ea87688b5d4d61ed9a  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-024/ses-01/eeg/data.bdf
+ab5c03318fe989498411182230daf04aa2021dba65e68ee78ff51f6a24d17c09  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-025/ses-01/eeg/evt.bdf
+d41b70b179b57f33a83d27ec3fab95683005faf98042f0b0440dff71673430d8  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-025/ses-01/eeg/data.bdf
+887004db8416f9ae7c6ccca61b3ffa1d784411bf5b2a82da5c3506f65b2e8a1f  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-026/ses-01/eeg/evt.bdf
+d1212c152fe2e0f5a0929c83e35a5b7ada36743a8434e198dea345c8b3d70ea5  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-026/ses-01/eeg/data.bdf
+a04557b2160e3fdf4684a633dfb602b159a7b2fbdecae106f6ccddd9db75c862  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-027/ses-01/eeg/evt.bdf
+3fdae787109a316d052669b0b75049990866c97bbc0535ab7d85eb3abb9b5fb2  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-027/ses-01/eeg/data.bdf
+b7ccdf119d931e2fe7774e56b7d3469e2cb3e6e2944936c5949703008d7616cd  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-028/ses-01/eeg/evt.bdf
+ce5522818d6b1f67793c7397811e3c7a5561a2e8c9da70a5a62dbdf10a257c24  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-028/ses-01/eeg/data.bdf
+07c29a80091065fbe37c76066875bafb535a9cc055b776660d960d3c109d5538  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-029/ses-01/eeg/evt.bdf
+cf16b36d2adc92305b8d3cf94fbc91944918ee93bb29f38af4c828c5d18db094  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-029/ses-01/eeg/data.bdf
+d178a698164ee355aeed3044bbde525c218104acdc28f45a5d70892c93f53d33  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-030/ses-01/eeg/evt.bdf
+636bf1a079a266b298f2df0983db411c5cd5100cba998e0af4116d4d15fcb508  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-030/ses-01/eeg/data.bdf
+e0ea71d04f3f498464b3edf300e2178b93619a0554d3105bdff188c942ceed18  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-031/ses-01/eeg/evt.bdf
+148dccce2dfa0e48f0cf8f0447fad7293b3543c56db4fc9aa1fab19b08c7b666  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-031/ses-01/eeg/data.bdf
+a3f8e19341a2b401b41ebf40f105feef208491a3681a711ad33ee20c0f79dd34  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-032/ses-01/eeg/evt.bdf
+358a55844f44a4d32db3adf05045719c10e040730cdef83a0c4adb35d3e8db2f  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-032/ses-01/eeg/data.bdf
+80bf90f0f5b3eecbb3d56a000dd62ab0eec4a47f84bf05439e773f54be4f0d3e  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-033/ses-01/eeg/evt.bdf
+ff424eb2de1dafb7fa4e8aa989fa160559d6abc39945d4021a5d231d6059e3f9  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-033/ses-01/eeg/data.bdf
+0833f7a409db0c04b63461a74627b6c13eed55e0e7f81336c1f960beb33a0aa9  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-034/ses-01/eeg/evt.bdf
+4f7ebee529bde6a494e8d62382295cc99a7b34ca67ff49a856190d417513669a  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-034/ses-01/eeg/data.bdf
+afec1fd813fa2791841c1a2cd1221483221887650eb3b319a15893c99e41b99f  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-035/ses-01/eeg/evt.bdf
+a458030e94c513fbce1826a516f6d93c3d450664119d7ce9cbdb6c22d06b3bfc  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-035/ses-01/eeg/data.bdf
+90c79570472fab4915820dc64c3a9f1de8dc93bee75d2e3790c9ddeb25fe9106  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-036/ses-01/eeg/evt.bdf
+2b25989787b4aeb9cbc709d691279c22be379ebe426c1a1ed6b101002dd1f44c  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-036/ses-01/eeg/data.bdf
+8d1b362e2af877dfac3f2db579a3868030b293e26c06c991ef4e6146568023ca  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-037/ses-01/eeg/evt.bdf
+a268d15c9ae2285ae2dd5e585546cc37d4789c2aefe366aa6cf482465a33bfe6  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-037/ses-01/eeg/data.bdf
+3ae48f7b8306eede829969f69f737019baa440315a9695f61e79ab97fcdb795c  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-038/ses-01/eeg/evt.bdf
+1b7562d1678b12d0386e6cbd8886e5093822a6edd4736bb893b2bc36200eb2bd  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-038/ses-01/eeg/data.bdf
+2b69803af21d52e0efa93e7af155afbd6e3ae88f460ce147c30e75c6d8dfd66f  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-039/ses-01/eeg/evt.bdf
+1c075e77bdd3161de9f0254bba8645da893f5f6ec1e27a8c03c38858bbba04e7  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-039/ses-01/eeg/data.bdf
+63053eac9525af803d7bb65fbcf58619b1a226564eeb2caaf3737b9aced394bd  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-040/ses-01/eeg/evt.bdf
+5befe88e6dd6aa02e921c634f9aec96cbfcc1c10cc4f39a95b1550029d36f0a4  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-040/ses-01/eeg/data.bdf
+961dda6ddbd0e09208c86aa9e36e3665fbe46d95b6c85eec58d4a40f25d88c4f  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-041/ses-01/eeg/evt.bdf
+8eec15c75cbbc99d57e5a83275bc72daae6cab24572ad84d11022288a7846813  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-041/ses-01/eeg/data.bdf
+cd3c5840a539b80c663d01dbc6cb0bfc61920a6757d52977c7816f5b8c334543  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-042/ses-01/eeg/evt.bdf
+e465fab6d8df60c2971267e3fcbe49080cb17d7972ff890a38a23fa23adaeaf8  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-042/ses-01/eeg/data.bdf
+9940ac8053ae68de8f1b8dd12b989a67fcd94d25bc08625dd42ffc6a4eaa6bec  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-043/ses-01/eeg/evt.bdf
+1c16ed80824ad742207d1fbf56126446fee0c290815af08f70923f419cec37a6  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-043/ses-01/eeg/data.bdf
+71fe0fcdcb8d1ab0d9099c43d84882396ef51c6d0c994ec3c0d55957b3f040f3  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-044/ses-01/eeg/evt.bdf
+98ea8a3be08e49a28a92606337b2f9e9ebc7fafa6ae30c53a3f868d611d23d77  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-044/ses-01/eeg/data.bdf
+af4f383ae64a5eca1c515fa615456b63bf7e8d8cc6ca835b95cdc855b10089b2  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-045/ses-01/eeg/evt.bdf
+a8cde8301cf226015a84003028894085e399447c0102dacb3a3416cf49b0cb1e  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-045/ses-01/eeg/data.bdf
+d787fc65627bde845cc8f17a4d5c7051b1a104a1b58f4715ac3f83b2ab6a5a65  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-046/ses-01/eeg/evt.bdf
+ef71514427226f4323a179983ee8b1527bb9b79e1ead2ca88ad6fe54d39c85c2  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-046/ses-01/eeg/data.bdf
+cd768b557ef3dea9e8f3d7a6654b2cfa5988b51550cbd963ce465795b4ded4af  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-047/ses-01/eeg/evt.bdf
+462a953aa2f2208f60d88a878b9511d4865e3a842cab79da305fd909aad4e819  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-047/ses-01/eeg/data.bdf
+a9f5ca55225f95f85e20bc3f31d90e0c808823019fbb844c28f9830638b32d2e  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-048/ses-01/eeg/evt.bdf
+812c7ed3e79f538bb67c943c670d910d744d48481eb1b25d00927216a4a5e378  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-048/ses-01/eeg/data.bdf
+91db83bc3592a9ebe34f4ef168071987613314ebfa3730f5ccfc64f8d30e4033  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-049/ses-01/eeg/evt.bdf
+2c71d71115c9041bc69c1062a1dd68fe85cbb46c075d14a3861de6547c95dd57  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-049/ses-01/eeg/data.bdf
+1980a4352c6b40b74deabdf5361441e75dce15595e12c7b136ab97bf0591df23  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-050/ses-01/eeg/evt.bdf
+cb02e7c185f2db904638e668cca0aa4dba387eb72da3d3b1c445e759e2a97d7f  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-050/ses-01/eeg/data.bdf
+597bb334a52aa27e5425867e615acc596639e94c66771dcc632b1f4a2136183c  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-051/ses-01/eeg/evt.bdf
+7dafc73cfd31546f4493aae2bf93f3203d630b35871aa79438e2fb3ac0947964  WBCIC_SHU Motor Imagery dataset/sourcedata/2C dataset/sub-051/ses-01/eeg/data.bdf
+35834b4c31d9faad553f52f228d20b19f8c7e0cbd0ec3b3314adb078abf4b30d  data/processed/yang2025/day1_sub001.npz
+3fdfe56a6e1e89ba502d57c45bb271db8770321e7d942f68bf2c1cd6d8014b67  data/processed/yang2025/day1_sub002.npz
+a999ba9ff34d7a5cb1dc2ba5e782eab0e98ffe63f5a27a6f0160a217cf2aac0e  data/processed/yang2025/day1_sub003.npz
+4765aa02f2dac4b08075989a0e44d05534c3409ba18b93e01a754742bccb959a  data/processed/yang2025/day1_sub004.npz
+64533e71145eeb98f8103fd04bac3f8d1e7d1ac40a5476c17e886fbc6cdafe25  data/processed/yang2025/day1_sub005.npz
+2cb6be64c6442f4383e775c4217eed916305b5b2d53fec986c20c8fbea8cf0e3  data/processed/yang2025/day1_sub006.npz
+a848a2b9310f79a2d53e913ef02adf73c55a70ca8cb778c2578edd8124e67d24  data/processed/yang2025/day1_sub007.npz
+b3a0fca5fca9e242c7013568d85f9ba28b7d2f4140aa57a5c8ca90e5d6b95b59  data/processed/yang2025/day1_sub008.npz
+deefa94d8d4203e37f55e7b582f8413373526728ae35e2618838bc29b4414239  data/processed/yang2025/day1_sub009.npz
+abe853e00b3479afce5a8710729ad6865a832fe57cfd511ca8d8fd3c7d5f4efc  data/processed/yang2025/day1_sub010.npz
+730c566de250a511888a2a9eb6f73949ea956f565d914c04cc529e99e024da9e  data/processed/yang2025/day1_sub011.npz
+695496c16e591f6433e6f0eff1444b9719a6c282edea6d451a64a20f7e2cdce2  data/processed/yang2025/day1_sub012.npz
+8ec1c89145ac4a824109cc2416dd615dde92da54010af29106f628886f404901  data/processed/yang2025/day1_sub013.npz
+149cd13bd1a13f596607fdffe21e1f9c159dc44af303f705f663b41aca0afc77  data/processed/yang2025/day1_sub014.npz
+3337594d762af2ad964c6907529c6a36a0dbb74ec08ad21fd3ff78b01e6d1462  data/processed/yang2025/day1_sub015.npz
+91840b496a90a18fbee08f8416953449f8ce6b718cb5de5e7fc70f8ee7c00c00  data/processed/yang2025/day1_sub016.npz
+e90cb1765f3fbb0624f3e0595efdc02dcba6cfc26e29d4ba590ade5ae4847ae2  data/processed/yang2025/day1_sub017.npz
+b6544358218ba03f47839d03d8880737d2cd3a41154d069d5d35d71b5bf6de54  data/processed/yang2025/day1_sub018.npz
+5aeab939f1256d1337659ddf61361901fa8d7733dabd81e47fd8e03d353c7195  data/processed/yang2025/day1_sub019.npz
+821284c0924ce525897d435c5c5d1dd0bb0fc7a14e6bf3970c184d669324f334  data/processed/yang2025/day1_sub020.npz
+0094084b40234f1b4f7c43d6a20f3d2d100e2d7ee5bd386d6783c6af8ff48d76  data/processed/yang2025/day1_sub021.npz
+f0908244985f6fab3778af7ade0cbe312662e292b874809b136ea2e553d794b9  data/processed/yang2025/day1_sub022.npz
+abd12784bb5d3dc41a5fdcc8494ace55432aaba388c8123b1bd2954436dfffe6  data/processed/yang2025/day1_sub023.npz
+285fa4c5df055e5afd68a34cb7a69be028464ea890cce907eda8c7a45d4dce6d  data/processed/yang2025/day1_sub024.npz
+028352aa329ec402b5d95d5fbd1c017300e26f73a2801ae72126f54c92aca89e  data/processed/yang2025/day1_sub025.npz
+2d3b43f7635bc8f15caa51fe6d7f142d84c5982c4acaffcf66bc2588c5919a4d  data/processed/yang2025/day1_sub026.npz
+c4ec1db236f38e567e4e93b900079bfc9ab2b3079a55236548439e085f415561  data/processed/yang2025/day1_sub027.npz
+c34c15c258fa2c4d7aaf3003b2885054f1ae29f9eb79bdc03f04d84867bb0967  data/processed/yang2025/day1_sub028.npz
+ce587a7eaeab8e1bdfe3e05d46ec25ffd8d9c671e1766a81fc834f54a21bdf54  data/processed/yang2025/day1_sub029.npz
+dafca408bed8c54c5338a674c504cef1b046d89a6e13f02c9a9b63fa1872ba67  data/processed/yang2025/day1_sub030.npz
+3139a68c4f631b6cefa41c2928c85190a41ad9ecf7b677dc9ec1a0d613a64f55  data/processed/yang2025/day1_sub031.npz
+3ef7d29321c831669691cf2b93956fc93a77f91fdb527c5bccdd5055c69b844a  data/processed/yang2025/day1_sub032.npz
+a275d3fc8eb1d8dca57b90a3348bca8ba9478b415cb4dbbda79b45fb4419f61d  data/processed/yang2025/day1_sub033.npz
+1e7f3542655b567fce3cea420c6ca1cbcde17c1916776fb56fcac0ca30ca72c9  data/processed/yang2025/day1_sub034.npz
+d7ad17be2d33380517f82918f255f17ac15d668e0d25af8af7147e0618e442af  data/processed/yang2025/day1_sub035.npz
+83a4ec46c36c8998500daae73124670bb79bad30d5e86ffbd8473ecf88ace91b  data/processed/yang2025/day1_sub036.npz
+f7f67d5c7f5e3a3a24370ab079c8ecfe56802cd4caf12aec5ef2d8f13a3215b4  data/processed/yang2025/day1_sub037.npz
+99e03140d12af105a796ef504ea1ff569931519f1d2ed0628af213ce79f21636  data/processed/yang2025/day1_sub038.npz
+c0f7ebe1a22c40045d9419c2839d240000c8c46dbc38345ea3288f3e2e31d43b  data/processed/yang2025/day1_sub039.npz
+6b94885ddfa7820fade49b793d656af995e1a6e43186ab4df509c0c9d073c546  data/processed/yang2025/day1_sub040.npz
+3907ab1cd3ea4d17539529bcc7a4878134d435515c1474cf6f8a64f3fd776f06  data/processed/yang2025/day1_sub041.npz
+07c4cc70dea03ddce0fd14f472b2146f5aa6f010fe95adf9f9a6fbddac84c46a  data/processed/yang2025/day1_sub042.npz
+4eac62d95dac7b9cdf7ac380240439e67942ca798ea42c1c3211528020ecd954  data/processed/yang2025/day1_sub043.npz
+b2a8836fac282086ce4b9d1a90d0d3148560c55e7206077912a92cc0363cd6ec  data/processed/yang2025/day1_sub044.npz
+b308dc857bf1e802c63211e52396d6ca3e918c774e6538a551073c0afd3bcc62  data/processed/yang2025/day1_sub045.npz
+905d240e48bce035ba7e8b11b56c533407a5d20ecfb763117c109d6c2c2053ac  data/processed/yang2025/day1_sub046.npz
+316a37f16dc0bd8331c38565e4488f0201e0160a9aaa496e8dc7ae66d4565c3c  data/processed/yang2025/day1_sub047.npz
+a13a278c1a690c9de8139e7e0d6001f118e95298b174c6c006aba80866ccb527  data/processed/yang2025/day1_sub048.npz
+8030f9060de54807dc093a24c3983c142803776e8ca6273fb27937750447bd5c  data/processed/yang2025/day1_sub049.npz
+a0859af7414cd64b00174c7c3fd42f1f02bc0afac8a1c93a5cb8ed5a71b3bb13  data/processed/yang2025/day1_sub050.npz
+af9cf459a5d5656df8354f00a85aa21b96b169807af588484c7a91d7ee237c93  data/processed/yang2025/day1_sub051.npz

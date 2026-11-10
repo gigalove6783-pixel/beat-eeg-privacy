@@ -1,0 +1,6 @@
+{
+  "opened_day1": 51,
+  "blocked_later_days": [],
+  "later_days_opened": false,
+  "guard": "CPython open audit hook; day-2/3 names raise LeakageError"
+}

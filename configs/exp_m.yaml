@@ -1,0 +1,88 @@
+# Experiment M: sealed confirmatory replication on Yang2025 (WBCIC-SHU two-class MI).
+# Plan: .mixdog/plan_v2.md revision 4, lane M; pre-registration: docs/preregistration_m.md.
+# Day 1 = calibration day (development, pre-seal); days 2-3 = deployment days (after seal 4).
+# The final stage refuses to run unless thresholds_status is "frozen" in the sealed commit.
+# This file's decision rule supersedes configs/exp_k.yaml's declared decision rule for M.
+thresholds_status: frozen            # set after K's freeze and the post-freeze rerun
+lead_status: draft                   # informational; excluded from the configuration hash
+data_dir: data/processed/yang2025
+subjects: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51]
+runs: 5                              # five 40-trial runs per day (evt.bdf code 9 boundaries)
+seeds: [0, 1, 2]                     # model seeds, as K's model_seeds
+workers: 2                           # one heavy job beside lane K
+torch_threads: 1
+root_seed: 20261112                  # post-processing, tie-breaking and null draws
+# Decoders (L's settings; budget families common_d8 for P3 and rc_d8 for P2-RC).
+conditions:
+  P0: {condition: P0, d: 8, target: 0.0, rc: false}
+  P2-RC_d8: {condition: P2-RC, d: 8, target: 0.0, rc: true}
+  P3_lambda1: {condition: P3, d: 8, target: 1.0, rc: false}
+alpha: 0.05                          # Holm over the confirmatory family
+missing_cells_max: 2                 # <= 2 users missing -> chance imputed; more -> not evaluable
+tau_rule:                            # uses no identity outcome
+  condition: P2-RC_d8
+  grid: [0.50, 0.90, 0.01]           # lo, hi, step
+  target_hold_rate: 0.720            # L (lee2019) P2-RC_d8 cross-fitted (cal_oof) hold rate at
+                                     # its sealed tau 0.8: 0.7201, results/exp_k/stream_summary.csv
+  secondary_tau: 0.5
+tau_star: 0.60                       # the rule's day-1 result: hold 0.7231 (dev_tau_grid.csv)
+training:                            # configs/exp_l.yaml training, unchanged
+  optimizer: adam
+  learning_rate: 0.001
+  weight_decay: 0.0
+  batch_size: 128
+  max_epochs: 40
+  checkpoint_interval: 1
+  encoder_hidden: 64
+  bottleneck: 8
+  identity_hidden: 16
+  linear_C: 1.0
+  linear_max_iter: 2000
+attackers:                           # configs/exp_l.yaml attackers (beat.exp_l._fit_attack)
+  logistic_C: 1.0
+  logistic_max_iter: 2000
+  svm_C: [1.0]
+  svm_gamma: [scale]
+  mlp_hidden: [32]
+  mlp_alpha: 0.01
+  mlp_solver: lbfgs
+  mlp_max_iter: 500
+  mlp_max_fun: 10000
+temperature:
+  bounds: [0.05, 20.0]
+  tolerance: 0.000001
+# Experiment K components (configs/exp_k.yaml values).
+dirichlet_alpha: 0.5
+target_prior: [0.5, 0.5]
+eq_smoothing: 0.5
+postprocessing_seeds: [0, 1, 2]
+bayes_attackers: [cat_blind, cat_aware, markov_blind, markov_aware]
+m1:                                  # confirmatory scenario cal_to_dep; dep_to_dep reported
+  representation: P0                 # unstandardized 190-d tangent vectors, day-1 reference
+  threshold_factor: 10.0             # mean recall > 10/N, strongest of 3 attackers (Bonferroni)
+  attackers: [logistic, rbf_svm, mlp]
+m2:
+  condition: P3_lambda1
+  margin: 0.10                       # observed best gap >= 0.10 and gap > 0 (Bonferroni over 3)
+  gate: {min_within_day_gap: 0.25}   # and the permuted-label null fails (p > alpha)
+  status: confirmatory               # day-1 gate (selection.json gates.M2): gap 0.717, null p 1.0
+m3:
+  condition: P2-RC_d8
+  attacker: cat_aware
+  k_star: 50
+  k_base: 1
+  k_curve: [1, 5, 10, 20, 50]
+  permutations: 10000                # label-permutation p (sensitivity)
+  gate: {tau_range: [0.58, 0.62], min_t: 4.0}  # and the user-independent null fails
+  status: confirmatory               # day-1 gate (selection.json gates.M3): t 6.52, null p 0.40
+estimates:                           # pre-registered estimates with 95% t-intervals
+  g: 3
+  ks: [20, 50]
+  eq_variant: confusion
+  eq_crossfit_folds: 5               # cross-fitted EQ for the day-1 enrolment stream
+  rr_q: [0.5]                        # plus q matched to EQ's day-1 utility loss (selection.json)
+power:
+  retentions: [0.35, 0.55, 0.70]     # cross-day share of the day-1 within-day excess
+  n_sim: 4000
+dev:
+  segment_trials: 100                # within-day split: trials 1-100 vs 101-200

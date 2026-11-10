@@ -1,0 +1,128 @@
+{
+  "config_hash": "b91166254396b9cdd1689790afc7d19a458ed37470acd74f5876d07e5512f1fc",
+  "development_config_hash": "b6679372e2caefb3a8d837eca50ec04787386b01a09c2712c3c8196b43c08dd6",
+  "budgets": {
+    "common_d8": 12,
+    "rc_d8": 1
+  },
+  "temperatures": {
+    "P0": {
+      "0": 1.4079338215484514,
+      "1": 1.4079338215484514,
+      "2": 1.4079338215484514
+    },
+    "P2-RC_d8": {
+      "0": 1.0980869243508014,
+      "1": 1.1034834838709724,
+      "2": 1.0106629698876044
+    },
+    "P3_lambda1": {
+      "0": 1.8200043319898571,
+      "1": 1.8381832334680985,
+      "2": 1.9052423960079405
+    }
+  },
+  "oof_sha256": {
+    "P0": {
+      "0": "7cabcc1727d4dc2750da44339fc016cf9184a4ab81fa91d5a2a913597679c0e1",
+      "1": "7cabcc1727d4dc2750da44339fc016cf9184a4ab81fa91d5a2a913597679c0e1",
+      "2": "7cabcc1727d4dc2750da44339fc016cf9184a4ab81fa91d5a2a913597679c0e1"
+    },
+    "P2-RC_d8": {
+      "0": "9da1bf9f234e3c4054b9afe300d114550523b824881f5726ca52d2d7a9f49ad7",
+      "1": "466f0fbfbf3ed1f11e93b506138c54c9662bc92ac6a1122c46496fd7a8f2546d",
+      "2": "5cb27ededc8f236842033001a9796b90e55d6186e89d80d22acf1fda84d18e9b"
+    },
+    "P3_lambda1": {
+      "0": "50d51137a3b27d96a8b3f3ebbf11d75d9145303061647e7421c99b212dafb34b",
+      "1": "3c88cb7b389887551e676fc09db824d10f045e59f129e6b015b797edbf4bd801",
+      "2": "d7d885519f33f1e7e9368653aae10567db0d05ef421be32a792a16038217a2bb"
+    }
+  },
+  "subjects": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ],
+  "day": 1,
+  "session": "T",
+  "folds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "n_trials": 10198,
+  "n_retained": 10198,
+  "versions": {
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "pandas": "3.1.1",
+    "torch": "2.15.0+cpu",
+    "pyriemann": "0.12",
+    "joblib": "1.6.0"
+  },
+  "p3_runtime": {
+    "P3_lambda1": {
+      "full_day1_fit_seconds": 6.082972300006077,
+      "epochs": 12,
+      "trials": 10198,
+      "oof_fold_fit_seconds_mean": 0.9518145333354672,
+      "oof_fold_fit_seconds_total": 14.277218000032008,
+      "projected_final_fit_seconds": 18.24891690001823,
+      "note": "one torch thread; the final M2 cost adds attacker fits on 8-d outputs"
+    }
+  },
+  "development_seconds": 142.87976070004515
+}
