@@ -1,0 +1,17 @@
+scenario,attacker,mean_recall_reduction,signflip_p,signflip_method
+post_deployment,beat_logistic,0.0007716049382716022,0.25,exact 2^9 subject signs
+post_deployment,beat_mlp,-0.0003858024691358011,0.75,exact 2^9 subject signs
+post_deployment,beat_rbf_svm,0.0015432098765432044,0.1875,exact 2^9 subject signs
+post_deployment,mean_tangent_template,-0.010416666666666666,0.755859375,exact 2^9 subject signs
+post_deployment,paper_csp_lda,0.002314814814814819,0.375,exact 2^9 subject signs
+post_deployment,paper_csp_svm,0.0011574074074074032,0.3125,exact 2^9 subject signs
+post_deployment,paper_ts_svm,0.0019290123456790055,0.125,exact 2^9 subject signs
+post_deployment,paper_xdawn_svm,0.0003858024691358011,0.5,exact 2^9 subject signs
+reference_session,beat_logistic,0.9311342592592593,0.001953125,exact 2^9 subject signs
+reference_session,beat_mlp,0.8929398148148149,0.001953125,exact 2^9 subject signs
+reference_session,beat_rbf_svm,0.8539737654320988,0.001953125,exact 2^9 subject signs
+reference_session,mean_tangent_template,0.8462577160493827,0.001953125,exact 2^9 subject signs
+reference_session,paper_csp_lda,0.6859567901234568,0.00390625,exact 2^9 subject signs
+reference_session,paper_csp_svm,0.6861496913580247,0.00390625,exact 2^9 subject signs
+reference_session,paper_ts_svm,0.8387345679012346,0.001953125,exact 2^9 subject signs
+reference_session,paper_xdawn_svm,0.6487268518518519,0.00390625,exact 2^9 subject signs

@@ -1,0 +1,97 @@
+condition,attacker,enrolment_n,k,accuracy,balanced_accuracy,status,reason,directions_evaluated
+defended,beat_logistic,1,1,0.8175154320987654,0.8175154320987654,evaluable,,2
+defended,beat_logistic,1,10,0.9259259259259259,0.9259259259259259,evaluable,,2
+defended,beat_logistic,10,1,0.9938271604938271,0.9938271604938274,evaluable,,2
+defended,beat_logistic,10,10,1.0,1.0,evaluable,,2
+defended,beat_logistic,2,1,0.8861882716049383,0.8861882716049383,evaluable,,2
+defended,beat_logistic,2,10,0.9537037037037037,0.9537037037037037,evaluable,,2
+defended,beat_logistic,20,1,0.9965277777777778,0.9965277777777777,evaluable,,2
+defended,beat_logistic,20,10,1.0,1.0,evaluable,,2
+defended,beat_logistic,5,1,0.9710648148148149,0.9710648148148149,evaluable,,2
+defended,beat_logistic,5,10,1.0,1.0,evaluable,,2
+defended,beat_logistic,all,1,0.9992283950617284,0.9992283950617284,evaluable,,2
+defended,beat_logistic,all,10,1.0,1.0,evaluable,,2
+defended,beat_mlp,1,1,,,not_evaluable,n=1 < inner_folds=3; shared BEAT fit eligibility unchanged,0
+defended,beat_mlp,1,10,,,not_evaluable,n=1 < inner_folds=3; shared BEAT fit eligibility unchanged,0
+defended,beat_mlp,10,1,0.9564043209876543,0.9564043209876544,evaluable,,2
+defended,beat_mlp,10,10,1.0,1.0,evaluable,,2
+defended,beat_mlp,2,1,,,not_evaluable,n=2 < inner_folds=3; shared BEAT fit eligibility unchanged,0
+defended,beat_mlp,2,10,,,not_evaluable,n=2 < inner_folds=3; shared BEAT fit eligibility unchanged,0
+defended,beat_mlp,20,1,0.9861111111111112,0.9861111111111112,evaluable,,2
+defended,beat_mlp,20,10,1.0,1.0,evaluable,,2
+defended,beat_mlp,5,1,0.9031635802469136,0.9031635802469136,evaluable,,2
+defended,beat_mlp,5,10,1.0,1.0,evaluable,,2
+defended,beat_mlp,all,1,0.9988425925925926,0.9988425925925926,evaluable,,2
+defended,beat_mlp,all,10,1.0,1.0,evaluable,,2
+defended,beat_rbf_svm,1,1,,,not_evaluable,n=1 < inner_folds=3; shared BEAT fit eligibility unchanged,0
+defended,beat_rbf_svm,1,10,,,not_evaluable,n=1 < inner_folds=3; shared BEAT fit eligibility unchanged,0
+defended,beat_rbf_svm,10,1,0.972608024691358,0.972608024691358,evaluable,,2
+defended,beat_rbf_svm,10,10,1.0,1.0,evaluable,,2
+defended,beat_rbf_svm,2,1,,,not_evaluable,n=2 < inner_folds=3; shared BEAT fit eligibility unchanged,0
+defended,beat_rbf_svm,2,10,,,not_evaluable,n=2 < inner_folds=3; shared BEAT fit eligibility unchanged,0
+defended,beat_rbf_svm,20,1,0.9907407407407407,0.9907407407407407,evaluable,,2
+defended,beat_rbf_svm,20,10,1.0,1.0,evaluable,,2
+defended,beat_rbf_svm,5,1,0.9467592592592593,0.9467592592592592,evaluable,,2
+defended,beat_rbf_svm,5,10,0.9861111111111112,0.9861111111111112,evaluable,,2
+defended,beat_rbf_svm,all,1,0.9976851851851852,0.9976851851851851,evaluable,,2
+defended,beat_rbf_svm,all,10,1.0,1.0,evaluable,,2
+defended,paper_ts_svm,1,1,0.6682098765432098,0.6682098765432098,evaluable,,2
+defended,paper_ts_svm,1,10,0.7037037037037037,0.7037037037037037,evaluable,,2
+defended,paper_ts_svm,10,1,0.9552469135802468,0.9552469135802468,evaluable,,2
+defended,paper_ts_svm,10,10,1.0,1.0,evaluable,,2
+defended,paper_ts_svm,2,1,0.7415123456790124,0.7415123456790124,evaluable,,2
+defended,paper_ts_svm,2,10,0.8240740740740742,0.8240740740740742,evaluable,,2
+defended,paper_ts_svm,20,1,0.976466049382716,0.9764660493827161,evaluable,,2
+defended,paper_ts_svm,20,10,1.0,1.0,evaluable,,2
+defended,paper_ts_svm,5,1,0.8865740740740741,0.8865740740740741,evaluable,,2
+defended,paper_ts_svm,5,10,0.9953703703703703,0.9953703703703703,evaluable,,2
+defended,paper_ts_svm,all,1,0.9976851851851852,0.9976851851851851,evaluable,,2
+defended,paper_ts_svm,all,10,1.0,1.0,evaluable,,2
+undefended,beat_logistic,1,1,0.880787037037037,0.880787037037037,evaluable,,2
+undefended,beat_logistic,1,10,0.9583333333333333,0.9583333333333333,evaluable,,2
+undefended,beat_logistic,10,1,0.978395061728395,0.978395061728395,evaluable,,2
+undefended,beat_logistic,10,10,0.9768518518518519,0.9768518518518519,evaluable,,2
+undefended,beat_logistic,2,1,0.9201388888888888,0.9201388888888888,evaluable,,2
+undefended,beat_logistic,2,10,0.9490740740740741,0.949074074074074,evaluable,,2
+undefended,beat_logistic,20,1,0.9953703703703705,0.9953703703703702,evaluable,,2
+undefended,beat_logistic,20,10,1.0,1.0,evaluable,,2
+undefended,beat_logistic,5,1,0.9718364197530864,0.9718364197530864,evaluable,,2
+undefended,beat_logistic,5,10,0.9814814814814814,0.9814814814814814,evaluable,,2
+undefended,beat_logistic,all,1,1.0,1.0,evaluable,,2
+undefended,beat_logistic,all,10,1.0,1.0,evaluable,,2
+undefended,beat_mlp,1,1,,,not_evaluable,n=1 < inner_folds=3; shared BEAT fit eligibility unchanged,0
+undefended,beat_mlp,1,10,,,not_evaluable,n=1 < inner_folds=3; shared BEAT fit eligibility unchanged,0
+undefended,beat_mlp,10,1,0.9621913580246914,0.9621913580246912,evaluable,,2
+undefended,beat_mlp,10,10,0.9768518518518519,0.9768518518518519,evaluable,,2
+undefended,beat_mlp,2,1,,,not_evaluable,n=2 < inner_folds=3; shared BEAT fit eligibility unchanged,0
+undefended,beat_mlp,2,10,,,not_evaluable,n=2 < inner_folds=3; shared BEAT fit eligibility unchanged,0
+undefended,beat_mlp,20,1,0.9857253086419753,0.9857253086419753,evaluable,,2
+undefended,beat_mlp,20,10,0.9907407407407407,0.9907407407407407,evaluable,,2
+undefended,beat_mlp,5,1,0.9448302469135802,0.9448302469135803,evaluable,,2
+undefended,beat_mlp,5,10,0.9814814814814814,0.9814814814814814,evaluable,,2
+undefended,beat_mlp,all,1,0.9984567901234569,0.9984567901234569,evaluable,,2
+undefended,beat_mlp,all,10,1.0,1.0,evaluable,,2
+undefended,beat_rbf_svm,1,1,,,not_evaluable,n=1 < inner_folds=3; shared BEAT fit eligibility unchanged,0
+undefended,beat_rbf_svm,1,10,,,not_evaluable,n=1 < inner_folds=3; shared BEAT fit eligibility unchanged,0
+undefended,beat_rbf_svm,10,1,0.9637345679012346,0.9637345679012346,evaluable,,2
+undefended,beat_rbf_svm,10,10,0.9768518518518519,0.9768518518518519,evaluable,,2
+undefended,beat_rbf_svm,2,1,,,not_evaluable,n=2 < inner_folds=3; shared BEAT fit eligibility unchanged,0
+undefended,beat_rbf_svm,2,10,,,not_evaluable,n=2 < inner_folds=3; shared BEAT fit eligibility unchanged,0
+undefended,beat_rbf_svm,20,1,0.9907407407407407,0.9907407407407407,evaluable,,2
+undefended,beat_rbf_svm,20,10,0.9907407407407407,0.9907407407407407,evaluable,,2
+undefended,beat_rbf_svm,5,1,0.9490740740740741,0.9490740740740742,evaluable,,2
+undefended,beat_rbf_svm,5,10,0.9768518518518519,0.9768518518518519,evaluable,,2
+undefended,beat_rbf_svm,all,1,0.9992283950617284,0.9992283950617283,evaluable,,2
+undefended,beat_rbf_svm,all,10,1.0,1.0,evaluable,,2
+undefended,paper_ts_svm,1,1,0.6998456790123457,0.6998456790123457,evaluable,,2
+undefended,paper_ts_svm,1,10,0.787037037037037,0.7870370370370371,evaluable,,2
+undefended,paper_ts_svm,10,1,0.9618055555555556,0.9618055555555556,evaluable,,2
+undefended,paper_ts_svm,10,10,0.9814814814814815,0.9814814814814815,evaluable,,2
+undefended,paper_ts_svm,2,1,0.8256172839506173,0.8256172839506173,evaluable,,2
+undefended,paper_ts_svm,2,10,0.8981481481481481,0.8981481481481481,evaluable,,2
+undefended,paper_ts_svm,20,1,0.9849537037037037,0.9849537037037037,evaluable,,2
+undefended,paper_ts_svm,20,10,0.9907407407407407,0.9907407407407407,evaluable,,2
+undefended,paper_ts_svm,5,1,0.9178240740740741,0.9178240740740742,evaluable,,2
+undefended,paper_ts_svm,5,10,0.9768518518518519,0.9768518518518519,evaluable,,2
+undefended,paper_ts_svm,all,1,0.9996141975308642,0.9996141975308641,evaluable,,2
+undefended,paper_ts_svm,all,10,1.0,1.0,evaluable,,2

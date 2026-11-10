@@ -1,0 +1,5963 @@
+{
+  "experiment": "G",
+  "dataset": "bnci",
+  "exploratory": true,
+  "source": "https://arxiv.org/html/2610.15626v1",
+  "defense_fit_session": "T",
+  "operating_point": [
+    0.9,
+    0.35,
+    0.6,
+    0.0
+  ],
+  "configuration": {
+    "seed": 42,
+    "workers": 2,
+    "bootstrap_samples": 500,
+    "k": [
+      1,
+      5,
+      10,
+      20
+    ],
+    "enrolment_n": [
+      1,
+      2,
+      5,
+      10,
+      20,
+      "all"
+    ],
+    "enrolment_k": [
+      1,
+      10
+    ],
+    "csp_pairs": 4,
+    "xdawn_filters": 1,
+    "sfreq": 250,
+    "filter_order": 5,
+    "bandpass": [
+      8,
+      30
+    ],
+    "bnci": {
+      "raw_dir": "data/raw/bnci2014_001",
+      "subjects": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "window_after_cue": [
+        0,
+        4
+      ],
+      "strengths": [
+        0.9,
+        0.35,
+        0.6,
+        0.0
+      ]
+    },
+    "lee2019": {
+      "processed_dir": "data/processed/lee2019",
+      "subjects": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54
+      ],
+      "strengths": [
+        0.9,
+        0.6,
+        0.6,
+        0.2
+      ]
+    }
+  },
+  "attackers": {
+    "logistic_C": 1.0,
+    "logistic_max_iter": 2000,
+    "svm_C": [
+      0.1,
+      1.0,
+      10.0
+    ],
+    "svm_gamma": [
+      "scale",
+      0.01,
+      0.1
+    ],
+    "inner_folds": 3,
+    "mlp_hidden": [
+      32
+    ],
+    "mlp_alpha": 0.01,
+    "mlp_solver": "lbfgs",
+    "mlp_max_iter": 50000,
+    "mlp_max_fun": 1000000
+  },
+  "seed": 42,
+  "workers": 2,
+  "threads_per_worker": 1,
+  "chance": 0.1111111111111111,
+  "session2_plan_sha256": null,
+  "lee2019_session2_accessed": false,
+  "retained_trials": {
+    "S1": 2592,
+    "S2": 2592
+  },
+  "rejected_trials": {
+    "S1": 0,
+    "S2": 0
+  },
+  "trial_counts": [
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "E",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 1,
+      "session": "T",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "E",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 2,
+      "session": "T",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "E",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 3,
+      "session": "T",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "E",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 4,
+      "session": "T",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "E",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 5,
+      "session": "T",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "E",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 6,
+      "session": "T",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "E",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 7,
+      "session": "T",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "E",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 8,
+      "session": "T",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "E",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 1,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 1,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 1,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 1,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 2,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 2,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 2,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 2,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 3,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 3,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 3,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 3,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 4,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 4,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 4,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 4,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 5,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 5,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 5,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 5,
+      "label": 3,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 6,
+      "label": 0,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 6,
+      "label": 1,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 6,
+      "label": 2,
+      "n": 12
+    },
+    {
+      "subject": 9,
+      "session": "T",
+      "run": 6,
+      "label": 3,
+      "n": 12
+    }
+  ],
+  "mlp_convergence": [
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "direction": "S1_to_S2",
+      "converged": true,
+      "iterations": 11,
+      "loss": 0.0003008002657749388,
+      "warning": ""
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "direction": "S2_to_S1",
+      "converged": true,
+      "iterations": 11,
+      "loss": 0.0003657742090994791,
+      "warning": ""
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "direction": "first_to_second",
+      "converged": true,
+      "iterations": 12,
+      "loss": 0.0004518591760628354,
+      "warning": ""
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "direction": "second_to_first",
+      "converged": true,
+      "iterations": 12,
+      "loss": 0.0004321575984314618,
+      "warning": ""
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "direction": "S1_to_S2",
+      "converged": true,
+      "iterations": 54,
+      "loss": 0.0031978613024535355,
+      "warning": ""
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "direction": "S2_to_S1",
+      "converged": true,
+      "iterations": 11,
+      "loss": 0.00027763361839454684,
+      "warning": ""
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "direction": "first_to_second",
+      "converged": true,
+      "iterations": 11,
+      "loss": 0.00045497786230277234,
+      "warning": ""
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "direction": "second_to_first",
+      "converged": true,
+      "iterations": 11,
+      "loss": 0.00044877801377833355,
+      "warning": ""
+    }
+  ],
+  "elapsed_seconds": 176.03536009788513,
+  "versions": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "pyriemann": "0.12",
+    "joblib": "1.6.0"
+  },
+  "code_sha256": "4be29b7e846cab690daec6dd82f503d17b88cb8b12e71e9fdc77edb4aa747621",
+  "config_sha256": "22ec76263dc29a8ab6a80e51f4ebd95f708785a73e611769cbcab2bef767accc",
+  "ambiguities_and_deviations": [
+    "Population Riemannian means use all fitting trials (trial weighting), not a mean of subject means.",
+    "Each stage consumes the preceding released signals. SCW's fixed tangent reference is the pooled Riemannian mean of Stage-1 fitting covariances; the text also permits interpreting Cbar as the original Stage-1 target. No choice is reselected on S2.",
+    "Defense covariance follows the explicit uncentered XX.T/t + 1e-6 I formula, in the BNCI MAT microvolt units. No demeaning, OAS or trace normalization in the defense.",
+    "Recolouring uses regularized source and target Cholesky factors. Thus empirical output covariance differs from the target by the transported 1e-6 ridge.",
+    "SCW scatter is centered sample covariance (ddof=1) + 1e-4 I; shrinkage 0.1 is applied AFTER this ridge iff subject n<=d; eigenfloor 1e-8 times maximum. The map acts on z, NOT z minus a subject mean, as equation 5 states.",
+    "BCI window chosen as cue+[0,4) seconds (1000 samples), consistent with Appendix C and Appendix F's imagery window; main-protocol onset is not explicitly specified.",
+    "Fifth-order 8-30 Hz Butterworth SOS zero-phase filtering is per extracted epoch with scipy default odd padding; fifth order is specified in Section 4, but padding and application boundaries are unspecified. BCA repeats the same filter on Stage-2 output and adds its untouched residual.",
+    "All four MI classes and official artifact-flagged trials are retained to match 288 trials/session. Nonfinite or incomplete epochs are rejected and counted.",
+    "CSP details incomplete: one-versus-rest identities, uncentered trace-normalized trial covariance, arithmetic class means, four smallest and four largest generalized eigenvectors per identity, log normalized projected variance; no additional subbands or feature scaling. RBF SVC and SVD LDA use sklearn defaults.",
+    "XDAWN uses one fixed filter per identity, OAS for both evoked filters and augmented covariance, applyfilters=True, fixed Riemannian tangent space and default RBF SVC. Unlike the paper's oracle maximum over 1/2/4/8, no evaluation-session selection is performed; this resource-limited result is NOT its oracle reproduction.",
+    "Reverse S2->S1 swaps only attacker train/test; the defense remains fitted on S1.",
+    "Aggregation uses nonoverlapping consecutive groups within subject/session/run; remainders are dropped, never crosses halves. Single-trial-trained classifiers receive mean feature vectors; nearest-template mean tangent is also reported. This differs from Appendix H random subsets and does not retrain classifiers for k.",
+    "Mechanism uses OAS covariances and a separate S1-fitted tangent reference per condition: mean pairwise Euclidean subject-centroid distance and mean within-subject Euclidean distance, equally weighted subjects. The paper does not fully define these summaries.",
+    "BEAT logistic/RBF-SVM/MLP reuse configs/exp_b.yaml unchanged, on attacker-training-fitted OAS tangent features; one deterministic seed 42, not Experiment B's five-seed ensemble.",
+    "Enrolment curves use the first n retained trials per participant in recording order within the attacker-training half, including when halves are reversed. The defense stays fitted on all S1; the attacker's tangent reference/scaling/classifiers are refitted using only these n labelled trials. Test groups are unchanged across n.",
+    "For n<inner_folds, BEAT RBF-SVM and MLP are not evaluable under the requested shared fit_attackers eligibility rule (MLP itself has no inner search). Fixed-C logistic regression is fitted separately with identical BEAT pipeline parameters at tiny n. No CV reduction, oversampling or hyperparameter fallback. All-enrolment cells reuse the identical original post-deployment fits and predictions.",
+    "Run-bootstrap intervals are conditional on fitted attackers, 500 resamples, and are descriptive rather than confirmatory; intervals are unavailable if any subject has fewer than two test recording units. Direction averages are unweighted. Paired signs are exhaustive for nine BCI identities and Monte Carlo (10000 draws, plus-one correction) for Lee2019 to avoid enumerating 2^54 signs.",
+    "Lee2019 uses pre-existing causal 8-30 Hz, cue+[1,4) reduced epochs, unlike the paper's zero-phase four-second preprocessing; train/test phases become two recording units. It cannot reconstruct missing samples or undo filtering. Session 2 requires a separately sealed plan; no Lee2019 data are needed for synthetic tests.",
+    "SPDNet-ID and MI utility decoders are not run. The strongest implemented attacker is not the paper's five-attacker worst, and identity failure alone is not anonymity."
+  ],
+  "paper_comparison": [
+    {
+      "condition": "raw",
+      "direction": "S1_to_S2",
+      "attacker": "paper_ts_svm",
+      "paper_accuracy_percent": 75.9,
+      "observed_accuracy_percent": null,
+      "paper_attacker_configuration": "OAS covariance; Riemannian tangent space; sklearn-default RBF SVC",
+      "observed_attacker_configuration": "OAS covariance; Riemannian tangent space; sklearn-default RBF SVC",
+      "paper_selection_policy": "Fixed independently of Session 2; Section 5",
+      "observed_selection_policy": "Fixed configuration; no evaluation-session selection",
+      "comparable": false,
+      "difference_pp": null,
+      "comparison_note": "Difference unavailable: no observed result for this row. Matched stated attacker configuration and selection policy only; documented preprocessing/defense reproduction ambiguities still apply."
+    },
+    {
+      "condition": "raw",
+      "direction": "S1_to_S2",
+      "attacker": "paper_xdawn_svm",
+      "paper_accuracy_percent": 85.1,
+      "observed_accuracy_percent": null,
+      "paper_attacker_configuration": "OAS XdawnCovariances with evoked filters applied; nfilter selected by oracle (not separately specified for this row); tangent-space RBF SVM",
+      "observed_attacker_configuration": "OAS augmented covariance and OAS evoked estimator; applyfilters=True; fixed nfilter=1; Riemannian tangent space; default RBF SVC",
+      "paper_selection_policy": "Oracle maximum on held-out session over nfilter={1,2,4,8}; Section 5 reports 8 undefended and 1 defended for BCI S1->S2",
+      "observed_selection_policy": "Fixed configuration; no evaluation-session selection",
+      "comparable": false,
+      "difference_pp": null,
+      "comparison_note": "Difference unavailable: no observed result for this row. Difference withheld: paper uses held-out-session oracle selection, ours a fixed filter count, even if the selected count coincides."
+    },
+    {
+      "condition": "raw",
+      "direction": "S1_to_S2",
+      "attacker": "paper_csp_svm",
+      "paper_accuracy_percent": 72.2,
+      "observed_accuracy_percent": null,
+      "paper_attacker_configuration": "One-versus-rest CSP on trace-normalized covariances; RBF SVC; component count, variance normalization and solver details unspecified",
+      "observed_attacker_configuration": "One-versus-rest identity CSP; trace-normalized uncentered covariances; 4 smallest + 4 largest eigenvectors per identity; log normalized projected variance; no scaling/subbands; default RBF SVC",
+      "paper_selection_policy": "Fixed independently of Session 2; Section 5",
+      "observed_selection_policy": "Fixed configuration; no evaluation-session selection",
+      "comparable": false,
+      "difference_pp": null,
+      "comparison_note": "Difference unavailable: no observed result for this row. Difference withheld: CSP implementation choices are explicit local assumptions; equivalence to the underspecified paper configuration cannot be established."
+    },
+    {
+      "condition": "raw",
+      "direction": "S1_to_S2",
+      "attacker": "paper_csp_lda",
+      "paper_accuracy_percent": 77.9,
+      "observed_accuracy_percent": null,
+      "paper_attacker_configuration": "One-versus-rest CSP on trace-normalized covariances; LDA; component count, variance normalization and solver details unspecified",
+      "observed_attacker_configuration": "One-versus-rest identity CSP; trace-normalized uncentered covariances; 4 smallest + 4 largest eigenvectors per identity; log normalized projected variance; no scaling/subbands; default SVD LDA",
+      "paper_selection_policy": "Fixed independently of Session 2; Section 5",
+      "observed_selection_policy": "Fixed configuration; no evaluation-session selection",
+      "comparable": false,
+      "difference_pp": null,
+      "comparison_note": "Difference unavailable: no observed result for this row. Difference withheld: CSP implementation choices are explicit local assumptions; equivalence to the underspecified paper configuration cannot be established."
+    },
+    {
+      "condition": "raw",
+      "direction": "S1_to_S2",
+      "attacker": "SPDNet_ID",
+      "paper_accuracy_percent": 67.4,
+      "observed_accuracy_percent": null,
+      "paper_attacker_configuration": "SPDNet-ID BiMap c->c/2->c/4; Adam 5e-4; 400 epochs; batch 64; patience 40 on 10% stratified training split; seed 42",
+      "observed_attacker_configuration": "Not implemented/evaluated",
+      "paper_selection_policy": "Fixed independently of Session 2; Section 5",
+      "observed_selection_policy": "Not applicable",
+      "comparable": false,
+      "difference_pp": null,
+      "comparison_note": "Difference unavailable: no observed result for this row. Difference withheld: SPDNet-ID was not evaluated."
+    },
+    {
+      "condition": "undefended",
+      "direction": "S1_to_S2",
+      "attacker": "paper_ts_svm",
+      "paper_accuracy_percent": 90.8,
+      "observed_accuracy_percent": 90.8179012345679,
+      "paper_attacker_configuration": "OAS covariance; Riemannian tangent space; sklearn-default RBF SVC",
+      "observed_attacker_configuration": "OAS covariance; Riemannian tangent space; sklearn-default RBF SVC",
+      "paper_selection_policy": "Fixed independently of Session 2; Section 5",
+      "observed_selection_policy": "Fixed configuration; no evaluation-session selection",
+      "comparable": true,
+      "difference_pp": 0.01790123456790127,
+      "comparison_note": "Matched stated attacker configuration and selection policy only; documented preprocessing/defense reproduction ambiguities still apply."
+    },
+    {
+      "condition": "undefended",
+      "direction": "S1_to_S2",
+      "attacker": "paper_xdawn_svm",
+      "paper_accuracy_percent": 87.6,
+      "observed_accuracy_percent": 72.80092592592592,
+      "paper_attacker_configuration": "OAS XdawnCovariances with evoked filters applied; nfilter selected by oracle (8); tangent-space RBF SVM",
+      "observed_attacker_configuration": "OAS augmented covariance and OAS evoked estimator; applyfilters=True; fixed nfilter=1; Riemannian tangent space; default RBF SVC",
+      "paper_selection_policy": "Oracle maximum on held-out session over nfilter={1,2,4,8}; Section 5 reports 8 undefended and 1 defended for BCI S1->S2",
+      "observed_selection_policy": "Fixed configuration; no evaluation-session selection",
+      "comparable": false,
+      "difference_pp": null,
+      "comparison_note": "Difference withheld: paper uses held-out-session oracle selection, ours a fixed filter count, even if the selected count coincides."
+    },
+    {
+      "condition": "undefended",
+      "direction": "S1_to_S2",
+      "attacker": "paper_csp_svm",
+      "paper_accuracy_percent": 73.2,
+      "observed_accuracy_percent": 81.40432098765432,
+      "paper_attacker_configuration": "One-versus-rest CSP on trace-normalized covariances; RBF SVC; component count, variance normalization and solver details unspecified",
+      "observed_attacker_configuration": "One-versus-rest identity CSP; trace-normalized uncentered covariances; 4 smallest + 4 largest eigenvectors per identity; log normalized projected variance; no scaling/subbands; default RBF SVC",
+      "paper_selection_policy": "Fixed independently of Session 2; Section 5",
+      "observed_selection_policy": "Fixed configuration; no evaluation-session selection",
+      "comparable": false,
+      "difference_pp": null,
+      "comparison_note": "Difference withheld: CSP implementation choices are explicit local assumptions; equivalence to the underspecified paper configuration cannot be established."
+    },
+    {
+      "condition": "undefended",
+      "direction": "S1_to_S2",
+      "attacker": "paper_csp_lda",
+      "paper_accuracy_percent": 77.3,
+      "observed_accuracy_percent": 77.7391975308642,
+      "paper_attacker_configuration": "One-versus-rest CSP on trace-normalized covariances; LDA; component count, variance normalization and solver details unspecified",
+      "observed_attacker_configuration": "One-versus-rest identity CSP; trace-normalized uncentered covariances; 4 smallest + 4 largest eigenvectors per identity; log normalized projected variance; no scaling/subbands; default SVD LDA",
+      "paper_selection_policy": "Fixed independently of Session 2; Section 5",
+      "observed_selection_policy": "Fixed configuration; no evaluation-session selection",
+      "comparable": false,
+      "difference_pp": null,
+      "comparison_note": "Difference withheld: CSP implementation choices are explicit local assumptions; equivalence to the underspecified paper configuration cannot be established."
+    },
+    {
+      "condition": "undefended",
+      "direction": "S1_to_S2",
+      "attacker": "SPDNet_ID",
+      "paper_accuracy_percent": 89.9,
+      "observed_accuracy_percent": null,
+      "paper_attacker_configuration": "SPDNet-ID BiMap c->c/2->c/4; Adam 5e-4; 400 epochs; batch 64; patience 40 on 10% stratified training split; seed 42",
+      "observed_attacker_configuration": "Not implemented/evaluated",
+      "paper_selection_policy": "Fixed independently of Session 2; Section 5",
+      "observed_selection_policy": "Not applicable",
+      "comparable": false,
+      "difference_pp": null,
+      "comparison_note": "Difference unavailable: no observed result for this row. Difference withheld: SPDNet-ID was not evaluated."
+    },
+    {
+      "condition": "defended",
+      "direction": "S1_to_S2",
+      "attacker": "paper_ts_svm",
+      "paper_accuracy_percent": 11.1,
+      "observed_accuracy_percent": 11.11111111111111,
+      "paper_attacker_configuration": "OAS covariance; Riemannian tangent space; sklearn-default RBF SVC",
+      "observed_attacker_configuration": "OAS covariance; Riemannian tangent space; sklearn-default RBF SVC",
+      "paper_selection_policy": "Fixed independently of Session 2; Section 5",
+      "observed_selection_policy": "Fixed configuration; no evaluation-session selection",
+      "comparable": true,
+      "difference_pp": 0.011111111111111072,
+      "comparison_note": "Matched stated attacker configuration and selection policy only; documented preprocessing/defense reproduction ambiguities still apply."
+    },
+    {
+      "condition": "defended",
+      "direction": "S1_to_S2",
+      "attacker": "paper_xdawn_svm",
+      "paper_accuracy_percent": 15.5,
+      "observed_accuracy_percent": 11.535493827160494,
+      "paper_attacker_configuration": "OAS XdawnCovariances with evoked filters applied; nfilter selected by oracle (1); tangent-space RBF SVM",
+      "observed_attacker_configuration": "OAS augmented covariance and OAS evoked estimator; applyfilters=True; fixed nfilter=1; Riemannian tangent space; default RBF SVC",
+      "paper_selection_policy": "Oracle maximum on held-out session over nfilter={1,2,4,8}; Section 5 reports 8 undefended and 1 defended for BCI S1->S2",
+      "observed_selection_policy": "Fixed configuration; no evaluation-session selection",
+      "comparable": false,
+      "difference_pp": null,
+      "comparison_note": "Difference withheld: paper uses held-out-session oracle selection, ours a fixed filter count, even if the selected count coincides."
+    },
+    {
+      "condition": "defended",
+      "direction": "S1_to_S2",
+      "attacker": "paper_csp_svm",
+      "paper_accuracy_percent": 15.6,
+      "observed_accuracy_percent": 10.493827160493826,
+      "paper_attacker_configuration": "One-versus-rest CSP on trace-normalized covariances; RBF SVC; component count, variance normalization and solver details unspecified",
+      "observed_attacker_configuration": "One-versus-rest identity CSP; trace-normalized uncentered covariances; 4 smallest + 4 largest eigenvectors per identity; log normalized projected variance; no scaling/subbands; default RBF SVC",
+      "paper_selection_policy": "Fixed independently of Session 2; Section 5",
+      "observed_selection_policy": "Fixed configuration; no evaluation-session selection",
+      "comparable": false,
+      "difference_pp": null,
+      "comparison_note": "Difference withheld: CSP implementation choices are explicit local assumptions; equivalence to the underspecified paper configuration cannot be established."
+    },
+    {
+      "condition": "defended",
+      "direction": "S1_to_S2",
+      "attacker": "paper_csp_lda",
+      "paper_accuracy_percent": 3.5,
+      "observed_accuracy_percent": 8.333333333333332,
+      "paper_attacker_configuration": "One-versus-rest CSP on trace-normalized covariances; LDA; component count, variance normalization and solver details unspecified",
+      "observed_attacker_configuration": "One-versus-rest identity CSP; trace-normalized uncentered covariances; 4 smallest + 4 largest eigenvectors per identity; log normalized projected variance; no scaling/subbands; default SVD LDA",
+      "paper_selection_policy": "Fixed independently of Session 2; Section 5",
+      "observed_selection_policy": "Fixed configuration; no evaluation-session selection",
+      "comparable": false,
+      "difference_pp": null,
+      "comparison_note": "Difference withheld: CSP implementation choices are explicit local assumptions; equivalence to the underspecified paper configuration cannot be established."
+    },
+    {
+      "condition": "defended",
+      "direction": "S1_to_S2",
+      "attacker": "SPDNet_ID",
+      "paper_accuracy_percent": 15.1,
+      "observed_accuracy_percent": null,
+      "paper_attacker_configuration": "SPDNet-ID BiMap c->c/2->c/4; Adam 5e-4; 400 epochs; batch 64; patience 40 on 10% stratified training split; seed 42",
+      "observed_attacker_configuration": "Not implemented/evaluated",
+      "paper_selection_policy": "Fixed independently of Session 2; Section 5",
+      "observed_selection_policy": "Not applicable",
+      "comparable": false,
+      "difference_pp": null,
+      "comparison_note": "Difference unavailable: no observed result for this row. Difference withheld: SPDNet-ID was not evaluated."
+    },
+    {
+      "condition": "defended",
+      "direction": "S2_to_S1",
+      "attacker": "paper_ts_svm",
+      "paper_accuracy_percent": 11.1,
+      "observed_accuracy_percent": 10.91820987654321,
+      "paper_attacker_configuration": "OAS covariance; Riemannian tangent space; sklearn-default RBF SVC",
+      "observed_attacker_configuration": "OAS covariance; Riemannian tangent space; sklearn-default RBF SVC",
+      "paper_selection_policy": "Fixed independently of Session 2; Section 5",
+      "observed_selection_policy": "Fixed configuration; no evaluation-session selection",
+      "comparable": true,
+      "difference_pp": -0.18179012345678913,
+      "comparison_note": "Matched stated attacker configuration and selection policy only; documented preprocessing/defense reproduction ambiguities still apply."
+    },
+    {
+      "condition": "defended",
+      "direction": "S2_to_S1",
+      "attacker": "paper_xdawn_svm",
+      "paper_accuracy_percent": 12.9,
+      "observed_accuracy_percent": 11.805555555555555,
+      "paper_attacker_configuration": "OAS XdawnCovariances with evoked filters applied; nfilter selected by oracle (not separately specified for this row); tangent-space RBF SVM",
+      "observed_attacker_configuration": "OAS augmented covariance and OAS evoked estimator; applyfilters=True; fixed nfilter=1; Riemannian tangent space; default RBF SVC",
+      "paper_selection_policy": "Oracle maximum on held-out session over nfilter={1,2,4,8}; Section 5 reports 8 undefended and 1 defended for BCI S1->S2",
+      "observed_selection_policy": "Fixed configuration; no evaluation-session selection",
+      "comparable": false,
+      "difference_pp": null,
+      "comparison_note": "Difference withheld: paper uses held-out-session oracle selection, ours a fixed filter count, even if the selected count coincides."
+    },
+    {
+      "condition": "defended",
+      "direction": "S2_to_S1",
+      "attacker": "paper_csp_svm",
+      "paper_accuracy_percent": 5.8,
+      "observed_accuracy_percent": 10.493827160493826,
+      "paper_attacker_configuration": "One-versus-rest CSP on trace-normalized covariances; RBF SVC; component count, variance normalization and solver details unspecified",
+      "observed_attacker_configuration": "One-versus-rest identity CSP; trace-normalized uncentered covariances; 4 smallest + 4 largest eigenvectors per identity; log normalized projected variance; no scaling/subbands; default RBF SVC",
+      "paper_selection_policy": "Fixed independently of Session 2; Section 5",
+      "observed_selection_policy": "Fixed configuration; no evaluation-session selection",
+      "comparable": false,
+      "difference_pp": null,
+      "comparison_note": "Difference withheld: CSP implementation choices are explicit local assumptions; equivalence to the underspecified paper configuration cannot be established."
+    },
+    {
+      "condition": "defended",
+      "direction": "S2_to_S1",
+      "attacker": "paper_csp_lda",
+      "paper_accuracy_percent": 0.9,
+      "observed_accuracy_percent": 10.99537037037037,
+      "paper_attacker_configuration": "One-versus-rest CSP on trace-normalized covariances; LDA; component count, variance normalization and solver details unspecified",
+      "observed_attacker_configuration": "One-versus-rest identity CSP; trace-normalized uncentered covariances; 4 smallest + 4 largest eigenvectors per identity; log normalized projected variance; no scaling/subbands; default SVD LDA",
+      "paper_selection_policy": "Fixed independently of Session 2; Section 5",
+      "observed_selection_policy": "Fixed configuration; no evaluation-session selection",
+      "comparable": false,
+      "difference_pp": null,
+      "comparison_note": "Difference withheld: CSP implementation choices are explicit local assumptions; equivalence to the underspecified paper configuration cannot be established."
+    },
+    {
+      "condition": "defended",
+      "direction": "S2_to_S1",
+      "attacker": "SPDNet_ID",
+      "paper_accuracy_percent": 12.1,
+      "observed_accuracy_percent": null,
+      "paper_attacker_configuration": "SPDNet-ID BiMap c->c/2->c/4; Adam 5e-4; 400 epochs; batch 64; patience 40 on 10% stratified training split; seed 42",
+      "observed_attacker_configuration": "Not implemented/evaluated",
+      "paper_selection_policy": "Fixed independently of Session 2; Section 5",
+      "observed_selection_policy": "Not applicable",
+      "comparable": false,
+      "difference_pp": null,
+      "comparison_note": "Difference unavailable: no observed result for this row. Difference withheld: SPDNet-ID was not evaluated."
+    }
+  ],
+  "mechanism": {
+    "undefended": {
+      "between_subject_mean_distance": 4.566604066474493,
+      "within_subject_mean_distance": 2.3438418491564006,
+      "within_over_between": 0.513257075725834,
+      "between_over_within": 1.948341381530547
+    },
+    "defended": {
+      "between_subject_mean_distance": 3.5113316657259173,
+      "within_subject_mean_distance": 3.0892127306719304,
+      "within_over_between": 0.8797838041976249,
+      "between_over_within": 1.1366428834320428
+    }
+  },
+  "identity": [
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "beat_logistic",
+      "k": 1,
+      "accuracy": 0.9992283950617284,
+      "balanced_accuracy": 0.9992283950617284
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "beat_logistic",
+      "k": 5,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "beat_logistic",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "beat_logistic",
+      "k": 20,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "beat_mlp",
+      "k": 1,
+      "accuracy": 0.9988425925925926,
+      "balanced_accuracy": 0.9988425925925926
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "beat_mlp",
+      "k": 5,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "beat_mlp",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "beat_mlp",
+      "k": 20,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "beat_rbf_svm",
+      "k": 1,
+      "accuracy": 0.9976851851851852,
+      "balanced_accuracy": 0.9976851851851851
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "beat_rbf_svm",
+      "k": 5,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "beat_rbf_svm",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "beat_rbf_svm",
+      "k": 20,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "mean_tangent_template",
+      "k": 1,
+      "accuracy": 0.9749228395061729,
+      "balanced_accuracy": 0.9749228395061729
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "mean_tangent_template",
+      "k": 5,
+      "accuracy": 0.9958847736625515,
+      "balanced_accuracy": 0.9958847736625513
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "mean_tangent_template",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "mean_tangent_template",
+      "k": 20,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_lda",
+      "k": 1,
+      "accuracy": 0.9972993827160495,
+      "balanced_accuracy": 0.9972993827160495
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_lda",
+      "k": 5,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_lda",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_lda",
+      "k": 20,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_svm",
+      "k": 1,
+      "accuracy": 0.9972993827160495,
+      "balanced_accuracy": 0.9972993827160492
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_svm",
+      "k": 5,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_svm",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_svm",
+      "k": 20,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "paper_ts_svm",
+      "k": 1,
+      "accuracy": 0.9976851851851852,
+      "balanced_accuracy": 0.9976851851851851
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "paper_ts_svm",
+      "k": 5,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "paper_ts_svm",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "paper_ts_svm",
+      "k": 20,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "paper_xdawn_svm",
+      "k": 1,
+      "accuracy": 0.9934413580246914,
+      "balanced_accuracy": 0.9934413580246914
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "paper_xdawn_svm",
+      "k": 5,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "paper_xdawn_svm",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "attacker": "paper_xdawn_svm",
+      "k": 20,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "beat_logistic",
+      "k": 1,
+      "accuracy": 0.047260802469135804,
+      "balanced_accuracy": 0.0472608024691358
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "beat_logistic",
+      "k": 5,
+      "accuracy": 0.050411522633744855,
+      "balanced_accuracy": 0.050411522633744855
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "beat_logistic",
+      "k": 10,
+      "accuracy": 0.05324074074074074,
+      "balanced_accuracy": 0.05324074074074074
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "beat_logistic",
+      "k": 20,
+      "accuracy": 0.046296296296296294,
+      "balanced_accuracy": 0.0462962962962963
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "beat_mlp",
+      "k": 1,
+      "accuracy": 0.06462191358024691,
+      "balanced_accuracy": 0.06462191358024691
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "beat_mlp",
+      "k": 5,
+      "accuracy": 0.0720164609053498,
+      "balanced_accuracy": 0.07201646090534979
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "beat_mlp",
+      "k": 10,
+      "accuracy": 0.07407407407407407,
+      "balanced_accuracy": 0.07407407407407407
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "beat_mlp",
+      "k": 20,
+      "accuracy": 0.07870370370370369,
+      "balanced_accuracy": 0.0787037037037037
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "beat_rbf_svm",
+      "k": 1,
+      "accuracy": 0.1107253086419753,
+      "balanced_accuracy": 0.1107253086419753
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "beat_rbf_svm",
+      "k": 5,
+      "accuracy": 0.11008230452674897,
+      "balanced_accuracy": 0.11008230452674897
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "beat_rbf_svm",
+      "k": 10,
+      "accuracy": 0.09027777777777778,
+      "balanced_accuracy": 0.09027777777777778
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "beat_rbf_svm",
+      "k": 20,
+      "accuracy": 0.06944444444444445,
+      "balanced_accuracy": 0.06944444444444445
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "mean_tangent_template",
+      "k": 1,
+      "accuracy": 0.07214506172839506,
+      "balanced_accuracy": 0.07214506172839508
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "mean_tangent_template",
+      "k": 5,
+      "accuracy": 0.06790123456790123,
+      "balanced_accuracy": 0.06790123456790123
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "mean_tangent_template",
+      "k": 10,
+      "accuracy": 0.06712962962962962,
+      "balanced_accuracy": 0.06712962962962964
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "mean_tangent_template",
+      "k": 20,
+      "accuracy": 0.06018518518518518,
+      "balanced_accuracy": 0.06018518518518518
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "paper_csp_lda",
+      "k": 1,
+      "accuracy": 0.09664351851851852,
+      "balanced_accuracy": 0.09664351851851852
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "paper_csp_lda",
+      "k": 5,
+      "accuracy": 0.1059670781893004,
+      "balanced_accuracy": 0.1059670781893004
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "paper_csp_lda",
+      "k": 10,
+      "accuracy": 0.1111111111111111,
+      "balanced_accuracy": 0.1111111111111111
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "paper_csp_lda",
+      "k": 20,
+      "accuracy": 0.1111111111111111,
+      "balanced_accuracy": 0.1111111111111111
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "paper_csp_svm",
+      "k": 1,
+      "accuracy": 0.10493827160493827,
+      "balanced_accuracy": 0.10493827160493827
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "paper_csp_svm",
+      "k": 5,
+      "accuracy": 0.08436213991769548,
+      "balanced_accuracy": 0.08436213991769546
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "paper_csp_svm",
+      "k": 10,
+      "accuracy": 0.06712962962962962,
+      "balanced_accuracy": 0.06712962962962962
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "paper_csp_svm",
+      "k": 20,
+      "accuracy": 0.07870370370370369,
+      "balanced_accuracy": 0.0787037037037037
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "paper_ts_svm",
+      "k": 1,
+      "accuracy": 0.11014660493827161,
+      "balanced_accuracy": 0.11014660493827161
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "paper_ts_svm",
+      "k": 5,
+      "accuracy": 0.0751028806584362,
+      "balanced_accuracy": 0.0751028806584362
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "paper_ts_svm",
+      "k": 10,
+      "accuracy": 0.0625,
+      "balanced_accuracy": 0.0625
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "paper_ts_svm",
+      "k": 20,
+      "accuracy": 0.05555555555555555,
+      "balanced_accuracy": 0.05555555555555555
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "paper_xdawn_svm",
+      "k": 1,
+      "accuracy": 0.11670524691358025,
+      "balanced_accuracy": 0.11670524691358025
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "paper_xdawn_svm",
+      "k": 5,
+      "accuracy": 0.13477366255144035,
+      "balanced_accuracy": 0.1347736625514403
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "paper_xdawn_svm",
+      "k": 10,
+      "accuracy": 0.12268518518518517,
+      "balanced_accuracy": 0.1226851851851852
+    },
+    {
+      "condition": "defended",
+      "scenario": "reference_session",
+      "attacker": "paper_xdawn_svm",
+      "k": 20,
+      "accuracy": 0.11574074074074073,
+      "balanced_accuracy": 0.11574074074074073
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "beat_logistic",
+      "k": 1,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "beat_logistic",
+      "k": 5,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "beat_logistic",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "beat_logistic",
+      "k": 20,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "beat_mlp",
+      "k": 1,
+      "accuracy": 0.9984567901234569,
+      "balanced_accuracy": 0.9984567901234569
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "beat_mlp",
+      "k": 5,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "beat_mlp",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "beat_mlp",
+      "k": 20,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "beat_rbf_svm",
+      "k": 1,
+      "accuracy": 0.9992283950617284,
+      "balanced_accuracy": 0.9992283950617283
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "beat_rbf_svm",
+      "k": 5,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "beat_rbf_svm",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "beat_rbf_svm",
+      "k": 20,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "mean_tangent_template",
+      "k": 1,
+      "accuracy": 0.9645061728395061,
+      "balanced_accuracy": 0.9645061728395063
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "mean_tangent_template",
+      "k": 5,
+      "accuracy": 0.9876543209876543,
+      "balanced_accuracy": 0.9876543209876544
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "mean_tangent_template",
+      "k": 10,
+      "accuracy": 0.9953703703703703,
+      "balanced_accuracy": 0.9953703703703703
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "mean_tangent_template",
+      "k": 20,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_lda",
+      "k": 1,
+      "accuracy": 0.9996141975308642,
+      "balanced_accuracy": 0.9996141975308641
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_lda",
+      "k": 5,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_lda",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_lda",
+      "k": 20,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_svm",
+      "k": 1,
+      "accuracy": 0.9984567901234569,
+      "balanced_accuracy": 0.9984567901234567
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_svm",
+      "k": 5,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_svm",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_svm",
+      "k": 20,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "paper_ts_svm",
+      "k": 1,
+      "accuracy": 0.9996141975308642,
+      "balanced_accuracy": 0.9996141975308641
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "paper_ts_svm",
+      "k": 5,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "paper_ts_svm",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "paper_ts_svm",
+      "k": 20,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "paper_xdawn_svm",
+      "k": 1,
+      "accuracy": 0.9938271604938271,
+      "balanced_accuracy": 0.9938271604938271
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "paper_xdawn_svm",
+      "k": 5,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "paper_xdawn_svm",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "attacker": "paper_xdawn_svm",
+      "k": 20,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "beat_logistic",
+      "k": 1,
+      "accuracy": 0.978395061728395,
+      "balanced_accuracy": 0.9783950617283952
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "beat_logistic",
+      "k": 5,
+      "accuracy": 0.9876543209876543,
+      "balanced_accuracy": 0.9876543209876544
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "beat_logistic",
+      "k": 10,
+      "accuracy": 0.9837962962962963,
+      "balanced_accuracy": 0.9837962962962963
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "beat_logistic",
+      "k": 20,
+      "accuracy": 0.9861111111111112,
+      "balanced_accuracy": 0.9861111111111112
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "beat_mlp",
+      "k": 1,
+      "accuracy": 0.9575617283950617,
+      "balanced_accuracy": 0.9575617283950618
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "beat_mlp",
+      "k": 5,
+      "accuracy": 0.9711934156378601,
+      "balanced_accuracy": 0.9711934156378601
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "beat_mlp",
+      "k": 10,
+      "accuracy": 0.9722222222222222,
+      "balanced_accuracy": 0.9722222222222222
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "beat_mlp",
+      "k": 20,
+      "accuracy": 0.9675925925925926,
+      "balanced_accuracy": 0.9675925925925927
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "beat_rbf_svm",
+      "k": 1,
+      "accuracy": 0.9646990740740741,
+      "balanced_accuracy": 0.964699074074074
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "beat_rbf_svm",
+      "k": 5,
+      "accuracy": 0.9804526748971194,
+      "balanced_accuracy": 0.9804526748971194
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "beat_rbf_svm",
+      "k": 10,
+      "accuracy": 0.9791666666666667,
+      "balanced_accuracy": 0.9791666666666667
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "beat_rbf_svm",
+      "k": 20,
+      "accuracy": 0.9814814814814814,
+      "balanced_accuracy": 0.9814814814814814
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "mean_tangent_template",
+      "k": 1,
+      "accuracy": 0.9184027777777778,
+      "balanced_accuracy": 0.9184027777777777
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "mean_tangent_template",
+      "k": 5,
+      "accuracy": 0.9660493827160495,
+      "balanced_accuracy": 0.9660493827160495
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "mean_tangent_template",
+      "k": 10,
+      "accuracy": 0.9675925925925926,
+      "balanced_accuracy": 0.9675925925925927
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "mean_tangent_template",
+      "k": 20,
+      "accuracy": 0.9768518518518519,
+      "balanced_accuracy": 0.9768518518518519
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "paper_csp_lda",
+      "k": 1,
+      "accuracy": 0.7826003086419753,
+      "balanced_accuracy": 0.7826003086419753
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "paper_csp_lda",
+      "k": 5,
+      "accuracy": 0.8220164609053497,
+      "balanced_accuracy": 0.8220164609053499
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "paper_csp_lda",
+      "k": 10,
+      "accuracy": 0.8263888888888888,
+      "balanced_accuracy": 0.8263888888888888
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "paper_csp_lda",
+      "k": 20,
+      "accuracy": 0.8333333333333334,
+      "balanced_accuracy": 0.8333333333333333
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "paper_csp_svm",
+      "k": 1,
+      "accuracy": 0.791087962962963,
+      "balanced_accuracy": 0.791087962962963
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "paper_csp_svm",
+      "k": 5,
+      "accuracy": 0.8117283950617284,
+      "balanced_accuracy": 0.8117283950617284
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "paper_csp_svm",
+      "k": 10,
+      "accuracy": 0.8171296296296297,
+      "balanced_accuracy": 0.8171296296296297
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "paper_csp_svm",
+      "k": 20,
+      "accuracy": 0.8194444444444444,
+      "balanced_accuracy": 0.8194444444444444
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "paper_ts_svm",
+      "k": 1,
+      "accuracy": 0.9488811728395061,
+      "balanced_accuracy": 0.9488811728395061
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "paper_ts_svm",
+      "k": 5,
+      "accuracy": 0.962962962962963,
+      "balanced_accuracy": 0.9629629629629629
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "paper_ts_svm",
+      "k": 10,
+      "accuracy": 0.962962962962963,
+      "balanced_accuracy": 0.9629629629629629
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "paper_ts_svm",
+      "k": 20,
+      "accuracy": 0.9675925925925926,
+      "balanced_accuracy": 0.9675925925925927
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "paper_xdawn_svm",
+      "k": 1,
+      "accuracy": 0.7654320987654322,
+      "balanced_accuracy": 0.7654320987654321
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "paper_xdawn_svm",
+      "k": 5,
+      "accuracy": 0.823045267489712,
+      "balanced_accuracy": 0.823045267489712
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "paper_xdawn_svm",
+      "k": 10,
+      "accuracy": 0.8333333333333334,
+      "balanced_accuracy": 0.8333333333333334
+    },
+    {
+      "condition": "undefended",
+      "scenario": "reference_session",
+      "attacker": "paper_xdawn_svm",
+      "k": 20,
+      "accuracy": 0.8333333333333333,
+      "balanced_accuracy": 0.8333333333333333
+    }
+  ],
+  "paired_subject_recall": [
+    {
+      "scenario": "post_deployment",
+      "attacker": "beat_logistic",
+      "mean_recall_reduction": 0.0007716049382716022,
+      "signflip_p": 0.25,
+      "signflip_method": "exact 2^9 subject signs"
+    },
+    {
+      "scenario": "post_deployment",
+      "attacker": "beat_mlp",
+      "mean_recall_reduction": -0.0003858024691358011,
+      "signflip_p": 0.75,
+      "signflip_method": "exact 2^9 subject signs"
+    },
+    {
+      "scenario": "post_deployment",
+      "attacker": "beat_rbf_svm",
+      "mean_recall_reduction": 0.0015432098765432044,
+      "signflip_p": 0.1875,
+      "signflip_method": "exact 2^9 subject signs"
+    },
+    {
+      "scenario": "post_deployment",
+      "attacker": "mean_tangent_template",
+      "mean_recall_reduction": -0.010416666666666666,
+      "signflip_p": 0.755859375,
+      "signflip_method": "exact 2^9 subject signs"
+    },
+    {
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_lda",
+      "mean_recall_reduction": 0.002314814814814819,
+      "signflip_p": 0.375,
+      "signflip_method": "exact 2^9 subject signs"
+    },
+    {
+      "scenario": "post_deployment",
+      "attacker": "paper_csp_svm",
+      "mean_recall_reduction": 0.0011574074074074032,
+      "signflip_p": 0.3125,
+      "signflip_method": "exact 2^9 subject signs"
+    },
+    {
+      "scenario": "post_deployment",
+      "attacker": "paper_ts_svm",
+      "mean_recall_reduction": 0.0019290123456790055,
+      "signflip_p": 0.125,
+      "signflip_method": "exact 2^9 subject signs"
+    },
+    {
+      "scenario": "post_deployment",
+      "attacker": "paper_xdawn_svm",
+      "mean_recall_reduction": 0.0003858024691358011,
+      "signflip_p": 0.5,
+      "signflip_method": "exact 2^9 subject signs"
+    },
+    {
+      "scenario": "reference_session",
+      "attacker": "beat_logistic",
+      "mean_recall_reduction": 0.9311342592592593,
+      "signflip_p": 0.001953125,
+      "signflip_method": "exact 2^9 subject signs"
+    },
+    {
+      "scenario": "reference_session",
+      "attacker": "beat_mlp",
+      "mean_recall_reduction": 0.8929398148148149,
+      "signflip_p": 0.001953125,
+      "signflip_method": "exact 2^9 subject signs"
+    },
+    {
+      "scenario": "reference_session",
+      "attacker": "beat_rbf_svm",
+      "mean_recall_reduction": 0.8539737654320988,
+      "signflip_p": 0.001953125,
+      "signflip_method": "exact 2^9 subject signs"
+    },
+    {
+      "scenario": "reference_session",
+      "attacker": "mean_tangent_template",
+      "mean_recall_reduction": 0.8462577160493827,
+      "signflip_p": 0.001953125,
+      "signflip_method": "exact 2^9 subject signs"
+    },
+    {
+      "scenario": "reference_session",
+      "attacker": "paper_csp_lda",
+      "mean_recall_reduction": 0.6859567901234568,
+      "signflip_p": 0.00390625,
+      "signflip_method": "exact 2^9 subject signs"
+    },
+    {
+      "scenario": "reference_session",
+      "attacker": "paper_csp_svm",
+      "mean_recall_reduction": 0.6861496913580247,
+      "signflip_p": 0.00390625,
+      "signflip_method": "exact 2^9 subject signs"
+    },
+    {
+      "scenario": "reference_session",
+      "attacker": "paper_ts_svm",
+      "mean_recall_reduction": 0.8387345679012346,
+      "signflip_p": 0.001953125,
+      "signflip_method": "exact 2^9 subject signs"
+    },
+    {
+      "scenario": "reference_session",
+      "attacker": "paper_xdawn_svm",
+      "mean_recall_reduction": 0.6487268518518519,
+      "signflip_p": 0.00390625,
+      "signflip_method": "exact 2^9 subject signs"
+    }
+  ],
+  "threat_model_interpretation": "Results are threat-model dependent. The paper's transform targets cross-session linkage when the attacker has reference-session labels only. The post-deployment audit gives the evaluator additional labelled deployment-session data; its enrolment curve measures how much of that additional access is needed. Strong identification in this scenario does not show that the paper's reference-session results are wrong or contradict its stated threat model. The 2a results are exploratory and concern a 9-person closed set, not a universal anonymity or utility assessment.",
+  "enrolment_curve": [
+    {
+      "condition": "defended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "1",
+      "k": 1,
+      "accuracy": 0.8175154320987654,
+      "balanced_accuracy": 0.8175154320987654,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "1",
+      "k": 10,
+      "accuracy": 0.9259259259259259,
+      "balanced_accuracy": 0.9259259259259259,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "10",
+      "k": 1,
+      "accuracy": 0.9938271604938271,
+      "balanced_accuracy": 0.9938271604938274,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "10",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "2",
+      "k": 1,
+      "accuracy": 0.8861882716049383,
+      "balanced_accuracy": 0.8861882716049383,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "2",
+      "k": 10,
+      "accuracy": 0.9537037037037037,
+      "balanced_accuracy": 0.9537037037037037,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "20",
+      "k": 1,
+      "accuracy": 0.9965277777777778,
+      "balanced_accuracy": 0.9965277777777777,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "20",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "5",
+      "k": 1,
+      "accuracy": 0.9710648148148149,
+      "balanced_accuracy": 0.9710648148148149,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "5",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "all",
+      "k": 1,
+      "accuracy": 0.9992283950617284,
+      "balanced_accuracy": 0.9992283950617284,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "all",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "1",
+      "k": 1,
+      "accuracy": null,
+      "balanced_accuracy": null,
+      "status": "not_evaluable",
+      "reason": "n=1 < inner_folds=3; shared BEAT fit eligibility unchanged",
+      "directions_evaluated": 0
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "1",
+      "k": 10,
+      "accuracy": null,
+      "balanced_accuracy": null,
+      "status": "not_evaluable",
+      "reason": "n=1 < inner_folds=3; shared BEAT fit eligibility unchanged",
+      "directions_evaluated": 0
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "10",
+      "k": 1,
+      "accuracy": 0.9564043209876543,
+      "balanced_accuracy": 0.9564043209876544,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "10",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "2",
+      "k": 1,
+      "accuracy": null,
+      "balanced_accuracy": null,
+      "status": "not_evaluable",
+      "reason": "n=2 < inner_folds=3; shared BEAT fit eligibility unchanged",
+      "directions_evaluated": 0
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "2",
+      "k": 10,
+      "accuracy": null,
+      "balanced_accuracy": null,
+      "status": "not_evaluable",
+      "reason": "n=2 < inner_folds=3; shared BEAT fit eligibility unchanged",
+      "directions_evaluated": 0
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "20",
+      "k": 1,
+      "accuracy": 0.9861111111111112,
+      "balanced_accuracy": 0.9861111111111112,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "20",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "5",
+      "k": 1,
+      "accuracy": 0.9031635802469136,
+      "balanced_accuracy": 0.9031635802469136,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "5",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "all",
+      "k": 1,
+      "accuracy": 0.9988425925925926,
+      "balanced_accuracy": 0.9988425925925926,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "all",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "1",
+      "k": 1,
+      "accuracy": null,
+      "balanced_accuracy": null,
+      "status": "not_evaluable",
+      "reason": "n=1 < inner_folds=3; shared BEAT fit eligibility unchanged",
+      "directions_evaluated": 0
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "1",
+      "k": 10,
+      "accuracy": null,
+      "balanced_accuracy": null,
+      "status": "not_evaluable",
+      "reason": "n=1 < inner_folds=3; shared BEAT fit eligibility unchanged",
+      "directions_evaluated": 0
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "10",
+      "k": 1,
+      "accuracy": 0.972608024691358,
+      "balanced_accuracy": 0.972608024691358,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "10",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "2",
+      "k": 1,
+      "accuracy": null,
+      "balanced_accuracy": null,
+      "status": "not_evaluable",
+      "reason": "n=2 < inner_folds=3; shared BEAT fit eligibility unchanged",
+      "directions_evaluated": 0
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "2",
+      "k": 10,
+      "accuracy": null,
+      "balanced_accuracy": null,
+      "status": "not_evaluable",
+      "reason": "n=2 < inner_folds=3; shared BEAT fit eligibility unchanged",
+      "directions_evaluated": 0
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "20",
+      "k": 1,
+      "accuracy": 0.9907407407407407,
+      "balanced_accuracy": 0.9907407407407407,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "20",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "5",
+      "k": 1,
+      "accuracy": 0.9467592592592593,
+      "balanced_accuracy": 0.9467592592592592,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "5",
+      "k": 10,
+      "accuracy": 0.9861111111111112,
+      "balanced_accuracy": 0.9861111111111112,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "all",
+      "k": 1,
+      "accuracy": 0.9976851851851852,
+      "balanced_accuracy": 0.9976851851851851,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "all",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "1",
+      "k": 1,
+      "accuracy": 0.6682098765432098,
+      "balanced_accuracy": 0.6682098765432098,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "1",
+      "k": 10,
+      "accuracy": 0.7037037037037037,
+      "balanced_accuracy": 0.7037037037037037,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "10",
+      "k": 1,
+      "accuracy": 0.9552469135802468,
+      "balanced_accuracy": 0.9552469135802468,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "10",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "2",
+      "k": 1,
+      "accuracy": 0.7415123456790124,
+      "balanced_accuracy": 0.7415123456790124,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "2",
+      "k": 10,
+      "accuracy": 0.8240740740740742,
+      "balanced_accuracy": 0.8240740740740742,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "20",
+      "k": 1,
+      "accuracy": 0.976466049382716,
+      "balanced_accuracy": 0.9764660493827161,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "20",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "5",
+      "k": 1,
+      "accuracy": 0.8865740740740741,
+      "balanced_accuracy": 0.8865740740740741,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "5",
+      "k": 10,
+      "accuracy": 0.9953703703703703,
+      "balanced_accuracy": 0.9953703703703703,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "all",
+      "k": 1,
+      "accuracy": 0.9976851851851852,
+      "balanced_accuracy": 0.9976851851851851,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "defended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "all",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "1",
+      "k": 1,
+      "accuracy": 0.880787037037037,
+      "balanced_accuracy": 0.880787037037037,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "1",
+      "k": 10,
+      "accuracy": 0.9583333333333333,
+      "balanced_accuracy": 0.9583333333333333,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "10",
+      "k": 1,
+      "accuracy": 0.978395061728395,
+      "balanced_accuracy": 0.978395061728395,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "10",
+      "k": 10,
+      "accuracy": 0.9768518518518519,
+      "balanced_accuracy": 0.9768518518518519,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "2",
+      "k": 1,
+      "accuracy": 0.9201388888888888,
+      "balanced_accuracy": 0.9201388888888888,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "2",
+      "k": 10,
+      "accuracy": 0.9490740740740741,
+      "balanced_accuracy": 0.949074074074074,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "20",
+      "k": 1,
+      "accuracy": 0.9953703703703705,
+      "balanced_accuracy": 0.9953703703703702,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "20",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "5",
+      "k": 1,
+      "accuracy": 0.9718364197530864,
+      "balanced_accuracy": 0.9718364197530864,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "5",
+      "k": 10,
+      "accuracy": 0.9814814814814814,
+      "balanced_accuracy": 0.9814814814814814,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "all",
+      "k": 1,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_logistic",
+      "enrolment_n": "all",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "1",
+      "k": 1,
+      "accuracy": null,
+      "balanced_accuracy": null,
+      "status": "not_evaluable",
+      "reason": "n=1 < inner_folds=3; shared BEAT fit eligibility unchanged",
+      "directions_evaluated": 0
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "1",
+      "k": 10,
+      "accuracy": null,
+      "balanced_accuracy": null,
+      "status": "not_evaluable",
+      "reason": "n=1 < inner_folds=3; shared BEAT fit eligibility unchanged",
+      "directions_evaluated": 0
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "10",
+      "k": 1,
+      "accuracy": 0.9621913580246914,
+      "balanced_accuracy": 0.9621913580246912,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "10",
+      "k": 10,
+      "accuracy": 0.9768518518518519,
+      "balanced_accuracy": 0.9768518518518519,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "2",
+      "k": 1,
+      "accuracy": null,
+      "balanced_accuracy": null,
+      "status": "not_evaluable",
+      "reason": "n=2 < inner_folds=3; shared BEAT fit eligibility unchanged",
+      "directions_evaluated": 0
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "2",
+      "k": 10,
+      "accuracy": null,
+      "balanced_accuracy": null,
+      "status": "not_evaluable",
+      "reason": "n=2 < inner_folds=3; shared BEAT fit eligibility unchanged",
+      "directions_evaluated": 0
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "20",
+      "k": 1,
+      "accuracy": 0.9857253086419753,
+      "balanced_accuracy": 0.9857253086419753,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "20",
+      "k": 10,
+      "accuracy": 0.9907407407407407,
+      "balanced_accuracy": 0.9907407407407407,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "5",
+      "k": 1,
+      "accuracy": 0.9448302469135802,
+      "balanced_accuracy": 0.9448302469135803,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "5",
+      "k": 10,
+      "accuracy": 0.9814814814814814,
+      "balanced_accuracy": 0.9814814814814814,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "all",
+      "k": 1,
+      "accuracy": 0.9984567901234569,
+      "balanced_accuracy": 0.9984567901234569,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_mlp",
+      "enrolment_n": "all",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "1",
+      "k": 1,
+      "accuracy": null,
+      "balanced_accuracy": null,
+      "status": "not_evaluable",
+      "reason": "n=1 < inner_folds=3; shared BEAT fit eligibility unchanged",
+      "directions_evaluated": 0
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "1",
+      "k": 10,
+      "accuracy": null,
+      "balanced_accuracy": null,
+      "status": "not_evaluable",
+      "reason": "n=1 < inner_folds=3; shared BEAT fit eligibility unchanged",
+      "directions_evaluated": 0
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "10",
+      "k": 1,
+      "accuracy": 0.9637345679012346,
+      "balanced_accuracy": 0.9637345679012346,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "10",
+      "k": 10,
+      "accuracy": 0.9768518518518519,
+      "balanced_accuracy": 0.9768518518518519,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "2",
+      "k": 1,
+      "accuracy": null,
+      "balanced_accuracy": null,
+      "status": "not_evaluable",
+      "reason": "n=2 < inner_folds=3; shared BEAT fit eligibility unchanged",
+      "directions_evaluated": 0
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "2",
+      "k": 10,
+      "accuracy": null,
+      "balanced_accuracy": null,
+      "status": "not_evaluable",
+      "reason": "n=2 < inner_folds=3; shared BEAT fit eligibility unchanged",
+      "directions_evaluated": 0
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "20",
+      "k": 1,
+      "accuracy": 0.9907407407407407,
+      "balanced_accuracy": 0.9907407407407407,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "20",
+      "k": 10,
+      "accuracy": 0.9907407407407407,
+      "balanced_accuracy": 0.9907407407407407,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "5",
+      "k": 1,
+      "accuracy": 0.9490740740740741,
+      "balanced_accuracy": 0.9490740740740742,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "5",
+      "k": 10,
+      "accuracy": 0.9768518518518519,
+      "balanced_accuracy": 0.9768518518518519,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "all",
+      "k": 1,
+      "accuracy": 0.9992283950617284,
+      "balanced_accuracy": 0.9992283950617283,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "beat_rbf_svm",
+      "enrolment_n": "all",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "1",
+      "k": 1,
+      "accuracy": 0.6998456790123457,
+      "balanced_accuracy": 0.6998456790123457,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "1",
+      "k": 10,
+      "accuracy": 0.787037037037037,
+      "balanced_accuracy": 0.7870370370370371,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "10",
+      "k": 1,
+      "accuracy": 0.9618055555555556,
+      "balanced_accuracy": 0.9618055555555556,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "10",
+      "k": 10,
+      "accuracy": 0.9814814814814815,
+      "balanced_accuracy": 0.9814814814814815,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "2",
+      "k": 1,
+      "accuracy": 0.8256172839506173,
+      "balanced_accuracy": 0.8256172839506173,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "2",
+      "k": 10,
+      "accuracy": 0.8981481481481481,
+      "balanced_accuracy": 0.8981481481481481,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "20",
+      "k": 1,
+      "accuracy": 0.9849537037037037,
+      "balanced_accuracy": 0.9849537037037037,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "20",
+      "k": 10,
+      "accuracy": 0.9907407407407407,
+      "balanced_accuracy": 0.9907407407407407,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "5",
+      "k": 1,
+      "accuracy": 0.9178240740740741,
+      "balanced_accuracy": 0.9178240740740742,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "5",
+      "k": 10,
+      "accuracy": 0.9768518518518519,
+      "balanced_accuracy": 0.9768518518518519,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "all",
+      "k": 1,
+      "accuracy": 0.9996141975308642,
+      "balanced_accuracy": 0.9996141975308641,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    },
+    {
+      "condition": "undefended",
+      "attacker": "paper_ts_svm",
+      "enrolment_n": "all",
+      "k": 10,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "status": "evaluable",
+      "reason": "",
+      "directions_evaluated": 2
+    }
+  ],
+  "enrolment_mlp_convergence": [
+    {
+      "condition": "undefended",
+      "direction": "first_to_second",
+      "enrolment_n": "5",
+      "reused": false,
+      "converged": true,
+      "iterations": 10,
+      "loss": 0.008451868223767296,
+      "warning": ""
+    },
+    {
+      "condition": "undefended",
+      "direction": "first_to_second",
+      "enrolment_n": "10",
+      "reused": false,
+      "converged": true,
+      "iterations": 11,
+      "loss": 0.00437491824760018,
+      "warning": ""
+    },
+    {
+      "condition": "undefended",
+      "direction": "first_to_second",
+      "enrolment_n": "20",
+      "reused": false,
+      "converged": true,
+      "iterations": 11,
+      "loss": 0.0024103387404046093,
+      "warning": ""
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "direction": "first_to_second",
+      "converged": true,
+      "iterations": 12,
+      "loss": 0.0004518591760628354,
+      "warning": "",
+      "enrolment_n": "all",
+      "reused": true
+    },
+    {
+      "condition": "undefended",
+      "direction": "second_to_first",
+      "enrolment_n": "5",
+      "reused": false,
+      "converged": true,
+      "iterations": 10,
+      "loss": 0.00857558616623949,
+      "warning": ""
+    },
+    {
+      "condition": "undefended",
+      "direction": "second_to_first",
+      "enrolment_n": "10",
+      "reused": false,
+      "converged": true,
+      "iterations": 11,
+      "loss": 0.004447697527103821,
+      "warning": ""
+    },
+    {
+      "condition": "undefended",
+      "direction": "second_to_first",
+      "enrolment_n": "20",
+      "reused": false,
+      "converged": true,
+      "iterations": 12,
+      "loss": 0.002419074629732219,
+      "warning": ""
+    },
+    {
+      "condition": "undefended",
+      "scenario": "post_deployment",
+      "direction": "second_to_first",
+      "converged": true,
+      "iterations": 12,
+      "loss": 0.0004321575984314618,
+      "warning": "",
+      "enrolment_n": "all",
+      "reused": true
+    },
+    {
+      "condition": "defended",
+      "direction": "first_to_second",
+      "enrolment_n": "5",
+      "reused": false,
+      "converged": true,
+      "iterations": 10,
+      "loss": 0.008419978552607765,
+      "warning": ""
+    },
+    {
+      "condition": "defended",
+      "direction": "first_to_second",
+      "enrolment_n": "10",
+      "reused": false,
+      "converged": true,
+      "iterations": 10,
+      "loss": 0.004689309851877205,
+      "warning": ""
+    },
+    {
+      "condition": "defended",
+      "direction": "first_to_second",
+      "enrolment_n": "20",
+      "reused": false,
+      "converged": true,
+      "iterations": 10,
+      "loss": 0.002544890571383599,
+      "warning": ""
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "direction": "first_to_second",
+      "converged": true,
+      "iterations": 11,
+      "loss": 0.00045497786230277234,
+      "warning": "",
+      "enrolment_n": "all",
+      "reused": true
+    },
+    {
+      "condition": "defended",
+      "direction": "second_to_first",
+      "enrolment_n": "5",
+      "reused": false,
+      "converged": true,
+      "iterations": 10,
+      "loss": 0.008559667208156702,
+      "warning": ""
+    },
+    {
+      "condition": "defended",
+      "direction": "second_to_first",
+      "enrolment_n": "10",
+      "reused": false,
+      "converged": true,
+      "iterations": 10,
+      "loss": 0.004720127766490538,
+      "warning": ""
+    },
+    {
+      "condition": "defended",
+      "direction": "second_to_first",
+      "enrolment_n": "20",
+      "reused": false,
+      "converged": true,
+      "iterations": 11,
+      "loss": 0.002414020542270593,
+      "warning": ""
+    },
+    {
+      "condition": "defended",
+      "scenario": "post_deployment",
+      "direction": "second_to_first",
+      "converged": true,
+      "iterations": 11,
+      "loss": 0.00044877801377833355,
+      "warning": "",
+      "enrolment_n": "all",
+      "reused": true
+    }
+  ],
+  "reporting_code_sha256": "60348255fe99f2ccc58a4d2563087ad7ef32347d589407ed01f2eee0c94ced3a",
+  "reporting_update": "Reporting only: attacker configurations and selection policies; noncomparable differences withheld; fifth-order filter note corrected. No defense fitting, attacker training, prediction or data loading rerun."
+}

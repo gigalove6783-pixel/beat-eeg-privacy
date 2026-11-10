@@ -1,0 +1,257 @@
+condition,scenario,direction,attacker,k,n_train,n_test,accuracy,balanced_accuracy,ba_ci_low,ba_ci_high,ba_ci_status
+undefended,reference_session,S1_to_S2,paper_ts_svm,1,2592,2592,0.908179012345679,0.908179012345679,0.8973765432098766,0.9232253086419754,conditional run bootstrap
+undefended,reference_session,S1_to_S2,paper_ts_svm,5,2592,486,0.9259259259259259,0.9259259259259258,,,
+undefended,reference_session,S1_to_S2,paper_ts_svm,10,2592,216,0.9259259259259259,0.9259259259259258,,,
+undefended,reference_session,S1_to_S2,paper_ts_svm,20,2592,108,0.9351851851851852,0.9351851851851853,,,
+undefended,reference_session,S1_to_S2,beat_logistic,1,2592,2592,0.9625771604938271,0.9625771604938271,0.94945987654321,0.9756944444444444,conditional run bootstrap
+undefended,reference_session,S1_to_S2,beat_logistic,5,2592,486,0.9753086419753086,0.9753086419753088,,,
+undefended,reference_session,S1_to_S2,beat_logistic,10,2592,216,0.9675925925925926,0.9675925925925927,,,
+undefended,reference_session,S1_to_S2,beat_logistic,20,2592,108,0.9722222222222222,0.9722222222222222,,,
+undefended,reference_session,S1_to_S2,beat_rbf_svm,1,2592,2592,0.9448302469135802,0.9448302469135802,0.932667824074074,0.9598765432098766,conditional run bootstrap
+undefended,reference_session,S1_to_S2,beat_rbf_svm,5,2592,486,0.9609053497942387,0.9609053497942388,,,
+undefended,reference_session,S1_to_S2,beat_rbf_svm,10,2592,216,0.9583333333333334,0.9583333333333334,,,
+undefended,reference_session,S1_to_S2,beat_rbf_svm,20,2592,108,0.9629629629629629,0.9629629629629629,,,
+undefended,reference_session,S1_to_S2,beat_mlp,1,2592,2592,0.9309413580246914,0.9309413580246915,0.9222511574074075,0.9405864197530865,conditional run bootstrap
+undefended,reference_session,S1_to_S2,beat_mlp,5,2592,486,0.9423868312757202,0.9423868312757201,,,
+undefended,reference_session,S1_to_S2,beat_mlp,10,2592,216,0.9444444444444444,0.9444444444444444,,,
+undefended,reference_session,S1_to_S2,beat_mlp,20,2592,108,0.9351851851851852,0.9351851851851853,,,
+undefended,reference_session,S1_to_S2,paper_csp_svm,1,2592,2592,0.8140432098765432,0.8140432098765432,0.8018807870370371,0.8262056327160494,conditional run bootstrap
+undefended,reference_session,S1_to_S2,paper_csp_svm,5,2592,486,0.845679012345679,0.845679012345679,,,
+undefended,reference_session,S1_to_S2,paper_csp_svm,10,2592,216,0.8564814814814815,0.8564814814814815,,,
+undefended,reference_session,S1_to_S2,paper_csp_svm,20,2592,108,0.8611111111111112,0.8611111111111112,,,
+undefended,reference_session,S1_to_S2,paper_csp_lda,1,2592,2592,0.777391975308642,0.777391975308642,0.7522955246913581,0.7988136574074074,conditional run bootstrap
+undefended,reference_session,S1_to_S2,paper_csp_lda,5,2592,486,0.8436213991769548,0.8436213991769548,,,
+undefended,reference_session,S1_to_S2,paper_csp_lda,10,2592,216,0.8657407407407407,0.8657407407407407,,,
+undefended,reference_session,S1_to_S2,paper_csp_lda,20,2592,108,0.8796296296296297,0.8796296296296295,,,
+undefended,reference_session,S1_to_S2,paper_xdawn_svm,1,2592,2592,0.7280092592592593,0.7280092592592592,0.7139178240740741,0.7432581018518518,conditional run bootstrap
+undefended,reference_session,S1_to_S2,paper_xdawn_svm,5,2592,486,0.7695473251028807,0.7695473251028806,,,
+undefended,reference_session,S1_to_S2,paper_xdawn_svm,10,2592,216,0.7824074074074074,0.7824074074074074,,,
+undefended,reference_session,S1_to_S2,paper_xdawn_svm,20,2592,108,0.7777777777777778,0.7777777777777778,,,
+undefended,reference_session,S1_to_S2,mean_tangent_template,1,2592,2592,0.8977623456790124,0.8977623456790123,0.875,0.922289737654321,conditional run bootstrap
+undefended,reference_session,S1_to_S2,mean_tangent_template,5,2592,486,0.9465020576131687,0.9465020576131687,,,
+undefended,reference_session,S1_to_S2,mean_tangent_template,10,2592,216,0.9444444444444444,0.9444444444444444,,,
+undefended,reference_session,S1_to_S2,mean_tangent_template,20,2592,108,0.9537037037037037,0.9537037037037037,,,
+undefended,reference_session,S2_to_S1,paper_ts_svm,1,2592,2592,0.9895833333333334,0.9895833333333334,0.9847511574074074,0.9942129629629629,conditional run bootstrap
+undefended,reference_session,S2_to_S1,paper_ts_svm,5,2592,486,1.0,1.0,,,
+undefended,reference_session,S2_to_S1,paper_ts_svm,10,2592,216,1.0,1.0,,,
+undefended,reference_session,S2_to_S1,paper_ts_svm,20,2592,108,1.0,1.0,,,
+undefended,reference_session,S2_to_S1,beat_logistic,1,2592,2592,0.9942129629629629,0.9942129629629631,0.9922839506172839,0.9963445216049382,conditional run bootstrap
+undefended,reference_session,S2_to_S1,beat_logistic,5,2592,486,1.0,1.0,,,
+undefended,reference_session,S2_to_S1,beat_logistic,10,2592,216,1.0,1.0,,,
+undefended,reference_session,S2_to_S1,beat_logistic,20,2592,108,1.0,1.0,,,
+undefended,reference_session,S2_to_S1,beat_rbf_svm,1,2592,2592,0.9845679012345679,0.9845679012345678,0.98070987654321,0.988425925925926,conditional run bootstrap
+undefended,reference_session,S2_to_S1,beat_rbf_svm,5,2592,486,1.0,1.0,,,
+undefended,reference_session,S2_to_S1,beat_rbf_svm,10,2592,216,1.0,1.0,,,
+undefended,reference_session,S2_to_S1,beat_rbf_svm,20,2592,108,1.0,1.0,,,
+undefended,reference_session,S2_to_S1,beat_mlp,1,2592,2592,0.9841820987654321,0.9841820987654322,0.9783950617283951,0.9901716820987655,conditional run bootstrap
+undefended,reference_session,S2_to_S1,beat_mlp,5,2592,486,1.0,1.0,,,
+undefended,reference_session,S2_to_S1,beat_mlp,10,2592,216,1.0,1.0,,,
+undefended,reference_session,S2_to_S1,beat_mlp,20,2592,108,1.0,1.0,,,
+undefended,reference_session,S2_to_S1,paper_csp_svm,1,2592,2592,0.7681327160493827,0.7681327160493827,0.7581018518518517,0.7762345679012346,conditional run bootstrap
+undefended,reference_session,S2_to_S1,paper_csp_svm,5,2592,486,0.7777777777777778,0.7777777777777778,,,
+undefended,reference_session,S2_to_S1,paper_csp_svm,10,2592,216,0.7777777777777778,0.7777777777777778,,,
+undefended,reference_session,S2_to_S1,paper_csp_svm,20,2592,108,0.7777777777777778,0.7777777777777778,,,
+undefended,reference_session,S2_to_S1,paper_csp_lda,1,2592,2592,0.7878086419753086,0.7878086419753086,0.7752604166666667,0.7989969135802469,conditional run bootstrap
+undefended,reference_session,S2_to_S1,paper_csp_lda,5,2592,486,0.8004115226337448,0.8004115226337449,,,
+undefended,reference_session,S2_to_S1,paper_csp_lda,10,2592,216,0.7870370370370371,0.787037037037037,,,
+undefended,reference_session,S2_to_S1,paper_csp_lda,20,2592,108,0.7870370370370371,0.787037037037037,,,
+undefended,reference_session,S2_to_S1,paper_xdawn_svm,1,2592,2592,0.8028549382716049,0.8028549382716049,0.7895351080246913,0.814429012345679,conditional run bootstrap
+undefended,reference_session,S2_to_S1,paper_xdawn_svm,5,2592,486,0.8765432098765432,0.8765432098765432,,,
+undefended,reference_session,S2_to_S1,paper_xdawn_svm,10,2592,216,0.8842592592592593,0.8842592592592593,,,
+undefended,reference_session,S2_to_S1,paper_xdawn_svm,20,2592,108,0.8888888888888888,0.8888888888888888,,,
+undefended,reference_session,S2_to_S1,mean_tangent_template,1,2592,2592,0.9390432098765432,0.9390432098765432,0.9237943672839507,0.9527488425925926,conditional run bootstrap
+undefended,reference_session,S2_to_S1,mean_tangent_template,5,2592,486,0.98559670781893,0.98559670781893,,,
+undefended,reference_session,S2_to_S1,mean_tangent_template,10,2592,216,0.9907407407407407,0.9907407407407409,,,
+undefended,reference_session,S2_to_S1,mean_tangent_template,20,2592,108,1.0,1.0,,,
+undefended,post_deployment,first_to_second,paper_ts_svm,1,1296,1296,0.9992283950617284,0.9992283950617283,0.9976851851851851,1.0,conditional run bootstrap
+undefended,post_deployment,first_to_second,paper_ts_svm,5,1296,243,1.0,1.0,,,
+undefended,post_deployment,first_to_second,paper_ts_svm,10,1296,108,1.0,1.0,,,
+undefended,post_deployment,first_to_second,paper_ts_svm,20,1296,54,1.0,1.0,,,
+undefended,post_deployment,first_to_second,beat_logistic,1,1296,1296,1.0,1.0,1.0,1.0,conditional run bootstrap
+undefended,post_deployment,first_to_second,beat_logistic,5,1296,243,1.0,1.0,,,
+undefended,post_deployment,first_to_second,beat_logistic,10,1296,108,1.0,1.0,,,
+undefended,post_deployment,first_to_second,beat_logistic,20,1296,54,1.0,1.0,,,
+undefended,post_deployment,first_to_second,beat_rbf_svm,1,1296,1296,0.9992283950617284,0.9992283950617283,0.9976851851851851,1.0,conditional run bootstrap
+undefended,post_deployment,first_to_second,beat_rbf_svm,5,1296,243,1.0,1.0,,,
+undefended,post_deployment,first_to_second,beat_rbf_svm,10,1296,108,1.0,1.0,,,
+undefended,post_deployment,first_to_second,beat_rbf_svm,20,1296,54,1.0,1.0,,,
+undefended,post_deployment,first_to_second,beat_mlp,1,1296,1296,0.9976851851851852,0.9976851851851853,0.9945987654320988,1.0,conditional run bootstrap
+undefended,post_deployment,first_to_second,beat_mlp,5,1296,243,1.0,1.0,,,
+undefended,post_deployment,first_to_second,beat_mlp,10,1296,108,1.0,1.0,,,
+undefended,post_deployment,first_to_second,beat_mlp,20,1296,54,1.0,1.0,,,
+undefended,post_deployment,first_to_second,paper_csp_svm,1,1296,1296,0.9976851851851852,0.9976851851851851,0.996141975308642,0.9992283950617283,conditional run bootstrap
+undefended,post_deployment,first_to_second,paper_csp_svm,5,1296,243,1.0,1.0,,,
+undefended,post_deployment,first_to_second,paper_csp_svm,10,1296,108,1.0,1.0,,,
+undefended,post_deployment,first_to_second,paper_csp_svm,20,1296,54,1.0,1.0,,,
+undefended,post_deployment,first_to_second,paper_csp_lda,1,1296,1296,0.9992283950617284,0.9992283950617283,0.9976851851851851,1.0,conditional run bootstrap
+undefended,post_deployment,first_to_second,paper_csp_lda,5,1296,243,1.0,1.0,,,
+undefended,post_deployment,first_to_second,paper_csp_lda,10,1296,108,1.0,1.0,,,
+undefended,post_deployment,first_to_second,paper_csp_lda,20,1296,54,1.0,1.0,,,
+undefended,post_deployment,first_to_second,paper_xdawn_svm,1,1296,1296,0.9907407407407407,0.9907407407407407,0.98070987654321,0.9984567901234568,conditional run bootstrap
+undefended,post_deployment,first_to_second,paper_xdawn_svm,5,1296,243,1.0,1.0,,,
+undefended,post_deployment,first_to_second,paper_xdawn_svm,10,1296,108,1.0,1.0,,,
+undefended,post_deployment,first_to_second,paper_xdawn_svm,20,1296,54,1.0,1.0,,,
+undefended,post_deployment,first_to_second,mean_tangent_template,1,1296,1296,0.9683641975308642,0.9683641975308643,0.9444444444444444,0.9842013888888889,conditional run bootstrap
+undefended,post_deployment,first_to_second,mean_tangent_template,5,1296,243,0.9876543209876543,0.9876543209876544,,,
+undefended,post_deployment,first_to_second,mean_tangent_template,10,1296,108,1.0,1.0,,,
+undefended,post_deployment,first_to_second,mean_tangent_template,20,1296,54,1.0,1.0,,,
+undefended,post_deployment,second_to_first,paper_ts_svm,1,1296,1296,1.0,1.0,1.0,1.0,conditional run bootstrap
+undefended,post_deployment,second_to_first,paper_ts_svm,5,1296,243,1.0,1.0,,,
+undefended,post_deployment,second_to_first,paper_ts_svm,10,1296,108,1.0,1.0,,,
+undefended,post_deployment,second_to_first,paper_ts_svm,20,1296,54,1.0,1.0,,,
+undefended,post_deployment,second_to_first,beat_logistic,1,1296,1296,1.0,1.0,1.0,1.0,conditional run bootstrap
+undefended,post_deployment,second_to_first,beat_logistic,5,1296,243,1.0,1.0,,,
+undefended,post_deployment,second_to_first,beat_logistic,10,1296,108,1.0,1.0,,,
+undefended,post_deployment,second_to_first,beat_logistic,20,1296,54,1.0,1.0,,,
+undefended,post_deployment,second_to_first,beat_rbf_svm,1,1296,1296,0.9992283950617284,0.9992283950617283,0.9976851851851851,1.0,conditional run bootstrap
+undefended,post_deployment,second_to_first,beat_rbf_svm,5,1296,243,1.0,1.0,,,
+undefended,post_deployment,second_to_first,beat_rbf_svm,10,1296,108,1.0,1.0,,,
+undefended,post_deployment,second_to_first,beat_rbf_svm,20,1296,54,1.0,1.0,,,
+undefended,post_deployment,second_to_first,beat_mlp,1,1296,1296,0.9992283950617284,0.9992283950617283,0.9976851851851851,1.0,conditional run bootstrap
+undefended,post_deployment,second_to_first,beat_mlp,5,1296,243,1.0,1.0,,,
+undefended,post_deployment,second_to_first,beat_mlp,10,1296,108,1.0,1.0,,,
+undefended,post_deployment,second_to_first,beat_mlp,20,1296,54,1.0,1.0,,,
+undefended,post_deployment,second_to_first,paper_csp_svm,1,1296,1296,0.9992283950617284,0.9992283950617283,0.9976851851851851,1.0,conditional run bootstrap
+undefended,post_deployment,second_to_first,paper_csp_svm,5,1296,243,1.0,1.0,,,
+undefended,post_deployment,second_to_first,paper_csp_svm,10,1296,108,1.0,1.0,,,
+undefended,post_deployment,second_to_first,paper_csp_svm,20,1296,54,1.0,1.0,,,
+undefended,post_deployment,second_to_first,paper_csp_lda,1,1296,1296,1.0,1.0,1.0,1.0,conditional run bootstrap
+undefended,post_deployment,second_to_first,paper_csp_lda,5,1296,243,1.0,1.0,,,
+undefended,post_deployment,second_to_first,paper_csp_lda,10,1296,108,1.0,1.0,,,
+undefended,post_deployment,second_to_first,paper_csp_lda,20,1296,54,1.0,1.0,,,
+undefended,post_deployment,second_to_first,paper_xdawn_svm,1,1296,1296,0.9969135802469136,0.9969135802469135,0.9945987654320988,0.9992283950617283,conditional run bootstrap
+undefended,post_deployment,second_to_first,paper_xdawn_svm,5,1296,243,1.0,1.0,,,
+undefended,post_deployment,second_to_first,paper_xdawn_svm,10,1296,108,1.0,1.0,,,
+undefended,post_deployment,second_to_first,paper_xdawn_svm,20,1296,54,1.0,1.0,,,
+undefended,post_deployment,second_to_first,mean_tangent_template,1,1296,1296,0.9606481481481481,0.9606481481481483,0.9513888888888888,0.9687692901234568,conditional run bootstrap
+undefended,post_deployment,second_to_first,mean_tangent_template,5,1296,243,0.9876543209876543,0.9876543209876544,,,
+undefended,post_deployment,second_to_first,mean_tangent_template,10,1296,108,0.9907407407407407,0.9907407407407407,,,
+undefended,post_deployment,second_to_first,mean_tangent_template,20,1296,54,1.0,1.0,,,
+defended,reference_session,S1_to_S2,paper_ts_svm,1,2592,2592,0.1111111111111111,0.1111111111111111,0.1111111111111111,0.1111111111111111,conditional run bootstrap
+defended,reference_session,S1_to_S2,paper_ts_svm,5,2592,486,0.03909465020576132,0.03909465020576132,,,
+defended,reference_session,S1_to_S2,paper_ts_svm,10,2592,216,0.013888888888888888,0.013888888888888888,,,
+defended,reference_session,S1_to_S2,paper_ts_svm,20,2592,108,0.0,0.0,,,
+defended,reference_session,S1_to_S2,beat_logistic,1,2592,2592,0.01273148148148148,0.012731481481481483,0.005584490740740744,0.01987847222222221,conditional run bootstrap
+defended,reference_session,S1_to_S2,beat_logistic,5,2592,486,0.006172839506172839,0.006172839506172839,,,
+defended,reference_session,S1_to_S2,beat_logistic,10,2592,216,0.0,0.0,,,
+defended,reference_session,S1_to_S2,beat_logistic,20,2592,108,0.0,0.0,,,
+defended,reference_session,S1_to_S2,beat_rbf_svm,1,2592,2592,0.1111111111111111,0.1111111111111111,0.1111111111111111,0.1111111111111111,conditional run bootstrap
+defended,reference_session,S1_to_S2,beat_rbf_svm,5,2592,486,0.10905349794238683,0.10905349794238683,,,
+defended,reference_session,S1_to_S2,beat_rbf_svm,10,2592,216,0.06944444444444445,0.06944444444444445,,,
+defended,reference_session,S1_to_S2,beat_rbf_svm,20,2592,108,0.027777777777777776,0.027777777777777776,,,
+defended,reference_session,S1_to_S2,beat_mlp,1,2592,2592,0.04436728395061729,0.04436728395061728,0.03279320987654321,0.05575810185185184,conditional run bootstrap
+defended,reference_session,S1_to_S2,beat_mlp,5,2592,486,0.04526748971193416,0.04526748971193415,,,
+defended,reference_session,S1_to_S2,beat_mlp,10,2592,216,0.046296296296296294,0.0462962962962963,,,
+defended,reference_session,S1_to_S2,beat_mlp,20,2592,108,0.05555555555555555,0.05555555555555555,,,
+defended,reference_session,S1_to_S2,paper_csp_svm,1,2592,2592,0.10493827160493827,0.10493827160493827,0.09720293209876545,0.11208526234567899,conditional run bootstrap
+defended,reference_session,S1_to_S2,paper_csp_svm,5,2592,486,0.05761316872427984,0.05761316872427983,,,
+defended,reference_session,S1_to_S2,paper_csp_svm,10,2592,216,0.023148148148148147,0.02314814814814815,,,
+defended,reference_session,S1_to_S2,paper_csp_svm,20,2592,108,0.046296296296296294,0.0462962962962963,,,
+defended,reference_session,S1_to_S2,paper_csp_lda,1,2592,2592,0.08333333333333333,0.08333333333333333,0.06942515432098767,0.09801311728395061,conditional run bootstrap
+defended,reference_session,S1_to_S2,paper_csp_lda,5,2592,486,0.10082304526748971,0.10082304526748971,,,
+defended,reference_session,S1_to_S2,paper_csp_lda,10,2592,216,0.1111111111111111,0.1111111111111111,,,
+defended,reference_session,S1_to_S2,paper_csp_lda,20,2592,108,0.1111111111111111,0.1111111111111111,,,
+defended,reference_session,S1_to_S2,paper_xdawn_svm,1,2592,2592,0.11535493827160494,0.11535493827160494,0.11265432098765432,0.11882716049382716,conditional run bootstrap
+defended,reference_session,S1_to_S2,paper_xdawn_svm,5,2592,486,0.13168724279835392,0.1316872427983539,,,
+defended,reference_session,S1_to_S2,paper_xdawn_svm,10,2592,216,0.09722222222222222,0.09722222222222222,,,
+defended,reference_session,S1_to_S2,paper_xdawn_svm,20,2592,108,0.08333333333333333,0.08333333333333333,,,
+defended,reference_session,S1_to_S2,mean_tangent_template,1,2592,2592,0.03780864197530864,0.03780864197530864,0.03240740740740741,0.04282407407407408,conditional run bootstrap
+defended,reference_session,S1_to_S2,mean_tangent_template,5,2592,486,0.018518518518518517,0.018518518518518517,,,
+defended,reference_session,S1_to_S2,mean_tangent_template,10,2592,216,0.018518518518518517,0.018518518518518517,,,
+defended,reference_session,S1_to_S2,mean_tangent_template,20,2592,108,0.009259259259259259,0.009259259259259259,,,
+defended,reference_session,S2_to_S1,paper_ts_svm,1,2592,2592,0.1091820987654321,0.1091820987654321,0.10493827160493827,0.1132426697530864,conditional run bootstrap
+defended,reference_session,S2_to_S1,paper_ts_svm,5,2592,486,0.1111111111111111,0.1111111111111111,,,
+defended,reference_session,S2_to_S1,paper_ts_svm,10,2592,216,0.1111111111111111,0.1111111111111111,,,
+defended,reference_session,S2_to_S1,paper_ts_svm,20,2592,108,0.1111111111111111,0.1111111111111111,,,
+defended,reference_session,S2_to_S1,beat_logistic,1,2592,2592,0.08179012345679013,0.08179012345679011,0.07173996913580247,0.0910493827160494,conditional run bootstrap
+defended,reference_session,S2_to_S1,beat_logistic,5,2592,486,0.09465020576131687,0.09465020576131687,,,
+defended,reference_session,S2_to_S1,beat_logistic,10,2592,216,0.10648148148148148,0.10648148148148148,,,
+defended,reference_session,S2_to_S1,beat_logistic,20,2592,108,0.09259259259259259,0.0925925925925926,,,
+defended,reference_session,S2_to_S1,beat_rbf_svm,1,2592,2592,0.11033950617283951,0.1103395061728395,0.10570987654320987,0.11535493827160494,conditional run bootstrap
+defended,reference_session,S2_to_S1,beat_rbf_svm,5,2592,486,0.1111111111111111,0.1111111111111111,,,
+defended,reference_session,S2_to_S1,beat_rbf_svm,10,2592,216,0.1111111111111111,0.1111111111111111,,,
+defended,reference_session,S2_to_S1,beat_rbf_svm,20,2592,108,0.1111111111111111,0.1111111111111111,,,
+defended,reference_session,S2_to_S1,beat_mlp,1,2592,2592,0.08487654320987655,0.08487654320987655,0.07291666666666667,0.09606481481481483,conditional run bootstrap
+defended,reference_session,S2_to_S1,beat_mlp,5,2592,486,0.09876543209876543,0.09876543209876543,,,
+defended,reference_session,S2_to_S1,beat_mlp,10,2592,216,0.10185185185185185,0.10185185185185185,,,
+defended,reference_session,S2_to_S1,beat_mlp,20,2592,108,0.10185185185185185,0.10185185185185186,,,
+defended,reference_session,S2_to_S1,paper_csp_svm,1,2592,2592,0.10493827160493827,0.10493827160493828,0.09837962962962964,0.11149691358024691,conditional run bootstrap
+defended,reference_session,S2_to_S1,paper_csp_svm,5,2592,486,0.1111111111111111,0.1111111111111111,,,
+defended,reference_session,S2_to_S1,paper_csp_svm,10,2592,216,0.1111111111111111,0.1111111111111111,,,
+defended,reference_session,S2_to_S1,paper_csp_svm,20,2592,108,0.1111111111111111,0.1111111111111111,,,
+defended,reference_session,S2_to_S1,paper_csp_lda,1,2592,2592,0.1099537037037037,0.1099537037037037,0.10609567901234568,0.11419753086419752,conditional run bootstrap
+defended,reference_session,S2_to_S1,paper_csp_lda,5,2592,486,0.1111111111111111,0.1111111111111111,,,
+defended,reference_session,S2_to_S1,paper_csp_lda,10,2592,216,0.1111111111111111,0.1111111111111111,,,
+defended,reference_session,S2_to_S1,paper_csp_lda,20,2592,108,0.1111111111111111,0.1111111111111111,,,
+defended,reference_session,S2_to_S1,paper_xdawn_svm,1,2592,2592,0.11805555555555555,0.11805555555555555,0.10493827160493825,0.13194444444444445,conditional run bootstrap
+defended,reference_session,S2_to_S1,paper_xdawn_svm,5,2592,486,0.13786008230452676,0.13786008230452673,,,
+defended,reference_session,S2_to_S1,paper_xdawn_svm,10,2592,216,0.14814814814814814,0.14814814814814817,,,
+defended,reference_session,S2_to_S1,paper_xdawn_svm,20,2592,108,0.14814814814814814,0.14814814814814814,,,
+defended,reference_session,S2_to_S1,mean_tangent_template,1,2592,2592,0.10648148148148148,0.1064814814814815,0.09779128086419753,0.11460262345679012,conditional run bootstrap
+defended,reference_session,S2_to_S1,mean_tangent_template,5,2592,486,0.11728395061728394,0.11728395061728396,,,
+defended,reference_session,S2_to_S1,mean_tangent_template,10,2592,216,0.11574074074074074,0.11574074074074076,,,
+defended,reference_session,S2_to_S1,mean_tangent_template,20,2592,108,0.1111111111111111,0.1111111111111111,,,
+defended,post_deployment,first_to_second,paper_ts_svm,1,1296,1296,0.9992283950617284,0.9992283950617283,0.9976851851851851,1.0,conditional run bootstrap
+defended,post_deployment,first_to_second,paper_ts_svm,5,1296,243,1.0,1.0,,,
+defended,post_deployment,first_to_second,paper_ts_svm,10,1296,108,1.0,1.0,,,
+defended,post_deployment,first_to_second,paper_ts_svm,20,1296,54,1.0,1.0,,,
+defended,post_deployment,first_to_second,beat_logistic,1,1296,1296,1.0,1.0,1.0,1.0,conditional run bootstrap
+defended,post_deployment,first_to_second,beat_logistic,5,1296,243,1.0,1.0,,,
+defended,post_deployment,first_to_second,beat_logistic,10,1296,108,1.0,1.0,,,
+defended,post_deployment,first_to_second,beat_logistic,20,1296,54,1.0,1.0,,,
+defended,post_deployment,first_to_second,beat_rbf_svm,1,1296,1296,0.9992283950617284,0.9992283950617283,0.9976851851851851,1.0,conditional run bootstrap
+defended,post_deployment,first_to_second,beat_rbf_svm,5,1296,243,1.0,1.0,,,
+defended,post_deployment,first_to_second,beat_rbf_svm,10,1296,108,1.0,1.0,,,
+defended,post_deployment,first_to_second,beat_rbf_svm,20,1296,54,1.0,1.0,,,
+defended,post_deployment,first_to_second,beat_mlp,1,1296,1296,0.9992283950617284,0.9992283950617283,0.9976851851851851,1.0,conditional run bootstrap
+defended,post_deployment,first_to_second,beat_mlp,5,1296,243,1.0,1.0,,,
+defended,post_deployment,first_to_second,beat_mlp,10,1296,108,1.0,1.0,,,
+defended,post_deployment,first_to_second,beat_mlp,20,1296,54,1.0,1.0,,,
+defended,post_deployment,first_to_second,paper_csp_svm,1,1296,1296,0.9976851851851852,0.9976851851851851,0.996141975308642,0.9992283950617283,conditional run bootstrap
+defended,post_deployment,first_to_second,paper_csp_svm,5,1296,243,1.0,1.0,,,
+defended,post_deployment,first_to_second,paper_csp_svm,10,1296,108,1.0,1.0,,,
+defended,post_deployment,first_to_second,paper_csp_svm,20,1296,54,1.0,1.0,,,
+defended,post_deployment,first_to_second,paper_csp_lda,1,1296,1296,1.0,1.0,1.0,1.0,conditional run bootstrap
+defended,post_deployment,first_to_second,paper_csp_lda,5,1296,243,1.0,1.0,,,
+defended,post_deployment,first_to_second,paper_csp_lda,10,1296,108,1.0,1.0,,,
+defended,post_deployment,first_to_second,paper_csp_lda,20,1296,54,1.0,1.0,,,
+defended,post_deployment,first_to_second,paper_xdawn_svm,1,1296,1296,0.9945987654320988,0.9945987654320988,0.9903356481481482,0.9984567901234568,conditional run bootstrap
+defended,post_deployment,first_to_second,paper_xdawn_svm,5,1296,243,1.0,1.0,,,
+defended,post_deployment,first_to_second,paper_xdawn_svm,10,1296,108,1.0,1.0,,,
+defended,post_deployment,first_to_second,paper_xdawn_svm,20,1296,54,1.0,1.0,,,
+defended,post_deployment,first_to_second,mean_tangent_template,1,1296,1296,0.9899691358024691,0.989969135802469,0.9845679012345678,0.9945987654320988,conditional run bootstrap
+defended,post_deployment,first_to_second,mean_tangent_template,5,1296,243,1.0,1.0,,,
+defended,post_deployment,first_to_second,mean_tangent_template,10,1296,108,1.0,1.0,,,
+defended,post_deployment,first_to_second,mean_tangent_template,20,1296,54,1.0,1.0,,,
+defended,post_deployment,second_to_first,paper_ts_svm,1,1296,1296,0.996141975308642,0.996141975308642,0.992650462962963,0.9992283950617283,conditional run bootstrap
+defended,post_deployment,second_to_first,paper_ts_svm,5,1296,243,1.0,1.0,,,
+defended,post_deployment,second_to_first,paper_ts_svm,10,1296,108,1.0,1.0,,,
+defended,post_deployment,second_to_first,paper_ts_svm,20,1296,54,1.0,1.0,,,
+defended,post_deployment,second_to_first,beat_logistic,1,1296,1296,0.9984567901234568,0.9984567901234568,0.9969135802469135,1.0,conditional run bootstrap
+defended,post_deployment,second_to_first,beat_logistic,5,1296,243,1.0,1.0,,,
+defended,post_deployment,second_to_first,beat_logistic,10,1296,108,1.0,1.0,,,
+defended,post_deployment,second_to_first,beat_logistic,20,1296,54,1.0,1.0,,,
+defended,post_deployment,second_to_first,beat_rbf_svm,1,1296,1296,0.996141975308642,0.996141975308642,0.9930555555555556,0.9992283950617283,conditional run bootstrap
+defended,post_deployment,second_to_first,beat_rbf_svm,5,1296,243,1.0,1.0,,,
+defended,post_deployment,second_to_first,beat_rbf_svm,10,1296,108,1.0,1.0,,,
+defended,post_deployment,second_to_first,beat_rbf_svm,20,1296,54,1.0,1.0,,,
+defended,post_deployment,second_to_first,beat_mlp,1,1296,1296,0.9984567901234568,0.9984567901234568,0.9969135802469135,1.0,conditional run bootstrap
+defended,post_deployment,second_to_first,beat_mlp,5,1296,243,1.0,1.0,,,
+defended,post_deployment,second_to_first,beat_mlp,10,1296,108,1.0,1.0,,,
+defended,post_deployment,second_to_first,beat_mlp,20,1296,54,1.0,1.0,,,
+defended,post_deployment,second_to_first,paper_csp_svm,1,1296,1296,0.9969135802469136,0.9969135802469135,0.9953703703703702,0.9984567901234568,conditional run bootstrap
+defended,post_deployment,second_to_first,paper_csp_svm,5,1296,243,1.0,1.0,,,
+defended,post_deployment,second_to_first,paper_csp_svm,10,1296,108,1.0,1.0,,,
+defended,post_deployment,second_to_first,paper_csp_svm,20,1296,54,1.0,1.0,,,
+defended,post_deployment,second_to_first,paper_csp_lda,1,1296,1296,0.9945987654320988,0.9945987654320988,0.9876543209876544,0.9992283950617283,conditional run bootstrap
+defended,post_deployment,second_to_first,paper_csp_lda,5,1296,243,1.0,1.0,,,
+defended,post_deployment,second_to_first,paper_csp_lda,10,1296,108,1.0,1.0,,,
+defended,post_deployment,second_to_first,paper_csp_lda,20,1296,54,1.0,1.0,,,
+defended,post_deployment,second_to_first,paper_xdawn_svm,1,1296,1296,0.9922839506172839,0.9922839506172839,0.988425925925926,0.996141975308642,conditional run bootstrap
+defended,post_deployment,second_to_first,paper_xdawn_svm,5,1296,243,1.0,1.0,,,
+defended,post_deployment,second_to_first,paper_xdawn_svm,10,1296,108,1.0,1.0,,,
+defended,post_deployment,second_to_first,paper_xdawn_svm,20,1296,54,1.0,1.0,,,
+defended,post_deployment,second_to_first,mean_tangent_template,1,1296,1296,0.9598765432098766,0.9598765432098766,0.9498456790123456,0.9691358024691359,conditional run bootstrap
+defended,post_deployment,second_to_first,mean_tangent_template,5,1296,243,0.9917695473251029,0.9917695473251028,,,
+defended,post_deployment,second_to_first,mean_tangent_template,10,1296,108,1.0,1.0,,,
+defended,post_deployment,second_to_first,mean_tangent_template,20,1296,54,1.0,1.0,,,
