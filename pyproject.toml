@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "beat"
+version = "1.0.0"
+description = "BEAT: identity exposure of motor-imagery EEG representations and replayed arm control"
+readme = "README.md"
+requires-python = ">=3.12"
+# Versions of the sealed runs. requirements.txt pins the same versions and adds the CPU-only
+# PyTorch index (torch==2.15.0 matches the installed 2.15.0+cpu build).
+dependencies = [
+    "torch==2.15.0",
+    "numpy==2.5.4",
+    "scipy==1.18.1",
+    "scikit-learn==1.9.1",
+    "pyriemann==0.12",
+    "pandas==3.1.1",
+    "matplotlib==3.11.2",
+    "statsmodels==0.15.0",
+    "PyYAML==6.0.3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.2.0", "ruff==0.17.4"]
+
+[project.scripts]
+beat-run-all = "beat.run_all:main"
+beat-verify = "beat.verify:main"
+
+[tool.setuptools]
+packages = ["beat"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+# Sealed files (seals/manifest.yaml) cannot be edited, so they are not linted.
+extend-exclude = [
+    "beat/__init__.py",
+    "beat/attacks.py",
+    "beat/config.py",
+    "beat/data.py",
+    "beat/exp_a.py",
+    "beat/exp_b.py",
+    "beat/exp_c.py",
+    "beat/exp_d.py",
+    "beat/exp_e.py",
+    "beat/exp_g.py",
+    "beat/exp_l.py",
+    "beat/features.py",
+    "beat/figures.py",
+    "beat/lee2019.py",
+    "beat/models.py",
+    "beat/run_all.py",
+    "beat/splits.py",
+    "beat/stats.py",
+    "scripts/download_data.py",
+    "scripts/prepare_lee2019.py",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]
+# Line length, lambda assignment and `l` names are the existing style of the unsealed scripts and
+# of the test files, which are kept unchanged alongside the sealed code they test.
+ignore = ["E501", "E731", "E741"]
+
+[tool.ruff.lint.per-file-ignores]
+# Committed with seal 3 and left unchanged (conftest.py: test files are not edited after a seal).
+"tests/test_exp_l.py" = ["F401"]

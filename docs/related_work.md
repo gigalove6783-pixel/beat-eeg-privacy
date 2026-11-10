@@ -6,11 +6,14 @@ sessions, privacy mechanisms for EEG/BCI data, and covariance alignment methods 
 as a side effect.
 
 **Verification basis.** Every statement about a source comes from its opened full text (PDF or
-HTML), unless the entry says only the abstract or record page was read. All sources were accessed on
-2026-11-10. The labels used are: *peer-reviewed* (journal or proceedings version), *preprint*
-(arXiv, not peer-reviewed), *unreviewed repository* (GitHub technical report), and *not opened*
-(the source could not be retrieved, so no claims are drawn from it). Numbers are quoted as the
-sources report them. Different papers use different metrics, attackers and splits, so values in
+HTML), unless the entry says only the abstract or record page was read. Sources [1]–[20] were read on
+2026-11-10. Sources [21]–[36] were added on 2026-11-11 from the abstract or record page only
+(Section 7). On 2026-11-11 the bibliographic details of every entry were checked against Crossref
+and the arXiv API, and every DOI and URL was resolved by `python -m beat.verify --references`
+(Appendix). The labels used are: *peer-reviewed* (journal or proceedings version), *workshop paper*,
+*preprint* (arXiv, not peer-reviewed), *unreviewed repository* (GitHub technical report), and *not
+opened* (the source could not be retrieved, so no claims are drawn from it). Numbers are quoted as
+the sources report them. Different papers use different metrics, attackers and splits, so values in
 different rows are **not directly comparable**.
 
 ## 1. EEG identity protection and anonymization
@@ -99,7 +102,7 @@ model. "Independent" means an attacker is trained separately after protection.
 |---|---|---|---|---|---|---|
 | Meng et al. 2023 [1] (peer-reviewed) | Sample-/user-wise identity-unlearnable perturbation of released EEG | 7 datasets, 5 paradigms (incl. BCI IV 2a, P300, ERN, SSVEP, neonatal seizure, TUSZ) | Independent User-Classifier retrained on the protected training session and tested on held-out sessions; perturbation crafted with EEGNet, transferred to other backbones | UIA (accuracy): mean 70.01% → ≤ 21.36% | Not reported (closed set) | Yes (BCA) |
 | ID-RemovalNet 2025 [2] (peer-reviewed) | Identity decorrelation + GRL + attention feature selection + task-feature re-fusion; alignment step | BCI IV 2a, BCI IV 2b, P300 (8 subj.), ERN (16 subj.) | Identifier of two FC layers attached to the backbone; independent post-hoc attacker not reported; attacker training data not reported | UIA: e.g. 2a/EEGNet 91.50% → 0.04%; headline 0.43% | Not reported (1/9 = 11.1% for 2a by calculation) | Yes (BCA; improves) |
-| NeuroPriv 2026 [3] (preprint) | Feature expansion + encoder with gradient-reversal heads for gender, age, identity | EEGMAT (36 subj.) | Independent SVM/RF/GB attackers trained on the released representation (labeled auxiliary data from the same population) | Identity BA: 0.692 → 0.206 (strongest attacker) | 0.028 (reported) | Yes (task BA 0.788 → 0.781) |
+| NeuroPriv 2026 [3] (workshop paper; read as preprint) | Feature expansion + encoder with gradient-reversal heads for gender, age, identity | EEGMAT (36 subj.) | Independent SVM/RF/GB attackers trained on the released representation (labeled auxiliary data from the same population) | Identity BA: 0.692 → 0.206 (strongest attacker) | 0.028 (reported) | Yes (task BA 0.788 → 0.781) |
 | SAFE 2026 [4] (peer-reviewed) | Autoencoder with semi-randomized latent masking, adversarial subject model | BCI IV 2a, GigaDB, MMI, SMNI | Independent EEGNet attackers: trained on raw → tested on protected; trained on protected → tested on raw; trained and tested on protected (open eval); TSception/FBCNet on MMI | Identity BA, 2a: 0.991 → 0.186 / 0.161 / 0.686 | 0.111 for 2a (reported) | Yes (task BA, four train/eval combinations) |
 | Mondair (unreviewed repository) [5] | Benchmark of defenses: ad hoc transforms, domain-adversarial training, DP-SGD, DP-FedAvg | PhysioNet MMIDB, BCI IV 2a, OpenBMI | Independent probes on victim outputs/embeddings, adaptive encoder fine-tuning, open-set verifier on disjoint subjects, membership inference | Top-k accuracy, ROC-AUC; 2a cross-session top-1 0.913; adversarial defense 0.762 under fine-tune | Reported (e.g. 1/9, 1.85%) | Yes (task accuracy) |
 | Muhaimin & Nagarajan 2026 [6] (preprint) | Training-free Riemannian mean alignment and tangent-scatter whitening | BCI IV 2a, OpenBMI | Five independent covariance-space attackers, cross-session S1 → S2 on defended data; trial- and session-level aggregation | Identification accuracy, worst attacker: 90.8% → 15.6% (2a), → 9.9% (OpenBMI) | 11.1%, 1.85% (reported) | Yes (decoding cost 7.0 / 2.1 points) |
@@ -172,69 +175,158 @@ unquantified protection" [6].
 
 ## 6. Positioning of this project
 
+This section was first written on 2026-11-10 before the results of D, E and L were available, and
+was updated on 2026-11-11 with those results and with Section 7. BEAT numbers are taken from
+`docs/report.md`, which names their result files. "Within-day" means attacker training and test data
+from the same recording day (2a: runs 1–3 and 4–6 of session E; Lee2019: offline and online phase of
+session 2); "cross-day" means training on the calibration day and testing on the deployment day.
+
 **Replication of established findings.**
-- Raw MI representations identify users almost perfectly (BEAT: identity BA 1.00 for the 253-d
-  tangent vector). This matches [4], [5] and [6].
+- Raw MI representations identify users almost perfectly within a day (BEAT: identity BA 1.00 for
+  the 253-d tangent vector on 2a; 0.994 for the 210-d vector on 54 Lee2019 users). Across days the
+  same attackers reach 0.951 on 2a and 0.520 on Lee2019 (chance 0.111 and 0.0185). High
+  identifiability agrees with EEG biometrics [21–23] and with [4], [5], [6]; the drop across days
+  agrees with the session dependence addressed in [13] and [23].
 - A co-trained identity adversary can look successful while independent attackers recover identity
-  (BEAT: head BA 0.026 versus independent attackers 0.95 at λ = 1). This is the effect of [9],
-  previously reported in EEG under adaptive attack by an unreviewed benchmark [5].
+  (BEAT: head BA 0.026 versus independent attackers 0.95 at λ = 1 on 2a; 0.040 versus 0.514 within
+  a day on 54 users, a gap of 17.6–19.9 pp across days). This is the effect of [9], previously
+  reported in EEG under adaptive attack by an unreviewed benchmark [5].
 - Recentering and alignment reduce, but do not remove, identity [6].
+- A defence fitted to released or reference data can fail against an attacker who adapts later, as
+  shown for face-recognition poisoning [26]; BEAT's experiment G shows the analogous effect for a
+  reference-session-fitted EEG defence.
+
+**Two evaluation practices.** BEAT's pitfalls are two practices that appear in the opened sources;
+we do not claim that they are common across the field, because this review is not a systematic
+count. (1) *Co-trained-only measurement:* ID-RemovalNet reports identity only through identifiers
+trained with the model [2], as does the transfer-learning work of Özdenizci et al. [7]. (2)
+*Reference-session-only attackers:* Muhaimin and Nagarajan evaluate attackers trained on defended
+session-1 data [6], and Meng et al. retrain the user classifier on the protected training session
+[1]; SAFE states that prior EEG work typically evaluates a single attack in which the attacker trains
+directly on the protected data [4]. NeuroPriv [3], SAFE [4] and the benchmark [5] already use
+independently trained attackers, and [4] and [5] vary the attacker's data access.
 
 **Contributions not found in the reviewed literature.** These are stated as gaps in the opened
 sources, not as priority claims.
 - Leakage is measured on outputs collected **after deployment**: attackers are retrained on frozen
-  outputs of session E runs, the main scenario. This differs from attackers trained on protected
-  training data [1, 4] and from co-trained identifiers [2, 7]. The closest design is the
-  cross-session, defended-versus-defended evaluation of [6].
+  outputs of the deployment session (the main, within-day scenario) and, separately, across days.
+  This differs from attackers trained on protected training data [1, 4] and from co-trained
+  identifiers [2, 7]. The closest design is the cross-session, defended-versus-defended evaluation
+  of [6].
 - The co-trained head and independent attackers are compared side by side, at every λ, inside a
-  pre-registered protocol on BCI IV 2a. On that dataset, a published EEG identity-removal result
-  relies on a co-trained identifier [2].
-- Identity is shown to leak from **decoded discrete commands alone**, rising with the number of
-  observed commands (0.16–0.20 for one command, up to 0.48 for 20; chance 0.11). Session-level
-  pooling of covariance trials [6] is related, but no opened source studies command streams.
+  pre-registered protocol on BCI IV 2a, and the gap is confirmed on 54 users. On 2a, a published
+  EEG identity-removal result relies on a co-trained identifier [2].
+- Identity leakage from **decoded discrete commands** is quantified. A 2026 review names decoded
+  outputs as one of the data that can be re-associated with individuals [27]; we found no opened
+  source that measures it. On 2a, within session E, identity rises with the number of observed
+  commands (0.16–0.20 for one command, 0.21–0.48 for 20; chance 0.11). On 54 users the
+  pre-registered command claim C3 was not supported; in C3's cross-day setting (P2-RC, τ = 0.5)
+  command identification stayed near chance (0.019–0.029), while at τ = 0.8 the cross-day
+  estimates at 20 commands are 0.065–0.075 (descriptive; chance 0.0185). Session-level pooling
+  of covariance trials [6] is related.
 - Within one pooled model, a small task-only bottleneck gives a better privacy–utility trade-off
-  than gradient reversal.
+  than the gradient-reversal, maximum-entropy and ensemble variants tested (2a, exploratory).
+
+**Methods for command-stream defences (not yet evaluated in BEAT).** Randomized response [31] was
+introduced as a survey technique in which each respondent answers truthfully only with a known
+probability; it applies directly to discrete commands, and a per-command version was set aside in
+plan v3 (`docs/analysis_plan.md`, "Not pursued"). Equalized-odds post-processing [28] and its multiclass extension [29] adjust a fixed
+classifier's outputs so that their distribution given the true label does not depend on a group
+attribute; Rassouli and Gündüz characterise releases that reveal no information about a private
+variable ("perfect privacy") [30]. None of the opened sources applies these to BCI command streams,
+and none of BEAT's reported results uses them.
 
 **Claims that must be softened.**
-- *Generality.* The data are nine subjects in one closed-set dataset. An attacker's failure does not
-  establish anonymization (stated in `README.md`). The OpenBMI replication is planned, not done.
-- *"Adversarial training fails."* This is supported only for gradient reversal on Riemannian
-  features (experiment B). Experiments D (MaxEnt [11], ensemble refresh) and E (EEGNet with a
-  two-layer identifier) are exploratory, and their session-E results are not yet available. Until
-  then, the report should claim neither that the failure generalizes to other adversarial
-  objectives nor that ID-RemovalNet [2] leaks. Experiment E tests the evaluation metric on a common
-  backbone; it does not reproduce ID-RemovalNet.
+- *Generality.* The data are nine subjects in one closed-set dataset and 54 subjects in a second
+  (Lee2019, confirmatory replication of four claims, three supported). An attacker's failure does
+  not establish anonymization (stated in `README.md`).
+- *"Adversarial training fails."* This is supported for gradient reversal on Riemannian features
+  (experiment B, confirmatory). Experiments D (MaxEnt [11], ensemble refresh) and E (EEGNet with a
+  two-layer identifier) are exploratory: no D variant passed the protection rule in both families,
+  and some E settings lowered identity by 7–8 pp relative to λ = 0. The report should claim neither
+  that the failure generalizes to other adversarial objectives nor that ID-RemovalNet [2] leaks.
+  Experiment E tests the evaluation metric on a common backbone; it does not reproduce
+  ID-RemovalNet.
 - *"Gradient reversal backfired."* This holds at high λ. The cross-validated operating point
   (λ = 0.01) showed no difference from the λ = 0 bottleneck (identity BA 0.626 vs 0.619).
 - *Recentering.* Recentering the full tangent vector left identity BA at 0.998. The reduction to
   0.43 comes from combining recentering with the 8-d bottleneck. Recentering alone should not be
   described as an effective protection. This is consistent with EA leaving 69.0% in [6].
-- *Strength of protection.* The best BEAT configuration (BA 0.43, chance 0.11) remains well above
-  chance. A training-free Riemannian transform reports 15.6% on BCI IV 2a [6], and DP-SGD at ε ≤ 1
-  blocks adaptive attackers in [5]. Neither was evaluated here, so BEAT cannot claim the strongest
-  defense. Metrics and scenarios also differ (balanced accuracy versus identification accuracy;
-  within-session runs versus cross-session).
-- *Cross-day claims.* The main attacker scenario uses runs from the same session E. Cross-day
-  evidence comes from the auxiliary T → E scenario, which the plan says cannot establish protection
-  alone. Given [10], leakage statements should name the scenario they come from.
+- *Strength of protection.* The best BEAT configuration (the 1-d task-only bottleneck, BA 0.21–0.25
+  on 2a, chance 0.11) remains about twice chance. A training-free Riemannian transform reports 15.6%
+  on BCI IV 2a against reference-session attackers [6], and DP-SGD at ε ≤ 1 blocks adaptive
+  attackers in [5]. BEAT re-implemented [6] only to test its threat model (experiment G) and did not
+  evaluate DP-SGD, so BEAT cannot claim the strongest defense. Metrics and scenarios also differ
+  (balanced accuracy versus identification accuracy; within-session runs versus cross-session).
+- *Cross-day claims.* The main attacker scenario is within-day: runs of the same session E on 2a,
+  the offline and online phase of session 2 on Lee2019. Cross-day evidence comes from the auxiliary
+  scenario, which the plan says cannot establish protection alone; on Lee2019 the full tangent vector
+  gives 0.994 within a day and 0.520 across days. Given [10], leakage statements should name the
+  scenario they come from.
 - *Command leakage* is above chance but modest at short horizons, and it depends on model and
-  confidence threshold τ (22 of 24 settings exceed 2 × chance within five commands).
+  confidence threshold τ (22 of 24 settings exceed 2 × chance within five commands, within session E
+  on 2a). It was not confirmed on 54 users (claim C3).
+
+## 7. Additional prior work (added 2026-11-11; abstract or record page only)
+
+**EEG biometrics.** Marcel and Millán authenticate persons from EEG with Gaussian mixture models and
+maximum a posteriori adaptation, using a single training session, and report that some mental tasks
+suit authentication better than others [21]. Bak and Jeong study biometric user identification from
+motor-imagery EEG signals and compare feature-extraction and classification methods [22]. Özdenizci
+et al. use adversarial inference to learn session-invariant, person-discriminative representations,
+because session-specific variability limits EEG identification across longitudinally recorded
+sessions [23]. These works treat identity as the target of the system; BEAT treats it as leakage
+from a task system.
+
+**Identity protection.** Meng et al. design perturbations that conceal user identity, gender and BCI
+experience at once while keeping primary-task accuracy, extending the identity-protection setting
+of [1] [24].
+
+**Fixed protection against later attackers.** Radiya-Dixit et al. show that poisoning-based
+protection of published face images gives a false sense of security: the images are perturbed once,
+before release, and must then fool every future model, including models trained adaptively against
+the perturbation or built with later techniques [26]. Pitfall 2 of BEAT (a frozen,
+reference-session-fitted EEG defence defeated by a few labelled deployment-period outputs) is an
+instance of the same asymmetry in a different threat model.
+
+**BCI privacy review.** Sun et al. (arXiv preprint, May 2026) define protection objects along the BCI
+lifecycle, state that neural data, derived representations, model assets and decoded outputs can
+be re-associated with individuals, and grade existing protections into four levels of protection
+strength [27]. BEAT measures one of these pathways (decoded commands) empirically.
+
+**Output post-processing and perfect privacy.** Hardt et al. define equalized odds and equal
+opportunity and show how to optimally adjust any learned predictor using only the joint statistics
+of the predictor, the target and the protected attribute [28]. Putzel and Lee extend this
+post-processing to multiclass black-box classifiers (SafeAI workshop at AAAI 2022) and report minor
+accuracy drops when the dataset is large relative to the number of classes and protected groups
+[29]. Rassouli and Gündüz ask how much information about useful data Y can be released while the
+release is statistically independent of private data X ("perfect privacy"), with a linear-algebraic
+analysis for finite alphabets [30]. Warner introduced randomized response as a survey technique for
+eliminating evasive answer bias [31]. In BEAT's setting the protected attribute is the user's
+identity and the released output is the decoded command; Section 6 states that none of these
+methods has yet been evaluated here.
+
+**Datasets and methods cited by the report.** BCI Competition IV and its data set 2a (BNCI2014-001)
+are described in [25]; the Lee2019/OpenBMI dataset in [32]. The report's methods follow Riemannian
+tangent-space classification [33], common spatial patterns [34], gradient reversal [35] and EEGNet
+[36].
 
 ## References
 
 1. L. Meng, X. Jiang, J. Huang, W. Li, H. Luo, D. Wu, "User Identity Protection in EEG-based
-   Brain-Computer Interfaces," *IEEE Trans. Neural Syst. Rehabil. Eng.*, 2023.
-   https://doi.org/10.1109/TNSRE.2023.3310883 — full text read at
+   Brain-Computer Interfaces," *IEEE Trans. Neural Syst. Rehabil. Eng.*, vol. 31, pp. 3576–3586,
+   2023. https://doi.org/10.1109/TNSRE.2023.3310883 — full text read at
    https://arxiv.org/abs/2412.09854 (arXiv version).
 2. H. Wang, J. Ruan, C. Fan, Y. Cheng, Z. Lv, "ID-RemovalNet: Identity Removal Network for EEG
    Privacy Protection with Enhancing Decoding Tasks," *Proc. IJCAI-25*, pp. 4209–4217, 2025.
    https://doi.org/10.24963/ijcai.2025/469 — PDF: https://www.ijcai.org/proceedings/2025/0469.pdf
 3. S. S. Gomasta, B. Chhaglani, P. Shenoy, "NeuroPriv: Adversarial Representation Learning for
-   Privacy in Wearable EEG Systems," arXiv:2609.00390, 2026. **Preprint**; the manuscript header
-   names MobiDx '26 (ACM, https://doi.org/10.1145/3842657.3842784), but peer-review status was not
-   verified. https://arxiv.org/abs/2609.00390
+   Privacy in Wearable EEG Systems," *Proc. 1st Workshop on Hot Topics in Mobile and Wireless
+   Systems for Health*, ACM, pp. 9–14, 2026. **Workshop paper** (Crossref record of
+   https://doi.org/10.1145/3842657.3842784, checked 2026-11-11; the full text was read as the
+   preprint arXiv:2609.00390, https://arxiv.org/abs/2609.00390).
 4. N. Mehlman, S. Narayanan, "Task-Preserving EEG Anonymization Using Latent Feature Masking,"
-   *IEEE J. Biomed. Health Inform.*, 2026 (accepted version). https://doi.org/10.1109/JBHI.2026.3704845
+   *IEEE J. Biomed. Health Inform.*, 2026, early access, pp. 1–10. https://doi.org/10.1109/JBHI.2026.3704845
    — PubMed: https://pubmed.ncbi.nlm.nih.gov/42308059/ ; PDF via
    https://sail.usc.edu/publications/html/b2hd-Mehlman-IEEEJBHI0226.html
 5. M. S. Mondair, "Subject Re-Identification Leakage in Motor-Imagery BCI Models: A Multi-Corpus,
@@ -251,15 +343,16 @@ sources, not as priority claims.
 9. Y. Elazar, Y. Goldberg, "Adversarial Removal of Demographic Attributes from Text Data," *Proc.
    EMNLP*, 2018. https://doi.org/10.18653/v1/D18-1002 — https://aclanthology.org/D18-1002
 10. M. Barrett, Y. Kementchedjhieva, Y. Elazar, D. Elliott, A. Søgaard, "Adversarial Removal of
-    Demographic Attributes Revisited," *Proc. EMNLP-IJCNLP*, pp. 6330–6335, 2019.
-    https://aclanthology.org/D19-1662
+    Demographic Attributes Revisited," *Proc. EMNLP-IJCNLP*, pp. 6329–6334, 2019.
+    https://doi.org/10.18653/v1/D19-1662 — https://aclanthology.org/D19-1662
 11. P. C. Roy, V. N. Boddeti, "Mitigating Information Leakage in Image Representations: A Maximum
-    Entropy Approach," *Proc. CVPR*, 2019.
+    Entropy Approach," *Proc. CVPR*, pp. 2581–2589, 2019. https://doi.org/10.1109/CVPR.2019.00269 —
     https://openaccess.thecvf.com/content_CVPR_2019/papers/Roy_Mitigating_Information_Leakage_in_Image_Representations_A_Maximum_Entropy_Approach_CVPR_2019_paper.pdf
 12. C. Song, V. Shmatikov, "Overlearning Reveals Sensitive Attributes," *Proc. ICLR*, 2020.
-    https://www.cs.cornell.edu/~shmat/shmat_iclr20.pdf
+    https://openreview.net/forum?id=SJeNz04tDS — https://www.cs.cornell.edu/~shmat/shmat_iclr20.pdf
 13. E. Maiorana, P. Campisi, "Longitudinal Evaluation of EEG-based Biometric Recognition," *IEEE
-    Trans. Inf. Forensics Security*, 2018. https://doi.org/10.1109/TIFS.2017.2778010
+    Trans. Inf. Forensics Security*, vol. 13, no. 5, pp. 1123–1138, 2018.
+    https://doi.org/10.1109/TIFS.2017.2778010
 14. I. Martinovic, D. Davies, M. Frank, D. Perito, T. Ros, D. Song, "On the Feasibility of
     Side-Channel Attacks with Brain-Computer Interfaces," *Proc. 21st USENIX Security Symp.*,
     pp. 143–158, 2012.
@@ -268,8 +361,9 @@ sources, not as priority claims.
     Study in Clinical Neurophysiology," arXiv:2609.11777, 2026. **Preprint.**
     https://arxiv.org/abs/2609.11777
 16. A. Bay, S. Şengül Ayan, S. Demir, "A sensitivity-aware privacy budget selection framework for
-    EEG data under local differential privacy," *EURASIP J. Inf. Security*, 2026 (accepted, early
-    version; abstract only read). https://doi.org/10.1186/s13635-026-00242-w
+    EEG data under local differential privacy," *EURASIP J. Inf. Security*, 2026 (published online
+    5 September 2026, no volume assigned in the Crossref record; abstract only read).
+    https://doi.org/10.1186/s13635-026-00242-w
 17. K. Xia, W. Duch, Y. Sun, K. Xu, W. Fang, H. Luo, Y. Zhang, D. Sang, X. Xu, F. Wang, D. Wu,
     "Privacy-Preserving Brain-Computer Interfaces: A Systematic Review," *IEEE Trans. Comput. Soc.
     Syst.*, vol. 10, no. 5, pp. 2312–2324, 2023. https://doi.org/10.1109/TCSS.2022.3184818 — arXiv
@@ -279,9 +373,140 @@ sources, not as priority claims.
     vol. 65, no. 5, pp. 1107–1116, 2018. https://doi.org/10.1109/TBME.2017.2742541 — HAL record
     (abstract read): https://hal.science/hal-01923278
 19. P. L. C. Rodrigues, C. Jutten, M. Congedo, "Riemannian Procrustes Analysis: Transfer Learning for
-    Brain-Computer Interfaces," *IEEE Trans. Biomed. Eng.*, vol. 66, no. 8, pp. 2390–2401.
-    https://doi.org/10.1109/TBME.2018.2889705 — HAL record (abstract read; lists the year as 2018):
-    https://hal.science/hal-01971856
+    Brain-Computer Interfaces," *IEEE Trans. Biomed. Eng.*, vol. 66, no. 8, pp. 2390–2401, 2019
+    (print issue August 2019 per Crossref). https://doi.org/10.1109/TBME.2018.2889705 — HAL record
+    (abstract read; lists the year as 2018): https://hal.science/hal-01971856
 20. H. He, D. Wu, "Transfer Learning for Brain-Computer Interfaces: A Euclidean Space Data Alignment
-    Approach," *IEEE Trans. Biomed. Eng.* https://doi.org/10.1109/TBME.2019.2913914 — full text
-    read as arXiv:1808.05464v2 (2 April 2019): https://arxiv.org/abs/1808.05464
+    Approach," *IEEE Trans. Biomed. Eng.*, vol. 67, no. 2, pp. 399–410, 2020.
+    https://doi.org/10.1109/TBME.2019.2913914 — full text read as arXiv:1808.05464v2
+    (2 April 2019): https://arxiv.org/abs/1808.05464
+21. S. Marcel, J. del R. Millán, "Person Authentication Using Brainwaves (EEG) and Maximum A
+    Posteriori Model Adaptation," *IEEE Trans. Pattern Anal. Mach. Intell.*, vol. 29, no. 4,
+    pp. 743–752, 2007. https://doi.org/10.1109/TPAMI.2007.1012 — PubMed abstract read:
+    https://pubmed.ncbi.nlm.nih.gov/17299229/
+22. S. Bak, J. Jeong, "User Biometric Identification Methodology via EEG-Based Motor Imagery
+    Signals," *IEEE Access*, vol. 11, pp. 41303–41314, 2023.
+    https://doi.org/10.1109/ACCESS.2023.3268551 (record page only)
+23. O. Özdenizci, Y. Wang, T. Koike-Akino, D. Erdoğmuş, "Adversarial Deep Learning in EEG
+    Biometrics," *IEEE Signal Process. Lett.*, vol. 26, no. 5, pp. 710–714, 2019.
+    https://doi.org/10.1109/LSP.2019.2906826 — PubMed abstract read:
+    https://pubmed.ncbi.nlm.nih.gov/31814690/
+24. L. Meng, X. Jiang, T. Jia, D. Wu, "Protecting Multiple Types of Privacy Simultaneously in
+    EEG-Based Brain-Computer Interfaces," *Proc. IEEE Int. Conf. Systems, Man, and Cybernetics
+    (SMC)*, pp. 2894–2899, 2024. https://doi.org/10.1109/SMC54092.2024.10832088 — abstract read
+    at https://arxiv.org/abs/2411.19498
+25. M. Tangermann, K.-R. Müller, A. Aertsen, N. Birbaumer, C. Braun, C. Brunner, R. Leeb,
+    C. Mehring, K. J. Miller, G. R. Müller-Putz, G. Nolte, G. Pfurtscheller, H. Preissl, G. Schalk,
+    A. Schlögl, C. Vidaurre, S. Waldert, B. Blankertz, "Review of the BCI Competition IV,"
+    *Front. Neurosci.*, vol. 6, art. 55, 2012. https://doi.org/10.3389/fnins.2012.00055 (record
+    page only; describes the competition data sets, including data set 2a = BNCI2014-001)
+26. E. Radiya-Dixit, S. Hong, N. Carlini, F. Tramèr, "Data Poisoning Won't Save You From Facial
+    Recognition," *Proc. ICLR*, 2022. https://openreview.net/forum?id=B5XahNLmna — abstract read
+    at https://arxiv.org/abs/2106.14851
+27. L. Sun, X. Mao, S. Zhang, Q. Zeng, M. Zhao, J. Li, W. Dong, "Revisiting Privacy Preservation in
+    Brain-Computer Interfaces: Conceptual Boundaries, Risk Pathways, and a Protection-Strength
+    Grading Framework," arXiv:2605.11386, 2026. **Preprint** (abstract read).
+    https://doi.org/10.48550/arXiv.2605.11386
+28. M. Hardt, E. Price, N. Srebro, "Equality of Opportunity in Supervised Learning," *Advances in
+    Neural Information Processing Systems 29 (NIPS 2016)*, 2016.
+    https://proceedings.neurips.cc/paper_files/paper/2016/hash/6a9659feb1216f14f7384ba499518b38-Abstract.html
+    — abstract read at https://arxiv.org/abs/1610.02413
+29. P. Putzel, S. Lee, "Blackbox Post-Processing for Multiclass Fairness," *Proc. Workshop on
+    Artificial Intelligence Safety 2022 (SafeAI 2022), co-located with AAAI-22*, CEUR Workshop
+    Proceedings vol. 3087, 2022. **Workshop paper.** https://ceur-ws.org/Vol-3087/paper_36.pdf —
+    abstract read at https://arxiv.org/abs/2201.04461
+30. B. Rassouli, D. Gündüz, "On Perfect Privacy," *IEEE J. Sel. Areas Inf. Theory*, vol. 2, no. 1,
+    pp. 177–191, 2021. https://doi.org/10.1109/JSAIT.2021.3053432 — abstract read at
+    https://arxiv.org/abs/1712.08500
+31. S. L. Warner, "Randomized Response: A Survey Technique for Eliminating Evasive Answer Bias,"
+    *J. Amer. Statist. Assoc.*, vol. 60, no. 309, pp. 63–69, 1965.
+    https://doi.org/10.1080/01621459.1965.10480775 (record page only)
+32. M.-H. Lee, O.-Y. Kwon, Y.-J. Kim, H.-K. Kim, Y.-E. Lee, J. Williamson, S. Fazli, S.-W. Lee,
+    "EEG dataset and OpenBMI toolbox for three BCI paradigms: an investigation into BCI
+    illiteracy," *GigaScience*, vol. 8, no. 5, giz002, 2019.
+    https://doi.org/10.1093/gigascience/giz002 — data: https://doi.org/10.5524/100542
+33. A. Barachant, S. Bonnet, M. Congedo, C. Jutten, "Multiclass Brain–Computer Interface
+    Classification by Riemannian Geometry," *IEEE Trans. Biomed. Eng.*, vol. 59, no. 4,
+    pp. 920–928, 2012. https://doi.org/10.1109/TBME.2011.2172210
+34. H. Ramoser, J. Müller-Gerking, G. Pfurtscheller, "Optimal Spatial Filtering of Single Trial EEG
+    During Imagined Hand Movement," *IEEE Trans. Rehabil. Eng.*, vol. 8, no. 4, pp. 441–446, 2000.
+    https://doi.org/10.1109/86.895946
+35. Y. Ganin, V. Lempitsky, "Unsupervised Domain Adaptation by Backpropagation," *Proc. ICML*,
+    PMLR vol. 37, pp. 1180–1189, 2015. https://proceedings.mlr.press/v37/ganin15.html
+36. V. J. Lawhern, A. J. Solon, N. R. Waytowich, S. M. Gordon, C. P. Hung, B. J. Lance, "EEGNet: a
+    compact convolutional neural network for EEG-based brain–computer interfaces," *J. Neural
+    Eng.*, vol. 15, no. 5, 056013, 2018. https://doi.org/10.1088/1741-2552/aace8c
+
+## Appendix: reference resolution check
+
+Output of `python -m beat.verify --references`, run on 2026-11-11 00:25 KST (15:25 UTC on
+2026-11-10). It resolves every DOI through the doi.org handle API (publishers often block
+scripted requests, the handle API does not), every arXiv identifier through the arXiv API, and every
+other URL in the reference lists of `README.md`, `docs/report.md` and this file by an HTTP GET
+(status below 400; PubMed answers 203). Bibliographic fields (authors, title, venue, volume, issue,
+pages, year) were compared by hand with the Crossref record of each DOI and the arXiv record of
+each preprint on the same day, and the reference lists were corrected to those records.
+
+```text
+reference check, 2026-11-10 15:25 UTC
+  ok   arxiv 1610.02413 -> Equality of Opportunity in Supervised Learning
+  ok   arxiv 1712.08500 -> On Perfect Privacy
+  ok   arxiv 1808.05464 -> Transfer Learning for Brain-Computer Interfaces: A Euclidean Space Data Alignment Approach
+  ok   arxiv 2106.14851 -> Data Poisoning Won't Save You From Facial Recognition
+  ok   arxiv 2201.04461 -> Blackbox Post-Processing for Multiclass Fairness
+  ok   arxiv 2411.19498 -> Protecting Multiple Types of Privacy Simultaneously in EEG-based Brain-Computer Interfaces
+  ok   arxiv 2412.09854 -> User Identity Protection in EEG-based Brain-Computer Interfaces
+  ok   arxiv 2412.11394 -> Privacy-Preserving Brain-Computer Interfaces: A Systematic Review
+  ok   arxiv 2605.11386 -> Revisiting Privacy Preservation in Brain-Computer Interfaces: Conceptual Boundaries, Risk Pathways, and a Protection-Strength Grading Framework
+  ok   arxiv 2609.00390 -> NeuroPriv: Adversarial Representation Learning for Privacy in Wearable EEG Systems
+  ok   arxiv 2609.11777 -> Differentially Private EEG Feature Anonymization: A Privacy-Utility Case Study in Clinical Neurophysiology
+  ok   arxiv 2610.15626 -> Riemannian Suppression of Cross-Session Identity Leakage in Motor-Imagery EEG
+  ok   doi   10.1080/01621459.1965.10480775 -> http://www.tandfonline.com/doi/abs/10.1080/01621459.1965.10480775
+  ok   doi   10.1088/1741-2552/aace8c -> https://iopscience.iop.org/article/10.1088/1741-2552/aace8c
+  ok   doi   10.1093/gigascience/giz002 -> https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giz002/5304369
+  ok   doi   10.1109/86.895946 -> https://ieeexplore.ieee.org/document/895946/
+  ok   doi   10.1109/ACCESS.2020.2971600 -> https://ieeexplore.ieee.org/document/8981912/
+  ok   doi   10.1109/ACCESS.2023.3268551 -> https://ieeexplore.ieee.org/document/10105200/
+  ok   doi   10.1109/CVPR.2019.00269 -> https://ieeexplore.ieee.org/document/8953999/
+  ok   doi   10.1109/JBHI.2026.3704845 -> https://ieeexplore.ieee.org/document/11569012/
+  ok   doi   10.1109/JSAIT.2021.3053432 -> https://ieeexplore.ieee.org/document/9336011/
+  ok   doi   10.1109/LSP.2019.2906826 -> https://ieeexplore.ieee.org/document/8675355/
+  ok   doi   10.1109/SMC54092.2024.10832088 -> https://ieeexplore.ieee.org/document/10832088/
+  ok   doi   10.1109/TBME.2011.2172210 -> http://ieeexplore.ieee.org/document/6046114/
+  ok   doi   10.1109/TBME.2017.2742541 -> https://ieeexplore.ieee.org/document/8013808/
+  ok   doi   10.1109/TBME.2018.2889705 -> https://ieeexplore.ieee.org/document/8588384/
+  ok   doi   10.1109/TBME.2019.2913914 -> https://ieeexplore.ieee.org/document/8701679/
+  ok   doi   10.1109/TCSS.2022.3184818 -> https://ieeexplore.ieee.org/document/9808103/
+  ok   doi   10.1109/TIFS.2017.2778010 -> http://ieeexplore.ieee.org/document/8120145/
+  ok   doi   10.1109/TNSRE.2023.3310883 -> https://ieeexplore.ieee.org/document/10236508/
+  ok   doi   10.1109/TPAMI.2007.1012 -> http://ieeexplore.ieee.org/document/4107576/
+  ok   doi   10.1145/3842657.3842784 -> https://dl.acm.org/doi/10.1145/3842657.3842784
+  ok   doi   10.1186/s13635-026-00242-w -> https://link.springer.com/10.1186/s13635-026-00242-w
+  ok   doi   10.18653/v1/D18-1002 -> http://aclweb.org/anthology/D18-1002
+  ok   doi   10.18653/v1/D19-1662 -> https://www.aclweb.org/anthology/D19-1662
+  ok   doi   10.24963/ijcai.2025/469 -> https://www.ijcai.org/proceedings/2025/469
+  ok   doi   10.3389/fnins.2012.00055 -> http://journal.frontiersin.org/article/10.3389/fnins.2012.00055/abstract
+  ok   doi   10.48550/arXiv.2605.11386 -> https://arxiv.org/abs/2605.11386
+  ok   doi   10.5524/100542 -> http://gigadb.org/dataset/100542
+  ok   url   https://aclanthology.org/D18-1002 -> HTTP 200
+  ok   url   https://aclanthology.org/D19-1662 -> HTTP 200
+  ok   url   https://ceur-ws.org/Vol-3087/paper_36.pdf -> HTTP 200
+  ok   url   https://github.com/manrajmondair/bci-identity-leakage -> HTTP 200
+  ok   url   https://hal.science/hal-01923278 -> HTTP 200
+  ok   url   https://hal.science/hal-01971856 -> HTTP 200
+  ok   url   https://openaccess.thecvf.com/content_CVPR_2019/papers/Roy_Mitigating_Information_Leakage_in_Image_Representations_A_Maximum_Entropy_Approach_CVPR_2019_paper.pdf -> HTTP 200
+  ok   url   https://openreview.net/forum?id=B5XahNLmna -> HTTP 200
+  ok   url   https://openreview.net/forum?id=SJeNz04tDS -> HTTP 200
+  ok   url   https://proceedings.mlr.press/v37/ganin15.html -> HTTP 200
+  ok   url   https://proceedings.neurips.cc/paper_files/paper/2016/hash/6a9659feb1216f14f7384ba499518b38-Abstract.html -> HTTP 200
+  ok   url   https://pubmed.ncbi.nlm.nih.gov/17299229/ -> HTTP 203
+  ok   url   https://pubmed.ncbi.nlm.nih.gov/31814690/ -> HTTP 203
+  ok   url   https://pubmed.ncbi.nlm.nih.gov/42308059/ -> HTTP 203
+  ok   url   https://sail.usc.edu/publications/html/b2hd-Mehlman-IEEEJBHI0226.html -> HTTP 200
+  skip url   https://ssrn.com/abstract=7459682 -> listed as not opened; not cited
+  ok   url   https://www.cs.cornell.edu/~shmat/shmat_iclr20.pdf -> HTTP 200
+  ok   url   https://www.ijcai.org/proceedings/2025/0469.pdf -> HTTP 200
+  ok   url   https://www.merl.com/publications/docs/TR2020-049.pdf -> HTTP 200
+  ok   url   https://www.usenix.org/conference/usenixsecurity12/technical-sessions/presentation/martinovic -> HTTP 200
+references: pass
+```

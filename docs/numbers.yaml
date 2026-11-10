@@ -1,0 +1,307 @@
+# Registry of headline numbers, checked by `python -m beat.verify --numbers` (also run in CI).
+#
+# Each entry names the result file the number comes from (`value`: a CSV row filter and column, or
+# a dotted JSON path; `agg` takes the min or max over the filtered rows), how the documents print it
+# (`format`: fixed decimals, optionally scaled, or scientific notation) and the exact `text`.
+# The check recomputes the value, renders it and requires `text` to match; each snippet under `in`
+# must contain `text` and occur verbatim in that document (snippets stay within one line); each
+# `demo` value must equal the source value within `tolerance` (demo data are rounded to 6 places).
+# Later lanes add their numbers here; documents they do not own are checked read-only.
+
+numbers:
+  # ---------------------------------------------------------------- Lee2019 (L), 54 users
+  - id: L_P0_within_day
+    value: {file: results/exp_l/identity_summary.csv, column: ba,
+            where: {kind: representation, key: P0, attacker: logistic, scenario: main}}
+    format: {kind: fixed, digits: 3}
+    text: "0.994"
+    in:
+      README.md: ["Within-day 0.994 → 0.340 (cross-day 0.520 → 0.054)", "identity BA from 0.994 to 0.340"]
+      docs/report.md: ["0.994 identity BA within a day and 0.520 across days", "0.520 rather than 0.994"]
+      docs/explainer_ko.md: ["210차원 접공간 특징이 0.994(우연 0.0185)"]
+    demo:
+      - {file: demo/data/results.json, json: lee2019.claims.1.quantities.0.value}
+  - id: L_P0_cross_day_logistic
+    value: {file: results/exp_l/identity_summary.csv, column: ba,
+            where: {kind: representation, key: P0, attacker: logistic, scenario: auxiliary}}
+    format: {kind: fixed, digits: 3}
+    text: "0.520"
+    in:
+      README.md: ["0.520 on 54 users (logistic regression; 0.510 RBF-SVM, 0.368 MLP)"]
+      docs/report.md: ["the full tangent vector gives 0.520 (logistic regression; 0.510 RBF-SVM, 0.368 MLP)",
+                       "| 0.951 (T→E) | 0.520 (session 1 → 2) |", "0.520 for the full tangent vector (0.994 within a day"]
+      docs/related_work.md: ["0.520 on Lee2019 (chance 0.111 and 0.0185)"]
+  - id: L_P0_cross_day_rbf_svm
+    value: {file: results/exp_l/identity_summary.csv, column: ba,
+            where: {kind: representation, key: P0, attacker: rbf_svm, scenario: auxiliary}}
+    format: {kind: fixed, digits: 3}
+    text: "0.510"
+    in:
+      README.md: ["0.510 RBF-SVM"]
+      docs/report.md: ["0.510 RBF-SVM"]
+  - id: L_P0_cross_day_mlp
+    value: {file: results/exp_l/identity_summary.csv, column: ba,
+            where: {kind: representation, key: P0, attacker: mlp, scenario: auxiliary}}
+    format: {kind: fixed, digits: 3}
+    text: "0.368"
+    in:
+      README.md: ["0.368 MLP"]
+      docs/report.md: ["0.368 MLP"]
+  - id: L_P2RC_d8_within_day
+    value: {file: results/exp_l/identity_summary.csv, column: ba,
+            where: {kind: representation, key: P2-RC_d8, attacker: mlp, scenario: main}}
+    format: {kind: fixed, digits: 3}
+    text: "0.340"
+    in:
+      README.md: ["identity BA from 0.994 to 0.340 at −0.6 pp task BA"]
+      docs/report.md: ["lowered identity BA from 0.994 to 0.340, still 18 times chance"]
+      docs/explainer_ko.md: ["재중심화 병목이 0.994를 0.340으로 낮추면서"]
+    demo:
+      - {file: demo/data/results.json, json: lee2019.claims.1.quantities.1.value}
+  - id: L_P2RC_d8_cross_day
+    value: {file: results/exp_l/identity_summary.csv, column: ba, agg: max,
+            where: {kind: representation, key: P2-RC_d8, scenario: auxiliary}}
+    format: {kind: fixed, digits: 3}
+    text: "0.054"
+    in:
+      README.md: ["(cross-day 0.520 → 0.054)"]
+      docs/report.md: ["P2-RC $d = 8$ gives 0.054 (MLP)"]
+  - id: L_C1_independent_within_day
+    value: {file: results/exp_l/identity_summary.csv, column: ba,
+            where: {kind: representation, key: P3_lambda1, attacker: mlp, scenario: main}}
+    format: {kind: fixed, digits: 3}
+    text: "0.514"
+    in:
+      README.md: ["0.040 against 0.514 within a day", "Within-day 0.514 vs 0.040 (47.4 pp)"]
+      docs/report.md: ["the co-trained head scored 0.040 against 0.514 for independent attackers"]
+      docs/explainer_ko.md: ["(54명 C1: 0.040 대 0.514)"]
+    demo:
+      - {file: demo/data/results.json, json: lee2019.claims.0.quantities.1.value}
+  - id: L_C1_gap_within_day
+    value: {file: results/exp_l/decision.json, json: claims.C1.observed_difference}
+    format: {kind: fixed, digits: 1, scale: 100}
+    text: "47.4"
+    in:
+      README.md: ["(47.4 pp)"]
+      docs/report.md: ["difference 47.4 pp (5 seeds)", "(47.4 pp within a day)"]
+  - id: L_C1_gap_cross_day_min
+    value: {file: results/exp_l/decision.json, json: claims.C1.component_tests.logistic/auxiliary.mean}
+    format: {kind: fixed, digits: 1, scale: 100}
+    text: "17.6"
+    in:
+      README.md: ["across days the gap is 17.6–19.9 pp", "cross-day gap 17.6–19.9 pp"]
+      docs/report.md: ["17.6–19.9 pp in the cross-day auxiliary scenario"]
+  - id: L_C1_gap_cross_day_max
+    value: {file: results/exp_l/decision.json, json: claims.C1.component_tests.rbf_svm/auxiliary.mean}
+    format: {kind: fixed, digits: 1, scale: 100}
+    text: "19.9"
+    in:
+      README.md: ["across days the gap is 17.6–19.9 pp"]
+      docs/report.md: ["co-trained-head gap of 17.6–19.9 pp"]
+  - id: L_C1_holm
+    value: {file: results/exp_l/decision.json, json: claims.C1.holm_p}
+    format: {kind: sci, digits: 1}
+    text: "8.9 × 10⁻²⁶"
+    in:
+      README.md: ["Holm 8.9 × 10⁻²⁶"]
+  - id: L_C1_holm_latex
+    value: {file: results/exp_l/decision.json, json: claims.C1.holm_p}
+    format: {kind: sci_latex, digits: 2}
+    text: "8.86 \\times 10^{-26}"
+    in:
+      docs/report.md: ["$8.86 \\times 10^{-26}$"]
+  - id: L_C2_holm
+    value: {file: results/exp_l/decision.json, json: claims.C2.holm_p}
+    format: {kind: sci, digits: 1}
+    text: "4.6 × 10⁻⁵"
+    in:
+      README.md: ["Holm 4.6 × 10⁻⁵"]
+  - id: L_C3_k20_within_day
+    value: {file: results/exp_l/identity_summary.csv, column: ba,
+            where: {kind: observation, key: P2-RC_d8, mode: command, tau: 0.5, k: 20, strongest: "True"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.085"
+    in:
+      README.md: ["Within-day 0.085 vs 0.037", "rises from 0.037 to 0.085 at 20 commands"]
+      docs/report.md: ["0.085 at 20 commands within a day"]
+  - id: L_C3_k1_within_day
+    value: {file: results/exp_l/identity_summary.csv, column: ba,
+            where: {kind: observation, key: P2-RC_d8, mode: command, tau: 0.5, k: 1, strongest: "True"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.037"
+    in:
+      README.md: ["Within-day 0.085 vs 0.037"]
+  - id: L_C3_cross_day_min
+    value: {file: results/exp_l/decision.json, json: claims.C3.component_tests.logistic/auxiliary.threshold.mean}
+    format: {kind: fixed, digits: 3}
+    text: "0.019"
+    in:
+      README.md: ["(0.019–0.029)", "(cross-day 0.019–0.029 at 20)"]
+      docs/report.md: ["(0.019–0.029; `component_tests`"]
+  - id: L_C3_cross_day_max
+    value: {file: results/exp_l/decision.json, json: claims.C3.component_tests.mlp/auxiliary.threshold.mean}
+    format: {kind: fixed, digits: 3}
+    text: "0.029"
+    in:
+      README.md: ["(0.019–0.029)"]
+  # Cross-day command identification outside C3's setting: tau 0.8, k 20, strongest attacker per
+  # representation within the auxiliary scenario (descriptive, three seeds).
+  - id: L_cmd_tau08_k20_cross_day_P0
+    value: {file: results/exp_l/observation_length.csv, column: ba,
+            where: {kind: observation, key: P0, mode: command, tau: 0.8, k: 20, attacker: logistic, scenario: auxiliary}}
+    format: {kind: fixed, digits: 3}
+    text: "0.069"
+    in:
+      README.md: ["0.069 (95% interval 0.043–0.100) for full"]
+      docs/report.md: ["0.069 (95% interval 0.043–0.100) for P0 (logistic regression)"]
+  - id: L_cmd_tau08_k20_cross_day_P0_low
+    value: {file: results/exp_l/observation_length.csv, column: ci_low,
+            where: {kind: observation, key: P0, mode: command, tau: 0.8, k: 20, attacker: logistic, scenario: auxiliary}}
+    format: {kind: fixed, digits: 3}
+    text: "0.043"
+    in:
+      README.md: ["0.069 (95% interval 0.043–0.100)"]
+      docs/report.md: ["0.069 (95% interval 0.043–0.100)"]
+  - id: L_cmd_tau08_k20_cross_day_P0_high
+    value: {file: results/exp_l/observation_length.csv, column: ci_high,
+            where: {kind: observation, key: P0, mode: command, tau: 0.8, k: 20, attacker: logistic, scenario: auxiliary}}
+    format: {kind: fixed, digits: 3}
+    text: "0.100"
+    in:
+      README.md: ["0.069 (95% interval 0.043–0.100)"]
+      docs/report.md: ["0.069 (95% interval 0.043–0.100)"]
+  - id: L_cmd_tau08_k20_cross_day_P2RC
+    value: {file: results/exp_l/observation_length.csv, column: ba,
+            where: {kind: observation, key: P2-RC_d8, mode: command, tau: 0.8, k: 20, attacker: logistic, scenario: auxiliary}}
+    format: {kind: fixed, digits: 3}
+    text: "0.065"
+    in:
+      README.md: ["features, 0.065 (0.036–0.099) for P2-RC"]
+      docs/report.md: ["0.065 (0.036–0.099) for P2-RC (logistic regression)"]
+      docs/related_work.md: ["are 0.065–0.075 (descriptive"]
+  - id: L_cmd_tau08_k20_cross_day_P2RC_low
+    value: {file: results/exp_l/observation_length.csv, column: ci_low,
+            where: {kind: observation, key: P2-RC_d8, mode: command, tau: 0.8, k: 20, attacker: logistic, scenario: auxiliary}}
+    format: {kind: fixed, digits: 3}
+    text: "0.036"
+    in:
+      README.md: ["0.065 (0.036–0.099) for P2-RC"]
+      docs/report.md: ["0.065 (0.036–0.099) for P2-RC"]
+  - id: L_cmd_tau08_k20_cross_day_P2RC_high
+    value: {file: results/exp_l/observation_length.csv, column: ci_high,
+            where: {kind: observation, key: P2-RC_d8, mode: command, tau: 0.8, k: 20, attacker: logistic, scenario: auxiliary}}
+    format: {kind: fixed, digits: 3}
+    text: "0.099"
+    in:
+      README.md: ["0.065 (0.036–0.099) for P2-RC"]
+      docs/report.md: ["0.065 (0.036–0.099) for P2-RC"]
+  - id: L_cmd_tau08_k20_cross_day_P3
+    value: {file: results/exp_l/observation_length.csv, column: ba,
+            where: {kind: observation, key: P3_lambda1, mode: command, tau: 0.8, k: 20, attacker: rbf_svm, scenario: auxiliary}}
+    format: {kind: fixed, digits: 3}
+    text: "0.075"
+    in:
+      README.md: ["0.075 (0.052–0.099) for P3"]
+      docs/report.md: ["0.075 (0.052–0.099) for P3 (RBF-SVM)"]
+      docs/related_work.md: ["are 0.065–0.075 (descriptive"]
+  - id: L_cmd_tau08_k20_cross_day_P3_low
+    value: {file: results/exp_l/observation_length.csv, column: ci_low,
+            where: {kind: observation, key: P3_lambda1, mode: command, tau: 0.8, k: 20, attacker: rbf_svm, scenario: auxiliary}}
+    format: {kind: fixed, digits: 3}
+    text: "0.052"
+    in:
+      README.md: ["0.075 (0.052–0.099) for P3"]
+      docs/report.md: ["0.075 (0.052–0.099) for P3"]
+  - id: L_cmd_tau08_k20_cross_day_P3_high
+    value: {file: results/exp_l/observation_length.csv, column: ci_high,
+            where: {kind: observation, key: P3_lambda1, mode: command, tau: 0.8, k: 20, attacker: rbf_svm, scenario: auxiliary}}
+    format: {kind: fixed, digits: 3}
+    text: "0.099"
+    in:
+      README.md: ["0.075 (0.052–0.099) for P3"]
+      docs/report.md: ["0.075 (0.052–0.099) for P3"]
+  - id: L_C3_holm
+    value: {file: results/exp_l/decision.json, json: claims.C3.holm_p}
+    format: {kind: fixed, digits: 2}
+    text: "0.21"
+    in:
+      README.md: ["(Holm p = 0.21)", "| Holm 0.21 |"]
+      docs/report.md: ["Holm p = 0.21)"]
+  - id: L_C4_five_labels
+    value: {file: results/exp_l/identity_summary.csv, column: ba,
+            where: {kind: enrolment, key: G, enrolment: 5, strongest: "True"}}
+    format: {kind: fixed, digits: 1, scale: 100}
+    text: "92.7"
+    in:
+      README.md: ["five labels reach 92.7% within a day", "92.7% within-day"]
+      docs/report.md: ["five labels re-identified the defended output at 92.7%"]
+      docs/explainer_ko.md: ["라벨 5개 92.7%"]
+  - id: L_C4_holm
+    value: {file: results/exp_l/decision.json, json: claims.C4.holm_p}
+    format: {kind: sci, digits: 1}
+    text: "4.5 × 10⁻³⁵"
+    in:
+      README.md: ["Holm 4.5 × 10⁻³⁵"]
+
+  # ---------------------------------------------------------------- BCI IV 2a, 9 users
+  - id: 2a_P0_cross_day
+    value: {file: results/exp_d/tradeoff.csv, column: identity_auxiliary_ba,
+            where: {family: common, kind: linear, condition: P0}}
+    format: {kind: fixed, digits: 3}
+    text: "0.951"
+    in:
+      README.md: ["Across days the same attackers reach 0.951 on 2a"]
+      docs/report.md: ["identify every user within a day (balanced accuracy, BA, 1.00; chance 0.11) and 0.951 across days"]
+      docs/related_work.md: ["same attackers reach 0.951 on 2a"]
+  - id: 2a_cmd_k1_min
+    value: {file: results/exp_c/observation_strongest.csv, column: ba_mean, agg: min,
+            where: {mode: command, k: 1, scenario: main}}
+    format: {kind: fixed, digits: 3}
+    text: "0.156"
+    in:
+      README.md: ["Within session E: 1 command 0.156–0.198"]
+      docs/report.md: ["at 0.156–0.198 BA across the six models"]
+    demo:
+      - {file: demo/data/results.json, json: headline.cmd_k1_range.value.0}
+  - id: 2a_cmd_k1_max
+    value: {file: results/exp_c/observation_strongest.csv, column: ba_mean, agg: max,
+            where: {mode: command, k: 1, scenario: main}}
+    format: {kind: fixed, digits: 3}
+    text: "0.198"
+    in:
+      README.md: ["1 command 0.156–0.198"]
+    demo:
+      - {file: demo/data/results.json, json: headline.cmd_k1_range.value.1}
+  - id: 2a_cmd_k20_min
+    value: {file: results/exp_c/observation_strongest.csv, column: ba_mean, agg: min,
+            where: {mode: command, k: 20, scenario: main}}
+    format: {kind: fixed, digits: 3}
+    text: "0.211"
+    in:
+      README.md: ["and reach 0.211–0.478 at 20 commands", "20 commands 0.211–0.478 (chance 0.111)"]
+      docs/report.md: ["the strongest attacker reaches 0.211–0.478"]
+    demo:
+      - {file: demo/data/results.json, json: headline.cmd_k20_range.value.0}
+  - id: 2a_cmd_k20_max
+    value: {file: results/exp_c/observation_strongest.csv, column: ba_mean, agg: max,
+            where: {mode: command, k: 20, scenario: main}}
+    format: {kind: fixed, digits: 3}
+    text: "0.478"
+    in:
+      README.md: ["20 commands 0.211–0.478"]
+    demo:
+      - {file: demo/data/results.json, json: headline.cmd_k20_range.value.1}
+  - id: 2a_P0_cmd_tau08_k20_strongest_cross_day
+    value: {file: results/exp_c/observation_strongest.csv, column: ba_mean,
+            where: {condition: P0, stream: command@0.8, k: 20, scenario: auxiliary}}
+    format: {kind: fixed, digits: 3}
+    text: "0.352"
+    in:
+      docs/report.md: ["| P0 | 0.197 / 0.156 | 0.341 / 0.352ᵃ |"]
+  - id: 2a_P0_cmd_tau08_k20_within_session
+    value: {file: results/exp_c/observation_seed_mean.csv, column: ba_mean, agg: max,
+            where: {condition: P0, stream: command@0.8, k: 20, scenario: main}}
+    format: {kind: fixed, digits: 3}
+    text: "0.326"
+    in:
+      docs/report.md: ["the within-session maximum for that cell is 0.326"]

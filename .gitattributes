@@ -1,0 +1,12 @@
+# Sealed files are compared byte for byte (beat/exp_l.py verify_seal, beat/verify.py), so every
+# checkout must reproduce the LF blobs exactly, whatever core.autocrlf says.
+* text=auto eol=lf
+
+*.png binary
+*.pptx binary
+*.pdf binary
+*.gz binary
+*.npz binary
+*.joblib binary
+*.mat binary
+*.bdf binary

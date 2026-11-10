@@ -12,6 +12,7 @@ project's own ``beat.exp_l.recalls`` and participant bootstrap ``interval``.
 """
 from __future__ import annotations
 
+import io
 import json
 import re
 import sys
@@ -113,7 +114,10 @@ def chance_line(ax, label=True, x=0.01):
 def save(fig, name):
     OUT.mkdir(parents=True, exist_ok=True)
     fig.savefig(OUT / f"{name}.png", dpi=200, metadata={"Software": None})
-    fig.savefig(OUT / f"{name}.svg", metadata={"Date": None})
+    # Through a buffer: matplotlib writes SVG in text mode, which gives CRLF on Windows (Git: LF).
+    svg = io.StringIO()
+    fig.savefig(svg, format="svg", metadata={"Date": None})
+    (OUT / f"{name}.svg").write_text(svg.getvalue(), encoding="utf-8", newline="\n")
     plt.close(fig)
 
 
@@ -363,11 +367,12 @@ def fig_commands():
         ax.set_ylim(*ylim)
         ax.set_title(title, pad=6)
         ax.set_xlabel("Consecutive outputs observed from one user (k)")
-    axes[0].set_ylabel("Identity balanced accuracy\n(strongest attacker)")
+    axes[0].set_ylabel("Identity balanced accuracy\n(strongest attacker and scenario)")
     handles = [Line2D([], [], ls=ls, marker="o", color=c, lw=2.2, ms=6, label=lbl)
                for _, lbl, c, ls in C_MODELS]
     handles += [
-        Line2D([], [], color="#D9D9D9", lw=9, label="Commands, range over all models and τ"),
+        Line2D([], [], color="#D9D9D9", lw=9,
+               label="Commands, range over all models and τ\n(max over within-session and cross-day)"),
         Line2D([], [], color=C["chance"], ls="--", lw=1.4, label="Twice chance (2/9)"),
         CHANCE_HANDLE,
     ]

@@ -214,7 +214,7 @@ L 455.597419 111.826286
     </g>
     <g id="text_12">
      <text style="font-size: 13px; font-family: 'Arial', 'DejaVu Sans', sans-serif" transform="translate(24.275361 315.420953) rotate(-90)">Identity balanced accuracy</text>
-     <text style="font-size: 13px; font-family: 'Arial', 'DejaVu Sans', sans-serif" transform="translate(38.424541 294.452359) rotate(-90)">(strongest attacker)</text>
+     <text style="font-size: 13px; font-family: 'Arial', 'DejaVu Sans', sans-serif" transform="translate(38.424541 333.474703) rotate(-90)">(strongest attacker and scenario)</text>
     </g>
    </g>
    <g id="patch_3">
@@ -677,103 +677,104 @@ z
   </g>
   <g id="legend_1">
    <g id="line2d_59">
-    <path d="M 151.498906 453.25193 
-L 162.498906 453.25193 
-L 173.498906 453.25193 
+    <path d="M 151.240234 447.5315 
+L 162.240234 447.5315 
+L 173.240234 447.5315 
 " style="fill: none; stroke: #000000; stroke-width: 2.2; stroke-linecap: square"/>
     <g>
-     <use xlink:href="#m99f3440145" x="162.498906" y="453.25193" style="stroke: #000000"/>
+     <use xlink:href="#m99f3440145" x="162.240234" y="447.5315" style="stroke: #000000"/>
     </g>
    </g>
    <g id="text_31">
-    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="182.298906" y="457.10193" transform="rotate(-0 182.298906 457.10193)">No defence (P0)</text>
+    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="182.040234" y="451.3815" transform="rotate(-0 182.040234 451.3815)">No defence (P0)</text>
    </g>
    <g id="line2d_60">
-    <path d="M 151.498906 467.425387 
-L 162.498906 467.425387 
-L 173.498906 467.425387 
+    <path d="M 151.240234 461.704957 
+L 162.240234 461.704957 
+L 173.240234 461.704957 
 " style="fill: none; stroke: #009e73; stroke-width: 2.2; stroke-linecap: square"/>
     <g>
-     <use xlink:href="#m6b89b83775" x="162.498906" y="467.425387" style="fill: #009e73; stroke: #009e73"/>
+     <use xlink:href="#m6b89b83775" x="162.240234" y="461.704957" style="fill: #009e73; stroke: #009e73"/>
     </g>
    </g>
    <g id="text_32">
-    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="182.298906" y="471.275387" transform="rotate(-0 182.298906 471.275387)">Bottleneck d = 8 (P2)</text>
+    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="182.040234" y="465.554957" transform="rotate(-0 182.040234 465.554957)">Bottleneck d = 8 (P2)</text>
    </g>
    <g id="line2d_61">
-    <path d="M 151.498906 481.598844 
-L 162.498906 481.598844 
-L 173.498906 481.598844 
+    <path d="M 151.240234 475.878414 
+L 162.240234 475.878414 
+L 173.240234 475.878414 
 " style="fill: none; stroke: #e69f00; stroke-width: 2.2; stroke-linecap: square"/>
     <g>
-     <use xlink:href="#m6851da8ad2" x="162.498906" y="481.598844" style="fill: #e69f00; stroke: #e69f00"/>
+     <use xlink:href="#m6851da8ad2" x="162.240234" y="475.878414" style="fill: #e69f00; stroke: #e69f00"/>
     </g>
    </g>
    <g id="text_33">
-    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="182.298906" y="485.448844" transform="rotate(-0 182.298906 485.448844)">GRL, T-selected λ (P3)</text>
+    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="182.040234" y="479.728414" transform="rotate(-0 182.040234 479.728414)">GRL, T-selected λ (P3)</text>
    </g>
    <g id="line2d_62">
-    <path d="M 326.962656 453.25193 
-L 337.962656 453.25193 
-L 348.962656 453.25193 
+    <path d="M 326.703984 447.5315 
+L 337.703984 447.5315 
+L 348.703984 447.5315 
 " style="fill: none; stroke-dasharray: 8.14,3.52; stroke-dashoffset: 0; stroke: #000000; stroke-width: 2.2"/>
     <g>
-     <use xlink:href="#m99f3440145" x="337.962656" y="453.25193" style="stroke: #000000"/>
+     <use xlink:href="#m99f3440145" x="337.703984" y="447.5315" style="stroke: #000000"/>
     </g>
    </g>
    <g id="text_34">
-    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="357.762656" y="457.10193" transform="rotate(-0 357.762656 457.10193)">No defence, recentred (P0-RC)</text>
+    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="357.503984" y="451.3815" transform="rotate(-0 357.503984 451.3815)">No defence, recentred (P0-RC)</text>
    </g>
    <g id="line2d_63">
-    <path d="M 326.962656 467.425387 
-L 337.962656 467.425387 
-L 348.962656 467.425387 
+    <path d="M 326.703984 461.704957 
+L 337.703984 461.704957 
+L 348.703984 461.704957 
 " style="fill: none; stroke-dasharray: 8.14,3.52; stroke-dashoffset: 0; stroke: #009e73; stroke-width: 2.2"/>
     <g>
-     <use xlink:href="#m6b89b83775" x="337.962656" y="467.425387" style="fill: #009e73; stroke: #009e73"/>
+     <use xlink:href="#m6b89b83775" x="337.703984" y="461.704957" style="fill: #009e73; stroke: #009e73"/>
     </g>
    </g>
    <g id="text_35">
-    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="357.762656" y="471.275387" transform="rotate(-0 357.762656 471.275387)">Bottleneck, recentred (P2-RC)</text>
+    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="357.503984" y="465.554957" transform="rotate(-0 357.503984 465.554957)">Bottleneck, recentred (P2-RC)</text>
    </g>
    <g id="line2d_64">
-    <path d="M 326.962656 481.598844 
-L 337.962656 481.598844 
-L 348.962656 481.598844 
+    <path d="M 326.703984 475.878414 
+L 337.703984 475.878414 
+L 348.703984 475.878414 
 " style="fill: none; stroke-dasharray: 8.14,3.52; stroke-dashoffset: 0; stroke: #e69f00; stroke-width: 2.2"/>
     <g>
-     <use xlink:href="#m6851da8ad2" x="337.962656" y="481.598844" style="fill: #e69f00; stroke: #e69f00"/>
+     <use xlink:href="#m6851da8ad2" x="337.703984" y="475.878414" style="fill: #e69f00; stroke: #e69f00"/>
     </g>
    </g>
    <g id="text_36">
-    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="357.762656" y="485.448844" transform="rotate(-0 357.762656 485.448844)">GRL, recentred (P3-RC)</text>
+    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="357.503984" y="479.728414" transform="rotate(-0 357.503984 479.728414)">GRL, recentred (P3-RC)</text>
    </g>
    <g id="line2d_65">
-    <path d="M 542.985469 453.25193 
-L 553.985469 453.25193 
-L 564.985469 453.25193 
+    <path d="M 542.726797 447.5315 
+L 553.726797 447.5315 
+L 564.726797 447.5315 
 " style="fill: none; stroke: #d9d9d9; stroke-width: 9; stroke-linecap: square"/>
    </g>
    <g id="text_37">
-    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="573.785469" y="457.10193" transform="rotate(-0 573.785469 457.10193)">Commands, range over all models and τ</text>
+    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif" transform="translate(573.526797 444.305084)">Commands, range over all models and τ</text>
+    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif" transform="translate(573.526797 456.277467)">(max over within-session and cross-day)</text>
    </g>
    <g id="line2d_66">
-    <path d="M 542.985469 467.425387 
-L 553.985469 467.425387 
-L 564.985469 467.425387 
+    <path d="M 542.726797 467.425387 
+L 553.726797 467.425387 
+L 564.726797 467.425387 
 " style="fill: none; stroke-dasharray: 5.18,2.24; stroke-dashoffset: 0; stroke: #7f7f7f; stroke-width: 1.4"/>
    </g>
    <g id="text_38">
-    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="573.785469" y="471.275387" transform="rotate(-0 573.785469 471.275387)">Twice chance (2/9)</text>
+    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="573.526797" y="471.275387" transform="rotate(-0 573.526797 471.275387)">Twice chance (2/9)</text>
    </g>
    <g id="line2d_67">
-    <path d="M 542.985469 481.598844 
-L 553.985469 481.598844 
-L 564.985469 481.598844 
+    <path d="M 542.726797 481.598844 
+L 553.726797 481.598844 
+L 564.726797 481.598844 
 " style="fill: none; stroke-dasharray: 1.6,2.64; stroke-dashoffset: 0; stroke: #7f7f7f; stroke-width: 1.6"/>
    </g>
    <g id="text_39">
-    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="573.785469" y="485.448844" transform="rotate(-0 573.785469 485.448844)">Chance (1/9)</text>
+    <text style="font-size: 11px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="573.526797" y="485.448844" transform="rotate(-0 573.526797 485.448844)">Chance (1/9)</text>
    </g>
   </g>
  </g>

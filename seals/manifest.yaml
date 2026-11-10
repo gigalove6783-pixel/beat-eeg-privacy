@@ -1,0 +1,83 @@
+# Sealed scope of the BEAT pre-registrations, checked by `python -m beat.verify --seals`.
+#
+# Seals 1-3 are self-attested: annotated Git tags on commits that the project made itself, all on
+# 2026-11-10. No third party timestamped them. The check below shows that the sealed files were not
+# changed after their seal except by the sanctioned commits listed here; it cannot show when a
+# commit was made.
+#
+# Sealed scope of a seal = the files present in its commit that match `scope` (shared by all
+# seals) or that seal's own `selections`:
+#   - analysis code: every module beat/*.py and the input-producing scripts;
+#   - every configuration file under configs/;
+#   - the analysis plan;
+#   - the training-data-only selection files committed by that seal.
+# Not sealed: tests/, conftest.py, pytest.ini, requirements.txt and .github/ are verification
+# tooling. Result tables written after a seal, the documents (README, report, explainer, decision
+# log, related work), the demo and the presentation are outputs, not inputs of the analysis.
+#
+# The check passes when every non-merge commit after a seal that touched one of its sealed paths
+# is listed under `sanctioned` with that path, and when the working tree is byte-identical to HEAD
+# for every sealed path. Later seals extend the scope of earlier ones; their commits are listed as
+# sanctioned for the files they appended to.
+
+scope:
+  - beat/*.py
+  - scripts/download_data.py
+  - scripts/prepare_lee2019.py
+  - configs/*
+  - docs/analysis_plan.md
+
+seals:
+  - name: seal-1
+    tag: seal-1
+    commit: 6ab56687843c970e49290e4d92dd614d3f6e2130
+    covers: "Plan v1 (experiments A, B, C), configs, code and the session-T-only selections"
+    source: "docs/decision_log.md, entry 'E seal'"
+    selections:
+      - results/exp_b/*
+      - results/exp_c/dev_*
+  - name: seal-2
+    tag: seal-2
+    commit: b216b7da66031085c2c6e76b1378f69d4668b461
+    covers: "Plan v2 (exploratory experiments D and E), code, configs and T-only selections"
+    source: "docs/decision_log.md, entry 'E seal 2'"
+    selections:
+      - results/exp_d/*
+      - results/exp_e/dev_selection.json
+      - results/exp_e/pilot_history.csv
+  - name: seal-3
+    tag: seal-3
+    commit: 9757c3fceca585db3f56530d54091ab0fa28ce0b
+    covers: "Plan v3 (confirmatory Lee2019 claims C1-C4), code, config and session-1-only selections"
+    source: "docs/decision_log.md, entries 'Seal 3' and 'Seal 3 commit'; beat/exp_l.py verify_seal"
+    selections:
+      - results/exp_l/*
+
+sanctioned:
+  - commit: 3157c57eb68c10acb978ffde9bed55726636ebfb
+    kind: deviation
+    name: "Post-seal deviation 7 (experiment C rejection gate)"
+    source: "docs/decision_log.md, entry 'Post-seal deviation 7'; docs/report.md Appendix A, row 7"
+    # sealed paths of seal-1 intersected with `git diff --name-only seal-1 3157c57`
+    paths:
+      - beat/exp_c.py
+      - beat/run_all.py
+      - configs/exp_c.yaml
+      - results/exp_c/dev_rejection.csv
+      - results/exp_c/dev_replay_episodes.csv
+      - results/exp_c/dev_replay_metrics.csv
+      - results/exp_c/dev_replay_summary.csv
+      - results/exp_c/dev_summary.json
+      - results/exp_c/dev_timing.csv
+  - commit: b216b7da66031085c2c6e76b1378f69d4668b461
+    kind: seal
+    name: "Seal 2 appends plan v2"
+    source: "docs/decision_log.md, entry 'E seal 2'"
+    paths:
+      - docs/analysis_plan.md
+  - commit: 9757c3fceca585db3f56530d54091ab0fa28ce0b
+    kind: seal
+    name: "Seal 3 appends plan v3"
+    source: "docs/decision_log.md, entry 'Seal 3'"
+    paths:
+      - docs/analysis_plan.md

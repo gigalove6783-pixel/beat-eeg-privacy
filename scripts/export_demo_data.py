@@ -561,6 +561,18 @@ def headline(tradeoff, adversary, observation, chance):
     }
 
 
+def scenario_note(rows: list[dict]) -> str:
+    """Caption for the observation rows: which strongest values come from the cross-day scenario."""
+    cross = [r for r in rows if r["experiment"] == "exp_c" and r["mode"] == "command"
+             and r["scenario"] != "main"]
+    cells = "; ".join(f"{r['condition']}, τ = {r['tau']:g}, k = {r['k']}: {r['ba_mean']:.3f}"
+                      for r in cross)
+    return ("Each value is the strongest attacker over attackers and both scenarios: main "
+            "(within session E, runs 1-3 vs 4-6) and auxiliary (cross-day, session T to E); the "
+            "`scenario` field names the scenario of each value. Command cells whose maximum is "
+            f"cross-day: {cells or 'none'}.")
+
+
 def seal():
     log = track(ROOT / "docs" / "decision_log.md").read_text(encoding="utf-8")
     match = re.search(r"\*\*E seal\*\*: commit `([0-9a-f]{40})`", log)
@@ -694,7 +706,8 @@ def main():
         text = json.dumps(payload, separators=(",", ":"))
         (OUT / "replay" / f"s{s}.json").write_text(text, encoding="utf-8")
         (OUT / "replay" / f"s{s}.js").write_text(
-            f"(window.BEAT_REPLAY = window.BEAT_REPLAY || {{}})[{s}] = {text};\n", encoding="utf-8")
+            f"(window.BEAT_REPLAY = window.BEAT_REPLAY || {{}})[{s}] = {text};\n", encoding="utf-8",
+            newline="\n")  # LF on every platform, as in Git (.gitattributes)
     chance = config_c["observation"]["chance"]
     g_data, g_headline = pitfall2()
     seals = timeline(status["exp_l"]["status"])
@@ -712,7 +725,8 @@ def main():
         tradeoff=dict(rows=data["tradeoff"], source="results/<exp>/tradeoff.csv"),
         adversary=dict(rows=data["adversary"], source="results/<exp>/adversary_comparison.csv"),
         observation=dict(rows=data["observation"],
-                         source="results/<exp>/observation_strongest.csv"),
+                         source="results/<exp>/observation_strongest.csv",
+                         note=scenario_note(data["observation"])),
         control=dict(rows=records(control, experiment="exp_c"),
                      source="results/exp_c/control_summary.csv"),
         replay=dict(meta=replay_meta, files={str(s): f"data/replay/s{s}.js" for s in subjects},
@@ -723,7 +737,8 @@ def main():
     )
     text = json.dumps(results, separators=(",", ":"))
     (OUT / "results.json").write_text(text, encoding="utf-8")
-    (OUT / "results.js").write_text(f"window.BEAT_DATA = {text};\n", encoding="utf-8")
+    (OUT / "results.js").write_text(f"window.BEAT_DATA = {text};\n", encoding="utf-8",
+                                    newline="\n")
     total = sum(p.stat().st_size for p in OUT.rglob("*.js*"))
     print(f"Wrote {OUT} ({total / 1024:.0f} KiB); experiments: "
           + ", ".join(f"{k}={v['status']}/{v['evidence']}" for k, v in status.items()))
