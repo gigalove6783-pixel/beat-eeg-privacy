@@ -1,0 +1,353 @@
+{
+  "phase": "final",
+  "gate": "riemann_distance",
+  "conditions": [
+    "P0",
+    "P0-RC",
+    "P2",
+    "P2-RC",
+    "P3",
+    "P3-RC"
+  ],
+  "no_operating_point": [],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "taus": [
+    0.5,
+    0.6,
+    0.7,
+    0.8
+  ],
+  "k": [
+    1,
+    5,
+    10,
+    20
+  ],
+  "e_trials": 1296,
+  "t_hold_rate_gate": 0.033950617283950615,
+  "e_hold_rate_gate": 0.34953703703703703,
+  "not_evaluable_attack_cells": 450,
+  "transmission_check_passed": true,
+  "transmission_command_mismatches": 0,
+  "replay_matches_saved": true,
+  "replay_max_abs_logit_difference": 1.430511474609375e-06,
+  "stream_matches_cache": true,
+  "stream_window_max_rel_error": 0.0,
+  "smallest_k": [
+    {
+      "condition": "P0",
+      "stream": "command@0.5",
+      "mode": "command",
+      "tau": 0.5,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 1,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P0",
+      "stream": "command@0.6",
+      "mode": "command",
+      "tau": 0.6,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P0",
+      "stream": "command@0.7",
+      "mode": "command",
+      "tau": 0.7,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P0",
+      "stream": "command@0.8",
+      "mode": "command",
+      "tau": 0.8,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 10.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P0",
+      "stream": "feature",
+      "mode": "feature",
+      "tau": null,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 1,
+      "smallest_k_lower_bound": 1.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P0-RC",
+      "stream": "command@0.5",
+      "mode": "command",
+      "tau": 0.5,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 1,
+      "smallest_k_lower_bound": 1.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P0-RC",
+      "stream": "command@0.6",
+      "mode": "command",
+      "tau": 0.6,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P0-RC",
+      "stream": "command@0.7",
+      "mode": "command",
+      "tau": 0.7,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P0-RC",
+      "stream": "command@0.8",
+      "mode": "command",
+      "tau": 0.8,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 10.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P0-RC",
+      "stream": "feature",
+      "mode": "feature",
+      "tau": null,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 1,
+      "smallest_k_lower_bound": 1.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P2",
+      "stream": "command@0.5",
+      "mode": "command",
+      "tau": 0.5,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P2",
+      "stream": "command@0.6",
+      "mode": "command",
+      "tau": 0.6,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P2",
+      "stream": "command@0.7",
+      "mode": "command",
+      "tau": 0.7,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P2",
+      "stream": "command@0.8",
+      "mode": "command",
+      "tau": 0.8,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P2",
+      "stream": "feature",
+      "mode": "feature",
+      "tau": null,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 1,
+      "smallest_k_lower_bound": 1.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P2-RC",
+      "stream": "command@0.5",
+      "mode": "command",
+      "tau": 0.5,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 1,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P2-RC",
+      "stream": "command@0.6",
+      "mode": "command",
+      "tau": 0.6,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P2-RC",
+      "stream": "command@0.7",
+      "mode": "command",
+      "tau": 0.7,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P2-RC",
+      "stream": "command@0.8",
+      "mode": "command",
+      "tau": 0.8,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P2-RC",
+      "stream": "feature",
+      "mode": "feature",
+      "tau": null,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 10,
+      "smallest_k_lower_bound": null,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P3",
+      "stream": "command@0.5",
+      "mode": "command",
+      "tau": 0.5,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P3",
+      "stream": "command@0.6",
+      "mode": "command",
+      "tau": 0.6,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P3",
+      "stream": "command@0.7",
+      "mode": "command",
+      "tau": 0.7,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P3",
+      "stream": "command@0.8",
+      "mode": "command",
+      "tau": 0.8,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P3",
+      "stream": "feature",
+      "mode": "feature",
+      "tau": null,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 1,
+      "smallest_k_lower_bound": 1.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P3-RC",
+      "stream": "command@0.5",
+      "mode": "command",
+      "tau": 0.5,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 1,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P3-RC",
+      "stream": "command@0.6",
+      "mode": "command",
+      "tau": 0.6,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P3-RC",
+      "stream": "command@0.7",
+      "mode": "command",
+      "tau": 0.7,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P3-RC",
+      "stream": "command@0.8",
+      "mode": "command",
+      "tau": 0.8,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": 5.0,
+      "max_k_tested": 20
+    },
+    {
+      "condition": "P3-RC",
+      "stream": "feature",
+      "mode": "feature",
+      "tau": null,
+      "threshold_ba": 0.2222222222,
+      "smallest_k": 5,
+      "smallest_k_lower_bound": null,
+      "max_k_tested": 20
+    }
+  ],
+  "replay_seconds": 109.17600470012985,
+  "wall_seconds": 745.5676606001798,
+  "notes": [
+    "Replay timing of recorded trials on this CPU (filter = causal SOS filtering of the trial window's raw samples streamed with filter state carried through the run, plus float32 cast; samples between windows are streamed outside the timed path; inference = covariance, rejection rule and frozen model; control = temperature, tau decision and arm step); not online latency.",
+    "Strongest = max seed-mean identity BA over attackers and scenarios (main E halves both directions averaged; auxiliary T->E).",
+    "Feature-mode groups whose k messages are all null (held by the rejection rule) are excluded; feature BA is conditional on the retained groups (observation_feature_exclusions.csv).",
+    "Attack cells with an identity below inner_folds training groups are not evaluable (observation_not_evaluable.csv) and are excluded from the strongest-attack maximum.",
+    "Recorded replay, not closed-loop control."
+  ]
+}

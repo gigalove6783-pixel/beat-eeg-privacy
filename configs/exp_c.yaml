@@ -12,10 +12,15 @@ temperature:
   bounds: [0.05, 20.0]
   tolerance: 1.0e-6
 rejection:
-  # Per subject s: d = Riemannian distance between a trial's OAS covariance and
-  # the Riemannian mean of s's finite, not artifact-flagged T covariances.
-  # Reject (hold) when d > median(d_T) + z * 1.4826 * MAD(d_T), where d_T are
-  # those T trials' distances. Non-finite trials are always held.
+  # Post-seal deviation 7 (docs/decision_log.md): the sealed gate held 3.4% of T
+  # but 35% of E (cross-day drift, not artifacts), so the primary analysis uses
+  #   none:             hold only non-finite trials (tau holds unchanged);
+  # and `python -m beat.exp_c ... --variant sealed_gate` reports the sealed rule
+  #   riemann_distance: per subject s, d = Riemannian distance between a trial's
+  #   OAS covariance and the Riemannian mean of s's finite, not artifact-flagged
+  #   T covariances; hold when d > median(d_T) + z * 1.4826 * MAD(d_T), d_T being
+  #   those T trials' distances. Non-finite trials are always held.
+  gate: none
   z: 3.0
 controller:
   step_deg: 5.0

@@ -3,6 +3,8 @@ observation-length identity attack on the frozen Experiment-B models.
 
     python -m beat.exp_c dev    # session T only: temperatures, rejection rule, T replay smoke run
     python -m beat.exp_c final  # session E replay and attacks; only after the E seal
+    ... --variant sealed_gate   # same with the sealed Riemannian-distance gate
+                                # into results/exp_c/sealed_gate/ (post-seal deviation 7)
 
 Commands: -1 left (-step), +1 right (+step), 0 hold. Labels build and score the
 target trajectory only; they never reach `decide` or `Arm`. Processing times
@@ -34,7 +36,7 @@ from scipy.special import expit, logsumexp  # noqa: E402
 from sklearn.metrics import balanced_accuracy_score, f1_score  # noqa: E402
 from threadpoolctl import threadpool_limits  # noqa: E402
 
-from .attacks import fit_attackers  # noqa: E402
+from .attacks import ATTACKERS, fit_attackers  # noqa: E402
 from .config import ROOT, load_config  # noqa: E402
 from .data import (META_COLUMNS, Trials, _mi_runs, bandpass_sos,  # noqa: E402
                    load_trials, require_training)
@@ -141,13 +143,42 @@ class RejectionRule:
         return np.isfinite(distance) & (distance <= threshold)
 
     def to_dict(self):
-        return dict(z=self.z, thresholds={str(s): t for s, t in self.thresholds.items()},
+        return dict(gate="riemann_distance", z=self.z,
+                    thresholds={str(s): t for s, t in self.thresholds.items()},
                     references={str(s): r.tolist() for s, r in self.references.items()})
 
     @classmethod
     def from_dict(cls, value):
         return cls(value["z"], {int(s): np.asarray(r) for s, r in value["references"].items()},
                    {int(s): float(t) for s, t in value["thresholds"].items()})
+
+
+@dataclass
+class FiniteGate:
+    """Gate `none`: only non-finite trials are held (tau holds are applied separately)."""
+    thresholds: dict = field(default_factory=dict)
+
+    def fit(self, covs: Trials):
+        require_training(covs)
+        return self
+
+    def accept(self, covs: Trials) -> np.ndarray:
+        return np.isfinite(covs.X).all(axis=(1, 2))
+
+    def to_dict(self):
+        return dict(gate="none")
+
+
+def make_gate(rejection):
+    if rejection["gate"] == "riemann_distance":
+        return RejectionRule(rejection["z"])
+    if rejection["gate"] == "none":
+        return FiniteGate()
+    raise ValueError(f"Unknown gate {rejection['gate']!r}")
+
+
+def gate_from_dict(value):
+    return FiniteGate() if value["gate"] == "none" else RejectionRule.from_dict(value)
 
 
 @dataclass
@@ -480,10 +511,24 @@ def _attack_job(tags, mode, k, stream_t, stream_e, meta_t, meta_e, attackers, se
                   build(stream_e, meta_e, k, test)) for d, (fit, test) in enumerate(E_HALVES)]
     scenarios.append(("auxiliary", 0, build(stream_t, meta_t, train_stride),
                       build(stream_e, meta_e, k)))
+    identities = np.unique(meta_e.subject)
     predictions, directional = [], []
     with threadpool_limits(limits=1):
         for scenario, direction, (train_X, train_info, train_excluded), \
                 (test_X, test_info, test_excluded) in scenarios:
+            counts = train_info.subject.value_counts().reindex(identities, fill_value=0)
+            short = counts[counts < attackers["inner_folds"]]
+            if len(short):
+                # fit_attackers requires inner_folds examples per identity; the cell is
+                # recorded as not evaluable instead of tuned some other way.
+                directional.extend(dict(
+                    **tags, k=k, scenario=scenario, attacker=attacker, direction=direction,
+                    groups=len(test_info), train_groups=len(train_info),
+                    excluded_groups=test_excluded, excluded_train_groups=train_excluded,
+                    evaluable=False,
+                    short_identities=";".join(f"{s}:{n}" for s, n in short.items()),
+                    ba=np.nan, macro_f1=np.nan) for attacker in ATTACKERS)
+                continue
             fitted = fit_attackers(train_X, train_info.subject.to_numpy(), attackers, seed)
             for attacker, estimator in fitted.items():
                 predicted = estimator.predict(test_X)
@@ -496,10 +541,11 @@ def _attack_job(tags, mode, k, stream_t, stream_e, meta_t, meta_e, attackers, se
                     **tags, k=k, scenario=scenario, attacker=attacker, direction=direction,
                     groups=len(test_info), train_groups=len(train_info),
                     excluded_groups=test_excluded, excluded_train_groups=train_excluded,
+                    evaluable=True, short_identities="",
                     ba=float(balanced_accuracy_score(test_info.subject, predicted)),
                     macro_f1=float(f1_score(test_info.subject, predicted, average="macro",
                                             zero_division=0))))
-    return pd.concat(predictions, ignore_index=True), directional
+    return (pd.concat(predictions, ignore_index=True) if predictions else None), directional
 
 
 def bootstrap_seed_mean(frames, samples, seed, confidence):
@@ -550,17 +596,24 @@ def bootstrap_seed_mean(frames, samples, seed, confidence):
 
 
 def summarize_observation(directional, predictions, streams, config):
-    """Seed-mean BA per scenario/attacker; strongest = max over attackers and scenarios."""
+    """Seed-mean BA per scenario/attacker; strongest = max over attackers and scenarios.
+
+    A scenario cell is not evaluable when any of its directions or seeds is; the
+    strongest attack is the maximum over the evaluable cells only.
+    """
     obs, stats = config["observation"], config["statistics"]
     scenario = directional.groupby(["condition", "seed", "stream", "k", "scenario", "attacker"],
                                    as_index=False).agg(
         ba=("ba", "mean"), macro_f1=("macro_f1", "mean"), groups=("groups", "sum"),
-        excluded_groups=("excluded_groups", "sum"))
+        excluded_groups=("excluded_groups", "sum"), evaluable=("evaluable", "all"))
+    scenario.loc[~scenario.evaluable, ["ba", "macro_f1"]] = np.nan
     seed_mean = scenario.groupby(["condition", "stream", "k", "scenario", "attacker"],
                                  as_index=False).agg(
         ba_mean=("ba", "mean"), ba_seed_std=("ba", "std"),
         macro_f1_mean=("macro_f1", "mean"), seeds=("seed", "nunique"),
-        groups_mean=("groups", "mean"), excluded_groups_mean=("excluded_groups", "mean"))
+        groups_mean=("groups", "mean"), excluded_groups_mean=("excluded_groups", "mean"),
+        evaluable=("evaluable", "all"))
+    seed_mean.loc[~seed_mean.evaluable, ["ba_mean", "ba_seed_std", "macro_f1_mean"]] = np.nan
     # Feature groups whose k messages are all null carry no descriptor and are
     # dropped; feature BA is conditional on the retained groups.
     exclusions = seed_mean[seed_mean.stream == "feature"].drop_duplicates(
@@ -574,6 +627,16 @@ def summarize_observation(directional, predictions, streams, config):
     strongest = []
     for (condition, stream, k), group in seed_mean.groupby(["condition", "stream", "k"],
                                                            sort=True):
+        not_evaluable = int((~group.evaluable).sum())
+        group = group[group.evaluable]
+        if group.empty:
+            strongest.append(dict(
+                condition=condition, stream=stream, **streams[stream], k=int(k),
+                scenario=None, attacker=None, ba_mean=np.nan, ba_low=np.nan, ba_high=np.nan,
+                ba_seed_std=np.nan, macro_f1_mean=np.nan, seeds=0, groups_mean=np.nan,
+                excluded_groups_mean=np.nan, not_evaluable_cells=not_evaluable,
+                reaches_threshold=False, lower_bound_reaches_threshold=False))
+            continue
         best = group.sort_values(["ba_mean", "scenario", "attacker"],
                                  ascending=[False, True, True]).iloc[0]
         frames = [predictions.iloc[idx] for key, idx in index.items()
@@ -587,6 +650,7 @@ def summarize_observation(directional, predictions, streams, config):
             macro_f1_mean=float(best.macro_f1_mean), seeds=int(best.seeds),
             groups_mean=float(best.groups_mean),
             excluded_groups_mean=float(best.excluded_groups_mean),
+            not_evaluable_cells=not_evaluable,
             reaches_threshold=bool(best.ba_mean >= target - 1e-12),
             lower_bound_reaches_threshold=bool(low >= target - 1e-12)))
     strongest = pd.DataFrame(strongest)
@@ -662,6 +726,20 @@ class BSource:
         return load_outputs(condition, seed)
 
 
+def rejection_rates(meta, finite, gate, rule):
+    """Per subject and session: trials, non-finite, finite trials rejected by the gate."""
+    rows = []
+    for (subject, session), frame in meta.reset_index(drop=True).groupby(
+            ["subject", "session"], sort=True):
+        idx = frame.index.to_numpy()
+        rows.append(dict(subject=int(subject), session=session,
+                         threshold=rule.thresholds.get(int(subject), np.nan),
+                         trials=len(idx), nonfinite=int((~finite[idx]).sum()),
+                         rejected_finite=int((finite[idx] & ~gate[idx]).sum()),
+                         hold_rate=float((~gate[idx]).mean())))
+    return pd.DataFrame(rows)
+
+
 def _available(config, manifest):
     usable = [c for c in config["conditions"] if manifest["selected"].get(c) is not None]
     return usable, [c for c in config["conditions"] if c not in usable]
@@ -683,20 +761,13 @@ def run_dev(signals: Trials, config=None, source=None, result_dir=RESULTS,
     raw_runs = raw_runs or load_raw_runs(signals.meta, data_config)
     estimator, sos = data_config["covariance_estimator"], bandpass_sos(data_config)
     covs = trial_covariances(signals, estimator)
-    rule = RejectionRule(config["rejection"]["z"]).fit(covs)
+    rule = make_gate(config["rejection"]).fit(covs)
     live = replay_session(signals, raw_runs, rule, sos, estimator)
     gate, filter_ms, inference_ms = live["gate"], live["filter_ms"], live["inference_ms"]
     stream = stream_check(live["window_error"], config["timing"]["stream_tolerance"])
     if not stream["stream_matches_cache"]:
         raise ValueError(f"Streamed T windows differ from the cached trials: {stream}")
-    rejection = []
-    for subject in sorted(rule.thresholds):
-        idx = signals.subject == subject
-        finite = idx & np.isfinite(covs.X).all(axis=(1, 2))
-        rejection.append(dict(subject=subject, threshold=rule.thresholds[subject],
-                              t_trials=int(idx.sum()), t_nonfinite=int(idx.sum() - finite.sum()),
-                              t_rejected_finite=int((finite & ~gate).sum()),
-                              t_hold_rate=float((~gate[idx]).mean())))
+    rejection = rejection_rates(signals.meta, np.isfinite(covs.X).all(axis=(1, 2)), gate, rule)
     manifest = source.oof_manifest()
     conditions, missing = _available(config, manifest)
     controller, taus = config["controller"], config["taus"]
@@ -748,7 +819,8 @@ def run_dev(signals: Trials, config=None, source=None, result_dir=RESULTS,
         temperatures=temperatures, rejection=rule.to_dict())
     _json(artifact_dir / "dev" / "calibration.json", calibration)
     summary = dict(
-        phase="dev", sessions=["T"], conditions=conditions, no_operating_point=missing,
+        phase="dev", gate=config["rejection"]["gate"], sessions=["T"], conditions=conditions,
+        no_operating_point=missing,
         seeds=manifest["seeds"], taus=taus, t_trials=len(signals),
         t_hold_rate_gate=float((~gate).mean()), **stream,
         wall_seconds=time.perf_counter() - start,
@@ -851,8 +923,13 @@ def run_final(signals: Trials, calibration, config=None, source=None, attackers=
     start = time.perf_counter()
     torch.set_num_threads(config["torch_threads"])
     estimator, sos = data_config["covariance_estimator"], bandpass_sos(data_config)
-    rule = RejectionRule.from_dict(calibration["rejection"])
-    t_gate = rule.accept(trial_covariances(t_signals, estimator))
+    rule = gate_from_dict(calibration["rejection"])
+    t_covs, e_covs = (trial_covariances(s, estimator) for s in (t_signals, e_signals))
+    t_gate, e_gate = rule.accept(t_covs), rule.accept(e_covs)
+    rejection = pd.concat([
+        rejection_rates(s.meta, np.isfinite(c.X).all(axis=(1, 2)), g, rule)
+        for s, c, g in ((t_signals, t_covs, t_gate), (e_signals, e_covs, e_gate))],
+        ignore_index=True)
     raw_runs = raw_runs or load_raw_runs(e_signals.meta, data_config)
     streams_meta = {"feature": dict(mode="feature", tau=None)}
     streams_meta.update({stream_name("command", tau): dict(mode="command", tau=tau)
@@ -879,8 +956,12 @@ def run_final(signals: Trials, calibration, config=None, source=None, attackers=
     replay_seconds = time.perf_counter() - start
     with parallel_config(backend="loky", inner_max_num_threads=1):
         attacked = Parallel(n_jobs=config["workers"])(jobs)
-    predictions = pd.concat([p for p, _ in attacked], ignore_index=True)
+    predictions = pd.concat([p for p, _ in attacked if p is not None], ignore_index=True)
     directional = pd.DataFrame([row for _, rows in attacked for row in rows])
+    not_evaluable = directional.loc[~directional.evaluable, [
+        "condition", "seed", "stream", "k", "scenario", "direction", "attacker",
+        "train_groups", "short_identities"]].rename(
+        columns=dict(short_identities="identities_below_inner_folds(subject:train_groups)"))
     trials = pd.concat(trials, ignore_index=True)
     episodes = pd.concat(episodes, ignore_index=True)
     tags = ["condition", "seed", "tau", "mode"]
@@ -889,6 +970,8 @@ def run_final(signals: Trials, calibration, config=None, source=None, attackers=
     scenario, seed_mean, strongest, threshold, exclusions = summarize_observation(
         directional, predictions, streams_meta, config)
 
+    rejection.to_csv(result_dir / "rejection_rates.csv", index=False)
+    not_evaluable.to_csv(result_dir / "observation_not_evaluable.csv", index=False)
     episodes.to_csv(result_dir / "control_episodes.csv", index=False)
     metrics.to_csv(result_dir / "control_metrics.csv", index=False)
     summarize_control(metrics, ["condition", "tau", "mode"]).to_csv(
@@ -909,9 +992,11 @@ def run_final(signals: Trials, calibration, config=None, source=None, attackers=
     trials.to_csv(artifact_dir / "final" / "replay_trials.csv.gz", index=False)
     predictions.to_csv(artifact_dir / "final" / "attack_predictions.csv.gz", index=False)
     summary = dict(
-        phase="final", conditions=calibration["conditions"],
+        phase="final", gate=config["rejection"]["gate"], conditions=calibration["conditions"],
         no_operating_point=calibration["no_operating_point"], seeds=calibration["seeds"],
         taus=config["taus"], k=obs["k"], e_trials=len(e_signals),
+        t_hold_rate_gate=float((~t_gate).mean()), e_hold_rate_gate=float((~e_gate).mean()),
+        not_evaluable_attack_cells=len(not_evaluable),
         transmission_check_passed=bool(checks.passed.all()),
         transmission_command_mismatches=int(checks.command_mismatches.sum()),
         replay_matches_saved=bool(consistency.replay_matches_saved.all()),
@@ -926,6 +1011,9 @@ def run_final(signals: Trials, calibration, config=None, source=None, attackers=
                "Feature-mode groups whose k messages are all null (held by the rejection "
                "rule) are excluded; feature BA is conditional on the retained groups "
                "(observation_feature_exclusions.csv).",
+               "Attack cells with an identity below inner_folds training groups are not "
+               "evaluable (observation_not_evaluable.csv) and are excluded from the "
+               "strongest-attack maximum.",
                "Recorded replay, not closed-loop control."])
     _json(result_dir / "summary.json", summary)
     _json(artifact_dir / "final" / "manifest.json", dict(
@@ -937,18 +1025,32 @@ def run_final(signals: Trials, calibration, config=None, source=None, attackers=
     return summary
 
 
+def variant(name, config=None):
+    """(config, result_dir, artifact_dir): primary uses the config's gate; sealed_gate
+    reruns the analysis with the sealed Riemannian-distance gate (post-seal deviation 7)."""
+    config = config or load_config("exp_c")
+    if name == "primary":
+        return config, RESULTS, ARTIFACTS
+    rejection = dict(config["rejection"], gate="riemann_distance")
+    return dict(config, rejection=rejection), RESULTS / name, ARTIFACTS / name
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("phase", choices=["dev", "final"])
+    parser.add_argument("--variant", choices=["primary", "sealed_gate"], default="primary")
     args = parser.parse_args(argv)
     data_config = load_config("data")
+    config, result_dir, artifact_dir = variant(args.variant)
     if args.phase == "dev":
         # Never open session-E files or caches during development.
-        run_dev(load_trials(dict(data_config, sessions=["T"])), data_config=data_config)
+        run_dev(load_trials(dict(data_config, sessions=["T"])), config,
+                result_dir=result_dir, artifact_dir=artifact_dir, data_config=data_config)
     else:
-        calibration = json.loads((ARTIFACTS / "dev" / "calibration.json").read_text(
+        calibration = json.loads((artifact_dir / "dev" / "calibration.json").read_text(
             encoding="utf-8"))
-        run_final(load_trials(data_config), calibration, data_config=data_config)
+        run_final(load_trials(data_config), calibration, config, result_dir=result_dir,
+                  artifact_dir=artifact_dir, data_config=data_config)
 
 
 if __name__ == "__main__":

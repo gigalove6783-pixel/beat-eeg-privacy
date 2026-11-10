@@ -8,11 +8,11 @@ import pytest
 
 from beat.config import load_config
 from beat.data import LeakageError, Trials, bandpass_sos, causal_bandpass
-from beat.exp_c import (HOLD, LEFT, RIGHT, RejectionRule, _sorted, bootstrap_seed_mean,
-                        command_descriptors, control_pass, decide, feature_descriptors,
-                        fit_temperature, identify_head, observation_groups,
-                        replay_condition, run_dev, run_final, score_episodes,
-                        trial_covariances)
+from beat.exp_c import (HOLD, LEFT, RIGHT, FiniteGate, RejectionRule, _attack_job, _sorted,
+                        bootstrap_seed_mean, command_descriptors, control_pass, decide,
+                        feature_descriptors, fit_temperature, gate_from_dict, identify_head,
+                        make_gate, observation_groups, replay_condition, run_dev, run_final,
+                        score_episodes, summarize_observation, trial_covariances, variant)
 
 PER_RUN = 10
 
@@ -132,6 +132,8 @@ def test_t_only_fit_steps_reject_e(tmp_path):
     with pytest.raises(LeakageError):
         RejectionRule(3.0).fit(covs)
     with pytest.raises(LeakageError):
+        FiniteGate().fit(covs)
+    with pytest.raises(LeakageError):
         identify_head(e.with_X(np.ones((len(e), 4))), np.ones((len(e), 2)), 1e-3)
     with pytest.raises(LeakageError):
         run_dev(e, small_config(), FakeSource(e), tmp_path / "r", tmp_path / "a")
@@ -155,6 +157,57 @@ def test_decide_holds_below_tau_and_on_gate():
     assert decide(logits, 1.0, 0.6, gate).tolist() == [HOLD, RIGHT, LEFT, HOLD, HOLD, HOLD]
     # A larger temperature flattens probabilities and turns weak moves into holds.
     assert decide(logits, 10.0, 0.6, gate).tolist() == [HOLD, HOLD, HOLD, HOLD, HOLD, HOLD]
+
+
+def test_gate_options():
+    signals = synthetic_signals(("T",), subjects=2)
+    covs = trial_covariances(_sorted(signals), "oas")
+    finite = np.isfinite(covs.X).all(axis=(1, 2))
+    assert not finite.all()
+    drifted = covs.with_X(np.where(finite[:, None, None], covs.X * 50.0, covs.X))
+    config = load_config("exp_c")
+    assert config["rejection"]["gate"] == "none"
+    none = gate_from_dict(make_gate(config["rejection"]).fit(covs).to_dict())
+    sealed_config = variant("sealed_gate", config)[0]
+    sealed = gate_from_dict(make_gate(sealed_config["rejection"]).fit(covs).to_dict())
+    assert isinstance(none, FiniteGate) and isinstance(sealed, RejectionRule)
+    # `none` holds only non-finite trials, however far a trial drifts.
+    np.testing.assert_array_equal(none.accept(drifted), finite)
+    assert not sealed.accept(drifted).any()
+    assert sealed.accept(covs).sum() > 0.8 * finite.sum()
+    with pytest.raises(ValueError, match="Unknown gate"):
+        make_gate(dict(gate="other", z=3.0))
+
+
+def test_attack_cell_not_evaluable_when_identity_lacks_training_groups():
+    ordered = _sorted(synthetic_signals())
+    meta_t = ordered.meta[ordered.session == "T"].reset_index(drop=True)
+    meta_e = ordered.meta[ordered.session == "E"].reset_index(drop=True)
+    rng = np.random.default_rng(0)
+
+    def stream(meta):
+        return meta.subject.to_numpy()[:, None] * np.ones(3) + rng.normal(size=(len(meta), 3))
+
+    stream_t, stream_e = stream(meta_t), stream(meta_e)
+    stream_e[(meta_e.subject == 5) & (meta_e.run <= 3)] = np.nan  # all held: no groups
+    tags = dict(condition="P0", seed=0, stream="feature")
+    predictions, rows = _attack_job(tags, "feature", 1, stream_t, stream_e, meta_t, meta_e,
+                                    small_attackers(), 0, 1, 1)
+    rows = pd.DataFrame(rows)
+    blocked = rows[~rows.evaluable]
+    # Direction 0 trains on E runs 1-3, where subject 5 has no group.
+    assert set(zip(blocked.scenario, blocked.direction)) == {("main", 0)}
+    assert set(blocked.attacker) == {"logistic", "rbf_svm", "mlp"}
+    assert (blocked.short_identities == "5:0").all() and blocked.ba.isna().all()
+    assert rows[rows.evaluable].ba.notna().all()
+    streams = {"feature": dict(mode="feature", tau=None)}
+    config = small_config()
+    _, seed_mean, strongest, threshold, _ = summarize_observation(rows, predictions, streams,
+                                                                 config)
+    assert seed_mean[seed_mean.scenario == "main"].ba_mean.isna().all()
+    best = strongest.iloc[0]
+    assert best.scenario == "auxiliary" and best.not_evaluable_cells == 3
+    assert np.isfinite([best.ba_mean, best.ba_low, best.ba_high]).all()
 
 
 def test_arm_and_episode_metrics_by_hand():
@@ -232,7 +285,7 @@ def test_bootstrap_interval_ignores_duplicated_seeds():
 def test_labels_never_change_commands(pipeline):
     signals, config, source = pipeline["signals"], pipeline["config"], pipeline["source"]
     calibration, data_config = pipeline["calibration"], pipeline["data_config"]
-    rule = RejectionRule.from_dict(calibration["rejection"])
+    rule = gate_from_dict(calibration["rejection"])
     ordered = _sorted(signals)
     t, e = ordered.subset(ordered.session == "T"), ordered.subset(ordered.session == "E")
     t_gate = rule.accept(trial_covariances(t, "oas"))
@@ -253,7 +306,9 @@ def test_final_produces_every_output(pipeline):
                  "replay_consistency.csv", "observation_directional.csv",
                  "observation_identity.csv", "observation_seed_mean.csv",
                  "observation_strongest.csv", "observation_threshold.csv",
-                 "observation_feature_exclusions.csv", "observation_length.png", "summary.json", "dev_temperatures.csv",
+                 "observation_feature_exclusions.csv", "observation_not_evaluable.csv",
+                 "rejection_rates.csv", "observation_length.png", "summary.json",
+                 "dev_temperatures.csv",
                  "dev_rejection.csv", "dev_replay_metrics.csv", "dev_timing.csv"):
         assert (results / name).exists(), name
     for name in ("replay_trials.csv.gz", "attack_predictions.csv.gz", "manifest.json"):
@@ -263,6 +318,11 @@ def test_final_produces_every_output(pipeline):
     assert summary["transmission_check_passed"] and summary["transmission_command_mismatches"] == 0
     assert summary["replay_matches_saved"]
     assert summary["stream_matches_cache"]
+    # Primary gate `none`: only the one non-finite trial per session is held.
+    assert summary["gate"] == "none" and summary["not_evaluable_attack_cells"] == 0
+    rejection = pd.read_csv(results / "rejection_rates.csv")
+    assert set(rejection.session) == {"T", "E"} and (rejection.rejected_finite == 0).all()
+    assert (rejection.nonfinite.sum(), (rejection.hold_rate * rejection.trials).sum()) == (2, 2)
     dev = json.loads((results / "dev_summary.json").read_text())
     assert dev["stream_matches_cache"] and dev["stream_trials"] == 9 * 6 * PER_RUN
     exclusions = pd.read_csv(results / "observation_feature_exclusions.csv")
@@ -292,6 +352,22 @@ def test_final_produces_every_output(pipeline):
     timing = pd.read_csv(results / "timing_summary.csv")
     assert (timing.total_p95_ms >= timing.total_median_ms).all()
     assert (timing.inference_median_ms > 0).all() and (timing.filter_median_ms > 0).all()
+
+
+def test_sealed_gate_variant_runs_end_to_end(pipeline, tmp_path):
+    config = variant("sealed_gate", pipeline["config"])[0]
+    signals, source = pipeline["signals"], pipeline["source"]
+    args = dict(result_dir=tmp_path / "r", artifact_dir=tmp_path / "a",
+                data_config=pipeline["data_config"], raw_runs=pipeline["raw_runs"])
+    calibration = run_dev(signals.subset(signals.session == "T"), config, source, **args)
+    assert calibration["rejection"]["gate"] == "riemann_distance"
+    with pytest.raises(ValueError, match="config changed"):
+        run_final(signals, calibration, pipeline["config"], source, small_attackers(), **args)
+    summary = run_final(signals, calibration, config, source, small_attackers(), **args)
+    assert summary["gate"] == "riemann_distance" and summary["transmission_check_passed"]
+    rejection = pd.read_csv(tmp_path / "r" / "rejection_rates.csv")
+    assert rejection.threshold.notna().all() and len(rejection) == 2 * 9
+    assert (tmp_path / "r" / "observation_not_evaluable.csv").exists()
 
 
 def test_final_guards(pipeline, tmp_path):

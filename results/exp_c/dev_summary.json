@@ -1,5 +1,6 @@
 {
   "phase": "dev",
+  "gate": "none",
   "sessions": [
     "T"
   ],
@@ -26,11 +27,11 @@
     0.8
   ],
   "t_trials": 1296,
-  "t_hold_rate_gate": 0.033950617283950615,
+  "t_hold_rate_gate": 0.0,
   "stream_trials": 1296,
   "stream_window_max_rel_error": 0.0,
   "stream_matches_cache": true,
-  "wall_seconds": 10.151999399997294,
+  "wall_seconds": 9.497821900062263,
   "notes": [
     "Smoke replay uses B's T out-of-fold logits; trials without an OOF row (B-excluded) are held.",
     "Dev inference timing excludes the frozen model (final models do not exist yet).",
