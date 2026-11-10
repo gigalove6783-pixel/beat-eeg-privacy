@@ -1,11 +1,11 @@
 <!-- BRIEF
-subject/audience/action: BEAT v2 결과 발표 · 학부생 발표자가 혼자 교수님과 심사자 앞에서 13분 · 청중이 "신원 노출과 방어 효과는 공격자가 어느 날의 기록으로 등록하느냐에 따라 달라지므로 같은 날 수치 하나로는 위험도 보호도 주장할 수 없다"는 논지와 그 근거, 그리고 아직 결과가 없는 봉인된 다른 날 재현의 상태를 정확히 받아들이게 한다
+subject/audience/action: BEAT v2 결과 발표 · 학부생 발표자가 혼자 교수님과 심사자 앞에서 13분 · 청중이 "신원 노출과 방어 효과는 공격자가 어느 날의 기록으로 등록하느냐에 따라 달라지므로 같은 날 수치 하나로는 위험도 보호도 주장할 수 없다"는 논지와 그 근거, 그리고 봉인된 다른 날 재현 M의 결과(주장 3개 중 2개 지지)를 범위 그대로 받아들이게 한다
 concept: v1 발표의 시각 언어 유지(흰 바탕, Okabe-Ito 색 의미, 파란 키커와 단언형 제목, 오른쪽 수치 패널, 남색 표지와 마무리) 위에 모든 수치에 같은 날 또는 다른 날, 확증, 사전등록 추정치 또는 탐색 칩을 붙인다
 reading mode: presentation · argument mode: pyramid
 directions: A v1 흰 바탕 학술 발표 그대로, 날짜 칩과 증거 등급 칩 추가 · B 남색 전면 · selected: A · why: 사용자가 v1 덱을 디자인 기준으로 지정했고 요약 그림이 흰 바탕이다
 style: custom academic · palette: hue 210 · accent hue 20 · accent: #D55E00 · type: MODE presentation → body 12pt · script: ko · pairing: weight · fonts: safe
-motif: 파란 키커와 단언형 제목, 같은 날은 회색 칩, 다른 날은 남색 칩, 확증은 파란 칩, 사전등록 추정치는 흰 바탕 하늘색 테 칩, 탐색은 주황 칩 · rhythm: anchor, breathing, dense, dense, dense, dense, dense, breathing, dense, dense, dense, dense, anchor, dense, dense, dense, dense, dense, dense, dense
-sources: .mixdog/plan_v2.md 절 Decisions after the v2 framing advice · docs/decision_log.md 마지막 항목 · results/exp_r/cross_day_table.csv · results/exp_k/frontier.csv · results/exp_k/residual_leakage.csv · results/exp_k/eq_guarantee.md · results/exp_k/information_identity.csv · results/exp_l/decision.json · results/exp_l/identity_summary.csv · results/exp_l/reproduction.json · results/exp_l/enrolment.csv · docs/report.md · docs/preregistration_m.md · seals/manifest.yaml · results/exp_m/seal4_timestamp/verification.json · results/exp_m/selection.json · results/exp_r/pilot.json · presentation/BEAT_final_talk.pptx (디자인 기준)
+motif: 파란 키커와 단언형 제목, 같은 날은 회색 칩, 다른 날은 남색 칩, 확증은 파란 칩, 사전등록 추정치는 흰 바탕 하늘색 테 칩, 탐색은 주황 칩 · rhythm: anchor, breathing, dense, dense, dense, dense, dense, breathing, dense, dense, dense, dense, anchor, dense, dense, dense, dense, dense, dense, dense, dense
+sources: .mixdog/plan_v2.md 절 Decisions after the v2 framing advice 그리고 절 M results · docs/decision_log.md 32행(7b14cee 사전 문구)과 34행(M 감사) · results/exp_m/decision.json · results/exp_m/final_estimates_identification.csv · results/exp_m/final_estimates_utility.csv · results/exp_m/final_estimates_k_curves.csv · results/exp_r/cross_day_table.csv · results/exp_k/frontier.csv · results/exp_k/residual_leakage.csv · results/exp_k/eq_guarantee.md · results/exp_k/information_identity.csv · results/exp_l/decision.json · results/exp_l/identity_summary.csv · results/exp_l/reproduction.json · results/exp_l/enrolment.csv · docs/report.md · docs/preregistration_m.md · seals/manifest.yaml · results/exp_m/seal4_timestamp/verification.json · results/exp_m/selection.json · results/exp_r/pilot.json · presentation/BEAT_final_talk.pptx (디자인 기준)
 facts: F1 BCI IV 2a 9명 22채널 253차원 서로 다른 날 두 세션 봉인 1–2 — docs/report.md §3 그리고 §4.1
   · F2 Lee2019 54명 20채널 210차원 두 세션 C1–C4 봉인 3 — docs/report.md §6.7
   · F3 Yang2025 51명 19채널 190차원 3일 하루 200시행 1일차 2–3일차 M1–M3 봉인 4 — docs/preregistration_m.md §2 그리고 §5
@@ -33,7 +33,7 @@ facts: F1 BCI IV 2a 9명 22채널 253차원 서로 다른 날 두 세션 봉인 
   · F25 M 가족 M1 M2 M3 Holm α = 0.05 — docs/preregistration_m.md §6
   · F26 M3 검정력 보존율 0.35 0.55 0.70 α = 0.05에서 0.47 0.85 0.96 α/3에서 0.29 0.69 0.90 — docs/preregistration_m.md §7 검정력 표 321–323행
   · F27 M 기준 M1 평균 재현율 > 10/51 공격자 3종 M2 P3 λ = 1 관측 격차 ≥ 0.10 격차 > 0 M3 P2-RC d = 8 τ* = 0.60 명령 50개 순위 > 0.5 명령 1개 — docs/preregistration_m.md §6
-  · F28 결과 문구 고정 커밋 7b14cee — .mixdog/plan_v2.md 281행 그리고 docs/decision_log.md 마지막 항목
+  · F28 결과 문구 고정 커밋 7b14cee — .mixdog/plan_v2.md 281행 그리고 docs/decision_log.md 32행
   · F29 백업 2a d = 1 식별 0.25 과제 0.71 같은 날 — results/exp_d/tradeoff.csv 3행
   · F30 백업 Lee2019 d = 1 식별 0.057 과제 0.70 같은 날 사전등록 추정치 seed 3개 — docs/report.md §6.7 표 10 그리고 README.md 99–100행
   · F31 백업 주장 4개 중 3개 지지 α = 0.05 seed 5개 커밋 9757c3f — results/exp_l/decision.json 그리고 seals/manifest.yaml seal-3
@@ -47,18 +47,28 @@ facts: F1 BCI IV 2a 9명 22채널 253차원 서로 다른 날 두 세션 봉인 
   · F39 백업 신원 정보 전체 0.467 → 0.452 그룹 안 0.198 → 0.072 순열 영점 0.014 (1807행 방어 없음 54명 전체 null) — results/exp_k/information_identity.csv 1807행 1645행 1803행 1641행 bits null
   · F40 백업 커밋 e88154c6f0b3d1a7887f2368763808fc91d9a81a 지문 SHA-256 ecc7e565…81c6 OpenSSL 3.5.7 종료 코드 0 검증 시각 20:26:36 — results/exp_m/seal4_timestamp/verification.json
   · F41 발표일 2026년 11월 16일 — 사용자 일정
+  · F42 M 결과 사례 (b) 확증 다른 날 51명 1일차 등록 2–3일차 공격 주장 3개 중 2개 지지 M1 M3 지지 M2 지지 안 됨 Holm α = 0.05 독립 재계산 통과 — results/exp_m/decision.json supported 그리고 docs/decision_log.md 34행
+  · F43 M1 로지스틱 재현율 0.345 기준 10/51 = 0.196 Holm p = 0.014 — results/exp_m/decision.json M1.attackers cal_to_dep/logistic 그리고 M1.threshold 그리고 p_holm.M1 0.0136
+  · F44 M2 격차 0.093 0.095 0.096 (0.093–0.096) 모두 0보다 큼 봉인한 관측 하한 0.10 검정한 공격자 없음 규칙상 p = 1 1일차 같은 날 격차 0.717 — results/exp_m/decision.json M2.gaps M2.p 그리고 results/exp_m/selection.json gates.M2.real.best_gap
+  · F45 M3 τ* = 0.60 목표 앎 범주형 공격자 명령 50개 순위 0.649 명령 1개 0.538 Holm p = 1.1×10⁻⁴ 순위 > 0.5 — results/exp_m/decision.json M3.rank_k_star.mean M3.rank_k_base.mean p_holm.M3
+  · F46 M3 명령 50개 top-1 0.061 (우연 1/51 = 0.020) — results/exp_m/final_estimates_k_curves.csv 19행 top1_mean
+  · F47 EQ 판독 격자 g = 3 공격자 4종 명령 20개 50개 τ* = 0.60 τ = 0.5 다른 날: τ* 명령 50개 4종 중 3종 K와 같은 방향(감소 구간이 0 제외) 1종 감소 0과 구별 안 됨 · τ* 명령 20개 4종 모두 감소 0과 구별 안 됨 그중 1종은 막을 노출 구별 안 됨 · τ 0.5 명령 20개 50개 4종 모두 막을 노출 구별 안 됨 — results/exp_m/final_estimates_identification.csv 2–39행 그리고 482–519행 eq cal_to_dep g3_excess_undefended g3_excess_reduction ci_low ci_high 그리고 docs/decision_log.md 34행
+  · F48 예시 칸 τ* 명령 50개 목표 앎 범주형 방어 없음 0.101 [0.022, 0.181] EQ −0.008 [−0.058, 0.042] 감소 0.109 [0.007, 0.211] — results/exp_m/final_estimates_identification.csv 27–29행
+  · F49 유용성 2–3일차 τ* = 0.60 방어 없음 가중 유용성 −0.041 [−0.086, 0.004] w = 1.5 순진행 +0.073 [0.039, 0.106] — results/exp_m/final_estimates_utility.csv 2행 utility_undefended 4행 net_undefended 그리고 w = τ/(1 − τ)
+  · F50 EQ 프라이버시 비용 순진행 +0.022 [0.012, 0.032] 가중 유용성 −0.009 [−0.026, 0.008] — results/exp_m/final_estimates_utility.csv 15행 net_privacy_cost 14행 utility_privacy_cost
+  · F51 정지율 1일차 0.723 교차 적합 모델 2–3일차 0.473 최종 모델 오답 0.092 → 0.227 — results/exp_m/selection.json gates.tau.hold_rate 그리고 706행 wrong 그리고 results/exp_m/final_estimates_utility.csv 8행 hold_undefended 6행 wrong_undefended 그리고 .mixdog/plan_v2.md 절 M results
 images: I1 slide 7 left — user — 16:9 — results/figures/summary_ko/fig8_k_command_streams.png · I2 slide 9 left — user — 16:9 — fig9_k_rr_eq_frontier.png · I3 slide 5 left — user — fig1 · I4 slide 6 left — user — fig4 · I5 slide 14 — user — fig2 · I6 slide 15 — user — fig6
 slide plan: 1 job: cover · move: 청중이 논지 한 문장을 잡는다 · composition: 남색 표지에 논지 문장을 큰 제목으로, 아래 근거 부제, 뇌파 곡선 장식, 팀과 날짜 · carriers: title, subtitle, team line · texture: statement · rhythm: anchor
   · 2 job: problem · relationship: flow · move: 전송물과 공격자, 그리고 세 번째 질문인 등록 날을 안다 · composition: 위쪽 네 칸 흐름도와 공격자 칸, 아래 질문 카드 세 개 중 세 번째 강조 · carriers: flow diagram, attacker box, question cards · texture: diagram · rhythm: breathing
   · 3 job: method · relationship: parallel · move: 데이터 세 종과 봉인 네 번의 성격 차이를 안다 · composition: 데이터 카드 세 개, 봉인 상자 세 개, 지표 띠 · carriers: three cards, seal boxes, metric band · texture: prose · rhythm: dense
   · 4 job: evidence · relationship: contrast · move: 0.994는 같은 날 수치이고 다른 날은 0.520임을 본다 · composition: 행 두 개 열 두 개의 큰 수치 표, 확증 띠, 각주 · carriers: number grid, chips, confirm band · texture: numbers · rhythm: dense
-  · 5 job: evidence · relationship: contrast · move: 함정 1이 같은 날과 다른 날 모두에서 남는 것을 본다 · composition: 왼쪽 그림, 오른쪽 수치 패널 세 칸 · carriers: figure, stat panel, chips · texture: chart · rhythm: dense
+  · 5 job: evidence · relationship: contrast · move: 함정 1이 같은 날과 Lee2019 다른 날에 남고, 새 51명 다른 날 확증 M2는 지지되지 않았음을 본다 · composition: 왼쪽 그림과 그 아래 M2 판정 띠, 오른쪽 수치 패널 세 칸 · carriers: figure, stat panel, chips, M2 band · texture: chart · rhythm: dense
   · 6 job: evidence · relationship: contrast · move: 함정 2가 등록 날의 차이임을 본다 · composition: 왼쪽 그림, 오른쪽 수치 패널 세 칸, 하단 주의 문장 · carriers: figure, stat panel, caveat · texture: chart · rhythm: dense
   · 7 job: evidence · relationship: accumulation · move: C3는 지지 안 됨이고 탐색 K에서도 다른 날 값이 낮음을 본다 · composition: 왼쪽 fig8, 오른쪽 수치 패널 세 칸 · carriers: figure, stat panel, chips · texture: chart · rhythm: dense
   · 8 job: mechanism · relationship: transformation · move: EQ가 그룹 안 출력 분포를 같게 만드는 그림과 g 선택 이유를 안다 · composition: 왼쪽 방어 전 막대 세 줄, 가운데 화살표, 오른쪽 방어 후 막대 세 줄, 아래 카드 세 개와 각주 · carriers: bar diagram, legend, three cards, footnote · texture: diagram · rhythm: breathing
   · 9 job: evidence · relationship: contrast · move: EQ 보장이 맞춘 날에만 닿았음을 본다 · composition: 왼쪽 fig9, 오른쪽 수치 패널 세 칸 · carriers: figure, stat panel, chips · texture: chart · rhythm: dense
   · 10 job: method · relationship: sequence · move: M의 설계와 봉인 순서, 검정력을 안다 · composition: 왼쪽 네 단계 카드, 오른쪽 판정 가족 상자와 검정력 표 · carriers: step cards, family box, power table · texture: table · rhythm: dense
-  · 11 job: verdict · relationship: ledger · move: 결과가 아직 없고 판정 표가 비어 있음을 안다 · composition: 주장 세 줄 판정 표, 아래 고정 문구 설명 두 줄 · carriers: verdict table, notes · texture: table · rhythm: dense
+  · 11 job: verdict · relationship: ledger · move: 다른 날 M1과 M3는 지지, M2는 지지 안 됨, EQ는 판정 없는 격자 추정치임을 안다 · composition: 날짜와 등급 칩 줄, 주장 세 줄 판정 표, 아래 EQ 격자 요약과 고정 문구 줄 · carriers: chips, verdict table, notes · texture: table · rhythm: dense
   · 12 job: recommendation · relationship: boundary · move: 확인 항목 여섯 개와 한계 여섯 개를 가져간다 · composition: 왼쪽 번호 목록, 오른쪽 아이콘 한계 목록 · carriers: numbered checklist, icon list · texture: list · rhythm: dense
   · 13 job: closing · move: 세 결론과 논지를 기억하고 질문으로 넘어간다 · composition: 남색 바탕에 논지, 결론 세 줄, 산출물 칩, 질문 안내 · carriers: takeaways, chips, Q&A line · texture: statement · rhythm: anchor
   · 14 job: backup · relationship: tradeoff · move: v1 방어 비교를 다시 본다 · composition: 왼쪽 fig2, 오른쪽 수치 패널 · carriers: figure, stat panel · texture: chart · rhythm: dense
@@ -68,6 +78,7 @@ slide plan: 1 job: cover · move: 청중이 논지 한 문장을 잡는다 · co
   · 18 job: backup · relationship: definition · move: EQ 선형계획과 보장 가정을 안다 · composition: 왼쪽 목적과 제약 카드, 오른쪽 가정 목록 · carriers: two cards, list · texture: prose · rhythm: dense
   · 19 job: backup · relationship: comparison · move: 정보량으로 본 EQ 효과를 안다 · composition: 정보량 표와 해석 문장 · carriers: table, note · texture: table · rhythm: dense
   · 20 job: backup · relationship: proof · move: 봉인 4 토큰을 누구나 검증할 수 있음을 안다 · composition: 어두운 명령 상자와 필드 목록 · carriers: command box, field list · texture: prose · rhythm: dense
+  · 21 job: backup · relationship: ledger · move: M의 EQ 추정치를 격자 전체와 유용성 단서로 읽는다 · composition: 왼쪽 τ와 명령 수 × 공격자 4종 판독 격자, 아래 판독 규칙과 예시 칸, 오른쪽 유용성 단서 네 개 · carriers: chips, grid table, caveat list · texture: table · rhythm: dense
 -->
 <html><head><meta charset="utf-8"><style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -105,7 +116,7 @@ slide plan: 1 job: cover · move: 청중이 논지 한 문장을 잡는다 · co
   </svg>
   <div style="position:absolute;left:120px;top:860px;font-size:30px;font-weight:700;color:#FFFFFF">BEAT 팀 · 이동현 · 장규범</div>
   <div style="position:absolute;left:120px;top:928px;font-size:26px;color:#A9C4DE">2026년 11월 16일</div>
-  <aside class="notes">[약 45초] 안녕하세요, BEAT 팀 이동현입니다. 저희는 뇌–컴퓨터 인터페이스, 즉 BCI가 기기 밖으로 보내는 정보만으로 사용자가 누구인지 알아낼 수 있는지를 측정했습니다. 오늘의 결론은 화면의 한 문장입니다. 신원이 얼마나 드러나는지, 그리고 방어가 얼마나 막는지는 공격자가 어느 날의 기록으로 등록하느냐에 따라 달라집니다. 그래서 같은 날 측정한 수치 하나로는 위험하다고도, 안전하다고도 말할 수 없습니다. 이것을 저희 자신의 핵심 수치와 저희가 만든 방어로 보여 드리고, 마지막으로 새 사용자 51명으로 준비한 사전등록 검증의 현재 상태를 말씀드리겠습니다.</aside>
+  <aside class="notes">[약 45초] 안녕하세요, BEAT 팀 이동현입니다. 저희는 BCI, 즉 뇌–컴퓨터 인터페이스가 기기 밖으로 보내는 정보만으로 사용자가 누구인지 알아낼 수 있는지를 측정했습니다. 오늘의 결론은 화면의 한 문장입니다. 신원이 얼마나 드러나는지, 방어가 얼마나 막는지는 공격자가 어느 날의 기록으로 등록하느냐에 따라 달라집니다. 그래서 같은 날 수치 하나로는 위험하다고도, 안전하다고도 말할 수 없습니다. 저희의 핵심 수치와 방어로 이것을 보이고, 새 사용자 51명의 사전등록 검증 결과로 마무리하겠습니다.</aside>
 </section>
 
 <section class="slide">
@@ -137,7 +148,7 @@ slide plan: 1 job: cover · move: 청중이 논지 한 문장을 잡는다 · co
     </div>
   </div>
   <div class="foot">BEAT v2 · 운동상상 EEG 신원 노출 감사</div><div class="pg">2</div>
-  <aside class="notes">[약 60초] BCI는 뇌파를 해독해 그 결과를 휴대폰, 클라우드, 로봇팔로 보냅니다. 밖으로 나가는 것은 특징 벡터이거나 왼쪽, 오른쪽, 정지 같은 명령입니다. 저희는 이 전송물만 볼 수 있는 공격자를 가정했습니다. 공격자는 사용자별 기록을 미리 모아 두는데, 이것을 등록이라고 부르겠습니다. 그리고 새로 들어온 전송물이 누구 것인지 맞힙니다. 질문은 세 가지입니다. 얼마나 새는가, 성능을 지키면서 줄일 수 있는가, 그리고 공격자가 어느 날의 기록으로 등록하느냐입니다. 등록한 기록과 공격받는 기록이 같은 날이면 같은 날 조건, 다른 날이면 다른 날 조건입니다. 이 세 번째 질문이 오늘 발표의 축입니다.</aside>
+  <aside class="notes">[약 50초] BCI는 뇌파를 해독해 그 결과를 휴대폰, 클라우드, 로봇팔로 보냅니다. 밖으로 나가는 것은 특징 벡터이거나 왼쪽, 오른쪽, 정지 같은 명령입니다. 저희는 이 전송물만 보는 공격자를 가정했습니다. 공격자는 사용자별 기록을 미리 모아 두는데, 이것을 등록이라고 부르겠습니다. 그리고 새 전송물이 누구 것인지 맞힙니다. 질문은 세 가지입니다. 얼마나 새는가, 성능을 지키며 줄일 수 있는가, 그리고 공격자가 어느 날의 기록으로 등록하느냐입니다. 등록한 기록과 공격받는 기록이 같은 날이면 같은 날 조건, 다르면 다른 날 조건입니다. 이 세 번째 질문이 오늘 발표의 축입니다.</aside>
 </section>
 
 <section class="slide">
@@ -179,7 +190,7 @@ slide plan: 1 job: cover · move: 청중이 논지 한 문장을 잡는다 · co
   </div>
   <div style="position:absolute;left:96px;top:846px;width:1728px;height:120px;border-radius:16px;background:#14202E;display:flex;align-items:center;padding:0 40px;font-size:26px;line-height:1.45;color:#FFFFFF">지표: 신원 balanced accuracy, 우연 수준 = 1/사용자 수 (9명 0.111, 54명 0.019, 51명 0.020). 공격자는 방어를 고정한 뒤 그 출력만으로 따로 학습한다</div>
   <div class="foot">BEAT v2 · 운동상상 EEG 신원 노출 감사</div><div class="pg">3</div>
-  <aside class="notes">[약 60초] 데이터는 공개 데이터 세 종입니다. 9명의 BCI Competition IV 2a로 탐색과 1차 확증을 했고, 54명의 Lee2019로 확증 재현을 했습니다. 그리고 지금까지 어떤 분석에도 쓰지 않은 51명, 3일 기록의 Yang2025로 다른 날 재현을 사전등록했습니다. 각 분석은 채점하기 전에 커밋으로 봉인했습니다. 다만 봉인 1부터 3은 저희가 직접 만든 Git 태그라서, 언제 만들었는지를 제3자가 증명하지는 않습니다. 그래서 네 번째 봉인은 FreeTSA의 시각 인증을 받았고, 봉인 뒤 변경 여부는 CI가 자동으로 검사합니다. 지표는 신원 balanced accuracy이고, 우연 수준은 사용자 수의 역수입니다. 공격자는 방어를 고정한 뒤 그 출력만으로 따로 학습시킵니다.</aside>
+  <aside class="notes">[약 55초] 데이터는 공개 데이터 세 종입니다. 9명의 BCI Competition IV 2a로 탐색과 1차 확증을, 54명의 Lee2019로 확증 재현을 했습니다. 그리고 분석에 쓰지 않았던 51명, 3일 기록의 Yang2025로 다른 날 재현을 사전등록했습니다. 각 분석은 채점 전에 커밋으로 봉인했습니다. 다만 봉인 1부터 3은 저희가 만든 Git 태그라서 제3자가 시각을 증명하지 않습니다. 그래서 네 번째 봉인은 FreeTSA의 시각 인증을 받았고, 봉인 뒤 변경 여부는 CI가 검사합니다. 지표는 신원 balanced accuracy, 우연 수준은 사용자 수의 역수입니다. 공격자는 방어를 고정한 뒤 그 출력만으로 따로 학습시킵니다.</aside>
 </section>
 
 <section class="slide">
@@ -199,20 +210,24 @@ slide plan: 1 job: cover · move: 청중이 논지 한 문장을 잡는다 · co
   <div style="position:absolute;left:96px;top:810px;width:1728px;height:96px;border-radius:16px;background:#14202E;display:flex;align-items:center;padding:0 40px;font-size:26px;line-height:1.45;color:#FFFFFF">C2 확증 (같은 날): 0.994 → 0.340, 과제 정확도 변화 −0.6%p (하한 −2.3%p, 허용 한계 −5%p), Holm p = 4.6×10⁻⁵</div>
   <div class="note" style="position:absolute;left:96px;top:930px;width:1690px;font-size:24px;color:#5B6470">가장 강한 독립 공격자의 값, 우연 수준 0.019. BCI IV 2a 9명은 22채널 253차원이며 같은 날 1.00</div>
   <div class="foot">BEAT v2 · 운동상상 EEG 신원 노출 감사</div><div class="pg">4</div>
-  <aside class="notes">[약 75초] 먼저 가장 중요한 숫자입니다. 아무 방어 없이 210차원 특징을 그대로 보내면, 54명에서 균형 정확도 0.994(사용자별 재현율의 평균)가 나옵니다. 그런데 이 0.994는 같은 날 수치입니다. 공격자가 같은 날 기록의 한 부분으로 등록하고 다른 부분을 맞힌 값입니다. 다른 날의 기록으로 등록하면 0.520으로 내려갑니다. 절반 가까이 떨어졌지만, 우연 수준 0.019와 비교하면 여전히 훨씬 높습니다. 아래 줄은 저희 방어인 재중심화 병목입니다. 같은 날 0.340, 다른 날 0.054입니다. 같은 날 조건에서 0.994를 0.340으로 낮춘 것은 사전등록한 확증 주장 C2였고, 과제 정확도 손실은 0.6퍼센트포인트였습니다. 다른 날 두 값은 사전등록한 보조 시나리오, 즉 다른 날 시나리오의 값이고, 자체 판정 없이 보고합니다. 즉 위험의 크기도, 방어의 효과도 등록한 날에 따라 다른 숫자가 나옵니다. 참고로 9명 데이터는 같은 날 1.00이었습니다.</aside>
+  <aside class="notes">[약 65초] 아무 방어 없이 210차원 특징을 보내면, 54명에서 균형 정확도 0.994(사용자별 재현율의 평균)가 나옵니다. 그런데 이 0.994는 같은 날 수치입니다. 같은 날 기록의 한 부분으로 등록하고 다른 부분을 맞힌 값입니다. 다른 날 기록으로 등록하면 0.520으로 내려갑니다. 절반 가까이 떨어졌지만 우연 수준 0.019보다는 훨씬 높습니다. 아래 줄은 저희 방어인 재중심화 병목으로, 같은 날 0.340, 다른 날 0.054입니다. 같은 날 0.994를 0.340으로 낮춘 것이 확증 주장 C2였고, 과제 정확도 손실은 0.6퍼센트포인트였습니다. 다른 날 두 값은 사전등록한 보조, 즉 다른 날 시나리오의 값이고 자체 판정 없이 보고합니다. 위험의 크기도 방어의 효과도 등록한 날에 따라 달라집니다.</aside>
 </section>
 
 <section class="slide">
   <div class="kicker">함정 1 · 함께 학습한 식별기</div>
   <div class="title">방어와 함께 학습한 식별기는 안전하다고 말하지만, 독립 공격자는 다른 날에도 다시 맞힌다</div>
-  <img class="fig" src="../results/figures/summary_ko/fig1_pitfall1_head_vs_attacker.png" alt="적대 강도별로 함께 학습한 식별기 점수와 독립 공격자 점수를 비교한 그림. 모든 실험에서 독립 공격자가 훨씬 높다">
+  <img class="fig" src="../results/figures/summary_ko/fig1_pitfall1_head_vs_attacker.png" alt="적대 강도별로 함께 학습한 식별기 점수와 독립 공격자 점수를 비교한 그림. 모든 실험에서 독립 공격자가 훨씬 높다" style="height:640px">
+  <div style="position:absolute;left:96px;top:892px;width:1216px;display:flex;align-items:center;gap:20px;padding:10px 20px;border-radius:12px;background:#F4F7FA;border-left:6px solid #8A939E">
+    <div class="chips" style="margin-bottom:0;flex:none"><div class="chip cross">다른 날</div><div class="chip conf">확증 판정 M2</div></div>
+    <div style="font-size:24px;line-height:1.4;color:#3A4450">새 51명: 격차 0.093–0.096이 봉인한 하한 0.10 미만 → <b style="color:#9A3F00">M2 지지 안 됨</b><br>(1일차 같은 날 격차는 0.717)</div>
+  </div>
   <div class="panel">
     <div class="stat"><div class="chips"><div class="chip same">같은 날</div><div class="chip conf">확증 (B)</div></div><div class="lab">BCI IV 2a 9명, λ = 1</div><div class="val"><span class="blue">0.026</span> 대 <span class="red">0.951</span></div><div class="sub">함께 학습한 식별기 대 독립 공격자</div></div>
     <div class="stat red"><div class="chips"><div class="chip conf">확증 C1</div></div><div class="lab">Lee2019 54명, λ = 1</div><div class="val"><span class="blue">0.040</span> 대 <span class="red">0.514</span></div><div class="sub">공격자 0.514는 같은 날 값<br>식별기 0.040은 세션 1 학습·<br>세션 2 채점 단일 값<br><span style="white-space:nowrap">Holm p = 8.9×10⁻²⁶</span></div></div>
     <div class="stat red"><div class="chips"><div class="chip cross">다른 날</div><div class="chip pre">사전등록 추정치</div></div><div class="lab">Lee2019 54명, 세션 1로 등록</div><div class="val"><span class="blue">0.040</span> 대 <span class="red">0.239</span></div><div class="sub">격차 19.9%p가 남는다</div></div>
   </div>
   <div class="foot">BEAT v2 · 운동상상 EEG 신원 노출 감사</div><div class="pg">5</div>
-  <aside class="notes">[약 60초] 첫 번째 함정입니다. 적대적 방어는 신원 식별기를 함께 학습시키고, 그 식별기가 못 맞히도록 인코더를 훈련합니다. 그 식별기 점수만 보면 9명에서 0.026, 우연보다도 낮습니다. 그런데 같은 출력으로 공격자를 새로 학습시키면 0.951을 맞힙니다. 54명 확증 주장 C1에서도 같은 날 독립 공격자는 0.514, 식별기는 0.040이었습니다. 식별기 0.040은 세션 1 학습·세션 2 채점 단일 값입니다. 그렇다면 공격자도 다른 날로 등록하면 어떨까요. 세션 1 기록으로 등록한 독립 공격자도 0.239를 맞혀, 식별기와의 격차가 19.9퍼센트포인트 남았습니다. 이 다른 날 값은 사전등록한 보조 시나리오의 값이고, 자체 판정 없이 보고합니다. 결론은 같습니다. 방어와 함께 학습된 식별기의 점수는 보호의 증거가 아닙니다.</aside>
+  <aside class="notes">[약 70초] 첫 번째 함정입니다. 적대적 방어는 식별기를 함께 학습시키고, 그 식별기를 속이도록 인코더를 훈련합니다. 9명에서 그 식별기는 0.026이었지만, 같은 출력으로 새로 학습시킨 공격자는 0.951을 맞힙니다. 54명 확증 주장 C1에서도 같은 날 독립 공격자는 0.514였고, 식별기 0.040은 세션 1 학습·세션 2 채점 단일 값입니다. 세션 1로 등록한 다른 날 공격자도 0.239를 맞혀 격차 19.9퍼센트포인트가 남았습니다. 이 값은 사전등록한 보조, 즉 다른 날 시나리오의 값이고 자체 판정 없이 보고합니다. 새 51명의 확증 판정 M2에서는 다른 날 격차가 0.093에서 0.096으로, 봉인한 하한 0.10에 못 미쳐 지지되지 않았습니다. 1일차 같은 날 격차는 0.717이었습니다. 함께 학습된 식별기의 점수는 보호의 증거가 아닙니다.</aside>
 </section>
 
 <section class="slide">
@@ -226,7 +241,7 @@ slide plan: 1 job: cover · move: 청중이 논지 한 문장을 잡는다 · co
   </div>
   <div class="note" style="position:absolute;left:96px;top:930px;width:1248px;font-size:24px">논문이 틀렸다는 뜻이 아니다. 공격자가 어느 날의 라벨을 갖느냐에 따라 보호 결론이 뒤집힌다</div>
   <div class="foot">BEAT v2 · 운동상상 EEG 신원 노출 감사</div><div class="pg">6</div>
-  <aside class="notes">[약 60초] 두 번째 함정입니다. arXiv에 사전공개된 논문의, 학습 없이 신호를 변환하는 방어를 재현했습니다. 논문의 공격자는 과거 기준 세션의 라벨만 가집니다. 즉 다른 날 기록으로 등록합니다. 이 조건에서는 식별률이 90.8퍼센트에서 11.1퍼센트로 떨어져, 논문 표의 접공간 SVM 값과 같게 재현됐습니다. 그런데 공격자가 같은 날, 즉 배포 기간의 출력 몇 개에 이름표를 붙일 수 있으면, 사용자당 1개로 81.75퍼센트, 5개로 97.11퍼센트가 다시 식별됩니다. 54명 확증 주장 C4에서도 다른 날인 기준 세션 공격은 1.34퍼센트였지만, 같은 날 배포 라벨 5개로는 92.7퍼센트가 됐습니다. 논문이 틀렸다는 뜻이 아닙니다. 공격자가 어느 날의 라벨을 갖느냐에 따라 결론이 뒤집힌다는 뜻입니다.</aside>
+  <aside class="notes">[약 60초] 두 번째 함정입니다. arXiv에 사전공개된, 학습 없이 신호를 변환하는 방어를 재현했습니다. 논문의 공격자는 과거 기준 세션의 라벨만 가집니다. 즉 다른 날 기록으로 등록합니다. 이 조건에서 식별률은 90.8퍼센트에서 11.1퍼센트로 떨어져, 논문 표의 접공간 SVM 값과 같게 재현됐습니다. 그런데 같은 날 배포 기간 출력 몇 개에 이름표를 붙이면, 사용자당 1개로 81.75퍼센트, 5개로 97.11퍼센트가 다시 식별됩니다. 54명 확증 주장 C4에서도 다른 날 기준 세션 공격은 1.34퍼센트, 같은 날 라벨 5개로는 92.7퍼센트였습니다. 논문이 틀린 것이 아니라, 공격자가 어느 날의 라벨을 갖느냐에 따라 결론이 뒤집힌다는 뜻입니다.</aside>
 </section>
 
 <section class="slide">
@@ -239,7 +254,7 @@ slide plan: 1 job: cover · move: 청중이 논지 한 문장을 잡는다 · co
     <div class="stat"><div class="chips"><div class="chip cross">다른 날</div><div class="chip expl">탐색 K</div></div><div class="lab">같은 설정, 보정일로 등록</div><div class="val">0.082 → 0.117</div><div class="sub">우연 0.019, Bayes 공격자 중 최강</div></div>
   </div>
   <div class="foot">BEAT v2 · 운동상상 EEG 신원 노출 감사</div><div class="pg">7</div>
-  <aside class="notes">[약 60초] 특징 대신 명령만 보내면 어떨까요. 명령 하나로는 거의 못 맞히지만, 같은 사람의 명령을 모으면 노출이 커집니다. 다만 54명 사전등록 검정 C3는 지지되지 않았습니다. 명령 20개에서 0.085, 우연의 4.6배였지만, 다중비교 보정 뒤 p가 0.21이었습니다. 이 판정은 그대로 둡니다. 이후 탐색 분석 K에서 정지 임계값 0.8, 베이즈 공격자로 다시 봤습니다. 같은 날에는 명령 20개에서 0.186, 100개에서 0.278이었고, 다른 날에는 0.082와 0.117이었습니다. 다른 날 값은 같은 날의 절반 이하입니다. 여기서도 등록한 날이 숫자를 바꿉니다.</aside>
+  <aside class="notes">[약 50초] 특징 대신 명령만 보내면 어떨까요. 명령 하나로는 거의 못 맞히지만, 같은 사람의 명령을 모으면 노출이 커집니다. 다만 54명 사전등록 검정 C3는 지지되지 않았습니다. 명령 20개에서 0.085, 우연의 4.6배였지만, 다중비교 보정 뒤 p가 0.21이었습니다. 이 판정은 그대로 둡니다. 이후 탐색 분석 K에서 정지 임계값 0.8, 베이즈 공격자로 다시 봤습니다. 같은 날에는 명령 20개에서 0.186, 100개에서 0.278이었고, 다른 날에는 0.082와 0.117이었습니다. 다른 날 값은 같은 날의 절반 이하입니다. 여기서도 등록한 날이 숫자를 바꿉니다.</aside>
 </section>
 
 <section class="slide">
@@ -275,7 +290,7 @@ slide plan: 1 job: cover · move: 청중이 논지 한 문장을 잡는다 · co
   </div>
   <div class="note" style="position:absolute;left:96px;top:858px;width:1690px;font-size:24px;line-height:1.4;color:#5B6470">탐색 K · Lee2019 P2-RC d = 8, τ = 0.8, 배포일. 유용성 = P(정답) − w·P(오답). EQ의 유용성 차이는 방어 없는 규칙 대비이며 재보정 효과가 섞여 있다. 재보정만 한 경우와 비교한 EQ 비용은 0.015 (구간 −0.002–0.032, Yang2025 1일차 같은 날, τ* = 0.60)</div>
   <div class="foot">BEAT v2 · 운동상상 EEG 신원 노출 감사</div><div class="pg">8</div>
-  <aside class="notes">[약 60초] 그래서 명령 노출을 줄이는 방어 EQ를 만들었습니다. 사람마다 같은 목표에 대해 내는 명령의 분포가 다르고, 이것이 지문 역할을 합니다. EQ는 사용자별 무작위 변환 행렬을 선형계획법으로 찾아서, 보정일 데이터의 혼동 행렬 기준으로 한 그룹 안 사용자들의 출력 분포를 똑같이 만듭니다. 그러면 보정일 기준으로는 그 그룹 안에서 누구인지 구별할 수 없습니다. 그런데 54명 전체를 한 그룹으로 묶으면 남는 해는 항상 정지뿐입니다. 유용성 0, 정지율 1입니다. 그래서 세 명 단위로 묶었습니다. 주의할 점이 두 가지 있습니다. 어느 그룹에 속하는지는 드러납니다. 그리고 방어 없음보다 유용성이 높아 보이는 것은 재보정 효과가 섞인 것이라, 방어의 이득으로 읽으면 안 됩니다.</aside>
+  <aside class="notes">[약 50초] 그래서 명령 노출을 줄이는 방어 EQ를 만들었습니다. 사람마다 같은 목표에 내는 명령의 분포가 달라서, 이것이 지문 역할을 합니다. EQ는 사용자별 무작위 변환 행렬을 선형계획법으로 찾아, 보정일 혼동 행렬 기준으로 그룹 안 사용자들의 출력 분포를 똑같이 만듭니다. 그러면 보정일 기준으로는 그룹 안에서 누구인지 구별할 수 없습니다. 54명 전체를 한 그룹으로 묶으면 남는 해는 항상 정지뿐이어서, 세 명씩 묶었습니다. 주의할 점은 두 가지입니다. 어느 그룹인지는 드러나고, 방어 없음보다 높아 보이는 유용성에는 재보정 효과가 섞여 있어 방어의 이득으로 읽으면 안 됩니다.</aside>
 </section>
 
 <section class="slide">
@@ -288,7 +303,7 @@ slide plan: 1 job: cover · move: 청중이 논지 한 문장을 잡는다 · co
     <div class="stat gray"><div class="chips"><div class="chip same">같은 날</div><div class="chip expl">탐색</div></div><div class="lab">남은 노출 0.138의 분해(별도 계산)</div><div class="val" style="font-size:34px">0.020 + 0.017 + 0.100</div><div class="sub">측정 바닥, 유한한 보정 데이터, 같은 날 시뮬레이션 밖의 몫</div></div>
   </div>
   <div class="foot">BEAT v2 · 운동상상 EEG 신원 노출 감사</div><div class="pg">9</div>
-  <aside class="notes">[약 75초] EQ는 보정일의 출력으로 맞췄습니다. 보정일 기록으로 등록한 공격자, 즉 다른 날 공격자에게 그룹 안 초과 식별은 0.112에서 0.009로 거의 사라졌습니다. 그런데 배포일 안에서 등록한 같은 날 공격자에게는 0.316에서 0.150으로, 절반 가까이 남았습니다. 같은 날 남은 노출을 따로 나누면 0.138입니다. 위의 0.150과 다른 것은 이 분해를 프런티어와 별도로 계산했기 때문입니다. 측정 바닥이 0.020, 유한한 보정 데이터 몫이 0.017이고, 나머지 0.100은 같은 날 시뮬레이션으로 설명되지 않습니다. 여기에는 날 간 변화, 해독기 차이, 시행 간 의존이 섞여 있어 드리프트만은 아닙니다. 또 K의 무작위 응답에는 재보정이 없었으므로, EQ와 같은 유용성에서 비교하는 것은 M의 추정치로 남겼습니다. 모두 탐색 결과입니다. 하루에 맞춘 방어는 그날을 같게 만들 뿐 사람은 같게 만들지 못하는 것이 아닌가, 이 질문을 새 데이터로 확인하려는 것이 다음 실험입니다.</aside>
+  <aside class="notes">[약 70초] EQ는 보정일 출력으로 맞췄습니다. 보정일로 등록한 다른 날 공격자에게 그룹 안 초과 식별은 0.112에서 0.009로 거의 사라졌습니다. 그런데 배포일 안에서 등록한 같은 날 공격자에게는 0.316에서 0.150으로 절반 가까이 남았습니다. 이 잔여를 따로 분해하면 0.138인데, 프런티어와 별도로 계산해서 0.150과 다릅니다. 측정 바닥 0.020과 유한한 보정 데이터 몫 0.017을 빼면, 0.100은 같은 날 시뮬레이션으로 설명되지 않습니다. 여기에는 날 간 변화, 해독기 차이, 시행 간 의존, 그리고 Lee2019에서는 같은 날 공격자가 쓴 배포 구간 사이의 오프라인에서 온라인으로의 단계 전환이 섞여 있습니다. 모두 탐색 결과입니다. 하루에 맞춘 방어는 그날을 같게 만들 뿐 사람은 같게 만들지 못하는 것 아닌가, 이 질문이 다음 실험으로 이어집니다. [질문이 나오면: K의 무작위 응답에는 재보정이 없었으므로, EQ와 같은 유용성에서의 비교는 M의 추정치로 남겼습니다.]</aside>
 </section>
 
 <section class="slide">
@@ -312,24 +327,25 @@ slide plan: 1 job: cover · move: 청중이 논지 한 문장을 잡는다 · co
     </table></div>
   </div>
   <div class="foot">BEAT v2 · 자료: docs/preregistration_m.md §6–§7, seals/manifest.yaml</div><div class="pg">10</div>
-  <aside class="notes">[약 60초] 그래서 새 사용자 51명, 3일 기록으로 확증 실험 M을 설계했습니다. 1일차만 열어서 해독기와 기준을 정했고, 2–3일차 기록 데이터는 봉인 전에 요청하지 않았습니다. 파일 이름과 크기 목록을 본 사실은 사전등록에 공개했습니다. 주장은 세 개입니다. M1은 원 특징의 다른 날 식별, M2는 독립 공격자와 공동 학습 식별기의 격차, M3는 명령에서 본인의 순위가 관찰 길이에 따라 높아지는지입니다. 세 주장을 Holm 보정으로 함께 판정합니다. 이 계획을 커밋 e88154c로 봉인했고, 그 커밋에 FreeTSA 시각 인증을 받았습니다. 검정력은 같은 날 효과의 55퍼센트가 남으면 0.85입니다. EQ와 무작위 응답은 판정 없이 추정치로만 보고합니다.</aside>
+  <aside class="notes">[약 55초] 그래서 새 사용자 51명, 3일 기록으로 확증 실험 M을 설계했습니다. 1일차만 열어 해독기와 기준을 정했고, 2–3일차 기록은 봉인 전에 요청하지 않았습니다. 파일 이름과 크기 목록을 본 사실은 사전등록에 공개했습니다. 주장은 세 개입니다. M1은 원 특징의 다른 날 식별, M2는 독립 공격자와 공동 학습 식별기의 격차, M3는 관찰 길이에 따른 본인 순위의 상승입니다. 세 주장은 Holm 보정으로 함께 판정했습니다. 계획은 커밋 e88154c로 봉인하고 FreeTSA 시각 인증을 받았습니다. 검정력은 같은 날 효과의 55퍼센트가 남으면 0.85였습니다. EQ와 무작위 응답은 판정 없는 추정치입니다.</aside>
 </section>
 
 <section class="slide">
   <div class="kicker">사전등록 M · 결과</div>
-  <div class="title">사전등록은 시각 인증까지 끝났고, 결과는 아직 없다</div>
-  <table style="position:absolute;left:96px;top:220px;width:1728px;border-collapse:collapse;font-size:24px;line-height:1.4">
-    <tr style="background:#14202E;color:#FFFFFF"><th style="text-align:left;padding:16px 18px;width:110px">주장</th><th style="text-align:left;padding:16px 18px;width:640px">사전등록한 문구</th><th style="text-align:left;padding:16px 18px;width:560px">판정 기준 (1일차로 등록, 2–3일차 공격)</th><th style="text-align:left;padding:16px 18px;width:200px">결과</th><th style="text-align:left;padding:16px 18px">판정</th></tr>
-    <tr style="background:#F4F7FA"><td style="padding:20px 18px;font-weight:700">M1</td><td style="padding:20px 18px">원 특징의 다른 날 식별(사전등록상 저위험 재현)</td><td style="padding:20px 18px">가장 강한 공격자의 평균 재현율 &gt; 10/51<br>(공격자 3종 Bonferroni)</td><td style="padding:20px 18px;color:#5B6470">—</td><td style="padding:20px 18px;font-weight:700;color:#5B6470">결과 대기</td></tr>
-    <tr><td style="padding:20px 18px;font-weight:700">M2</td><td style="padding:20px 18px">독립 공격자와 공동 학습 head의 격차가<br>0보다 크고 관측값이 0.10 이상</td><td style="padding:20px 18px">P3 λ = 1, 관측 격차 ≥ 0.10인 공격자만<br>격차 &gt; 0 단측 검정</td><td style="padding:20px 18px;color:#5B6470">—</td><td style="padding:20px 18px;font-weight:700;color:#5B6470">결과 대기</td></tr>
-    <tr style="background:#F4F7FA"><td style="padding:20px 18px;font-weight:700">M3</td><td style="padding:20px 18px">본인의 순위가 우연보다 높고<br>명령 1개일 때보다 높다</td><td style="padding:20px 18px">P2-RC d = 8, τ* = 0.60, 명령 50개에서<br>순위 &gt; 0.5 그리고 명령 1개보다 높음</td><td style="padding:20px 18px;color:#5B6470">—</td><td style="padding:20px 18px;font-weight:700;color:#5B6470">결과 대기</td></tr>
+  <div class="title">새 사용자 51명, 다른 날: 사전등록한 주장 3개 중 2개가 지지됐다</div>
+  <div class="chips" style="position:absolute;left:96px;top:246px;align-items:center"><div class="chip cross">다른 날</div><div class="chip conf">확증 M1–M3</div><div style="font-size:24px;color:#3A4450;margin-left:8px">1일차로 등록, 2–3일차 공격 · Holm α = 0.05 · 독립 재계산 통과</div></div>
+  <table style="position:absolute;left:96px;top:298px;width:1728px;border-collapse:collapse;font-size:24px;line-height:1.4">
+    <tr style="background:#14202E;color:#FFFFFF"><th style="text-align:left;padding:14px 18px;width:90px">주장</th><th style="text-align:left;padding:14px 18px;width:700px">사전등록한 문구 · 판정 기준</th><th style="text-align:left;padding:14px 18px;width:760px">결과</th><th style="text-align:left;padding:14px 18px">판정</th></tr>
+    <tr style="background:#F4F7FA"><td style="padding:16px 18px;font-weight:700">M1</td><td style="padding:16px 18px">원 특징의 다른 날 식별(사전등록상 저위험 재현)<div style="color:#5B6470;margin-top:6px">기준: 최강 공격자 평균 재현율 &gt; 10/51 (3종 Bonferroni)</div></td><td style="padding:16px 18px">로지스틱 공격자 재현율 0.345 대 10/51 = 0.196<br>Holm p = 0.014</td><td style="padding:16px 18px;font-weight:700;color:#0B4F80">지지</td></tr>
+    <tr><td style="padding:16px 18px;font-weight:700">M2</td><td style="padding:16px 18px">독립 공격자와 공동 학습 head의 격차가<br>0보다 크고 관측값이 0.10 이상<div style="color:#5B6470;margin-top:6px">기준: P3 λ = 1, 관측 격차 ≥ 0.10인 공격자만 검정</div></td><td style="padding:16px 18px">격차 0.093–0.096: 모두 0보다 크지만<br>봉인한 관측 하한 0.10 미만<br>→ 검정한 공격자 없음, 규칙상 p = 1</td><td style="padding:16px 18px;font-weight:700;color:#9A3F00">지지 안 됨</td></tr>
+    <tr style="background:#F4F7FA"><td style="padding:16px 18px;font-weight:700">M3</td><td style="padding:16px 18px">본인의 순위가 우연보다 높고 명령 1개일 때보다 높다<div style="color:#5B6470;margin-top:6px">기준: P2-RC d = 8, τ* = 0.60, 명령 50개, 순위 &gt; 0.5</div></td><td style="padding:16px 18px">순위 0.649 대 명령 1개 0.538, Holm p = 1.1×10⁻⁴<br><span style="color:#5B6470">순위는 식별률이 아니다: top-1 0.061</span></td><td style="padding:16px 18px;font-weight:700;color:#0B4F80">지지</td></tr>
   </table>
-  <div style="position:absolute;left:96px;top:660px;width:1690px;display:flex;flex-direction:column;gap:20px">
-    <div class="note">가족: M1–M3, Holm α = 0.05. EQ와 무작위 응답(RR): 사전등록한 추정치, 판정 없음</div>
-    <div class="note">결과마다 쓸 문장은 결과를 보기 전에 결정 로그에 고정했다 (커밋 7b14cee). C3는 어떤 경우에도 지지 안 됨으로 남는다</div>
+  <div style="position:absolute;left:96px;top:790px;width:1728px;display:flex;flex-direction:column;gap:14px">
+    <div class="note"><b>EQ와 무작위 응답(RR): 사전등록한 추정치, 판정 없음.</b> EQ 격자(g = 3): τ* 명령 50개에서 공격자 4종 중 3종이 K와 같은 방향 · 명령 20개에서는 감소가 0과 구별되지 않음 · τ 0.5에서는 막을 노출이 구별되지 않음 (백업 B8)</div>
+    <div class="note" style="color:#5B6470">결과마다 쓸 문장은 결과를 보기 전에 결정 로그에 고정했다 (커밋 7b14cee). C3는 지지 안 됨으로 남는다</div>
   </div>
-  <div class="foot">BEAT v2 · 판정이 나오면 이 표의 결과와 판정 칸만 채운다</div><div class="pg">11</div>
-  <aside class="notes">[약 45초] 결과입니다. 사전등록은 시각 인증까지 끝났고, 결과는 아직 없습니다. 그래서 오늘은 이 실험의 숫자를 보여 드리지 않습니다. 표의 결과 칸은 비어 있고, 판정이 나오면 이 자리에 그대로 채웁니다. 결과에 따라 어떤 문장으로 보고할지도 결과를 보기 전에 결정 로그에 고정해 두었습니다. 모두 지지, 일부 지지, 모두 미지지, 그리고 지금처럼 결과가 없는 경우입니다. 어떤 경우에도 C3는 지지 안 됨으로 남습니다.</aside>
+  <div class="foot">BEAT v2 · 자료: results/exp_m/decision.json, final_estimates_*.csv</div><div class="pg">11</div>
+  <aside class="notes">[약 70초] 새 51명을 1일차로 등록하고 2–3일차를 공격한 다른 날 조건에서, 사전등록한 주장 3개 중 2개가 지지됐습니다. M1, 원 특징의 다른 날 식별은 로지스틱 공격자의 재현율이 0.345로 기준 0.196을 넘었고, Holm p는 0.014입니다. M3도 지지됐습니다. 명령 50개에서 본인의 순위는 0.649로, 명령 1개일 때 0.538보다 높았습니다. 다만 순위는 식별률이 아닙니다. 1순위로 맞힌 비율은 0.061입니다. M2는 지지되지 않았습니다. 격차는 0.093에서 0.096으로 모두 양수였지만, 봉인한 관측 하한 0.10에 못 미쳐 규칙상 검정할 공격자가 없었습니다. 격차가 없다는 뜻은 아닙니다. EQ는 판정 없는 추정치라 격자 전체로 읽습니다. 명령 50개에서는 공격자 넷 중 셋이 K와 같은 방향이었고, 명령 20개에서는 감소가, τ 0.5에서는 막을 노출이 구별되지 않았습니다.</aside>
 </section>
 
 <section class="slide">
@@ -354,7 +370,7 @@ slide plan: 1 job: cover · move: 청중이 논지 한 문장을 잡는다 · co
     <div style="display:flex;align-items:center;gap:22px"><i data-icon="shield" data-sw="2" style="width:52px;height:52px;color:#0072B2;flex:none"></i><div style="font-size:24px;line-height:1.5;color:#3A4450"><span style="font-size:26px;font-weight:700;color:#1B1F24">EQ 보장의 범위</span><br>맞춘 보정일 혼동 행렬에만 정확하고, 그룹 소속은 드러난다</div></div>
   </div>
   <div class="foot">BEAT v2 · 전체 체크리스트는 기술보고서 §9</div><div class="pg">12</div>
-  <aside class="notes">[약 60초] 보호를 주장하려면 적어도 여섯 가지를 확인해야 합니다. 독립 공격자로 다시 공격하고, 배포 기간 라벨을 가진 공격자를 시험하고, 같은 날과 다른 날을 모두 보고하고, 우연 수준과 사용자 수를 함께 밝히고, 단순한 기준선과 비교하고, 관찰 길이를 늘리되 분석은 채점 전에 봉인하는 것입니다. 세 번째가 오늘 새로 더한 항목입니다. 한계도 분명합니다. 닫힌 집합 식별이고, 로봇팔은 기록된 뇌파를 재생했습니다. 더 강한 공격자가 있을 수 있어 저희 수치는 노출의 하한입니다. K와 R을 비롯한 일부 분석은 이미 본 데이터를 다시 쓴 탐색 결과이고, 봉인 1부터 3과 접근 기록은 자기 증명입니다. EQ의 보장은 맞춘 보정일의 혼동 행렬에만 정확하고, 그룹 소속은 드러납니다.</aside>
+  <aside class="notes">[약 55초] 보호를 주장하려면 적어도 여섯 가지를 확인해야 합니다. 독립 공격자로 다시 공격하고, 배포 기간 라벨을 가진 공격자를 시험하고, 같은 날과 다른 날을 모두 보고하고, 우연 수준과 사용자 수를 밝히고, 단순한 기준선과 비교하고, 관찰 길이를 늘리되 채점 전에 봉인하는 것입니다. 세 번째가 오늘 새로 더한 항목입니다. 한계도 있습니다. 닫힌 집합 식별이고, 로봇팔은 기록된 뇌파를 재생했습니다. 더 강한 공격자가 있을 수 있어 수치는 하한입니다. K와 R 등 일부는 이미 본 데이터를 다시 쓴 탐색 결과이고, 봉인 1부터 3과 접근 기록은 자기 증명입니다. EQ의 보장은 맞춘 보정일의 혼동 행렬에만 정확하고, 그룹 소속은 드러납니다.</aside>
 </section>
 
 <section class="slide" style="background:#0E2238">
@@ -362,8 +378,8 @@ slide plan: 1 job: cover · move: 청중이 논지 한 문장을 잡는다 · co
   <div style="position:absolute;left:120px;top:146px;width:1680px;font-size:44px;line-height:1.3;font-weight:700;color:#FFFFFF;text-wrap:balance">BCI 전송물의 신원 노출과 방어 효과는 공격자가 어느 날의 기록으로 등록하느냐에 따라 달라지므로, 같은 날 수치 하나로는 위험도 보호도 주장할 수 없다</div>
   <div style="position:absolute;left:120px;top:380px;width:1680px;display:flex;flex-direction:column;gap:40px">
     <div style="display:flex;gap:30px;align-items:baseline"><div style="font-size:44px;font-weight:700;color:#F0A35E;width:60px;flex:none">1</div><div style="font-size:30px;line-height:1.45;color:#FFFFFF">같은 날 0.994였던 식별이 다른 날 등록에서는 0.520이었다. 낮아졌지만 우연 0.019보다 훨씬 높다</div></div>
-    <div style="display:flex;gap:30px;align-items:baseline"><div style="font-size:44px;font-weight:700;color:#F0A35E;width:60px;flex:none">2</div><div style="font-size:30px;line-height:1.45;color:#FFFFFF">두 함정은 54명의 같은 날 조건에서 확증됐고 함정 1은 다른 날에도 19.9%p 격차가 남았다. EQ의 보장은 맞춘 날에만 정확했다 (탐색)</div></div>
-    <div style="display:flex;gap:30px;align-items:baseline"><div style="font-size:44px;font-weight:700;color:#F0A35E;width:60px;flex:none">3</div><div style="font-size:30px;line-height:1.45;color:#FFFFFF">다른 날 재현은 봉인된 상태이며 결과는 나오는 대로 그대로 공개한다</div></div>
+    <div style="display:flex;gap:30px;align-items:baseline"><div style="font-size:44px;font-weight:700;color:#F0A35E;width:60px;flex:none">2</div><div style="font-size:30px;line-height:1.45;color:#FFFFFF">두 함정은 54명의 같은 날 조건에서 확증됐다(함정 1의 다른 날 격차 19.9%p는 사전등록 추정치).<br>EQ의 보장은 맞춘 날에만 정확했다 (탐색)</div></div>
+    <div style="display:flex;gap:30px;align-items:baseline"><div style="font-size:44px;font-weight:700;color:#F0A35E;width:60px;flex:none">3</div><div style="font-size:30px;line-height:1.45;color:#FFFFFF">다른 날에는 M1·M3만 재현됐다. M2는 같은 날 조건의 결과로 남는다</div></div>
   </div>
   <div style="position:absolute;left:120px;top:810px;width:1680px;display:flex;gap:24px">
     <div style="padding:12px 26px;border-radius:999px;border:2px solid #4D79A6;font-size:24px;color:#DCE8F4">GitHub 저장소 · CI</div>
@@ -372,7 +388,7 @@ slide plan: 1 job: cover · move: 청중이 논지 한 문장을 잡는다 · co
     <div style="padding:12px 26px;border-radius:999px;border:2px solid #4D79A6;font-size:24px;color:#DCE8F4">한국어 해설서</div>
   </div>
   <div style="position:absolute;left:120px;top:930px;font-size:30px;font-weight:700;color:#FFFFFF">감사합니다. 질문을 받겠습니다</div>
-  <aside class="notes">[약 45초] 정리하겠습니다. 같은 날 0.994였던 식별이 다른 날 등록에서는 0.520이었습니다. 낮아졌지만 우연보다 훨씬 높습니다. 두 함정은 54명의 같은 날 조건에서 확증됐고, 함정 1은 다른 날에도 19.9퍼센트포인트 격차가 남았습니다. EQ의 보장도 맞춘 날에만 정확했습니다. 그리고 다른 날 재현은 봉인된 상태이며, 결과는 나오는 대로 그대로 공개하겠습니다. 그래서 신원 노출이든 방어든, 같은 날 수치 하나로는 주장할 수 없습니다. 감사합니다. 질문을 받겠습니다. [발표하지 않음: 리허설이 13분을 넘으면 생략 순서는 정보량 백업, RR 세부, MLP 재적합, EEGNet 언급, EQ-marginal과 g 비교, H1/H2 표, 슬라이드 8–9 병합, 11의 M 추정치 순이다. 슬라이드 4, C3 문장, 한계 줄은 빼지 않는다.]</aside>
+  <aside class="notes">[약 45초] 정리하겠습니다. 같은 날 0.994였던 식별이 다른 날 등록에서는 0.520이었습니다. 낮아졌지만 우연보다 훨씬 높습니다. 두 함정은 54명의 같은 날 조건에서 확증됐고, 함정 1의 다른 날 격차 19.9퍼센트포인트는 사전등록 추정치입니다. EQ의 보장도 맞춘 날에만 정확했습니다. 그리고 새 51명의 다른 날에는 M1과 M3만 재현됐고, M2는 같은 날 조건의 결과로 남습니다. 그래서 신원 노출이든 방어든, 같은 날 수치 하나로는 주장할 수 없습니다. 감사합니다. 질문을 받겠습니다. [발표하지 않음: 슬라이드 1–13 발표 메모 합계 약 12분 20초(초당 4.5음절). 리허설이 13분을 넘으면 생략 순서는 정보량 백업, RR 세부(슬라이드 9에서는 이미 질문 대비 메모로 옮김), MLP 재적합, EEGNet 언급, EQ-marginal과 g 비교(슬라이드 8의 g = 전체 문장), H1/H2 표, 슬라이드 8–9 병합, 11의 M 추정치(EQ 격자 문장) 순이다. 슬라이드 4, C3 문장, 한계 줄은 빼지 않는다.]</aside>
 </section>
 
 <section class="slide">
@@ -481,6 +497,32 @@ slide plan: 1 job: cover · move: 청중이 논지 한 문장을 잡는다 · co
   </div>
   <div class="foot">BEAT v2 · 질의응답용 백업 · 자료: results/exp_m/seal4_timestamp/verification.json</div><div class="pg">B7</div>
   <aside class="notes">[질의응답용] 봉인 커밋 ID의 SHA-256을 FreeTSA에 보내 시각 토큰을 받았습니다. 저장소의 토큰과 인증서로 OpenSSL ts -verify를 실행하면 누구나 Verification OK를 확인할 수 있습니다. 토큰은 커밋이 그 시각 이전에 있었다는 것만 증명하고, 다운로드 기록 자체는 자기 증명입니다.</aside>
+</section>
+
+<section class="slide">
+  <div class="kicker">백업 B8 · M의 EQ 추정치 (판정 없음)</div>
+  <div class="title">새 51명에서 EQ 추정치는 칸 하나가 아니라 격자 전체로 읽고, 유용성 비교에는 단서가 붙는다</div>
+  <div class="chips" style="position:absolute;left:96px;top:250px;align-items:center"><div class="chip cross">다른 날</div><div class="chip pre">사전등록 추정치</div><div style="font-size:24px;color:#3A4450;margin-left:8px">그룹 안 초과 식별, g = 3, 1일차로 등록</div></div>
+  <table style="position:absolute;left:96px;top:302px;width:1090px;border-collapse:collapse;font-size:24px;line-height:1.3">
+    <tr style="background:#14202E;color:#FFFFFF"><th style="text-align:left;padding:12px 14px;width:190px">τ · 명령 수</th><th style="text-align:left;padding:12px 14px;width:225px">범주형<br>목표 모름</th><th style="text-align:left;padding:12px 14px;width:225px">범주형<br>목표 앎</th><th style="text-align:left;padding:12px 14px;width:225px">Markov<br>목표 모름</th><th style="text-align:left;padding:12px 14px">Markov<br>목표 앎</th></tr>
+    <tr><td style="padding:12px 14px;font-weight:700;background:#F4F7FA">τ* = 0.60<br>명령 50개</td><td style="padding:12px 14px;color:#3A4450;border:2px solid #FFFFFF;background:#E3E8EE">감소가 0과<br>구별 안 됨</td><td style="padding:12px 14px;font-weight:700;color:#0B4F80;border:2px solid #FFFFFF;background:#D6E9F7">K와 같은<br>방향</td><td style="padding:12px 14px;font-weight:700;color:#0B4F80;border:2px solid #FFFFFF;background:#D6E9F7">K와 같은<br>방향</td><td style="padding:12px 14px;font-weight:700;color:#0B4F80;border:2px solid #FFFFFF;background:#D6E9F7">K와 같은<br>방향</td></tr>
+    <tr><td style="padding:12px 14px;font-weight:700;background:#F4F7FA">τ* = 0.60<br>명령 20개</td><td style="padding:12px 14px;color:#5B6470;border:2px solid #FFFFFF;background:#F4F7FA">막을 노출<br>구별 안 됨</td><td style="padding:12px 14px;color:#3A4450;border:2px solid #FFFFFF;background:#E3E8EE">감소가 0과<br>구별 안 됨</td><td style="padding:12px 14px;color:#3A4450;border:2px solid #FFFFFF;background:#E3E8EE">감소가 0과<br>구별 안 됨</td><td style="padding:12px 14px;color:#3A4450;border:2px solid #FFFFFF;background:#E3E8EE">감소가 0과<br>구별 안 됨</td></tr>
+    <tr><td style="padding:12px 14px;font-weight:700;background:#F4F7FA">τ = 0.5<br>명령 50개</td><td style="padding:12px 14px;color:#5B6470;border:2px solid #FFFFFF;background:#F4F7FA">막을 노출<br>구별 안 됨</td><td style="padding:12px 14px;color:#5B6470;border:2px solid #FFFFFF;background:#F4F7FA">막을 노출<br>구별 안 됨</td><td style="padding:12px 14px;color:#5B6470;border:2px solid #FFFFFF;background:#F4F7FA">막을 노출<br>구별 안 됨</td><td style="padding:12px 14px;color:#5B6470;border:2px solid #FFFFFF;background:#F4F7FA">막을 노출<br>구별 안 됨</td></tr>
+    <tr><td style="padding:12px 14px;font-weight:700;background:#F4F7FA">τ = 0.5<br>명령 20개</td><td style="padding:12px 14px;color:#5B6470;border:2px solid #FFFFFF;background:#F4F7FA">막을 노출<br>구별 안 됨</td><td style="padding:12px 14px;color:#5B6470;border:2px solid #FFFFFF;background:#F4F7FA">막을 노출<br>구별 안 됨</td><td style="padding:12px 14px;color:#5B6470;border:2px solid #FFFFFF;background:#F4F7FA">막을 노출<br>구별 안 됨</td><td style="padding:12px 14px;color:#5B6470;border:2px solid #FFFFFF;background:#F4F7FA">막을 노출<br>구별 안 됨</td></tr>
+  </table>
+  <div style="position:absolute;left:96px;top:766px;width:1090px;display:flex;flex-direction:column;gap:14px;font-size:24px;line-height:1.35;color:#3A4450">
+    <div><b style="color:#0B4F80">K와 같은 방향</b>: 감소 구간이 0을 제외 · <b>감소가 0과 구별 안 됨</b>: 막을 노출은 구별됐지만 EQ의 감소는 0과 구별되지 않았다 · <b>막을 노출 구별 안 됨</b>: EQ 효과를 말할 수 없다</div>
+    <div style="color:#5B6470">예시(τ*, 명령 50개, 범주형 목표 앎): 방어 없음 0.101 [0.022, 0.181] → EQ −0.008 [−0.058, 0.042], 감소 0.109 [0.007, 0.211]</div>
+  </div>
+  <div style="position:absolute;left:1250px;top:250px;width:574px;display:flex;flex-direction:column;gap:18px">
+    <div style="font-size:28px;font-weight:700;color:#D55E00">유용성 단서 (2–3일차, τ* = 0.60)</div>
+    <div class="stat gray" style="padding-top:0;padding-bottom:0"><div class="note" style="line-height:1.35">방어 없음 가중 유용성 −0.041 [−0.086, 0.004]는 0을 포함한다 (w = 1.5).<br>순진행 P(정답) − P(오답)은<br>+0.073 [0.039, 0.106]</div></div>
+    <div class="stat gray" style="padding-top:0;padding-bottom:0"><div class="note" style="line-height:1.35">정지율 0.723(1일차, 교차 적합 모델)과<br>0.473(2–3일차, 최종 모델)은 다른 모델의 값이다. 1일차에 맞춘 τ 규칙은 이후 날에 덜 멈추고 더 틀린다 (오답 0.092 → 0.227)</div></div>
+    <div class="stat red" style="padding-top:0;padding-bottom:0"><div class="note" style="line-height:1.35">EQ의 프라이버시 비용은 순진행 기준 +0.022 [0.012, 0.032]다. 가중 유용성 기준 −0.009 [−0.026, 0.008]은 0을 포함한다</div></div>
+    <div class="note" style="line-height:1.35;color:#5B6470">해독기가 해롭다거나 EQ의 프라이버시가 공짜라고 읽지 않는다</div>
+  </div>
+  <div class="foot">BEAT v2 · 질의응답용 백업 · 자료: results/exp_m/final_estimates_*.csv</div><div class="pg">B8</div>
+  <aside class="notes">[질의응답용] 새 51명에서 EQ는 판정 없는 사전등록 추정치이고, 칸 하나가 아니라 사전등록한 격자 전체로 읽습니다. τ* 명령 50개에서는 공격자 넷 중 셋에서 감소 구간이 0을 벗어나 K와 같은 방향이었습니다. 명령 20개에서는 모든 공격자에서 감소가 0과 구별되지 않았고, τ 0.5에서는 막을 노출 자체가 구별되지 않아 EQ 효과를 말할 수 없습니다. 유용성은 방어 없음의 가중 유용성 구간이 0을 포함하고, 순진행은 양수입니다. 정지율 0.723과 0.473은 서로 다른 모델의 값입니다. 1일차에 맞춘 규칙이 이후 날에 덜 멈추고 더 틀린 것이지, 해독기가 사용자에게 해롭다는 뜻은 아닙니다. EQ의 비용은 순진행 기준 0.022로 0보다 커서, 프라이버시가 공짜라고 말하지 않습니다.</aside>
 </section>
 
 </body></html>

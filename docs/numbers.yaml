@@ -16,6 +16,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.994"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["근거: 자체 핵심 수치(같은 날 0.994, 다른 날 0.520), 자체 방어 EQ, 그리고 새 사용자 51명에", "가공하지 않은 특징은 같은 날 0.994, 다른 날 0.520으로 사용자를 식별한다", "t-size:110px;line-height:1.1;font-weight:700;color:#D55E00\">0.994</div>", "C2 확증 (같은 날): 0.994 → 0.340, 과제 정확도 변화 −0.6%p (하한 −2.3%p, 허", "초] 아무 방어 없이 210차원 특징을 보내면, 54명에서 균형 정확도 0.994(사용자별 재현율의 평균)가 나옵니다. 그런데 이 0.994는 같은 날", "균형 정확도 0.994(사용자별 재현율의 평균)가 나옵니다. 그런데 이 0.994는 같은 날 수치입니다. 같은 날 기록의 한 부분으로 등록하고 다른 부분", "화 병목으로, 같은 날 0.340, 다른 날 0.054입니다. 같은 날 0.994를 0.340으로 낮춘 것이 확증 주장 C2였고, 과제 정확도 손실은 0", "같은 날 0.994였던 식별이 다른 날 등록에서는 0.520이었다. 낮아졌지만 우연 0.0", "[약 45초] 정리하겠습니다. 같은 날 0.994였던 식별이 다른 날 등록에서는 0.520이었습니다. 낮아졌지만 우연보다"]
       README.md: ["Within-day 0.994 → 0.340 (cross-day 0.520 → 0.054)", "identity BA from 0.994 to 0.340"]
       docs/report.md: ["0.994 identity BA within a day and 0.520 across days", "0.520 rather than 0.994"]
       docs/explainer_ko.md: ["210차원 접공간 특징이 0.994(우연 0.0185)"]
@@ -27,6 +28,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.520"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["근거: 자체 핵심 수치(같은 날 0.994, 다른 날 0.520), 자체 방어 EQ, 그리고 새 사용자 51명에 대한", "가공하지 않은 특징은 같은 날 0.994, 다른 날 0.520으로 사용자를 식별한다", "t-size:110px;line-height:1.1;font-weight:700;color:#D55E00\">0.520</div>", "분으로 등록하고 다른 부분을 맞힌 값입니다. 다른 날 기록으로 등록하면 0.520으로 내려갑니다. 절반 가까이 떨어졌지만 우연 수준 0.019보다는 훨씬", "같은 날 0.994였던 식별이 다른 날 등록에서는 0.520이었다. 낮아졌지만 우연 0.019보다 훨씬 높다", "초] 정리하겠습니다. 같은 날 0.994였던 식별이 다른 날 등록에서는 0.520이었습니다. 낮아졌지만 우연보다 훨씬 높습니다. 두 함정은 54명의 같은"]
       docs/explainer_ko.md: ["| 0.520 | 같은 특징(RBF SVM 0.510, MLP 0.368) | 다른 날 | 사전등록 추정치 |"]
       README.md: ["and 0.520 on 54 users", "| L | 0.994 | 0.520 | within: *confirmatory-sealed* (L, C2); cross: *pre-registered estimate* |"]
       docs/report.md: ["the full tangent vector gives 0.520 (logistic regression; 0.510 RBF-SVM, 0.368 MLP)",
@@ -56,6 +58,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.340"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["t-size:110px;line-height:1.1;font-weight:700;color:#007A5A\">0.340</div>", "C2 확증 (같은 날): 0.994 → 0.340, 과제 정확도 변화 −0.6%p (하한 −2.3%p, 허용 한계 −5%", "는 훨씬 높습니다. 아래 줄은 저희 방어인 재중심화 병목으로, 같은 날 0.340, 다른 날 0.054입니다. 같은 날 0.994를 0.340으로 낮춘", "같은 날 0.340, 다른 날 0.054입니다. 같은 날 0.994를 0.340으로 낮춘 것이 확증 주장 C2였고, 과제 정확도 손실은 0.6퍼센트포인"]
       docs/explainer_ko.md: ["| 0.340 / 0.054 | 재중심화 병목 P2-RC d = 8 |"]
       README.md: ["identity BA from 0.994 to 0.340 at −0.6 pp task BA"]
       docs/report.md: ["lowered identity BA from 0.994 to 0.340, still 18 times chance"]
@@ -68,6 +71,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.054"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["t-size:110px;line-height:1.1;font-weight:700;color:#007A5A\">0.054</div>", "래 줄은 저희 방어인 재중심화 병목으로, 같은 날 0.340, 다른 날 0.054입니다. 같은 날 0.994를 0.340으로 낮춘 것이 확증 주장 C2였"]
       docs/explainer_ko.md: ["| 0.340 / 0.054 | 재중심화 병목 P2-RC d = 8 |"]
       README.md: ["(cross-day 0.520 → 0.054)"]
       docs/report.md: ["P2-RC $d = 8$ gives 0.054 (MLP)"]
@@ -77,6 +81,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.514"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["s=\"val\"><span class=\"blue\">0.040</span> 대 <span class=\"red\">0.514</span", "공격자 0.514는 같은 날 값", "951을 맞힙니다. 54명 확증 주장 C1에서도 같은 날 독립 공격자는 0.514였고, 식별기 0.040은 세션 1 학습·세션 2 채점 단일 값입니다."]
       docs/explainer_ko.md: ["| head 0.040 / 독립 0.514 |"]
       README.md: ["strongest within-day attacker's 0.514 against", "Within-day 0.514 vs 0.040 (47.4 pp)"]
       docs/report.md: ["the co-trained head scored 0.040 against 0.514 for independent attackers"]
@@ -133,6 +138,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.085"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["τ = 0.5, 명령 20개에서 0.085", "다만 54명 사전등록 검정 C3는 지지되지 않았습니다. 명령 20개에서 0.085, 우연의 4.6배였지만, 다중비교 보정 뒤 p가 0.21이었습니다. 이", "명령 20개 0.085, Holm p = 0.21"]
       docs/explainer_ko.md: ["| C3 0.085, p = 0.21 |"]
       README.md: ["Within-day 0.085 vs 0.037", "rises from 0.037 to 0.085 at 20 commands"]
       docs/report.md: ["0.085 at 20 commands within a day"]
@@ -239,6 +245,7 @@ numbers:
     format: {kind: fixed, digits: 2}
     text: "0.21"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["보정 뒤 Holm p = 0.21", "20개에서 0.085, 우연의 4.6배였지만, 다중비교 보정 뒤 p가 0.21이었습니다. 이 판정은 그대로 둡니다. 이후 탐색 분석 K에서 정지 임계", "명령 20개 0.085, Holm p = 0.21"]
       docs/explainer_ko.md: ["| C3 0.085, p = 0.21 |"]
       README.md: ["(Holm p = 0.21)", "| Holm 0.21 |"]
       docs/report.md: ["Holm p = 0.21)"]
@@ -248,6 +255,7 @@ numbers:
     format: {kind: fixed, digits: 1, scale: 100}
     text: "92.7"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["1.34% → 92.7%", "서도 다른 날 기준 세션 공격은 1.34퍼센트, 같은 날 라벨 5개로는 92.7퍼센트였습니다. 논문이 틀린 것이 아니라, 공격자가 어느 날의 라벨을 갖"]
       docs/explainer_ko.md: ["| 1.34% → 92.7% |"]
       README.md: ["five labels reach 92.7% within a day", "92.7% within-day"]
       docs/report.md: ["five labels re-identified the defended output at 92.7%"]
@@ -332,6 +340,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.186"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.186 → 0.278", "0.8, 베이즈 공격자로 다시 봤습니다. 같은 날에는 명령 20개에서 0.186, 100개에서 0.278이었고, 다른 날에는 0.082와 0.117이었"]
       docs/explainer_ko.md: ["| K 같은 날 0.186 → 0.278 |"]
       README.md: ["| L | 0.186 / 0.278 | 0.082 / 0.117 | *exploratory* (K) |",
                   "reaches 0.186 at 20 commands and 0.278 at 100 within a day"]
@@ -343,6 +352,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.278"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.186 → 0.278", "다시 봤습니다. 같은 날에는 명령 20개에서 0.186, 100개에서 0.278이었고, 다른 날에는 0.082와 0.117이었습니다. 다른 날 값은 같"]
       docs/explainer_ko.md: ["| K 같은 날 0.186 → 0.278 |"]
       README.md: ["| L | 0.186 / 0.278 |", "0.186 at 20 commands and 0.278 at 100"]
       docs/report.md: ["0.186 at $k = 20$ and 0.278 at $k = 100$"]
@@ -352,6 +362,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.082"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.082 → 0.117", "명령 20개에서 0.186, 100개에서 0.278이었고, 다른 날에는 0.082와 0.117이었습니다. 다른 날 값은 같은 날의 절반 이하입니다. 여기"]
       docs/explainer_ko.md: ["| K 다른 날 0.082 → 0.117 |"]
       README.md: ["| 0.082 / 0.117 | *exploratory* (K) |", "and 0.082 and 0.117 across days"]
       docs/report.md: ["| 0.186 / 0.082 |", "against 0.082 and 0.117 across days"]
@@ -361,6 +372,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.117"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.082 → 0.117", "서 0.186, 100개에서 0.278이었고, 다른 날에는 0.082와 0.117이었습니다. 다른 날 값은 같은 날의 절반 이하입니다. 여기서도 등록한"]
       docs/explainer_ko.md: ["| K 다른 날 0.082 → 0.117 |"]
       README.md: ["| 0.082 / 0.117 |", "0.082 and 0.117 across days"]
       docs/report.md: ["0.082 and 0.117 across days"]
@@ -370,6 +382,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.316"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.316 → 0.150", "거의 사라졌습니다. 그런데 배포일 안에서 등록한 같은 날 공격자에게는 0.316에서 0.150으로 절반 가까이 남았습니다. 이 잔여를 따로 분해하면 0"]
       docs/explainer_ko.md: ["| 그룹 안 초과 0.316 → 0.150 |"]
       README.md: ["deployment day it only reduces it (0.316 → 0.150)", "| L | 0.316 → 0.150 | 0.112 → 0.009 |",
                   "but only from 0.316 to 0.150", "| Undefended | 0.075 | 0.648 | 0.316 | 0.112 |"]
@@ -381,6 +394,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.150"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.316 → 0.150", "니다. 그런데 배포일 안에서 등록한 같은 날 공격자에게는 0.316에서 0.150으로 절반 가까이 남았습니다. 이 잔여를 따로 분해하면 0.138인데,", ". 이 잔여를 따로 분해하면 0.138인데, 프런티어와 별도로 계산해서 0.150과 다릅니다. 측정 바닥 0.020과 유한한 보정 데이터 몫 0.017을"]
       docs/explainer_ko.md: ["| 그룹 안 초과 0.316 → 0.150 |"]
       README.md: ["(0.316 → 0.150)", "but only from 0.316 to 0.150", "finds 0.150"]
       docs/report.md: ["| EQ-confusion, $g = 3$ | 0.108 | 0.180 | 0.773 | 0.158 | 0.144 / 0.062 | 0.150 / 0.009 |",
@@ -391,6 +405,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.112"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.112 → 0.009", "맞췄습니다. 보정일로 등록한 다른 날 공격자에게 그룹 안 초과 식별은 0.112에서 0.009로 거의 사라졌습니다. 그런데 배포일 안에서 등록한 같은"]
       docs/explainer_ko.md: ["| 그룹 안 초과 0.112 → 0.009 |"]
       README.md: ["(excess at 20 commands 0.112 → 0.009)", "| 0.112 → 0.009 | *exploratory* (K) |",
                   "falls from 0.112 to 0.009 for a"]
@@ -402,6 +417,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.009"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.112 → 0.009", "보정일로 등록한 다른 날 공격자에게 그룹 안 초과 식별은 0.112에서 0.009로 거의 사라졌습니다. 그런데 배포일 안에서 등록한 같은 날 공격자에게는"]
       docs/explainer_ko.md: ["| 그룹 안 초과 0.112 → 0.009 |"]
       README.md: ["0.112 → 0.009", "| EQ-confusion, g = 3 | 0.108 | 0.773 | 0.150 | 0.009 |"]
       docs/report.md: ["| 0.150 / 0.009 |", "lowered the cross-day within-group excess to 0.009"]
@@ -411,6 +427,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.075"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["방어 없음: 유용성 0.075 · 정지 0.648"]
       docs/explainer_ko.md: ["| 방어 없음 0.075 / 0.648 |"]
       README.md: ["| Undefended | 0.075 |"]
       docs/report.md: ["| Undefended | 0.075 |", "(0.108 against 0.075)"]
@@ -420,6 +437,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.108"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["유용성 0.108 · 정지 0.773"]
       docs/explainer_ko.md: ["| EQ g = 3: 0.108 / 0.773 |"]
       README.md: ["| EQ-confusion, g = 3 | 0.108 |"]
       docs/report.md: ["| EQ-confusion, $g = 3$ | 0.108 |", "(0.108 against 0.075)"]
@@ -429,6 +447,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.648"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["방어 없음: 유용성 0.075 · 정지 0.648"]
       docs/explainer_ko.md: ["| 방어 없음 0.075 / 0.648 |"]
       README.md: ["| 0.075 | 0.648 |"]
       docs/report.md: ["| 0.241 | 0.648 |"]
@@ -438,6 +457,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.773"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["유용성 0.108 · 정지 0.773"]
       docs/explainer_ko.md: ["| EQ g = 3: 0.108 / 0.773 |"]
       README.md: ["| 0.108 | 0.773 |"]
       docs/report.md: ["| 0.180 | 0.773 |"]
@@ -483,6 +503,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.000"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["유용성 0.000 · 정지 1.000"]
       docs/explainer_ko.md: ["| EQ g = 전체: 0.000 / 1.000 |"]
       README.md: ["(utility 0.000, hold rate 1.000)", "| EQ-confusion, all 54 users in one group | 0.000 | 1.000 | — | — |"]
       docs/report.md: ["| EQ-confusion, one group of 54 | 0.000 | 0.000 | 1.000 | 0.000 | 0.020 / 0.022 | — |",
@@ -500,6 +521,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "1.000"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["유용성 0.000 · 정지 1.000"]
       docs/explainer_ko.md: ["| EQ g = 전체: 0.000 / 1.000 |"]
       README.md: ["hold rate 1.000)", "| 0.000 | 1.000 | — | — |"]
       docs/report.md: ["| 0.000 | 0.000 | 1.000 |", "hold rate 1.000)"]
@@ -551,6 +573,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.221"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["g:18px 24px\">과제 정보 (bits)</td><td style=\"padding:18px 24px\">0.221</td><"]
       docs/explainer_ko.md: ["| 과제 0.221 비트, 1.02 비트/분 |"]
       docs/report.md: ["| 0.648 | 0.221 |", "Undefended task information is 0.221 bits per trial"]
   - id: K_itr_none
@@ -559,6 +582,7 @@ numbers:
     format: {kind: fixed, digits: 2}
     text: "1.02"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["24px\">정보 전송률 ITR (bits/분)</td><td style=\"padding:18px 24px\">1.02</td><"]
       docs/explainer_ko.md: ["| 과제 0.221 비트, 1.02 비트/분 |"]
       docs/report.md: ["or 1.02 bits/min"]
   - id: K_bits_eqc3
@@ -567,6 +591,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.158"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["\"padding:18px 24px\">0.221</td><td style=\"padding:18px 24px\">0.158</td><"]
       docs/explainer_ko.md: ["(EQ g = 3: 0.158 비트, 0.73 비트/분)"]
       docs/report.md: ["| 0.773 | 0.158 |"]
   - id: K_bits_rr05
@@ -613,6 +638,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.138"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["남은 노출 0.138의 분해(별도 계산)", "6에서 0.150으로 절반 가까이 남았습니다. 이 잔여를 따로 분해하면 0.138인데, 프런티어와 별도로 계산해서 0.150과 다릅니다. 측정 바닥 0."]
       docs/explainer_ko.md: ["| 잔여 0.138 = 0.020 + 0.017 + 0.100 |", "잔여 0.138 = 0.020 + 0.017 + 0.100."]
       README.md: ["residual (0.138 in K's decomposition)", "splits 0.138 into:"]
       docs/report.md: ["The within-day residual of 0.138 splits into 0.020"]
@@ -622,6 +648,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.020"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.020 + 0.017 + 0.100", "38인데, 프런티어와 별도로 계산해서 0.150과 다릅니다. 측정 바닥 0.020과 유한한 보정 데이터 몫 0.017을 빼면, 0.100은 같은 날 시뮬"]
       docs/explainer_ko.md: ["| 잔여 0.138 = 0.020 + 0.017 + 0.100 |", "0.020은 **측정 바닥**입니다"]
       README.md: ["0.020 is the estimator floor", "  - 0.020, the estimator floor;"]
       docs/report.md: ["splits into 0.020, the floor"]
@@ -631,6 +658,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.017"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.020 + 0.017 + 0.100", "0.150과 다릅니다. 측정 바닥 0.020과 유한한 보정 데이터 몫 0.017을 빼면, 0.100은 같은 날 시뮬레이션으로 설명되지 않습니다. 여기에"]
       docs/explainer_ko.md: ["| 잔여 0.138 = 0.020 + 0.017 + 0.100 |", "0.017은 **유한한 보정 데이터**의 몫입니다"]
       README.md: ["0.017 is finite calibration data", "  - 0.017, from finite calibration data;"]
       docs/report.md: ["0.017, attributable to finite calibration data"]
@@ -640,6 +668,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.100"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.020 + 0.017 + 0.100", "다. 측정 바닥 0.020과 유한한 보정 데이터 몫 0.017을 빼면, 0.100은 같은 날 시뮬레이션으로 설명되지 않습니다. 여기에는 날 간 변화, 해"]
       docs/explainer_ko.md: ["| 잔여 0.138 = 0.020 + 0.017 + 0.100 |", "0.100은 **같은 날 시뮬레이션이 설명하지 못하는 몫**입니다"]
       README.md: ["0.100 is what the same-day simulation does not explain", "  - 0.100 that the same-day simulation does not explain"]
       docs/report.md: ["and 0.100 that the simulation leaves unexplained"]
@@ -743,6 +772,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.057"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["div class=\"lab\">d = 1, Lee2019 54명</div><div class=\"val\">식별 0.057</div>", "어 비교입니다. 특징을 1차원까지 좁히면 9명에서 0.25, 54명에서 0.057까지 내려가고 해독 정확도는 거의 그대로였습니다. 모두 같은 날 수치이고"]
       docs/explainer_ko.md: ["2a 식별 0.25, 54명 0.057(사전등록 추정치(seed 3개))"]
       README.md: ["are 0.057 / 0.085 within a day"]
       docs/report.md: ["At $d = 1$ identity BA is 0.057 (common)"]
@@ -795,6 +825,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.239"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["s=\"val\"><span class=\"blue\">0.040</span> 대 <span class=\"red\">0.239</span", "학습·세션 2 채점 단일 값입니다. 세션 1로 등록한 다른 날 공격자도 0.239를 맞혀 격차 19.9퍼센트포인트가 남았습니다. 이 값은 사전등록한 보조"]
       docs/explainer_ko.md: ["| head 0.040 / 독립 0.239 |", "| P3, λ = 1 | 0.514 (확증 C1) | 0.239 (사전등록 추정치) |"]
       README.md: ["| 0.514 | 0.239 | within: *confirmatory-sealed* (L, C1); cross: *pre-registered estimate*", "(gap 19.9 pp to 0.239)",
                   "across days the strongest independent attacker reaches 0.239 against the",
@@ -806,6 +837,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.040"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["Lee2019 54명, λ = 1</div><div class=\"val\"><span class=\"blue\">0.040</span", "식별기 0.040은 세션 1 학습·", "2019 54명, 세션 1로 등록</div><div class=\"val\"><span class=\"blue\">0.040</span", "명 확증 주장 C1에서도 같은 날 독립 공격자는 0.514였고, 식별기 0.040은 세션 1 학습·세션 2 채점 단일 값입니다. 세션 1로 등록한 다른"]
       docs/explainer_ko.md: ["| head 0.040 / 독립 0.239 |", "| 함께 학습한 head, P3 λ = 1 | — | 0.040 |"]
       README.md: ["| 0.040 (gap 19.9 pp to 0.239) |", "against the head's 0.040)", "head's 0.040"]
       docs/report.md: ["| Co-trained head, P3 $\\lambda = 1$ | — | 0.040 |"]
@@ -815,6 +847,7 @@ numbers:
     format: {kind: fixed, digits: 1, scale: 100}
     text: "19.9"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["격차 19.9%p가 남는다", "값입니다. 세션 1로 등록한 다른 날 공격자도 0.239를 맞혀 격차 19.9퍼센트포인트가 남았습니다. 이 값은 사전등록한 보조, 즉 다른 날 시나리", "두 함정은 54명의 같은 날 조건에서 확증됐다(함정 1의 다른 날 격차 19.9%p는 사전등록 추정치).", "함정은 54명의 같은 날 조건에서 확증됐고, 함정 1의 다른 날 격차 19.9퍼센트포인트는 사전등록 추정치입니다. EQ의 보장도 맞춘 날에만 정확했습"]
       docs/explainer_ko.md: ["같은 비교, 격차 19.9%p", "head 0.040보다 19.9%p 높습니다"]
       README.md: ["(gap 19.9 pp to 0.239)", "head's 0.040, a gap of 19.9 pp"]
       docs/report.md: ["exceeds the co-trained head by 19.9 pp across days"]
@@ -823,6 +856,7 @@ numbers:
     format: {kind: fixed, digits: 3, scale: -1}
     text: "0.019"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["−0.019–+0.002", "다. 유형별로 한 번씩 수렴할 때까지 다시 적합한 파일럿에서는 변화가 −0.019에서 +0.002 사이였습니다. 판정은 봉인된 값 그대로입니다."]
       docs/explainer_ko.md: ["| 재적합 변화 −0.019–+0.002 |", "식별 BA 변화는 −0.019에서 +0.002 사이였습니다"]
       README.md: ["identity BA changed by between −0.019"]
       docs/report.md: ["changed by between −0.019 and +0.002", "pilot changed identity BA by −0.019 to +0.002"]
@@ -831,6 +865,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.002"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["−0.019–+0.002", "번씩 수렴할 때까지 다시 적합한 파일럿에서는 변화가 −0.019에서 +0.002 사이였습니다. 판정은 봉인된 값 그대로입니다."]
       docs/explainer_ko.md: ["| 재적합 변화 −0.019–+0.002 |"]
       docs/report.md: ["between −0.019 and +0.002", "−0.019 to +0.002"]
 
@@ -840,6 +875,7 @@ numbers:
     format: {kind: fixed, digits: 2}
     text: "0.60"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["간 −0.002–0.032, Yang2025 1일차 같은 날, τ* = 0.60)", "기준: P2-RC d = 8, τ* = 0.60, 명령 50개, 순위 &gt; 0.5", "\"padding:12px 14px;font-weight:700;background:#F4F7FA\">τ* = 0.60<br>명령", "유용성 단서 (2–3일차, τ* = 0.60)"]
       docs/explainer_ko.md: ["| τ* = 0.60 | M의 정지 임계값"]
       README.md: ["P2-RC at τ* = 0.60, target-aware Bayes attacker", "τ* = 0.60 is the grid value",
                   "On Yang2025 recording day 1 at τ* = 0.60"]
@@ -849,6 +885,7 @@ numbers:
     format: {kind: fixed, digits: 2}
     text: "0.85"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["8px\">0.55</td><td style=\"padding:12px 18px;font-weight:700\">0.85</td><", "시각 인증을 받았습니다. 검정력은 같은 날 효과의 55퍼센트가 남으면 0.85였습니다. EQ와 무작위 응답은 판정 없는 추정치입니다."]
       docs/explainer_ko.md: ["| M3 검정력 0.85 / 0.69 |", "| 0.55 | 0.85 | 0.69 |"]
       README.md: ["| Power of M3 | 0.85 at α = 0.05 and 0.69 at α/3"]
       docs/report.md: ["The power of M3 is 0.85 at α = 0.05 and 0.69 at α/3"]
@@ -857,6 +894,7 @@ numbers:
     format: {kind: fixed, digits: 2}
     text: "0.69"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["8px;font-weight:700\">0.85</td><td style=\"padding:12px 18px\">0.69</td><"]
       docs/explainer_ko.md: ["| M3 검정력 0.85 / 0.69 |", "| 0.55 | 0.85 | 0.69 |"]
       README.md: ["0.69 at α/3 if days 2–3 keep 55%"]
       docs/report.md: ["0.69 at α/3 if days 2–3 keep 55%"]
@@ -868,6 +906,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.345"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["로지스틱 공격자 재현율 0.345 대 10/51 = 0.196", "됐습니다. M1, 원 특징의 다른 날 식별은 로지스틱 공격자의 재현율이 0.345로 기준 0.196을 넘었고, Holm p는 0.014입니다. M3도 지"]
       docs/explainer_ko.md: ["로지스틱 0.345 대 기준 0.196", "| M1 0.345 / 0.343 / 0.273 대 0.196 |", "로지스틱 0.345, RBF SVM 0.343, MLP 0.273, 기준 10/51 = 0.196", "가장 강한 공격자 0.345 대 기준 0.196", "가장 강한 로지스틱은 0.345, RBF SVM은 0.343"]
       README.md: ["(M1: 0.345 against 10/51)", "| 0.345 (logistic), supported; day 2 ↔ 3: 0.419 |",
                   "identify users on days 2–3 at 0.345", "| 0.345 (logistic; RBF-SVM 0.343, MLP 0.273) vs 10/51 |",
@@ -975,6 +1014,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.093"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["새 51명: 격차 0.093–0.096이 봉인한 하한 0.10 미만 →", "정 없이 보고합니다. 새 51명의 확증 판정 M2에서는 다른 날 격차가 0.093에서 0.096으로, 봉인한 하한 0.10에 못 미쳐 지지되지 않았습니다", "격차 0.093–0.096: 모두 0보다 크지만", "위로 맞힌 비율은 0.061입니다. M2는 지지되지 않았습니다. 격차는 0.093에서 0.096으로 모두 양수였지만, 봉인한 관측 하한 0.10에 못 미"]
       docs/explainer_ko.md: ["head 0.064, 관측 격차 0.093–0.096", "M2 지지 안 됨(격차 0.093–0.096 < 0.10", "| M2 head 0.064 / 격차 0.095 / 0.093 / 0.096 |", "관측 격차 0.095 / 0.093 / 0.096", "관측 격차가 0.093–0.096으로", "관측 격차가 0.093–0.096이라", "관측 격차가 0.095, 0.093, 0.096입니다"]
       README.md: ["(M2: 0.093–0.096, not supported)", "(gaps 0.093–0.096, below the 0.10 floor)",
                   "0.093–0.096, below the sealed 0.10 floor (M2", "head were 0.093–0.096,",
@@ -987,6 +1027,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.096"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["새 51명: 격차 0.093–0.096이 봉인한 하한 0.10 미만 →", "니다. 새 51명의 확증 판정 M2에서는 다른 날 격차가 0.093에서 0.096으로, 봉인한 하한 0.10에 못 미쳐 지지되지 않았습니다. 1일차 같은", "격차 0.093–0.096: 모두 0보다 크지만", "은 0.061입니다. M2는 지지되지 않았습니다. 격차는 0.093에서 0.096으로 모두 양수였지만, 봉인한 관측 하한 0.10에 못 미쳐 규칙상 검정"]
       docs/explainer_ko.md: ["head 0.064, 관측 격차 0.093–0.096", "M2 지지 안 됨(격차 0.093–0.096 < 0.10", "| M2 head 0.064 / 격차 0.095 / 0.093 / 0.096 |", "관측 격차 0.095 / 0.093 / 0.096", "관측 격차가 0.093–0.096으로", "관측 격차가 0.093–0.096이라", "관측 격차가 0.095, 0.093, 0.096입니다"]
       README.md: ["(M2: 0.093–0.096, not supported)", "(gaps 0.093–0.096, below the 0.10 floor)",
                   "0.093–0.096, below the sealed 0.10 floor (M2", "head were 0.093–0.096,",
@@ -1014,6 +1055,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.649"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["순위 0.649 대 명령 1개 0.538, Holm p = 1.1×10⁻⁴", "0.014입니다. M3도 지지됐습니다. 명령 50개에서 본인의 순위는 0.649로, 명령 1개일 때 0.538보다 높았습니다. 다만 순위는 식별률이 아"]
       docs/explainer_ko.md: ["순위 0.649 대 명령 1개 0.538", "| M3 0.649 (0.588–0.711) 대 0.538 (0.503–0.572) |", "명령 50개 순위 0.649(0.588–0.711), 명령 1개 0.538(0.503–0.572)", "0.649는 우연 0.5와", "본인 순위 0.649 대 명령 1개 0.538", "0.649(0.588–0.711)로 우연 0.5와 명령 1개의 0.538보다"]
       README.md: ["(M3: 0.649 at 50 commands against 0.538 at 1)", "| 0.649 vs 0.538, supported;",
                   "percentile rank is 0.649 at 50 commands against 0.538 at", "| 0.649 (0.588–0.711) at 50 commands vs 0.538 (0.503–0.572) at 1 |",
@@ -1041,6 +1083,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.538"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["순위 0.649 대 명령 1개 0.538, Holm p = 1.1×10⁻⁴", "됐습니다. 명령 50개에서 본인의 순위는 0.649로, 명령 1개일 때 0.538보다 높았습니다. 다만 순위는 식별률이 아닙니다. 1순위로 맞힌 비율은"]
       docs/explainer_ko.md: ["순위 0.649 대 명령 1개 0.538", "대 0.538 (0.503–0.572) |", "명령 1개 0.538(0.503–0.572)", "본인 순위 0.649 대 명령 1개 0.538", "명령 1개의 0.538보다"]
       README.md: ["(M3: 0.649 at 50 commands against 0.538 at 1)", "| 0.649 vs 0.538, supported;",
                   "vs 0.538 (0.503–0.572) at 1"]
@@ -1123,6 +1166,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.061"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["순위는 식별률이 아니다: top-1 0.061", "보다 높았습니다. 다만 순위는 식별률이 아닙니다. 1순위로 맞힌 비율은 0.061입니다. M2는 지지되지 않았습니다. 격차는 0.093에서 0.096으로"]
       docs/explainer_ko.md: ["| M3 1등 적중 0.061 (0.037–0.085) |", "0.061(0.037–0.085)이고", "0.061(0.037–0.085)로"]
       README.md: ["top-1 at 50 commands 0.061 (chance 1/51)", "is 0.061 (chance 1/51)", "Top-1 identification at 50 commands is 0.061"]
       docs/report.md: ["not an identification rate (top-1 0.061)", "Top-1 identification at 50 commands is 0.061", "top-1 rate at 50 commands is 0.061"]
@@ -1150,6 +1194,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.101"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["예시(τ*, 명령 50개, 범주형 목표 앎): 방어 없음 0.101 [0.022, 0.181] → EQ −0.008 [−0.058, 0.0"]
       docs/explainer_ko.md: ["| EQ 0.101 → −0.008, 감소 0.109 (0.007–0.211) |", "방어 없음 0.101(0.022–0.181) → EQ −0.008(−0.058–0.042)", "0.101 → −0.008, 감소 0.109(0.007–0.211)"]
       README.md: ["falls from 0.101 (0.022–0.181) to −0.008"]
       docs/report.md: ["falls from 0.101 (0.022–0.181) to −0.008 (−0.058 to 0.042)"]
@@ -1159,6 +1204,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.022"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["예시(τ*, 명령 50개, 범주형 목표 앎): 방어 없음 0.101 [0.022, 0.181] → EQ −0.008 [−0.058, 0.042], 감소"]
       docs/explainer_ko.md: ["0.101(0.022–0.181)"]
       README.md: ["0.101 (0.022–0.181)"]
       docs/report.md: ["0.101 (0.022–0.181)"]
@@ -1168,6 +1214,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.181"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["명령 50개, 범주형 목표 앎): 방어 없음 0.101 [0.022, 0.181] → EQ −0.008 [−0.058, 0.042], 감소 0.109"]
       docs/explainer_ko.md: ["0.101(0.022–0.181)"]
       README.md: ["0.101 (0.022–0.181)"]
       docs/report.md: ["0.101 (0.022–0.181)"]
@@ -1177,6 +1224,7 @@ numbers:
     format: {kind: fixed, digits: 3, scale: -1}
     text: "0.008"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["목표 앎): 방어 없음 0.101 [0.022, 0.181] → EQ −0.008 [−0.058, 0.042], 감소 0.109 [0.007, 0.211"]
       docs/explainer_ko.md: ["| EQ 0.101 → −0.008, 감소", "→ EQ −0.008(−0.058–0.042)", "0.101 → −0.008, 감소 0.109(0.007–0.211)"]
       README.md: ["to −0.008"]
       docs/report.md: ["to −0.008 (−0.058 to 0.042)"]
@@ -1186,6 +1234,7 @@ numbers:
     format: {kind: fixed, digits: 3, scale: -1}
     text: "0.058"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["어 없음 0.101 [0.022, 0.181] → EQ −0.008 [−0.058, 0.042], 감소 0.109 [0.007, 0.211]"]
       docs/explainer_ko.md: ["EQ −0.008(−0.058–0.042)"]
       README.md: ["(−0.058 to 0.042)"]
       docs/report.md: ["(−0.058 to 0.042)"]
@@ -1195,6 +1244,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.042"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["101 [0.022, 0.181] → EQ −0.008 [−0.058, 0.042], 감소 0.109 [0.007, 0.211]"]
       docs/explainer_ko.md: ["EQ −0.008(−0.058–0.042)"]
       README.md: ["(−0.058 to 0.042)"]
       docs/report.md: ["(−0.058 to 0.042)"]
@@ -1204,6 +1254,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.109"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.181] → EQ −0.008 [−0.058, 0.042], 감소 0.109 [0.007, 0.211]"]
       docs/explainer_ko.md: ["감소 0.109 (0.007–0.211) |", "감소 0.109(0.007–0.211). EQ", "0.101 → −0.008, 감소 0.109(0.007–0.211)"]
       README.md: ["a reduction of 0.109 (0.007–0.211)"]
       docs/report.md: ["a reduction of 0.109 (0.007–0.211)"]
@@ -1213,6 +1264,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.007"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["→ EQ −0.008 [−0.058, 0.042], 감소 0.109 [0.007, 0.211]"]
       docs/explainer_ko.md: ["감소 0.109 (0.007–0.211) |", "감소 0.109(0.007–0.211). EQ", "0.101 → −0.008, 감소 0.109(0.007–0.211)"]
       README.md: ["0.109 (0.007–0.211)"]
       docs/report.md: ["0.109 (0.007–0.211)"]
@@ -1222,6 +1274,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.211"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.008 [−0.058, 0.042], 감소 0.109 [0.007, 0.211]"]
       docs/explainer_ko.md: ["감소 0.109 (0.007–0.211) |", "감소 0.109(0.007–0.211). EQ", "0.101 → −0.008, 감소 0.109(0.007–0.211)"]
       README.md: ["0.109 (0.007–0.211)"]
       docs/report.md: ["0.109 (0.007–0.211)"]
@@ -1321,6 +1374,7 @@ numbers:
     format: {kind: fixed, digits: 3, scale: -1}
     text: "0.041"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["방어 없음 가중 유용성 −0.041 [−0.086, 0.004]는 0을 포함한다 (w = 1.5)."]
       docs/explainer_ko.md: ["방어 없음 가중 유용성 −0.041(0 포함)", "| 가중 유용성 −0.041 / 0.011 / 0.020 |", "| −0.041(−0.086–0.004) |", "0.300 − 1.5 × 0.227 ≈ −0.041"]
       README.md: ["undefended weighted utility −0.041 (−0.086 to 0.004; w = 1.5)"]
       docs/report.md: ["Undefended weighted utility is −0.041 (−0.086 to 0.004; $w = 1.5$)"]
@@ -1330,6 +1384,7 @@ numbers:
     format: {kind: fixed, digits: 3, scale: -1}
     text: "0.086"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["방어 없음 가중 유용성 −0.041 [−0.086, 0.004]는 0을 포함한다 (w = 1.5)."]
       docs/explainer_ko.md: ["| −0.041(−0.086–0.004) |", "구간(−0.086–0.004)"]
       README.md: ["−0.041 (−0.086 to 0.004"]
       docs/report.md: ["−0.041 (−0.086 to 0.004"]
@@ -1339,6 +1394,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.004"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["방어 없음 가중 유용성 −0.041 [−0.086, 0.004]는 0을 포함한다 (w = 1.5)."]
       docs/explainer_ko.md: ["| −0.041(−0.086–0.004) |", "구간(−0.086–0.004)"]
       README.md: ["−0.041 (−0.086 to 0.004"]
       docs/report.md: ["−0.041 (−0.086 to 0.004"]
@@ -1348,6 +1404,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.073"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["+0.073 [0.039, 0.106]"]
       docs/explainer_ko.md: ["| 0.073(0.039–0.106) |", "0.300 − 0.227 = 0.073", "0.073(0.039–0.106)으로 양수"]
       README.md: ["net progress is +0.073 (0.039–0.106)"]
       docs/report.md: ["net progress is +0.073 (0.039–0.106)"]
@@ -1357,6 +1414,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.039"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["+0.073 [0.039, 0.106]"]
       docs/explainer_ko.md: ["| 0.073(0.039–0.106) |", "0.073(0.039–0.106)으로 양수"]
       README.md: ["+0.073 (0.039–0.106)"]
       docs/report.md: ["+0.073 (0.039–0.106)"]
@@ -1366,6 +1424,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.106"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["+0.073 [0.039, 0.106]"]
       docs/explainer_ko.md: ["| 0.073(0.039–0.106) |", "0.073(0.039–0.106)으로 양수"]
       README.md: ["+0.073 (0.039–0.106)"]
       docs/report.md: ["+0.073 (0.039–0.106)"]
@@ -1411,6 +1470,7 @@ numbers:
     format: {kind: fixed, digits: 3, scale: -1}
     text: "0.009"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["행 기준 +0.022 [0.012, 0.032]다. 가중 유용성 기준 −0.009 [−0.026, 0.008]은 0을 포함한다"]
       docs/explainer_ko.md: ["| EQ 비용 −0.009 / +0.022 |", "−0.009(−0.026–0.008, 0 포함)", "−0.009(0 포함)지만"]
       README.md: ["only is −0.009 (−0.026 to 0.008) in weighted"]
       docs/report.md: ["only is −0.009 (−0.026 to 0.008) in weighted utility"]
@@ -1420,6 +1480,7 @@ numbers:
     format: {kind: fixed, digits: 3, scale: -1}
     text: "0.026"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["022 [0.012, 0.032]다. 가중 유용성 기준 −0.009 [−0.026, 0.008]은 0을 포함한다"]
       docs/explainer_ko.md: ["−0.009(−0.026–0.008, 0 포함)"]
       README.md: ["−0.009 (−0.026 to 0.008)"]
       docs/report.md: ["−0.009 (−0.026 to 0.008)"]
@@ -1429,6 +1490,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.008"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["012, 0.032]다. 가중 유용성 기준 −0.009 [−0.026, 0.008]은 0을 포함한다"]
       docs/explainer_ko.md: ["−0.009(−0.026–0.008, 0 포함)"]
       README.md: ["−0.009 (−0.026 to 0.008)"]
       docs/report.md: ["−0.009 (−0.026 to 0.008)"]
@@ -1438,6 +1500,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.022"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["EQ의 프라이버시 비용은 순진행 기준 +0.022 [0.012, 0.032]다. 가중 유용성 기준 −0.009 [−0.0", "해독기가 사용자에게 해롭다는 뜻은 아닙니다. EQ의 비용은 순진행 기준 0.022로 0보다 커서, 프라이버시가 공짜라고 말하지 않습니다."]
       docs/explainer_ko.md: ["| EQ 비용 −0.009 / +0.022 |", "순전진으로 +0.022(0.012–0.032)", "순전진으로는 +0.022(0.012–0.032)"]
       README.md: ["+0.022 (0.012–0.032) in net progress"]
       docs/report.md: ["+0.022 (0.012–0.032) in net progress"]
@@ -1447,6 +1510,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.012"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["EQ의 프라이버시 비용은 순진행 기준 +0.022 [0.012, 0.032]다. 가중 유용성 기준 −0.009 [−0.026, 0.0"]
       docs/explainer_ko.md: ["순전진으로 +0.022(0.012–0.032)", "순전진으로는 +0.022(0.012–0.032)"]
       README.md: ["+0.022 (0.012–0.032)"]
       docs/report.md: ["+0.022 (0.012–0.032)"]
@@ -1456,6 +1520,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.032"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["EQ의 프라이버시 비용은 순진행 기준 +0.022 [0.012, 0.032]다. 가중 유용성 기준 −0.009 [−0.026, 0.008]은 0을"]
       docs/explainer_ko.md: ["순전진으로 +0.022(0.012–0.032)", "순전진으로는 +0.022(0.012–0.032)"]
       README.md: ["+0.022 (0.012–0.032)"]
       docs/report.md: ["+0.022 (0.012–0.032)"]
@@ -1465,6 +1530,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.473"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.473(2–3일차, 최종 모델)은 다른 모델의 값이다. 1일차에 맞춘 τ 규칙", "유용성 구간이 0을 포함하고, 순진행은 양수입니다. 정지율 0.723과 0.473은 서로 다른 모델의 값입니다. 1일차에 맞춘 규칙이 이후 날에 덜 멈추"]
       docs/explainer_ko.md: ["대 0.473(최종 모델)", "| 정지율 0.473 / 0.680 / 0.825 |", "| 방어 없음 | 0.473 | 0.227 |", "1 − 0.473 − 0.227 ≈ 0.300", "0.473은 1일차 전체로", "정지 0.473, 틀림 0.227"]
       README.md: ["hold rate undefended 0.473, recalibration only 0.680, EQ 0.825", "falls from 0.723 to 0.473",
                   "and 0.473 from the"]
@@ -1494,6 +1560,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.227"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["맞춘 τ 규칙은 이후 날에 덜 멈추고 더 틀린다 (오답 0.092 → 0.227)"]
       docs/explainer_ko.md: ["| 방어 없음 | 0.473 | 0.227 |", "1 − 0.473 − 0.227 ≈ 0.300", "0.300 − 0.227 = 0.073", "0.300 − 1.5 × 0.227 ≈ −0.041", "(틀림 0.092 → 0.227)", "정지 0.473, 틀림 0.227"]
       README.md: ["from 0.092 on day 1 to 0.227", "rise from 0.092 to 0.227"]
       docs/report.md: ["(wrong moves 0.092 on day 1, 0.227 on days 2–3)", "wrong moves rise from 0.092 to 0.227"]
@@ -1502,6 +1569,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.723"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["정지율 0.723(1일차, 교차 적합 모델)과", "없음의 가중 유용성 구간이 0을 포함하고, 순진행은 양수입니다. 정지율 0.723과 0.473은 서로 다른 모델의 값입니다. 1일차에 맞춘 규칙이 이후"]
       docs/explainer_ko.md: ["정지율 0.723(1일차 교차적합)", "1일차 0.723은 다른 모델", "1일차 정지율 0.723은", "정지율의 경우 1일차 0.723은"]
       README.md: ["falls from 0.723 to 0.473", "The day-1 hold rate of 0.723"]
       docs/report.md: ["The day-1 hold rate of 0.723", "falls from 0.723 to 0.473"]
@@ -1512,6 +1580,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.196"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["로지스틱 공격자 재현율 0.345 대 10/51 = 0.196", "원 특징의 다른 날 식별은 로지스틱 공격자의 재현율이 0.345로 기준 0.196을 넘었고, Holm p는 0.014입니다. M3도 지지됐습니다. 명령"]
       docs/explainer_ko.md: ["로지스틱 0.345 대 기준 0.196", "| M1 0.345 / 0.343 / 0.273 대 0.196 |", "기준 10/51 = 0.196", "기준 0.196을 크게 넘었습니다", "가장 강한 공격자 0.345 대 기준 0.196", "둘 다 기준 0.196을 크게 넘었고"]
   - id: M_wrong_recal
     value: {file: results/exp_m/final_estimates_utility.csv, column: mean,
@@ -1548,6 +1617,7 @@ numbers:
     format: {kind: fixed, digits: 2}
     text: "1.00"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.019. BCI IV 2a 9명은 22채널 253차원이며 같은 날 1.00"]
       docs/explainer_ko.md: ["| 1.00 / 0.951 | 2a 원 특징(253차원) |"]
   - id: 2a_B_head_lambda1
     value: {file: results/exp_b/adversary_comparison.csv, column: adversary_main_ba,
@@ -1555,6 +1625,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.026"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["CI IV 2a 9명, λ = 1</div><div class=\"val\"><span class=\"blue\">0.026</span", "키고, 그 식별기를 속이도록 인코더를 훈련합니다. 9명에서 그 식별기는 0.026이었지만, 같은 출력으로 새로 학습시킨 공격자는 0.951을 맞힙니다."]
       docs/explainer_ko.md: ["| head 0.026 / 독립 0.951 |"]
   - id: 2a_B_independent_lambda1
     value: {file: results/exp_b/adversary_comparison.csv, column: independent_ba,
@@ -1562,6 +1633,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.951"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["s=\"val\"><span class=\"blue\">0.026</span> 대 <span class=\"red\">0.951</span", "그 식별기는 0.026이었지만, 같은 출력으로 새로 학습시킨 공격자는 0.951을 맞힙니다. 54명 확증 주장 C1에서도 같은 날 독립 공격자는 0.5"]
       docs/explainer_ko.md: ["| head 0.026 / 독립 0.951 |"]
   - id: G_paper_undefended
     value: {file: results/exp_g/bnci/paper_table1_comparison.csv, column: observed_accuracy_percent,
@@ -1569,6 +1641,7 @@ numbers:
     format: {kind: fixed, digits: 1}
     text: "90.8"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["90.8% → 11.1%", "벨만 가집니다. 즉 다른 날 기록으로 등록합니다. 이 조건에서 식별률은 90.8퍼센트에서 11.1퍼센트로 떨어져, 논문 표의 접공간 SVM 값과 같게"]
       docs/explainer_ko.md: ["| 90.8% → 11.1% |"]
   - id: G_paper_defended
     value: {file: results/exp_g/bnci/paper_table1_comparison.csv, column: observed_accuracy_percent,
@@ -1576,6 +1649,7 @@ numbers:
     format: {kind: fixed, digits: 1}
     text: "11.1"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["90.8% → 11.1%", "다른 날 기록으로 등록합니다. 이 조건에서 식별률은 90.8퍼센트에서 11.1퍼센트로 떨어져, 논문 표의 접공간 SVM 값과 같게 재현됐습니다. 그런"]
       docs/explainer_ko.md: ["| 90.8% → 11.1% |"]
   - id: G_enrolment_one_label
     value: {file: results/exp_g/bnci/enrolment_averaged.csv, column: accuracy,
@@ -1583,6 +1657,7 @@ numbers:
     format: {kind: fixed, digits: 2, scale: 100}
     text: "81.75"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["(2a 9명)</div><div class=\"val red\" style=\"font-size:36px\">1개 81.75%<br>5", "데 같은 날 배포 기간 출력 몇 개에 이름표를 붙이면, 사용자당 1개로 81.75퍼센트, 5개로 97.11퍼센트가 다시 식별됩니다. 54명 확증 주장 C"]
       docs/explainer_ko.md: ["| 81.75% / 97.11% |"]
   - id: G_enrolment_five_labels
     value: {file: results/exp_g/bnci/enrolment_averaged.csv, column: accuracy,
@@ -1590,24 +1665,28 @@ numbers:
     format: {kind: fixed, digits: 2, scale: 100}
     text: "97.11"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["<div class=\"val red\" style=\"font-size:36px\">1개 81.75%<br>5개 97.11%</div", "력 몇 개에 이름표를 붙이면, 사용자당 1개로 81.75퍼센트, 5개로 97.11퍼센트가 다시 식별됩니다. 54명 확증 주장 C4에서도 다른 날 기준 세"]
       docs/explainer_ko.md: ["| 81.75% / 97.11% |"]
   - id: L_C4_reference_session
     value: {file: results/exp_l/reproduction.json, json: accuracy}
     format: {kind: fixed, digits: 2, scale: 100}
     text: "1.34"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["1.34% → 92.7%", "시 식별됩니다. 54명 확증 주장 C4에서도 다른 날 기준 세션 공격은 1.34퍼센트, 같은 날 라벨 5개로는 92.7퍼센트였습니다. 논문이 틀린 것이"]
       docs/explainer_ko.md: ["| 1.34% → 92.7% |"]
   - id: L_C2_task_change
     value: {file: results/exp_l/decision.json, json: claims.C2.utility.mean}
     format: {kind: fixed, digits: 1, scale: -100}
     text: "0.6"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["C2 확증 (같은 날): 0.994 → 0.340, 과제 정확도 변화 −0.6%p (하한 −2.3%p, 허용 한계 −5%p), Holm p = 4.6", "4를 0.340으로 낮춘 것이 확증 주장 C2였고, 과제 정확도 손실은 0.6퍼센트포인트였습니다. 다른 날 두 값은 사전등록한 보조, 즉 다른 날 시"]
       docs/explainer_ko.md: ["| C2 과제 −0.6%p |"]
   - id: L_C2_task_change_lower
     value: {file: results/exp_l/decision.json, json: claims.C2.utility.lower}
     format: {kind: fixed, digits: 1, scale: -100}
     text: "2.3"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["): 0.994 → 0.340, 과제 정확도 변화 −0.6%p (하한 −2.3%p, 허용 한계 −5%p), Holm p = 4.6×10⁻⁵"]
       docs/explainer_ko.md: ["(하한 −2.3%p"]
   - id: K_itr_eqc3
     value: {file: results/exp_k/frontier.csv, column: itr_bits_per_min,
@@ -1615,6 +1694,7 @@ numbers:
     format: {kind: fixed, digits: 2}
     text: "0.73"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:18px 24px\">1.02</td><td style=\"padding:18px 24px\">0.73</td><"]
       docs/explainer_ko.md: ["(EQ g = 3: 0.158 비트, 0.73 비트/분)"]
   - id: K_rr05_epsilon
     value: {file: results/exp_k/frontier.csv, column: epsilon_per_command,
@@ -1629,6 +1709,7 @@ numbers:
     format: {kind: fixed, digits: 0}
     text: "4"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["w = τ/(1 − τ), τ = 0.8이면 w = 4"]
       docs/explainer_ko.md: ["τ = 0.8이면 w = 4입니다"]
   - id: K_lp_equalization_residual_sci
     value: {file: results/exp_k/run_summary.json, json: eq_fit_max_equalization_residual}
@@ -1649,6 +1730,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.467"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["4px\">신원 정보, 54명 전체 (bits)</td><td style=\"padding:18px 24px\">0.467</td><", "정보는 0.198에서 0.072비트로 줄지만, 54명 전체 신원 정보는 0.467에서 0.452비트로 거의 그대로입니다. 그룹 소속이 드러나기 때문입니다"]
       docs/explainer_ko.md: ["| 신원 정보 0.467 → 0.452 |", "54명 전체로는 0.467 → 0.452 비트로"]
   - id: K_info_nway_eqc3
     value: {file: results/exp_k/information_identity.csv, column: bits,
@@ -1656,6 +1738,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.452"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["\"padding:18px 24px\">0.467</td><td style=\"padding:18px 24px\">0.452</td><", "8에서 0.072비트로 줄지만, 54명 전체 신원 정보는 0.467에서 0.452비트로 거의 그대로입니다. 그룹 소속이 드러나기 때문입니다. 배포일 하루"]
       docs/explainer_ko.md: ["| 신원 정보 0.467 → 0.452 |"]
   - id: K_info_g3_none
     value: {file: results/exp_k/information_identity.csv, column: bits,
@@ -1663,6 +1746,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.198"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: [">신원 정보, 그룹 안 g = 3 (bits)</td><td style=\"padding:18px 24px\">0.198</td><", "[질의응답용] 명령 1개당 정보량입니다. 그룹 안 신원 정보는 0.198에서 0.072비트로 줄지만, 54명 전체 신원 정보는 0.467에서 0"]
       docs/explainer_ko.md: ["| 그룹 안 정보 0.198 → 0.072 |", "그룹 안(g = 3)으로는 0.198 → 0.072 비트로"]
   - id: K_info_g3_eqc3
     value: {file: results/exp_k/information_identity.csv, column: bits,
@@ -1670,6 +1754,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.072"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["<td style=\"padding:18px 24px;font-weight:700;color:#0072B2\">0.072</td><", "응답용] 명령 1개당 정보량입니다. 그룹 안 신원 정보는 0.198에서 0.072비트로 줄지만, 54명 전체 신원 정보는 0.467에서 0.452비트로"]
       docs/explainer_ko.md: ["| 그룹 안 정보 0.198 → 0.072 |"]
   - id: K_info_nway_none_null
     value: {file: results/exp_k/information_identity.csv, column: "null",
@@ -1677,6 +1762,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.014"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["RC d = 8, τ = 0.8 · 목표 인지 공격자 기준. 순열 영점 0.014는 방어 없음·54명 전체 행의 값이다. 그룹 안 정보가 줄어도 전체 정"]
       docs/explainer_ko.md: ["신원을 섞은 순열 영점은 0.014 비트"]
   # MLP refit pilot, one seed-0 fit per type (results/exp_r/pilot.json).
   - id: R_pilot_targets
@@ -1684,84 +1770,98 @@ numbers:
     format: {kind: fixed, digits: 0}
     text: "45"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["확증 검정에 들어간 적합 중 45/85. 봉인 규칙대로 예측을 유지했다"]
       docs/explainer_ko.md: ["적합 45개의 예측을"]
   - id: R_pilot_max_iter
     value: {file: results/exp_r/pilot.json, json: budget.max_iter}
     format: {kind: fixed, digits: 0}
     text: "20000"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["유형별 seed 0 적합 1회, 반복 한도 20000"]
       docs/explainer_ko.md: ["반복 한도를 20000회로"]
   - id: R_pilot_C1_within_sealed
     value: {file: results/exp_r/pilot.json, json: types.1.sealed_ba}
     format: {kind: fixed, digits: 3}
     text: "0.536"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:14px 18px\">같은 날</td><td style=\"padding:14px 18px\">0.536</td><"]
       docs/explainer_ko.md: ["| C1 · P3 λ = 1 | 같은 날 | 0.536 | 0.517 |"]
   - id: R_pilot_C1_within_refit
     value: {file: results/exp_r/pilot.json, json: types.1.refit_ba}
     format: {kind: fixed, digits: 3}
     text: "0.517"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["\"padding:14px 18px\">0.536</td><td style=\"padding:14px 18px\">0.517</td><"]
       docs/explainer_ko.md: ["| C1 · P3 λ = 1 | 같은 날 | 0.536 | 0.517 |"]
   - id: R_pilot_C1_cross_sealed
     value: {file: results/exp_r/pilot.json, json: types.0.sealed_ba}
     format: {kind: fixed, digits: 3}
     text: "0.288"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:14px 18px\">다른 날</td><td style=\"padding:14px 18px\">0.288</td><"]
       docs/explainer_ko.md: ["| C1 · P3 λ = 1 | 다른 날 | 0.288 | 0.291 |"]
   - id: R_pilot_C1_cross_refit
     value: {file: results/exp_r/pilot.json, json: types.0.refit_ba}
     format: {kind: fixed, digits: 3}
     text: "0.291"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["\"padding:14px 18px\">0.288</td><td style=\"padding:14px 18px\">0.291</td><"]
       docs/explainer_ko.md: ["| C1 · P3 λ = 1 | 다른 날 | 0.288 | 0.291 |"]
   - id: R_pilot_C2_within_sealed
     value: {file: results/exp_r/pilot.json, json: types.3.sealed_ba}
     format: {kind: fixed, digits: 3}
     text: "0.331"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:14px 18px\">같은 날</td><td style=\"padding:14px 18px\">0.331</td><"]
       docs/explainer_ko.md: ["| C2 · P2-RC d = 8 | 같은 날 | 0.331 | 0.322 |"]
   - id: R_pilot_C2_within_refit
     value: {file: results/exp_r/pilot.json, json: types.3.refit_ba}
     format: {kind: fixed, digits: 3}
     text: "0.322"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["\"padding:14px 18px\">0.331</td><td style=\"padding:14px 18px\">0.322</td><"]
       docs/explainer_ko.md: ["| C2 · P2-RC d = 8 | 같은 날 | 0.331 | 0.322 |"]
   - id: R_pilot_C2_cross_sealed
     value: {file: results/exp_r/pilot.json, json: types.2.sealed_ba}
     format: {kind: fixed, digits: 3}
     text: "0.058"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:14px 18px\">다른 날</td><td style=\"padding:14px 18px\">0.058</td><"]
       docs/explainer_ko.md: ["| C2 · P2-RC d = 8 | 다른 날 | 0.058 | 0.060 |"]
   - id: R_pilot_C2_cross_refit
     value: {file: results/exp_r/pilot.json, json: types.2.refit_ba}
     format: {kind: fixed, digits: 3}
     text: "0.060"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["\"padding:14px 18px\">0.058</td><td style=\"padding:14px 18px\">0.060</td><"]
       docs/explainer_ko.md: ["| C2 · P2-RC d = 8 | 다른 날 | 0.058 | 0.060 |"]
   - id: R_pilot_C3_within_sealed
     value: {file: results/exp_r/pilot.json, json: types.5.sealed_ba}
     format: {kind: fixed, digits: 3}
     text: "0.089"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:14px 18px\">같은 날</td><td style=\"padding:14px 18px\">0.089</td><"]
       docs/explainer_ko.md: ["| C3 · 명령 20개 | 같은 날 | 0.089 | 0.081 |"]
   - id: R_pilot_C3_within_refit
     value: {file: results/exp_r/pilot.json, json: types.5.refit_ba}
     format: {kind: fixed, digits: 3}
     text: "0.081"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["\"padding:14px 18px\">0.089</td><td style=\"padding:14px 18px\">0.081</td><"]
       docs/explainer_ko.md: ["| C3 · 명령 20개 | 같은 날 | 0.089 | 0.081 |"]
   - id: R_pilot_C3_cross_sealed
     value: {file: results/exp_r/pilot.json, json: types.4.sealed_ba}
     format: {kind: fixed, digits: 3}
     text: "0.035"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:14px 18px\">다른 날</td><td style=\"padding:14px 18px\">0.035</td><", "\"padding:14px 18px\">0.035</td><td style=\"padding:14px 18px\">0.035</td><"]
       docs/explainer_ko.md: ["| C3 · 명령 20개 | 다른 날 | 0.035 | 0.035 |"]
   - id: R_pilot_C3_cross_refit
     value: {file: results/exp_r/pilot.json, json: types.4.refit_ba}
     format: {kind: fixed, digits: 3}
     text: "0.035"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:14px 18px\">다른 날</td><td style=\"padding:14px 18px\">0.035</td><", "\"padding:14px 18px\">0.035</td><td style=\"padding:14px 18px\">0.035</td><"]
       docs/explainer_ko.md: ["| C3 · 명령 20개 | 다른 날 | 0.035 | 0.035 |"]
   # M day-1 gates and power (results/exp_m/selection.json, dev_m3_power.csv); no day-2/3 value.
   - id: M_gate_m2_best_gap
@@ -1769,6 +1869,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.717"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["(1일차 같은 날 격차는 0.717)", "하한 0.10에 못 미쳐 지지되지 않았습니다. 1일차 같은 날 격차는 0.717이었습니다. 함께 학습된 식별기의 점수는 보호의 증거가 아닙니다."]
       docs/explainer_ko.md: ["실제 최고 격차 0.717", "1일차 같은 날 게이트의 격차는 0.717이었습니다"]
       README.md: ["day-1 gate: gap 0.717", "0.717 within day 1 (M2's development gate)", "within day 1 the gap was 0.717"]
       docs/report.md: ["against 0.717 within day 1 (§6.10)", "Within day 1 the gap was 0.717", "(M2, 0.093–0.096, against 0.717 within day 1)"]
@@ -1816,22 +1917,88 @@ numbers:
     format: {kind: fixed, digits: 2}
     text: "0.47"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:12px 18px\">0.35</td><td style=\"padding:12px 18px\">0.47</td><"]
       docs/explainer_ko.md: ["| 0.35 | 0.47 | 0.29 |", "35%만 남으면 0.47, 0.29로"]
   - id: M_m3_power_r035_alpha3
     value: {file: results/exp_m/dev_m3_power.csv, column: power_alpha/3, where: {retention: 0.35}}
     format: {kind: fixed, digits: 2}
     text: "0.29"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:12px 18px\">0.47</td><td style=\"padding:12px 18px\">0.29</td><"]
       docs/explainer_ko.md: ["| 0.35 | 0.47 | 0.29 |", "35%만 남으면 0.47, 0.29로"]
   - id: M_m3_power_r070_alpha
     value: {file: results/exp_m/dev_m3_power.csv, column: power_alpha, where: {retention: 0.7}}
     format: {kind: fixed, digits: 2}
     text: "0.96"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:12px 18px\">0.70</td><td style=\"padding:12px 18px\">0.96</td><"]
       docs/explainer_ko.md: ["| 0.70 | 0.96 | 0.90 |"]
   - id: M_m3_power_r070_alpha3
     value: {file: results/exp_m/dev_m3_power.csv, column: power_alpha/3, where: {retention: 0.7}}
     format: {kind: fixed, digits: 2}
     text: "0.90"
     in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:12px 18px\">0.96</td><td style=\"padding:12px 18px\">0.90</td><"]
       docs/explainer_ko.md: ["| 0.70 | 0.96 | 0.90 |"]
+
+  # ---------------------------------------------------------------- v2 talk deck (presentation/BEAT_v2_talk.pptx.mixdog-source.html)
+  - id: M_M1_p_holm_3dp
+    value: {file: results/exp_m/decision.json, json: p_holm.M1}
+    format: {kind: fixed, digits: 3}
+    text: "0.014"
+    in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["Holm p = 0.014", "공격자의 재현율이 0.345로 기준 0.196을 넘었고, Holm p는 0.014입니다. M3도 지지됐습니다. 명령 50개에서 본인의 순위는 0.649로"]
+  - id: L_C4_paper_accuracy
+    value: {file: results/exp_l/reproduction.json, json: paper_accuracy}
+    format: {kind: fixed, digits: 1, scale: 100}
+    text: "2.4"
+    in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["기준 세션 공격(다른 날, 논문 2.4%)"]
+  - id: K_kmax_lee2019
+    value: {file: results/exp_k/grid.json, json: datasets.lee2019.k.6}
+    format: {kind: fixed, digits: 0}
+    text: "100"
+    in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["명령 20개 → 100개", "이즈 공격자로 다시 봤습니다. 같은 날에는 명령 20개에서 0.186, 100개에서 0.278이었고, 다른 날에는 0.082와 0.117이었습니다."]
+  - id: 2a_D1_d1_identity
+    value: {file: results/exp_d/tradeoff.csv, column: identity_ba, where: {family: common, condition: D1-d1}}
+    format: {kind: fixed, digits: 2}
+    text: "0.25"
+    in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["iv class=\"lab\">d = 1, BCI IV 2a 9명</div><div class=\"val\">식별 0.25</div>", "질의응답용] v1의 방어 비교입니다. 특징을 1차원까지 좁히면 9명에서 0.25, 54명에서 0.057까지 내려가고 해독 정확도는 거의 그대로였습니다."]
+  - id: 2a_D1_d1_task
+    value: {file: results/exp_d/tradeoff.csv, column: task_ba, where: {family: common, condition: D1-d1}}
+    format: {kind: fixed, digits: 2}
+    text: "0.71"
+    in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["</div><div class=\"val\">식별 0.25</div><div class=\"sub\">과제 정확도 0.71</div>"]
+  - id: L_P2_d1_task
+    value: {file: results/exp_l/task_summary.csv, column: mean, where: {key: P2_d1}}
+    format: {kind: fixed, digits: 2}
+    text: "0.70"
+    in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["과제 정확도 0.70 · seed 3개"]
+  - id: A_H1_B3_one_run
+    value: {file: results/exp_a/summary.csv, column: ba_mean, where: {decoder: B3, n_runs: 1}}
+    format: {kind: fixed, digits: 3}
+    text: "0.689"
+    in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.689 대 0.669, p = 0.10"]
+  - id: A_H1_B2_one_run
+    value: {file: results/exp_a/summary.csv, column: ba_mean, where: {decoder: B2, n_runs: 1}}
+    format: {kind: fixed, digits: 3}
+    text: "0.669"
+    in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.689 대 0.669, p = 0.10"]
+  - id: A_H1_p
+    value: {file: results/exp_a/h1.json, json: p_value}
+    format: {kind: fixed, digits: 2}
+    text: "0.10"
+    in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["0.689 대 0.669, p = 0.10"]
+  - id: B_H2_selected_lambda
+    value: {file: results/exp_b/decision.json, json: families.common.target}
+    format: {kind: fixed, digits: 2}
+    text: "0.01"
+    in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["선택된 λ = 0.01, 차이 없음"]
