@@ -1,0 +1,104 @@
+{
+  "test_session": "E",
+  "hypothesis": "1-run B3 - B2 balanced accuracy > 0",
+  "alternative": "greater",
+  "n_subjects": 9,
+  "n_sign_patterns": 512,
+  "mean_difference": 0.019830505016328895,
+  "median_difference": 0.02699530516431925,
+  "n_positive": 6,
+  "p_value": 0.1015625,
+  "per_subject": {
+    "1": {
+      "B3": 0.7885647216633132,
+      "B2": 0.7232897384305835,
+      "difference": 0.06527498323272962
+    },
+    "2": {
+      "B3": 0.5422535211267606,
+      "B2": 0.5152582159624414,
+      "difference": 0.02699530516431925
+    },
+    "3": {
+      "B3": 0.8928571428571429,
+      "B2": 0.8088308457711443,
+      "difference": 0.08402629708599862
+    },
+    "4": {
+      "B3": 0.6225592229160472,
+      "B2": 0.5787243532560215,
+      "difference": 0.0438348696600257
+    },
+    "5": {
+      "B3": 0.5236263736263737,
+      "B2": 0.5291208791208791,
+      "difference": -0.005494505494505475
+    },
+    "6": {
+      "B3": 0.5828187535734705,
+      "B2": 0.5799028016009148,
+      "difference": 0.002915951972555675
+    },
+    "7": {
+      "B3": 0.5792338572497789,
+      "B2": 0.6301626182214056,
+      "difference": -0.050928760971626685
+    },
+    "8": {
+      "B3": 0.9086081402257874,
+      "B2": 0.8749628639334522,
+      "difference": 0.03364527629233516
+    },
+    "9": {
+      "B3": 0.7615384615384615,
+      "B2": 0.7833333333333333,
+      "difference": -0.02179487179487183
+    }
+  },
+  "git_commit": "e6c13c82b1b8bc1d1df6a278a143035a00deec0b",
+  "sealed_paths_clean": true,
+  "config": {
+    "calibration_runs": [
+      1,
+      2,
+      3,
+      6
+    ],
+    "b1_band_power": {
+      "welch_segment_s": 1.0,
+      "welch_overlap": 0.5,
+      "welch_window": "hann",
+      "welch_detrend": "constant",
+      "bands_hz": [
+        [
+          8,
+          13
+        ],
+        [
+          13,
+          30
+        ]
+      ],
+      "logistic_C": 1.0
+    },
+    "b2_csp": {
+      "covariance_estimator": "scm",
+      "class_mean": "arithmetic",
+      "n_filters": 6
+    },
+    "b3_tangent_space": {
+      "covariance_estimator": "oas",
+      "logistic_C": 1.0
+    },
+    "logistic_max_iter": 1000,
+    "h1": {
+      "calibration_runs": 1,
+      "difference": [
+        "B3",
+        "B2"
+      ],
+      "alternative": "greater"
+    },
+    "output_dir": "results/exp_a"
+  }
+}
