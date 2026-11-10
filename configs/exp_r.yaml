@@ -1,0 +1,18 @@
+# Experiment R (EXPLORATORY): robustness addendum on the sealed Lee2019 replication L.
+# Plan: .mixdog/plan_v2.md revision 4, lane R (acceptance A5). Descriptive only: no claim of L
+# is re-decided. Inputs are read-only: configs/exp_l.yaml, results/exp_l/*, artifacts/exp_l/*.
+status: exploratory
+# Refit budget for every confirmatory MLP attacker fit of L that stopped at L's fixed budget
+# (max_iter 500, max_fun 10000). Same lbfgs solver, architecture, alpha, scaling and seeds.
+mlp_budget:
+  max_iter: 20000
+  max_fun: 200000
+memory:
+  reserve_mib: 4096     # Lead decision for lane R: >= 4 GB free (checked before every fit; one fit at a time)
+  wait_seconds: 600     # below the reserve, wait up to this long before stopping
+runtime:
+  # Lead decision (second attempt): 3.5 h wall for the run, minus a 5 min margin for loading and
+  # the two decision recomputations.
+  limit_seconds: 12300
+  first_refit_seconds: 300   # a refit starts only if the longest refit so far (initially this) fits
+  reproduction_seconds: 30   # a reproduction at L's budget starts only if this much time remains

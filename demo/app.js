@@ -19,7 +19,10 @@ const ATTACKERS = {
   paper_ts_svm: "tangent-space SVM (paper's attacker)", paper_xdawn_svm: "XDAWN-SVM (paper)",
   paper_csp_svm: "CSP-SVM (paper)", paper_csp_lda: "CSP-LDA (paper)", mean_tangent_template: "mean tangent template",
 };
-const EXP_LETTER = { exp_a: "A", exp_b: "B", exp_c: "C", exp_d: "D", exp_e: "E", exp_g: "G", exp_l: "L" };
+const EXP_LETTER = { exp_a: "A", exp_b: "B", exp_c: "C", exp_d: "D", exp_e: "E", exp_g: "G", exp_l: "L", exp_k: "K", exp_m: "M" };
+// Result-table scenario names as labelled in README.md.
+const DAY_OF = { main: "within-day", auxiliary: "cross-day" };
+const dayOf = (s) => DAY_OF[s] || s;
 const cond = (c) => CONDITIONS[c] || { name: c, short: c, color: "#4a5163", dash: "" };
 
 // ------------------------------------------------------------------ helpers
@@ -81,7 +84,13 @@ function showTip(target, html) {
   tip.style.left = `${x}px`;
   tip.style.top = `${y}px`;
 }
-const hideTip = () => { tip.hidden = true; };
+let focusTip = null;
+const hideTip = () => { tip.hidden = true; focusTip = null; };
+// A tooltip opened by keyboard focus follows its element when focus scrolls the page.
+const focusTipOn = (node, html) => {
+  node.addEventListener("focus", () => { showTip(node, html); focusTip = node; });
+  node.addEventListener("blur", hideTip);
+};
 // Real data points can coincide, so dots are purely visual: one pointer layer over the plot shows the
 // nearest point (and any coinciding with it). Keyboard users get the same values from each chart's
 // table or control.
@@ -113,7 +122,10 @@ function plotPoints(fr, pts) {
   layer.addEventListener("pointerleave", clear);
   layer.addEventListener("click", (e) => { const p = nearest(e).find((q) => q.onActivate); if (p) p.onActivate(); });
 }
-addEventListener("scroll", hideTip, { passive: true });
+addEventListener("scroll", () => {
+  if (focusTip && document.activeElement === focusTip) showTip(focusTip, tip.innerHTML);
+  else hideTip();
+}, { passive: true });
 
 function radios(container, name, options, value, onChange) {
   renderRadios(container, name, options, value);
@@ -202,12 +214,16 @@ function marker(g, shape, cx, cy, r, color) {
     triangle: `M${cx},${cy - s * 1.1}L${cx + s},${cy + s * 0.75}L${cx - s},${cy + s * 0.75}Z`,
     diamond: `M${cx},${cy - s * 1.15}L${cx + s},${cy}L${cx},${cy + s * 1.15}L${cx - s},${cy}Z`,
     down: `M${cx},${cy + s * 1.1}L${cx + s},${cy - s * 0.75}L${cx - s},${cy - s * 0.75}Z`,
+    star: `${Array.from({ length: 10 }, (_, i) => {
+      const a = (Math.PI / 5) * i - Math.PI / 2, rr = i % 2 ? s * 0.6 : s * 1.45;
+      return `${i ? "L" : "M"}${cx + rr * Math.cos(a)},${cy + rr * Math.sin(a)}`;
+    }).join("")}Z`,
   };
   const attrs = { fill: color, stroke: "#fff", "stroke-width": 1.5, class: "mk" };
   return shape === "circle" ? el("circle", { cx, cy, r, ...attrs }, g) : el("path", { d: paths[shape], ...attrs }, g);
 }
 function legendItem(label, color, { dash = "", shape } = {}) {
-  const m = shape ? `<svg width="16" height="16" aria-hidden="true" viewBox="0 0 16 16">${shape === "circle" ? `<circle cx="8" cy="8" r="5.5" fill="${color}"/>` : `<path fill="${color}" d="${{ square: "M3,3h10v10h-10Z", triangle: "M8,2L14,13L2,13Z", diamond: "M8,1.5L14,8L8,14.5L2,8Z", down: "M8,14L14,3L2,3Z" }[shape]}"/>`}</svg>` : "";
+  const m = shape ? `<svg width="16" height="16" aria-hidden="true" viewBox="0 0 16 16">${shape === "circle" ? `<circle cx="8" cy="8" r="5.5" fill="${color}"/>` : `<path fill="${color}" d="${{ square: "M3,3h10v10h-10Z", triangle: "M8,2L14,13L2,13Z", diamond: "M8,1.5L14,8L8,14.5L2,8Z", down: "M8,14L14,3L2,3Z", star: "M8,0.5L9.9,5.6L15.2,5.7L11,9L12.5,14.2L8,11.1L3.5,14.2L5,9L0.8,5.7L6.1,5.6Z" }[shape]}"/>`}</svg>` : "";
   return `<span><svg width="24" height="8" aria-hidden="true"><line x1="0" x2="24" y1="4" y2="4" stroke="${color}" stroke-width="3" stroke-dasharray="${dash}"/></svg>${m}${label}</span>`;
 }
 function onResize(node, draw) {
@@ -236,15 +252,30 @@ document.querySelectorAll("[data-h]").forEach((node) => {
   node.textContent = (FORMATS[node.dataset.fmt] || String)(value);
   node.title = srcText(entry.source);
 });
+// K numbers quoted in the Korean introduction, straight from frontier.csv's headline cell.
+document.querySelectorAll("[data-kv]").forEach((node) => {
+  const [defence, column] = node.dataset.kv.split("|");
+  node.textContent = f3(DATA.k_frontier.rows.find((r) => r.defence === defence)[column]);
+  node.title = `Source: ${DATA.k_frontier.source.file} (defence = ${defence}, ${column})`;
+});
+// Finding 3: name the scenario of the strongest attacker behind the 20-command range.
+{
+  const c20 = DATA.observation.rows.filter((r) => r.experiment === "exp_c" && r.mode === "command" && r.k === 20);
+  const cross = c20.filter((r) => r.scenario === "auxiliary");
+  $("#cmd-scenario").textContent = `At 20 commands the strongest attacker is within-day in ${c20.length - cross.length} of ${c20.length} settings`
+    + (cross.length ? `; it is cross-day (trained on session T) for ${cross.map((r) => `${cond(r.condition).name} at τ = ${r.tau} (${f3(r.ba_mean)})`).join(", ")}.` : ".");
+  $("#cmd-scenario").title = "Source: results/exp_c/observation_strongest.csv (mode = command, k = 20, scenario)";
+}
 $("#seal-hash").textContent = DATA.seal.commit.slice(0, 7);
 $("#seal-hash").title = `${DATA.seal.commit} (${DATA.seal.source.file})`;
 document.querySelectorAll("[data-placeholder]").forEach((a) => a.addEventListener("click", (e) => e.preventDefault()));
 
-// Evidence badges: the level comes from the report's status table via DATA.experiments.
+// Evidence badges: README's three tiers; an experiment's tier comes from the report's status table via DATA.experiments.
+const TIER = { confirmatory: ["conf", "Confirmatory-sealed"], estimate: ["est", "Pre-registered estimate"], exploratory: ["expl", "Exploratory"] };
+const tierBadge = (tier, title) => `<span class="badge ${TIER[tier][0]}"${title ? ` title="${title}"` : ""}>${TIER[tier][1]}</span>`;
 const badge = (exp) => {
   const e = DATA.experiments[exp];
-  const conf = e.evidence === "confirmatory";
-  return `<span class="badge ${conf ? "conf" : "expl"}" title="Experiment ${e.letter}: ${e.status_text} (${e.outcome_source.file} §${e.outcome_source.where.section})">${conf ? "Confirmatory" : "Exploratory"}</span>`;
+  return tierBadge(e.evidence, `Experiment ${e.letter}: ${e.status_text} (${e.outcome_source.file} §${e.outcome_source.where.section})`);
 };
 document.querySelectorAll("[data-evidence]").forEach((node) => { node.outerHTML = badge(node.dataset.evidence); });
 
@@ -252,7 +283,7 @@ document.querySelectorAll("[data-evidence]").forEach((node) => { node.outerHTML 
 // Which sealed replication claims re-test each 9-user experiment (docs/report.md §6.7).
 const REPLICATES = { exp_b: ["C1", "C2"], exp_c: ["C3"], exp_g: ["C4"] };
 const CLAIM_WORD = { supported: "supported", not_supported: "not supported" };
-const SECTION_OF = { exp_a:"#method", exp_b: "#frontier", exp_c: "#replay", exp_d: "#frontier", exp_e: "#fooled", exp_g: "#pitfall2", exp_l: "#replication" };
+const SECTION_OF = { exp_a:"#method", exp_b: "#frontier", exp_c: "#replay", exp_d: "#frontier", exp_e: "#fooled", exp_g: "#pitfall2", exp_l: "#replication", exp_k: "#k-frontier" };
 {
   const list = $("#glance-list");
   for (const [k, e] of Object.entries(DATA.experiments)) {
@@ -460,12 +491,12 @@ function draw() {
     });
     const info = RM.attacker[`${state.condition}|${stream}|${k}`];
     const agg = OBS.find((r) => r.experiment === "exp_c" && r.condition === state.condition && r.stream === stream && r.k === k);
-    el("div", { class: "arow-sum", html: `${done ? `<b>${hits}/${done}</b> right here` : "&nbsp;"}<br>all users: <b>${f2(agg?.ba_mean)}</b> <span title="${ATTACKERS[info.attacker]}, ${info.scenario} scenario">(${ATTACKERS[info.attacker]})</span>` }, row);
+    el("div", { class: "arow-sum", html: `${done ? `<b>${hits}/${done}</b> right here` : "&nbsp;"}<br>all users: <b>${f2(agg?.ba_mean)}</b> <span title="${ATTACKERS[info.attacker]}, ${dayOf(info.scenario)}">(${ATTACKERS[info.attacker]}, ${dayOf(info.scenario)})</span>` }, row);
   }
   const scen = new Set(RM.k.map((k) => RM.attacker[`${state.condition}|${stream}|${k}`].scenario));
   $("#attack-hint").innerHTML = `True user: <b>S${truth}</b> · attacker sees <b>${state.mode === "feature" ? "feature vectors" : "commands only"}</b>`;
   $("#attack-note").textContent = `Each box is one stored guess from a separate group of k consecutive outputs; green = correct user, red = wrong. Chance is ${f2(CHANCE)}. `
-    + `Attackers were trained ${scen.has("main") ? "on the other half of session E (runs 1–3 ↔ 4–6)" : ""}${scen.size > 1 ? " or " : ""}${scen.has("auxiliary") ? "on session T" : ""}, never on the run shown. `
+    + `Attackers were trained ${scen.has("main") ? "within-day, on the other half of session E (runs 1–3 ↔ 4–6)" : ""}${scen.size > 1 ? " or " : ""}${scen.has("auxiliary") ? "cross-day, on session T" : ""}, never on the run shown. `
     + "Features and commands move the arm identically; only what the attacker sees differs. "
     + `Arm, commands and boxes show a single model seed (${Number(state.seed) + 1} of ${RM.seeds.length}) and one E run; “all users” values are 5-seed means of the strongest attacker.`;
 }
@@ -479,8 +510,8 @@ function renderStats() {
     ["Wrong-direction moves", `${row.wrong_direction_moves_mean.toFixed(1)} / episode`],
     ["Commands held", pct(row.hold_rate_mean)],
     ["Episodes ending within 10°", pct(row.reach_rate_mean)],
-    ["Identity score, 1 output", f2(ob(1).ba_mean)],
-    ["Identity score, 20 outputs", f2(ob(20).ba_mean)],
+    [`Identity score, 1 output (${dayOf(ob(1).scenario)})`, f2(ob(1).ba_mean)],
+    [`Identity score, 20 outputs (${dayOf(ob(20).scenario)})`, f2(ob(20).ba_mean)],
   ];
   const dl = $("#replay-stats");
   dl.innerHTML = "";
@@ -506,24 +537,24 @@ const P1 = {
       lam: r.target, head: r.adversary_main_ba, ind: r.independent_ba, attacker: r.strongest_attacker, scenario: r.strongest_scenario, selected: r.selected,
       task: TRADE.find((t) => t.experiment === "exp_b" && t.condition === fam && t.target === r.target)?.task_ba })),
     source: "results/exp_b/adversary_comparison.csv (adversary_main_ba vs independent_ba); task accuracy results/exp_b/tradeoff.csv",
-    note: "Head: the identity head trained with the encoder, main scenario. Independent: the strongest of three retrained attackers (logistic regression, RBF SVM, MLP) over both scenarios: main = trained and tested within session E (runs 1–3 ↔ 4–6, both directions averaged); auxiliary = trained on session-T outputs, tested on E.",
+    note: "Head: the identity head trained with the encoder, scored within-day. Independent: the strongest of three retrained attackers (logistic regression, RBF SVM, MLP) over both scenarios: within-day = trained and tested within session E (runs 1–3 ↔ 4–6, both directions averaged); cross-day = trained on session-T outputs, tested on E.",
     takeaway: () => `Judged by its own head the model looks private; judged by an independent attacker it leaks more as λ grows. Cross-validation on session T therefore selected λ = ${H.selected_lambda.value}, effectively no adversary, and pre-registered hypothesis H2 was ${H.h2_accepted.value ? "supported" : "not supported"}.`,
   },
   D_maxent: {
     label: "D · maximum entropy", exp: "exp_d", head: "Co-trained adversary head", families: FAMILIES, rows: fromD("maxent"),
     source: "results/exp_d/tradeoff.csv (head_main_ba vs identity_ba, kind = maxent)",
-    note: "The adversary pushes its posterior toward uniform instead of reversing gradients. λ and epoch budget were selected on session T; the selected point is marked. Independent: strongest retrained attacker over both scenarios.",
+    note: "The adversary pushes its posterior toward uniform instead of reversing gradients. λ and epoch budget were selected on session T; the selected point is marked. Independent: strongest retrained attacker over within-day and cross-day.",
   },
   D_ensemble: {
     label: "D · ensemble refresh", exp: "exp_d", head: "Co-trained adversary heads", families: FAMILIES, rows: fromD("ensemble"),
     source: "results/exp_d/tradeoff.csv (head_main_ba vs identity_ba, kind = ensemble)",
-    note: "Five adversary heads behind gradient reversal, one re-initialised per epoch. λ and epoch budget were selected on session T; the selected point is marked. Independent: strongest retrained attacker over both scenarios.",
+    note: "Five adversary heads behind gradient reversal, one re-initialised per epoch. λ and epoch budget were selected on session T; the selected point is marked. Independent: strongest retrained attacker over within-day and cross-day.",
   },
   E: {
     label: "E · EEGNet", exp: "exp_e", head: "Co-trained identifier", families: [["none", "No alignment"], ["ea", "Euclidean alignment"]],
     rows: (fam) => EEG.filter((r) => r.alignment === fam).map((r) => ({ lam: r.target, head: r.identifier_ba, ind: r.strongest_ba, attacker: r.strongest_attacker, scenario: r.strongest_scenario, selected: false, task: r.task_ba })),
     source: `${DATA.eegnet.source} (identifier_ba vs strongest_ba)`,
-    note: "Every λ is reported and none was selected. The identifier is trained with the encoder on session T and scored on all of session E, a cross-day measure. Independent: strongest retrained attacker over both scenarios on the same frozen EEGNet features.",
+    note: "Every λ is reported and none was selected. The identifier is trained with the encoder on session T and scored on all of session E, a cross-day measure. Independent: strongest retrained attacker over within-day and cross-day on the same frozen EEGNet features.",
     takeaway: () => { const n = DATA.eegnet.near_chance; return `Where the identifier sits close to chance it reads ${FORMATS.range2(n.identifier)}, while independent attackers reach ${FORMATS.range2(n.independent)} on the same features. Unlike B it never falls below chance. Without alignment at high λ left/right accuracy collapses too, so those are not usable operating points.`; },
   },
 };
@@ -570,7 +601,7 @@ function drawFooled() {
       const g = el("g", { class: `pt${r === sel ? " active" : ""}` }, fr.svg);
       marker(g, s.shape, X(r), fr.y(r[s.key]), 6, s.color);
       pts.push({ g, x: X(r), y: fr.y(r[s.key]), onActivate: () => { lam.value = String(i); drawFooled(); },
-        html: `<b>${s.label}</b><br>λ = ${r.lam} · identity score ${f3(r[s.key])}${s.key === "ind" ? `<br>${ATTACKERS[r.attacker] || r.attacker}, ${r.scenario} scenario` : ""}` });
+        html: `<b>${s.label}</b><br>λ = ${r.lam} · identity score ${f3(r[s.key])}${s.key === "ind" ? `<br>${ATTACKERS[r.attacker] || r.attacker}, ${dayOf(r.scenario)}` : ""}` });
     });
   }
   plotPoints(fr, pts);
@@ -585,19 +616,20 @@ function drawFooled() {
   $("#v-head").textContent = f2(sel.head);
   $("#v-head-sub").textContent = `${(sel.head / CHANCE).toFixed(1)}× chance (chance ${f2(CHANCE)})`;
   $("#v-ind").textContent = f2(sel.ind);
-  $("#v-ind-sub").textContent = `${ATTACKERS[sel.attacker] || sel.attacker}, ${sel.scenario} scenario · ${(sel.ind / CHANCE).toFixed(1)}× chance`;
+  $("#v-ind-sub").textContent = `${ATTACKERS[sel.attacker] || sel.attacker}, ${dayOf(sel.scenario)} · ${(sel.ind / CHANCE).toFixed(1)}× chance`;
   $("#v-task").innerHTML = sel.task == null ? "" : `Left/right accuracy at this λ: <b>${f3(sel.task)}</b> (balanced accuracy)`;
   $("#p1-takeaway").textContent = study.takeaway ? study.takeaway()
     : `Across all λ in this family the heads score ${range2(rows.map((r) => r.head))} while independent attackers reach ${range2(rows.map((r) => r.ind))} on the same outputs.`;
   table($("#fooled-table"), ["λ", study.head, "strongest independent", "strongest attacker", "left/right accuracy"],
-    rows.map((r) => [String(r.lam) + (r.selected ? " (selected)" : ""), f3(r.head), f3(r.ind), `${ATTACKERS[r.attacker] || r.attacker}, ${r.scenario}`, f3(r.task)]));
+    rows.map((r) => [String(r.lam) + (r.selected ? " (selected)" : ""), f3(r.head), f3(r.ind), `${ATTACKERS[r.attacker] || r.attacker}, ${dayOf(r.scenario)}`, f3(r.task)]));
 }
 onResize($("#fooled-chart"), drawFooled);
 
 // ------------------------------------------------------------------ utility–identity frontier
 const FR_SERIES = [
-  { key: "raw", label: "Raw features, 253-d", color: PAL.raw, shape: "square", exp: "exp_d",
-    pick: (f) => TRADE.filter((r) => r.experiment === "exp_d" && r.family === f && r.kind === "linear") },
+  // Raw features are B's sealed P0 / P0-RC rows (README: 2a within-day 1.00, confirmatory-sealed B).
+  { key: "raw", label: "Raw features, 253-d", color: PAL.raw, shape: "square", exp: "exp_b",
+    pick: (f) => TRADE.filter((r) => r.experiment === "exp_b" && r.condition === (f === "common" ? "P0" : "P0-RC")) },
   { key: "task", label: "Task-only bottleneck, width d", color: PAL.task, shape: "circle", exp: "exp_d", line: "d",
     pick: (f) => TRADE.filter((r) => r.experiment === "exp_d" && r.family === f && r.kind === "task") },
   { key: "grl", label: "Gradient reversal (B)", color: PAL.grl, shape: "triangle", exp: "exp_b", line: "target",
@@ -614,7 +646,7 @@ radios($("#frontier-family"), "frontier-family", FAMILIES.map(([value, label]) =
 chips($("#frontier-toggles"), FR_SERIES.map((s) => ({ key: s.key, label: s.label, color: s.color, on: true })),
   (k, on) => { frontierOn.set(k, on); drawFrontier(); });
 $("#frontier-badges").innerHTML = `B: ${badge("exp_b")} D: ${badge("exp_d")}`;
-const evidenceOf = (exp) => `${EXP_LETTER[exp]}, ${DATA.experiments[exp].evidence}`;
+const evidenceOf = (exp) => `${EXP_LETTER[exp]}, ${TIER[DATA.experiments[exp].evidence][1].toLowerCase()}`;
 function drawFrontier() {
   const all = FR_SERIES.flatMap((s) => s.pick(frontierFam));
   const lo = Math.floor((Math.min(...all.map((r) => r.task_ba)) - 0.005) * 50) / 50;
@@ -637,7 +669,7 @@ function drawFrontier() {
       marker(g, s.shape, cx, cy, 5.5, s.color);
       if (s.key === "task") el("text", { class: "pt-label", x: cx + 8, y: cy - 7, text: `d=${r.d}` }, g);
       const param = s.key === "task" ? `d = ${r.d}` : s.key === "raw" ? "" : `λ = ${r.target}${r.selected ? " (selected on session T)" : ""}`;
-      hits.push({ g, x: cx, y: cy, html: `<b>${s.label}</b> · ${evidenceOf(s.exp)}${param ? `<br>${param}` : ""}<br>accuracy ${f3(r.task_ba)} · identity ${f3(r.identity_ba)}<br>strongest: ${ATTACKERS[r.strongest_attacker] || r.strongest_attacker}, ${r.strongest_scenario}` });
+      hits.push({ g, x: cx, y: cy, html: `<b>${s.label}</b> · ${evidenceOf(s.exp)}${param ? `<br>${param}` : ""}<br>accuracy ${f3(r.task_ba)} · identity ${f3(r.identity_ba)}<br>strongest: ${ATTACKERS[r.strongest_attacker] || r.strongest_attacker}, ${dayOf(r.strongest_scenario)}` });
       shown.push([s, r, param]);
     }
   }
@@ -647,7 +679,7 @@ function drawFrontier() {
     + `<span><svg width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="#161a26" stroke-width="1.5"/></svg>selected on session T</span>`;
   table($("#frontier-table"), ["model", "evidence", "setting", "left/right accuracy", "identity score", "strongest attacker"],
     shown.map(([s, r, param]) => [s.label, evidenceOf(s.exp), param || "–", f3(r.task_ba), f3(r.identity_ba),
-      `${ATTACKERS[r.strongest_attacker] || r.strongest_attacker}, ${r.strongest_scenario} scenario`]));
+      `${ATTACKERS[r.strongest_attacker] || r.strongest_attacker}, ${dayOf(r.strongest_scenario)}`]));
   // Dominance as defined in docs/report.md §6.2: some task-only bottleneck decodes at least as well and leaks less.
   const task = FR_SERIES[1].pick(frontierFam);
   const adv = FR_SERIES.slice(2).flatMap((s) => s.pick(frontierFam));
@@ -657,7 +689,7 @@ function drawFrontier() {
     + `(equal or higher accuracy, lower identity score). The least identifying bottleneck (d = ${best.d}) reaches identity ${f3(best.identity_ba)} at accuracy ${f3(best.task_ba)}: `
     + `the lowest exposure of any defence tested, still ${(best.identity_ba / CHANCE).toFixed(1)}× chance. Values are seed means of the strongest independent attacker `
     + `(D: ${seedsOf("exp_d")} seeds; B: ${seedsOf("exp_b")} seeds). `
-    + "Sources: results/exp_d/tradeoff.csv; gradient-reversal points results/exp_b/tradeoff.csv; seeds configs/exp_b.yaml (D inherits them).";
+    + "Sources: results/exp_d/tradeoff.csv; raw-feature and gradient-reversal points results/exp_b/tradeoff.csv; seeds configs/exp_b.yaml (D inherits them).";
 }
 onResize($("#frontier-chart"), drawFrontier);
 
@@ -712,7 +744,7 @@ function drawObs() {
     for (const r of pts) {
       const g = el("g", { class: "pt" }, fr.svg);
       el("circle", { cx: X(r), cy: fr.y(r.ba_mean), r: 5, fill: c.color, stroke: "#fff", "stroke-width": 1.5 }, g);
-      hits.push({ g, x: X(r), y: fr.y(r.ba_mean), html: `<b>${cond(r.condition).name}</b><br>${r.stream === "feature" ? "features" : `commands, τ = ${r.tau}`}, k = ${r.k}<br>identity ${f3(r.ba_mean)} [${f3(r.ba_low)}–${f3(r.ba_high)}]<br>${ATTACKERS[r.attacker] || r.attacker}, ${r.scenario} scenario` });
+      hits.push({ g, x: X(r), y: fr.y(r.ba_mean), html: `<b>${cond(r.condition).name}</b><br>${r.stream === "feature" ? "features" : `commands, τ = ${r.tau}`}, k = ${r.k}<br>identity ${f3(r.ba_mean)} [${f3(r.ba_low)}–${f3(r.ba_high)}]<br>${ATTACKERS[r.attacker] || r.attacker}, ${dayOf(r.scenario)}` });
     }
   });
   plotPoints(fr, hits);
@@ -720,7 +752,7 @@ function drawObs() {
   table($("#obs-table"), ["model", "stream", "k", "identity score", "interval", "strongest attacker"],
     [...groups].flatMap(([key, pts]) => pts.map((r) => [seriesLabel(key, OBS), r.stream === "feature" ? "features" : `commands, τ = ${r.tau}`,
       String(r.k), f3(r.ba_mean), r.ba_low == null ? "–" : `${f3(r.ba_low)}–${f3(r.ba_high)}`,
-      `${ATTACKERS[r.attacker] || r.attacker}, ${r.scenario} scenario`])));
+      `${ATTACKERS[r.attacker] || r.attacker}, ${dayOf(r.scenario)}`])));
 }
 onResize($("#obs-chart"), drawObs);
 
@@ -750,7 +782,7 @@ function drawP2() {
   const ref = SCEN.find((r) => r.condition === "defended" && r.scenario === "reference_session" && r.attacker === p2Attacker && r.k === p2K);
   if (ref) {
     el("line", { x1: fr.m.l, x2: fr.W - fr.m.r, y1: fr.y(ref.accuracy), y2: fr.y(ref.accuracy), stroke: PAL.head, "stroke-dasharray": "2 4", "stroke-width": 2 }, fr.svg);
-    el("text", { class: "ref-label", x: fr.m.l + 6, y: fr.y(ref.accuracy) - 6, text: `reference-session attack on defended data: ${pctf(ref.accuracy)}` }, fr.svg);
+    el("text", { class: "ref-label", x: fr.m.l + 6, y: fr.y(ref.accuracy) - 6, text: `reference session (cross-day), defended: ${pctf(ref.accuracy)}` }, fr.svg);
   }
   const series = [
     { c: "defended", label: "Defended output", color: PAL.head, dash: "", shape: "circle" },
@@ -774,11 +806,11 @@ function drawP2() {
   plotPoints(fr, pts);
   for (const i of ne) el("text", { class: "ref-label", x: fr.x(i), y: fr.H - fr.m.b - 8, "text-anchor": "middle", text: "n/e" }, fr.svg);
   $("#p2-legend").innerHTML = series.map((s) => legendItem(s.label, s.color, s)).join("")
-    + (ref ? legendItem("Reference-session attack, defended", PAL.head, { dash: "2 4" }) : "");
+    + (ref ? legendItem("Reference-session attack (cross-day), defended", PAL.head, { dash: "2 4" }) : "");
   const def = pick("defended"), und = pick("undefended");
   table($("#p2-table"), ["attacker", "test trials", "n per user", "defended", "undefended", "status"],
     N_ORDER.map((n, i) => [ATTACKERS[p2Attacker] || p2Attacker, String(p2K), n, pctf(def[i]?.accuracy, 2), pctf(und[i]?.accuracy, 2), def[i]?.status === "evaluable" ? "evaluable" : `not evaluable: ${def[i]?.reason || "missing"}`]));
-  $("#p2-note").textContent = "The attacker trains on the first n labelled defended trials per user from one half of the deployment session and is tested on the other half; "
+  $("#p2-note").textContent = "Within-day: the attacker trains on the first n labelled defended trials per user from one half of the deployment session and is tested on the other half; "
     + `both directions averaged, chance ${pctf(CHANCE)}. n/e: not evaluable, n is below the attacker's inner cross-validation folds. `
     + `Sources: ${P2.enrolment.source}; reference-session line ${P2.scenarios.source}.`;
 }
@@ -796,14 +828,14 @@ onResize($("#p2-chart"), drawP2);
   el("p", { class: "hint", text: `${other} other attacker rows are not compared: the paper's settings for them are underspecified or tuned on the evaluation session (${P2.reproduction.source}).` }, box);
   const dl = $("#p2-stats");
   const stat = (label, key, fmt) => { const d = el("div", { title: srcText(H[key].source) }, dl); el("dt", { text: label }, d); el("dd", { text: FORMATS[fmt](H[key].value) }, d); };
-  stat("Reference-session attackers, defended data (1 trial)", "g_reference_defended", "rangepct");
-  stat("Deployment-period attackers, defended data (1 trial)", "g_post_defended", "rangepct");
-  stat("1 labelled trial per user, logistic regression", "g_enrol_n1", "pct2");
+  stat("Reference-session attackers (cross-day), defended data (1 trial)", "g_reference_defended", "rangepct");
+  stat("Deployment-period attackers (within-day), defended data (1 trial)", "g_post_defended", "rangepct");
+  stat("1 labelled trial per user (within-day), logistic regression", "g_enrol_n1", "pct2");
   stat("…same attacker on undefended data", "g_enrol_n1_undefended", "pct2");
-  stat("5 labelled trials per user, logistic regression", "g_enrol_n5", "pct2");
+  stat("5 labelled trials per user (within-day), logistic regression", "g_enrol_n5", "pct2");
   const attackers = [...new Set(SCEN.map((r) => r.attacker))];
   const v = (a, c, s) => pctf(SCEN.find((r) => r.attacker === a && r.condition === c && r.scenario === s && r.k === 1)?.accuracy);
-  table($("#p2-scen"), ["attacker", "reference, undefended", "reference, defended", "deployment, undefended", "deployment, defended"],
+  table($("#p2-scen"), ["attacker", "reference (cross-day), undefended", "reference (cross-day), defended", "deployment (within-day), undefended", "deployment (within-day), defended"],
     attackers.map((a) => [ATTACKERS[a] || a, v(a, "undefended", "reference_session"), v(a, "defended", "reference_session"), v(a, "undefended", "post_deployment"), v(a, "defended", "post_deployment")]));
   el("p", { class: "hint", text: `Single test trial (k = 1), both directions averaged. Source: ${P2.scenarios.source}.` }, $("#p2-scen"));
 }
@@ -912,7 +944,7 @@ onResize($("#p2-chart"), drawP2);
     el("span", { class: "tl-dot", "aria-hidden": "true" }, li);
     el("p", { class: "tl-label", text: ev.label }, li);
     el("h4", { text: ev.title }, li);
-    el("p", { class: "tl-meta", html: `${badge(ev.experiments[0])} ${ev.experiments.map((e) => EXP_LETTER[e]).join(", ")}${done ? "" : " · <span class=\"status pending\">Pending</span>"}` }, li);
+    el("p", { class: "tl-meta", html: `${tierBadge(ev.evidence)} ${ev.experiments.map((e) => EXP_LETTER[e]).join(", ")}${done ? "" : " · <span class=\"status pending\">Pending</span>"}` }, li);
     el("p", { text: ev.text }, li);
     if (ev.commit) {
       const p = el("p", { class: "tl-commit" }, li);
@@ -923,4 +955,160 @@ onResize($("#p2-chart"), drawP2);
     }
   }
   $("#timeline-source").textContent = `Commits, dates and test counts: ${DATA.timeline.source.file}.`;
+}
+
+// ------------------------------------------------------------------ K: randomized response vs group-equalized decoding
+{
+  const K = DATA.k_frontier, S = K.setting;
+  const KR = Object.fromEntries(K.rows.map((r) => [r.defence, r]));
+  const DAY = { within_day: "같은 날 (within-day)", cross_day: "다른 날 (cross-day)" };
+  const GCOL = { 2: PAL.grl, 3: PAL.head, 5: PAL.task };
+  const INK = "#161a26", GREY = "#4a5163";
+  const EQ = [["eqc", "EQ-confusion", "down", "그룹 내 P(출력 | 목표) 균등화"], ["eqm", "EQ-marginal", "triangle", "그룹 내 P(출력) 균등화"]];
+  const PATH = ["none", ...K.rr];
+  const qOf = (d) => d.slice(4);
+  const gOf = (d) => d.split("_g")[1];
+  const name = (d) => (d === "none" ? "방어 없음" : d.startsWith("rr_") ? `무작위 응답 RR, q = ${qOf(d)}`
+    : `${d.startsWith("eqc") ? "EQ-confusion" : "EQ-marginal"}, g = ${gOf(d) === "all" ? "전체" : gOf(d)}`);
+  const col = (metric, day, g) => (metric === "excess" ? `g${g}_excess_${day}_k${S.k}` : `nway_ba_${day}_k${S.k}`);
+  // Signed values with a true minus sign; utilities and excesses can be negative.
+  const m3 = (v) => (v == null ? "–" : `${v < 0 ? "−" : ""}${Math.abs(v).toFixed(3)}`);
+  const arrow = (a, b) => `${m3(a)} → ${m3(b)}`;
+  const otherFirst = (g) => [...K.groups.filter((x) => x !== g), g];
+  // make_groups: equal groups of g, leftover users join the last group.
+  const sizeText = (g) => {
+    const s = K.group_sizes[g], last = s.at(-1);
+    return last === g ? `g = ${g}: 정확히 ${g}명씩 ${s.length}개 그룹` : `g = ${g}: ${g}명 그룹 ${s.length - 1}개와 ${last}명인 마지막 그룹`;
+  };
+  let kMetric = "excess", kG = S.g;
+  const on = new Map([["rr", true], ["eqc", true], ["eqm", true]]);
+
+  const eqDefs = EQ.flatMap(([v]) => K.groups.map((g) => `${v}_g${g}`));
+  const util = [...PATH, ...eqDefs].map((d) => KR[d].weighted_utility);
+  const X_STEP = 0.2;
+  const xI = [Math.floor((Math.min(...util) - 0.04) / X_STEP), Math.ceil((Math.max(...util) + 0.04) / X_STEP)];
+  const xTicks = []; for (let i = xI[0]; i <= xI[1]; i += 1) xTicks.push(Math.round(i * X_STEP * 10) / 10);
+  // One y-range per metric for both days and every g, so switching g never rescales the axes.
+  const yRange = (metric) => {
+    const vals = K.days.flatMap((day) => (metric === "excess"
+      ? K.groups.flatMap((g) => [...PATH, ...EQ.map(([v]) => `${v}_g${g}`)].map((d) => KR[d][col(metric, day, g)]))
+      : [...PATH, ...eqDefs].map((d) => KR[d][col(metric, day)])));
+    const lo = Math.min(0, Math.floor(Math.min(...vals) / 0.05) * 0.05), hi = Math.ceil((Math.max(...vals) * 1.1) / 0.05) * 0.05;
+    const step = hi - lo > 0.26 ? 0.1 : 0.05;
+    const ticks = []; for (let i = Math.ceil(lo / step - 1e-9); i * step <= hi + 1e-9; i += 1) ticks.push(Math.round(i * step * 100) / 100);
+    return { domain: [lo, hi], ticks };
+  };
+  const tipHtml = (d, day, g) => {
+    const r = KR[d], gg = d.includes("_g") ? Number(gOf(d)) : g;
+    return `<b>${name(d)}</b><br>${DAY[day]}, 명령 ${S.k}개<br>가중 유용성 ${m3(r.weighted_utility)} · 정지 비율 ${f3(r.hold_rate)}<br>`
+      + (kMetric === "excess" ? `그룹 내 초과 (g = ${gg}): ${m3(r[col("excess", day, gg)])}` : `전체 ${K.users}명 중 식별: ${f3(r[col("nway", day)])}`);
+  };
+
+  radios($("#k-metric"), "k-metric", [{ value: "excess", label: "그룹 내 초과 식별" }, { value: "nway", label: `전체 ${K.users}명 중 식별` }], kMetric,
+    (v) => { kMetric = v; drawK(); });
+  radios($("#k-g"), "k-g", K.groups.map((g) => ({ value: g, label: g === S.g ? `g = ${g} (g*)` : `g = ${g}`, title: g === S.g ? "선언된 대표 설정 g*" : null })), kG,
+    (v) => { kG = Number(v); drawK(); });
+  chips($("#k-toggles"), [{ key: "rr", label: "무작위 응답 RR", color: GREY, on: true }, ...EQ.map(([v, label]) => ({ key: v, label, color: GREY, on: true }))],
+    (key, value) => { on.set(key, value); drawK(); });
+  $("#k-badge").innerHTML = `${badge("exp_k")} 탐색적: g = ${S.g} 강조`;
+  $("#k-lede").textContent = `Lee2019 ${K.users}명, 재중심화 병목 P2-RC (d = 8), τ = ${S.tau}, 명령 ${S.k}개(k = ${S.k}). `
+    + "두 방어 모두 해독된 왼쪽·오른쪽·정지 명령을 전송 전에 바꾼다. 무작위 응답 RR(q)는 각 명령을 확률 q로 무작위 명령으로 바꾼다. "
+    + "EQ는 사용자를 보정일 유용성 순으로 g명씩 묶고(남는 사용자는 마지막 그룹에 들어간다), 보정일 데이터로 사용자별 확률 행렬을 적합해 "
+    + "그룹 안의 모든 사용자가 같은 출력 분포를 갖게 한다. "
+    + "오른쪽일수록 조작에 유리하고, 아래일수록 신원이 덜 드러난다. "
+    + `g = ${S.g}은 K가 미리 선언한 대표 설정(g*)이라 굵게 표시했고, 다른 g는 흐리게 그렸다. 모든 값은 탐색적이다.`;
+
+  function drawK() {
+    const yr = yRange(kMetric);
+    for (const day of K.days) {
+      const fr = frame($(`#k-chart-${day}`), {
+        xDomain: [xTicks[0], xTicks.at(-1)], yDomain: yr.domain, xTicks, yTicks: yr.ticks, xFmt: (v) => m3(v).slice(0, -2), yFmt: (v) => m3(v).slice(0, -1),
+        xLabel: `가중 유용성 P(정답) − ${S.wrong_weight}·P(오답)`, yLabel: kMetric === "excess" ? "그룹 내 초과 식별" : `${K.users}명 중 식별 (BA)`,
+      });
+      // Chance label under the line at the left: the undefended and EQ points crowd the right end.
+      const yRef = fr.y(kMetric === "excess" ? 0 : K.chance);
+      el("line", { class: "ref-line", x1: fr.m.l, x2: fr.W - fr.m.r, y1: yRef, y2: yRef }, fr.svg);
+      el("text", { class: "ref-label", x: fr.m.l + 4, y: yRef + 13, text: kMetric === "excess" ? "그룹 내 우연 수준 (초과 0)" : `우연 수준 1/${K.users}` }, fr.svg);
+      const pts = [];
+      const point = (layer, d, shape, x, y, r, color, g) => {
+        const gg = el("g", { class: "pt" }, layer);
+        marker(gg, shape, x, y, r, color);
+        pts.push({ g: gg, x, y, html: tipHtml(d, day, g) });
+      };
+      // Undefended and RR: one line per g for the within-group excess, a single black line for N-way.
+      for (const g of kMetric === "excess" ? otherFirst(kG) : [null]) {
+        const hot = g == null || g === kG, color = g == null ? INK : GCOL[g];
+        const layer = el("g", { opacity: hot ? 1 : 0.35 }, fr.svg);
+        const seq = on.get("rr") ? PATH : ["none"];
+        const c = col(kMetric, day, g);
+        const xy = (d) => [fr.x(KR[d].weighted_utility), fr.y(KR[d][c])];
+        if (seq.length > 1) el("polyline", { points: seq.map((d) => xy(d).join(",")).join(" "), fill: "none", stroke: color, "stroke-width": hot ? 2.5 : 1.5 }, layer);
+        for (const d of seq) {
+          const [x, y] = xy(d);
+          point(layer, d, d === "none" ? "star" : "circle", x, y, d === "none" ? (hot ? 7.5 : 6) : (hot ? 4.5 : 3.5), color, g);
+          if (hot && d !== "none") el("text", { class: "pt-label", x, y: y - 9, "text-anchor": "middle", text: `q=${qOf(d)}` }, layer);
+        }
+      }
+      for (const [v, , shape] of EQ) {
+        if (!on.get(v)) continue;
+        for (const g of otherFirst(kG)) {
+          const d = `${v}_g${g}`, hot = g === kG;
+          const layer = el("g", { opacity: hot ? 1 : 0.4 }, fr.svg);
+          point(layer, d, shape, fr.x(KR[d].weighted_utility), fr.y(KR[d][col(kMetric, day, g)]), hot ? 7 : 5, GCOL[g], g);
+        }
+      }
+      plotPoints(fr, pts);
+    }
+
+    $("#k-legend").innerHTML = [
+      legendItem("방어 없음", GREY, { shape: "star", dash: "0 24" }),
+      on.get("rr") ? legendItem(`무작위 응답 RR (q = ${K.rr.map(qOf).join(", ")})`, GREY, { shape: "circle" }) : "",
+      ...EQ.filter(([v]) => on.get(v)).map(([, label, shape, what]) => legendItem(`${label}: ${what}`, GREY, { shape, dash: "0 24" })),
+      ...K.groups.map((g) => legendItem(`g = ${g}${g === S.g ? " (선언된 g*)" : ""}`, GCOL[g], { shape: "square", dash: "0 24" })),
+      kMetric === "nway" ? legendItem("검정: 그룹 없음 (방어 없음·RR)", INK, {}) : "",
+    ].join("");
+
+    const eq = `eqc_g${kG}`, none = KR.none, e = KR[eq];
+    $("#k-head").textContent = `방어 없음 → EQ-confusion, g = ${kG}${kG === S.g ? " (선언된 g*)" : ""}, 명령 ${S.k}개`;
+    const dl = $("#k-stats");
+    dl.innerHTML = "";
+    const stat = (label, value, column) => {
+      const source = `Source: ${K.source.file} (defence = none, ${eq}; ${column})`;
+      const d = el("div", { title: source, tabindex: "0" }, dl);
+      el("dt", { text: label }, d); el("dd", { text: value }, d);
+      el("span", { class: "sr", text: source }, d);
+      focusTipOn(d, source);
+    };
+    for (const day of K.days) stat(`그룹 내 초과, ${DAY[day]}`, arrow(none[col("excess", day, kG)], e[col("excess", day, kG)]), col("excess", day, kG));
+    for (const day of K.days) stat(`${K.users}명 중 식별, ${DAY[day]}`, arrow(none[col("nway", day)], e[col("nway", day)]), col("nway", day));
+    stat("가중 유용성", arrow(none.weighted_utility, e.weighted_utility), "weighted_utility");
+    stat("정지 비율", arrow(none.hold_rate, e.hold_rate), "hold_rate");
+
+    const defs = [...PATH, ...EQ.map(([v]) => `${v}_g${kG}`)];
+    table($("#k-table"), ["방어", "가중 유용성", "유용성 손실", "정지 비율",
+      ...K.days.map((day) => `그룹 내 초과 g = ${kG}, ${DAY[day]}`), ...K.days.map((day) => `${K.users}명 중 식별, ${DAY[day]}`)],
+    defs.map((d) => { const r = KR[d]; return [name(d), m3(r.weighted_utility), m3(r.weighted_utility_loss), f3(r.hold_rate),
+      ...K.days.map((day) => m3(r[col("excess", day, kG)])), ...K.days.map((day) => f3(r[col("nway", day)]))]; }));
+  }
+  drawK();
+  K.days.forEach((day) => onResize($(`#k-chart-${day}`), drawK));
+
+  const all = KR.eqc_gall, e3 = KR[`eqc_g${S.g}`];
+  $("#k-note").innerHTML = `가중 유용성 = P(정답 이동) − w·P(오답 이동), w = τ/(1 − τ) = ${S.wrong_weight}. `
+    + "그룹 내 초과 = 그룹이 주어졌을 때 자기 그룹 안에서의 식별 정확도 − 1/(자기 그룹 크기)이며 0이 우연 수준이다. "
+    + `${K.users}명의 그룹 구성: ${K.groups.map(sizeText).join("; ")} (<code>${K.group_sizes_source.file}</code> ${K.group_sizes_source.where.function}). `
+    + `전체 식별은 ${K.users}명 중 균형 정확도이며 우연 수준은 1/${K.users} = ${f3(K.chance)}이다. `
+    + `각 점은 Bayes 공격자 ${K.attackers}종(범주형·Markov, 목표 무시·목표 인지) 중 최강값의 seed ${K.seeds}개 평균이다. `
+    + `다른 날 공격자는 교차 적합(cross-fitted)한 보정일 명령으로 등록한다. 출처: <code>${K.source.file}</code> `
+    + `(dataset = ${S.dataset}, condition = ${S.condition}, tau = ${S.tau}, k = ${S.k} 열). 사용자 수·우연 수준·seed·공격자 수: <code>${K.chance_source.file}</code>. `
+    + `같은 비교의 정적 그림: <a href="../${K.figure}">${K.figure}</a>.`;
+  const limits = [
+    `EQ의 균등성은 적합에 쓴 보정일 혼동 행렬에 대해서만 정확하다. 배포일에 등록한 같은 날 공격자에게는 g = ${S.g}에서도 그룹 내 초과가 남는다(${m3(e3[col("excess", "within_day", S.g)])}).`,
+    "EQ의 유용성이 방어 없음보다 높은 것은 공짜 이득이 아니다. EQ의 선형계획이 각 사용자의 명령을 그 사용자의 유용성 최적점으로 재보정하므로, 비교에 재보정 효과가 섞여 있다.",
+    "K의 RR에는 재보정이 없다. 따라서 이 그래프는 같은 유용성에서 EQ와 RR을 비교하지 않는다.",
+    `EQ는 자기 그룹 안에서만 신원을 감추고(${sizeText(S.g)}), 그룹 소속은 드러난다. ${K.users}명 전원을 한 그룹(g = 전체)으로 묶으면 EQ-confusion의 최선은 '항상 정지'다(가중 유용성 ${m3(all.weighted_utility)}, 정지 비율 ${f3(all.hold_rate)}).`,
+    "K는 이미 분석한 BCI IV 2a·Lee2019 데이터를 재사용하므로 모든 K 수치는 탐색적이며, 적합된 시스템에 조건부다.",
+  ];
+  const ul = $("#k-limits");
+  limits.forEach((t) => el("li", { text: t }, ul));
 }

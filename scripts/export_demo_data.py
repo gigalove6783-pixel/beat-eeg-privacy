@@ -8,7 +8,8 @@ features, representations or logits (BNCI2014-001 is CC BY-ND 4.0).
 Story data (all aggregate): experiment status and evidence level (report §5), EEGNet
 identifier vs independent attackers (results/exp_e/lambda_summary.csv), the experiment-G
 enrolment, scenario and reproduction tables, the audit checklist (report §9), the
-pre-registration timeline (docs/decision_log.md) and the Lee2019 replication. The
+pre-registration timeline (docs/decision_log.md), the Lee2019 replication and experiment K's
+randomized-response vs equalized-decoding frontier (results/exp_k/frontier.csv). The
 replication stays "pending" until results/exp_l/decision.json exists; re-running this
 script then fills in the claim decisions without any change to the page.
 
@@ -20,6 +21,7 @@ import hashlib
 import json
 import math
 import re
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -27,6 +29,8 @@ import pandas as pd
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from beat.exp_k import make_groups  # noqa: E402
 RESULTS, ARTIFACTS = ROOT / "results", ROOT / "artifacts"
 OUT = ROOT / "demo" / "data"
 EPISODE = 20
@@ -43,7 +47,10 @@ EXPERIMENTS = {
     "exp_e": ("E: EEGNet identifier vs independent attackers", "exp_e/lambda_summary.csv"),
     "exp_g": ("G: published reference-session defence", "exp_g/bnci/enrolment_averaged.csv"),
     "exp_l": ("L: Lee2019/OpenBMI replication, 54 users", "exp_l/decision.json"),
+    "exp_k": ("K: command streams; randomized response vs equalized decoding", "exp_k/frontier.csv"),
 }
+# Result-table scenario names as labelled in README.md.
+SCENARIO = {"main": "within-day", "auxiliary": "cross-day"}
 GENERIC_EXPERIMENTS = ("exp_b", "exp_c", "exp_d", "exp_e")
 GENERIC_TABLES = {"tradeoff": "tradeoff.csv", "adversary": "adversary_comparison.csv",
                   "observation": "observation_strongest.csv"}
@@ -143,8 +150,11 @@ def experiments():
     out = {}
     for exp, (title, marker) in EXPERIMENTS.items():
         row = table[exp]
-        evidence = row["status_text"].split()[0].lower()
-        if evidence not in ("confirmatory", "exploratory"):
+        # README's three tiers: a confirmatory but descriptive experiment (C) fixed its analysis in
+        # a sealed plan without a decision rule, i.e. a pre-registered estimate.
+        status = row["status_text"].lower()
+        evidence = "estimate" if status.startswith("confirmatory (descriptive)") else status.split()[0]
+        if evidence not in ("confirmatory", "estimate", "exploratory"):
             raise ValueError(f"Unknown evidence level for {exp}: {row['status_text']}")
         done = (RESULTS / marker).exists()
         out[exp] = dict(title=title, letter=exp[-1].upper(), evidence=evidence,
@@ -260,6 +270,8 @@ def timeline(lee_status):
     d2, ab = log_entry(log, r"A and B final runs completed at commit `([0-9a-f]{7,40})`")
     d3, s2 = log_entry(log, r"\*\*E seal 2\*\*: commit `([0-9a-f]{40})`.*?(\d+) tests passed")
     d4, s3 = log_entry(log, r"Seal 3 commit: `([0-9a-f]{40})`")
+    _, s4 = log_entry(log, r"Seal 4: commit `([0-9a-f]{40})`.*?token time (\d{4}-\d\d-\d\d) "
+                           r"(\d\d:\d\d:\d\d) GMT")
     return dict(source=src(LOG), events=[
         dict(kind="seal", label="Seal 1", date=d1, commit=s1.group(1), tests=int(s1.group(2)),
              title="Plan v1 sealed", evidence="confirmatory", experiments=["exp_a", "exp_b", "exp_c"],
@@ -280,6 +292,12 @@ def timeline(lee_status):
              date=None, commit=None, title="Lee2019 final run", evidence="confirmatory",
              experiments=["exp_l"],
              text="Claims C1–C4 decided by Holm's procedure on 54 users."),
+        dict(kind="seal", label="Seal 4", date=f"{s4.group(2)} {s4.group(3)} UTC (RFC 3161)",
+             commit=s4.group(1), title="Study M sealed and time-stamped", evidence="confirmatory",
+             experiments=["exp_m"],
+             text="Cross-day claims M1–M3 on 51 new users (Yang2025) fixed; an RFC 3161 token from "
+                  "FreeTSA time-stamps the seal commit. The final run is in progress and no result "
+                  "is reported yet."),
     ])
 
 
@@ -333,7 +351,7 @@ def lee_quantities(decision, n):
         return sel.iloc[0]
 
     def ident_q(qid, label, row, where):
-        return quantity(qid, f"{label} ({row.attacker})", row.ba, "ba3",
+        return quantity(qid, f"{label} ({row.attacker}, {SCENARIO[row.scenario]})", row.ba, "ba3",
                         src(LI, **where, strongest=True), ci=(row.ci_low, row.ci_high),
                         ci_kind=BOOT, seeds=seed_count(row))
 
@@ -385,7 +403,8 @@ def lee_quantities(decision, n):
         w = dict(kind="enrolment", key="G", enrolment=m)
         row = strongest(frame.astype({"enrolment": str}), **w)
         c4.append(quantity(f"enrol{m}", f"{m} labelled trial{'s' if m != '1' else ''} per user "
-                           f"({row.attacker})", row.ba, "pct1", src(file, **w, strongest=True),
+                           f"({row.attacker}, {SCENARIO[row.scenario]})", row.ba, "pct1",
+                           src(file, **w, strongest=True),
                            ci=(row.ci_low, row.ci_high), ci_kind=BOOT, seeds=seed_count(row),
                            note=note))
     return {"C1": c1, "C2": c2, "C3": c3, "C4": c4}
@@ -465,6 +484,65 @@ def lee2019(seal3):
         source=src("results/exp_l/decision.json") if decision else src(REPORT, section="6.7"),
         definition_source=[src(REPORT, section="6.7"), src("configs/exp_l.yaml", key="subjects")],
     )
+
+
+# ---------------------------------------------------------------- experiment K frontier
+
+KF, KC = "results/exp_k/frontier.csv", "results/exp_k/identity_curves.csv"
+# K's declared headline setting (configs/exp_k.yaml decision_rule), as in
+# scripts/make_summary_figures.py K_HEAD: Lee2019, P2-RC_d8, tau = 0.8, k = 20, g* = 3.
+K_HEAD = dict(dataset="lee2019", condition="P2-RC_d8", tau=0.8, k=20, g=3)
+K_GROUPS = (2, 3, 5)
+K_RR = ("rr_q0.1", "rr_q0.25", "rr_q0.5", "rr_q0.75")
+K_DAYS = ("within_day", "cross_day")
+
+
+def k_frontier():
+    """Aggregate RR vs EQ frontier of K's headline cell, the values of fig9_k_rr_eq_frontier."""
+    h, k = K_HEAD, K_HEAD["k"]
+    f = read_csv(ROOT / KF)
+    f = f[(f.dataset == h["dataset"]) & (f.condition == h["condition"]) & (f.tau == h["tau"])]
+    defences = ["none", *K_RR, *(f"{v}_g{g}" for v in ("eqc", "eqm") for g in K_GROUPS),
+                "eqc_gall"]
+    cols = ["defence", "wrong_weight", "weighted_utility", "weighted_utility_loss", "hold_rate",
+            *(f"nway_ba_{d}_k{k}" for d in K_DAYS),
+            *(f"g{g}_excess_{d}_k{k}" for d in K_DAYS for g in K_GROUPS)]
+    f = f[f.defence.isin(defences)].set_index("defence").loc[defences].reset_index()[cols]
+    # N-way users, chance, seeds and attacker count come from identity_curves.csv (frontier.csv
+    # has none of them); its strongest-Bayes rows must give frontier.csv's N-way values.
+    c = pd.read_csv(track(ROOT / KC), usecols=["dataset", "condition", "tau", "defence", "scenario",
+                                                "family_set", "metric", "k", "ba", "chance",
+                                                "users", "seeds", "candidates"])
+    c = c[(c.dataset == h["dataset"]) & (c.condition == h["condition"]) & (c.tau == h["tau"])
+          & (c.metric == "nway") & (c.family_set == "bayes") & (c.k == k)
+          & c.scenario.isin(K_DAYS) & c.defence.isin(defences)]
+    nway = f.set_index("defence")
+    if len(c) != len(defences) * len(K_DAYS) or any(
+            abs(r.ba - nway.loc[r.defence, f"nway_ba_{r.scenario}_k{k}"]) > 1e-9
+            for r in c.itertuples()):
+        raise ValueError("K N-way values differ between frontier.csv and identity_curves.csv")
+    meta = {m: sorted({clean(v) for v in c[m]}) for m in ("users", "chance", "seeds", "candidates")}
+    if any(len(v) != 1 for v in meta.values()) or len(f.wrong_weight.unique()) != 1:
+        raise ValueError("K headline cell mixes user counts, chance, seeds or utility weights")
+    where = dict(dataset=h["dataset"], condition=h["condition"], tau=h["tau"])
+    # Group sizes from K's own grouping rule (leftover users join the last group); sizes do not
+    # depend on the utility ordering, so constant utilities give them.
+    track(ROOT / "beat" / "exp_k.py")
+    n = int(meta["users"][0])
+    sizes = {str(g): [int(s) for s in np.bincount(make_groups(np.arange(n), np.zeros(n), g))]
+             for g in K_GROUPS}
+    return dict(
+        evidence="exploratory", setting=dict(h, enrolment="cross-fitted",
+                                             wrong_weight=clean(f.wrong_weight.iloc[0])),
+        groups=list(K_GROUPS), group_sizes=sizes,
+        group_sizes_source=src("beat/exp_k.py", function="make_groups"),
+        rr=list(K_RR), days=list(K_DAYS),
+        users=clean(meta["users"][0]), chance=clean(meta["chance"][0]),
+        seeds=clean(meta["seeds"][0]), attackers=clean(meta["candidates"][0]),
+        rows=records(f, experiment="exp_k"),
+        source=src(KF, **where, k=k), chance_source=src(KC, **where, metric="nway",
+                                                      family_set="bayes", k=k),
+        figure="results/figures/summary_ko/fig9_k_rr_eq_frontier.png")
 
 
 # ---------------------------------------------------------------- headline numbers
@@ -722,6 +800,7 @@ def main():
         pitfall2=g_data,
         checklist=checklist(),
         lee2019=lee2019(seals["events"][4]["commit"]),
+        k_frontier=k_frontier(),
         tradeoff=dict(rows=data["tradeoff"], source="results/<exp>/tradeoff.csv"),
         adversary=dict(rows=data["adversary"], source="results/<exp>/adversary_comparison.csv"),
         observation=dict(rows=data["observation"],

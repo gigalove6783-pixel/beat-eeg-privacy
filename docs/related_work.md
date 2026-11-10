@@ -8,9 +8,11 @@ as a side effect.
 **Verification basis.** Every statement about a source comes from its opened full text (PDF or
 HTML), unless the entry says only the abstract or record page was read. Sources [1]–[20] were read on
 2026-11-10. Sources [21]–[36] were added on 2026-11-11 from the abstract or record page only
-(Section 7). On 2026-11-11 the bibliographic details of every entry were checked against Crossref
-and the arXiv API, and every DOI and URL was resolved by `python -m beat.verify --references`
-(Appendix). The labels used are: *peer-reviewed* (journal or proceedings version), *workshop paper*,
+(Section 7). Sources [37] (the Yang2025 dataset of study M) and [38] (the timestamp protocol of
+seal 4) were added later on 2026-11-11 from their Crossref, figshare and RFC Editor records. The
+bibliographic details of every entry were checked against Crossref and the arXiv API, and every
+DOI, arXiv identifier and URL was resolved by `python scripts/check_references.py`, whose output is
+recorded in `results/reference_check/` (Appendix). The labels used are: *peer-reviewed* (journal or proceedings version), *workshop paper*,
 *preprint* (arXiv, not peer-reviewed), *unreviewed repository* (GitHub technical report), and *not
 opened* (the source could not be retrieved, so no claims are drawn from it). Numbers are quoted as
 the sources report them. Different papers use different metrics, attackers and splits, so values in
@@ -221,20 +223,42 @@ sources, not as priority claims.
   source that measures it. On 2a, within session E, identity rises with the number of observed
   commands (0.16–0.20 for one command, 0.21–0.48 for 20; chance 0.11). On 54 users the
   pre-registered command claim C3 was not supported; in C3's cross-day setting (P2-RC, τ = 0.5)
-  command identification stayed near chance (0.019–0.029), while at τ = 0.8 the cross-day
-  estimates at 20 commands are 0.065–0.075 (descriptive; chance 0.0185). Session-level pooling
+  command identification stayed near chance (0.019–0.029). L's cross-day attackers enrolled on
+  in-sample streams; with cross-fitted streams (study K, exploratory) command-only attackers, as
+  in C3, stay at 0.008–0.027, while attackers that also see the cue reach 0.046. At τ = 0.8 the
+  cross-day estimates at 20 commands are 0.065–0.075 (descriptive; chance 0.0185). Session-level pooling
   of covariance trials [6] is related.
 - Within one pooled model, a small task-only bottleneck gives a better privacy–utility trade-off
   than the gradient-reversal, maximum-entropy and ensemble variants tested (2a, exploratory).
 
-**Methods for command-stream defences (not yet evaluated in BEAT).** Randomized response [31] was
-introduced as a survey technique in which each respondent answers truthfully only with a known
-probability; it applies directly to discrete commands, and a per-command version was set aside in
-plan v3 (`docs/analysis_plan.md`, "Not pursued"). Equalized-odds post-processing [28] and its multiclass extension [29] adjust a fixed
-classifier's outputs so that their distribution given the true label does not depend on a group
-attribute; Rassouli and Gündüz characterise releases that reveal no information about a private
-variable ("perfect privacy") [30]. None of the opened sources applies these to BCI command streams,
-and none of BEAT's reported results uses them.
+**Methods for command-stream defences (evaluated in BEAT's study K, exploratory).**
+- *Randomized response* [31] was introduced as a survey technique in which each respondent, by a
+  random device with a known probability, is shown one of two complementary statements (membership
+  or non-membership of the sensitive group) and answers truthfully whether it applies, without
+  revealing which statement was shown. Its per-command analogue applies directly to discrete
+  commands. Plan v3 set a
+  per-command version aside (`docs/analysis_plan.md`, "Not pursued"); study K adds it as a baseline
+  with ε-LDP per command.
+- *Equalized-odds post-processing* [28] and its multiclass extension [29] adjust a fixed
+  classifier's outputs so that their distribution given the true label does not depend on a group
+  attribute. BEAT's group-equalized decoding (EQ) applies this post-processing with the user's
+  identity as the attribute: per-user stochastic maps from command to output, chosen by a linear
+  program, give every user of a group the same P(output | target) for the calibration-day
+  estimates.
+- *Perfect privacy.* Rassouli and Gündüz characterise releases that reveal no information about a
+  private variable [30]. Within a group, EQ's release meets this condition for identity under the
+  fitted distributions. With a single group of all 54 Lee2019 users, the best such release in K was
+  "always hold", with no utility (`results/exp_k/frontier.csv`).
+
+BEAT's adaptations are:
+- groups of g users with group membership revealed;
+- a utility that weights wrong moves by the hold rule's cost;
+- cross-fitted calibration streams;
+- evaluation by attackers who enrol on the calibration day or on the deployment day.
+
+In the opened sources we found no application of these methods to BCI command streams. K's results
+are exploratory, and in the sealed study M, EQ and RR are pre-registered estimates without a
+verdict (`docs/report.md` §6.8, §6.10).
 
 **Claims that must be softened.**
 - *Generality.* The data are nine subjects in one closed-set dataset and 54 subjects in a second
@@ -303,8 +327,12 @@ accuracy drops when the dataset is large relative to the number of classes and p
 release is statistically independent of private data X ("perfect privacy"), with a linear-algebraic
 analysis for finite alphabets [30]. Warner introduced randomized response as a survey technique for
 eliminating evasive answer bias [31]. In BEAT's setting the protected attribute is the user's
-identity and the released output is the decoded command; Section 6 states that none of these
-methods has yet been evaluated here.
+identity and the released output is the decoded command. Section 6 states how study K adapts
+these methods (exploratory).
+
+**Data and protocol of study M.** Yang et al. describe the multi-day WBCIC-SHU motor-imagery
+dataset (51 two-class participants, three recording days) used in BEAT's sealed replication M [37].
+The seal-4 timestamp follows the RFC 3161 time-stamp protocol [38].
 
 **Datasets and methods cited by the report.** BCI Competition IV and its data set 2a (BNCI2014-001)
 are described in [25]; the Lee2019/OpenBMI dataset in [32]. The report's methods follow Riemannian
@@ -436,11 +464,20 @@ tangent-space classification [33], common spatial patterns [34], gradient revers
 36. V. J. Lawhern, A. J. Solon, N. R. Waytowich, S. M. Gordon, C. P. Hung, B. J. Lance, "EEGNet: a
     compact convolutional neural network for EEG-based brain–computer interfaces," *J. Neural
     Eng.*, vol. 15, no. 5, 056013, 2018. https://doi.org/10.1088/1741-2552/aace8c
+37. B. Yang, F. Rong, Y. Xie, D. Li, J. Zhang, F. Li, G. Shi, X. Gao, "A multi-day and high-quality
+    EEG dataset for motor imagery brain-computer interface," *Sci. Data*, vol. 12, 488, 2025.
+    https://doi.org/10.1038/s41597-025-04826-y. *Peer-reviewed* (data descriptor). Data: B. Yang,
+    F. Rong, "WBCIC-SHU Motor Imagery Dataset," version 5, figshare+, 2024, CC BY 4.0.
+    https://doi.org/10.25452/figshare.plus.22671172.v5
+38. C. Adams, P. Cain, D. Pinkas, R. Zuccherato, "Internet X.509 Public Key Infrastructure
+    Time-Stamp Protocol (TSP)," RFC 3161, RFC Editor, Aug. 2001. https://doi.org/10.17487/RFC3161
 
 ## Appendix: reference resolution check
 
-Output of `python -m beat.verify --references`, run on 2026-11-11 00:25 KST (15:25 UTC on
-2026-11-10). It resolves every DOI through the doi.org handle API (publishers often block
+Output of `python scripts/check_references.py`, run on 2026-11-11 06:04 KST (21:04 UTC on
+2026-11-10; the timestamp in the first line is UTC) and recorded unchanged in
+`results/reference_check/references_20261110T2104Z.txt`. The script runs the reference check of
+`beat.verify` (also available as `python -m beat.verify --references`). It resolves every DOI through the doi.org handle API (publishers often block
 scripted requests, the handle API does not), every arXiv identifier through the arXiv API, and every
 other URL in the reference lists of `README.md`, `docs/report.md` and this file by an HTTP GET
 (status below 400; PubMed answers 203). Bibliographic fields (authors, title, venue, volume, issue,
@@ -448,7 +485,7 @@ pages, year) were compared by hand with the Crossref record of each DOI and the 
 each preprint on the same day, and the reference lists were corrected to those records.
 
 ```text
-reference check, 2026-11-10 15:25 UTC
+reference check, 2026-11-10 21:04 UTC
   ok   arxiv 1610.02413 -> Equality of Opportunity in Supervised Learning
   ok   arxiv 1712.08500 -> On Perfect Privacy
   ok   arxiv 1808.05464 -> Transfer Learning for Brain-Computer Interfaces: A Euclidean Space Data Alignment Approach
@@ -461,6 +498,7 @@ reference check, 2026-11-10 15:25 UTC
   ok   arxiv 2609.00390 -> NeuroPriv: Adversarial Representation Learning for Privacy in Wearable EEG Systems
   ok   arxiv 2609.11777 -> Differentially Private EEG Feature Anonymization: A Privacy-Utility Case Study in Clinical Neurophysiology
   ok   arxiv 2610.15626 -> Riemannian Suppression of Cross-Session Identity Leakage in Motor-Imagery EEG
+  ok   doi   10.1038/s41597-025-04826-y -> https://www.nature.com/articles/s41597-025-04826-y
   ok   doi   10.1080/01621459.1965.10480775 -> http://www.tandfonline.com/doi/abs/10.1080/01621459.1965.10480775
   ok   doi   10.1088/1741-2552/aace8c -> https://iopscience.iop.org/article/10.1088/1741-2552/aace8c
   ok   doi   10.1093/gigascience/giz002 -> https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giz002/5304369
@@ -482,9 +520,11 @@ reference check, 2026-11-10 15:25 UTC
   ok   doi   10.1109/TPAMI.2007.1012 -> http://ieeexplore.ieee.org/document/4107576/
   ok   doi   10.1145/3842657.3842784 -> https://dl.acm.org/doi/10.1145/3842657.3842784
   ok   doi   10.1186/s13635-026-00242-w -> https://link.springer.com/10.1186/s13635-026-00242-w
+  ok   doi   10.17487/RFC3161 -> https://www.rfc-editor.org/info/rfc3161
   ok   doi   10.18653/v1/D18-1002 -> http://aclweb.org/anthology/D18-1002
   ok   doi   10.18653/v1/D19-1662 -> https://www.aclweb.org/anthology/D19-1662
   ok   doi   10.24963/ijcai.2025/469 -> https://www.ijcai.org/proceedings/2025/469
+  ok   doi   10.25452/figshare.plus.22671172.v5 -> https://plus.figshare.com/articles/dataset/Brain_Computer_Interface_Motor_Imagery-EEG_Dataset/22671172/5
   ok   doi   10.3389/fnins.2012.00055 -> http://journal.frontiersin.org/article/10.3389/fnins.2012.00055/abstract
   ok   doi   10.48550/arXiv.2605.11386 -> https://arxiv.org/abs/2605.11386
   ok   doi   10.5524/100542 -> http://gigadb.org/dataset/100542

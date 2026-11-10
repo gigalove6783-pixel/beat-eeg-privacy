@@ -14,6 +14,8 @@
   <div class="wrap topbar-inner">
     <span class="brand">BEAT</span>
     <nav aria-label="Sections">
+      <a href="#intro" lang="ko">v2 요지</a>
+      <a href="#k-frontier">K: RR vs EQ</a>
       <a href="#glance">Study</a>
       <a href="#replay">Replay</a>
       <a href="#fooled">Pitfall 1</a>
@@ -27,9 +29,87 @@
 </header>
 
 <main id="main">
-<section class="hero wrap" aria-labelledby="hero-title">
-  <p class="eyebrow">Motor-imagery BCI · privacy study · pre-registered</p>
-  <h1 id="hero-title">Does a brain–computer interface reveal <em>who</em> you are?</h1>
+<section id="intro" class="intro wrap" lang="ko" aria-labelledby="intro-title">
+  <p class="eyebrow">BEAT v2 · 운동 상상 BCI · 사용자 신원 노출 감사</p>
+  <h1 id="intro-title">같은 날 수치 하나로는 위험도, 보호도 말할 수 없다</h1>
+  <blockquote class="thesis">
+    <p>“BCI 전송물의 신원 노출과 방어 효과는 공격자가 어느 날의 기록으로 등록하느냐에 따라
+      달라지므로, 같은 날 수치 하나로는 위험도 보호도 주장할 수 없다.”</p>
+    <p class="thesis-src">v2 논지. 연구 M의 최종 출력을 읽기 전에 고정했다
+      (<a href="../docs/decision_log.md"><code>docs/decision_log.md</code></a>, 커밋 <code>7b14cee</code>).</p>
+  </blockquote>
+  <p class="lede">BEAT는 운동 상상 BCI가 기기 밖으로 보내는 특징 벡터나 왼쪽·오른쪽·정지 명령만 보고
+    도청자가 사용자를 얼마나 알아내는지 측정한다. 이 페이지의 수치에는 공격자가 언제 등록했는지가
+    함께 붙어 있다. <b>같은 날(within-day)</b> 수치는 공격자가 같은 기록일 안에서 등록하고 시험한 값이고,
+    <b>다른 날(cross-day)</b> 수치는 보정일에 등록하고 배포일에 시험한 값이다.</p>
+  <ul class="intro-list">
+    <li><span data-evidence="exp_k"></span> <b>방어 효과도 등록한 날에 따라 달라진다.</b>
+      그룹 균등화 해독(EQ-confusion, g = 3)을 적용하면 명령 20개에서의 그룹 내 초과 식별이 다른 날 공격자에게는
+      <b data-kv="none|g3_excess_cross_day_k20">–</b> → <b data-kv="eqc_g3|g3_excess_cross_day_k20">–</b>로
+      거의 사라졌다. 배포일에 등록한 같은 날 공격자에게는 <b data-kv="none|g3_excess_within_day_k20">–</b> →
+      <b data-kv="eqc_g3|g3_excess_within_day_k20">–</b>으로 줄었을 뿐이다.
+      <a href="#k-frontier">바로 아래 패널</a>에서 무작위 응답(RR)과 비교할 수 있다.</li>
+    <li><b>v1 결과 (영문 패널).</b> 9명(BCI IV 2a)과 54명(Lee2019)을 대상으로 한 재생 시연, 함정 1·2,
+      유용성–신원 경계, 봉인된 재현(L)과 감사 체크리스트를 담았다. 각 수치에 within-day / cross-day를 표시했다.</li>
+    <li><span class="badge conf">Confirmatory-sealed</span> <b>새 사용자 51명(연구 M, 봉인 4).</b>
+      사전등록은 시각 인증까지 끝났고, 결과는 아직 없다.</li>
+  </ul>
+  <p class="links">
+    <a class="btn" href="../README.md">README</a>
+    <a class="btn" href="../docs/report.md">기술 보고서 (docs/report.md)</a>
+    <a class="btn" href="../presentation/BEAT_v2_talk.pptx">v2 발표 자료 (PPTX)</a>
+    <a class="btn" href="../presentation/BEAT_v2_talk.pdf">v2 발표 자료 (PDF)</a>
+    <a class="btn" href="../docs/explainer_ko.md">쉬운 해설 (docs/explainer_ko.md)</a>
+  </p>
+</section>
+
+<section id="k-frontier" class="panel" lang="ko" aria-labelledby="k-title">
+  <div class="wrap">
+    <p class="section-tag"><span data-evidence="exp_k"></span> 실험 K · 탐색적 결과</p>
+    <h2 id="k-title">방어 효과도 등록한 날에 따라 달라진다: 무작위 응답(RR)과 그룹 균등화 해독(EQ)</h2>
+    <p class="section-lede" id="k-lede"></p>
+    <div class="controls" role="group" aria-label="K 그래프 옵션">
+      <fieldset class="ctl">
+        <legend>세로축</legend>
+        <div class="seg" id="k-metric" role="radiogroup" aria-label="세로축"></div>
+      </fieldset>
+      <fieldset class="ctl">
+        <legend>그룹 크기 g</legend>
+        <div class="seg" id="k-g" role="radiogroup" aria-label="그룹 크기 g"></div>
+      </fieldset>
+      <fieldset class="ctl">
+        <legend>방어 표시</legend>
+        <div class="toggles" id="k-toggles" role="group" aria-label="표시할 방어"></div>
+      </fieldset>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <h3 id="k-head">–</h3>
+        <p class="hint" id="k-badge"></p>
+      </div>
+      <dl class="stats k-stats" id="k-stats"></dl>
+      <p class="chart-legend" id="k-legend"></p>
+      <div class="k-grid">
+        <figure class="k-day">
+          <figcaption><b>같은 날 (within-day)</b> 배포일의 한 절반으로 등록, 다른 절반으로 시험 (양방향 평균)</figcaption>
+          <div class="chart" id="k-chart-within_day"></div>
+        </figure>
+        <figure class="k-day">
+          <figcaption><b>다른 날 (cross-day)</b> 교차 적합한 보정일 명령으로 등록, 배포일로 시험</figcaption>
+          <div class="chart" id="k-chart-cross_day"></div>
+        </figure>
+      </div>
+      <details class="table-toggle"><summary>표로 보기</summary><div id="k-table"></div></details>
+      <p class="note" id="k-note"></p>
+    </div>
+    <h3 class="k-limits-title">이 결과로 말할 수 없는 것</h3>
+    <ul class="k-limits" id="k-limits"></ul>
+  </div>
+</section>
+
+<section class="hero wrap" lang="en" aria-labelledby="hero-title">
+  <p class="eyebrow">v1 results · motor-imagery BCI · privacy study · pre-registered</p>
+  <h2 id="hero-title" class="hero-title">Does a brain–computer interface reveal <em>who</em> you are?</h2>
   <p class="lede">A BCI turns imagined left- or right-hand movement into commands and often sends
     something off the device: a feature vector, a command, or both. We measured how well an
     eavesdropper can tell <strong>which of 9 people</strong> produced what was sent, and whether
@@ -39,72 +119,74 @@
     naming the right person. Chance is <b data-h="chance" data-fmt="2">–</b> for 9 users<span data-l> and
     <b data-h="l_chance" data-fmt="3">–</b> for 54</span>; 1.00 means everyone is identified.</p>
 
-  <p class="ba-note">Every result carries its evidence level:
-    <span class="badge conf">Confirmatory</span> = pre-registered and sealed before the held-out data were scored;
-    <span class="badge expl">Exploratory</span> = fixed before its own run but hypothesis-generating.
-    Hover or focus a number to see its source file.</p>
+  <p class="ba-note">Every result carries one of three evidence tiers (as in README.md):
+    <span class="badge conf">Confirmatory-sealed</span> = decided by a rule committed before the held-out data were scored (seals 1, 3 and 4);
+    <span class="badge est">Pre-registered estimate</span> = fixed in a sealed plan and reported without a verdict (C's command values; L's and B's cross-day values);
+    <span class="badge expl">Exploratory</span> = not pre-registered, or computed on data that had already shaped the analysis (D, E, G, K).
+    Every value also names its scenario, within-day or cross-day. Hover a number to see its source file.</p>
 
   <ol class="findings">
     <li class="finding">
       <span class="finding-num" aria-hidden="true">1</span>
       <p class="finding-tag"><span data-evidence="exp_b"></span></p>
       <h2>Raw features identify all 9 users</h2>
-      <p class="big"><b data-h="raw_identity" data-fmt="2">–</b><span class="unit">identity score</span></p>
+      <p class="big"><b data-h="raw_identity" data-fmt="2">–</b><span class="unit">identity score, within-day</span></p>
       <p>Sending the 253-d feature vector lets an attacker name every one of the 9 users in this closed set. Per-user recentering
         still leaves <b data-h="raw_rc_identity" data-fmt="3">–</b>.</p>
       <p class="l-line" data-l><span data-evidence="exp_l"></span> <b>54 users:</b> raw features still give
-        <b data-h="l_raw" data-fmt="3">–</b> (strongest attacker).</p>
+        <b data-h="l_raw" data-fmt="3">–</b> (strongest attacker, within-day).</p>
     </li>
     <li class="finding">
       <span class="finding-num" aria-hidden="true">2</span>
       <p class="finding-tag"><span data-evidence="exp_d"></span></p>
       <h2>A narrow bottleneck reduces exposure most, but not to chance</h2>
-      <p class="big"><b data-h="d1_identity_range" data-fmt="range2">–</b><span class="unit">identity score, one number per trial (d = 1): about twice chance</span></p>
+      <p class="big"><b data-h="d1_identity_range" data-fmt="range2">–</b><span class="unit">identity score, within-day, one number per trial (d = 1): about twice chance</span></p>
       <p>Of all defences tested, a task-only bottleneck sending a single number per trial left the
         least identity, at left/right accuracy <b data-h="d1_task_range" data-fmt="range3">–</b>;
         no adversarially trained variant beat it. Users remain identifiable above chance.
         <a href="#frontier">See the frontier</a></p>
       <p class="l-line" data-l><span data-evidence="exp_l"></span> <b>54 users (C2 supported):</b> a recentred
-        bottleneck (d = 8) lowered identity from <b data-h="l_raw" data-fmt="3">–</b> to
+        bottleneck (d = 8) lowered within-day identity from <b data-h="l_raw" data-fmt="3">–</b> to
         <b data-h="l_bottleneck" data-fmt="3">–</b> with left/right accuracy non-inferior (<b data-h="l_utility" data-fmt="pp1">–</b>); still far above chance.</p>
     </li>
     <li class="finding">
       <span class="finding-num" aria-hidden="true">3</span>
       <p class="finding-tag"><span data-evidence="exp_c"></span></p>
       <h2>Left/right/hold commands leaked on 9 users</h2>
-      <p class="big"><b data-h="cmd_k20_range" data-fmt="range2">–</b><span class="unit">after 20 commands</span></p>
+      <p class="big"><b data-h="cmd_k20_range" data-fmt="range2">–</b><span class="unit">strongest attacker after 20 commands, range over model/threshold settings, session E</span></p>
       <p>One command: <b data-h="cmd_k1_range" data-fmt="range2">–</b>. Above twice chance within
-        5 commands in <b data-h="cmd_within5" data-fmt="ofn">–</b> model/threshold settings.</p>
+        5 commands in <b data-h="cmd_within5" data-fmt="ofn">–</b> model/threshold settings.
+        <span id="cmd-scenario"></span> Descriptive pre-registered estimates (H3): no verdict.</p>
       <p class="l-line" data-l><span data-evidence="exp_l"></span> <b>54 users (C3 not supported):</b>
-        <b data-h="l_cmd_k20" data-fmt="3">–</b> after 20 commands vs twice chance
+        <b data-h="l_cmd_k20" data-fmt="3">–</b> after 20 commands within-day vs twice chance
         <b data-h="l_twice_chance" data-fmt="3">–</b>; not significant after Holm's correction
         (p = <b data-h="l_c3_holm" data-fmt="pval">–</b>).</p>
     </li>
   </ol>
 
-  <h2 class="pitfalls-title">Two evaluation practices that overstate protection<span data-l>, both confirmed on 54 users</span></h2>
+  <h2 class="pitfalls-title">Two evaluation practices that overstate protection<span data-l>, both confirmed on 54 users within a day</span></h2>
   <ol class="findings findings-2" start="4">
     <li class="finding pitfall">
       <span class="finding-num" aria-hidden="true">4</span>
       <p class="finding-tag"><span data-evidence="exp_b"></span></p>
       <h2>Pitfall 1: trusting the co-trained adversary</h2>
-      <p class="big"><b data-h="head_lambda1" data-fmt="2" class="c-head">–</b> <span class="arrow" aria-hidden="true">vs</span> <b data-h="independent_lambda1" data-fmt="2" class="c-ind">–</b><span class="unit">identity score at λ = 1: co-trained head vs independent attacker, same frozen outputs</span></p>
+      <p class="big"><b data-h="head_lambda1" data-fmt="2" class="c-head">–</b> <span class="arrow" aria-hidden="true">vs</span> <b data-h="independent_lambda1" data-fmt="2" class="c-ind">–</b><span class="unit">identity score at λ = 1, within-day (session E): co-trained head vs independent attacker, same frozen outputs</span></p>
       <p>The head trained alongside the defence reports far below chance; attackers retrained afterwards
         identify almost all 9 users. <a href="#fooled">Explore across λ</a></p>
       <p class="l-line" data-l><span data-evidence="exp_l"></span> <b>54 users (C1 supported):</b> co-trained head
-        <b data-h="l_head" data-fmt="3">–</b> vs strongest independent attacker
-        <b data-h="l_independent" data-fmt="3">–</b> at λ = 1.</p>
+        <b data-h="l_head" data-fmt="3">–</b> (trained on session 1, scored on session 2) vs strongest within-day
+        independent attacker <b data-h="l_independent" data-fmt="3">–</b> at λ = 1.</p>
     </li>
     <li class="finding pitfall">
       <span class="finding-num" aria-hidden="true">5</span>
       <p class="finding-tag"><span data-evidence="exp_g"></span></p>
       <h2>Pitfall 2: attacking only with reference-session data</h2>
-      <p class="big"><b data-h="g_repro.ours_defended" data-fmt="pctv">–</b> <span class="arrow" aria-hidden="true">→</span> <b data-h="g_enrol_n1" data-fmt="pct2" class="c-ind">–</b><span class="unit">identification of a published defence: its own protocol vs one labelled deployment trial per user</span></p>
+      <p class="big"><b data-h="g_repro.ours_defended" data-fmt="pctv">–</b> <span class="arrow" aria-hidden="true">→</span> <b data-h="g_enrol_n1" data-fmt="pct2" class="c-ind">–</b><span class="unit">identification of a published defence: its own cross-day protocol (session 1 → 2) vs one labelled deployment trial per user (within-day)</span></p>
       <p>Five labelled trials per user: <b data-h="g_enrol_n5" data-fmt="pct2">–</b>.
         <a href="#pitfall2">See the enrolment curve</a></p>
       <p class="l-line" data-l><span data-evidence="exp_l"></span> <b>54 users (C4 supported):</b> reference-session
-        benchmark <b data-h="l_benchmark" data-fmt="pct2">–</b>; five labelled trials per user
-        <b data-h="l_enrol5" data-fmt="pct1">–</b>.</p>
+        benchmark (cross-day) <b data-h="l_benchmark" data-fmt="pct2">–</b>; five labelled trials per user
+        <b data-h="l_enrol5" data-fmt="pct1">–</b> (within-day).</p>
     </li>
   </ol>
 
@@ -114,6 +196,7 @@
       <li>A 9-person closed set (BCI Competition IV 2a), not a population.</li>
       <li>Arm control is a replay of recorded EEG, not closed-loop control with a person.</li>
       <li>An attacker's failure is not anonymization.</li>
+      <li>A within-day number alone shows neither risk nor protection: cross-day values differ (README table).</li>
       <li>Device compromise, identifying metadata and unobserved sensitive attributes are out of scope.</li>
       <li>Replay processing time is not online latency.</li>
     </ul>
@@ -123,8 +206,10 @@
 <section id="glance" class="panel alt" aria-labelledby="glance-title">
   <div class="wrap">
     <h2 id="glance-title">The study at a glance</h2>
-    <p class="section-lede">Seven experiments on one question. A–G use the 9 users of BCI Competition IV 2a;
-      L repeats the key claims on 54 users. The attacker sees only what the device sends, trains its own
+    <p class="section-lede">Eight experiments on one question. A–G use the 9 users of BCI Competition IV 2a;
+      L repeats the key claims on 54 users; K reuses both datasets for command streams and two output
+      defences. Within-day means session E runs 1–3 ↔ 4–6 on 2a and L's offline ↔ online phase of
+      session 2; cross-day means 2a session T → E and L session 1 → 2. The attacker sees only what the device sends, trains its own
       classifiers and names the user; it never sees raw EEG or account metadata.</p>
     <ol class="glance" id="glance-list"></ol>
     <p class="note" id="glance-note"></p>
@@ -139,7 +224,8 @@
       <b>right</b> +5°, <b>hold</b> when the decoder's confidence is below τ. One episode is 20
       trials. Meanwhile an independently trained attacker sees only what is transmitted and guesses
       who the user is from each group of <i>k</i> consecutive outputs. Every value shown is a stored
-      result; nothing is re-computed from EEG.</p>
+      result; nothing is re-computed from EEG. Identity values here are descriptive pre-registered
+      estimates (C, H3), each labelled with its attacker's scenario.</p>
 
     <form class="controls" id="replay-controls" onsubmit="return false">
       <fieldset class="ctl ctl-subject">
@@ -320,9 +406,11 @@
       </div>
     </div>
     <p class="note">Points: 5-seed means of the strongest independent attacker, i.e. the maximum over
-      the three attackers and both scenarios (main = session E runs 1–3 ↔ 4–6, averaged over both
-      directions; auxiliary = trained on session-T outputs, tested on E). Bands: the 95%
-      intervals reported in the result tables. Session E, held out until the seal.</p>
+      the three attackers and both scenarios (within-day = session E runs 1–3 ↔ 4–6, averaged over both
+      directions; cross-day = trained on session-T outputs, tested on E). Bands: the 95%
+      intervals reported in the result tables. Session E, held out until the seal. Descriptive
+      pre-registered estimates (C, H3): reported without a verdict. Each point's tooltip and table row
+      name the scenario of its strongest attacker.</p>
   </div>
 </section>
 
@@ -426,10 +514,16 @@
     <p class="links">
       <a class="btn" href="../docs/report.md">Technical report (docs/report.md)</a>
       <a class="btn" href="../README.md">Code and reproduction (README.md)</a>
+      <a class="btn" href="../presentation/BEAT_v2_talk.pptx">v2 talk (PPTX)</a>
+      <a class="btn" href="../presentation/BEAT_v2_talk.pdf">v2 talk (PDF)</a>
+      <a class="btn" href="../docs/explainer_ko.md" hreflang="ko">Plain-language explainer, Korean (docs/explainer_ko.md)</a>
     </p>
     <h3 id="timeline-title" class="timeline-title">Pre-registration timeline</h3>
     <p class="hint">Each seal is a Git commit that fixed the plan, configuration, code and training-data-only
-      choices before the corresponding held-out data were scored.</p>
+      choices before the corresponding held-out data were scored. Seals 1–3 are self-attested: Git commits
+      and tags made by the project itself, all on 2026-11-10. No third party timestamped them, so they show
+      the order of commits, not when held-out data were first seen. Seal 4 (study M) also has an RFC 3161
+      timestamp, but the log showing that no day-2/3 data were requested before it is self-attested.</p>
     <ol class="timeline" id="timeline" aria-labelledby="timeline-title"></ol>
     <p class="note" id="timeline-source"></p>
   </div>

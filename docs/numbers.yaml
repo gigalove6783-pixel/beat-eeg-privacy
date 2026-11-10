@@ -27,7 +27,8 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.520"
     in:
-      README.md: ["0.520 on 54 users (logistic regression; 0.510 RBF-SVM, 0.368 MLP)"]
+      docs/explainer_ko.md: ["| 0.520 | 같은 특징(RBF SVM 0.510, MLP 0.368) | 다른 날 | 사전등록 추정치 |"]
+      README.md: ["and 0.520 on 54 users", "| L | 0.994 | 0.520 | within: *confirmatory-sealed* (L, C2); cross: *pre-registered estimate* |"]
       docs/report.md: ["the full tangent vector gives 0.520 (logistic regression; 0.510 RBF-SVM, 0.368 MLP)",
                        "| 0.951 (T→E) | 0.520 (session 1 → 2) |", "0.520 for the full tangent vector (0.994 within a day"]
       docs/related_work.md: ["0.520 on Lee2019 (chance 0.111 and 0.0185)"]
@@ -37,6 +38,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.510"
     in:
+      docs/explainer_ko.md: ["같은 특징(RBF SVM 0.510, MLP 0.368)"]
       README.md: ["0.510 RBF-SVM"]
       docs/report.md: ["0.510 RBF-SVM"]
   - id: L_P0_cross_day_mlp
@@ -45,6 +47,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.368"
     in:
+      docs/explainer_ko.md: ["같은 특징(RBF SVM 0.510, MLP 0.368)"]
       README.md: ["0.368 MLP"]
       docs/report.md: ["0.368 MLP"]
   - id: L_P2RC_d8_within_day
@@ -53,6 +56,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.340"
     in:
+      docs/explainer_ko.md: ["| 0.340 / 0.054 | 재중심화 병목 P2-RC d = 8 |"]
       README.md: ["identity BA from 0.994 to 0.340 at −0.6 pp task BA"]
       docs/report.md: ["lowered identity BA from 0.994 to 0.340, still 18 times chance"]
       docs/explainer_ko.md: ["재중심화 병목이 0.994를 0.340으로 낮추면서"]
@@ -64,6 +68,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.054"
     in:
+      docs/explainer_ko.md: ["| 0.340 / 0.054 | 재중심화 병목 P2-RC d = 8 |"]
       README.md: ["(cross-day 0.520 → 0.054)"]
       docs/report.md: ["P2-RC $d = 8$ gives 0.054 (MLP)"]
   - id: L_C1_independent_within_day
@@ -72,7 +77,8 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.514"
     in:
-      README.md: ["0.040 against 0.514 within a day", "Within-day 0.514 vs 0.040 (47.4 pp)"]
+      docs/explainer_ko.md: ["| head 0.040 / 독립 0.514 |"]
+      README.md: ["strongest within-day attacker's 0.514 against", "Within-day 0.514 vs 0.040 (47.4 pp)"]
       docs/report.md: ["the co-trained head scored 0.040 against 0.514 for independent attackers"]
       docs/explainer_ko.md: ["(54명 C1: 0.040 대 0.514)"]
     demo:
@@ -82,6 +88,7 @@ numbers:
     format: {kind: fixed, digits: 1, scale: 100}
     text: "47.4"
     in:
+      docs/explainer_ko.md: ["54명 C1(격차 47.4%p)"]
       README.md: ["(47.4 pp)"]
       docs/report.md: ["difference 47.4 pp (5 seeds)", "(47.4 pp within a day)"]
   - id: L_C1_gap_cross_day_min
@@ -89,20 +96,23 @@ numbers:
     format: {kind: fixed, digits: 1, scale: 100}
     text: "17.6"
     in:
-      README.md: ["across days the gap is 17.6–19.9 pp", "cross-day gap 17.6–19.9 pp"]
+      docs/explainer_ko.md: ["(C1 다른 날 격차 17.6–19.9%p)"]
+      README.md: ["17.6–19.9 pp (C1's cross-day components)", "cross-day gap 17.6–19.9 pp"]
       docs/report.md: ["17.6–19.9 pp in the cross-day auxiliary scenario"]
   - id: L_C1_gap_cross_day_max
     value: {file: results/exp_l/decision.json, json: claims.C1.component_tests.rbf_svm/auxiliary.mean}
     format: {kind: fixed, digits: 1, scale: 100}
     text: "19.9"
     in:
-      README.md: ["across days the gap is 17.6–19.9 pp"]
+      docs/explainer_ko.md: ["(C1 다른 날 격차 17.6–19.9%p)"]
+      README.md: ["17.6–19.9 pp (C1's cross-day components)"]
       docs/report.md: ["co-trained-head gap of 17.6–19.9 pp"]
   - id: L_C1_holm
     value: {file: results/exp_l/decision.json, json: claims.C1.holm_p}
     format: {kind: sci, digits: 1}
     text: "8.9 × 10⁻²⁶"
     in:
+      docs/explainer_ko.md: ["54명 C1(격차 47.4%p), Holm p = 8.9 × 10⁻²⁶"]
       README.md: ["Holm 8.9 × 10⁻²⁶"]
   - id: L_C1_holm_latex
     value: {file: results/exp_l/decision.json, json: claims.C1.holm_p}
@@ -115,6 +125,7 @@ numbers:
     format: {kind: sci, digits: 1}
     text: "4.6 × 10⁻⁵"
     in:
+      docs/explainer_ko.md: ["허용 한계 −5%p), Holm p = 4.6 × 10⁻⁵"]
       README.md: ["Holm 4.6 × 10⁻⁵"]
   - id: L_C3_k20_within_day
     value: {file: results/exp_l/identity_summary.csv, column: ba,
@@ -122,6 +133,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.085"
     in:
+      docs/explainer_ko.md: ["| C3 0.085, p = 0.21 |"]
       README.md: ["Within-day 0.085 vs 0.037", "rises from 0.037 to 0.085 at 20 commands"]
       docs/report.md: ["0.085 at 20 commands within a day"]
   - id: L_C3_k1_within_day
@@ -136,6 +148,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.019"
     in:
+      docs/explainer_ko.md: ["| C3 다른 날 0.019–0.029 |"]
       README.md: ["(0.019–0.029)", "(cross-day 0.019–0.029 at 20)"]
       docs/report.md: ["(0.019–0.029; `component_tests`"]
   - id: L_C3_cross_day_max
@@ -143,6 +156,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.029"
     in:
+      docs/explainer_ko.md: ["| C3 다른 날 0.019–0.029 |"]
       README.md: ["(0.019–0.029)"]
   # Cross-day command identification outside C3's setting: tau 0.8, k 20, strongest attacker per
   # representation within the auxiliary scenario (descriptive, three seeds).
@@ -225,6 +239,7 @@ numbers:
     format: {kind: fixed, digits: 2}
     text: "0.21"
     in:
+      docs/explainer_ko.md: ["| C3 0.085, p = 0.21 |"]
       README.md: ["(Holm p = 0.21)", "| Holm 0.21 |"]
       docs/report.md: ["Holm p = 0.21)"]
   - id: L_C4_five_labels
@@ -233,6 +248,7 @@ numbers:
     format: {kind: fixed, digits: 1, scale: 100}
     text: "92.7"
     in:
+      docs/explainer_ko.md: ["| 1.34% → 92.7% |"]
       README.md: ["five labels reach 92.7% within a day", "92.7% within-day"]
       docs/report.md: ["five labels re-identified the defended output at 92.7%"]
       docs/explainer_ko.md: ["라벨 5개 92.7%"]
@@ -241,6 +257,7 @@ numbers:
     format: {kind: sci, digits: 1}
     text: "4.5 × 10⁻³⁵"
     in:
+      docs/explainer_ko.md: ["C4: 기준 세션 → 배포 라벨 5개, Holm p = 4.5 × 10⁻³⁵"]
       README.md: ["Holm 4.5 × 10⁻³⁵"]
 
   # ---------------------------------------------------------------- BCI IV 2a, 9 users
@@ -250,7 +267,8 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.951"
     in:
-      README.md: ["Across days the same attackers reach 0.951 on 2a"]
+      docs/explainer_ko.md: ["| 1.00 / 0.951 | 2a 원 특징(253차원) |"]
+      README.md: ["days the same attackers reach 0.951 on 2a", "| 2a | 1.00 | 0.951 |"]
       docs/report.md: ["identify every user within a day (balanced accuracy, BA, 1.00; chance 0.11) and 0.951 across days"]
       docs/related_work.md: ["same attackers reach 0.951 on 2a"]
   - id: 2a_cmd_k1_min
@@ -305,3 +323,830 @@ numbers:
     text: "0.326"
     in:
       docs/report.md: ["the within-session maximum for that cell is 0.326"]
+
+  # ---------------------------------------------------------------- K (exploratory), Lee2019
+  # Deployment-day frontier, P2-RC d8, tau 0.8, strongest Bayes attacker (results/exp_k/frontier.csv).
+  - id: K_nway_within_k20_none
+    value: {file: results/exp_k/frontier.csv, column: nway_ba_within_day_k20,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: none}}
+    format: {kind: fixed, digits: 3}
+    text: "0.186"
+    in:
+      docs/explainer_ko.md: ["| K 같은 날 0.186 → 0.278 |"]
+      README.md: ["| L | 0.186 / 0.278 | 0.082 / 0.117 | *exploratory* (K) |",
+                  "reaches 0.186 at 20 commands and 0.278 at 100 within a day"]
+      docs/report.md: ["| Undefended | 0.075 | 0.241 | 0.648 | 0.221 | 0.186 / 0.082 | 0.316 / 0.112 |",
+                       "it reaches 0.186 at $k = 20$ and 0.278 at $k = 100$ within a day"]
+  - id: K_nway_within_kmax_none
+    value: {file: results/exp_k/frontier.csv, column: nway_ba_within_day_kmax,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: none}}
+    format: {kind: fixed, digits: 3}
+    text: "0.278"
+    in:
+      docs/explainer_ko.md: ["| K 같은 날 0.186 → 0.278 |"]
+      README.md: ["| L | 0.186 / 0.278 |", "0.186 at 20 commands and 0.278 at 100"]
+      docs/report.md: ["0.186 at $k = 20$ and 0.278 at $k = 100$"]
+  - id: K_nway_cross_k20_none
+    value: {file: results/exp_k/frontier.csv, column: nway_ba_cross_day_k20,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: none}}
+    format: {kind: fixed, digits: 3}
+    text: "0.082"
+    in:
+      docs/explainer_ko.md: ["| K 다른 날 0.082 → 0.117 |"]
+      README.md: ["| 0.082 / 0.117 | *exploratory* (K) |", "and 0.082 and 0.117 across days"]
+      docs/report.md: ["| 0.186 / 0.082 |", "against 0.082 and 0.117 across days"]
+  - id: K_nway_cross_kmax_none
+    value: {file: results/exp_k/frontier.csv, column: nway_ba_cross_day_kmax,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: none}}
+    format: {kind: fixed, digits: 3}
+    text: "0.117"
+    in:
+      docs/explainer_ko.md: ["| K 다른 날 0.082 → 0.117 |"]
+      README.md: ["| 0.082 / 0.117 |", "0.082 and 0.117 across days"]
+      docs/report.md: ["0.082 and 0.117 across days"]
+  - id: K_g3_excess_within_none
+    value: {file: results/exp_k/frontier.csv, column: g3_excess_within_day_k20,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: none}}
+    format: {kind: fixed, digits: 3}
+    text: "0.316"
+    in:
+      docs/explainer_ko.md: ["| 그룹 안 초과 0.316 → 0.150 |"]
+      README.md: ["deployment day it only reduces it (0.316 → 0.150)", "| L | 0.316 → 0.150 | 0.112 → 0.009 |",
+                  "but only from 0.316 to 0.150", "| Undefended | 0.075 | 0.648 | 0.316 | 0.112 |"]
+      docs/report.md: ["it went only from 0.316 to 0.150", "| 0.316 / 0.112 |", "keeps 0.150 of 0.316",
+                       "leaves 0.150 of 0.316"]
+  - id: K_g3_excess_within_eqc3
+    value: {file: results/exp_k/frontier.csv, column: g3_excess_within_day_k20,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_g3}}
+    format: {kind: fixed, digits: 3}
+    text: "0.150"
+    in:
+      docs/explainer_ko.md: ["| 그룹 안 초과 0.316 → 0.150 |"]
+      README.md: ["(0.316 → 0.150)", "but only from 0.316 to 0.150", "finds 0.150"]
+      docs/report.md: ["| EQ-confusion, $g = 3$ | 0.108 | 0.180 | 0.773 | 0.158 | 0.144 / 0.062 | 0.150 / 0.009 |",
+                       "keeps 0.150 of 0.316", "(0.150 at $k = 20$ within a day)", "but left 0.150 within the deployment day"]
+  - id: K_g3_excess_cross_none
+    value: {file: results/exp_k/frontier.csv, column: g3_excess_cross_day_k20,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: none}}
+    format: {kind: fixed, digits: 3}
+    text: "0.112"
+    in:
+      docs/explainer_ko.md: ["| 그룹 안 초과 0.112 → 0.009 |"]
+      README.md: ["(excess at 20 commands 0.112 → 0.009)", "| 0.112 → 0.009 | *exploratory* (K) |",
+                  "falls from 0.112 to 0.009 for a"]
+      docs/report.md: ["from 0.112 to 0.009 for an attacker enrolled on the calibration day",
+                       "falls from 0.112 to 0.009", "(0.112 → 0.009)"]
+  - id: K_g3_excess_cross_eqc3
+    value: {file: results/exp_k/frontier.csv, column: g3_excess_cross_day_k20,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_g3}}
+    format: {kind: fixed, digits: 3}
+    text: "0.009"
+    in:
+      docs/explainer_ko.md: ["| 그룹 안 초과 0.112 → 0.009 |"]
+      README.md: ["0.112 → 0.009", "| EQ-confusion, g = 3 | 0.108 | 0.773 | 0.150 | 0.009 |"]
+      docs/report.md: ["| 0.150 / 0.009 |", "lowered the cross-day within-group excess to 0.009"]
+  - id: K_utility_none
+    value: {file: results/exp_k/frontier.csv, column: weighted_utility,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: none}}
+    format: {kind: fixed, digits: 3}
+    text: "0.075"
+    in:
+      docs/explainer_ko.md: ["| 방어 없음 0.075 / 0.648 |"]
+      README.md: ["| Undefended | 0.075 |"]
+      docs/report.md: ["| Undefended | 0.075 |", "(0.108 against 0.075)"]
+  - id: K_utility_eqc3
+    value: {file: results/exp_k/frontier.csv, column: weighted_utility,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_g3}}
+    format: {kind: fixed, digits: 3}
+    text: "0.108"
+    in:
+      docs/explainer_ko.md: ["| EQ g = 3: 0.108 / 0.773 |"]
+      README.md: ["| EQ-confusion, g = 3 | 0.108 |"]
+      docs/report.md: ["| EQ-confusion, $g = 3$ | 0.108 |", "(0.108 against 0.075)"]
+  - id: K_hold_none
+    value: {file: results/exp_k/frontier.csv, column: hold_rate,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: none}}
+    format: {kind: fixed, digits: 3}
+    text: "0.648"
+    in:
+      docs/explainer_ko.md: ["| 방어 없음 0.075 / 0.648 |"]
+      README.md: ["| 0.075 | 0.648 |"]
+      docs/report.md: ["| 0.241 | 0.648 |"]
+  - id: K_hold_eqc3
+    value: {file: results/exp_k/frontier.csv, column: hold_rate,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_g3}}
+    format: {kind: fixed, digits: 3}
+    text: "0.773"
+    in:
+      docs/explainer_ko.md: ["| EQ g = 3: 0.108 / 0.773 |"]
+      README.md: ["| 0.108 | 0.773 |"]
+      docs/report.md: ["| 0.180 | 0.773 |"]
+  - id: K_rr05_utility_loss
+    value: {file: results/exp_k/frontier.csv, column: weighted_utility_loss,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: rr_q0.5}}
+    format: {kind: fixed, digits: 3}
+    text: "0.538"
+    in:
+      docs/explainer_ko.md: ["| RR 손실 0.538 / 정지 0.491 |"]
+      README.md: ["| RR, q = 0.5 | below 0 (loss 0.538) | 0.491 | 0.147 | 0.032 |"]
+      docs/report.md: ["| RR, $q = 0.5$ | below 0 (loss 0.538) | 0.121 | 0.491 | 0.038 | 0.086 / 0.042 | 0.147 / 0.032 |"]
+  - id: K_rr05_hold
+    value: {file: results/exp_k/frontier.csv, column: hold_rate,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: rr_q0.5}}
+    format: {kind: fixed, digits: 3}
+    text: "0.491"
+    in:
+      docs/explainer_ko.md: ["| RR 손실 0.538 / 정지 0.491 |"]
+      README.md: ["(loss 0.538) | 0.491 |"]
+      docs/report.md: ["| 0.121 | 0.491 |"]
+  - id: K_rr05_g3_within
+    value: {file: results/exp_k/frontier.csv, column: g3_excess_within_day_k20,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: rr_q0.5}}
+    format: {kind: fixed, digits: 3}
+    text: "0.147"
+    in:
+      docs/explainer_ko.md: ["| RR 초과 0.147 / 0.032 |"]
+      README.md: ["| 0.491 | 0.147 | 0.032 |"]
+      docs/report.md: ["| 0.147 / 0.032 |"]
+  - id: K_rr05_g3_cross
+    value: {file: results/exp_k/frontier.csv, column: g3_excess_cross_day_k20,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: rr_q0.5}}
+    format: {kind: fixed, digits: 3}
+    text: "0.032"
+    in:
+      docs/explainer_ko.md: ["| RR 초과 0.147 / 0.032 |"]
+      README.md: ["| 0.147 | 0.032 |"]
+      docs/report.md: ["| 0.147 / 0.032 |"]
+  - id: K_gall_utility
+    value: {file: results/exp_k/frontier.csv, column: weighted_utility,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_gall}}
+    format: {kind: fixed, digits: 3}
+    text: "0.000"
+    in:
+      docs/explainer_ko.md: ["| EQ g = 전체: 0.000 / 1.000 |"]
+      README.md: ["(utility 0.000, hold rate 1.000)", "| EQ-confusion, all 54 users in one group | 0.000 | 1.000 | — | — |"]
+      docs/report.md: ["| EQ-confusion, one group of 54 | 0.000 | 0.000 | 1.000 | 0.000 | 0.020 / 0.022 | — |",
+                       "(weighted utility 0.000, hold rate 1.000)"]
+  - id: K_gall_net_progress
+    value: {file: results/exp_k/frontier.csv, column: net_progress,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_gall}}
+    format: {kind: fixed, digits: 3}
+    text: "0.000"
+    in:
+      docs/report.md: ["one group of 54 | 0.000 | 0.000 |"]
+  - id: K_gall_hold
+    value: {file: results/exp_k/frontier.csv, column: hold_rate,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_gall}}
+    format: {kind: fixed, digits: 3}
+    text: "1.000"
+    in:
+      docs/explainer_ko.md: ["| EQ g = 전체: 0.000 / 1.000 |"]
+      README.md: ["hold rate 1.000)", "| 0.000 | 1.000 | — | — |"]
+      docs/report.md: ["| 0.000 | 0.000 | 1.000 |", "hold rate 1.000)"]
+  - id: K_gall_bits
+    value: {file: results/exp_k/frontier.csv, column: bits_per_trial,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_gall}}
+    format: {kind: fixed, digits: 3}
+    text: "0.000"
+    in:
+      docs/report.md: ["| 1.000 | 0.000 | 0.020 / 0.022 |"]
+  - id: K_gall_nway_within
+    value: {file: results/exp_k/frontier.csv, column: nway_ba_within_day_k20,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_gall}}
+    format: {kind: fixed, digits: 3}
+    text: "0.020"
+    in:
+      docs/report.md: ["| 0.020 / 0.022 |"]
+  - id: K_gall_nway_cross
+    value: {file: results/exp_k/frontier.csv, column: nway_ba_cross_day_k20,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_gall}}
+    format: {kind: fixed, digits: 3}
+    text: "0.022"
+    in:
+      docs/report.md: ["| 0.020 / 0.022 |"]
+  - id: K_net_none
+    value: {file: results/exp_k/frontier.csv, column: net_progress,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: none}}
+    format: {kind: fixed, digits: 3}
+    text: "0.241"
+    in:
+      docs/report.md: ["| Undefended | 0.075 | 0.241 |"]
+  - id: K_net_eqc3
+    value: {file: results/exp_k/frontier.csv, column: net_progress,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_g3}}
+    format: {kind: fixed, digits: 3}
+    text: "0.180"
+    in:
+      docs/report.md: ["| 0.108 | 0.180 |"]
+  - id: K_net_rr05
+    value: {file: results/exp_k/frontier.csv, column: net_progress,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: rr_q0.5}}
+    format: {kind: fixed, digits: 3}
+    text: "0.121"
+    in:
+      docs/report.md: ["(loss 0.538) | 0.121 |"]
+  - id: K_bits_none
+    value: {file: results/exp_k/frontier.csv, column: bits_per_trial,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: none}}
+    format: {kind: fixed, digits: 3}
+    text: "0.221"
+    in:
+      docs/explainer_ko.md: ["| 과제 0.221 비트, 1.02 비트/분 |"]
+      docs/report.md: ["| 0.648 | 0.221 |", "Undefended task information is 0.221 bits per trial"]
+  - id: K_itr_none
+    value: {file: results/exp_k/frontier.csv, column: itr_bits_per_min,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: none}}
+    format: {kind: fixed, digits: 2}
+    text: "1.02"
+    in:
+      docs/explainer_ko.md: ["| 과제 0.221 비트, 1.02 비트/분 |"]
+      docs/report.md: ["or 1.02 bits/min"]
+  - id: K_bits_eqc3
+    value: {file: results/exp_k/frontier.csv, column: bits_per_trial,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_g3}}
+    format: {kind: fixed, digits: 3}
+    text: "0.158"
+    in:
+      docs/explainer_ko.md: ["(EQ g = 3: 0.158 비트, 0.73 비트/분)"]
+      docs/report.md: ["| 0.773 | 0.158 |"]
+  - id: K_bits_rr05
+    value: {file: results/exp_k/frontier.csv, column: bits_per_trial,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: rr_q0.5}}
+    format: {kind: fixed, digits: 3}
+    text: "0.038"
+    in:
+      docs/report.md: ["| 0.491 | 0.038 |"]
+  - id: K_nway_within_eqc3
+    value: {file: results/exp_k/frontier.csv, column: nway_ba_within_day_k20,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_g3}}
+    format: {kind: fixed, digits: 3}
+    text: "0.144"
+    in:
+      docs/explainer_ko.md: ["EQ 뒤 N-way는 같은 날 0.144, 다른 날 0.062로"]
+      docs/report.md: ["| 0.144 / 0.062 |"]
+  - id: K_nway_cross_eqc3
+    value: {file: results/exp_k/frontier.csv, column: nway_ba_cross_day_k20,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_g3}}
+    format: {kind: fixed, digits: 3}
+    text: "0.062"
+    in:
+      docs/explainer_ko.md: ["EQ 뒤 N-way는 같은 날 0.144, 다른 날 0.062로"]
+      docs/report.md: ["| 0.144 / 0.062 |"]
+  - id: K_nway_within_rr05
+    value: {file: results/exp_k/frontier.csv, column: nway_ba_within_day_k20,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: rr_q0.5}}
+    format: {kind: fixed, digits: 3}
+    text: "0.086"
+    in:
+      docs/report.md: ["| 0.086 / 0.042 |"]
+  - id: K_nway_cross_rr05
+    value: {file: results/exp_k/frontier.csv, column: nway_ba_cross_day_k20,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: rr_q0.5}}
+    format: {kind: fixed, digits: 3}
+    text: "0.042"
+    in:
+      docs/report.md: ["| 0.086 / 0.042 |"]
+  # Residual-leakage decomposition, EQ-confusion g3 (results/exp_k/residual_leakage.csv).
+  - id: K_residual_total
+    value: {file: results/exp_k/residual_leakage.csv, column: excess_k20_total,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_g3}}
+    format: {kind: fixed, digits: 3}
+    text: "0.138"
+    in:
+      docs/explainer_ko.md: ["| 잔여 0.138 = 0.020 + 0.017 + 0.100 |", "잔여 0.138 = 0.020 + 0.017 + 0.100."]
+      README.md: ["residual (0.138 in K's decomposition)", "splits 0.138 into:"]
+      docs/report.md: ["The within-day residual of 0.138 splits into 0.020"]
+  - id: K_residual_floor
+    value: {file: results/exp_k/residual_leakage.csv, column: excess_k20_floor,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_g3}}
+    format: {kind: fixed, digits: 3}
+    text: "0.020"
+    in:
+      docs/explainer_ko.md: ["| 잔여 0.138 = 0.020 + 0.017 + 0.100 |", "0.020은 **측정 바닥**입니다"]
+      README.md: ["0.020 is the estimator floor", "  - 0.020, the estimator floor;"]
+      docs/report.md: ["splits into 0.020, the floor"]
+  - id: K_residual_estimation
+    value: {file: results/exp_k/residual_leakage.csv, column: excess_k20_estimation_minus_floor,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_g3}}
+    format: {kind: fixed, digits: 3}
+    text: "0.017"
+    in:
+      docs/explainer_ko.md: ["| 잔여 0.138 = 0.020 + 0.017 + 0.100 |", "0.017은 **유한한 보정 데이터**의 몫입니다"]
+      README.md: ["0.017 is finite calibration data", "  - 0.017, from finite calibration data;"]
+      docs/report.md: ["0.017, attributable to finite calibration data"]
+  - id: K_residual_unexplained
+    value: {file: results/exp_k/residual_leakage.csv, column: excess_k20_total_minus_estimation,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_g3}}
+    format: {kind: fixed, digits: 3}
+    text: "0.100"
+    in:
+      docs/explainer_ko.md: ["| 잔여 0.138 = 0.020 + 0.017 + 0.100 |", "0.100은 **같은 날 시뮬레이션이 설명하지 못하는 몫**입니다"]
+      README.md: ["0.100 is what the same-day simulation does not explain", "  - 0.100 that the same-day simulation does not explain"]
+      docs/report.md: ["and 0.100 that the simulation leaves unexplained"]
+  # C3's cell (P2-RC d8, tau 0.5, k 20, cross-day) with cross-fitted enrolment streams.
+  - id: K_C3cell_blind_min
+    value: {file: results/exp_k/identity_curves_all.csv, column: ba, agg: min,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.5, defence: none, scenario: cross_day,
+                    enrolment: all, k: 20, metric: nway, view: blind}}
+    format: {kind: fixed, digits: 3}
+    text: "0.008"
+    in:
+      docs/explainer_ko.md: ["| 명령만 0.008–0.027 / 목표 인지 0.046 |", "명령만 보는 공격자는 0.008–0.027에 머물렀지만"]
+      README.md: ["| 0.008–0.027 / 0.046 (0.016–0.075; Bayes categorical)", "as in C3, stay at 0.008–0.027"]
+      docs/report.md: ["the view of C3, give 0.008–0.027", "command-only attackers stay at 0.008–0.027"]
+      docs/related_work.md: ["in C3, stay at 0.008–0.027, while"]
+  - id: K_C3cell_blind_max
+    value: {file: results/exp_k/identity_curves_all.csv, column: ba, agg: max,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.5, defence: none, scenario: cross_day,
+                    enrolment: all, k: 20, metric: nway, view: blind}}
+    format: {kind: fixed, digits: 3}
+    text: "0.027"
+    in:
+      docs/explainer_ko.md: ["| 명령만 0.008–0.027 / 목표 인지 0.046 |"]
+      README.md: ["0.008–0.027 / 0.046", "stay at 0.008–0.027"]
+      docs/report.md: ["give 0.008–0.027", "stay at 0.008–0.027"]
+      docs/related_work.md: ["in C3, stay at 0.008–0.027, while"]
+  - id: K_C3cell_bayes
+    value: {file: results/exp_k/identity_curves.csv, column: ba,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.5, defence: none, scenario: cross_day,
+                    enrolment: all, k: 20, metric: nway, family_set: bayes}}
+    format: {kind: fixed, digits: 3}
+    text: "0.046"
+    in:
+      docs/explainer_ko.md: ["(Bayes 0.046의 95% 구간 0.016–0.075)", "Bayes categorical 목표 인지 공격자 0.046(95% 구간 0.016–0.075"]
+      README.md: ["/ 0.046 (0.016–0.075; Bayes categorical)", "attackers that also see the cue reach 0.046 (95% interval 0.016–0.075, which reaches below"]
+      docs/report.md: ["the Bayes categorical target-aware attacker gives 0.046 (95% interval 0.016–0.075",
+                       "target-aware Bayes attackers reach 0.046 in C3's cell"]
+      docs/related_work.md: ["attackers that also see the cue reach 0.046."]
+  - id: K_C3cell_bayes_low
+    value: {file: results/exp_k/identity_curves.csv, column: ba_low,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.5, defence: none, scenario: cross_day,
+                    enrolment: all, k: 20, metric: nway, family_set: bayes}}
+    format: {kind: fixed, digits: 3}
+    text: "0.016"
+    in:
+      docs/explainer_ko.md: ["(Bayes 0.046의 95% 구간 0.016–0.075)"]
+      README.md: ["0.046 (0.016–0.075;", "(95% interval 0.016–0.075,"]
+      docs/report.md: ["0.046 (95% interval 0.016–0.075"]
+  - id: K_C3cell_bayes_high
+    value: {file: results/exp_k/identity_curves.csv, column: ba_high,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.5, defence: none, scenario: cross_day,
+                    enrolment: all, k: 20, metric: nway, family_set: bayes}}
+    format: {kind: fixed, digits: 3}
+    text: "0.075"
+    in:
+      docs/explainer_ko.md: ["(Bayes 0.046의 95% 구간 0.016–0.075)"]
+      README.md: ["0.046 (0.016–0.075;", "(95% interval 0.016–0.075,"]
+      docs/report.md: ["0.046 (95% interval 0.016–0.075"]
+  - id: K_C3cell_logistic_aware
+    value: {file: results/exp_k/identity_curves_all.csv, column: ba,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.5, defence: none, scenario: cross_day,
+                    enrolment: all, k: 20, metric: nway, attacker: logistic_aware}}
+    format: {kind: fixed, digits: 3}
+    text: "0.046"
+    in:
+      docs/explainer_ko.md: ["logistic 목표 인지 0.046(0.021–0.072)"]
+      README.md: ["strongest 0.046 (0.021–0.072; logistic)", "also gives 0.046 (0.021–0.072)"]
+      docs/report.md: ["gives 0.046 (0.021–0.072; `identity_curves_all.csv`, `logistic_aware`)"]
+  - id: K_C3cell_aware_max
+    value: {file: results/exp_k/identity_curves_all.csv, column: ba, agg: max,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.5, defence: none, scenario: cross_day,
+                    enrolment: all, k: 20, metric: nway, view: aware}}
+    format: {kind: fixed, digits: 3}
+    text: "0.046"
+    in:
+      docs/explainer_ko.md: ["목표도 보는 공격자는 0.046까지 올라갔습니다"]
+      docs/report.md: ["target-aware attackers give up to 0.046:"]
+  - id: K_C3cell_logistic_aware_low
+    value: {file: results/exp_k/identity_curves_all.csv, column: ba_low,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.5, defence: none, scenario: cross_day,
+                    enrolment: all, k: 20, metric: nway, attacker: logistic_aware}}
+    format: {kind: fixed, digits: 3}
+    text: "0.021"
+    in:
+      docs/explainer_ko.md: ["logistic 목표 인지 0.046(0.021–0.072)"]
+      README.md: ["strongest 0.046 (0.021–0.072; logistic)", "also gives 0.046 (0.021–0.072)"]
+      docs/report.md: ["gives 0.046 (0.021–0.072;"]
+  - id: K_C3cell_logistic_aware_high
+    value: {file: results/exp_k/identity_curves_all.csv, column: ba_high,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.5, defence: none, scenario: cross_day,
+                    enrolment: all, k: 20, metric: nway, attacker: logistic_aware}}
+    format: {kind: fixed, digits: 3}
+    text: "0.072"
+    in:
+      docs/explainer_ko.md: ["logistic 목표 인지 0.046(0.021–0.072)"]
+      README.md: ["strongest 0.046 (0.021–0.072; logistic)", "also gives 0.046 (0.021–0.072)"]
+      docs/report.md: ["gives 0.046 (0.021–0.072;"]
+  - id: L_P2_d1_within_day
+    value: {file: results/exp_l/identity_summary.csv, column: ba,
+            where: {kind: representation, key: P2_d1, strongest: "True"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.057"
+    in:
+      docs/explainer_ko.md: ["2a 식별 0.25, 54명 0.057(사전등록 추정치(seed 3개))"]
+      README.md: ["are 0.057 / 0.085 within a day"]
+      docs/report.md: ["At $d = 1$ identity BA is 0.057 (common)"]
+  - id: L_P2RC_d1_within_day
+    value: {file: results/exp_l/identity_summary.csv, column: ba,
+            where: {kind: representation, key: P2-RC_d1, strongest: "True"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.085"
+    in:
+      README.md: ["are 0.057 / 0.085 within a day"]
+      docs/report.md: ["0.085 (recentred), about 3 and 4.6 times chance"]
+  - id: L_P2_d1_cross_day
+    value: {file: results/exp_l/identity_summary.csv, column: ba, agg: max,
+            where: {kind: representation, key: P2_d1, scenario: auxiliary}}
+    format: {kind: fixed, digits: 3}
+    text: "0.035"
+    in:
+      README.md: ["0.035 / 0.037 across days"]
+  - id: L_P2RC_d1_cross_day
+    value: {file: results/exp_l/identity_summary.csv, column: ba, agg: max,
+            where: {kind: representation, key: P2-RC_d1, scenario: auxiliary}}
+    format: {kind: fixed, digits: 3}
+    text: "0.037"
+    in:
+      README.md: ["0.035 / 0.037 across days"]
+  - id: K_lp_equalization_residual
+    value: {file: results/exp_k/run_summary.json, json: eq_fit_max_equalization_residual}
+    format: {kind: sci_latex, digits: 1}
+    text: "2.5 \\times 10^{-14}"
+    in:
+      docs/report.md: ["largest equalization residual was $2.5 \\times 10^{-14}$"]
+  - id: K_lp_duality_gap
+    value: {file: results/exp_k/run_summary.json, json: eq_fit_max_duality_gap}
+    format: {kind: sci_latex, digits: 1}
+    text: "1.8 \\times 10^{-15}"
+    in:
+      docs/report.md: ["largest duality gap $1.8 \\times 10^{-15}$"]
+  - id: K_first_run_minutes
+    value: {file: results/exp_k/run_summary.json, json: first_run_wall_seconds}
+    format: {kind: fixed, digits: 0, scale: 0.016666666666666666}
+    text: "97"
+    in:
+      README.md: ["| 97 min first run |"]
+      docs/report.md: ["its first full run took 97 min"]
+
+  # ---------------------------------------------------------------- R (exploratory), Lee2019
+  - id: R_P3_cross_day_strongest
+    value: {file: results/exp_r/cross_day_table.csv, column: cross_day_ba,
+            where: {condition: P3_lambda1, attacker: strongest}}
+    format: {kind: fixed, digits: 3}
+    text: "0.239"
+    in:
+      docs/explainer_ko.md: ["| head 0.040 / 독립 0.239 |", "| P3, λ = 1 | 0.514 (확증 C1) | 0.239 (사전등록 추정치) |"]
+      README.md: ["| 0.514 | 0.239 | within: *confirmatory-sealed* (L, C1); cross: *pre-registered estimate*", "(gap 19.9 pp to 0.239)",
+                  "across days the strongest independent attacker reaches 0.239 against the",
+                  "P3 λ = 1 reaches 0.239 against the"]
+      docs/report.md: ["| P3, $\\lambda = 1$ | 0.514 | 0.239 |"]
+  - id: R_head_cross_day
+    value: {file: results/exp_r/cross_day_table.csv, column: cross_day_ba,
+            where: {condition: P3_lambda1, attacker: head}}
+    format: {kind: fixed, digits: 3}
+    text: "0.040"
+    in:
+      docs/explainer_ko.md: ["| head 0.040 / 독립 0.239 |", "| 함께 학습한 head, P3 λ = 1 | — | 0.040 |"]
+      README.md: ["| 0.040 (gap 19.9 pp to 0.239) |", "against the head's 0.040)", "head's 0.040"]
+      docs/report.md: ["| Co-trained head, P3 $\\lambda = 1$ | — | 0.040 |"]
+  - id: R_gap_cross_day
+    value: {file: results/exp_r/cross_day_table.csv, column: cross_day_ba,
+            where: {condition: P3_lambda1, attacker: difference}}
+    format: {kind: fixed, digits: 1, scale: 100}
+    text: "19.9"
+    in:
+      docs/explainer_ko.md: ["같은 비교, 격차 19.9%p", "head 0.040보다 19.9%p 높습니다"]
+      README.md: ["(gap 19.9 pp to 0.239)", "head's 0.040, a gap of 19.9 pp"]
+      docs/report.md: ["exceeds the co-trained head by 19.9 pp across days"]
+  - id: R_pilot_largest_decrease
+    value: {file: results/exp_r/pilot.json, json: types.1.ba_change}
+    format: {kind: fixed, digits: 3, scale: -1}
+    text: "0.019"
+    in:
+      docs/explainer_ko.md: ["| 재적합 변화 −0.019–+0.002 |", "식별 BA 변화는 −0.019에서 +0.002 사이였습니다"]
+      README.md: ["identity BA changed by between −0.019"]
+      docs/report.md: ["changed by between −0.019 and +0.002", "pilot changed identity BA by −0.019 to +0.002"]
+  - id: R_pilot_largest_increase
+    value: {file: results/exp_r/pilot.json, json: types.0.ba_change}
+    format: {kind: fixed, digits: 3}
+    text: "0.002"
+    in:
+      docs/explainer_ko.md: ["| 재적합 변화 −0.019–+0.002 |"]
+      docs/report.md: ["between −0.019 and +0.002", "−0.019 to +0.002"]
+
+  # ---------------------------------------------------------------- M (sealed; day-1 selections only)
+  - id: M_tau_star
+    value: {file: results/exp_m/selection.json, json: gates.tau.tau_star}
+    format: {kind: fixed, digits: 2}
+    text: "0.60"
+    in:
+      docs/explainer_ko.md: ["| τ* = 0.60 | M의 정지 임계값"]
+      README.md: ["P2-RC at τ* = 0.60, target-aware Bayes attacker", "τ* = 0.60 is the grid value",
+                  "On Yang2025 recording day 1 at τ* = 0.60"]
+      docs/report.md: ["τ* = 0.60 is the value on a 0.50–0.90 grid", "On Yang2025 recording day 1 at $\\tau^* = 0.60$"]
+  - id: M_m3_power_alpha
+    value: {file: results/exp_m/dev_m3_power.csv, column: power_alpha, where: {retention: 0.55}}
+    format: {kind: fixed, digits: 2}
+    text: "0.85"
+    in:
+      docs/explainer_ko.md: ["| M3 검정력 0.85 / 0.69 |", "| 0.55 | 0.85 | 0.69 |"]
+      README.md: ["| Power of M3 | 0.85 at α = 0.05 and 0.69 at α/3"]
+      docs/report.md: ["The power of M3 is 0.85 at α = 0.05 and 0.69 at α/3"]
+  - id: M_m3_power_alpha3
+    value: {file: results/exp_m/dev_m3_power.csv, column: power_alpha/3, where: {retention: 0.55}}
+    format: {kind: fixed, digits: 2}
+    text: "0.69"
+    in:
+      docs/explainer_ko.md: ["| M3 검정력 0.85 / 0.69 |", "| 0.55 | 0.85 | 0.69 |"]
+      README.md: ["0.69 at α/3 if days 2–3 keep 55%"]
+      docs/report.md: ["0.69 at α/3 if days 2–3 keep 55%"]
+
+  # ---------------------------------------------------------------- explainer v2 (docs/explainer_ko.md)
+  - id: 2a_P0_within_day
+    value: {file: results/exp_b/tradeoff.csv, column: identity_ba, where: {condition: P0, target: 0.0}}
+    format: {kind: fixed, digits: 2}
+    text: "1.00"
+    in:
+      docs/explainer_ko.md: ["| 1.00 / 0.951 | 2a 원 특징(253차원) |"]
+  - id: 2a_B_head_lambda1
+    value: {file: results/exp_b/adversary_comparison.csv, column: adversary_main_ba,
+            where: {condition: P3, target: 1.0}}
+    format: {kind: fixed, digits: 3}
+    text: "0.026"
+    in:
+      docs/explainer_ko.md: ["| head 0.026 / 독립 0.951 |"]
+  - id: 2a_B_independent_lambda1
+    value: {file: results/exp_b/adversary_comparison.csv, column: independent_ba,
+            where: {condition: P3, target: 1.0}}
+    format: {kind: fixed, digits: 3}
+    text: "0.951"
+    in:
+      docs/explainer_ko.md: ["| head 0.026 / 독립 0.951 |"]
+  - id: G_paper_undefended
+    value: {file: results/exp_g/bnci/paper_table1_comparison.csv, column: observed_accuracy_percent,
+            where: {condition: undefended, direction: S1_to_S2, attacker: paper_ts_svm}}
+    format: {kind: fixed, digits: 1}
+    text: "90.8"
+    in:
+      docs/explainer_ko.md: ["| 90.8% → 11.1% |"]
+  - id: G_paper_defended
+    value: {file: results/exp_g/bnci/paper_table1_comparison.csv, column: observed_accuracy_percent,
+            where: {condition: defended, direction: S1_to_S2, attacker: paper_ts_svm}}
+    format: {kind: fixed, digits: 1}
+    text: "11.1"
+    in:
+      docs/explainer_ko.md: ["| 90.8% → 11.1% |"]
+  - id: G_enrolment_one_label
+    value: {file: results/exp_g/bnci/enrolment_averaged.csv, column: accuracy,
+            where: {condition: defended, attacker: beat_logistic, enrolment_n: 1, k: 1}}
+    format: {kind: fixed, digits: 2, scale: 100}
+    text: "81.75"
+    in:
+      docs/explainer_ko.md: ["| 81.75% / 97.11% |"]
+  - id: G_enrolment_five_labels
+    value: {file: results/exp_g/bnci/enrolment_averaged.csv, column: accuracy,
+            where: {condition: defended, attacker: beat_logistic, enrolment_n: 5, k: 1}}
+    format: {kind: fixed, digits: 2, scale: 100}
+    text: "97.11"
+    in:
+      docs/explainer_ko.md: ["| 81.75% / 97.11% |"]
+  - id: L_C4_reference_session
+    value: {file: results/exp_l/reproduction.json, json: accuracy}
+    format: {kind: fixed, digits: 2, scale: 100}
+    text: "1.34"
+    in:
+      docs/explainer_ko.md: ["| 1.34% → 92.7% |"]
+  - id: L_C2_task_change
+    value: {file: results/exp_l/decision.json, json: claims.C2.utility.mean}
+    format: {kind: fixed, digits: 1, scale: -100}
+    text: "0.6"
+    in:
+      docs/explainer_ko.md: ["| C2 과제 −0.6%p |"]
+  - id: L_C2_task_change_lower
+    value: {file: results/exp_l/decision.json, json: claims.C2.utility.lower}
+    format: {kind: fixed, digits: 1, scale: -100}
+    text: "2.3"
+    in:
+      docs/explainer_ko.md: ["(하한 −2.3%p"]
+  - id: K_itr_eqc3
+    value: {file: results/exp_k/frontier.csv, column: itr_bits_per_min,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_g3}}
+    format: {kind: fixed, digits: 2}
+    text: "0.73"
+    in:
+      docs/explainer_ko.md: ["(EQ g = 3: 0.158 비트, 0.73 비트/분)"]
+  - id: K_rr05_epsilon
+    value: {file: results/exp_k/frontier.csv, column: epsilon_per_command,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: rr_q0.5}}
+    format: {kind: fixed, digits: 2}
+    text: "1.39"
+    in:
+      docs/explainer_ko.md: ["ε = ln 4 ≈ 1.39"]
+  - id: K_wrong_weight_tau08
+    value: {file: results/exp_k/frontier.csv, column: wrong_weight,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: none}}
+    format: {kind: fixed, digits: 0}
+    text: "4"
+    in:
+      docs/explainer_ko.md: ["τ = 0.8이면 w = 4입니다"]
+  - id: K_lp_equalization_residual_sci
+    value: {file: results/exp_k/run_summary.json, json: eq_fit_max_equalization_residual}
+    format: {kind: sci, digits: 1}
+    text: "2.5 × 10⁻¹⁴"
+    in:
+      docs/explainer_ko.md: ["최대 균등화 잔차는 2.5 × 10⁻¹⁴, 최대 쌍대 간격은 1.8 × 10⁻¹⁵"]
+  - id: K_lp_duality_gap_sci
+    value: {file: results/exp_k/run_summary.json, json: eq_fit_max_duality_gap}
+    format: {kind: sci, digits: 1}
+    text: "1.8 × 10⁻¹⁵"
+    in:
+      docs/explainer_ko.md: ["최대 균등화 잔차는 2.5 × 10⁻¹⁴, 최대 쌍대 간격은 1.8 × 10⁻¹⁵"]
+  # Identity information per command, target-aware, deployment day (results/exp_k/information_identity.csv).
+  - id: K_info_nway_none
+    value: {file: results/exp_k/information_identity.csv, column: bits,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: none, view: aware, grouping: nway}}
+    format: {kind: fixed, digits: 3}
+    text: "0.467"
+    in:
+      docs/explainer_ko.md: ["| 신원 정보 0.467 → 0.452 |", "54명 전체로는 0.467 → 0.452 비트로"]
+  - id: K_info_nway_eqc3
+    value: {file: results/exp_k/information_identity.csv, column: bits,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_g3, view: aware, grouping: nway}}
+    format: {kind: fixed, digits: 3}
+    text: "0.452"
+    in:
+      docs/explainer_ko.md: ["| 신원 정보 0.467 → 0.452 |"]
+  - id: K_info_g3_none
+    value: {file: results/exp_k/information_identity.csv, column: bits,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: none, view: aware, grouping: g3}}
+    format: {kind: fixed, digits: 3}
+    text: "0.198"
+    in:
+      docs/explainer_ko.md: ["| 그룹 안 정보 0.198 → 0.072 |", "그룹 안(g = 3)으로는 0.198 → 0.072 비트로"]
+  - id: K_info_g3_eqc3
+    value: {file: results/exp_k/information_identity.csv, column: bits,
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: eqc_g3, view: aware, grouping: g3}}
+    format: {kind: fixed, digits: 3}
+    text: "0.072"
+    in:
+      docs/explainer_ko.md: ["| 그룹 안 정보 0.198 → 0.072 |"]
+  - id: K_info_nway_none_null
+    value: {file: results/exp_k/information_identity.csv, column: "null",
+            where: {dataset: lee2019, condition: P2-RC_d8, tau: 0.8, defence: none, view: aware, grouping: nway}}
+    format: {kind: fixed, digits: 3}
+    text: "0.014"
+    in:
+      docs/explainer_ko.md: ["신원을 섞은 순열 영점은 0.014 비트"]
+  # MLP refit pilot, one seed-0 fit per type (results/exp_r/pilot.json).
+  - id: R_pilot_targets
+    value: {file: results/exp_r/pilot.json, json: targets}
+    format: {kind: fixed, digits: 0}
+    text: "45"
+    in:
+      docs/explainer_ko.md: ["적합 45개의 예측을"]
+  - id: R_pilot_max_iter
+    value: {file: results/exp_r/pilot.json, json: budget.max_iter}
+    format: {kind: fixed, digits: 0}
+    text: "20000"
+    in:
+      docs/explainer_ko.md: ["반복 한도를 20000회로"]
+  - id: R_pilot_C1_within_sealed
+    value: {file: results/exp_r/pilot.json, json: types.1.sealed_ba}
+    format: {kind: fixed, digits: 3}
+    text: "0.536"
+    in:
+      docs/explainer_ko.md: ["| C1 · P3 λ = 1 | 같은 날 | 0.536 | 0.517 |"]
+  - id: R_pilot_C1_within_refit
+    value: {file: results/exp_r/pilot.json, json: types.1.refit_ba}
+    format: {kind: fixed, digits: 3}
+    text: "0.517"
+    in:
+      docs/explainer_ko.md: ["| C1 · P3 λ = 1 | 같은 날 | 0.536 | 0.517 |"]
+  - id: R_pilot_C1_cross_sealed
+    value: {file: results/exp_r/pilot.json, json: types.0.sealed_ba}
+    format: {kind: fixed, digits: 3}
+    text: "0.288"
+    in:
+      docs/explainer_ko.md: ["| C1 · P3 λ = 1 | 다른 날 | 0.288 | 0.291 |"]
+  - id: R_pilot_C1_cross_refit
+    value: {file: results/exp_r/pilot.json, json: types.0.refit_ba}
+    format: {kind: fixed, digits: 3}
+    text: "0.291"
+    in:
+      docs/explainer_ko.md: ["| C1 · P3 λ = 1 | 다른 날 | 0.288 | 0.291 |"]
+  - id: R_pilot_C2_within_sealed
+    value: {file: results/exp_r/pilot.json, json: types.3.sealed_ba}
+    format: {kind: fixed, digits: 3}
+    text: "0.331"
+    in:
+      docs/explainer_ko.md: ["| C2 · P2-RC d = 8 | 같은 날 | 0.331 | 0.322 |"]
+  - id: R_pilot_C2_within_refit
+    value: {file: results/exp_r/pilot.json, json: types.3.refit_ba}
+    format: {kind: fixed, digits: 3}
+    text: "0.322"
+    in:
+      docs/explainer_ko.md: ["| C2 · P2-RC d = 8 | 같은 날 | 0.331 | 0.322 |"]
+  - id: R_pilot_C2_cross_sealed
+    value: {file: results/exp_r/pilot.json, json: types.2.sealed_ba}
+    format: {kind: fixed, digits: 3}
+    text: "0.058"
+    in:
+      docs/explainer_ko.md: ["| C2 · P2-RC d = 8 | 다른 날 | 0.058 | 0.060 |"]
+  - id: R_pilot_C2_cross_refit
+    value: {file: results/exp_r/pilot.json, json: types.2.refit_ba}
+    format: {kind: fixed, digits: 3}
+    text: "0.060"
+    in:
+      docs/explainer_ko.md: ["| C2 · P2-RC d = 8 | 다른 날 | 0.058 | 0.060 |"]
+  - id: R_pilot_C3_within_sealed
+    value: {file: results/exp_r/pilot.json, json: types.5.sealed_ba}
+    format: {kind: fixed, digits: 3}
+    text: "0.089"
+    in:
+      docs/explainer_ko.md: ["| C3 · 명령 20개 | 같은 날 | 0.089 | 0.081 |"]
+  - id: R_pilot_C3_within_refit
+    value: {file: results/exp_r/pilot.json, json: types.5.refit_ba}
+    format: {kind: fixed, digits: 3}
+    text: "0.081"
+    in:
+      docs/explainer_ko.md: ["| C3 · 명령 20개 | 같은 날 | 0.089 | 0.081 |"]
+  - id: R_pilot_C3_cross_sealed
+    value: {file: results/exp_r/pilot.json, json: types.4.sealed_ba}
+    format: {kind: fixed, digits: 3}
+    text: "0.035"
+    in:
+      docs/explainer_ko.md: ["| C3 · 명령 20개 | 다른 날 | 0.035 | 0.035 |"]
+  - id: R_pilot_C3_cross_refit
+    value: {file: results/exp_r/pilot.json, json: types.4.refit_ba}
+    format: {kind: fixed, digits: 3}
+    text: "0.035"
+    in:
+      docs/explainer_ko.md: ["| C3 · 명령 20개 | 다른 날 | 0.035 | 0.035 |"]
+  # M day-1 gates and power (results/exp_m/selection.json, dev_m3_power.csv); no day-2/3 value.
+  - id: M_gate_m2_best_gap
+    value: {file: results/exp_m/selection.json, json: gates.M2.real.best_gap}
+    format: {kind: fixed, digits: 3}
+    text: "0.717"
+    in:
+      docs/explainer_ko.md: ["실제 최고 격차 0.717"]
+  - id: M_gate_m3_rank
+    value: {file: results/exp_m/selection.json, json: gates.M3.real.rank_k_star.mean}
+    format: {kind: fixed, digits: 3}
+    text: "0.674"
+    in:
+      docs/explainer_ko.md: ["실제 순위 0.674, t = 6.52, 영점 순위 0.506", "τ 0.60에서 0.674, τ 0.5에서 0.547", "Yang2025 1일차 순위 0.674(τ 0.60) 대 0.547(τ 0.5)"]
+  - id: M_gate_m3_t
+    value: {file: results/exp_m/selection.json, json: gates.M3.real.t_vs_chance}
+    format: {kind: fixed, digits: 2}
+    text: "6.52"
+    in:
+      docs/explainer_ko.md: ["실제 순위 0.674, t = 6.52, 영점 순위 0.506"]
+  - id: M_gate_m3_null_rank
+    value: {file: results/exp_m/selection.json, json: gates.M3.null.rank_k_star.mean}
+    format: {kind: fixed, digits: 3}
+    text: "0.506"
+    in:
+      docs/explainer_ko.md: ["실제 순위 0.674, t = 6.52, 영점 순위 0.506"]
+  - id: M_dev_rank_tau05
+    value: {file: results/exp_m/dev_identification_summary.csv, column: rank_mean,
+            where: {tau: 0.5, attacker: cat_aware, k: 50}}
+    format: {kind: fixed, digits: 3}
+    text: "0.547"
+    in:
+      docs/explainer_ko.md: ["τ 0.60에서 0.674, τ 0.5에서 0.547", "Yang2025 1일차 순위 0.674(τ 0.60) 대 0.547(τ 0.5)"]
+  # M decoder, day-1 development data (pre-registered estimate). The task-BA means over
+  # dev_task.csv (0.578 / 0.582 / 0.565) and the correct/wrong means over dev_streams.csv seeds
+  # (18.5% / 9.2%) are not single cells, and lookup() supports only one cell or min/max.
+  # The hold rate is the seed mean of dev_streams.csv (P2-RC_d8, τ = 0.6), stored in selection.json.
+  - id: M_dev_hold_rate
+    value: {file: results/exp_m/selection.json, json: gates.tau.hold_rate}
+    format: {kind: fixed, digits: 1, scale: 100}
+    text: "72.3"
+    in:
+      README.md: ["and at τ* = 0.60 holds 72.3% of trials", "At τ* = 0.60 the P2-RC decoder holds 72.3% of trials, and sends a correct command on 18.5% and a"]
+      docs/report.md: ["At τ* = 0.60 the P2-RC decoder holds 72.3% of trials, and sends a correct command on 18.5% and a wrong one on 9.2%.", "the P2-RC decoder holds 72.3% of trials (correct 18.5%, wrong 9.2%)"]
+      docs/explainer_ko.md: ["| 정지 72.3% / 맞음 18.5% / 틀림 9.2% |", "P2-RC는 시행의 72.3%를 정지하고"]
+  - id: M_m3_power_r035_alpha
+    value: {file: results/exp_m/dev_m3_power.csv, column: power_alpha, where: {retention: 0.35}}
+    format: {kind: fixed, digits: 2}
+    text: "0.47"
+    in:
+      docs/explainer_ko.md: ["| 0.35 | 0.47 | 0.29 |", "35%만 남으면 0.47, 0.29로"]
+  - id: M_m3_power_r035_alpha3
+    value: {file: results/exp_m/dev_m3_power.csv, column: power_alpha/3, where: {retention: 0.35}}
+    format: {kind: fixed, digits: 2}
+    text: "0.29"
+    in:
+      docs/explainer_ko.md: ["| 0.35 | 0.47 | 0.29 |", "35%만 남으면 0.47, 0.29로"]
+  - id: M_m3_power_r070_alpha
+    value: {file: results/exp_m/dev_m3_power.csv, column: power_alpha, where: {retention: 0.7}}
+    format: {kind: fixed, digits: 2}
+    text: "0.96"
+    in:
+      docs/explainer_ko.md: ["| 0.70 | 0.96 | 0.90 |"]
+  - id: M_m3_power_r070_alpha3
+    value: {file: results/exp_m/dev_m3_power.csv, column: power_alpha/3, where: {retention: 0.7}}
+    format: {kind: fixed, digits: 2}
+    text: "0.90"
+    in:
+      docs/explainer_ko.md: ["| 0.70 | 0.96 | 0.90 |"]
