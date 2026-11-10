@@ -1,0 +1,973 @@
+{
+  "claims": {
+    "C1": {
+      "p": 2.9534938162636294e-26,
+      "observed_difference": 0.47438888888888886,
+      "effect_requirement": true,
+      "component_tests": {
+        "logistic/main": {
+          "mean": 0.45455555555555555,
+          "lower": 0.41322476143480413,
+          "p": 5.474157930883957e-25,
+          "n": 54,
+          "sign_flip": {
+            "signflip_p": 9.999000099990002e-05,
+            "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+          }
+        },
+        "logistic/auxiliary": {
+          "mean": 0.17624074074074075,
+          "lower": 0.13076656521363125,
+          "p": 1.4999920394931805e-08,
+          "n": 54,
+          "sign_flip": {
+            "signflip_p": 9.999000099990002e-05,
+            "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+          }
+        },
+        "rbf_svm/main": {
+          "mean": 0.45359259259259244,
+          "lower": 0.4129533462677044,
+          "p": 2.7749323947367036e-25,
+          "n": 54,
+          "sign_flip": {
+            "signflip_p": 9.999000099990002e-05,
+            "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+          }
+        },
+        "rbf_svm/auxiliary": {
+          "mean": 0.19933333333333328,
+          "lower": 0.15308943471472344,
+          "p": 1.0118650083287985e-09,
+          "n": 54,
+          "sign_flip": {
+            "signflip_p": 9.999000099990002e-05,
+            "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+          }
+        },
+        "mlp/main": {
+          "mean": 0.47438888888888886,
+          "lower": 0.43540674630764303,
+          "p": 4.922489693772716e-27,
+          "n": 54,
+          "sign_flip": {
+            "signflip_p": 9.999000099990002e-05,
+            "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+          }
+        },
+        "mlp/auxiliary": {
+          "mean": 0.19592592592592592,
+          "lower": 0.15109829476825956,
+          "p": 6.967268194589881e-10,
+          "n": 54,
+          "sign_flip": {
+            "signflip_p": 9.999000099990002e-05,
+            "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+          }
+        }
+      },
+      "missing_cells": [],
+      "holm_p": 8.860481448790889e-26,
+      "decision": "supported"
+    },
+    "C2": {
+      "p": 2.291508626842325e-05,
+      "observed_difference": 0.6537962962962963,
+      "effect_requirement": true,
+      "utility": {
+        "mean": -0.006185185185185168,
+        "lower": -0.0227022803467426,
+        "p": 2.291508626842325e-05,
+        "n": 54,
+        "sign_flip": {
+          "signflip_p": 0.7198280171982802,
+          "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+        }
+      },
+      "component_tests": {
+        "logistic/main": {
+          "logistic/main": {
+            "mean": 0.7020555555555555,
+            "lower": 0.6553364404525132,
+            "p": 1.9327476484029486e-31,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "logistic/auxiliary": {
+            "mean": 0.9582962962962962,
+            "lower": 0.9396936380031257,
+            "p": 5.716702367433809e-59,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "rbf_svm/main": {
+            "mean": 0.6701851851851851,
+            "lower": 0.6219651045767032,
+            "p": 8.645238769825748e-30,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "rbf_svm/auxiliary": {
+            "mean": 0.9432592592592592,
+            "lower": 0.9214132388451999,
+            "p": 6.118484536893905e-55,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "mlp/main": {
+            "mean": 0.6537962962962963,
+            "lower": 0.6082127822876104,
+            "p": 1.8794057271406e-30,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "mlp/auxiliary": {
+            "mean": 0.9399814814814815,
+            "lower": 0.9217703377415328,
+            "p": 5.152583785783411e-59,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          }
+        },
+        "logistic/auxiliary": {
+          "logistic/main": {
+            "mean": 0.22788888888888892,
+            "lower": 0.11420083087613873,
+            "p": 0.0007345647568085654,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 0.0008999100089991,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "logistic/auxiliary": {
+            "mean": 0.4841296296296296,
+            "lower": 0.40286985048621543,
+            "p": 4.6066716778572314e-14,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "rbf_svm/main": {
+            "mean": 0.19601851851851854,
+            "lower": 0.08352914163341969,
+            "p": 0.0025847682812749464,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 0.001999800019998,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "rbf_svm/auxiliary": {
+            "mean": 0.46909259259259267,
+            "lower": 0.38636617374090587,
+            "p": 2.5132942159220083e-13,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "mlp/main": {
+            "mean": 0.17962962962962964,
+            "lower": 0.06790045647649748,
+            "p": 0.004748087445074649,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 0.0044995500449955,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "mlp/auxiliary": {
+            "mean": 0.46581481481481474,
+            "lower": 0.3842499925162272,
+            "p": 1.9750089980114615e-13,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          }
+        },
+        "rbf_svm/main": {
+          "logistic/main": {
+            "mean": 0.6994629629629627,
+            "lower": 0.6528845745168802,
+            "p": 1.9984895061883114e-31,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "logistic/auxiliary": {
+            "mean": 0.9557037037037036,
+            "lower": 0.9372291415842723,
+            "p": 4.582746416429323e-59,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "rbf_svm/main": {
+            "mean": 0.6675925925925926,
+            "lower": 0.6195191691607541,
+            "p": 8.99924644462878e-30,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "rbf_svm/auxiliary": {
+            "mean": 0.9406666666666665,
+            "lower": 0.9190047684915744,
+            "p": 4.533838680353116e-55,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "mlp/main": {
+            "mean": 0.6512037037037035,
+            "lower": 0.6058954654840418,
+            "p": 1.698287577962525e-30,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "mlp/auxiliary": {
+            "mean": 0.9373888888888887,
+            "lower": 0.9194567638389166,
+            "p": 2.6436437932152797e-59,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          }
+        },
+        "rbf_svm/auxiliary": {
+          "logistic/main": {
+            "mean": 0.21742592592592588,
+            "lower": 0.09850468561144851,
+            "p": 0.0017305337734258117,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 0.0018998100189981002,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "logistic/auxiliary": {
+            "mean": 0.47366666666666674,
+            "lower": 0.3898635412414817,
+            "p": 2.801938518937318e-13,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "rbf_svm/main": {
+            "mean": 0.1855555555555555,
+            "lower": 0.06791476208417357,
+            "p": 0.005424656928069303,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 0.005599440055994401,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "rbf_svm/auxiliary": {
+            "mean": 0.45862962962962966,
+            "lower": 0.3735320747951636,
+            "p": 1.3512621086786193e-12,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "mlp/main": {
+            "mean": 0.1691666666666667,
+            "lower": 0.05273808970726031,
+            "p": 0.009203682559651288,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 0.0100989901009899,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "mlp/auxiliary": {
+            "mean": 0.45535185185185184,
+            "lower": 0.37167330111073765,
+            "p": 9.868351682692048e-13,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          }
+        },
+        "mlp/main": {
+          "logistic/main": {
+            "mean": 0.639,
+            "lower": 0.5953440082757351,
+            "p": 6.9883717281894175e-31,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "logistic/auxiliary": {
+            "mean": 0.8952407407407407,
+            "lower": 0.8688241164217128,
+            "p": 1.9567841586277154e-49,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "rbf_svm/main": {
+            "mean": 0.6071296296296297,
+            "lower": 0.5617536909789487,
+            "p": 5.401812296940284e-29,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "rbf_svm/auxiliary": {
+            "mean": 0.8802037037037037,
+            "lower": 0.8511435568306347,
+            "p": 6.7721135153401e-47,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "mlp/main": {
+            "mean": 0.5907407407407408,
+            "lower": 0.5489186802242628,
+            "p": 3.949961928880276e-30,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "mlp/auxiliary": {
+            "mean": 0.8769259259259258,
+            "lower": 0.8497379055842322,
+            "p": 2.575257065099856e-48,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          }
+        },
+        "mlp/auxiliary": {
+          "logistic/main": {
+            "mean": 0.07587037037037037,
+            "lower": -0.02119070608228904,
+            "p": 0.09815515786952757,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 0.09759024097590241,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "logistic/auxiliary": {
+            "mean": 0.33211111111111113,
+            "lower": 0.26797857664881725,
+            "p": 4.8434717051570256e-12,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "rbf_svm/main": {
+            "mean": 0.04399999999999999,
+            "lower": -0.05196549180764184,
+            "p": 0.223071743632473,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 0.22477752224777522,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "rbf_svm/auxiliary": {
+            "mean": 0.31707407407407406,
+            "lower": 0.2510275644947868,
+            "p": 4.882595508420425e-11,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "mlp/main": {
+            "mean": 0.027611111111111104,
+            "lower": -0.06774173825311001,
+            "p": 0.3149185141831153,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 0.31526847315268475,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "mlp/auxiliary": {
+            "mean": 0.3137962962962963,
+            "lower": 0.24961020810269835,
+            "p": 2.8417586696768564e-11,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          }
+        }
+      },
+      "missing_cells": [],
+      "holm_p": 4.58301725368465e-05,
+      "decision": "supported"
+    },
+    "C3": {
+      "p": 0.20964810501480485,
+      "component_tests": {
+        "logistic/main": {
+          "threshold": {
+            "mean": 0.0848148148148148,
+            "lower": 0.04158084568276916,
+            "p": 0.034941350835800807,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "differences": {
+            "logistic/main": {
+              "mean": 0.04777777777777779,
+              "lower": 0.03472682543442644,
+              "p": 5.644820504422926e-08,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 9.999000099990002e-05,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "logistic/auxiliary": {
+              "mean": 0.06546296296296297,
+              "lower": 0.022820510089072155,
+              "p": 0.006508043162453567,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.0004999500049995,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "rbf_svm/main": {
+              "mean": 0.04777777777777779,
+              "lower": 0.03472682543442644,
+              "p": 5.644820504422926e-08,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 9.999000099990002e-05,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "rbf_svm/auxiliary": {
+              "mean": 0.06546296296296297,
+              "lower": 0.022820510089072155,
+              "p": 0.006508043162453567,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.0004999500049995,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "mlp/main": {
+              "mean": 0.04777777777777779,
+              "lower": 0.03472682543442644,
+              "p": 5.644820504422926e-08,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 9.999000099990002e-05,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "mlp/auxiliary": {
+              "mean": 0.06546296296296297,
+              "lower": 0.022820510089072155,
+              "p": 0.006508043162453567,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.0004999500049995,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            }
+          }
+        },
+        "logistic/auxiliary": {
+          "threshold": {
+            "mean": 0.01888888888888889,
+            "lower": 0.010472611644184237,
+            "p": 0.9996601893838226,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "differences": {
+            "logistic/main": {
+              "mean": -0.01814814814814815,
+              "lower": -0.0632127750805471,
+              "p": 0.7484396154183093,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.7414258574142586,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "logistic/auxiliary": {
+              "mean": -0.0004629629629629624,
+              "lower": -0.014163387101536912,
+              "p": 0.5224503703794678,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.517948205179482,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "rbf_svm/main": {
+              "mean": -0.01814814814814815,
+              "lower": -0.0632127750805471,
+              "p": 0.7484396154183093,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.7414258574142586,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "rbf_svm/auxiliary": {
+              "mean": -0.0004629629629629624,
+              "lower": -0.014163387101536912,
+              "p": 0.5224503703794678,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.517948205179482,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "mlp/main": {
+              "mean": -0.01814814814814815,
+              "lower": -0.0632127750805471,
+              "p": 0.7484396154183093,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.7414258574142586,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "mlp/auxiliary": {
+              "mean": -0.0004629629629629624,
+              "lower": -0.014163387101536912,
+              "p": 0.5224503703794678,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.517948205179482,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            }
+          }
+        },
+        "rbf_svm/main": {
+          "threshold": {
+            "mean": 0.0785185185185185,
+            "lower": 0.034061364074897335,
+            "p": 0.06211267927666838,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "differences": {
+            "logistic/main": {
+              "mean": 0.04148148148148149,
+              "lower": 0.02557780882182525,
+              "p": 2.944184698398472e-05,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 9.999000099990002e-05,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "logistic/auxiliary": {
+              "mean": 0.05916666666666668,
+              "lower": 0.0153278431566218,
+              "p": 0.013995779095757057,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.005599440055994401,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "rbf_svm/main": {
+              "mean": 0.04148148148148149,
+              "lower": 0.02557780882182525,
+              "p": 2.944184698398472e-05,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 9.999000099990002e-05,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "rbf_svm/auxiliary": {
+              "mean": 0.05916666666666668,
+              "lower": 0.0153278431566218,
+              "p": 0.013995779095757057,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.005599440055994401,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "mlp/main": {
+              "mean": 0.04148148148148149,
+              "lower": 0.02557780882182525,
+              "p": 2.944184698398472e-05,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 9.999000099990002e-05,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "mlp/auxiliary": {
+              "mean": 0.05916666666666668,
+              "lower": 0.0153278431566218,
+              "p": 0.013995779095757057,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.005599440055994401,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            }
+          }
+        },
+        "rbf_svm/auxiliary": {
+          "threshold": {
+            "mean": 0.025185185185185185,
+            "lower": 0.015242585086948778,
+            "p": 0.9744353732704842,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "differences": {
+            "logistic/main": {
+              "mean": -0.011851851851851848,
+              "lower": -0.0574972812169729,
+              "p": 0.6672220178975588,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.7289271072892711,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "logistic/auxiliary": {
+              "mean": 0.0058333333333333345,
+              "lower": -0.01138903617863037,
+              "p": 0.2865422953550776,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.2873712628737126,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "rbf_svm/main": {
+              "mean": -0.011851851851851848,
+              "lower": -0.0574972812169729,
+              "p": 0.6672220178975588,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.7289271072892711,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "rbf_svm/auxiliary": {
+              "mean": 0.0058333333333333345,
+              "lower": -0.01138903617863037,
+              "p": 0.2865422953550776,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.2873712628737126,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "mlp/main": {
+              "mean": -0.011851851851851848,
+              "lower": -0.0574972812169729,
+              "p": 0.6672220178975588,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.7289271072892711,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "mlp/auxiliary": {
+              "mean": 0.0058333333333333345,
+              "lower": -0.01138903617863037,
+              "p": 0.2865422953550776,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.2873712628737126,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            }
+          }
+        },
+        "mlp/main": {
+          "threshold": {
+            "mean": 0.07629629629629628,
+            "lower": 0.03284417504620912,
+            "p": 0.06816416679012953,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "differences": {
+            "logistic/main": {
+              "mean": 0.039259259259259265,
+              "lower": 0.02677445012821352,
+              "p": 1.30040207003047e-06,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 9.999000099990002e-05,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "logistic/auxiliary": {
+              "mean": 0.05694444444444445,
+              "lower": 0.014061227966901318,
+              "p": 0.015249763543985204,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.0044995500449955,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "rbf_svm/main": {
+              "mean": 0.039259259259259265,
+              "lower": 0.02677445012821352,
+              "p": 1.30040207003047e-06,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 9.999000099990002e-05,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "rbf_svm/auxiliary": {
+              "mean": 0.05694444444444445,
+              "lower": 0.014061227966901318,
+              "p": 0.015249763543985204,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.0044995500449955,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "mlp/main": {
+              "mean": 0.039259259259259265,
+              "lower": 0.02677445012821352,
+              "p": 1.30040207003047e-06,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 9.999000099990002e-05,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "mlp/auxiliary": {
+              "mean": 0.05694444444444445,
+              "lower": 0.014061227966901318,
+              "p": 0.015249763543985204,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.0044995500449955,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            }
+          }
+        },
+        "mlp/auxiliary": {
+          "threshold": {
+            "mean": 0.028888888888888895,
+            "lower": 0.017881250600082214,
+            "p": 0.8896391451923021,
+            "n": 54,
+            "sign_flip": {
+              "signflip_p": 9.999000099990002e-05,
+              "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+            }
+          },
+          "differences": {
+            "logistic/main": {
+              "mean": -0.008148148148148142,
+              "lower": -0.05419514262989379,
+              "p": 0.6158976174210815,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.6701329867013298,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "logistic/auxiliary": {
+              "mean": 0.00953703703703704,
+              "lower": -0.009685671635414306,
+              "p": 0.20496685023017397,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.21277872212778723,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "rbf_svm/main": {
+              "mean": -0.008148148148148142,
+              "lower": -0.05419514262989379,
+              "p": 0.6158976174210815,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.6701329867013298,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "rbf_svm/auxiliary": {
+              "mean": 0.00953703703703704,
+              "lower": -0.009685671635414306,
+              "p": 0.20496685023017397,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.21277872212778723,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "mlp/main": {
+              "mean": -0.008148148148148142,
+              "lower": -0.05419514262989379,
+              "p": 0.6158976174210815,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.6701329867013298,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            },
+            "mlp/auxiliary": {
+              "mean": 0.00953703703703704,
+              "lower": -0.009685671635414306,
+              "p": 0.20496685023017397,
+              "n": 54,
+              "sign_flip": {
+                "signflip_p": 0.21277872212778723,
+                "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+              }
+            }
+          }
+        }
+      },
+      "missing_cells": [],
+      "holm_p": 0.20964810501480485,
+      "decision": "not_supported"
+    },
+    "C4": {
+      "p": 1.1163636408807333e-35,
+      "benchmark_gate": true,
+      "component_tests": {
+        "paper_ts_svm/main": {
+          "mean": 0.6702777777777778,
+          "lower": 0.610778841784082,
+          "p": 2.756902338528987e-19,
+          "n": 54,
+          "sign_flip": {
+            "signflip_p": 9.999000099990002e-05,
+            "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+          }
+        },
+        "beat_logistic/main": {
+          "mean": 0.9273148148148147,
+          "lower": 0.8878476299937549,
+          "p": 2.7909091022018333e-36,
+          "n": 54,
+          "sign_flip": {
+            "signflip_p": 9.999000099990002e-05,
+            "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+          }
+        },
+        "beat_rbf_svm/main": {
+          "mean": 0.897962962962963,
+          "lower": 0.8544279106203704,
+          "p": 2.824880780846566e-33,
+          "n": 54,
+          "sign_flip": {
+            "signflip_p": 9.999000099990002e-05,
+            "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+          }
+        },
+        "beat_mlp/main": {
+          "mean": 0.7848703703703704,
+          "lower": 0.7338437576272672,
+          "p": 2.5274591364171133e-26,
+          "n": 54,
+          "sign_flip": {
+            "signflip_p": 9.999000099990002e-05,
+            "signflip_method": "Monte Carlo 10000 subject signs, plus-one correction"
+          }
+        }
+      },
+      "missing_cells": [],
+      "holm_p": 4.4654545635229334e-35,
+      "decision": "supported"
+    }
+  },
+  "chance": 0.018518518518518517,
+  "inference": "plan-v3 cohort maxima; J=6/K=4 Bonferroni union and max conjunction t-tests",
+  "intervals": "complete participant-summary-vector bootstrap; paired draws, conditional on fitted systems",
+  "multiplicity": "Holm four claims; not-evaluable p=1 retains family",
+  "reproduction_caveat": "Reduced causal 3-second epochs differ from paper preprocessing",
+  "threat_model": "Results are threat-model dependent. The paper's transform targets cross-session linkage when the attacker has reference-session labels only. The post-deployment audit gives the evaluator additional labelled deployment-session data; its enrolment curve measures how much of that additional access is needed. Strong identification in this scenario does not show that the paper's reference-session results are wrong or contradict its stated threat model. The 2a results are exploratory and concern a 9-person closed set, not a universal anonymity or utility assessment."
+}

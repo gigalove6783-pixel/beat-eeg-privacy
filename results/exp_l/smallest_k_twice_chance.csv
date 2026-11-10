@@ -1,0 +1,10 @@
+key,mode,tau,smallest_k,status,missing_cells
+P0,command,0.5,5,reached,[]
+P0,command,0.8,5,reached,[]
+P0,feature,-1.0,1,reached,[]
+P2-RC_d8,command,0.5,1,reached,[]
+P2-RC_d8,command,0.8,1,reached,[]
+P2-RC_d8,feature,-1.0,1,reached,[]
+P3_lambda1,command,0.5,5,reached,[]
+P3_lambda1,command,0.8,5,reached,[]
+P3_lambda1,feature,-1.0,1,reached,[]

@@ -1,0 +1,4 @@
+key,head_ba,independent_ba,status,missing_cells,missing_candidates
+P3_lambda0.1,0.02981481481481482,0.33129629629629637,ok,[],[]
+P3_lambda1,0.03654320987654321,0.5187654320987654,ok,[],[]
+P3_lambda3,0.036666666666666674,0.5500925925925926,ok,[],[]
