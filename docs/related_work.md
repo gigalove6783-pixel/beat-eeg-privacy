@@ -339,6 +339,223 @@ are described in [25]; the Lee2019/OpenBMI dataset in [32]. The report's methods
 tangent-space classification [33], common spatial patterns [34], gradient reversal [35] and EEGNet
 [36].
 
+## 8. Methods imported by the audit tool (added 2026-11-12)
+
+BEAT v3 adds `beat_audit`, a dataset-agnostic tool that measures open-set linkage: an attacker who
+never enrolled the target users decides whether two windows of transmitted outputs come from the
+same person (`docs/plan_v3.md` §2 lists the imported methods, §3 specifies the tool;
+`beat_audit/README.md` is the builder-facing description). This section states, for each imported
+method, what the source defines, how the tool uses it, what BEAT adapts and where the analogy
+stops. Standards, peer-reviewed papers, evaluation plans and unreviewed sources are marked in the
+reference list, together with how much of each source was read. No result of the audit runs is
+quoted here.
+
+**8.1 Biometric performance testing.** ISO/IEC 19795-1:2021 sets out principles and framework for
+testing and reporting biometric performance [39]. It defines the detection error trade-off (DET) as
+the relationship between false-negative and false-positive errors of a binary classification
+system as the discrimination threshold varies (clause 3.28); its table of contents lists the
+formation of mated and non-mated comparison trials (clause 8.4) and the false non-match and false
+match rates as verification metrics (clauses 9.4.1 and 9.4.2). The equal error rate is not among the defined terms of
+the parts we read; the tool reports it as the conventional point of the DET where both error rates
+are equal. *Use* (plan §2, §3 "Protocol", "Metrics and inference"): a reference window of user u
+against a probe window is a mated comparison when the probe is from u and a non-mated comparison
+when it is from another target user; the tool reports FMR, FNMR, EER, TPR at fixed FPR and DET
+curves. *Adaptation*: the "biometric system" is an attacker the tool builds from transmitted
+outputs alone; comparators are fitted on development users only, so every scored pair involves
+users the comparator never saw, and the deciding statistic is a per-user AUC with a matching
+permutation test rather than a pooled error rate. *Limit*: 19795-1 evaluates a system built to
+recognise its enrolled users; BEAT's outputs were produced by a task decoder that was never meant
+to carry identity, and a low error rate here is a finding against the BCI, not a performance claim.
+
+**8.2 Unlinkability of protected templates.** ISO/IEC 24745:2022 defines unlinkability as the
+property of two or more biometric references that they cannot be linked to each other or to the
+subject(s) from whom they were derived (clause 3.38) [40]. Gomez-Barrero et al. turn this into two
+measures computed from the mated and non-mated score distributions of a linkage function: a local,
+score-wise measure D↔(s) based on the likelihood ratio between the two distributions, and a global
+measure D↔sys, independent of the score domain, both in a closed range [41]. *Use* (plan §2; §3,
+"D_sys"): D(s) = 2ωLR(s) / (1 + ωLR(s)) − 1 where ωLR(s) > 1, else 0, with ω = 1, integrated
+against the mated score density; LR(s) comes from weighted histograms on fixed bins. *Adaptation*:
+the "references" are windows of a transmitted command or feature stream, and the linkage function
+is the tool's own comparator. D_sys is therefore a linkability index of a stream under a stated
+attacker, not a property of a template-protection scheme. *Limit*: the source assumes a protection
+scheme that is designed to be unlinkable and asks whether it succeeds; a task BCI makes no such
+claim, and D_sys is bounded by the strength of the comparator, so a low value is not evidence of
+unlinkability by other attackers. The tool prints it as an index, never as an identification rate.
+
+**8.3 Attacker knowledge in speaker anonymisation.** The VoicePrivacy 2020 evaluation plan assumes
+an attacker with one or more anonymised trial utterances and, possibly, enrolment utterances that
+may or may not be anonymised [42]. The 2022 plan records that the 2020 evaluation used three attack
+models, *ignorant*, *lazy-informed* and *semi-informed*, corresponding to attackers with different
+knowledge; it adopts a semi-informed attacker whose verification model is retrained on anonymised
+data because this gave a lower EER, "i.e., a stronger attack", and considers it the most reliable
+for privacy assessment [43]. The 2024 plan keeps the semi-informed attacker and warns that a badly
+trained attacker model can overestimate the EER and give a false sense of privacy [44]. Srivastava
+et al. define ignorant, semi-informed and informed attackers by their knowledge of the voice
+conversion and note that an ignorant attacker is very weak [45]. *Use* (plan §2): the tool's
+attacker grid varies enrolment (none, reference day, deployment day) and the day relation
+(same-day against cross-day), and always prints same-day beside cross-day. *Adaptation*: the
+grid orders attackers by what they know about the user and the recording day, not by knowledge
+of an anonymisation algorithm; it is an analogy by attacker knowledge, not the VoicePrivacy
+protocol. BEAT's own development run showed the same effect: on recentred features, the
+mean-based feature comparators understated exposure relative to the command attacker on the
+commands decoded from the same features. The plan therefore added richer window summaries and the
+data-processing guard of 8.9 before the frozen run (plan, State, 2026-11-11). *Limit*: speech
+anonymisation transforms a signal that is meant to stay intelligible; BEAT's outputs are a
+low-rate stream of decoded commands or features, and no protocol, data split or metric of the
+VoicePrivacy challenges is reused.
+
+**8.4 Forensic likelihood ratios.** Brümmer and du Preez's "Application-independent evaluation of
+speaker detection" [46] is the journal source of the log-likelihood-ratio cost Cllr; only its
+record page was checked, so its content is cited through two related sources. Brümmer's Odyssey
+2004 paper of the same title proposes a logarithmic utility (a strictly proper scoring rule) for
+evaluating likelihood-ratio outputs of speaker detectors and gives it an information-theoretic
+interpretation [47]. Brümmer and du Preez show that pool-adjacent-violators (PAV) calibration is
+optimal for every regular binary proper scoring rule, also when calibrating log-likelihood ratios,
+where optimality holds for any prior [48]; this is what makes the PAV-calibrated cost a minimum,
+Cllr_min. Ramos and Gonzalez-Rodriguez describe calibration as a property of a set of
+likelihood-ratio values and measure it with empirical cross-entropy (ECE) plots [49]. *Use* (plan
+§3, "Calibration"): a one-dimensional logistic regression fitted on development users gives an
+estimated log likelihood ratio per comparison; Cllr is computed on target users, and Cllr_min
+replaces the fitted map by weighted PAV on the target scores themselves. *Adaptation*: the
+evidence is about whether two windows share a source, not about a suspect, and Cllr_min is an
+oracle diagnostic that feeds nothing back into the attacker; Cllr − Cllr_min is read as the
+calibration loss when a development-day map is carried to another day. *Limit*: in forensic use
+the likelihood ratio is reported to a court for one case; the tool's ratios are estimated, valid
+only as far as the logistic form and the development users transfer, and are summaries over
+pooled comparisons, not case evidence.
+
+**8.5 Sequential analysis.** The tool's sequential attacker is a sequential probability ratio
+test in the sense of Wald [50]. Only the record page of [50] was checked, so the error bounds are
+taken from Ville's inequality as stated by Ramdas et al.: for a test martingale M under P and any
+α ≥ 1, P(sup_t M_t ≥ α) ≤ 1/α (their eq. 8), and for a point null against a point alternative the
+likelihood ratio is such a martingale [51]. *Use* (plan §3, "Commands only, sequential attacker"):
+probe commands are added one at a time to a cumulative Dirichlet-categorical log likelihood ratio,
+which equals the log Bayes factor of 8.7; the attacker decides "link" at log((1 − β)/α) and "no
+link" at log(β/(1 − α)) with α = β = 0.05, truncated at the probe length, and reports realised
+FMR and FNMR, the share decided and the number of commands to a decision. *Adaptation*: under the
+generative model, Ville's inequality bounds the two error rates by α/(1 − β) and β/(1 − α); the
+tool's validation checks these bounds on simulated streams. *Limit*: real command streams drift
+across days and their commands are serially dependent, so the generative model does not hold; the
+realised error rates are operating characteristics of this attacker on these data, not guarantees.
+
+**8.6 Large-population biometrics.** Grother and Phillips give binomial models of open- and
+closed-set identification as functions of database size, match rank and operating threshold, note
+verification as a special case of open-set identification, and find that the binomial model
+approximates performance at low false match rates but underestimates closed-set identification
+rates, implicating its iid assumption [52]. *Use* (plan §2; §3, "Gallery module"): the rank-1 rate
+at gallery size N is predicted from the mated and non-mated score distributions under
+independence, with ties broken uniformly. *Adaptation*: the prediction is first checked against the
+measured 1:N rank-1 rate of the same comparator on held-out galleries of each fold; if any
+difference exceeds a fixed tolerance, the report prints "independence model not supported" and no
+larger N. *Limit*: the gallery sizes the cohorts allow are small; larger N is printed only as a
+sensitivity scenario under the independence assumption, never as a population risk.
+
+**8.7 Bayesian comparison of categorical counts.** Minka derives the Dirichlet-multinomial (Pólya)
+distribution as a Dirichlet compounded with a multinomial and gives its marginal likelihood in
+closed form with gamma functions [53]; Mosimann's study of the compound multinomial distribution
+is the earlier journal source [54]. Ommen and Saunders distinguish the *common-source* problem,
+whether two sets of evidence of unknown source share a common but unknown origin in a relevant
+background population, from the *specific-source* problem [55]. *Use* (plan §3, "Command
+comparator"): the same-source against different-source Bayes factor of a reference count vector x
+and a probe count vector y under a shared Dirichlet prior α, BF = B(α + x + y) · B(α) /
+(B(α + x) · B(α + y)), with α fitted by maximising the Dirichlet-multinomial marginal likelihood
+of the development users' windows. *Adaptation*: open-set linkage is the common-source question
+(neither window has a known source); the prior is the background population of development
+users, and with cue labels the counts and the prior are kept per cue. *Limit*: the same-source
+hypothesis assumes one command distribution in both windows; a user whose command mix drifts
+between days violates it, so a drift-aware attacker may find more than this comparator. We did
+not find, among the sources we reviewed, a published use of this Bayes factor for linking BCI
+command streams.
+
+**8.8 Covariance shrinkage.** Ledoit and Wolf introduce a linear shrinkage estimator of a
+covariance matrix that is well-conditioned and, as the numbers of observations and variables grow
+together, has asymptotically uniformly minimum quadratic risk within its class [56]. *Use* (plan
+§3, State 2026-11-11; `beat_audit/README.md`): the LDA comparators whiten with a within-user
+Ledoit-Wolf covariance estimated on development users only, and reports record the estimator, the
+shrinkage coefficient and the isotropic target. *Adaptation*: none beyond the choice of a
+within-user (rather than total) covariance; it replaced a fixed eigenvalue floor after a
+development finding. *Limit*: it is a conditioning device for the comparator, not an identity
+measure; its asymptotic optimality says nothing about how strong the resulting attacker is.
+
+**8.9 Data-processing inequality as an audit guard.** The data-processing inequality states that
+processing cannot increase information: for a Markov chain X → Y → Z, I(X; Y) ≥ I(X; Z) [57, §2.8].
+*Use* (plan §3, "Guards from BEAT's findings"): commands are a function of the features they are
+decoded from, so the best feature attacker cannot do worse than the best command attacker. When
+the builder declares a command stream as derived from a feature stream and the command attacker
+scores higher, `compare` reports that the feature attacker is too weak and that the feature
+stream's exposure is at least the command stream's. *Adaptation*: the inequality is applied to
+attacker performance rather than to mutual information; the step holds because a feature attacker
+who knows the decoder can reproduce the commands and every command attacker. *Limit*: the tool's
+comparators are fixed families, not optimal attackers, so the guard detects an attacker that is
+too weak; it does not measure the gap, and it relies on the builder's declaration of which stream
+is derived from which.
+
+**8.10 Regulation and guidance.** The report's reading connects to five instruments. BEAT draws no
+legal conclusion: the tool measures linkage under stated attackers, an input to a re-identification
+assessment, not compliance.
+
+- UNESCO's Recommendation on the Ethics of Neurotechnology (adopted 11 November 2025, 43rd session
+  of the General Conference) describes neural data as data about the structure, activity and
+  function of the nervous system gathered through neurotechnology (definition 5), holds that their
+  collection, processing and sharing require prior, free and informed consent (paragraph 49), and
+  lists privacy impact assessments that evaluate and mitigate risks to privacy among the
+  assessments Member States should promote (paragraph 80(d)) [58].
+- Colorado HB24-1058 (signed 17 April 2024) adds "biological data", which includes "neural data",
+  to the sensitive data of the Colorado Privacy Act; its legislative declaration states that every human
+  brain is unique, so neural data is specific to the individual from whom it was collected [59].
+- California SB 1223 adds a consumer's neural data, "information that is generated by measuring
+  the activity of a consumer's central or peripheral nervous system, and that is not inferred from
+  nonneural information", to sensitive personal information under Cal. Civ. Code §1798.140(ae);
+  the same section defines deidentified information as information that cannot reasonably be used
+  to infer information about, or otherwise be linked to, a particular consumer [60].
+- GDPR Recital 26 requires account of "all the means reasonably likely to be used, such as singling
+  out", by the controller or another person, to identify a natural person, judged by objective
+  factors such as cost, time and the available technology [61].
+- The Korean Personal Information Protection Commission's pseudonymised-information guideline
+  (fully revised March 2026, risk-based) asks the provider of pseudonymised information to weigh
+  the purpose, the processing environment and the information the recipient holds or can access,
+  and to lower the risk of re-identification to a reasonable level; it notes that the same data
+  item carries a different re-identification risk depending on its combinability with other
+  information [62]. We found no provision specific to neural data in it.
+
+An audit result, such as linkage detected at a given window length under a given attacker, is one
+observation about the "means reasonably likely to be used" or the risk of re-identification;
+whether a transmitted command stream is personal, sensitive, deidentified or pseudonymised
+information under any of these instruments is outside what BEAT measures.
+
+**8.11 Closest EEG identity and permanence benchmarks.** Among the sources we reviewed, the
+closest evaluation resources are biometric. M3CV is a multi-subject, multi-session, multi-task EEG
+database with an identification and verification competition, built to characterise intra- and
+inter-subject variability across sessions [63]. NeuroIDBench benchmarks brainwave authentication
+models on nine datasets under known- and unknown-attacker models and across sessions [64]. Fallahi
+et al. evaluate brainwave authentication on a large multi-session dataset recorded over five years
+and report that the EER increases with the time between enrolment and test [65]. Ugail and
+Howard's repository tests cross-session permanence under one fixed verification protocol and
+reads performance through Cllr with its Cllr_min / calibration decomposition (unreviewed; the
+accompanying paper is under review) [66]. *Difference*: these resources evaluate systems whose
+purpose is to recognise people from raw or minimally processed EEG, with an enrolment step and
+performance as the goal. `beat_audit` evaluates the transmitted outputs of a task BCI that is not
+meant to carry identity: its input is the decoded stream only, the attacker is built by the tool
+from users it never saw, the builder hopes for a low score, and a non-detection is reported as
+insufficient evidence, not absence. The cross-session drift these benchmarks document is the
+reason the tool always reports same-day beside cross-day.
+
+**Summary.**
+
+| Method | Source | Role in the tool | Where the analogy stops |
+|---|---|---|---|
+| Mated / non-mated comparisons, FMR, FNMR, EER, DET | ISO/IEC 19795-1 [39] | Open-set linkage of two output windows | The "system" is the tool's attacker, not a recogniser the builder built |
+| Unlinkability, D↔(s), D↔sys | ISO/IEC 24745 [40]; Gomez-Barrero et al. [41] | One-number linkability index of a stream | Not a property of a protection scheme; bounded by the comparator |
+| Attackers graded by knowledge | VoicePrivacy plans [42]–[44]; Srivastava et al. [45] | Enrolment × day-relation attacker grid | Analogy by knowledge only; no VoicePrivacy protocol or metric reused |
+| Cllr, Cllr_min under PAV, calibration | Brümmer and du Preez [46]–[48]; Ramos and Gonzalez-Rodriguez [49] | Evidence per comparison in bits; calibration loss across days | Estimated, pooled ratios; not case evidence |
+| SPRT, Ville's inequality | Wald [50]; Ramdas et al. [51] | Commands until a link decision; realised versus nominal error | Bounds hold under the generative model only; drift and dependence break it |
+| Rank-1 rate at gallery size N | Grother and Phillips [52] | Checked prediction; larger N as a scenario | Independence assumption; no population risk estimate |
+| Dirichlet-multinomial same-source Bayes factor | Minka [53]; Mosimann [54]; Ommen and Saunders [55] | Training-free command comparator | Assumes one command distribution per user across windows |
+| Linear covariance shrinkage | Ledoit and Wolf [56] | Within-user covariance of the LDA comparators | Conditioning only; says nothing about attacker strength |
+| Data-processing inequality | Cover and Thomas [57] | Guard: feature exposure ≥ command exposure | Holds for optimal attackers; detects a weak one, does not size the gap |
+| Neural-data and re-identification instruments | [58]–[62] | Report reading of "reasonably likely means" | An input to an assessment; no legal conclusion |
+| EEG identity and permanence benchmarks | [63]–[66] | Closest existing evaluations | Biometric systems, not a task BCI's transmitted outputs |
+
 ## References
 
 1. L. Meng, X. Jiang, J. Huang, W. Li, H. Luo, D. Wu, "User Identity Protection in EEG-based
@@ -471,6 +688,105 @@ tangent-space classification [33], common spatial patterns [34], gradient revers
     https://doi.org/10.25452/figshare.plus.22671172.v5
 38. C. Adams, P. Cain, D. Pinkas, R. Zuccherato, "Internet X.509 Public Key Infrastructure
     Time-Stamp Protocol (TSP)," RFC 3161, RFC Editor, Aug. 2001. https://doi.org/10.17487/RFC3161
+39. ISO/IEC 19795-1:2021, *Information technology — Biometric performance testing and reporting —
+    Part 1: Principles and framework*, edition 2.0, 2021-05-27. **Standard.** IEC webstore record:
+    https://webstore.iec.ch/en/publication/69063 — publisher preview read (table of contents and
+    clauses 1–6): https://standards.iteh.ai/catalog/standards/iso/62f63185-3037-442c-8a85-96040c86e5ce/iso-iec-19795-1-2021
+40. ISO/IEC 24745:2022, *Information security, cybersecurity and privacy protection — Biometric
+    information protection*, edition 2.0, 2022-02-08. **Standard.** IEC webstore record:
+    https://webstore.iec.ch/en/publication/74235 — publisher preview read (table of contents and
+    clauses 1–5): https://standards.iteh.ai/catalog/standards/iso/fb018742-972d-4e70-82d3-b8fe3ecc2b3b/iso-iec-24745-2022
+41. M. Gomez-Barrero, J. Galbally, C. Rathgeb, C. Busch, "General Framework to Evaluate
+    Unlinkability in Biometric Template Protection Systems," *IEEE Trans. Inf. Forensics
+    Security*, vol. 13, no. 6, pp. 1406–1420, 2018. https://doi.org/10.1109/TIFS.2017.2788000 —
+    full text read as arXiv:2311.04633 (author version): https://arxiv.org/abs/2311.04633
+42. N. Tomashenko, B. M. L. Srivastava, X. Wang, E. Vincent, A. Nautsch, J. Yamagishi, N. Evans,
+    J. Patino, J.-F. Bonastre, P.-G. Noé, M. Todisco, "The VoicePrivacy 2020 Challenge Evaluation
+    Plan," arXiv:2205.07123, 2022. **Evaluation plan** (not peer-reviewed; full text read).
+    https://arxiv.org/abs/2205.07123
+43. N. Tomashenko, X. Wang, X. Miao, H. Nourtel, P. Champion, M. Todisco, E. Vincent, N. Evans,
+    J. Yamagishi, J.-F. Bonastre, "The VoicePrivacy 2022 Challenge Evaluation Plan,"
+    arXiv:2203.12468, 2022. **Evaluation plan** (not peer-reviewed; full text read).
+    https://arxiv.org/abs/2203.12468
+44. N. Tomashenko, X. Miao, P. Champion, S. Meyer, X. Wang, E. Vincent, M. Panariello, N. Evans,
+    J. Yamagishi, M. Todisco, "The VoicePrivacy 2024 Challenge Evaluation Plan," arXiv:2404.02677,
+    2024. **Evaluation plan** (not peer-reviewed; full text read). https://arxiv.org/abs/2404.02677
+45. B. M. L. Srivastava, N. Vauquier, M. Sahidullah, A. Bellet, M. Tommasi, E. Vincent,
+    "Evaluating Voice Conversion-Based Privacy Protection against Informed Attackers," *Proc. IEEE
+    ICASSP*, pp. 2802–2806, 2020. https://doi.org/10.1109/ICASSP40776.2020.9053868 — full text
+    read as arXiv:1911.03934: https://arxiv.org/abs/1911.03934
+46. N. Brümmer, J. du Preez, "Application-independent evaluation of speaker detection," *Computer
+    Speech & Language*, vol. 20, no. 2–3, pp. 230–275, 2006.
+    https://doi.org/10.1016/j.csl.2005.08.001 (record page only)
+47. N. Brümmer, "Application-independent evaluation of speaker detection," *Proc. Odyssey 2004:
+    The Speaker and Language Recognition Workshop*, pp. 33–40, 2004. ISCA Archive (abstract read):
+    https://www.isca-archive.org/odyssey_2004/brummer04_odyssey.html
+48. N. Brümmer, J. du Preez, "The PAV algorithm optimizes binary proper scoring rules,"
+    arXiv:1304.2331, 2013. **Preprint** (full text read). https://arxiv.org/abs/1304.2331
+49. D. Ramos, J. Gonzalez-Rodriguez, "Reliable support: Measuring calibration of likelihood
+    ratios," *Forensic Sci. Int.*, vol. 230, no. 1–3, pp. 156–169, 2013.
+    https://doi.org/10.1016/j.forsciint.2013.04.014 — PubMed abstract read:
+    https://pubmed.ncbi.nlm.nih.gov/23664798/
+50. A. Wald, "Sequential Tests of Statistical Hypotheses," *Ann. Math. Statist.*, vol. 16, no. 2,
+    pp. 117–186, 1945. https://doi.org/10.1214/aoms/1177731118 (record page only)
+51. A. Ramdas, P. Grünwald, V. Vovk, G. Shafer, "Game-Theoretic Statistics and Safe Anytime-Valid
+    Inference," *Statist. Sci.*, vol. 38, no. 4, pp. 576–601, 2023.
+    https://doi.org/10.1214/23-STS894 — full text read as arXiv:2210.01948:
+    https://arxiv.org/abs/2210.01948
+52. P. Grother, P. J. Phillips, "Models of large population recognition performance," *Proc. IEEE
+    CVPR*, vol. 2, pp. 68–75, 2004. https://doi.org/10.1109/CVPR.2004.1315146 (abstract read in
+    the OpenAlex record of the DOI)
+53. T. P. Minka, "Estimating a Dirichlet distribution," technical report, 2000 (revised 2003, 2009,
+    2012). **Technical report** (not peer-reviewed; full text read).
+    https://tminka.github.io/papers/dirichlet/minka-dirichlet.pdf
+54. J. E. Mosimann, "On the compound multinomial distribution, the multivariate β-distribution, and
+    correlations among proportions," *Biometrika*, vol. 49, no. 1–2, pp. 65–82, 1962.
+    https://doi.org/10.1093/biomet/49.1-2.65 (record page only)
+55. D. M. Ommen, C. P. Saunders, "Building a unified statistical framework for the forensic
+    identification of source problems," *Law, Probability and Risk*, vol. 17, no. 2, pp. 179–197,
+    2018. https://doi.org/10.1093/lpr/mgy008 (abstract read in the OpenAlex record of the DOI)
+56. O. Ledoit, M. Wolf, "A well-conditioned estimator for large-dimensional covariance matrices,"
+    *J. Multivariate Anal.*, vol. 88, no. 2, pp. 365–411, 2004. Publisher record:
+    https://linkinghub.elsevier.com/retrieve/pii/S0047259X03000964 — full text read (published
+    version on the author's site): http://www.ledoit.net/Well-conditioned2004.pdf
+57. T. M. Cover, J. A. Thomas, *Elements of Information Theory*, 2nd ed., Wiley, 2006.
+    https://doi.org/10.1002/047174882X — publisher record and table of contents only (§2.8
+    "Data-Processing Inequality", p. 34):
+    https://www.wiley.com/en-us/Elements+of+Information+Theory%2C+2nd+Edition-p-9780471241959
+58. UNESCO, *Recommendation on the Ethics of Neurotechnology*, adopted by the General Conference at
+    its 43rd session, Samarkand, 11 November 2025. **International standard-setting instrument**
+    (full text read on the UNESCO legal-instruments page).
+    https://www.unesco.org/en/legal-affairs/recommendation-ethics-neurotechnology
+59. Colorado General Assembly, HB24-1058, "Protect Privacy of Biological Data," signed 17 April
+    2024, effective 7 August 2024. **Statute.** Bill page: https://leg.colorado.gov/bills/hb24-1058
+    — signed act read in full: https://leg.colorado.gov/bill_files/41195/download
+60. California SB 1223 (Becker, 2023–2024 Regular Session), "Consumer privacy: sensitive personal
+    information: neural data." **Statute.** Read as enacted in Cal. Civ. Code §1798.140(ae) and (m),
+    California Consumer Privacy Act, consolidated text effective 1 January 2026 published by the
+    California Privacy Protection Agency:
+    https://cppa.ca.gov/regulations/pdf/ccpa_statute_eff_20260101.pdf ; bill analysis of the
+    Assembly Committee on Privacy and Consumer Protection (hearing 2 July 2024) read in full:
+    https://apcp.assembly.ca.gov/media/851
+61. Regulation (EU) 2016/679 (General Data Protection Regulation), Recital 26, *OJ L 119*,
+    4 May 2016. **Statute** (Recital 26 read on EUR-Lex). https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng
+62. Personal Information Protection Commission (Korea), 「가명정보 처리 가이드라인」 (Pseudonymised
+    information processing guideline), fully revised March 2026. **Government guidance** (full text
+    read from the attachment of the press release of 31 March 2026):
+    https://www.pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&mCode=C020010000&nttId=11928
+63. G. Huang, Z. Hu, W. Chen, S. Zhang, Z. Liang, L. Li, L. Zhang, Z. Zhang, "M3CV: A
+    multi-subject, multi-session, and multi-task database for EEG-based biometrics challenge,"
+    *NeuroImage*, vol. 264, 119666, 2022. https://doi.org/10.1016/j.neuroimage.2022.119666 —
+    abstract read (Europe PMC); PubMed record: https://pubmed.ncbi.nlm.nih.gov/36206939/
+64. A. K. Chaurasia, M. Fallahi, T. Strufe, P. Terhörst, P. Arias Cabarcos, "NeuroIDBench: An
+    open-source benchmark framework for the standardization of methodology in brainwave-based
+    authentication research," *J. Inf. Security Appl.*, vol. 85, 103832, 2024.
+    https://doi.org/10.1016/j.jisa.2024.103832 — abstract read at https://arxiv.org/abs/2402.08656
+65. M. Fallahi, P. Arias-Cabarcos, T. Strufe, "Advancing Brainwave-Based Biometrics: A Large-Scale,
+    Multi-Session Evaluation," *IEEE Trans. Biom. Behav. Identity Sci.*, vol. 8, pp. 445–460, 2026.
+    https://doi.org/10.1109/TBIOM.2026.3666044 — abstract read at https://arxiv.org/abs/2501.17866
+66. H. Ugail, N. Howard, "EEG-Permanence-Benchmark: A Fixed-Protocol Test of Cross-Session EEG
+    Biometric Permanence," GitHub repository (README read; accompanying paper listed as under
+    review). **Unreviewed repository.** https://github.com/ugail/EEG-Permanence-Benchmark
 
 ## Appendix: reference resolution check
 
@@ -548,5 +864,89 @@ reference check, 2026-11-10 21:04 UTC
   ok   url   https://www.ijcai.org/proceedings/2025/0469.pdf -> HTTP 200
   ok   url   https://www.merl.com/publications/docs/TR2020-049.pdf -> HTTP 200
   ok   url   https://www.usenix.org/conference/usenixsecurity12/technical-sessions/presentation/martinovic -> HTTP 200
+references: pass
+```
+
+### Section 8 references [39]–[66] (check of 2026-11-12 03:18 KST)
+
+`python scripts/check_references.py` was run again after Section 8 was added, on 2026-11-12
+03:18 KST (18:18 UTC on 2026-11-11), and passed; its full output is recorded unchanged in
+`results/reference_check/references_20261111T1818Z.txt`. The lines for the identifiers added
+by [39]–[66] are reproduced below. Bibliographic fields were compared by hand with the Crossref
+record of each DOI, the arXiv record of each preprint, and the standards-body, legislature or
+publisher page of the remaining sources. What was read for each reference:
+
+| Ref. | Type | Read | Page checked |
+|---|---|---|---|
+| [39] ISO/IEC 19795-1:2021 | Standard | Record; preview (contents, clauses 1–6) | IEC webstore; iTeh preview |
+| [40] ISO/IEC 24745:2022 | Standard | Record; preview (contents, clauses 1–5) | IEC webstore; iTeh preview |
+| [41] Gomez-Barrero et al. 2018 | Journal article | Full text (author version) | Crossref; arXiv:2311.04633 |
+| [42]–[44] VoicePrivacy 2020/2022/2024 | Evaluation plans | Full text | arXiv |
+| [45] Srivastava et al. 2020 | Conference paper | Full text (author version) | Crossref; arXiv:1911.03934 |
+| [46] Brümmer and du Preez 2006 | Journal article | Record page only | Crossref |
+| [47] Brümmer 2004 | Workshop paper | Abstract | ISCA Archive |
+| [48] Brümmer and du Preez 2013 | Preprint | Full text | arXiv |
+| [49] Ramos and Gonzalez-Rodriguez 2013 | Journal article | Abstract | Crossref; PubMed |
+| [50] Wald 1945 | Journal article | Record page only | Crossref |
+| [51] Ramdas et al. 2023 | Journal article | Full text (author version) | Crossref; arXiv:2210.01948 |
+| [52] Grother and Phillips 2004 | Conference paper | Abstract | Crossref; OpenAlex |
+| [53] Minka | Technical report | Full text | Author's site |
+| [54] Mosimann 1962 | Journal article | Record page only | Crossref |
+| [55] Ommen and Saunders 2018 | Journal article | Abstract | Crossref; OpenAlex |
+| [56] Ledoit and Wolf 2004 | Journal article | Full text (published version) | Elsevier record; author's site |
+| [57] Cover and Thomas 2006 | Book | Record and table of contents only | Crossref; Wiley |
+| [58] UNESCO Recommendation 2025 | International instrument | Full text | UNESCO legal-instruments page |
+| [59] Colorado HB24-1058 | Statute | Full text (signed act) | Colorado General Assembly |
+| [60] California SB 1223 | Statute | Enacted text (consolidated CCPA); Assembly committee analysis | CPPA; California Assembly (leginfo.legislature.ca.gov refused scripted access) |
+| [61] GDPR Recital 26 | Statute | Recital 26 | EUR-Lex |
+| [62] PIPC guideline 2026 | Government guidance | Full text | PIPC press release and attachment |
+| [63] Huang et al. 2022 (M3CV) | Journal article | Abstract | Crossref; Europe PMC; PubMed |
+| [64] Chaurasia et al. 2024 (NeuroIDBench) | Journal article | Abstract | Crossref; arXiv:2402.08656 |
+| [65] Fallahi et al. 2026 | Journal article | Abstract | Crossref; arXiv:2501.17866 |
+| [66] Ugail and Howard | Unreviewed repository | README | GitHub |
+
+```text
+reference check, 2026-11-11 18:18 UTC (lines for [39]–[66] only)
+  ok   arxiv 1304.2331 -> The PAV algorithm optimizes binary proper scoring rules
+  ok   arxiv 1911.03934 -> Evaluating Voice Conversion-based Privacy Protection against Informed Attackers
+  ok   arxiv 2203.12468 -> The VoicePrivacy 2022 Challenge Evaluation Plan
+  ok   arxiv 2205.07123 -> The VoicePrivacy 2020 Challenge Evaluation Plan
+  ok   arxiv 2210.01948 -> Game-theoretic statistics and safe anytime-valid inference
+  ok   arxiv 2311.04633 -> General Framework to Evaluate Unlinkability in Biometric Template Protection Systems
+  ok   arxiv 2402.08656 -> NeuroIDBench: An Open-Source Benchmark Framework for the Standardization of Methodology in Brainwave-based Authentication Research
+  ok   arxiv 2404.02677 -> The VoicePrivacy 2024 Challenge Evaluation Plan
+  ok   arxiv 2501.17866 -> Advancing Brainwave-Based Biometrics: A Large-Scale, Multi-Session Evaluation
+  ok   doi   10.1002/047174882X -> https://onlinelibrary.wiley.com/doi/book/10.1002/047174882X
+  ok   doi   10.1016/j.csl.2005.08.001 -> https://linkinghub.elsevier.com/retrieve/pii/S0885230805000483
+  ok   doi   10.1016/j.forsciint.2013.04.014 -> https://linkinghub.elsevier.com/retrieve/pii/S0379073813002375
+  ok   doi   10.1016/j.jisa.2024.103832 -> https://linkinghub.elsevier.com/retrieve/pii/S2214212624001340
+  ok   doi   10.1016/j.neuroimage.2022.119666 -> https://linkinghub.elsevier.com/retrieve/pii/S105381192200787X
+  ok   doi   10.1093/biomet/49.1-2.65 -> https://academic.oup.com/biomet/article-lookup/doi/10.1093/biomet/49.1-2.65
+  ok   doi   10.1093/lpr/mgy008 -> https://academic.oup.com/lpr/article/17/2/179/4996009
+  ok   doi   10.1109/CVPR.2004.1315146 -> http://ieeexplore.ieee.org/document/1315146/
+  ok   doi   10.1109/ICASSP40776.2020.9053868 -> https://ieeexplore.ieee.org/document/9053868/
+  ok   doi   10.1109/TBIOM.2026.3666044 -> https://ieeexplore.ieee.org/document/11407492/
+  ok   doi   10.1109/TIFS.2017.2788000 -> http://ieeexplore.ieee.org/document/8241848/
+  ok   doi   10.1214/23-STS894 -> https://projecteuclid.org/journals/statistical-science/volume-38/issue-4/Game-Theoretic-Statistics-and-Safe-Anytime-Valid-Inference/10.1214/23-STS894.full
+  ok   doi   10.1214/aoms/1177731118 -> http://projecteuclid.org/euclid.aoms/1177731118
+  ok   url   http://www.ledoit.net/Well-conditioned2004.pdf -> HTTP 200
+  ok   url   https://apcp.assembly.ca.gov/media/851 -> HTTP 200
+  ok   url   https://cppa.ca.gov/regulations/pdf/ccpa_statute_eff_20260101.pdf -> HTTP 200
+  ok   url   https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng -> HTTP 200
+  ok   url   https://github.com/ugail/EEG-Permanence-Benchmark -> HTTP 200
+  ok   url   https://leg.colorado.gov/bill_files/41195/download -> HTTP 200
+  ok   url   https://leg.colorado.gov/bills/hb24-1058 -> HTTP 200
+  ok   url   https://linkinghub.elsevier.com/retrieve/pii/S0047259X03000964 -> HTTP 200
+  ok   url   https://pubmed.ncbi.nlm.nih.gov/23664798/ -> HTTP 203
+  ok   url   https://pubmed.ncbi.nlm.nih.gov/36206939/ -> HTTP 203
+  ok   url   https://standards.iteh.ai/catalog/standards/iso/62f63185-3037-442c-8a85-96040c86e5ce/iso-iec-19795-1-2021 -> HTTP 200
+  ok   url   https://standards.iteh.ai/catalog/standards/iso/fb018742-972d-4e70-82d3-b8fe3ecc2b3b/iso-iec-24745-2022 -> HTTP 200
+  ok   url   https://tminka.github.io/papers/dirichlet/minka-dirichlet.pdf -> HTTP 200
+  ok   url   https://webstore.iec.ch/en/publication/69063 -> HTTP 200
+  ok   url   https://webstore.iec.ch/en/publication/74235 -> HTTP 200
+  ok   url   https://www.isca-archive.org/odyssey_2004/brummer04_odyssey.html -> HTTP 200
+  ok   url   https://www.pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&mCode=C020010000&nttId=11928 -> HTTP 200
+  ok   url   https://www.unesco.org/en/legal-affairs/recommendation-ethics-neurotechnology -> HTTP 200
+  ok   url   https://www.wiley.com/en-us/Elements+of+Information+Theory%2C+2nd+Edition-p-9780471241959 -> HTTP 200
 references: pass
 ```

@@ -1,0 +1,105 @@
+reference check, 2026-11-11 18:18 UTC
+  ok   arxiv 1304.2331 -> The PAV algorithm optimizes binary proper scoring rules
+  ok   arxiv 1610.02413 -> Equality of Opportunity in Supervised Learning
+  ok   arxiv 1712.08500 -> On Perfect Privacy
+  ok   arxiv 1808.05464 -> Transfer Learning for Brain-Computer Interfaces: A Euclidean Space Data Alignment Approach
+  ok   arxiv 1911.03934 -> Evaluating Voice Conversion-based Privacy Protection against Informed Attackers
+  ok   arxiv 2106.14851 -> Data Poisoning Won't Save You From Facial Recognition
+  ok   arxiv 2201.04461 -> Blackbox Post-Processing for Multiclass Fairness
+  ok   arxiv 2203.12468 -> The VoicePrivacy 2022 Challenge Evaluation Plan
+  ok   arxiv 2205.07123 -> The VoicePrivacy 2020 Challenge Evaluation Plan
+  ok   arxiv 2210.01948 -> Game-theoretic statistics and safe anytime-valid inference
+  ok   arxiv 2311.04633 -> General Framework to Evaluate Unlinkability in Biometric Template Protection Systems
+  ok   arxiv 2402.08656 -> NeuroIDBench: An Open-Source Benchmark Framework for the Standardization of Methodology in Brainwave-based Authentication Research
+  ok   arxiv 2404.02677 -> The VoicePrivacy 2024 Challenge Evaluation Plan
+  ok   arxiv 2411.19498 -> Protecting Multiple Types of Privacy Simultaneously in EEG-based Brain-Computer Interfaces
+  ok   arxiv 2412.09854 -> User Identity Protection in EEG-based Brain-Computer Interfaces
+  ok   arxiv 2412.11394 -> Privacy-Preserving Brain-Computer Interfaces: A Systematic Review
+  ok   arxiv 2501.17866 -> Advancing Brainwave-Based Biometrics: A Large-Scale, Multi-Session Evaluation
+  ok   arxiv 2605.11386 -> Revisiting Privacy Preservation in Brain-Computer Interfaces: Conceptual Boundaries, Risk Pathways, and a Protection-Strength Grading Framework
+  ok   arxiv 2609.00390 -> NeuroPriv: Adversarial Representation Learning for Privacy in Wearable EEG Systems
+  ok   arxiv 2609.11777 -> Differentially Private EEG Feature Anonymization: A Privacy-Utility Case Study in Clinical Neurophysiology
+  ok   arxiv 2610.15626 -> Riemannian Suppression of Cross-Session Identity Leakage in Motor-Imagery EEG
+  ok   doi   10.1002/047174882X -> https://onlinelibrary.wiley.com/doi/book/10.1002/047174882X
+  ok   doi   10.1016/j.csl.2005.08.001 -> https://linkinghub.elsevier.com/retrieve/pii/S0885230805000483
+  ok   doi   10.1016/j.forsciint.2013.04.014 -> https://linkinghub.elsevier.com/retrieve/pii/S0379073813002375
+  ok   doi   10.1016/j.jisa.2024.103832 -> https://linkinghub.elsevier.com/retrieve/pii/S2214212624001340
+  ok   doi   10.1016/j.neuroimage.2022.119666 -> https://linkinghub.elsevier.com/retrieve/pii/S105381192200787X
+  ok   doi   10.1038/s41597-025-04826-y -> https://www.nature.com/articles/s41597-025-04826-y
+  ok   doi   10.1080/01621459.1965.10480775 -> http://www.tandfonline.com/doi/abs/10.1080/01621459.1965.10480775
+  ok   doi   10.1088/1741-2552/aace8c -> https://iopscience.iop.org/article/10.1088/1741-2552/aace8c
+  ok   doi   10.1093/biomet/49.1-2.65 -> https://academic.oup.com/biomet/article-lookup/doi/10.1093/biomet/49.1-2.65
+  ok   doi   10.1093/gigascience/giz002 -> https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giz002/5304369
+  ok   doi   10.1093/lpr/mgy008 -> https://academic.oup.com/lpr/article/17/2/179/4996009
+  ok   doi   10.1109/86.895946 -> https://ieeexplore.ieee.org/document/895946/
+  ok   doi   10.1109/ACCESS.2020.2971600 -> https://ieeexplore.ieee.org/document/8981912/
+  ok   doi   10.1109/ACCESS.2023.3268551 -> https://ieeexplore.ieee.org/document/10105200/
+  ok   doi   10.1109/CVPR.2004.1315146 -> http://ieeexplore.ieee.org/document/1315146/
+  ok   doi   10.1109/CVPR.2019.00269 -> https://ieeexplore.ieee.org/document/8953999/
+  ok   doi   10.1109/ICASSP40776.2020.9053868 -> https://ieeexplore.ieee.org/document/9053868/
+  ok   doi   10.1109/JBHI.2026.3704845 -> https://ieeexplore.ieee.org/document/11569012/
+  ok   doi   10.1109/JSAIT.2021.3053432 -> https://ieeexplore.ieee.org/document/9336011/
+  ok   doi   10.1109/LSP.2019.2906826 -> https://ieeexplore.ieee.org/document/8675355/
+  ok   doi   10.1109/SMC54092.2024.10832088 -> https://ieeexplore.ieee.org/document/10832088/
+  ok   doi   10.1109/TBIOM.2026.3666044 -> https://ieeexplore.ieee.org/document/11407492/
+  ok   doi   10.1109/TBME.2011.2172210 -> http://ieeexplore.ieee.org/document/6046114/
+  ok   doi   10.1109/TBME.2017.2742541 -> https://ieeexplore.ieee.org/document/8013808/
+  ok   doi   10.1109/TBME.2018.2889705 -> https://ieeexplore.ieee.org/document/8588384/
+  ok   doi   10.1109/TBME.2019.2913914 -> https://ieeexplore.ieee.org/document/8701679/
+  ok   doi   10.1109/TCSS.2022.3184818 -> https://ieeexplore.ieee.org/document/9808103/
+  ok   doi   10.1109/TIFS.2017.2778010 -> http://ieeexplore.ieee.org/document/8120145/
+  ok   doi   10.1109/TIFS.2017.2788000 -> http://ieeexplore.ieee.org/document/8241848/
+  ok   doi   10.1109/TNSRE.2023.3310883 -> https://ieeexplore.ieee.org/document/10236508/
+  ok   doi   10.1109/TPAMI.2007.1012 -> http://ieeexplore.ieee.org/document/4107576/
+  ok   doi   10.1145/3842657.3842784 -> https://dl.acm.org/doi/10.1145/3842657.3842784
+  ok   doi   10.1186/s13635-026-00242-w -> https://link.springer.com/10.1186/s13635-026-00242-w
+  ok   doi   10.1214/23-STS894 -> https://projecteuclid.org/journals/statistical-science/volume-38/issue-4/Game-Theoretic-Statistics-and-Safe-Anytime-Valid-Inference/10.1214/23-STS894.full
+  ok   doi   10.1214/aoms/1177731118 -> http://projecteuclid.org/euclid.aoms/1177731118
+  ok   doi   10.17487/RFC3161 -> https://www.rfc-editor.org/info/rfc3161
+  ok   doi   10.18653/v1/D18-1002 -> http://aclweb.org/anthology/D18-1002
+  ok   doi   10.18653/v1/D19-1662 -> https://www.aclweb.org/anthology/D19-1662
+  ok   doi   10.24963/ijcai.2025/469 -> https://www.ijcai.org/proceedings/2025/469
+  ok   doi   10.25452/figshare.plus.22671172.v5 -> https://plus.figshare.com/articles/dataset/Brain_Computer_Interface_Motor_Imagery-EEG_Dataset/22671172/5
+  ok   doi   10.3389/fnins.2012.00055 -> http://journal.frontiersin.org/article/10.3389/fnins.2012.00055/abstract
+  ok   doi   10.48550/arXiv.2605.11386 -> https://arxiv.org/abs/2605.11386
+  ok   doi   10.5524/100542 -> http://gigadb.org/dataset/100542
+  ok   url   http://www.ledoit.net/Well-conditioned2004.pdf -> HTTP 200
+  ok   url   https://aclanthology.org/D18-1002 -> HTTP 200
+  ok   url   https://aclanthology.org/D19-1662 -> HTTP 200
+  ok   url   https://apcp.assembly.ca.gov/media/851 -> HTTP 200
+  ok   url   https://ceur-ws.org/Vol-3087/paper_36.pdf -> HTTP 200
+  ok   url   https://cppa.ca.gov/regulations/pdf/ccpa_statute_eff_20260101.pdf -> HTTP 200
+  ok   url   https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng -> HTTP 200
+  ok   url   https://github.com/manrajmondair/bci-identity-leakage -> HTTP 200
+  ok   url   https://github.com/ugail/EEG-Permanence-Benchmark -> HTTP 200
+  ok   url   https://hal.science/hal-01923278 -> HTTP 200
+  ok   url   https://hal.science/hal-01971856 -> HTTP 200
+  ok   url   https://leg.colorado.gov/bill_files/41195/download -> HTTP 200
+  ok   url   https://leg.colorado.gov/bills/hb24-1058 -> HTTP 200
+  ok   url   https://linkinghub.elsevier.com/retrieve/pii/S0047259X03000964 -> HTTP 200
+  ok   url   https://openaccess.thecvf.com/content_CVPR_2019/papers/Roy_Mitigating_Information_Leakage_in_Image_Representations_A_Maximum_Entropy_Approach_CVPR_2019_paper.pdf -> HTTP 200
+  ok   url   https://openreview.net/forum?id=B5XahNLmna -> HTTP 200
+  ok   url   https://openreview.net/forum?id=SJeNz04tDS -> HTTP 200
+  ok   url   https://proceedings.mlr.press/v37/ganin15.html -> HTTP 200
+  ok   url   https://proceedings.neurips.cc/paper_files/paper/2016/hash/6a9659feb1216f14f7384ba499518b38-Abstract.html -> HTTP 200
+  ok   url   https://pubmed.ncbi.nlm.nih.gov/17299229/ -> HTTP 203
+  ok   url   https://pubmed.ncbi.nlm.nih.gov/23664798/ -> HTTP 203
+  ok   url   https://pubmed.ncbi.nlm.nih.gov/31814690/ -> HTTP 203
+  ok   url   https://pubmed.ncbi.nlm.nih.gov/36206939/ -> HTTP 203
+  ok   url   https://pubmed.ncbi.nlm.nih.gov/42308059/ -> HTTP 203
+  ok   url   https://sail.usc.edu/publications/html/b2hd-Mehlman-IEEEJBHI0226.html -> HTTP 200
+  skip url   https://ssrn.com/abstract=7459682 -> listed as not opened; not cited
+  ok   url   https://standards.iteh.ai/catalog/standards/iso/62f63185-3037-442c-8a85-96040c86e5ce/iso-iec-19795-1-2021 -> HTTP 200
+  ok   url   https://standards.iteh.ai/catalog/standards/iso/fb018742-972d-4e70-82d3-b8fe3ecc2b3b/iso-iec-24745-2022 -> HTTP 200
+  ok   url   https://tminka.github.io/papers/dirichlet/minka-dirichlet.pdf -> HTTP 200
+  ok   url   https://webstore.iec.ch/en/publication/69063 -> HTTP 200
+  ok   url   https://webstore.iec.ch/en/publication/74235 -> HTTP 200
+  ok   url   https://www.cs.cornell.edu/~shmat/shmat_iclr20.pdf -> HTTP 200
+  ok   url   https://www.ijcai.org/proceedings/2025/0469.pdf -> HTTP 200
+  ok   url   https://www.isca-archive.org/odyssey_2004/brummer04_odyssey.html -> HTTP 200
+  ok   url   https://www.merl.com/publications/docs/TR2020-049.pdf -> HTTP 200
+  ok   url   https://www.pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&mCode=C020010000&nttId=11928 -> HTTP 200
+  ok   url   https://www.unesco.org/en/legal-affairs/recommendation-ethics-neurotechnology -> HTTP 200
+  ok   url   https://www.usenix.org/conference/usenixsecurity12/technical-sessions/presentation/martinovic -> HTTP 200
+  ok   url   https://www.wiley.com/en-us/Elements+of+Information+Theory%2C+2nd+Edition-p-9780471241959 -> HTTP 200
+references: pass
