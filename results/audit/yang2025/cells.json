@@ -1,0 +1,1926 @@
+{
+  "attempt": "20261111T144258Z-5c9f0f09",
+  "kind": "frozen_batch",
+  "cells": [
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "cross-day",
+      "k": 1,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "cross-day",
+      "k": 5,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "cross-day",
+      "k": 10,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "cross-day",
+      "k": 20,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "cross-day",
+      "k": 50,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "cross-day",
+      "k": 100,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "23",
+        "24",
+        "26",
+        "32"
+      ]
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "cross-day-d2-d3",
+      "k": 1,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "cross-day-d2-d3",
+      "k": 5,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "cross-day-d2-d3",
+      "k": 10,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "cross-day-d2-d3",
+      "k": 20,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "cross-day-d2-d3",
+      "k": 50,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "cross-day-d2-d3",
+      "k": 100,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "same-day",
+      "k": 1,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "same-day",
+      "k": 5,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "same-day",
+      "k": 10,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "same-day",
+      "k": 20,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "same-day",
+      "k": 50,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "same-day",
+      "k": 100,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "23",
+        "24",
+        "26",
+        "32"
+      ]
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "same-day-d2-d3",
+      "k": 1,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "same-day-d2-d3",
+      "k": 5,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "same-day-d2-d3",
+      "k": 10,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "same-day-d2-d3",
+      "k": 20,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "same-day-d2-d3",
+      "k": 50,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "condition": "same-day-d2-d3",
+      "k": 100,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "cross-day",
+      "k": 1,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "cross-day",
+      "k": 5,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "cross-day",
+      "k": 10,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "cross-day",
+      "k": 20,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "cross-day",
+      "k": 50,
+      "comparator": "bayes_factor",
+      "role": "V2",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "cross-day",
+      "k": 100,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "23",
+        "24",
+        "26",
+        "32"
+      ]
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "cross-day-d2-d3",
+      "k": 1,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "cross-day-d2-d3",
+      "k": 5,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "cross-day-d2-d3",
+      "k": 10,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "cross-day-d2-d3",
+      "k": 20,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "cross-day-d2-d3",
+      "k": 50,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "cross-day-d2-d3",
+      "k": 100,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "same-day",
+      "k": 1,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "same-day",
+      "k": 5,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "same-day",
+      "k": 10,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "same-day",
+      "k": 20,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "same-day",
+      "k": 50,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "same-day",
+      "k": 100,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "23",
+        "24",
+        "26",
+        "32"
+      ]
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "same-day-d2-d3",
+      "k": 1,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "same-day-d2-d3",
+      "k": 5,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "same-day-d2-d3",
+      "k": 10,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "same-day-d2-d3",
+      "k": 20,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "same-day-d2-d3",
+      "k": 50,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "condition": "same-day-d2-d3",
+      "k": 100,
+      "comparator": "bayes_factor",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 1,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 1,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 5,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 5,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 5,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 5,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 10,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 10,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 10,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 10,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 20,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 20,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 20,
+      "comparator": "cosine_rich",
+      "role": "V1",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 20,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 50,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 50,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 50,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 50,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 100,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "23",
+        "24",
+        "26",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 100,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "23",
+        "24",
+        "26",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 100,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "23",
+        "24",
+        "26",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 100,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "23",
+        "24",
+        "26",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 1,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 1,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 5,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 5,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 5,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 5,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 10,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 10,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 10,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 10,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 20,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 20,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 20,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 20,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 50,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 50,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 50,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 50,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 100,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 100,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 100,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P0",
+      "condition": "cross-day-d2-d3",
+      "k": 100,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 1,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 1,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 5,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 5,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 5,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 5,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 10,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 10,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 10,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 10,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 20,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 20,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 20,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 20,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 50,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 50,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 50,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 50,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 100,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "23",
+        "24",
+        "26",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 100,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "23",
+        "24",
+        "26",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 100,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "23",
+        "24",
+        "26",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day",
+      "k": 100,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "23",
+        "24",
+        "26",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 1,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 1,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 5,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 5,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 5,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 5,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 10,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 10,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 10,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 10,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 20,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 20,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 20,
+      "comparator": "cosine_rich",
+      "role": "pre-specified estimate (paired contrast)",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 20,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 50,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 50,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 50,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 50,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 100,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 100,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 100,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P0",
+      "condition": "same-day-d2-d3",
+      "k": 100,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 1,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 1,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 5,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 5,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 5,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 5,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 10,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 10,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 10,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 10,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 20,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 20,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 20,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 20,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 50,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 50,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 50,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 50,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 100,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 100,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 100,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "same-day-d2-d3",
+      "k": 100,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 1,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 1,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 5,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 5,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 5,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 5,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 10,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 10,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 10,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 10,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 20,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 20,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 20,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 20,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 50,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 50,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 50,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 50,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": []
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 100,
+      "comparator": "cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 100,
+      "comparator": "lda_cosine",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 100,
+      "comparator": "cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "condition": "cross-day-d2-d3",
+      "k": 100,
+      "comparator": "lda_cosine_rich",
+      "role": "estimate without verdict",
+      "status": "ok",
+      "reason": null,
+      "excluded_users": [
+        "24",
+        "32"
+      ]
+    }
+  ]
+}
