@@ -114,14 +114,15 @@ def _side(blocks, user, selectors):
     return np.concatenate([blocks[user, d, s] for d, s in selectors])
 
 
-def _tables(comparator, sides, users, mcap, ncap, seed):
+def _tables(comparator, sides, users, mcap, ncap, seed, *, prepared=False):
     """Two role-specific bounded score tables, including potential permuted mates."""
+    score_pairs = comparator.score_transformed if prepared else comparator.score
     if all(len(side[u]) == 1 for side in sides for u in users):
         a, b = [np.concatenate([side[u] for u in users]) for side in sides]
         score = np.empty(len(users) ** 2)
         for start in range(0, len(score), 4096):
             flat = np.arange(start, min(start + 4096, len(score)))
-            score[flat] = comparator.score(a[flat // len(users)], b[flat % len(users)])
+            score[flat] = score_pairs(a[flat // len(users)], b[flat % len(users)])
         table = score.reshape(len(users), len(users), 1)
         return table, table
     rng = np.random.default_rng(seed)
@@ -133,7 +134,7 @@ def _tables(comparator, sides, users, mcap, ncap, seed):
         def flush():
             if not lengths:
                 return
-            scores = comparator.score(np.concatenate(left), np.concatenate(right))
+            scores = score_pairs(np.concatenate(left), np.concatenate(right))
             parts = np.split(scores, np.cumsum(lengths)[:-1])
             for (i, j), part in zip(destinations, parts):
                 table[i][j] = part
@@ -179,13 +180,13 @@ def _pooled(tables, users):
 
 
 def _raw(stream, user, selectors):
-    ix = np.flatnonzero((stream.user == user) & np.array([
-        (d, s) in selectors for d, s in zip(stream.day, stream.segment)
-    ]))
+    own = np.flatnonzero(stream.user == user)
     # Selector order establishes day order; order is only within a user/day.
-    rank = {pair: i for i, pair in enumerate(selectors)}
-    return np.array(sorted(ix, key=lambda i: (
-        rank[stream.day[i], stream.segment[i]], stream.order[i])), dtype=int)
+    parts = []
+    for day, segment in selectors:
+        rows = own[(stream.day[own] == day) & (stream.segment[own] == segment)]
+        parts.append(rows[np.argsort(stream.order[rows], kind="stable")])
+    return np.concatenate(parts)
 
 
 def _sequential_records(stream, users, selectors, comparator, cues, component_count):
@@ -270,20 +271,28 @@ def _analyse(streams, blocks, users, groups, resolved, name, config, cues, k, *,
             training.append({"fold": f, "model_seed": seed_name, **comparator.info})
             for p, pair in enumerate(resolved):
                 side_values = [{u: _side(block, u, side) for u in users} for side in pair]
+                prepared = name.endswith("_rich")
+                score_sides = [
+                    {u: comparator.transform(values) for u, values in side.items()}
+                    for side in side_values
+                ] if prepared else side_values
                 for direction in range(2):
                     selectors = pair if direction == 0 else pair[::-1]
                     sides = side_values if direction == 0 else side_values[::-1]
+                    scoring = score_sides if direction == 0 else score_sides[::-1]
                     part = (s * len(resolved) + p) * 2 + direction
                     mcap = 200 // components + (part < 200 % components)
                     ncap = 50 // components + (part < 50 % components)
                     draw_seed = attack_seed + p * 37 + direction * 17
-                    tables = _tables(comparator, sides, targets, mcap, ncap, draw_seed)
+                    tables = _tables(comparator, scoring, targets, mcap, ncap, draw_seed,
+                                     prepared=prepared)
                     cube = auc_cube(*tables)
                     if direction == 0:
                         forward_sum += cube / (len(streams) * len(resolved))
                     else:
                         reverse_sum += cube / (len(streams) * len(resolved))
-                    dev_tables = _tables(comparator, sides, development, mcap, ncap, draw_seed)
+                    dev_tables = _tables(comparator, scoring, development, mcap, ncap, draw_seed,
+                                         prepared=prepared)
                     dm, dn, dwm, dwn = _pooled(dev_tables, development)
                     calibration = Calibration().fit(dm, dn, dwm, dwn)
                     threshold = roc_metrics(dm, dn, dwm, dwn)["threshold"]

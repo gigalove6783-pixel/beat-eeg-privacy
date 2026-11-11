@@ -430,3 +430,13 @@ admissible result.
      was projected at 1.15 h against its 3 h limit; the batch limit is what protects the talk
      gate. Parity, pilot, development runs, V1 selection and the job manifest are rerun on the
      repaired tool; V1's comparator is named again by the same rule over all feature comparators.
+- 2026-11-11 23:45: pre-freeze state. Tool final at source hash 73ce3bec (LDA whitening replaced
+  by Ledoit–Wolf shrinkage after a development finding; extended null validation 9, 15, 10 of
+  200). Development rerun on the final tool complete; runtime gate applied the first plan
+  reduction (pairwise logistic dropped; Yang2025 full features 58.4 min, batch 1.06 h). V1's
+  comparator: `cosine_rich`. Runner: repair rounds 1 and 2 done; the final review's two findings
+  on configurable V1 selection were corrected by the Lead with a test (34 runner tests pass) and
+  not re-reviewed; the committed configuration was confirmed by that review. Full `report.json`
+  files are kept out of Git (size); A4's tracked evidence is `report.md`, figures, `summary.csv`,
+  the decision and cell-status files. Next gate: freeze commit and tag `freeze-5`, push, one
+  frozen Yang2025 batch.

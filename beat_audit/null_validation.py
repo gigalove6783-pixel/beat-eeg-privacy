@@ -16,6 +16,7 @@ gallery and sequential modules are disabled: none decides linkage.
 """
 
 from concurrent.futures import ProcessPoolExecutor
+from functools import partial
 import json
 from pathlib import Path
 import tempfile
@@ -35,7 +36,7 @@ COMPARATORS = ("cosine", "lda_cosine", "pair_logistic",
                "cosine_rich", "lda_cosine_rich", "bayes_factor")
 
 
-def representative_simulation(job):
+def representative_simulation(job, *, permutations=None):
     """Execute one independent synthetic audit, retaining the actual reported p.
 
     job = (comparator, simulation_index, lane, base_seed). Seed domains are fixed
@@ -47,7 +48,7 @@ def representative_simulation(job):
     k = 50 if commands else 20
     settings = AuditConfig(
         k_grid=(k,), seed=seed + 29 * index, fold_seed=seed + 31 * index,
-        permutations=10_000 if lane == "full" else 199,
+        permutations=permutations if permutations is not None else (10_000 if lane == "full" else 199),
         bootstraps=2000 if lane == "full" else 39,
         comparators=(name,) if not commands else ("cosine",),
         gallery=False, closed_set=False, sequential=False, threads=1,
@@ -97,22 +98,34 @@ def representative_simulation(job):
     }
 
 
-def run_representative_nulls(*, simulations=16, threads=4, lane="full", seed=20261114):
-    """Return six null cases with retained failures and binomial 99% tolerances."""
+def run_representative_nulls(*, simulations=16, threads=4, lane="full", seed=20261114,
+                             comparators=COMPARATORS, permutations=None, budget_seconds=1800):
+    """Return pre-named null cases with retained failures and binomial 99% tolerances.
+
+    Optional comparator and permutation restrictions are recorded, never inferred
+    from outcomes. The decision-null CLI fixes the three deciding attacks and
+    a separate seed domain; older representative records remain untouched.
+    """
     if simulations < 1 or threads < 1 or threads > 4:
         raise ValueError("simulations/threads: use positive simulations and 1..4 workers")
     if lane not in ("full", "ci"):
         raise ValueError("lane: choose full or ci")
+    if (not comparators or len(set(comparators)) != len(comparators) or
+            not set(comparators) <= set(COMPARATORS)):
+        raise ValueError("comparators: supply distinct supported null comparator names")
+    permutations = permutations if permutations is not None else (10_000 if lane == "full" else 199)
+    if permutations < 1:
+        raise ValueError("permutations: supply a positive number of matching draws")
     started = time.perf_counter()
     configuration = {
         "lane": lane, "simulations_per_case": simulations, "threads": threads, "seed": seed,
         "users": 51, "days": 3, "model_seeds": 3, "windows_per_segment": 5,
         "segments_per_day": 2, "feature_dimensions": 210 if lane == "full" else 8,
         "feature_k": 20, "command_k": 50, "cues": ["left", "right"],
-        "permutations": 10_000 if lane == "full" else 199,
+        "permutations": permutations,
         "bootstraps": 2000 if lane == "full" else 39,
-        "comparators": list(COMPARATORS),
-        "wall_time_budget_seconds": 1800,
+        "comparators": list(comparators),
+        "wall_time_budget_seconds": budget_seconds,
         "condition": "day 1 (both segments) versus day 2, and day 1 versus day 3",
         "directions": "coupled A->B and B->A; same matching across pairs and model seeds",
         "role_sampling": {"raw_pairs_per_component": 100, "components": 12,
@@ -124,15 +137,16 @@ def run_representative_nulls(*, simulations=16, threads=4, lane="full", seed=202
         "scope": "whole linkage procedure including development fitting/calibration, folds, "
                  "bounded pairing, model seeds, bidirectional matching and subject bootstrap",
     }
-    jobs = [(name, index, lane, seed) for name in COMPARATORS for index in range(simulations)]
+    jobs = [(name, index, lane, seed) for name in comparators for index in range(simulations)]
+    simulate = partial(representative_simulation, permutations=permutations)
     if threads == 1:
-        outputs = list(map(representative_simulation, jobs))
+        outputs = list(map(simulate, jobs))
     else:
         with ProcessPoolExecutor(max_workers=threads) as pool:
-            outputs = list(pool.map(representative_simulation, jobs, chunksize=1))
+            outputs = list(pool.map(simulate, jobs, chunksize=1))
     cases = []
     bounds = binomial_tolerance(simulations, 0.05)
-    for offset, name in enumerate(COMPARATORS):
+    for offset, name in enumerate(comparators):
         values = outputs[offset * simulations:(offset + 1) * simulations]
         failures = [v for v in values if v["status"] != "ok"]
         count = sum(v.get("reject", False) for v in values)

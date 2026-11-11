@@ -73,9 +73,14 @@ Implementation choices where the plan is silent:
   only scalar scores are retained across chunks.
 - Concentration is shared across cue strata; each cue has its own positive
   development-count base measure. The first maximum wins a grid tie.
-- LDA is within-class whitening followed by between-class SVD, with a recorded
-  1e-6 covariance ridge for singular data. Pair-logistic uses C=1, balanced pairs,
-  and at most 20,000 training pairs. Zero-vector cosine is 0.
+- LDA is within-class Ledoit-Wolf covariance whitening followed by between-class
+  SVD. Both centering within user and shrinkage estimation use development users
+  only. Reports record the estimator, shrinkage coefficient, isotropic target
+  and condition number. The retained `within_covariance_ridge` field is now the
+  estimated isotropic term (shrinkage times target), not a fixed eigenvalue floor.
+  Exactly zero within-class noise uses identity whitening; nonpositive numerical
+  eigenvalues otherwise have zero inverse in the PSD pseudoinverse. Pair-logistic
+  uses C=1, balanced pairs, and at most 20,000 training pairs. Zero-vector cosine is 0.
 - Equal class weights are also equal by user, partner and direction/day/seed
   when fitting calibration and deriving development thresholds. EER/TPR
   interpolate the ROC; a deployed threshold uses the nearest actual score cut.
@@ -104,4 +109,10 @@ This keeps the existing validation records and their original source hash,
 adding a separate lane for the five feature attacks (210 raw dimensions, k=20)
 and cue-aware commands (k=50), three model seeds and active comparison bounds.
 Every case records its binomial 99% tolerance and all simulation outcomes.
+The stronger decision-setting null extension is
+`python -m beat_audit.validate --lane decision-null --simulations 200 --threads 4`.
+It appends cosine-rich, LDA-rich (k=20) and cue-aware Bayes-factor (k=50) cases
+without replacing earlier results. The default remains 10,000 permutations;
+an explicitly reduced `--permutations 2000` is recorded rather than represented
+as the full inference budget. The bootstrap still uses 2,000 replicates.
 No report means anonymous or safe. The empirical-epsilon stretch module is absent.

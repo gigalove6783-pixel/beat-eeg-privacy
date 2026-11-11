@@ -2,6 +2,7 @@
 
 import numpy as np
 from scipy.special import gammaln
+from sklearn.covariance import LedoitWolf
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 
@@ -78,19 +79,33 @@ class Comparator:
         self.projection = None
         base = self.name.removesuffix("_rich")
         if base == "lda_cosine":
-            # Ridge whitening keeps low-rank development sets well defined.
             means = np.stack([z[users == u].mean(0) for u in sorted(set(users))])
             centered = np.concatenate([
                 z[users == u] - means[j] for j, u in enumerate(sorted(set(users)))
             ])
-            within = centered.T @ centered / max(1, len(centered) - len(means))
+            estimate = LedoitWolf(assume_centered=True, store_precision=False).fit(centered)
+            within = estimate.covariance_
             eigen, vectors = np.linalg.eigh(within)
-            ridge = max(float(np.trace(within) / within.shape[0]), 1.0) * 1e-6
-            whitening = vectors / np.sqrt(np.maximum(eigen, ridge))
+            target = float(np.trace(within) / within.shape[0])
+            if target == 0:
+                # Perfectly repeatable development windows have no noise to whiten.
+                whitening = np.eye(within.shape[0])
+            else:
+                inverse = np.divide(1, np.sqrt(np.maximum(eigen, 0)),
+                                    out=np.zeros_like(eigen), where=eigen > 0)
+                whitening = vectors * inverse
             _, _, directions = np.linalg.svd(means @ whitening, full_matrices=False)
             rank = min(len(means) - 1, z.shape[1])
             self.projection = whitening @ directions[:rank].T
-            self.info.update(within_covariance_ridge=ridge, lda_dimensions=rank)
+            self.info.update(
+                within_covariance_estimator="LedoitWolf",
+                within_covariance_shrinkage=float(estimate.shrinkage_),
+                within_covariance_target=target,
+                within_covariance_ridge=float(estimate.shrinkage_ * target),
+                within_covariance_condition=float(eigen[-1] / eigen[0]) if eigen[0] > 0 else None,
+                within_covariance_zero_noise=target == 0,
+                lda_dimensions=rank,
+            )
         elif base == "pair_logistic":
             if side_pairs is None:
                 raise ValueError("training pairs: supply the condition's physical A/B window sides")
@@ -108,14 +123,22 @@ class Comparator:
             })
         return self
 
-    def score(self, x, y):
-        if self.name == "bayes_factor":
-            return log_bayes_factor(x, y, self.alpha)
-        a, b = self.scaler.transform(x), self.scaler.transform(y)
+    def transform(self, x):
+        """Apply frozen feature transforms once when the same window is reused."""
+        a = self.scaler.transform(x)
+        if self.projection is not None:
+            a = a @ self.projection
+        return a
+
+    def score_transformed(self, a, b):
+        """Score frozen transformed windows; retain the original cosine arithmetic."""
         if self.name == "pair_logistic":
             return self.model.decision_function(np.abs(a - b))
-        if self.projection is not None:
-            a, b = a @ self.projection, b @ self.projection
         denominator = np.linalg.norm(a, axis=1) * np.linalg.norm(b, axis=1)
         return np.divide(np.sum(a * b, axis=1), denominator,
                          out=np.zeros(len(a)), where=denominator > 0)
+
+    def score(self, x, y):
+        if self.name == "bayes_factor":
+            return log_bayes_factor(x, y, self.alpha)
+        return self.score_transformed(self.transform(x), self.transform(y))

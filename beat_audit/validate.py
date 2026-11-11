@@ -296,16 +296,30 @@ def run_validation(*, lane="full", simulations=None, threads=4, seed=20261113):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--lane", choices=("full", "ci", "representative"), default="full")
+    parser.add_argument("--lane", choices=("full", "ci", "representative", "decision-null"),
+                        default="full")
     parser.add_argument("--threads", type=int, default=4)
     parser.add_argument("--out", default="results/audit/validation.json")
-    parser.add_argument("--simulations", type=int, default=16,
-                        help="repetitions per representative null case (other lanes unchanged)")
+    parser.add_argument("--simulations", type=int,
+                        help="null repetitions per case (representative:16; decision-null:200)")
+    parser.add_argument("--permutations", type=int, default=10_000,
+                        help="matching draws for null extensions; recorded in their configuration")
     args = parser.parse_args(argv)
     path = Path(args.out)
-    if args.lane == "representative":
+    if args.lane in ("representative", "decision-null"):
         from .null_validation import append_validation, run_representative_nulls
-        report = run_representative_nulls(simulations=args.simulations, threads=args.threads)
+        if args.lane == "decision-null":
+            report = run_representative_nulls(
+                simulations=200 if args.simulations is None else args.simulations,
+                threads=args.threads, seed=20261115, permutations=args.permutations,
+                comparators=("cosine_rich", "lda_cosine_rich", "bayes_factor"),
+                budget_seconds=7200,
+            )
+        else:
+            report = run_representative_nulls(
+                simulations=16 if args.simulations is None else args.simulations,
+                threads=args.threads, permutations=args.permutations,
+            )
         append_validation(path, report)
     else:
         report = run_validation(lane=args.lane, threads=args.threads)

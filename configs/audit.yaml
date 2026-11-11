@@ -7,6 +7,15 @@ inputs_dir: artifacts/audit/inputs  # one .npz (+ .trials.csv key sidecar) per r
 manifest: results/audit/export_manifest.json
 utility: results/audit/utility.csv
 checks: results/audit/export_checks.json
+results_dir: results/audit          # reports: {results_dir}/{cohort}/{rung}/report.json
+summary: results/audit/summary.csv
+attempts: results/audit/attempts.jsonl
+parity: results/audit/parity.json
+runtime: results/audit/runtime_projection.json
+v1_selection: results/audit/v1_selection.json
+jobs_draft: results/audit/jobs_draft.json
+freeze_dir: results/audit/freeze
+batch_lock: artifacts/audit/frozen_batch.lock  # OS lock: one frozen batch or recovery at a time
 command_records: artifacts/exp_k/command_records.csv.gz
 stream_summary: results/exp_k/stream_summary.csv
 code_map: {-1: 1, 0: 0, 1: 2}       # stored -1 left, 0 hold, +1 right -> audit code (plan §3)
@@ -71,3 +80,121 @@ cohorts:
       value: 8.0
       source: "docs/preregistration_m.md (Yang2025 data record): observed onset-to-onset interval
         within runs 7.996-8.007 s, per-user median 8.000-8.007 s (fixed 8.0 s trial spacing)"
+
+# ---- audits (plan §3 Protocol, §4 Runtime gate, Freeze, Attempts); `pilot`, `develop`, `freeze`
+audit:
+  settings:                         # beat_audit.AuditConfig (plan §3 defaults)
+    k_grid: [1, 5, 10, 20, 50, 100]
+    fold_seed: 20261111
+    seed: 20261112
+    permutations: 10000
+    bootstraps: 2000
+    threads: 4
+    # plan §3 (change of 2026-11-11): mean and rich window summaries; listed in the simplicity
+    # order of the V1 rule, so the tool's post-hoc "strongest" also breaks exact ties that way
+    comparators: [cosine, lda_cosine, cosine_rich, lda_cosine_rich, pair_logistic]
+    gallery: true
+    sequential: true
+    closed_set: true
+  # Runtime-gate outcome (results/audit/runtime_projection.json, a prefix of the plan §4 order):
+  # pilot 2026-11-11 on beat_audit 73ce3bec projected Yang2025 P0 at 54.7 min with every
+  # comparator; the development run (full features x1.45) put it at 79.0 min > 60, so the gate
+  # applied drop_pair_logistic (P0 58.4 min, batch 1.06 h after the development adjustment)
+  reductions: [drop_pair_logistic]
+  max_parallel_jobs: 2
+  limits: {stream_minutes: 60, stream_gb: 8, yang2025_batch_hours: 3}  # plan change 2026-11-11
+  day_order:                        # chronological export day labels, given to every audit
+    bnci2014_001: [1, 2]            # session T, session E
+    lee2019: [1, 2]                 # session 1, session 2
+    yang2025: [1, 2, 3]             # a stream passes the days it holds, in this order
+  pilot_rungs: [features_P0, features_P2-RC_d8, commands_P2-RC_d8_tau0.50]  # Lee2019, fold 0
+  # Physical sides: "d" = every segment of day d, "d/s" = segment s of day d (export labels).
+  # Side A is the first segment or the earlier day; both directions are scored by the tool.
+  conditions:
+    bnci2014_001:
+      same-day:                     # runs 1-3 against 4-6, within session T and within E
+        relation: same-day
+        pairs: [{a: ["1/1"], b: ["1/2"]}, {a: ["2/1"], b: ["2/2"]}]
+      cross-day:                    # session T against session E
+        relation: cross-day
+        pairs: [{a: ["1"], b: ["2"]}]
+    lee2019:
+      same-day:                     # offline against online phase, within session 1 and 2
+        relation: same-day
+        pairs: [{a: ["1/1"], b: ["1/2"]}, {a: ["2/1"], b: ["2/2"]}]
+      cross-day:                    # session 1 against session 2
+        relation: cross-day
+        pairs: [{a: ["1"], b: ["2"]}]
+    yang2025:
+      cross-day:                    # primary (V1, V2): day 1 against days 2-3 as one block
+        relation: cross-day
+        pairs: [{a: ["1"], b: ["2", "3"]}]
+      cross-day-d2-d3:              # additional estimate
+        relation: cross-day
+        pairs: [{a: ["2"], b: ["3"]}]
+      same-day:                     # trials 1-100 against 101-200 of each day
+        relation: same-day
+        pairs: [{a: ["1/1"], b: ["1/2"]}, {a: ["2/1"], b: ["2/2"]}, {a: ["3/1"], b: ["3/2"]}]
+      same-day-d2-d3:               # the pre-specified contrast's same-day side (days 2 and 3)
+        relation: same-day
+        pairs: [{a: ["2/1"], b: ["2/2"]}, {a: ["3/1"], b: ["3/2"]}]
+  rung_conditions:                  # default: every condition of the cohort
+    yang2025:
+      features_P2-RC_d8: [same-day-d2-d3, cross-day-d2-d3]  # exported on days 2-3 only
+  day1_notes:                       # summary label of cells that use day 1 of these rungs
+    bnci2014_001:
+      features_P0: "in-sample: session T (day 1) fitted the tangent reference"
+      features_P2-RC_d8: "in-sample: session T (day 1) is the P2-RC encoder's training session"
+    lee2019:
+      features_P0: "in-sample: session 1 (day 1) fitted the tangent reference"
+      features_P2-RC_d8: "in-sample: session 1 (day 1) is the P2-RC encoder's training session"
+    yang2025:
+      features_P0: "in-sample: day 1 fitted the tangent reference (M1)"
+
+predictions:                        # plan §4: Yang2025, Holm family of two at alpha
+  alpha: 0.05
+  V1:
+    cohort: yang2025
+    rung: features_P0
+    condition: cross-day
+    k: 20
+    # Named by the rule below from the Lee2019 development run on the repaired tool
+    # (results/audit/v1_selection.json, beat_audit 73ce3bec): cosine 0.9442, lda_cosine 0.9521,
+    # cosine_rich 0.9543, lda_cosine_rich 0.9459; pair_logistic (0.8754 in the development run)
+    # removed by the runtime gate.
+    comparator: cosine_rich
+    test: "mean per-user AUC > 0.5, matching permutation test"
+    selection:
+      cohort: lee2019
+      rung: features_P0
+      condition: cross-day
+      k: 20
+      order: [cosine, lda_cosine, cosine_rich, lda_cosine_rich, pair_logistic]
+      rule: "highest Lee2019 cross-day mean per-user AUC on full features (P0) at k = 20 over
+        the feature comparators that survive the runtime gate; an exact tie goes to the simpler
+        comparator in the order cosine, LDA + WCCN, cosine (rich summary), LDA + WCCN (rich
+        summary), pairwise logistic"
+  V2:
+    cohort: yang2025
+    rung: commands_P2-RC_d8_tau0.60
+    condition: cross-day
+    k: 50
+    comparator: bayes_factor        # cue-aware: the command exports carry the cue (target)
+    test: "mean per-user AUC > 0.5, matching permutation test"
+  estimate:                         # paired contrast, V1's comparator and k; no verdict
+    cohort: yang2025
+    rung: features_P0
+    same_day: same-day-d2-d3
+    cross_day: cross-day
+
+freeze_expect: {exports: 88, yang2025_archives: 153, final_models: 9, day1_crossfitted: 9}
+
+parity_check:                       # plan §5 A3: the tool's closed-set module on study L's data
+  outputs: "artifacts/exp_l/outputs_P0_{seed}.joblib"
+  seeds: [0, 1, 2, 3, 4]
+  tolerance: 0.01
+  identity_summary: results/exp_l/identity_summary.csv
+  study_config: configs/exp_l.yaml
+  registered:
+    within_day: {id: L_P0_within_day}
+    cross_day: {id: L_P0_cross_day_logistic}

@@ -1,0 +1,104 @@
+{
+  "passed": true,
+  "checks": {
+    "within_day": {
+      "registered": 0.9942592592592592,
+      "registered_text": "0.994",
+      "registered_id": "L_P0_within_day",
+      "source": "results/exp_l/identity_summary.csv ({'kind': 'representation', 'key': 'P0', 'attacker': 'logistic', 'scenario': 'main'})",
+      "tool": 0.9942592592592592,
+      "abs_diff": 0.0,
+      "tolerance": 0.01,
+      "passed": true,
+      "per_seed": {
+        "0": 0.9942592592592592,
+        "1": 0.9942592592592592,
+        "2": 0.9942592592592592,
+        "3": 0.9942592592592592,
+        "4": 0.9942592592592592
+      }
+    },
+    "cross_day": {
+      "registered": 0.5200925925925927,
+      "registered_text": "0.520",
+      "registered_id": "L_P0_cross_day_logistic",
+      "source": "results/exp_l/identity_summary.csv ({'kind': 'representation', 'key': 'P0', 'attacker': 'logistic', 'scenario': 'auxiliary'})",
+      "tool": 0.5200925925925927,
+      "abs_diff": 0.0,
+      "tolerance": 0.01,
+      "passed": true,
+      "per_seed": {
+        "0": 0.5200925925925927,
+        "1": 0.5200925925925927,
+        "2": 0.5200925925925927,
+        "3": 0.5200925925925927,
+        "4": 0.5200925925925927
+      }
+    }
+  },
+  "enrolled_likelihood": {
+    "max_abs_diff_vs_beat_exp_k_bayes_scores": 0.0,
+    "tolerance": 1e-12,
+    "inputs": "fixed cue-aware tables of tests/test_audit_statistics.py",
+    "passed": true
+  },
+  "all_attackers_informative": {
+    "auxiliary/logistic": {
+      "tool": 0.5200925925925927,
+      "study": 0.5200925925925927
+    },
+    "auxiliary/mlp": {
+      "tool": 0.4802407407407407,
+      "study": 0.36807407407407405
+    },
+    "auxiliary/rbf_svm": {
+      "tool": 0.5096296296296295,
+      "study": 0.5096296296296297
+    },
+    "main/logistic": {
+      "tool": 0.9942592592592592,
+      "study": 0.9942592592592592
+    },
+    "main/mlp": {
+      "tool": 0.9838518518518519,
+      "study": 0.9312037037037038
+    },
+    "main/rbf_svm": {
+      "tool": 0.9916666666666665,
+      "study": 0.9916666666666665
+    }
+  },
+  "protocol": {
+    "data": "study L's stored P0 representations, artifacts/exp_l/outputs_P0_{seed}.joblib, seeds 0,1,2,3,4",
+    "within_day": "session 2: offline runs 1-2 against online runs 3-4, both directions (beat.exp_l.scenarios 'main')",
+    "cross_day": "enrol all of session 1, identify all of session 2 (scenario 'auxiliary')",
+    "masks": "every stored trial; non-finite rows dropped as in beat.exp_l.attack (none)",
+    "statistic": "per-user recall averaged over seeds and directions, then over the 54 users (beat.exp_l.recalls)",
+    "tool": "beat_audit.closed_set.identify (standardised logistic C = 1, max_iter 1000; RBF-SVM C = 1, gamma = scale; MLP 100 hidden units, 500 iterations), random_state = model seed",
+    "study_attackers": {
+      "logistic_C": 1.0,
+      "logistic_max_iter": 2000,
+      "svm_C": [
+        1.0
+      ],
+      "svm_gamma": [
+        "scale"
+      ],
+      "inner_folds": 3,
+      "mlp_hidden": [
+        32
+      ],
+      "mlp_alpha": 0.01,
+      "mlp_solver": "lbfgs",
+      "mlp_max_iter": 500,
+      "mlp_max_fun": 10000
+    },
+    "settings_difference": "logistic max_iter 1000 (tool) vs 2000 (L); L ran each fit on 1 thread, the tool here on 4; L's MLP is 32 hidden units, lbfgs, alpha 0.01, so the MLP rows are not a parity comparison"
+  },
+  "warnings": {
+    "count": 0,
+    "by_category": {},
+    "first": []
+  },
+  "seconds": 209.47434459999204
+}

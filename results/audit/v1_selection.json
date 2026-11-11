@@ -1,0 +1,39 @@
+{
+  "rule": "highest Lee2019 cross-day mean per-user AUC on full features (P0) at k = 20 over the feature comparators that survive the runtime gate; an exact tie goes to the simpler comparator in the order cosine, LDA + WCCN, cosine (rich summary), LDA + WCCN (rich summary), pairwise logistic",
+  "cohort": "lee2019",
+  "rung": "features_P0",
+  "condition": "cross-day",
+  "k": 20,
+  "not_compared": {
+    "pair_logistic": "removed by the runtime gate's reductions ['drop_pair_logistic']"
+  },
+  "mean_per_user_auc": {
+    "cosine": 0.944188683127572,
+    "lda_cosine": 0.9521275720164609,
+    "cosine_rich": 0.9543072016460905,
+    "lda_cosine_rich": 0.9458781893004116
+  },
+  "intervals": {
+    "cosine": [
+      0.9125393840020577,
+      0.9695911184597297
+    ],
+    "lda_cosine": [
+      0.926514654431217,
+      0.9735640694811875
+    ],
+    "cosine_rich": [
+      0.9281577645502647,
+      0.9744242596266901
+    ],
+    "lda_cosine_rich": [
+      0.9199371524103469,
+      0.9672525635655498
+    ]
+  },
+  "comparator": "cosine_rich",
+  "report": "results/audit/lee2019/features_P0/report.json",
+  "report_sha256": "8bd28dfe8cd3cc475033a547048af582c91ed8c78635f5c848aa503665781534",
+  "configured": "cosine_rich",
+  "agrees": true
+}
