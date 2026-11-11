@@ -1,4 +1,170 @@
-# BEAT: what a motor-imagery BCI reveals about its user
+# BEAT: what a motor-imagery BCI transmits about its user, measured and audited
+
+**What BEAT is now (v3).** BEAT is a leakage audit for what a brain–computer interface
+transmits. Its tool, `beat_audit`, takes any BCI's outputs (feature vectors or decoded commands,
+with user and day labels) and measures whether an attacker who never enrolled a user can link two
+recordings of that user from those outputs alone, and how this depends on what is transmitted.
+Its methods are taken from biometric testing, template-protection unlinkability,
+speaker-anonymisation evaluation, forensic likelihood ratios, sequential analysis and
+large-population biometrics ([`docs/related_work.md`](docs/related_work.md) Section 8), and each
+was validated on synthetic ground truth before use (`results/audit/validation.json`). The
+identity study of v1–v2 stays below, unchanged ([The identity study](#the-identity-study-v1v2)).
+
+```powershell
+pip install -e .
+beat-audit run examples/features.csv --out audit-example
+beat-audit compare features_P2-RC_d8=results/audit/ladder/lee2019/principal/features_P2-RC_d8/report.json commands_shared_tau0.50=results/audit/ladder/lee2019/principal/commands_shared_tau0.50/report.json --utility results/audit/ladder_compare_lee2019_utility.json --out audit-example/ladder.csv --derived-from=commands_shared_tau0.50=features_P2-RC_d8
+```
+
+The second line audits a synthetic feature file and writes `report.md`, `report.json` and figures
+to `audit-example/`; the third merges two stored reports with their task utility into a
+comparison table. Its `report.json` inputs are not tracked in Git (size); they are rebuilt as in
+the [builder's case](#builders-case-commands-or-features).
+
+**Risk at a glance: linkage by an attacker who never enrolled the user, by outputs observed**
+
+| Cohort and transmission | Recordings linked | Outputs observed (time) | Mean per-user AUC [95% interval] | EER | Tier |
+|---|---|---|---|---|---|
+| Yang2025 (51 users), full 190-d features (V1) | day 1 vs days 2–3 | 20 (2.7 min) | 0.855 [0.802, 0.905] | 0.233 | *pre-specified (non-blind)*; V1 supported |
+| Yang2025, commands of P2-RC at τ = 0.60 (V2) | day 1 vs days 2–3 | 50 (6.7 min) | 0.567 [0.540, 0.596] | 0.454 | *pre-specified (non-blind)*; V2 supported |
+| Lee2019 (54 users), full 210-d features | session 1 vs session 2 | 20 (4.3 min) | 0.954 [0.928, 0.974] | 0.133 | *exploratory* |
+| Lee2019, recentred 8-d features (P2-RC) | session 1 vs session 2 | 20 (4.3 min) | 0.688 [0.641, 0.731] | 0.357 | *exploratory* |
+| Lee2019, commands of P2-RC at τ = 0.50 | session 1 vs session 2 | 20 (4.3 min) | 0.630 [0.588, 0.672] | 0.400 | *exploratory* |
+| Lee2019, commands of P2-RC at τ = 0.80 | session 1 vs session 2 | 20 (4.3 min) | 0.677 [0.627, 0.722] | 0.358 | *exploratory* |
+
+How to read it: each value is the probability that the attacker's comparator scores a pair of
+windows from one user above a pair from two users (0.5 is chance, 1 is perfect linkage); it is a
+linkage score, not an identification rate. Time is outputs × the protocol's trial period (Yang2025
+8 s, Lee2019 13 s per output). Users are unseen by the attacker's comparator, not by the BCI;
+Lee2019 session 1 is the BCI's calibration day. Sources: `results/audit/yang2025/decision.json`,
+`results/audit/yang2025/summary.csv`, `results/audit/summary.csv`. Limits:
+[What this does not show](#what-v3-does-not-show).
+
+## BEAT v3: the audit tool and how it was validated
+
+v1–v2 measured identification among enrolled users and showed that the number depends on the day
+the attacker enrols with. v3 asks the question a builder faces: can an attacker who never
+enrolled a user link two recordings of that user from what the BCI transmits, and how does that
+depend on what is transmitted? `beat_audit` ([`beat_audit/README.md`](beat_audit/README.md))
+answers it for any BCI's outputs. Its plan, with the methods imported from other fields and the
+pre-specified predictions, is [`docs/plan_v3.md`](docs/plan_v3.md); the full account is
+[`docs/report.md`](docs/report.md) §6.11; the result files are read as described in
+[`results/audit/README.md`](results/audit/README.md).
+
+- **Validated before use.** Analytic checks, whole-procedure null and coverage simulations and
+  the sequential attacker were run on synthetic ground truth (`results/audit/validation.json`);
+  the closed-set module reproduces study L's registered 0.994 and 0.520 exactly
+  (`results/audit/parity.json`).
+- **Pre-specified (non-blind), Yang2025, 51 users.** Fixed at `freeze-5` (commit `55cd01e`)
+  before computation and run once, on a cohort whose identity results were already known from
+  study M, so not blind and not a confirmatory replication. Full features link across days (V1:
+  0.855 at 20 outputs) and command streams link weakly but detectably (V2: 0.567 at 50
+  commands); both supported (Holm p 2.0 × 10⁻⁴ each). The pre-specified estimate of same-day minus
+  cross-day linkage is 0.144 [0.094, 0.197]. An independent audit reproduced every
+  decision-driving number.
+- **Exploratory, Lee2019 and 2a.** The same pattern, and the transmission ladder below.
+- **What the tool caught about itself.** Mean-based feature comparators understated the exposure
+  of recentred 8-d features (Lee2019, session 1 vs 2, 20 outputs: 0.543 with LDA against 0.688
+  with the rich-summary cosine). This was detected because the best attack available to a holder of the
+  features cannot be weaker than the best attack on the commands decoded from them (a particular
+  implemented feature comparator can be), and the commands scored 0.630–0.677; `compare` now carries
+  this data-processing guard. The gallery-size extrapolation failed its own check in most
+  cross-day feature cells of Lee2019 and Yang2025 and is not reported. The sequential attacker's
+  realised error rates on real streams are not its nominal 0.05 (Yang2025 cross-day false-match
+  rate up to 0.244).
+- **What v3 did not achieve: a working BCI.** Per-user decoders did not demonstrate
+  consistent improvement in task accuracy: task BA 0.545 against 0.544 for the shared decoder on
+  Yang2025, 0.646 against 0.692 on Lee2019 and 0.759 against 0.718 on 2a (9 users). Every rung of the ladder
+  still shows linkage.
+
+**Evidence tiers of v3.** The 2a and Lee2019 audit numbers are *exploratory*. The Yang2025 batch
+is *pre-specified (non-blind)*, as defined above. Only V1 and V2 carry verdicts; every other audit
+number, including the contrast and the ladder, is an estimate.
+
+### What v3 does not show
+
+> - **Not anonymity, not safety.** A value near 0.5 means this attacker did not link the outputs;
+>   "not detected" is never "absent". The attackers are the tool's comparators fitted on other
+>   users; no adaptive or white-box attacker was tried.
+> - **Unseen by the attacker, not by the BCI.** Encoders, recentring and decoders were fitted
+>   with the target users' calibration data. On Yang2025 the full-feature tangent reference was
+>   fitted on day 1, as in study M's claim M1.
+> - **Pre-specified is not blind.** Yang2025's identity results were known from study M when v3
+>   was designed. Before the freeze the tool was run three times on the development cohorts
+>   (before a repair, after it, and after replacing an ill-conditioned LDA whitening), the plan was
+>   changed twice (a stronger feature attacker with the data-processing guard; a 60-min instead of
+>   30-min per-stream runtime limit), and V1's comparator was named by a fixed rule on a near tie
+>   (0.9543 against 0.9521). Whole-procedure null validation at the batch's shape rejected 9, 15
+>   and 10 of 200 null simulations, inside the pre-stated 99% interval 3–19; 15 of 200 is above
+>   the nominal 5%. The last runner correction was made by the Lead and not re-reviewed. The
+>   freeze, its timestamps, the push order and the untracked full reports are self-attested.
+> - **Report wording.** The tool's `report.md` files print "linkage detected" on rows that are
+>   estimates, not verdicts (177 rows of the Yang2025 batch); only `decision.json` decides.
+> - **Withheld outputs.** The gallery-size extrapolation and the sequential attacker's nominal
+>   error rates are not reported as results (see above).
+> - **No working BCI.** The decoders are weak (Yang2025 task BA about 0.54), and per-user decoders
+>   did not demonstrate consistent improvement; every rung of the ladder still shows linkage.
+
+## Builder's case: commands or features?
+
+Should a BCI transmit its 8-d features or the commands decoded from them? The transmission
+ladder puts every alternative on one common trial support per cohort, audits it with the frozen
+settings on days no encoder or decoder was fitted on (Yang2025, day 2 vs day 3) or within the
+latest session (Lee2019 session 2, 2a session E), and merges linkage with task utility through `beat-audit compare`, which refuses
+reports of different populations and checks that no command stream links more than its declared
+source features. Rebuild the tables from the stored reports (from the project root):
+
+```powershell
+python -m beat_audit compare features_P0=results/audit/ladder/yang2025/principal/features_P0/report.json features_P2-RC_d8=results/audit/ladder/yang2025/principal/features_P2-RC_d8/report.json commands_shared_tau0.50=results/audit/ladder/yang2025/principal/commands_shared_tau0.50/report.json commands_shared_tau0.60=results/audit/ladder/yang2025/principal/commands_shared_tau0.60/report.json commands_per_user_tau0.50=results/audit/ladder/yang2025/principal/commands_per_user_tau0.50/report.json commands_per_user_tau0.60=results/audit/ladder/yang2025/principal/commands_per_user_tau0.60/report.json commands_per_user_tau0.80=results/audit/ladder/yang2025/principal/commands_per_user_tau0.80/report.json --utility results/audit/ladder_compare_yang2025_utility.json --out results/audit/ladder_compare_yang2025.csv --derived-from=commands_shared_tau0.50=features_P2-RC_d8 --derived-from=commands_shared_tau0.60=features_P2-RC_d8 --derived-from=commands_per_user_tau0.50=features_P0 --derived-from=commands_per_user_tau0.60=features_P0 --derived-from=commands_per_user_tau0.80=features_P0
+python -m beat_audit compare features_P0=results/audit/ladder/lee2019/principal/features_P0/report.json features_P2-RC_d8=results/audit/ladder/lee2019/principal/features_P2-RC_d8/report.json commands_shared_tau0.50=results/audit/ladder/lee2019/principal/commands_shared_tau0.50/report.json commands_shared_tau0.80=results/audit/ladder/lee2019/principal/commands_shared_tau0.80/report.json commands_per_user_tau0.50=results/audit/ladder/lee2019/principal/commands_per_user_tau0.50/report.json commands_per_user_tau0.60=results/audit/ladder/lee2019/principal/commands_per_user_tau0.60/report.json commands_per_user_tau0.80=results/audit/ladder/lee2019/principal/commands_per_user_tau0.80/report.json --utility results/audit/ladder_compare_lee2019_utility.json --out results/audit/ladder_compare_lee2019.csv --derived-from=commands_shared_tau0.50=features_P2-RC_d8 --derived-from=commands_shared_tau0.80=features_P2-RC_d8 --derived-from=commands_per_user_tau0.50=features_P0 --derived-from=commands_per_user_tau0.60=features_P0 --derived-from=commands_per_user_tau0.80=features_P0
+```
+
+The `report.json` inputs (component-level evidence, up to 208 MB each) are not tracked in
+Git; their sizes and SHA-256 are in `results/audit/report_index.json`. They are regenerated, with
+the exports of `scripts/audit_cohorts.py` in place, by `python scripts/audit_ladder.py prepare
+--cohort yang2025`, then `python scripts/audit_ladder.py run --cohort yang2025` (and likewise for
+`lee2019`, `bnci2014_001` and `--set calibration_day`); `python scripts/audit_ladder.py table`
+writes `results/audit/ladder.csv`. The rendered tables with all k and seeds are
+`results/audit/ladder_compare_*.md`.
+
+Result at 20 outputs (task utility on later-day trials; feature rungs: best of four comparators
+named post hoc; command rungs: cue-aware Bayes factor; *exploratory*):
+
+| Cohort, recordings linked | Alternative | Task BA | Hold rate | Mean per-user AUC [95% interval] |
+|---|---|---|---|---|
+| Yang2025, day 2 vs day 3 | full features (P0) | 0.555 | 0.000 | 0.910 [0.864, 0.950] |
+| Yang2025, day 2 vs day 3 | 8-d features (P2-RC) | 0.544 | 0.000 | 0.835 [0.781, 0.880] |
+| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.50 | 0.544 | 0.000 | 0.663 [0.590, 0.727] |
+| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.60 | 0.544 | 0.473 | 0.696 [0.619, 0.759] |
+| Yang2025, day 2 vs day 3 | commands, per-user decoders, τ = 0.50 | 0.545 | 0.000 | 0.634 [0.557, 0.707] |
+| Lee2019, session 2 offline vs online | full features (P0) | 0.698 | 0.000 | 1.000 [1.000, 1.000] |
+| Lee2019, session 2 offline vs online | 8-d features (P2-RC) | 0.692 | 0.000 | 0.961 [0.941, 0.977] |
+| Lee2019, session 2 offline vs online | commands, shared decoder, τ = 0.50 | 0.692 | 0.000 | 0.789 [0.740, 0.832] |
+| Lee2019, session 2 offline vs online | commands, shared decoder, τ = 0.80 | 0.692 | 0.648 | 0.832 [0.784, 0.874] |
+| Lee2019, session 2 offline vs online | commands, per-user decoders, τ = 0.50 | 0.646 | 0.000 | 0.811 [0.768, 0.852] |
+
+**What it supports.** At matched task utility (the shared decoder's commands against the 8-d
+features they are decoded from), transmitting commands gives lower measured linkage on Yang2025
+and Lee2019 under these attackers; the intervals do not overlap. The data-processing guard
+flagged no command stream in any evaluable cell of these two tables.
+
+**What it does not show.**
+- On 2a (9 users) the commands' point estimate is lower, but the intervals overlap, so
+  superiority is not established there. Lee2019 and 2a have no cross-day contrast free of the
+  calibration day; on Lee2019 session 1 vs 2 the intervals overlap (8-d features 0.688
+  [0.641, 0.731] against commands 0.630 [0.588, 0.672] and 0.677 [0.627, 0.722];
+  `results/audit/ladder_compare_lee2019_calibration_day.md`).
+- The feature comparator shown is the best of four chosen on the same target users, which
+  favours commands in the comparison; every single feature comparator's point estimate still
+  exceeds the command estimates (rung `report.md` files under `results/audit/ladder/`).
+- The cue-aware command attacker and the feature attackers differ in kind, so these are
+  attacker-dependent measurements, not guarantees. Commands still link: no rung reaches chance.
+- Full features and per-user decoders are not at matched utility with the shared-decoder rungs.
+
+## The identity study (v1–v2)
+
+The sections from here to the audit checklist are the v1–v2 study as published before v3; its
+thesis, verdicts, tiers and numbers are unchanged.
 
 **Thesis.** Whether what a motor-imagery BCI transmits exposes its user, and whether a defence
 protects that user, depends on which day's recording the attacker enrols with. One within-day
@@ -31,13 +197,17 @@ The thesis was fixed before any final output of study M was read (`docs/decision
 identity exposure in what a BCI transmits, and the effect of a defence on it, depend on which day's
 recording the attacker enrols with, so one same-day number can claim neither risk nor protection.
 
-**Evidence tiers.** Every headline number carries one of three labels:
+**Evidence tiers.** Every headline number of v1–v2 carries one of three labels; v3 adds a
+fourth:
 
 - *confirmatory-sealed*: decided by a rule committed before the held-out data were scored
   (seals 1, 3 and 4).
 - *pre-registered estimate*: fixed in a sealed plan and reported without a verdict.
 - *exploratory*: not pre-registered, or computed on data that had already shaped the analysis
-  (experiments D, E, G, K and R).
+  (experiments D, E, G, K and R; all v3 audit numbers on 2a and Lee2019).
+- *pre-specified (non-blind)* (v3 only): fixed at `freeze-5` (commit `55cd01e`) before
+  computation and run once, on a cohort (Yang2025) whose identity results were already known from
+  study M; hence not blind and not a confirmatory replication. Only V1 and V2 carry verdicts.
 
 **Scenarios.** Every number also names its scenario. **Within-day** numbers enrol and test the
 attacker on the same recording day. **Cross-day** numbers enrol on the calibration day and test
@@ -79,6 +249,7 @@ on the deployment day.
 >   when held-out data were first seen. Seal 4 (study M) also has an RFC 3161 timestamp, but the
 >   log showing that no day-2/3 data were requested before it is self-attested.
 > - **Out of scope.** Device compromise, identifying metadata and unobserved sensitive attributes.
+> - **v3.** The audit's own limits are listed under [What v3 does not show](#what-v3-does-not-show).
 
 ## Headline numbers: within-day and cross-day side by side
 
@@ -552,14 +723,16 @@ The full list of ten items, with evidence for each, is in
 | Path | Contents |
 |---|---|
 | `beat/` | Pipeline: `data.py` (loading, leakage guard), `features.py`, `models.py`, `attacks.py`, `stats.py`, `splits.py`, `lee2019.py`, `yang2025.py`, `exp_a.py` … `exp_g.py`, `exp_l.py`, `exp_k.py`, `exp_m.py`, `exp_r.py`, `common.py`, `verify.py`, `figures.py`, `run_all.py` |
-| `configs/` | Data settings and one YAML per experiment, fixed at the seals |
-| `scripts/` | `download_data.py` (BNCI2014-001), `prepare_lee2019.py` (Lee2019), `fetch_yang2025.py` (Yang2025, allowlisted byte ranges), `verify_inputs.py`, `check_references.py`, `make_summary_figures.py`, `export_demo_data.py` |
+| `beat_audit/` | v3 audit tool (`beat-audit run`, `beat-audit compare`): input checks, comparators, inference, closed-set parity module, sequential attacker, gallery module, reports; see [`beat_audit/README.md`](beat_audit/README.md) |
+| `examples/` | Synthetic `features.csv` and `commands.csv` for the tool, and `generate.py`, which writes them |
+| `configs/` | Data settings and one YAML per experiment, fixed at the seals; `audit.yaml` (v3, fixed at `freeze-5`) |
+| `scripts/` | `download_data.py` (BNCI2014-001), `prepare_lee2019.py` (Lee2019), `fetch_yang2025.py` (Yang2025, allowlisted byte ranges), `verify_inputs.py`, `check_references.py`, `make_summary_figures.py`, `export_demo_data.py`; v3: `make_v3_figures.py` (v3 talk figures from `results/audit/`), `audit_cohorts.py` (exports, validation, development runs, frozen batch) and `audit_ladder.py` (transmission ladder) |
 | `seals/`, `checksums/` | Seal manifest (`manifest.yaml`) and committed input hashes |
 | `tests/` | Leakage guards, unit tests and synthetic end-to-end runs (see [Tests and CI](#tests-and-ci)) |
-| `results/` | Tables (CSV/JSON) and figures per experiment; `results/figures/summary/` holds the summary figures |
-| `docs/` | [`report.md`](docs/report.md) (technical report), [`explainer_ko.md`](docs/explainer_ko.md) (Korean explainer), `analysis_plan.md`, [`preregistration_m.md`](docs/preregistration_m.md), `decision_log.md`, `related_work.md`, `numbers.yaml` (number registry) |
+| `results/` | Tables (CSV/JSON) and figures per experiment; `results/figures/summary/` holds the summary figures; `results/audit/` holds the v3 audit (read [`results/audit/README.md`](results/audit/README.md) first) |
+| `docs/` | [`report.md`](docs/report.md) (technical report), [`explainer_ko.md`](docs/explainer_ko.md) (Korean explainer), `analysis_plan.md`, [`preregistration_m.md`](docs/preregistration_m.md), `decision_log.md`, `related_work.md`, `numbers.yaml` (number registry), [`plan_v3.md`](docs/plan_v3.md) (v3 plan, predictions and state) |
 | `demo/` | Static interactive results page |
-| `presentation/` | Current talk (v2) slides in Korean with speaker notes (`BEAT_v2_talk.pptx`, PDF copy `BEAT_v2_talk.pdf`); the earlier v1 talk is kept as `BEAT_final_talk.pptx` and `BEAT_final_talk.pdf` |
+| `presentation/` | Current talk (v3) slides in Korean with speaker notes (`BEAT_v3_talk.pptx`, PDF copy `BEAT_v3_talk.pdf`, text source `BEAT_v3_talk.pptx.mixdog-source.html`) and its figures in `presentation/figures/v3/` (drawn by `scripts/make_v3_figures.py`); earlier versions: the v2 talk (`BEAT_v2_talk.pptx`, `BEAT_v2_talk.pdf`) and the v1 talk (`BEAT_final_talk.pptx`, `BEAT_final_talk.pdf`) |
 
 ## Reproduction
 
@@ -602,6 +775,9 @@ file as a stream (about 66 GB, nothing written to disk) and compares it with the
 | R | `python -m beat.exp_r crossday`; MLP refits: `pilot`, then `run` | MLP refits: 6479 s of fitting (`results/exp_r/mlp_sensitivity.json`) |
 | M | `python scripts/fetch_yang2025.py` (day 1), `python -m beat.exp_m dev`, then `streams`; after seal 4: `python scripts/fetch_yang2025.py --days 2 3 --seal-commit e88154c6f0b3d1a7887f2368763808fc91d9a81a`, then `python -m beat.exp_m final --seal-commit e88154c6f0b3d1a7887f2368763808fc91d9a81a --result-dir results/exp_m --artifact-dir artifacts/exp_m` | final stage 22:36:31–22:39:54 UTC, one attempt (`results/exp_m/final_attempts.jsonl`); day-2/3 fetch about 2 h |
 | Figures | `python scripts/make_summary_figures.py` | — |
+| v3 audit | `python scripts/audit_cohorts.py --config configs/audit.yaml` (exports of the three cohorts; further stages are subcommands of the same script, listed by `--help`); the frozen batch: check out `freeze-5` and install `results/audit/freeze/pip_freeze.txt` | frozen batch 14:42:58–15:25:13 UTC on 2026-11-11, one attempt (`results/audit/attempts.jsonl`); other stages not timed as one run |
+| v3 ladder | `python scripts/audit_ladder.py prepare --cohort <cohort>`, `run --cohort <cohort>` (each also with `--set calibration_day`), then `table` | not timed |
+| v3 talk figures | `python scripts/make_v3_figures.py` (reads the stored `results/audit/` files, writes `presentation/figures/v3/*.png`) | not timed |
 
 - **Machine.** Times were measured on an 8-thread laptop CPU without a GPU. The whole chain has
   never been timed as one run.
@@ -622,6 +798,10 @@ cannot be edited:
 - `data`: reads the raw BNCI2014-001 files under `data/` (`tests/test_foundation.py::test_loaded_trial_counts_and_shape`).
 - `slow`: full synthetic development + final pipeline round trips (`test_synthetic_*final*`),
   about 25 s to 2 min each.
+
+The v3 tests (`tests/test_audit_*.py`: input checks, statistics, inference, rich summaries,
+shrinkage, synthetic validation, protocol, pipeline, cohort runner and ladder) run on synthetic
+data as well; the full synthetic validation lane is recorded in `results/audit/validation.json`.
 
 ```powershell
 .venv\Scripts\python -m pytest                              # everything; `data` tests skip without data/
