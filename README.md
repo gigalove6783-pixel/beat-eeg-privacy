@@ -2,8 +2,11 @@
 
 **What BEAT is now (v3).** BEAT is a leakage audit for what a brain–computer interface
 transmits. Its tool, `beat_audit`, takes any BCI's outputs (feature vectors or decoded commands,
-with user and day labels) and measures whether an attacker who never enrolled a user can link two
-recordings of that user from those outputs alone, and how this depends on what is transmitted.
+with user and day labels and, optionally, each trial's task cue) and measures whether an attacker
+who never enrolled a user can link two recordings of that user, and how this depends on what is
+transmitted. In BEAT's audits the attacker is given the outputs and each trial's task cue (the
+`target` column: left or right); the comparators of V1 and V2 condition on that cue, and an
+attacker who sees the outputs without the cues was not measured.
 Its methods are taken from biometric testing, template-protection unlinkability,
 speaker-anonymisation evaluation, forensic likelihood ratios, sequential analysis and
 large-population biometrics ([`docs/related_work.md`](docs/related_work.md) Section 8), and each
@@ -16,10 +19,15 @@ beat-audit run examples/features.csv --out audit-example
 beat-audit compare features_P2-RC_d8=results/audit/ladder/lee2019/principal/features_P2-RC_d8/report.slim.json commands_shared_tau0.50=results/audit/ladder/lee2019/principal/commands_shared_tau0.50/report.slim.json --utility results/audit/ladder_compare_lee2019_utility.json --out audit-example/ladder.csv --derived-from=commands_shared_tau0.50=features_P2-RC_d8
 ```
 
-The second line audits a synthetic feature file and writes `report.md`, `report.json` and figures
-to `audit-example/`; the third merges two stored reports with their task utility into a
-comparison table. Its inputs are tracked `report.slim.json` files, so all three lines run in a
-fresh clone ([builder's case](#builders-case-commands-or-features)).
+The second line audits a synthetic feature file (columns `user`, `day`, `segment`, `order` and
+the outputs; it has no `target` cue column, so no comparator conditions on a cue) and writes
+`report.md`, `report.json` and figures to `audit-example/`; the third merges two stored reports
+with their task utility into a comparison table. Its inputs are tracked `report.slim.json` files,
+so all three lines run in a fresh clone ([builder's case](#builders-case-commands-or-features)).
+The example is deliberately small (12 users), and the second line prints warnings by design:
+scikit-learn `ConvergenceWarning` lines for the MLP comparator and `not_evaluable` lines for
+k = 20, 50 and 100 ("12/12 excluded; supply a window in every required segment …"), so a
+successful run is a working installation, not a clean empirical audit.
 
 **Risk at a glance: linkage by an attacker who never enrolled the user, by outputs observed**
 
@@ -64,18 +72,21 @@ pre-specified predictions, is [`docs/plan_v3.md`](docs/plan_v3.md); the full acc
   decision-driving number.
 - **Exploratory, Lee2019 and 2a.** The same pattern, and the transmission ladder below.
 - **What the tool caught about itself.** Mean-based feature comparators understated the exposure
-  of recentred 8-d features (Lee2019, session 1 vs 2, 20 outputs: 0.543 with LDA against 0.688
-  with the rich-summary cosine). This was detected because the best attack available to a holder of the
+  of recentred 8-d features (Lee2019, session 1 vs 2, 20 outputs, stored run of the final tool:
+  0.543 with LDA against 0.688 with the rich-summary cosine; the first development run gave 0.542). This was detected because the best attack available to a holder of the
   features cannot be weaker than the best attack on the commands decoded from them (a particular
   implemented feature comparator can be), and the commands scored 0.630–0.677; `compare` now carries
   this data-processing guard. The gallery-size extrapolation failed its own check in most
   cross-day feature cells of Lee2019 and Yang2025 and is not reported. The sequential attacker's
-  realised error rates on real streams are not its nominal 0.05 (Yang2025 cross-day false-match
+  nominal error rates are α = β = 0.05, and its model-based false-match bound is 0.0526
+  (= 0.05 / 0.95); on independent synthetic streams it realised 0.047 and 0.024, but on real
+  streams neither the nominal rates nor the bound hold (Yang2025 cross-day false-match
   rate up to 0.244).
 - **What v3 did not achieve: a working BCI.** Per-user decoders did not demonstrate
   consistent improvement in task accuracy: task BA 0.545 against 0.544 for the shared decoder on
-  Yang2025, 0.646 against 0.692 on Lee2019 and 0.759 against 0.718 on 2a (9 users). Every rung of the ladder
-  still shows linkage.
+  Yang2025, 0.646 against 0.692 on Lee2019 and 0.759 against 0.718 on 2a (9 users). No rung of
+  the ladder demonstrated the absence of linkage: every point estimate is above 0.5, and linkage
+  was detected for every rung on Yang2025 and Lee2019 but not for the command rungs of 2a.
 
 **Evidence tiers of v3.** The 2a and Lee2019 audit numbers are *exploratory*. The Yang2025 batch
 is *pre-specified (non-blind)*, as defined above. Only V1 and V2 carry verdicts; every other audit
@@ -86,6 +97,9 @@ number, including the contrast and the ladder, is an estimate.
 > - **Not anonymity, not safety.** A value near 0.5 means this attacker did not link the outputs;
 >   "not detected" is never "absent". The attackers are the tool's comparators fitted on other
 >   users; no adaptive or white-box attacker was tried.
+> - **Cue-aware attacker.** The attacker is given each trial's task cue with the outputs; the
+>   comparators of V1 and V2 use it. An attacker who sees the outputs without the cues was not
+>   measured.
 > - **Unseen by the attacker, not by the BCI.** Encoders, recentring and decoders were fitted
 >   with the target users' calibration data. On Yang2025 the full-feature tangent reference was
 >   fitted on day 1, as in study M's claim M1.
@@ -103,7 +117,8 @@ number, including the contrast and the ladder, is an estimate.
 > - **Withheld outputs.** The gallery-size extrapolation and the sequential attacker's nominal
 >   error rates are not reported as results (see above).
 > - **No working BCI.** The decoders are weak (Yang2025 task BA about 0.54), and per-user decoders
->   did not demonstrate consistent improvement; every rung of the ladder still shows linkage.
+>   did not demonstrate consistent improvement; no rung of the ladder demonstrated the absence
+>   of linkage (see above for where linkage was not detected).
 
 ## Builder's case: commands or features?
 
@@ -159,11 +174,21 @@ flagged no command stream in any evaluable cell of these two tables.
   calibration day; on Lee2019 session 1 vs 2 the intervals overlap (8-d features 0.688
   [0.641, 0.731] against commands 0.630 [0.588, 0.672] and 0.677 [0.627, 0.722];
   `results/audit/ladder_compare_lee2019_calibration_day.md`).
+- On these calibration-day comparisons the data-processing guard flagged three cells, all at
+  k = 1: on Lee2019 session 1 vs 2, commands at τ = 0.50 (0.520) and τ = 0.80 (0.537) against
+  the 8-d features (0.515); on 2a session T vs E, commands at τ = 0.80 (0.545) against the 8-d
+  features (0.501) (`results/audit/ladder_compare_{lee2019,bnci2014_001}_calibration_day_guard.csv`).
+  A flag means the implemented feature comparator, not the best possible attack on the features,
+  is weaker there.
+- Linkage was not detected for the five command rungs of 2a on its principal comparison (for
+  example shared decoder, τ = 0.50: 0.740 [0.596, 0.919]) or for its 8-d features and commands on
+  session T vs E; "not detected" means insufficient evidence, not absence.
 - The feature comparator shown is the best of four chosen on the same target users, which
   favours commands in the comparison; every single feature comparator's point estimate still
   exceeds the command estimates (rung `report.md` files under `results/audit/ladder/`).
 - The cue-aware command attacker and the feature attackers differ in kind, so these are
-  attacker-dependent measurements, not guarantees. Commands still link: no rung reaches chance.
+  attacker-dependent measurements, not guarantees. No rung demonstrated the absence of linkage;
+  every point estimate is above 0.5.
 - Full features and per-user decoders are not at matched utility with the shared-decoder rungs.
 
 ## The identity study (v1–v2)

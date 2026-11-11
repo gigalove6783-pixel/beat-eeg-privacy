@@ -68,7 +68,7 @@ a { color: var(--accent); }
 /* v3 open-set linkage */
 .v3 { padding: 48px 20px 36px; word-break: keep-all; }
 .v3 h1 { font-size: clamp(1.5rem, 3.6vw, 2.3rem); max-width: 34ch; }
-.v3 code { word-break: break-all; }
+.v3 code { word-break: normal; }
 .v3-flow { list-style: none; padding: 0; margin: 20px 0 12px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .v3-flow li { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 14px 12px 52px; font-size: .92rem; box-shadow: var(--shadow); }
 .v3-flow h3 { font-size: 1rem; margin-bottom: 4px; }

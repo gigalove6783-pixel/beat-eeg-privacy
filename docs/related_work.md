@@ -361,7 +361,8 @@ are equal. *Use* (plan §2, §3 "Protocol", "Metrics and inference"): a referenc
 against a probe window is a mated comparison when the probe is from u and a non-mated comparison
 when it is from another target user; the tool reports FMR, FNMR, EER, TPR at fixed FPR and DET
 curves. *Adaptation*: the "biometric system" is an attacker the tool builds from transmitted
-outputs alone; comparators are fitted on development users only, so every scored pair involves
+outputs and, in BEAT's audits, each trial's task cue (an attacker without the cues was not
+measured); comparators are fitted on development users only, so every scored pair involves
 users the comparator never saw, and the deciding statistic is a per-user AUC with a matching
 permutation test rather than a pooled error rate. *Limit*: 19795-1 evaluates a system built to
 recognise its enrolled users; BEAT's outputs were produced by a task decoder that was never meant
@@ -535,7 +536,7 @@ reads performance through Cllr with its Cllr_min / calibration decomposition (un
 accompanying paper is under review) [66]. *Difference*: these resources evaluate systems whose
 purpose is to recognise people from raw or minimally processed EEG, with an enrolment step and
 performance as the goal. `beat_audit` evaluates the transmitted outputs of a task BCI that is not
-meant to carry identity: its input is the decoded stream only, the attacker is built by the tool
+meant to carry identity: its input is the transmitted stream (with each trial's task cue in BEAT's audits), the attacker is built by the tool
 from users it never saw, the builder hopes for a low score, and a non-detection is reported as
 insufficient evidence, not absence. The cross-session drift these benchmarks document is the
 reason the tool always reports same-day beside cross-day.
@@ -544,13 +545,13 @@ reason the tool always reports same-day beside cross-day.
 
 | Method | Source | Role in the tool | Where the analogy stops |
 |---|---|---|---|
-| Mated / non-mated comparisons, FMR, FNMR, EER, DET | ISO/IEC 19795-1 [39] | Open-set linkage of two output windows | The "system" is the tool's attacker, not a recogniser the builder built |
+| Mated / non-mated comparisons, FMR, FNMR, DET (EER as its conventional equal-error point, not a 19795-1 term in the parts read) | ISO/IEC 19795-1 [39] | Open-set linkage of two output windows | The "system" is the tool's attacker, not a recogniser the builder built |
 | Unlinkability, D↔(s), D↔sys | ISO/IEC 24745 [40]; Gomez-Barrero et al. [41] | One-number linkability index of a stream | Not a property of a protection scheme; bounded by the comparator |
 | Attackers graded by knowledge | VoicePrivacy plans [42]–[44]; Srivastava et al. [45] | Enrolment × day-relation attacker grid | Analogy by knowledge only; no VoicePrivacy protocol or metric reused |
 | Cllr, Cllr_min under PAV, calibration | Brümmer and du Preez [46]–[48]; Ramos and Gonzalez-Rodriguez [49] | Evidence per comparison in bits; calibration loss across days | Estimated, pooled ratios; not case evidence |
 | SPRT, Ville's inequality | Wald [50]; Ramdas et al. [51] | Commands until a link decision; realised versus nominal error | Bounds hold under the generative model only; drift and dependence break it |
 | Rank-1 rate at gallery size N | Grother and Phillips [52] | Checked prediction; larger N as a scenario | Independence assumption; no population risk estimate |
-| Dirichlet-multinomial same-source Bayes factor | Minka [53]; Mosimann [54]; Ommen and Saunders [55] | Training-free command comparator | Assumes one command distribution per user across windows |
+| Dirichlet-multinomial same-source Bayes factor | Minka [53]; Mosimann [54]; Ommen and Saunders [55] | Command comparator: closed-form scoring with a development-fitted prior | Assumes one command distribution per user across windows |
 | Linear covariance shrinkage | Ledoit and Wolf [56] | Within-user covariance of the LDA comparators | Conditioning only; says nothing about attacker strength |
 | Data-processing inequality | Cover and Thomas [57] | Guard: feature exposure ≥ command exposure | Holds for optimal attackers; detects a weak one, does not size the gap |
 | Neural-data and re-identification instruments | [58]–[62] | Report reading of "reasonably likely means" | An input to an assessment; no legal conclusion |

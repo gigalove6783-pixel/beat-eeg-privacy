@@ -41,13 +41,13 @@ Each method enters the tool only with a validation test (§5). References are ch
 
 | Field | Method | Use in the tool |
 |---|---|---|
-| Biometric performance testing (ISO/IEC 19795-1) | Open-set verification: mated / non-mated comparison scores, FMR, FNMR, EER, DET | Linkage of two windows of outputs from users the attacker never enrolled |
+| Biometric performance testing (ISO/IEC 19795-1) | Open-set verification: mated / non-mated comparison scores, FMR, FNMR, DET; EER as the conventional summary statistic (not among the terms defined in the portions of the standard that were read, `docs/related_work.md` §8.1) | Linkage of two windows of outputs from users the attacker never enrolled |
 | Biometric template protection (ISO/IEC 24745; Gomez-Barrero et al. 2018) | Unlinkability measure D_sys in [0, 1] from mated / non-mated score densities | One-number linkability of a transmitted stream |
 | Speaker anonymisation (VoicePrivacy evaluation plans) | Attackers graded by knowledge; a weak attacker overstates protection | Attacker grid: enrolment (none / reference day / deployment day) × day relation. Stated as an analogy, not as the VoicePrivacy protocol |
 | Forensic likelihood ratios (Brümmer & du Preez 2006; Ramos & Gonzalez-Rodriguez 2013) | Calibrated LR, Cllr and Cllr_min | Evidence per comparison in bits; calibration loss across days |
 | Sequential analysis (Wald 1945) | SPRT with nominal error rates | Number of commands until a link decision; realised versus nominal error |
 | Large-population biometrics (Grother & Phillips 2004) | Rank-1 rate at gallery size N under the independence model, P_N = ∫ F_nonmated(s)^(N−1) dF_mated(s) | Checked against measured 1:N rates of the same comparator on held-out galleries; larger N shown only as an assumption-dependent scenario |
-| Bayesian two-sample test (Dirichlet-multinomial Bayes factor) | Same-source versus different-source evidence for two count vectors | Training-free comparator for command streams |
+| Bayesian two-sample test (Dirichlet-multinomial Bayes factor) | Same-source versus different-source evidence for two count vectors | Comparator for command streams: closed-form scoring with a prior fitted on development users |
 | Regulation | UNESCO Recommendation on the Ethics of Neurotechnology (2025), Colorado HB24-1058, California SB 1223, GDPR Recital 26, Korean pseudonymisation guideline | Report section that maps each metric to the "reasonably likely means" question; no legal conclusion |
 
 Stretch, not gated: empirical lower bound on a claimed ε of a randomising defence (Nasr et al.
@@ -449,3 +449,18 @@ admissible result.
   instead of one. Open for S5: the tool's report renderer does not print a tier or name its
   Holm family; a later tool version may add both, without regenerating frozen outputs.
   In progress: S4 ladder (exploratory), related-work Section 8. Next: S5 and S6.
+- 2026-11-12: S4–S6 complete (ladder `da0ab3f`, related work `8291117`, deck `5bfc01b`, demo
+  `efdef32`, README, report and explainer `f8ebf8f`, slim ladder reports for A10 `865980d`).
+  Final cross-document review: NEEDS_CHANGES on wording and coverage, no result changed.
+  Two descriptions in §2 of this plan were corrected after the freeze (the frozen text is in
+  `results/audit/freeze/source.zip`): EER is no longer attributed to ISO/IEC 19795-1, and the
+  command comparator is no longer called training-free (its Dirichlet prior is fitted on
+  development users, as §3 already specified). Neither changes a method or a setting.
+  Disclosure added everywhere the attacker is described: the cue-conditioned comparators of V1
+  (`cosine_rich`) and V2 (cue-aware Bayes factor) are given each trial's cue (`target`) besides
+  the outputs; an attacker without cue knowledge was not measured.
+  Re-review of the repairs: ten of thirteen criteria passed; the three remaining findings (the
+  word "guarantee" for the sequential attacker, the run behind 0.543 on slide 9, one source
+  reference in the explainer) were corrected and checked by the Lead against the result files,
+  without a further review round. Acceptance A6–A10 are met; the Linux path of the runner's
+  lock, a screen reader and a projector remain unchecked.

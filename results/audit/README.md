@@ -5,6 +5,12 @@ linkage: an attacker who never enrolled the target users decides whether two win
 transmitted outputs come from the same person. The statistic is the mean per-user AUC (0.5 is
 chance). It is not an identification rate.
 
+What the attacker is given: the transmitted outputs and each trial's task
+cue (the `target` column: left or right). The rich feature summaries (`cosine_rich`,
+`lda_cosine_rich`) and the command Bayes factor condition on that cue, and these are the
+comparators of V1 and V2. An attacker who sees the outputs without the cues was not measured;
+the mean-based comparators (`cosine`, `lda_cosine`) do not use the cue.
+
 ## Tiers
 
 | Folder | Cohort | Tier | Verdicts |
