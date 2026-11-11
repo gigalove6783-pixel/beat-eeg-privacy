@@ -28,9 +28,10 @@ dev = ["pytest==9.2.0", "ruff==0.17.4"]
 [project.scripts]
 beat-run-all = "beat.run_all:main"
 beat-verify = "beat.verify:main"
+beat-audit = "beat_audit.cli:main"
 
 [tool.setuptools]
-packages = ["beat"]
+packages = ["beat", "beat_audit"]
 
 [tool.ruff]
 line-length = 100

@@ -98,9 +98,14 @@ with `beat.exp_k.bayes_scores` on fixed inputs.
 - Bounds: per target user and condition, every mated comparison up to 200 and at most 50
   non-mated comparisons per partner, drawn with a fixed seed. The learned comparator is trained
   on at most 20,000 development pairs.
-- Feature comparators, all reported, the strongest named: cosine on standardised window means;
-  LDA + within-class covariance normalisation + cosine; pairwise logistic regression on absolute
-  differences. They use no data of target users.
+- Feature comparators, all reported, the strongest named: cosine on the standardised window
+  summary; LDA + within-class covariance normalisation + cosine; pairwise logistic regression on
+  absolute differences of window means. They use no data of target users. Two window summaries
+  (plan change of 2026-11-11, see State): *mean*, the mean output; *rich*, the mean, the mean
+  per cue when `target` is given (a cue absent from the window uses the window mean) and the
+  log of the per-dimension variance (variance floored; k ≥ 5 only). Cosine and LDA run on both
+  summaries (`cosine`, `lda_cosine`, `cosine_rich`, `lda_cosine_rich`); at k = 1 the rich
+  summary equals the mean and is skipped.
 - Command comparator: the same-source versus different-source Bayes factor of two count vectors
   x (reference) and y (probe) under a shared Dirichlet prior,
   BF = B(α + x + y) · B(α) / (B(α + x) · B(α + y)), B the multivariate beta function. The prior is
@@ -182,7 +187,12 @@ with `beat.exp_k.bayes_scores` on fixed inputs.
 **Guards from BEAT's findings.** The tool takes transmitted outputs only and computes its own
 independent attacks; it has no input for attacker scores supplied by the builder, so a co-trained
 head's accuracy cannot enter a report. It requires day labels, always prints same-day beside
-cross-day, warns below 20 users and flags a mean AUC below 0.5.
+cross-day, warns below 20 users and flags a mean AUC below 0.5. Data-processing guard in
+`compare`: commands are a function of the features they are decoded from, so the best feature
+attacker cannot do worse than the best command attacker. When the builder declares a command
+rung as derived from a feature rung and the command rung's mean AUC is the higher one at the
+same contrast and k, the table says that the feature attacker is too weak and that the feature
+rung's exposure is at least the command rung's.
 
 **Outputs.** `report.json` (all numbers), `report.md` (tables, plain-language reading,
 limitations), PNG figures (curve over k, DET, score histograms, gallery extrapolation).
@@ -211,8 +221,8 @@ gate: it ends by 11/15 12:00 within 2 h of compute, its numbers enter the deck o
 by 11/13 18:00, and the task is not complete until S4 is done.
 
 **Runtime gate (before the freeze).** A pilot on one Lee2019 fold projects the time and peak
-memory of the whole job manifest (all cohorts, rungs, seeds, conditions and k). Limits: 30 min
-and 8 GB per stream, 3 h for the Yang2025 batch, 4 threads per job (BLAS and OpenMP thread
+memory of the whole job manifest (all cohorts, rungs, seeds, conditions and k). Limits: 60 min
+and 8 GB per stream (30 min until the plan change of 2026-11-11), 3 h for the Yang2025 batch, 4 threads per job (BLAS and OpenMP thread
 variables set), at most two jobs at once. If the projection exceeds a limit, reductions are
 applied in this order and logged: drop the pairwise-logistic comparator; drop the gallery
 module; drop k = 1; 2,000 permutations instead of 10,000. If the limit is still exceeded, the
@@ -405,3 +415,18 @@ admissible result.
   `compare`. Review cap reached; no open blocker. The plan is accepted for implementation; the
   A2 null test exercises the bidirectional permutation as specified.
 - Procedure from here: hf-rlcr on this plan. Stage S1 and S2 exports start 2026-11-11.
+- 2026-11-11: S2 exports committed (16fc648) after review and two repairs. S1 reviewed:
+  numerical core confirmed, four protocol and reporting blockers in repair (repair round 1).
+- 2026-11-11: Lee2019 and 2a development run (exploratory, tool before repair). Two plan changes
+  by the Lead, both before any Yang2025 execution:
+  1. Feature comparators gain the *rich* window summary and `compare` gains the data-processing
+     guard. Reason: on Lee2019 cross-day at k = 20 the 8-d bottleneck gave mean AUC 0.542 with
+     the mean-based comparators while the commands decoded from it gave 0.630–0.677 with the
+     cue-aware Bayes factor. Commands are a function of those features, so the feature attacker
+     was too weak; reporting 0.542 as the bottleneck's exposure would repeat the weak-attacker
+     error that BEAT warns against. The change strengthens the attacker; no criterion is relaxed.
+  2. The per-stream runtime limit is 60 min instead of 30. Reason: the 30-min limit dropped the
+     pairwise-logistic comparator, the gallery module and k = 1 although the whole Yang2025 batch
+     was projected at 1.15 h against its 3 h limit; the batch limit is what protects the talk
+     gate. Parity, pilot, development runs, V1 selection and the job manifest are rerun on the
+     repaired tool; V1's comparator is named again by the same rule over all feature comparators.
