@@ -1,0 +1,208 @@
+{
+ "C": 1.0,
+ "max_iter": 1000,
+ "taus": [
+  0.5,
+  0.6,
+  0.8
+ ],
+ "folds": 5,
+ "cv_seed": 20261115,
+ "fits": {
+  "0": [
+   {
+    "user": 1,
+    "calibration_trials": 138,
+    "later_trials": 141,
+    "iterations": 20,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 2,
+    "calibration_trials": 136,
+    "later_trials": 142,
+    "iterations": 19,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 3,
+    "calibration_trials": 137,
+    "later_trials": 137,
+    "iterations": 16,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 4,
+    "calibration_trials": 129,
+    "later_trials": 116,
+    "iterations": 16,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 5,
+    "calibration_trials": 129,
+    "later_trials": 135,
+    "iterations": 21,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 6,
+    "calibration_trials": 113,
+    "later_trials": 108,
+    "iterations": 17,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 7,
+    "calibration_trials": 133,
+    "later_trials": 140,
+    "iterations": 16,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 8,
+    "calibration_trials": 132,
+    "later_trials": 134,
+    "iterations": 12,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 9,
+    "calibration_trials": 116,
+    "later_trials": 130,
+    "iterations": 21,
+    "convergence_warnings": 0
+   }
+  ],
+  "1": [
+   {
+    "user": 1,
+    "calibration_trials": 138,
+    "later_trials": 141,
+    "iterations": 20,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 2,
+    "calibration_trials": 136,
+    "later_trials": 142,
+    "iterations": 19,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 3,
+    "calibration_trials": 137,
+    "later_trials": 137,
+    "iterations": 16,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 4,
+    "calibration_trials": 129,
+    "later_trials": 116,
+    "iterations": 16,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 5,
+    "calibration_trials": 129,
+    "later_trials": 135,
+    "iterations": 21,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 6,
+    "calibration_trials": 113,
+    "later_trials": 108,
+    "iterations": 17,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 7,
+    "calibration_trials": 133,
+    "later_trials": 140,
+    "iterations": 16,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 8,
+    "calibration_trials": 132,
+    "later_trials": 134,
+    "iterations": 12,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 9,
+    "calibration_trials": 116,
+    "later_trials": 130,
+    "iterations": 21,
+    "convergence_warnings": 0
+   }
+  ],
+  "2": [
+   {
+    "user": 1,
+    "calibration_trials": 138,
+    "later_trials": 141,
+    "iterations": 20,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 2,
+    "calibration_trials": 136,
+    "later_trials": 142,
+    "iterations": 19,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 3,
+    "calibration_trials": 137,
+    "later_trials": 137,
+    "iterations": 16,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 4,
+    "calibration_trials": 129,
+    "later_trials": 116,
+    "iterations": 16,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 5,
+    "calibration_trials": 129,
+    "later_trials": 135,
+    "iterations": 21,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 6,
+    "calibration_trials": 113,
+    "later_trials": 108,
+    "iterations": 17,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 7,
+    "calibration_trials": 133,
+    "later_trials": 140,
+    "iterations": 16,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 8,
+    "calibration_trials": 132,
+    "later_trials": 134,
+    "iterations": 12,
+    "convergence_warnings": 0
+   },
+   {
+    "user": 9,
+    "calibration_trials": 116,
+    "later_trials": 130,
+    "iterations": 21,
+    "convergence_warnings": 0
+   }
+  ]
+ }
+}

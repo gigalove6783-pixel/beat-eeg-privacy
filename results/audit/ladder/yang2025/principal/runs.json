@@ -1,0 +1,72 @@
+{
+ "features_P0": {
+  "seconds": 859.7725490999874,
+  "tool_runtime_seconds": 854.0591714999173,
+  "cells": {
+   "ok": 12
+  },
+  "report": "results/audit/ladder/yang2025/principal/features_P0/report.json",
+  "report_sha256": "c918d45c38b9c4dafb853f93ab5c5170995950aa8759a181bd475461a070603d",
+  "utc": "2026-11-11T16:01:08Z"
+ },
+ "features_P2-RC_d8": {
+  "seconds": 646.9809488998726,
+  "tool_runtime_seconds": 641.285566000035,
+  "cells": {
+   "ok": 12
+  },
+  "report": "results/audit/ladder/yang2025/principal/features_P2-RC_d8/report.json",
+  "report_sha256": "2dfffd3497301382989b231bb2377a38f728507758ea0ab327b0b7616e7fa945",
+  "utc": "2026-11-11T16:11:55Z"
+ },
+ "commands_shared_tau0.50": {
+  "seconds": 105.02034540008754,
+  "tool_runtime_seconds": 103.66217919997871,
+  "cells": {
+   "ok": 12
+  },
+  "report": "results/audit/ladder/yang2025/principal/commands_shared_tau0.50/report.json",
+  "report_sha256": "e443ef9d9562decf4de943d9cb27cc32246c94c0a412924b6cd8e427ec085d23",
+  "utc": "2026-11-11T16:13:40Z"
+ },
+ "commands_shared_tau0.60": {
+  "seconds": 106.63209520000964,
+  "tool_runtime_seconds": 105.29507360002026,
+  "cells": {
+   "ok": 12
+  },
+  "report": "results/audit/ladder/yang2025/principal/commands_shared_tau0.60/report.json",
+  "report_sha256": "7fd89829414ac5bb81abb062c0699a427c695e5ef32cb27a2a18b510358a7e8f",
+  "utc": "2026-11-11T16:15:26Z"
+ },
+ "commands_per_user_tau0.50": {
+  "seconds": 108.1663794000633,
+  "tool_runtime_seconds": 106.67694460018538,
+  "cells": {
+   "ok": 12
+  },
+  "report": "results/audit/ladder/yang2025/principal/commands_per_user_tau0.50/report.json",
+  "report_sha256": "1ab5026080131d202134de705fdd08fb40a362ddb8cf26f1d6f27cfcecf66a2f",
+  "utc": "2026-11-11T16:17:15Z"
+ },
+ "commands_per_user_tau0.60": {
+  "seconds": 105.17106700013392,
+  "tool_runtime_seconds": 103.98154200008139,
+  "cells": {
+   "ok": 12
+  },
+  "report": "results/audit/ladder/yang2025/principal/commands_per_user_tau0.60/report.json",
+  "report_sha256": "d8b45b38542231f64c9764490089fdbe5ee1a5b2b8910a1cb5b32984b8979cf1",
+  "utc": "2026-11-11T16:19:00Z"
+ },
+ "commands_per_user_tau0.80": {
+  "seconds": 106.56741889985278,
+  "tool_runtime_seconds": 105.22994979983196,
+  "cells": {
+   "ok": 12
+  },
+  "report": "results/audit/ladder/yang2025/principal/commands_per_user_tau0.80/report.json",
+  "report_sha256": "fe468a2e824fcee60168c5aa284aba1f58d33ee45b22fb5672b2e00504af21ce",
+  "utc": "2026-11-11T16:20:46Z"
+ }
+}

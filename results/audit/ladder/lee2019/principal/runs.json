@@ -1,0 +1,72 @@
+{
+ "features_P0": {
+  "seconds": 391.5813970998861,
+  "tool_runtime_seconds": 388.6833287999034,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/lee2019/principal/features_P0/report.json",
+  "report_sha256": "f37fe9893c497eb522bd3b081af926bd0c59684b6ebf7362e7359d6f6cf70ea8",
+  "utc": "2026-11-11T16:27:58Z"
+ },
+ "features_P2-RC_d8": {
+  "seconds": 220.14405820006505,
+  "tool_runtime_seconds": 217.85929360007867,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/lee2019/principal/features_P2-RC_d8/report.json",
+  "report_sha256": "a1f53f9569b84ce60f460f9554167ee83616a1f61d7e24590b6beba03699d48c",
+  "utc": "2026-11-11T16:31:38Z"
+ },
+ "commands_shared_tau0.50": {
+  "seconds": 44.82324409997091,
+  "tool_runtime_seconds": 44.11005689995363,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/lee2019/principal/commands_shared_tau0.50/report.json",
+  "report_sha256": "6d4f1f24005935f9b978410eeb1c510c1a7e1c8f9175821e61be1c32ffe8beba",
+  "utc": "2026-11-11T16:32:23Z"
+ },
+ "commands_shared_tau0.80": {
+  "seconds": 46.86452020006254,
+  "tool_runtime_seconds": 45.78829429997131,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/lee2019/principal/commands_shared_tau0.80/report.json",
+  "report_sha256": "0bd4dd737c20c93ac61276bbb4783d8bbe23c5761b582b6e5eed316036548bff",
+  "utc": "2026-11-11T16:33:10Z"
+ },
+ "commands_per_user_tau0.50": {
+  "seconds": 45.31453850003891,
+  "tool_runtime_seconds": 44.56480890000239,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/lee2019/principal/commands_per_user_tau0.50/report.json",
+  "report_sha256": "7b1c112a3114717f42405b5d7618bc03722f167964d8d8a641c74a0a2c352043",
+  "utc": "2026-11-11T16:33:55Z"
+ },
+ "commands_per_user_tau0.60": {
+  "seconds": 45.11350379977375,
+  "tool_runtime_seconds": 44.45474880002439,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/lee2019/principal/commands_per_user_tau0.60/report.json",
+  "report_sha256": "d9f1d9a925683f8e2b4e2147bc0f037c02273f0d3bb815fa2eeae0c3445daf44",
+  "utc": "2026-11-11T16:34:40Z"
+ },
+ "commands_per_user_tau0.80": {
+  "seconds": 46.18103089998476,
+  "tool_runtime_seconds": 45.52499379985966,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/lee2019/principal/commands_per_user_tau0.80/report.json",
+  "report_sha256": "08d3aaf5876d20a83d24e2d7e533ffdc0bdc2d6e5e83b643eb8734875d3a3913",
+  "utc": "2026-11-11T16:35:26Z"
+ }
+}

@@ -1,0 +1,277 @@
+{
+ "label": "exploratory",
+ "cohort": "yang2025",
+ "set": "calibration_day",
+ "days": [
+  1,
+  2,
+  3
+ ],
+ "later_days": [
+  2,
+  3
+ ],
+ "calibration_day": 1,
+ "conditions": [
+  {
+   "name": "cross-day-d1-d23",
+   "relation": "cross-day",
+   "pairs": [
+    [
+     [
+      "1"
+     ],
+     [
+      "2",
+      "3"
+     ]
+    ]
+   ],
+   "sides": "day 1 (calibration) against days 2-3"
+  }
+ ],
+ "settings": {
+  "k_grid": [
+   1,
+   5,
+   10,
+   20,
+   50,
+   100
+  ],
+  "fold_seed": 20261111,
+  "seed": 20261112,
+  "permutations": 10000,
+  "bootstraps": 2000,
+  "threads": 4,
+  "comparators": [
+   "cosine",
+   "lda_cosine",
+   "cosine_rich",
+   "lda_cosine_rich"
+  ],
+  "gallery": true,
+  "sequential": true,
+  "closed_set": true
+ },
+ "seeds": "model seeds 0,1,2; fold seed 20261111; attack seed 20261112 + 1009 x fold + 101 x model-seed position; matching permutations 20261112; bootstrap 20261113; per-user decoder CV seed 20261115; utility bootstrap 20261116",
+ "model_seeds": [
+  0,
+  1,
+  2
+ ],
+ "seconds_per_output": 8.0,
+ "users": [
+  "1",
+  "10",
+  "11",
+  "12",
+  "13",
+  "14",
+  "15",
+  "16",
+  "17",
+  "18",
+  "19",
+  "2",
+  "20",
+  "21",
+  "22",
+  "23",
+  "24",
+  "25",
+  "26",
+  "27",
+  "28",
+  "29",
+  "3",
+  "30",
+  "31",
+  "32",
+  "33",
+  "34",
+  "35",
+  "36",
+  "37",
+  "38",
+  "39",
+  "4",
+  "40",
+  "41",
+  "42",
+  "43",
+  "44",
+  "45",
+  "46",
+  "47",
+  "48",
+  "49",
+  "5",
+  "50",
+  "51",
+  "6",
+  "7",
+  "8",
+  "9"
+ ],
+ "support": {
+  "rows": 30591,
+  "users": 51,
+  "rows_per_day": {
+   "1": 10198,
+   "2": 10198,
+   "3": 10195
+  },
+  "later_day_rows": 20393,
+  "sha256_of_keys": "b580a216443a1a3ea419c5904506fc316865934ceb07d1553ec063542a28335d"
+ },
+ "rungs": [
+  {
+   "name": "features_P0",
+   "kind": "features",
+   "tau": null,
+   "derived_from": null,
+   "transmits": "full features (P0)",
+   "decoder": "shared P0 decoder (study final model)"
+  },
+  {
+   "name": "commands_shared_tau0.50",
+   "kind": "commands",
+   "tau": 0.5,
+   "derived_from": null,
+   "transmits": "shared-decoder commands, tau 0.50",
+   "decoder": "shared P2-RC decoder (study final model)"
+  },
+  {
+   "name": "commands_shared_tau0.60",
+   "kind": "commands",
+   "tau": 0.6,
+   "derived_from": null,
+   "transmits": "shared-decoder commands, tau 0.60",
+   "decoder": "shared P2-RC decoder (study final model)"
+  },
+  {
+   "name": "commands_per_user_tau0.50",
+   "kind": "commands",
+   "tau": 0.5,
+   "derived_from": "features_P0",
+   "transmits": "per-user-decoder commands, tau 0.50",
+   "decoder": "per-user standardised logistic regression (C = 1), calibration-day P0"
+  },
+  {
+   "name": "commands_per_user_tau0.60",
+   "kind": "commands",
+   "tau": 0.6,
+   "derived_from": "features_P0",
+   "transmits": "per-user-decoder commands, tau 0.60",
+   "decoder": "per-user standardised logistic regression (C = 1), calibration-day P0"
+  },
+  {
+   "name": "commands_per_user_tau0.80",
+   "kind": "commands",
+   "tau": 0.8,
+   "derived_from": "features_P0",
+   "transmits": "per-user-decoder commands, tau 0.80",
+   "decoder": "per-user standardised logistic regression (C = 1), calibration-day P0"
+  }
+ ],
+ "inputs": {
+  "features_P0": {
+   "0": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/features_P0_seed0.npz",
+    "sha256": "1bed558318d9f56050366b0cd48fcadec2320d0270553f38f087077c322ba49e"
+   },
+   "1": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/features_P0_seed1.npz",
+    "sha256": "1bed558318d9f56050366b0cd48fcadec2320d0270553f38f087077c322ba49e"
+   },
+   "2": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/features_P0_seed2.npz",
+    "sha256": "1bed558318d9f56050366b0cd48fcadec2320d0270553f38f087077c322ba49e"
+   }
+  },
+  "commands_shared_tau0.50": {
+   "0": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/commands_shared_tau0.50_seed0.npz",
+    "sha256": "ec5f823c67f1d8fda24e61b711334aa511bb340eba1ecb99fda5e8c90a7851e3"
+   },
+   "1": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/commands_shared_tau0.50_seed1.npz",
+    "sha256": "48b77d079300e70d5bf137672f18a0684a048d8814bbde88d8b9dd608ba9375b"
+   },
+   "2": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/commands_shared_tau0.50_seed2.npz",
+    "sha256": "6531680859b963e5b8a5ed78bca1ade1153819222bffb5091b30fd2cc28afb2b"
+   }
+  },
+  "commands_shared_tau0.60": {
+   "0": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/commands_shared_tau0.60_seed0.npz",
+    "sha256": "3c0f883692957b0a29b61a24ee79be9cb5f7724a7e74fa10ebd43dede9af5d8b"
+   },
+   "1": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/commands_shared_tau0.60_seed1.npz",
+    "sha256": "a2fb36a245a08c70c8b9835d3ef24cef8c6a01cea2e4aedf1be2f043552a06d6"
+   },
+   "2": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/commands_shared_tau0.60_seed2.npz",
+    "sha256": "6038c068e49ac10ac63fd635a169218b5b847649512934ea837453dd3757017f"
+   }
+  },
+  "commands_per_user_tau0.50": {
+   "0": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/commands_per_user_tau0.50_seed0.npz",
+    "sha256": "99d12077f0d39205b89dc9032f8e730083a35b95a8ca807ec480696338d16056"
+   },
+   "1": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/commands_per_user_tau0.50_seed1.npz",
+    "sha256": "99d12077f0d39205b89dc9032f8e730083a35b95a8ca807ec480696338d16056"
+   },
+   "2": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/commands_per_user_tau0.50_seed2.npz",
+    "sha256": "99d12077f0d39205b89dc9032f8e730083a35b95a8ca807ec480696338d16056"
+   }
+  },
+  "commands_per_user_tau0.60": {
+   "0": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/commands_per_user_tau0.60_seed0.npz",
+    "sha256": "fc75f591c7edd7500d5f860ae4d657ee89b9da1f400f2d2a89dd3cff4f307ce8"
+   },
+   "1": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/commands_per_user_tau0.60_seed1.npz",
+    "sha256": "fc75f591c7edd7500d5f860ae4d657ee89b9da1f400f2d2a89dd3cff4f307ce8"
+   },
+   "2": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/commands_per_user_tau0.60_seed2.npz",
+    "sha256": "fc75f591c7edd7500d5f860ae4d657ee89b9da1f400f2d2a89dd3cff4f307ce8"
+   }
+  },
+  "commands_per_user_tau0.80": {
+   "0": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/commands_per_user_tau0.80_seed0.npz",
+    "sha256": "c093481b2b56953dda60271452a0edcab4272963d19801d28f850e265d3327e7"
+   },
+   "1": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/commands_per_user_tau0.80_seed1.npz",
+    "sha256": "c093481b2b56953dda60271452a0edcab4272963d19801d28f850e265d3327e7"
+   },
+   "2": {
+    "file": "artifacts/audit/ladder/yang2025/calibration_day/commands_per_user_tau0.80_seed2.npz",
+    "sha256": "c093481b2b56953dda60271452a0edcab4272963d19801d28f850e265d3327e7"
+   }
+  }
+ },
+ "per_user_decoder": {
+  "C": 1.0,
+  "max_iter": 1000,
+  "taus": [
+   0.5,
+   0.6,
+   0.8
+  ],
+  "folds": 5,
+  "cv_seed": 20261115,
+  "note": "the per-user decoder is deterministic and P0 features are equal across model seeds, so its three model-seed inputs hold equal commands; they keep the population hash (masks keyed by model seed) equal to the other rungs'"
+ },
+ "join": "(user, source_session, source_run, source_trial); time order of the first export"
+}

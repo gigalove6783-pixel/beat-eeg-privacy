@@ -1,0 +1,19 @@
+command,feature,condition,k,command_auc,feature_auc,flagged,outcome
+commands_per_user_tau0.50,features_P0,cross-day-d1-d23,1,0.5043319450863024,0.7723065348473844,False,not flagged
+commands_per_user_tau0.50,features_P0,cross-day-d1-d23,5,0.5154313989245265,0.8230375678913102,False,not flagged
+commands_per_user_tau0.50,features_P0,cross-day-d1-d23,10,0.5236071318615693,0.8437338321917971,False,not flagged
+commands_per_user_tau0.50,features_P0,cross-day-d1-d23,20,0.5348017748504742,0.8546027632901271,False,not flagged
+commands_per_user_tau0.50,features_P0,cross-day-d1-d23,50,0.5540050507192761,0.8713470589496086,False,not flagged
+commands_per_user_tau0.50,features_P0,cross-day-d1-d23,100,0.5536924682328604,0.8487828752955082,False,not flagged
+commands_per_user_tau0.60,features_P0,cross-day-d1-d23,1,0.5051999891801091,0.7723065348473844,False,not flagged
+commands_per_user_tau0.60,features_P0,cross-day-d1-d23,5,0.515750031499583,0.8230375678913102,False,not flagged
+commands_per_user_tau0.60,features_P0,cross-day-d1-d23,10,0.5240266102975157,0.8437338321917971,False,not flagged
+commands_per_user_tau0.60,features_P0,cross-day-d1-d23,20,0.5329009611040562,0.8546027632901271,False,not flagged
+commands_per_user_tau0.60,features_P0,cross-day-d1-d23,50,0.549435881337703,0.8713470589496086,False,not flagged
+commands_per_user_tau0.60,features_P0,cross-day-d1-d23,100,0.5473113364361702,0.8487828752955082,False,not flagged
+commands_per_user_tau0.80,features_P0,cross-day-d1-d23,1,0.5054207950537888,0.7723065348473844,False,not flagged
+commands_per_user_tau0.80,features_P0,cross-day-d1-d23,5,0.5117903532311453,0.8230375678913102,False,not flagged
+commands_per_user_tau0.80,features_P0,cross-day-d1-d23,10,0.5168650803282514,0.8437338321917971,False,not flagged
+commands_per_user_tau0.80,features_P0,cross-day-d1-d23,20,0.5233456071134688,0.8546027632901271,False,not flagged
+commands_per_user_tau0.80,features_P0,cross-day-d1-d23,50,0.5443655177155738,0.8713470589496086,False,not flagged
+commands_per_user_tau0.80,features_P0,cross-day-d1-d23,100,0.5450303819444444,0.8487828752955082,False,not flagged

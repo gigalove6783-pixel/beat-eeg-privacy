@@ -1,0 +1,72 @@
+{
+ "features_P0": {
+  "seconds": 485.3795463000424,
+  "tool_runtime_seconds": 482.19494580011815,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/lee2019/calibration_day/features_P0/report.json",
+  "report_sha256": "c37e66f5ee80afdf0fcc5009528af668f937233dbc1b4f8fb3ec7dc436ec1109",
+  "utc": "2026-11-11T16:44:19Z"
+ },
+ "features_P2-RC_d8": {
+  "seconds": 343.65340519999154,
+  "tool_runtime_seconds": 340.51723639992997,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/lee2019/calibration_day/features_P2-RC_d8/report.json",
+  "report_sha256": "1484ade0634006ba24ad91fdf601fe1e9ae29da9dc19abc286825bb62707f166",
+  "utc": "2026-11-11T16:50:03Z"
+ },
+ "commands_shared_tau0.50": {
+  "seconds": 56.59497689991258,
+  "tool_runtime_seconds": 55.65844379994087,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/lee2019/calibration_day/commands_shared_tau0.50/report.json",
+  "report_sha256": "f341288cff885656057865694312d72b81335cbcb31728f2e7f766093bcb9109",
+  "utc": "2026-11-11T16:50:59Z"
+ },
+ "commands_shared_tau0.80": {
+  "seconds": 65.99077660008334,
+  "tool_runtime_seconds": 64.75664389994927,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/lee2019/calibration_day/commands_shared_tau0.80/report.json",
+  "report_sha256": "e52dec42d057b49313002a614f8ac599d6ef8106f364978d7d218b74069a5b29",
+  "utc": "2026-11-11T16:52:05Z"
+ },
+ "commands_per_user_tau0.50": {
+  "seconds": 76.90634809993207,
+  "tool_runtime_seconds": 75.69450079998933,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/lee2019/calibration_day/commands_per_user_tau0.50/report.json",
+  "report_sha256": "9bc7d44cedac8c2e5cd617caa1e5045c42c277526d6d279634263271b1f0ab04",
+  "utc": "2026-11-11T16:53:22Z"
+ },
+ "commands_per_user_tau0.60": {
+  "seconds": 74.19191099982709,
+  "tool_runtime_seconds": 73.16533460002393,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/lee2019/calibration_day/commands_per_user_tau0.60/report.json",
+  "report_sha256": "22e4df14025ff0b5ce4c0ada8cac62a7a8d737f9e5e73150d2dca935b3a862d2",
+  "utc": "2026-11-11T16:54:36Z"
+ },
+ "commands_per_user_tau0.80": {
+  "seconds": 69.87913549994119,
+  "tool_runtime_seconds": 68.78569180006161,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/lee2019/calibration_day/commands_per_user_tau0.80/report.json",
+  "report_sha256": "894b06a39a9d41537426da666991bcad4d1ab3c91f603f156580090842562574",
+  "utc": "2026-11-11T16:55:46Z"
+ }
+}

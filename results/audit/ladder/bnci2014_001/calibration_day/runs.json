@@ -1,0 +1,79 @@
+{
+ "features_P0": {
+  "seconds": 26.30672449991107,
+  "tool_runtime_seconds": 24.027874700026587,
+  "cells": {
+   "ok": 5,
+   "not_evaluable": 1
+  },
+  "report": "results/audit/ladder/bnci2014_001/calibration_day/features_P0/report.json",
+  "report_sha256": "bc1613cd438ba0154f2a1be14435801ccf7426d42c65e9d85ef8a0d3fbc94833",
+  "utc": "2026-11-11T17:15:40Z"
+ },
+ "features_P2-RC_d8": {
+  "seconds": 38.03191459993832,
+  "tool_runtime_seconds": 36.440605900017545,
+  "cells": {
+   "ok": 5,
+   "not_evaluable": 1
+  },
+  "report": "results/audit/ladder/bnci2014_001/calibration_day/features_P2-RC_d8/report.json",
+  "report_sha256": "a1b5aaf73a03ec348b64180f53cf9d14d3b0b6beb100ab8153fedd4954870ce1",
+  "utc": "2026-11-11T17:16:18Z"
+ },
+ "commands_shared_tau0.50": {
+  "seconds": 2.352871800074354,
+  "tool_runtime_seconds": 1.673864700132981,
+  "cells": {
+   "ok": 5,
+   "not_evaluable": 1
+  },
+  "report": "results/audit/ladder/bnci2014_001/calibration_day/commands_shared_tau0.50/report.json",
+  "report_sha256": "48e2ad0fdf873aa3d25fd7b67ef7ca6acd780eafd794947cf7e1c71c3994688f",
+  "utc": "2026-11-11T17:16:20Z"
+ },
+ "commands_shared_tau0.80": {
+  "seconds": 2.186665100045502,
+  "tool_runtime_seconds": 1.6369312000460923,
+  "cells": {
+   "ok": 5,
+   "not_evaluable": 1
+  },
+  "report": "results/audit/ladder/bnci2014_001/calibration_day/commands_shared_tau0.80/report.json",
+  "report_sha256": "28185893173ad3cf5162f2592764a50309b335c74b141756feaa9b2395f04cba",
+  "utc": "2026-11-11T17:16:22Z"
+ },
+ "commands_per_user_tau0.50": {
+  "seconds": 2.1272765998728573,
+  "tool_runtime_seconds": 1.5441213001031429,
+  "cells": {
+   "ok": 5,
+   "not_evaluable": 1
+  },
+  "report": "results/audit/ladder/bnci2014_001/calibration_day/commands_per_user_tau0.50/report.json",
+  "report_sha256": "bb5ff3afb0ce98b84c4099a7316fb9ffbe2a623dfd28a05c9528ffd3035f9d75",
+  "utc": "2026-11-11T17:16:24Z"
+ },
+ "commands_per_user_tau0.60": {
+  "seconds": 2.268097200198099,
+  "tool_runtime_seconds": 1.5454170000739396,
+  "cells": {
+   "ok": 5,
+   "not_evaluable": 1
+  },
+  "report": "results/audit/ladder/bnci2014_001/calibration_day/commands_per_user_tau0.60/report.json",
+  "report_sha256": "114c5cb64d678fcac86030b24ac097f91987bdf199848bb9894f6d3b423470d9",
+  "utc": "2026-11-11T17:16:27Z"
+ },
+ "commands_per_user_tau0.80": {
+  "seconds": 2.3316150000318885,
+  "tool_runtime_seconds": 1.6133097000420094,
+  "cells": {
+   "ok": 5,
+   "not_evaluable": 1
+  },
+  "report": "results/audit/ladder/bnci2014_001/calibration_day/commands_per_user_tau0.80/report.json",
+  "report_sha256": "be38c966741567f8ff1bd8d79c52bf71b959bd17fe0e3ec8c17db0df1d7a6922",
+  "utc": "2026-11-11T17:16:29Z"
+ }
+}

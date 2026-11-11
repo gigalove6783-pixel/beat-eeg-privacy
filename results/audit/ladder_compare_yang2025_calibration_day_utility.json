@@ -1,0 +1,38 @@
+{
+ "features_P0": {
+  "task_ba": 0.5545079755672636,
+  "hold_rate": 0.0,
+  "correct_move_rate": 0.554510655183794,
+  "wrong_move_rate": 0.4454893448162059
+ },
+ "commands_shared_tau0.50": {
+  "task_ba": 0.5442886832752829,
+  "hold_rate": 0.0,
+  "correct_move_rate": 0.5442709609447127,
+  "wrong_move_rate": 0.4557290390552873
+ },
+ "commands_shared_tau0.60": {
+  "task_ba": 0.5442886832752829,
+  "hold_rate": 0.47267289541161556,
+  "correct_move_rate": 0.3000457060254565,
+  "wrong_move_rate": 0.22728139856292798
+ },
+ "commands_per_user_tau0.50": {
+  "task_ba": 0.5452347560007709,
+  "hold_rate": 0.0,
+  "correct_move_rate": 0.5452339867285412,
+  "wrong_move_rate": 0.4547660132714588
+ },
+ "commands_per_user_tau0.60": {
+  "task_ba": 0.5452347560007709,
+  "hold_rate": 0.03452494204556879,
+  "correct_move_rate": 0.5278247025945475,
+  "wrong_move_rate": 0.4376503553598836
+ },
+ "commands_per_user_tau0.80": {
+  "task_ba": 0.5452347560007709,
+  "hold_rate": 0.11751302587113749,
+  "correct_move_rate": 0.48559065125738604,
+  "wrong_move_rate": 0.39689632287147647
+ }
+}

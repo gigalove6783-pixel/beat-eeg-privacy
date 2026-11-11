@@ -1,0 +1,687 @@
+{
+ "basis": "later-day trials of the common support, per user (mean over model seeds 0-2), then mean over users with a 95% percentile bootstrap over users; task_ba = mean of the two class recalls of the argmax decision of the rung's decoder; rates over all trials (hold, move toward the cue, move away from it); a feature rung's receiver acts on the argmax of every trial (no hold)",
+ "bootstrap": {
+  "replicates": 2000,
+  "seed": 20261116,
+  "percentiles": [
+   2.5,
+   97.5
+  ]
+ },
+ "checks": [
+  {
+   "check": "P0 decoder reproduces utility.csv task_ba",
+   "seed": 0,
+   "recomputed": 0.6793784609668433,
+   "stored": 0.6793784609668433,
+   "passed": true
+  },
+  {
+   "check": "P2-RC_d8 decoder reproduces utility.csv task_ba",
+   "seed": 0,
+   "recomputed": 0.7222374937687831,
+   "stored": 0.7222374937687831,
+   "passed": true
+  },
+  {
+   "check": "P0 decoder reproduces utility.csv task_ba",
+   "seed": 1,
+   "recomputed": 0.6793784609668433,
+   "stored": 0.6793784609668433,
+   "passed": true
+  },
+  {
+   "check": "P2-RC_d8 decoder reproduces utility.csv task_ba",
+   "seed": 1,
+   "recomputed": 0.7242508891149646,
+   "stored": 0.7242508891149646,
+   "passed": true
+  },
+  {
+   "check": "P0 decoder reproduces utility.csv task_ba",
+   "seed": 2,
+   "recomputed": 0.6793784609668433,
+   "stored": 0.6793784609668433,
+   "passed": true
+  },
+  {
+   "check": "P2-RC_d8 decoder reproduces utility.csv task_ba",
+   "seed": 2,
+   "recomputed": 0.7062647287770107,
+   "stored": 0.7062647287770107,
+   "passed": true
+  }
+ ],
+ "rungs": {
+  "features_P0": {
+   "users": 9,
+   "trials": 1183,
+   "task_ba": 0.6793784609668433,
+   "task_ba_low": 0.6171570455231813,
+   "task_ba_high": 0.7480117878838338,
+   "hold_rate": 0.0,
+   "hold_rate_low": 0.0,
+   "hold_rate_high": 0.0,
+   "correct_move_rate": 0.6809095160551759,
+   "correct_move_rate_low": 0.6186385851300079,
+   "correct_move_rate_high": 0.7499868746622745,
+   "wrong_move_rate": 0.319090483944824,
+   "wrong_move_rate_low": 0.2500131253377253,
+   "wrong_move_rate_high": 0.38136141486999214,
+   "per_user": [
+    {
+     "user": 1,
+     "trials": 141.0,
+     "task_ba": 0.7295774647887323,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.7304964539007092,
+     "wrong_move_rate": 0.2695035460992908
+    },
+    {
+     "user": 2,
+     "trials": 142.0,
+     "task_ba": 0.5211267605633803,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.5211267605633803,
+     "wrong_move_rate": 0.4788732394366197
+    },
+    {
+     "user": 3,
+     "trials": 137.0,
+     "task_ba": 0.746588486140725,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.7518248175182481,
+     "wrong_move_rate": 0.24817518248175183
+    },
+    {
+     "user": 4,
+     "trials": 116.0,
+     "task_ba": 0.6180493606898603,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.6120689655172413,
+     "wrong_move_rate": 0.3879310344827586
+    },
+    {
+     "user": 5,
+     "trials": 135.0,
+     "task_ba": 0.5719780219780219,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.5851851851851851,
+     "wrong_move_rate": 0.4148148148148148
+    },
+    {
+     "user": 6,
+     "trials": 108.0,
+     "task_ba": 0.667238421955403,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.6666666666666666,
+     "wrong_move_rate": 0.3333333333333333
+    },
+    {
+     "user": 7,
+     "trials": 140.0,
+     "task_ba": 0.6568687487242294,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.6571428571428571,
+     "wrong_move_rate": 0.3428571428571428
+    },
+    {
+     "user": 8,
+     "trials": 134.0,
+     "task_ba": 0.8799019607843137,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.8805970149253731,
+     "wrong_move_rate": 0.11940298507462686
+    },
+    {
+     "user": 9,
+     "trials": 130.0,
+     "task_ba": 0.7230769230769231,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.7230769230769231,
+     "wrong_move_rate": 0.27692307692307694
+    }
+   ]
+  },
+  "features_P2-RC_d8": {
+   "users": 9,
+   "trials": 1183,
+   "task_ba": 0.7175843705535861,
+   "task_ba_low": 0.6340263100883239,
+   "task_ba_high": 0.80282592002719,
+   "hold_rate": 0.0,
+   "hold_rate_low": 0.0,
+   "hold_rate_high": 0.0,
+   "correct_move_rate": 0.718627614912322,
+   "correct_move_rate_low": 0.6336722677303775,
+   "correct_move_rate_high": 0.8039431615435598,
+   "wrong_move_rate": 0.28137238508767803,
+   "wrong_move_rate_low": 0.19605683845644006,
+   "wrong_move_rate_high": 0.36632773226962234,
+   "per_user": [
+    {
+     "user": 1,
+     "trials": 141.0,
+     "task_ba": 0.8411133467471495,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.8416075650118203,
+     "wrong_move_rate": 0.15839243498817968
+    },
+    {
+     "user": 2,
+     "trials": 142.0,
+     "task_ba": 0.5,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.5,
+     "wrong_move_rate": 0.5
+    },
+    {
+     "user": 3,
+     "trials": 137.0,
+     "task_ba": 0.816133617626155,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.8199513381995134,
+     "wrong_move_rate": 0.18004866180048662
+    },
+    {
+     "user": 4,
+     "trials": 116.0,
+     "task_ba": 0.7204381009019724,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.7212643678160919,
+     "wrong_move_rate": 0.278735632183908
+    },
+    {
+     "user": 5,
+     "trials": 135.0,
+     "task_ba": 0.6351648351648351,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.6419753086419754,
+     "wrong_move_rate": 0.3580246913580247
+    },
+    {
+     "user": 6,
+     "trials": 108.0,
+     "task_ba": 0.6791881074899943,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.6820987654320988,
+     "wrong_move_rate": 0.31790123456790126
+    },
+    {
+     "user": 7,
+     "trials": 140.0,
+     "task_ba": 0.576988501054637,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.5714285714285714,
+     "wrong_move_rate": 0.42857142857142855
+    },
+    {
+     "user": 8,
+     "trials": 134.0,
+     "task_ba": 0.9302584670231729,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.9303482587064676,
+     "wrong_move_rate": 0.06965174129353234
+    },
+    {
+     "user": 9,
+     "trials": 130.0,
+     "task_ba": 0.7589743589743589,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.7589743589743589,
+     "wrong_move_rate": 0.24102564102564103
+    }
+   ]
+  },
+  "commands_shared_tau0.50": {
+   "users": 9,
+   "trials": 1183,
+   "task_ba": 0.7175843705535861,
+   "task_ba_low": 0.6340263100883239,
+   "task_ba_high": 0.80282592002719,
+   "hold_rate": 0.0,
+   "hold_rate_low": 0.0,
+   "hold_rate_high": 0.0,
+   "correct_move_rate": 0.718627614912322,
+   "correct_move_rate_low": 0.6336722677303775,
+   "correct_move_rate_high": 0.8039431615435598,
+   "wrong_move_rate": 0.28137238508767803,
+   "wrong_move_rate_low": 0.19605683845644006,
+   "wrong_move_rate_high": 0.36632773226962234,
+   "per_user": [
+    {
+     "user": 1,
+     "trials": 141.0,
+     "task_ba": 0.8411133467471495,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.8416075650118203,
+     "wrong_move_rate": 0.15839243498817968
+    },
+    {
+     "user": 2,
+     "trials": 142.0,
+     "task_ba": 0.5,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.5,
+     "wrong_move_rate": 0.5
+    },
+    {
+     "user": 3,
+     "trials": 137.0,
+     "task_ba": 0.816133617626155,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.8199513381995134,
+     "wrong_move_rate": 0.18004866180048662
+    },
+    {
+     "user": 4,
+     "trials": 116.0,
+     "task_ba": 0.7204381009019724,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.7212643678160919,
+     "wrong_move_rate": 0.278735632183908
+    },
+    {
+     "user": 5,
+     "trials": 135.0,
+     "task_ba": 0.6351648351648351,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.6419753086419754,
+     "wrong_move_rate": 0.3580246913580247
+    },
+    {
+     "user": 6,
+     "trials": 108.0,
+     "task_ba": 0.6791881074899943,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.6820987654320988,
+     "wrong_move_rate": 0.31790123456790126
+    },
+    {
+     "user": 7,
+     "trials": 140.0,
+     "task_ba": 0.576988501054637,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.5714285714285714,
+     "wrong_move_rate": 0.42857142857142855
+    },
+    {
+     "user": 8,
+     "trials": 134.0,
+     "task_ba": 0.9302584670231729,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.9303482587064676,
+     "wrong_move_rate": 0.06965174129353234
+    },
+    {
+     "user": 9,
+     "trials": 130.0,
+     "task_ba": 0.7589743589743589,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.7589743589743589,
+     "wrong_move_rate": 0.24102564102564103
+    }
+   ]
+  },
+  "commands_shared_tau0.80": {
+   "users": 9,
+   "trials": 1183,
+   "task_ba": 0.7175843705535861,
+   "task_ba_low": 0.6340263100883239,
+   "task_ba_high": 0.80282592002719,
+   "hold_rate": 0.601678296568009,
+   "hold_rate_low": 0.5014475047968375,
+   "hold_rate_high": 0.6912996266757341,
+   "correct_move_rate": 0.33685838442285526,
+   "correct_move_rate_low": 0.22925501952340496,
+   "correct_move_rate_high": 0.46022683482961213,
+   "wrong_move_rate": 0.06146331900913585,
+   "wrong_move_rate_low": 0.03033990116538406,
+   "wrong_move_rate_high": 0.09315835973407917,
+   "per_user": [
+    {
+     "user": 1,
+     "trials": 141.0,
+     "task_ba": 0.8411133467471495,
+     "hold_rate": 0.591016548463357,
+     "correct_move_rate": 0.3995271867612293,
+     "wrong_move_rate": 0.009456264775413711
+    },
+    {
+     "user": 2,
+     "trials": 142.0,
+     "task_ba": 0.5,
+     "hold_rate": 0.7394366197183099,
+     "correct_move_rate": 0.12676056338028166,
+     "wrong_move_rate": 0.13380281690140847
+    },
+    {
+     "user": 3,
+     "trials": 137.0,
+     "task_ba": 0.816133617626155,
+     "hold_rate": 0.44525547445255476,
+     "correct_move_rate": 0.5328467153284672,
+     "wrong_move_rate": 0.021897810218978103
+    },
+    {
+     "user": 4,
+     "trials": 116.0,
+     "task_ba": 0.7204381009019724,
+     "hold_rate": 0.735632183908046,
+     "correct_move_rate": 0.2471264367816092,
+     "wrong_move_rate": 0.017241379310344827
+    },
+    {
+     "user": 5,
+     "trials": 135.0,
+     "task_ba": 0.6351648351648351,
+     "hold_rate": 0.7975308641975308,
+     "correct_move_rate": 0.13580246913580246,
+     "wrong_move_rate": 0.06666666666666667
+    },
+    {
+     "user": 6,
+     "trials": 108.0,
+     "task_ba": 0.6791881074899943,
+     "hold_rate": 0.6728395061728395,
+     "correct_move_rate": 0.21604938271604937,
+     "wrong_move_rate": 0.1111111111111111
+    },
+    {
+     "user": 7,
+     "trials": 140.0,
+     "task_ba": 0.576988501054637,
+     "hold_rate": 0.6285714285714286,
+     "correct_move_rate": 0.25,
+     "wrong_move_rate": 0.12142857142857144
+    },
+    {
+     "user": 8,
+     "trials": 134.0,
+     "task_ba": 0.9302584670231729,
+     "hold_rate": 0.3432835820895523,
+     "correct_move_rate": 0.6492537313432836,
+     "wrong_move_rate": 0.007462686567164179
+    },
+    {
+     "user": 9,
+     "trials": 130.0,
+     "task_ba": 0.7589743589743589,
+     "hold_rate": 0.4615384615384615,
+     "correct_move_rate": 0.4743589743589744,
+     "wrong_move_rate": 0.06410256410256411
+    }
+   ]
+  },
+  "commands_per_user_tau0.50": {
+   "users": 9,
+   "trials": 1183,
+   "task_ba": 0.7593746160227677,
+   "task_ba_low": 0.6735428542823558,
+   "task_ba_high": 0.8474405800678012,
+   "hold_rate": 0.0,
+   "hold_rate_low": 0.0,
+   "hold_rate_high": 0.0,
+   "correct_move_rate": 0.7584903289506046,
+   "correct_move_rate_low": 0.6724898487420626,
+   "correct_move_rate_high": 0.8470222900982115,
+   "wrong_move_rate": 0.24150967104939536,
+   "wrong_move_rate_low": 0.15297770990178858,
+   "wrong_move_rate_high": 0.32751015125793725,
+   "per_user": [
+    {
+     "user": 1,
+     "trials": 141.0,
+     "task_ba": 0.8444668008048289,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.8439716312056738,
+     "wrong_move_rate": 0.15602836879432624
+    },
+    {
+     "user": 2,
+     "trials": 142.0,
+     "task_ba": 0.5492957746478873,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.5492957746478874,
+     "wrong_move_rate": 0.4507042253521127
+    },
+    {
+     "user": 3,
+     "trials": 137.0,
+     "task_ba": 0.9552238805970149,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.956204379562044,
+     "wrong_move_rate": 0.043795620437956206
+    },
+    {
+     "user": 4,
+     "trials": 116.0,
+     "task_ba": 0.759440975319655,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.7586206896551723,
+     "wrong_move_rate": 0.2413793103448276
+    },
+    {
+     "user": 5,
+     "trials": 135.0,
+     "task_ba": 0.5807692307692307,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.5777777777777777,
+     "wrong_move_rate": 0.4222222222222222
+    },
+    {
+     "user": 6,
+     "trials": 108.0,
+     "task_ba": 0.7234991423670669,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.7222222222222222,
+     "wrong_move_rate": 0.2777777777777778
+    },
+    {
+     "user": 7,
+     "trials": 140.0,
+     "task_ba": 0.6895284751990203,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.6857142857142856,
+     "wrong_move_rate": 0.3142857142857143
+    },
+    {
+     "user": 8,
+     "trials": 134.0,
+     "task_ba": 0.9398395721925134,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.9402985074626867,
+     "wrong_move_rate": 0.05970149253731343
+    },
+    {
+     "user": 9,
+     "trials": 130.0,
+     "task_ba": 0.7923076923076925,
+     "hold_rate": 0.0,
+     "correct_move_rate": 0.7923076923076923,
+     "wrong_move_rate": 0.2076923076923077
+    }
+   ]
+  },
+  "commands_per_user_tau0.60": {
+   "users": 9,
+   "trials": 1183,
+   "task_ba": 0.7593746160227677,
+   "task_ba_low": 0.6735428542823558,
+   "task_ba_high": 0.8474405800678012,
+   "hold_rate": 0.06998062900662931,
+   "hold_rate_low": 0.04331244188148709,
+   "hold_rate_high": 0.09344353596579891,
+   "correct_move_rate": 0.7196501893884433,
+   "correct_move_rate_low": 0.6214209643147348,
+   "correct_move_rate_high": 0.8231676822206452,
+   "wrong_move_rate": 0.21036918160492746,
+   "wrong_move_rate_low": 0.1298469472031347,
+   "wrong_move_rate_high": 0.28955394086537345,
+   "per_user": [
+    {
+     "user": 1,
+     "trials": 141.0,
+     "task_ba": 0.8444668008048289,
+     "hold_rate": 0.028368794326241134,
+     "correct_move_rate": 0.8226950354609929,
+     "wrong_move_rate": 0.14893617021276595
+    },
+    {
+     "user": 2,
+     "trials": 142.0,
+     "task_ba": 0.5492957746478873,
+     "hold_rate": 0.11971830985915492,
+     "correct_move_rate": 0.4788732394366197,
+     "wrong_move_rate": 0.4014084507042253
+    },
+    {
+     "user": 3,
+     "trials": 137.0,
+     "task_ba": 0.9552238805970149,
+     "hold_rate": 0.014598540145985403,
+     "correct_move_rate": 0.956204379562044,
+     "wrong_move_rate": 0.029197080291970805
+    },
+    {
+     "user": 4,
+     "trials": 116.0,
+     "task_ba": 0.759440975319655,
+     "hold_rate": 0.09482758620689653,
+     "correct_move_rate": 0.6982758620689656,
+     "wrong_move_rate": 0.20689655172413793
+    },
+    {
+     "user": 5,
+     "trials": 135.0,
+     "task_ba": 0.5807692307692307,
+     "hold_rate": 0.08888888888888889,
+     "correct_move_rate": 0.5259259259259259,
+     "wrong_move_rate": 0.38518518518518513
+    },
+    {
+     "user": 6,
+     "trials": 108.0,
+     "task_ba": 0.7234991423670669,
+     "hold_rate": 0.08333333333333333,
+     "correct_move_rate": 0.6666666666666666,
+     "wrong_move_rate": 0.25
+    },
+    {
+     "user": 7,
+     "trials": 140.0,
+     "task_ba": 0.6895284751990203,
+     "hold_rate": 0.09285714285714286,
+     "correct_move_rate": 0.6571428571428571,
+     "wrong_move_rate": 0.25
+    },
+    {
+     "user": 8,
+     "trials": 134.0,
+     "task_ba": 0.9398395721925134,
+     "hold_rate": 0.014925373134328358,
+     "correct_move_rate": 0.9402985074626867,
+     "wrong_move_rate": 0.04477611940298507
+    },
+    {
+     "user": 9,
+     "trials": 130.0,
+     "task_ba": 0.7923076923076925,
+     "hold_rate": 0.09230769230769231,
+     "correct_move_rate": 0.7307692307692307,
+     "wrong_move_rate": 0.17692307692307693
+    }
+   ]
+  },
+  "commands_per_user_tau0.80": {
+   "users": 9,
+   "trials": 1183,
+   "task_ba": 0.7593746160227677,
+   "task_ba_low": 0.6735428542823558,
+   "task_ba_high": 0.8474405800678012,
+   "hold_rate": 0.22279096330896206,
+   "hold_rate_low": 0.15940292697796718,
+   "hold_rate_high": 0.27765128794068705,
+   "correct_move_rate": 0.6235349964513107,
+   "correct_move_rate_low": 0.5126580701517308,
+   "correct_move_rate_high": 0.7482065184398985,
+   "wrong_move_rate": 0.1536740402397272,
+   "wrong_move_rate_low": 0.08270258102737094,
+   "wrong_move_rate_high": 0.22653191194390457,
+   "per_user": [
+    {
+     "user": 1,
+     "trials": 141.0,
+     "task_ba": 0.8444668008048289,
+     "hold_rate": 0.1914893617021277,
+     "correct_move_rate": 0.7375886524822693,
+     "wrong_move_rate": 0.07092198581560284
+    },
+    {
+     "user": 2,
+     "trials": 142.0,
+     "task_ba": 0.5492957746478873,
+     "hold_rate": 0.3028169014084507,
+     "correct_move_rate": 0.36619718309859156,
+     "wrong_move_rate": 0.33098591549295775
+    },
+    {
+     "user": 3,
+     "trials": 137.0,
+     "task_ba": 0.9552238805970149,
+     "hold_rate": 0.0948905109489051,
+     "correct_move_rate": 0.8905109489051095,
+     "wrong_move_rate": 0.014598540145985403
+    },
+    {
+     "user": 4,
+     "trials": 116.0,
+     "task_ba": 0.759440975319655,
+     "hold_rate": 0.29310344827586204,
+     "correct_move_rate": 0.5517241379310345,
+     "wrong_move_rate": 0.15517241379310345
+    },
+    {
+     "user": 5,
+     "trials": 135.0,
+     "task_ba": 0.5807692307692307,
+     "hold_rate": 0.22962962962962963,
+     "correct_move_rate": 0.4444444444444444,
+     "wrong_move_rate": 0.32592592592592595
+    },
+    {
+     "user": 6,
+     "trials": 108.0,
+     "task_ba": 0.7234991423670669,
+     "hold_rate": 0.3055555555555556,
+     "correct_move_rate": 0.5462962962962963,
+     "wrong_move_rate": 0.14814814814814814
+    },
+    {
+     "user": 7,
+     "trials": 140.0,
+     "task_ba": 0.6895284751990203,
+     "hold_rate": 0.24285714285714285,
+     "correct_move_rate": 0.5571428571428572,
+     "wrong_move_rate": 0.20000000000000004
+    },
+    {
+     "user": 8,
+     "trials": 134.0,
+     "task_ba": 0.9398395721925134,
+     "hold_rate": 0.04477611940298507,
+     "correct_move_rate": 0.917910447761194,
+     "wrong_move_rate": 0.03731343283582089
+    },
+    {
+     "user": 9,
+     "trials": 130.0,
+     "task_ba": 0.7923076923076925,
+     "hold_rate": 0.3,
+     "correct_move_rate": 0.6,
+     "wrong_move_rate": 0.10000000000000002
+    }
+   ]
+  }
+ }
+}

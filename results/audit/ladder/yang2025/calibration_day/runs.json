@@ -1,0 +1,62 @@
+{
+ "features_P0": {
+  "seconds": 567.516598300077,
+  "tool_runtime_seconds": 563.6898843001109,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/yang2025/calibration_day/features_P0/report.json",
+  "report_sha256": "2e2448348f038502b321cb1a211f087be42a8f55075ba11956e2f9b376ea82f3",
+  "utc": "2026-11-11T17:06:14Z"
+ },
+ "commands_shared_tau0.50": {
+  "seconds": 85.02545249997638,
+  "tool_runtime_seconds": 83.89234699984081,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/yang2025/calibration_day/commands_shared_tau0.50/report.json",
+  "report_sha256": "f0544bf53159a94c737f95c6a378b94e4506a5aa9b28ee491bd7c95220ffe8b9",
+  "utc": "2026-11-11T17:07:39Z"
+ },
+ "commands_shared_tau0.60": {
+  "seconds": 87.34065240016207,
+  "tool_runtime_seconds": 86.07664299989119,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/yang2025/calibration_day/commands_shared_tau0.60/report.json",
+  "report_sha256": "0d6a48bdd09a91b149843e434f7a4be90a7685744b0e5459b9b00cb2ca3f66f0",
+  "utc": "2026-11-11T17:09:06Z"
+ },
+ "commands_per_user_tau0.50": {
+  "seconds": 90.85212730010971,
+  "tool_runtime_seconds": 89.83175389980897,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/yang2025/calibration_day/commands_per_user_tau0.50/report.json",
+  "report_sha256": "4cbf751c94cf12f9fed28a7e33c040a1367e84184ab80522e63ad9f4289296f0",
+  "utc": "2026-11-11T17:10:37Z"
+ },
+ "commands_per_user_tau0.60": {
+  "seconds": 85.83886929997243,
+  "tool_runtime_seconds": 84.6782732999418,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/yang2025/calibration_day/commands_per_user_tau0.60/report.json",
+  "report_sha256": "4d51ddce5d613d666f518f79bf61e21e2fe95fb2593da5196d3990c146b4cd81",
+  "utc": "2026-11-11T17:12:03Z"
+ },
+ "commands_per_user_tau0.80": {
+  "seconds": 84.45733789983205,
+  "tool_runtime_seconds": 83.47429899987765,
+  "cells": {
+   "ok": 6
+  },
+  "report": "results/audit/ladder/yang2025/calibration_day/commands_per_user_tau0.80/report.json",
+  "report_sha256": "cb03cb7d1656dc5b086e76772ca797ff9ec79b09af343bd86652633e6709b0f6",
+  "utc": "2026-11-11T17:13:28Z"
+ }
+}

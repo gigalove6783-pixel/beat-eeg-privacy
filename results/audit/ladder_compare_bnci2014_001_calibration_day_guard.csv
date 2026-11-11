@@ -1,0 +1,31 @@
+command,feature,condition,k,command_auc,feature_auc,flagged,outcome
+commands_shared_tau0.50,features_P2-RC_d8,cross-day-sessionT-sessionE,1,0.4845421122994652,0.5009896074030061,False,not flagged
+commands_shared_tau0.50,features_P2-RC_d8,cross-day-sessionT-sessionE,5,0.5490010398098634,0.59685154926168,False,not flagged
+commands_shared_tau0.50,features_P2-RC_d8,cross-day-sessionT-sessionE,10,0.5698106473229022,0.6220868818908034,False,not flagged
+commands_shared_tau0.50,features_P2-RC_d8,cross-day-sessionT-sessionE,20,0.594597474552625,0.6371010136541523,False,not flagged
+commands_shared_tau0.50,features_P2-RC_d8,cross-day-sessionT-sessionE,50,0.6192129629629629,0.6504629629629629,False,not flagged
+commands_shared_tau0.50,features_P2-RC_d8,cross-day-sessionT-sessionE,100,,,False,not evaluable
+commands_shared_tau0.80,features_P2-RC_d8,cross-day-sessionT-sessionE,1,0.5446351450232169,0.5009896074030061,True,flagged
+commands_shared_tau0.80,features_P2-RC_d8,cross-day-sessionT-sessionE,5,0.5930279098171255,0.59685154926168,False,not flagged
+commands_shared_tau0.80,features_P2-RC_d8,cross-day-sessionT-sessionE,10,0.5940357414009375,0.6220868818908034,False,not flagged
+commands_shared_tau0.80,features_P2-RC_d8,cross-day-sessionT-sessionE,20,0.6370994949724184,0.6371010136541523,False,not flagged
+commands_shared_tau0.80,features_P2-RC_d8,cross-day-sessionT-sessionE,50,0.6412037037037037,0.6504629629629629,False,not flagged
+commands_shared_tau0.80,features_P2-RC_d8,cross-day-sessionT-sessionE,100,,,False,not evaluable
+commands_per_user_tau0.50,features_P0,cross-day-sessionT-sessionE,1,0.5010301819942343,0.9640632908606764,False,not flagged
+commands_per_user_tau0.50,features_P0,cross-day-sessionT-sessionE,5,0.5452963733192491,0.9876343775445081,False,not flagged
+commands_per_user_tau0.50,features_P0,cross-day-sessionT-sessionE,10,0.593566038929601,0.9871571103188751,False,not flagged
+commands_per_user_tau0.50,features_P0,cross-day-sessionT-sessionE,20,0.6266902282974076,0.9920968948746727,False,not flagged
+commands_per_user_tau0.50,features_P0,cross-day-sessionT-sessionE,50,0.6440972222222222,0.9982638888888888,False,not flagged
+commands_per_user_tau0.50,features_P0,cross-day-sessionT-sessionE,100,,,False,not evaluable
+commands_per_user_tau0.60,features_P0,cross-day-sessionT-sessionE,1,0.5113103392310908,0.9640632908606764,False,not flagged
+commands_per_user_tau0.60,features_P0,cross-day-sessionT-sessionE,5,0.5591027376158095,0.9876343775445081,False,not flagged
+commands_per_user_tau0.60,features_P0,cross-day-sessionT-sessionE,10,0.5901357667084791,0.9871571103188751,False,not flagged
+commands_per_user_tau0.60,features_P0,cross-day-sessionT-sessionE,20,0.6365363792472657,0.9920968948746727,False,not flagged
+commands_per_user_tau0.60,features_P0,cross-day-sessionT-sessionE,50,0.6475694444444444,0.9982638888888888,False,not flagged
+commands_per_user_tau0.60,features_P0,cross-day-sessionT-sessionE,100,,,False,not evaluable
+commands_per_user_tau0.80,features_P0,cross-day-sessionT-sessionE,1,0.5123257355691996,0.9640632908606764,False,not flagged
+commands_per_user_tau0.80,features_P0,cross-day-sessionT-sessionE,5,0.5623590204881054,0.9876343775445081,False,not flagged
+commands_per_user_tau0.80,features_P0,cross-day-sessionT-sessionE,10,0.5880987846878369,0.9871571103188751,False,not flagged
+commands_per_user_tau0.80,features_P0,cross-day-sessionT-sessionE,20,0.6196675359257058,0.9920968948746727,False,not flagged
+commands_per_user_tau0.80,features_P0,cross-day-sessionT-sessionE,50,0.6180555555555556,0.9982638888888888,False,not flagged
+commands_per_user_tau0.80,features_P0,cross-day-sessionT-sessionE,100,,,False,not evaluable

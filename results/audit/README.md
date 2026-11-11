@@ -60,6 +60,23 @@ For 2a and Lee2019 the same notes are in the `day1_note` column of `summary.csv`
 - `report_index.json`: size and SHA-256 of each full `report.json`. Those files hold the
   component-level evidence (up to 208 MB each) and are not tracked in Git.
 
+## After the freeze
+
+The bundle describes the state in which the batch ran. Two things changed afterwards, so a
+re-check of the bundle against the working tree reports two mismatches, both expected:
+
+- `docs/plan_v3.md`: its State section is still appended to. The plan as frozen is in
+  `freeze/source.zip` and at commit `55cd01e`.
+- The environment: `beat` was reinstalled as an editable install on 2026-11-12, because an older
+  non-editable copy of `beat_audit` in the virtual environment was being imported from outside
+  the repository. `freeze/pip_freeze.txt` records the environment of the batch. The batch itself
+  recorded the hashes of the source files it executed, and the audit below confirmed them.
+
+To reproduce the batch, check out `freeze-5` and install the versions of `freeze/pip_freeze.txt`.
+
+`ladder.csv`, `ladder_compare_*` and the `ladder_*` report folders are the transmission ladder
+(plan stage S4): exploratory, computed after the batch with the same tool source.
+
 ## Independent audit of the frozen batch (2026-11-12)
 
 An independent reviewer recomputed, with separate code, V1, V2 and the contrast from the stored

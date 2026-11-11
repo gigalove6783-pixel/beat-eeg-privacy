@@ -1,0 +1,79 @@
+{
+ "features_P0": {
+  "seconds": 21.776747800176963,
+  "tool_runtime_seconds": 19.781402700114995,
+  "cells": {
+   "ok": 5,
+   "not_evaluable": 1
+  },
+  "report": "results/audit/ladder/bnci2014_001/principal/features_P0/report.json",
+  "report_sha256": "fdcc7f3f926a7019f3e0518d8d8152ab62cc06631ba55458053c3a802fdac23f",
+  "utc": "2026-11-11T17:14:18Z"
+ },
+ "features_P2-RC_d8": {
+  "seconds": 27.30534780002199,
+  "tool_runtime_seconds": 25.919640899868682,
+  "cells": {
+   "ok": 5,
+   "not_evaluable": 1
+  },
+  "report": "results/audit/ladder/bnci2014_001/principal/features_P2-RC_d8/report.json",
+  "report_sha256": "e1b2c06ea0db36a6ed4b1c3839e65b71e4d5bc45b96fb6652a4e1265c9bb3fb4",
+  "utc": "2026-11-11T17:14:46Z"
+ },
+ "commands_shared_tau0.50": {
+  "seconds": 1.9322730998974293,
+  "tool_runtime_seconds": 1.3204245001543313,
+  "cells": {
+   "ok": 5,
+   "not_evaluable": 1
+  },
+  "report": "results/audit/ladder/bnci2014_001/principal/commands_shared_tau0.50/report.json",
+  "report_sha256": "453625f0a43fbee8794e992fccb354b28d04f96d5bdde8daf1a0b25ffc6c1f77",
+  "utc": "2026-11-11T17:14:48Z"
+ },
+ "commands_shared_tau0.80": {
+  "seconds": 1.7759968000464141,
+  "tool_runtime_seconds": 1.2005072000902146,
+  "cells": {
+   "ok": 5,
+   "not_evaluable": 1
+  },
+  "report": "results/audit/ladder/bnci2014_001/principal/commands_shared_tau0.80/report.json",
+  "report_sha256": "2fa88b24be5c428dc2a74e25b42d20dba34dbeedf45c453c422a376def302076",
+  "utc": "2026-11-11T17:14:49Z"
+ },
+ "commands_per_user_tau0.50": {
+  "seconds": 2.1346919999923557,
+  "tool_runtime_seconds": 1.4762103001121432,
+  "cells": {
+   "ok": 5,
+   "not_evaluable": 1
+  },
+  "report": "results/audit/ladder/bnci2014_001/principal/commands_per_user_tau0.50/report.json",
+  "report_sha256": "2b7fadfad07c20fd38a7c8f858a625816a3cd541822b13af7f7379d8906d0ea4",
+  "utc": "2026-11-11T17:14:51Z"
+ },
+ "commands_per_user_tau0.60": {
+  "seconds": 1.9453213999513537,
+  "tool_runtime_seconds": 1.2446423000656068,
+  "cells": {
+   "ok": 5,
+   "not_evaluable": 1
+  },
+  "report": "results/audit/ladder/bnci2014_001/principal/commands_per_user_tau0.60/report.json",
+  "report_sha256": "3947357bad0c6b3a13475b12cc24a8da19ae39b10ea67ca7e07190924366f13c",
+  "utc": "2026-11-11T17:14:53Z"
+ },
+ "commands_per_user_tau0.80": {
+  "seconds": 2.0191136999055743,
+  "tool_runtime_seconds": 1.41396540007554,
+  "cells": {
+   "ok": 5,
+   "not_evaluable": 1
+  },
+  "report": "results/audit/ladder/bnci2014_001/principal/commands_per_user_tau0.80/report.json",
+  "report_sha256": "22213525e4c4dfa9bcaa23329d8599563baf435f577f03c402b97123579bf6e4",
+  "utc": "2026-11-11T17:14:55Z"
+ }
+}

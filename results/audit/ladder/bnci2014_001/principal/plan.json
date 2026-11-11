@@ -1,0 +1,253 @@
+{
+ "label": "exploratory",
+ "cohort": "bnci2014_001",
+ "set": "principal",
+ "days": [
+  1,
+  2
+ ],
+ "later_days": [
+  2
+ ],
+ "calibration_day": 1,
+ "conditions": [
+  {
+   "name": "same-day-sessionE",
+   "relation": "same-day",
+   "pairs": [
+    [
+     [
+      "2/1"
+     ],
+     [
+      "2/2"
+     ]
+    ]
+   ],
+   "sides": "runs 1-3 against runs 4-6 of session E"
+  }
+ ],
+ "settings": {
+  "k_grid": [
+   1,
+   5,
+   10,
+   20,
+   50,
+   100
+  ],
+  "fold_seed": 20261111,
+  "seed": 20261112,
+  "permutations": 10000,
+  "bootstraps": 2000,
+  "threads": 4,
+  "comparators": [
+   "cosine",
+   "lda_cosine",
+   "cosine_rich",
+   "lda_cosine_rich"
+  ],
+  "gallery": true,
+  "sequential": true,
+  "closed_set": true
+ },
+ "seeds": "model seeds 0,1,2; fold seed 20261111; attack seed 20261112 + 1009 x fold + 101 x model-seed position; matching permutations 20261112; bootstrap 20261113; per-user decoder CV seed 20261115; utility bootstrap 20261116",
+ "model_seeds": [
+  0,
+  1,
+  2
+ ],
+ "seconds_per_output": 6.0,
+ "users": [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9"
+ ],
+ "support": {
+  "rows": 2346,
+  "users": 9,
+  "rows_per_day": {
+   "1": 1163,
+   "2": 1183
+  },
+  "later_day_rows": 1183,
+  "sha256_of_keys": "d7c5dcae09f6076d89e7ddbf92ba17f9d28a20083360faf821407ffba58c4f14"
+ },
+ "rungs": [
+  {
+   "name": "features_P0",
+   "kind": "features",
+   "tau": null,
+   "derived_from": null,
+   "transmits": "full features (P0)",
+   "decoder": "shared P0 decoder (study final model)"
+  },
+  {
+   "name": "features_P2-RC_d8",
+   "kind": "features",
+   "tau": null,
+   "derived_from": null,
+   "transmits": "recentred 8-d bottleneck (P2-RC d = 8)",
+   "decoder": "shared P2-RC decoder (study final model)"
+  },
+  {
+   "name": "commands_shared_tau0.50",
+   "kind": "commands",
+   "tau": 0.5,
+   "derived_from": "features_P2-RC_d8",
+   "transmits": "shared-decoder commands, tau 0.50",
+   "decoder": "shared P2-RC decoder (study final model)"
+  },
+  {
+   "name": "commands_shared_tau0.80",
+   "kind": "commands",
+   "tau": 0.8,
+   "derived_from": "features_P2-RC_d8",
+   "transmits": "shared-decoder commands, tau 0.80",
+   "decoder": "shared P2-RC decoder (study final model)"
+  },
+  {
+   "name": "commands_per_user_tau0.50",
+   "kind": "commands",
+   "tau": 0.5,
+   "derived_from": "features_P0",
+   "transmits": "per-user-decoder commands, tau 0.50",
+   "decoder": "per-user standardised logistic regression (C = 1), calibration-day P0"
+  },
+  {
+   "name": "commands_per_user_tau0.60",
+   "kind": "commands",
+   "tau": 0.6,
+   "derived_from": "features_P0",
+   "transmits": "per-user-decoder commands, tau 0.60",
+   "decoder": "per-user standardised logistic regression (C = 1), calibration-day P0"
+  },
+  {
+   "name": "commands_per_user_tau0.80",
+   "kind": "commands",
+   "tau": 0.8,
+   "derived_from": "features_P0",
+   "transmits": "per-user-decoder commands, tau 0.80",
+   "decoder": "per-user standardised logistic regression (C = 1), calibration-day P0"
+  }
+ ],
+ "inputs": {
+  "features_P0": {
+   "0": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/features_P0_seed0.npz",
+    "sha256": "f0d6914d23e114f804a9a52d911b4f345783764689eaa52b43c459912cb29467"
+   },
+   "1": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/features_P0_seed1.npz",
+    "sha256": "f0d6914d23e114f804a9a52d911b4f345783764689eaa52b43c459912cb29467"
+   },
+   "2": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/features_P0_seed2.npz",
+    "sha256": "f0d6914d23e114f804a9a52d911b4f345783764689eaa52b43c459912cb29467"
+   }
+  },
+  "features_P2-RC_d8": {
+   "0": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/features_P2-RC_d8_seed0.npz",
+    "sha256": "3ec4ec43c9f90aea574fb18b907519d8ff25de1dcce054605711fe6f41a7914f"
+   },
+   "1": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/features_P2-RC_d8_seed1.npz",
+    "sha256": "a16127451aadac3f73dd03cac3e0767e8d6f4d5a37f2ce729666612d80e8da91"
+   },
+   "2": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/features_P2-RC_d8_seed2.npz",
+    "sha256": "e6041bb8ce5e2ab6d9b774888a197974ace97538171bd0e4fdd149c96e0fbc29"
+   }
+  },
+  "commands_shared_tau0.50": {
+   "0": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/commands_shared_tau0.50_seed0.npz",
+    "sha256": "1ee963e86b310dd2d687fa561cbf54da76b12246f56c2d91d39c21873ddb6ba3"
+   },
+   "1": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/commands_shared_tau0.50_seed1.npz",
+    "sha256": "0d69540a504c70d56c599021f0d03f79eedd897cbda7ff6361147f5493470966"
+   },
+   "2": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/commands_shared_tau0.50_seed2.npz",
+    "sha256": "61bdcbcdaa3ace26719eaaaa3947138bd4e2ca8a305344e38fa0e98490fcd2f1"
+   }
+  },
+  "commands_shared_tau0.80": {
+   "0": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/commands_shared_tau0.80_seed0.npz",
+    "sha256": "b49871fa41033b17f9c952a47fe78fd1578984af16e4ff7fe48619f5330fa2bf"
+   },
+   "1": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/commands_shared_tau0.80_seed1.npz",
+    "sha256": "54b0cf747f048027f3b42dc39ca72686390d66bdca4aba8f2b3a82792bfce821"
+   },
+   "2": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/commands_shared_tau0.80_seed2.npz",
+    "sha256": "10c0c3b3f6cf51cadfff955472812c89e72632dcb52008da915cd89c5d6a3688"
+   }
+  },
+  "commands_per_user_tau0.50": {
+   "0": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/commands_per_user_tau0.50_seed0.npz",
+    "sha256": "eccf4f3d530f7afaf6affe7c31123c335a42c444b9f072683e63732bca706225"
+   },
+   "1": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/commands_per_user_tau0.50_seed1.npz",
+    "sha256": "eccf4f3d530f7afaf6affe7c31123c335a42c444b9f072683e63732bca706225"
+   },
+   "2": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/commands_per_user_tau0.50_seed2.npz",
+    "sha256": "eccf4f3d530f7afaf6affe7c31123c335a42c444b9f072683e63732bca706225"
+   }
+  },
+  "commands_per_user_tau0.60": {
+   "0": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/commands_per_user_tau0.60_seed0.npz",
+    "sha256": "44cdd40ae842236066db40933859afdb560d0dab0d89bde0ac7f3b6005467278"
+   },
+   "1": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/commands_per_user_tau0.60_seed1.npz",
+    "sha256": "44cdd40ae842236066db40933859afdb560d0dab0d89bde0ac7f3b6005467278"
+   },
+   "2": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/commands_per_user_tau0.60_seed2.npz",
+    "sha256": "44cdd40ae842236066db40933859afdb560d0dab0d89bde0ac7f3b6005467278"
+   }
+  },
+  "commands_per_user_tau0.80": {
+   "0": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/commands_per_user_tau0.80_seed0.npz",
+    "sha256": "1fbd095aab7b4fb863bd768eb71c7ffc4d5c113afe8c5a815c308c60de9ecd09"
+   },
+   "1": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/commands_per_user_tau0.80_seed1.npz",
+    "sha256": "1fbd095aab7b4fb863bd768eb71c7ffc4d5c113afe8c5a815c308c60de9ecd09"
+   },
+   "2": {
+    "file": "artifacts/audit/ladder/bnci2014_001/principal/commands_per_user_tau0.80_seed2.npz",
+    "sha256": "1fbd095aab7b4fb863bd768eb71c7ffc4d5c113afe8c5a815c308c60de9ecd09"
+   }
+  }
+ },
+ "per_user_decoder": {
+  "C": 1.0,
+  "max_iter": 1000,
+  "taus": [
+   0.5,
+   0.6,
+   0.8
+  ],
+  "folds": 5,
+  "cv_seed": 20261115,
+  "note": "the per-user decoder is deterministic and P0 features are equal across model seeds, so its three model-seed inputs hold equal commands; they keep the population hash (masks keyed by model seed) equal to the other rungs'"
+ },
+ "join": "(user, source_session, source_run, source_trial); time order of the first export"
+}
