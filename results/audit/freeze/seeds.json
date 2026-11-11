@@ -1,0 +1,2124 @@
+{
+  "fold_seed": 20261111,
+  "seed": 20261112,
+  "matching_permutations": 20261112,
+  "bootstrap_and_contrasts": 20261113,
+  "attack_seed": "comparator fit, pair-training draws and closed-set fits of one fold and model seed (index i of the model-seed label among the stream's labels sorted as strings, the order in which beat_audit.engine fits them)",
+  "draw_seed": "comparison-table and gallery draws of one pair and direction",
+  "fold": "position of the fold among a cell's folds (the labels of folds.json while every fold keeps an analysed user)",
+  "derived": "beat_audit.engine: comparator, pair-training and closed-set seed = seed + 1009 x fold + 101 x model-seed index; comparison and gallery draws = that seed + 37 x pair + 17 x direction; matching permutations = seed; subject bootstrap and contrasts = seed + 1",
+  "streams": [
+    {
+      "rung": "commands_P2-RC_d8_tau0.50",
+      "pairs_per_condition": {
+        "cross-day": 1,
+        "cross-day-d2-d3": 1,
+        "same-day": 3,
+        "same-day-d2-d3": 2
+      },
+      "components": [
+        {
+          "fold": 0,
+          "model_seed": "0",
+          "attack_seed": 20261112,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20261112
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20261129
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20261149
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20261166
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20261186
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20261203
+            }
+          ]
+        },
+        {
+          "fold": 0,
+          "model_seed": "1",
+          "attack_seed": 20261213,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20261213
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20261230
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20261250
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20261267
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20261287
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20261304
+            }
+          ]
+        },
+        {
+          "fold": 0,
+          "model_seed": "2",
+          "attack_seed": 20261314,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20261314
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20261331
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20261351
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20261368
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20261388
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20261405
+            }
+          ]
+        },
+        {
+          "fold": 1,
+          "model_seed": "0",
+          "attack_seed": 20262121,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20262121
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20262138
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20262158
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20262175
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20262195
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20262212
+            }
+          ]
+        },
+        {
+          "fold": 1,
+          "model_seed": "1",
+          "attack_seed": 20262222,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20262222
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20262239
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20262259
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20262276
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20262296
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20262313
+            }
+          ]
+        },
+        {
+          "fold": 1,
+          "model_seed": "2",
+          "attack_seed": 20262323,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20262323
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20262340
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20262360
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20262377
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20262397
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20262414
+            }
+          ]
+        },
+        {
+          "fold": 2,
+          "model_seed": "0",
+          "attack_seed": 20263130,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20263130
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20263147
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20263167
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20263184
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20263204
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20263221
+            }
+          ]
+        },
+        {
+          "fold": 2,
+          "model_seed": "1",
+          "attack_seed": 20263231,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20263231
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20263248
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20263268
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20263285
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20263305
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20263322
+            }
+          ]
+        },
+        {
+          "fold": 2,
+          "model_seed": "2",
+          "attack_seed": 20263332,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20263332
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20263349
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20263369
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20263386
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20263406
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20263423
+            }
+          ]
+        },
+        {
+          "fold": 3,
+          "model_seed": "0",
+          "attack_seed": 20264139,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20264139
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20264156
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20264176
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20264193
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20264213
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20264230
+            }
+          ]
+        },
+        {
+          "fold": 3,
+          "model_seed": "1",
+          "attack_seed": 20264240,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20264240
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20264257
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20264277
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20264294
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20264314
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20264331
+            }
+          ]
+        },
+        {
+          "fold": 3,
+          "model_seed": "2",
+          "attack_seed": 20264341,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20264341
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20264358
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20264378
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20264395
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20264415
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20264432
+            }
+          ]
+        },
+        {
+          "fold": 4,
+          "model_seed": "0",
+          "attack_seed": 20265148,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20265148
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20265165
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20265185
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20265202
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20265222
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20265239
+            }
+          ]
+        },
+        {
+          "fold": 4,
+          "model_seed": "1",
+          "attack_seed": 20265249,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20265249
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20265266
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20265286
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20265303
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20265323
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20265340
+            }
+          ]
+        },
+        {
+          "fold": 4,
+          "model_seed": "2",
+          "attack_seed": 20265350,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20265350
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20265367
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20265387
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20265404
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20265424
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20265441
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rung": "commands_P2-RC_d8_tau0.60",
+      "pairs_per_condition": {
+        "cross-day": 1,
+        "cross-day-d2-d3": 1,
+        "same-day": 3,
+        "same-day-d2-d3": 2
+      },
+      "components": [
+        {
+          "fold": 0,
+          "model_seed": "0",
+          "attack_seed": 20261112,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20261112
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20261129
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20261149
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20261166
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20261186
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20261203
+            }
+          ]
+        },
+        {
+          "fold": 0,
+          "model_seed": "1",
+          "attack_seed": 20261213,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20261213
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20261230
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20261250
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20261267
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20261287
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20261304
+            }
+          ]
+        },
+        {
+          "fold": 0,
+          "model_seed": "2",
+          "attack_seed": 20261314,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20261314
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20261331
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20261351
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20261368
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20261388
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20261405
+            }
+          ]
+        },
+        {
+          "fold": 1,
+          "model_seed": "0",
+          "attack_seed": 20262121,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20262121
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20262138
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20262158
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20262175
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20262195
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20262212
+            }
+          ]
+        },
+        {
+          "fold": 1,
+          "model_seed": "1",
+          "attack_seed": 20262222,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20262222
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20262239
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20262259
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20262276
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20262296
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20262313
+            }
+          ]
+        },
+        {
+          "fold": 1,
+          "model_seed": "2",
+          "attack_seed": 20262323,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20262323
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20262340
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20262360
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20262377
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20262397
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20262414
+            }
+          ]
+        },
+        {
+          "fold": 2,
+          "model_seed": "0",
+          "attack_seed": 20263130,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20263130
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20263147
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20263167
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20263184
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20263204
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20263221
+            }
+          ]
+        },
+        {
+          "fold": 2,
+          "model_seed": "1",
+          "attack_seed": 20263231,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20263231
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20263248
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20263268
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20263285
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20263305
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20263322
+            }
+          ]
+        },
+        {
+          "fold": 2,
+          "model_seed": "2",
+          "attack_seed": 20263332,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20263332
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20263349
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20263369
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20263386
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20263406
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20263423
+            }
+          ]
+        },
+        {
+          "fold": 3,
+          "model_seed": "0",
+          "attack_seed": 20264139,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20264139
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20264156
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20264176
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20264193
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20264213
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20264230
+            }
+          ]
+        },
+        {
+          "fold": 3,
+          "model_seed": "1",
+          "attack_seed": 20264240,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20264240
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20264257
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20264277
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20264294
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20264314
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20264331
+            }
+          ]
+        },
+        {
+          "fold": 3,
+          "model_seed": "2",
+          "attack_seed": 20264341,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20264341
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20264358
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20264378
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20264395
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20264415
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20264432
+            }
+          ]
+        },
+        {
+          "fold": 4,
+          "model_seed": "0",
+          "attack_seed": 20265148,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20265148
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20265165
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20265185
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20265202
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20265222
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20265239
+            }
+          ]
+        },
+        {
+          "fold": 4,
+          "model_seed": "1",
+          "attack_seed": 20265249,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20265249
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20265266
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20265286
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20265303
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20265323
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20265340
+            }
+          ]
+        },
+        {
+          "fold": 4,
+          "model_seed": "2",
+          "attack_seed": 20265350,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20265350
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20265367
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20265387
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20265404
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20265424
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20265441
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rung": "features_P0",
+      "pairs_per_condition": {
+        "cross-day": 1,
+        "cross-day-d2-d3": 1,
+        "same-day": 3,
+        "same-day-d2-d3": 2
+      },
+      "components": [
+        {
+          "fold": 0,
+          "model_seed": "0",
+          "attack_seed": 20261112,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20261112
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20261129
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20261149
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20261166
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20261186
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20261203
+            }
+          ]
+        },
+        {
+          "fold": 0,
+          "model_seed": "1",
+          "attack_seed": 20261213,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20261213
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20261230
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20261250
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20261267
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20261287
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20261304
+            }
+          ]
+        },
+        {
+          "fold": 0,
+          "model_seed": "2",
+          "attack_seed": 20261314,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20261314
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20261331
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20261351
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20261368
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20261388
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20261405
+            }
+          ]
+        },
+        {
+          "fold": 1,
+          "model_seed": "0",
+          "attack_seed": 20262121,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20262121
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20262138
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20262158
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20262175
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20262195
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20262212
+            }
+          ]
+        },
+        {
+          "fold": 1,
+          "model_seed": "1",
+          "attack_seed": 20262222,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20262222
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20262239
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20262259
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20262276
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20262296
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20262313
+            }
+          ]
+        },
+        {
+          "fold": 1,
+          "model_seed": "2",
+          "attack_seed": 20262323,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20262323
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20262340
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20262360
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20262377
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20262397
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20262414
+            }
+          ]
+        },
+        {
+          "fold": 2,
+          "model_seed": "0",
+          "attack_seed": 20263130,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20263130
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20263147
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20263167
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20263184
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20263204
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20263221
+            }
+          ]
+        },
+        {
+          "fold": 2,
+          "model_seed": "1",
+          "attack_seed": 20263231,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20263231
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20263248
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20263268
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20263285
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20263305
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20263322
+            }
+          ]
+        },
+        {
+          "fold": 2,
+          "model_seed": "2",
+          "attack_seed": 20263332,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20263332
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20263349
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20263369
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20263386
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20263406
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20263423
+            }
+          ]
+        },
+        {
+          "fold": 3,
+          "model_seed": "0",
+          "attack_seed": 20264139,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20264139
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20264156
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20264176
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20264193
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20264213
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20264230
+            }
+          ]
+        },
+        {
+          "fold": 3,
+          "model_seed": "1",
+          "attack_seed": 20264240,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20264240
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20264257
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20264277
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20264294
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20264314
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20264331
+            }
+          ]
+        },
+        {
+          "fold": 3,
+          "model_seed": "2",
+          "attack_seed": 20264341,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20264341
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20264358
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20264378
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20264395
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20264415
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20264432
+            }
+          ]
+        },
+        {
+          "fold": 4,
+          "model_seed": "0",
+          "attack_seed": 20265148,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20265148
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20265165
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20265185
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20265202
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20265222
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20265239
+            }
+          ]
+        },
+        {
+          "fold": 4,
+          "model_seed": "1",
+          "attack_seed": 20265249,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20265249
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20265266
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20265286
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20265303
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20265323
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20265340
+            }
+          ]
+        },
+        {
+          "fold": 4,
+          "model_seed": "2",
+          "attack_seed": 20265350,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20265350
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20265367
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20265387
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20265404
+            },
+            {
+              "pair": 2,
+              "direction": "A->B",
+              "seed": 20265424
+            },
+            {
+              "pair": 2,
+              "direction": "B->A",
+              "seed": 20265441
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rung": "features_P2-RC_d8",
+      "pairs_per_condition": {
+        "same-day-d2-d3": 2,
+        "cross-day-d2-d3": 1
+      },
+      "components": [
+        {
+          "fold": 0,
+          "model_seed": "0",
+          "attack_seed": 20261112,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20261112
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20261129
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20261149
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20261166
+            }
+          ]
+        },
+        {
+          "fold": 0,
+          "model_seed": "1",
+          "attack_seed": 20261213,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20261213
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20261230
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20261250
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20261267
+            }
+          ]
+        },
+        {
+          "fold": 0,
+          "model_seed": "2",
+          "attack_seed": 20261314,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20261314
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20261331
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20261351
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20261368
+            }
+          ]
+        },
+        {
+          "fold": 1,
+          "model_seed": "0",
+          "attack_seed": 20262121,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20262121
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20262138
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20262158
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20262175
+            }
+          ]
+        },
+        {
+          "fold": 1,
+          "model_seed": "1",
+          "attack_seed": 20262222,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20262222
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20262239
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20262259
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20262276
+            }
+          ]
+        },
+        {
+          "fold": 1,
+          "model_seed": "2",
+          "attack_seed": 20262323,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20262323
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20262340
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20262360
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20262377
+            }
+          ]
+        },
+        {
+          "fold": 2,
+          "model_seed": "0",
+          "attack_seed": 20263130,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20263130
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20263147
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20263167
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20263184
+            }
+          ]
+        },
+        {
+          "fold": 2,
+          "model_seed": "1",
+          "attack_seed": 20263231,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20263231
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20263248
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20263268
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20263285
+            }
+          ]
+        },
+        {
+          "fold": 2,
+          "model_seed": "2",
+          "attack_seed": 20263332,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20263332
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20263349
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20263369
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20263386
+            }
+          ]
+        },
+        {
+          "fold": 3,
+          "model_seed": "0",
+          "attack_seed": 20264139,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20264139
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20264156
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20264176
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20264193
+            }
+          ]
+        },
+        {
+          "fold": 3,
+          "model_seed": "1",
+          "attack_seed": 20264240,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20264240
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20264257
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20264277
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20264294
+            }
+          ]
+        },
+        {
+          "fold": 3,
+          "model_seed": "2",
+          "attack_seed": 20264341,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20264341
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20264358
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20264378
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20264395
+            }
+          ]
+        },
+        {
+          "fold": 4,
+          "model_seed": "0",
+          "attack_seed": 20265148,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20265148
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20265165
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20265185
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20265202
+            }
+          ]
+        },
+        {
+          "fold": 4,
+          "model_seed": "1",
+          "attack_seed": 20265249,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20265249
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20265266
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20265286
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20265303
+            }
+          ]
+        },
+        {
+          "fold": 4,
+          "model_seed": "2",
+          "attack_seed": 20265350,
+          "draws": [
+            {
+              "pair": 0,
+              "direction": "A->B",
+              "seed": 20265350
+            },
+            {
+              "pair": 0,
+              "direction": "B->A",
+              "seed": 20265367
+            },
+            {
+              "pair": 1,
+              "direction": "A->B",
+              "seed": 20265387
+            },
+            {
+              "pair": 1,
+              "direction": "B->A",
+              "seed": 20265404
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

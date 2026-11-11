@@ -1,0 +1,16 @@
+{
+  "created_utc": "2026-11-11T14:42:30Z",
+  "git_head": "3627aa6c64ebe9a7e6e2ac173452a4ba29555b3b",
+  "tier": "pre-specified (non-blind)",
+  "note": "Freeze of plan v3 \u00a74: commit with tag freeze-5, pushed before `frozen-batch`",
+  "files": {
+    "source.zip": "b709a20499c0bb3ee3b61914a4c1298c2e10581cf08298593483d7aaf2d0d87d",
+    "sources.json": "91c8dc378ff79249ba19910b8d7ad1959c36e876ff561826b022e905a1d1fb4c",
+    "pip_freeze.txt": "73e20124c24d2d5c2a802a664500b39693de6743ee0da16a94456bcd298763ee",
+    "hashes.json": "38e402e9c9cd5be16b99ad563b7aa28a575c3c2165e57e512468ccfec9d27795",
+    "folds.json": "6caa0079f78722d3787844e78df077fca3e88ab3d46ef6b5bf957ebd4447debc",
+    "seeds.json": "faac08abab6c3873234db2a49c06c97b35d50a2e92685c9c13ad064387ae406d",
+    "predictions.json": "5edfb3189c152f1111750c7152496fcad58a8ff486e087d76edf2e9f8200062b",
+    "jobs.json": "8affa84cff8db61ff84b145b51e7be8e3b661f962389ca5e164a45b4c4c1a65e"
+  }
+}

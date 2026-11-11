@@ -1,0 +1,93 @@
+{
+  "alpha": 0.05,
+  "V1": {
+    "cohort": "yang2025",
+    "rung": "features_P0",
+    "condition": "cross-day",
+    "k": 20,
+    "comparator": "cosine_rich",
+    "test": "mean per-user AUC > 0.5, matching permutation test",
+    "selection": {
+      "cohort": "lee2019",
+      "rung": "features_P0",
+      "condition": "cross-day",
+      "k": 20,
+      "order": [
+        "cosine",
+        "lda_cosine",
+        "cosine_rich",
+        "lda_cosine_rich",
+        "pair_logistic"
+      ],
+      "rule": "highest Lee2019 cross-day mean per-user AUC on full features (P0) at k = 20 over the feature comparators that survive the runtime gate; an exact tie goes to the simpler comparator in the order cosine, LDA + WCCN, cosine (rich summary), LDA + WCCN (rich summary), pairwise logistic"
+    }
+  },
+  "V2": {
+    "cohort": "yang2025",
+    "rung": "commands_P2-RC_d8_tau0.60",
+    "condition": "cross-day",
+    "k": 50,
+    "comparator": "bayes_factor",
+    "test": "mean per-user AUC > 0.5, matching permutation test"
+  },
+  "estimate": {
+    "cohort": "yang2025",
+    "rung": "features_P0",
+    "same_day": "same-day-d2-d3",
+    "cross_day": "cross-day"
+  },
+  "v1_selection": {
+    "rule": "highest Lee2019 cross-day mean per-user AUC on full features (P0) at k = 20 over the feature comparators that survive the runtime gate; an exact tie goes to the simpler comparator in the order cosine, LDA + WCCN, cosine (rich summary), LDA + WCCN (rich summary), pairwise logistic",
+    "cohort": "lee2019",
+    "rung": "features_P0",
+    "condition": "cross-day",
+    "k": 20,
+    "not_compared": {
+      "pair_logistic": "removed by the runtime gate's reductions ['drop_pair_logistic']"
+    },
+    "mean_per_user_auc": {
+      "cosine": 0.944188683127572,
+      "lda_cosine": 0.9521275720164609,
+      "cosine_rich": 0.9543072016460905,
+      "lda_cosine_rich": 0.9458781893004116
+    },
+    "intervals": {
+      "cosine": [
+        0.9125393840020577,
+        0.9695911184597297
+      ],
+      "lda_cosine": [
+        0.926514654431217,
+        0.9735640694811875
+      ],
+      "cosine_rich": [
+        0.9281577645502647,
+        0.9744242596266901
+      ],
+      "lda_cosine_rich": [
+        0.9199371524103469,
+        0.9672525635655498
+      ]
+    },
+    "comparator": "cosine_rich",
+    "report": "results/audit/lee2019/features_P0/report.json",
+    "report_sha256": "8bd28dfe8cd3cc475033a547048af582c91ed8c78635f5c848aa503665781534"
+  },
+  "runtime_gate": {
+    "file": "results/audit/runtime_projection.json",
+    "sha256": "b93065568a83a257d5cd185f36916754ac7509f1f353c78e169b43ed7803e6ba",
+    "required_reductions": [
+      "drop_pair_logistic"
+    ],
+    "development_check": {
+      "attempt": "20261111T130911Z-977243fd",
+      "factor_by_type": {
+        "features_full": 1.44511400149934,
+        "features_8d": 1.3741999273705967,
+        "commands": 1.0151968376991085
+      },
+      "yang2025_batch_hours": 1.063041221690968,
+      "within_limits": true
+    }
+  }
+}

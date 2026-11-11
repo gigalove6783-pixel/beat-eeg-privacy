@@ -1,0 +1,28 @@
+{
+  "files": {
+    "beat_audit/__init__.py": "c89d884a118de095148af6b27e068890d4b8b7025e7f9a162ddb82abe8c4fa9f",
+    "beat_audit/__main__.py": "44c15e52120d82e0779c0da55371f82cbb9f5d7b1dffab74512b8384f482a582",
+    "beat_audit/api.py": "74e908d6e577ab9cd27a7a87c1f4a5b8c80af75e5e3fd2313b7cb7a04491687c",
+    "beat_audit/cli.py": "02bce587055b1b72e5fecd4843937e521f48ab71cb2c7da0ef587fe01967f2e6",
+    "beat_audit/closed_set.py": "6ce053bd6f5ccf572b495e603ebf2edf324b2e2ec53a4fdd6a14c79f136e6752",
+    "beat_audit/comparators.py": "743ba9db6995dd10906fb27c8c012749f16ec57caca7b8674826187397cee10b",
+    "beat_audit/engine.py": "ee90cea003426234390401735577c0698a6fa713fb431a132ad636233edf42aa",
+    "beat_audit/gallery.py": "f88cad949c48c99ddca3155118a9696e018255ca27a0c255e583bfc81d240094",
+    "beat_audit/inference.py": "eadeec7e0f91c488dfc653987f53c3310dbd2c93c0d8a80cfa8a9ce7273771e9",
+    "beat_audit/io.py": "105001b5072a0265885597f94cd8e642a841787ec0fda456f08b43d2009ad8f4",
+    "beat_audit/metrics.py": "67de9cc8664cb640f3018cacc262e9fc8ee005119445826d6abef0d39db74551",
+    "beat_audit/null_validation.py": "67a2d023aeabf82f5aefda2b34a001ff12917040d7f946846a3514c881b41d65",
+    "beat_audit/protocol.py": "1cb68d5c2c133dd00f7ee2c8d5245c1a735b601cde221ffe533df87fc5878eb8",
+    "beat_audit/README.md": "1a164791e800989849e683469f00cbb6a3804da0fe7e581ecef4c3774e409662",
+    "beat_audit/report.py": "8a1e4fd67f877ef07f30058455222a00457323f0f9c43735ca75fea84bf17c2b",
+    "beat_audit/resources.py": "3110a4b68f8cf0a834b596398a2ccf29169afbc9f01abe385d6c6641a400d641",
+    "beat_audit/sequential.py": "4d00b69f6aef2e4ed5c8a72d9e60e0ed292f4ad0c1d6b3294de78ced7dad5ed0",
+    "beat_audit/synthetic.py": "467f5a7cff7b8892c0f4c67b716ad6cf777bbe5eb51949c7fe4aee8b758ad3b8",
+    "beat_audit/validate.py": "b3fc7c60d0c9f30e841f26f44de874300b63924b2fdd040d3ffe16652daab9fb",
+    "scripts/audit_cohorts.py": "a695fe3f436ac298a7514ba5d411a1543881beba67453bb02e03db736e1d7265",
+    "configs/audit.yaml": "3a151665c38cd9ec6ad4abb548377d05ac7acae5a98ff48ac83f7fe8641a8d74",
+    "docs/plan_v3.md": "128fef7322f31087520c934a1fd1b23d68a73826318ba43ce18764e0deb70108"
+  },
+  "zip": "source.zip",
+  "zip_sha256": "b709a20499c0bb3ee3b61914a4c1298c2e10581cf08298593483d7aaf2d0d87d"
+}
