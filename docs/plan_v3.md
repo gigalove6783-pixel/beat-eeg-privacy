@@ -440,3 +440,12 @@ admissible result.
   files are kept out of Git (size); A4's tracked evidence is `report.md`, figures, `summary.csv`,
   the decision and cell-status files. Next gate: freeze commit and tag `freeze-5`, push, one
   frozen Yang2025 batch.
+- 2026-11-12 00:45: S3 complete. Freeze `55cd01e` (tag `freeze-5`, pushed); one frozen batch
+  (`f7af2ed`), 180 of 180 cells ok; V1 supported (0.855), V2 supported (0.567), contrast 0.144.
+  Independent audit: all numbers and both decisions reproduced, freeze compliance confirmed
+  within what the repository can prove; its reporting findings are answered by
+  `results/audit/README.md` and `report_index.json`, the frozen outputs stay untouched. A4 is met
+  with two summary files (`summary.csv` for development, `yang2025/summary.csv` for the batch)
+  instead of one. Open for S5: the tool's report renderer does not print a tier or name its
+  Holm family; a later tool version may add both, without regenerating frozen outputs.
+  In progress: S4 ladder (exploratory), related-work Section 8. Next: S5 and S6.

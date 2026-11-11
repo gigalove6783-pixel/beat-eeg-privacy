@@ -1,0 +1,17 @@
+{
+  "note": "Full beat_audit reports (component-level evidence), kept on disk and not tracked in Git. Hashed on 2026-11-12 after the independent audit of the frozen batch.",
+  "reports": [
+    {"path": "results/audit/bnci2014_001/commands_P2-RC_d8_tau0.50/report.json", "bytes": 2244302, "sha256": "b1d6d31f03e30fd0424ac3b1c6beb5c52c301b98f0cf024d58e49b962e7ab62e"},
+    {"path": "results/audit/bnci2014_001/commands_P2-RC_d8_tau0.80/report.json", "bytes": 2337902, "sha256": "f444ade58395b98dc4e84937e3f1a0ddc3edc4b4f6f8c74a809468b4e69a7de8"},
+    {"path": "results/audit/bnci2014_001/features_P0/report.json", "bytes": 35255985, "sha256": "9a3eca62ce96fd18371f95ac2ef778dc41dd331b24a0380fe34ad7a030c13f9b"},
+    {"path": "results/audit/bnci2014_001/features_P2-RC_d8/report.json", "bytes": 10893546, "sha256": "38480d40c09af92f9149b2064edb4438c824e2ba65fa2318c1dfc21638afd4fd"},
+    {"path": "results/audit/lee2019/commands_P2-RC_d8_tau0.50/report.json", "bytes": 29011955, "sha256": "c8a56037d98f642225f2734bc022b4f61706742257fa49d4d8b4e093c9feb29d"},
+    {"path": "results/audit/lee2019/commands_P2-RC_d8_tau0.80/report.json", "bytes": 29814266, "sha256": "c498d73b9ba619683b21f229a8ce81ab84646487a1ed8bbd05ab94dfe24b2526"},
+    {"path": "results/audit/lee2019/features_P0/report.json", "bytes": 164915048, "sha256": "8bd28dfe8cd3cc475033a547048af582c91ed8c78635f5c848aa503665781534"},
+    {"path": "results/audit/lee2019/features_P2-RC_d8/report.json", "bytes": 147330907, "sha256": "fda223190818a20ef70bf63c3fba307074f530cafb62ee57de1de0ecf83d9806"},
+    {"path": "results/audit/yang2025/commands_P2-RC_d8_tau0.50/report.json", "bytes": 61853039, "sha256": "546937c6aa45d289a8726a8d9772f996c92236aeec8c690fdb3934a94107939f"},
+    {"path": "results/audit/yang2025/commands_P2-RC_d8_tau0.60/report.json", "bytes": 65209496, "sha256": "49580ad71266e438cbeff2f9adf2f8d40750f59a8db47d5d7c9b50368b1575e9"},
+    {"path": "results/audit/yang2025/features_P0/report.json", "bytes": 208376850, "sha256": "bbacef6e958a4e3f5c712a4b18be4c2da2bd6bf4c5aecee76765cf1250cc13c1"},
+    {"path": "results/audit/yang2025/features_P2-RC_d8/report.json", "bytes": 92983442, "sha256": "5476fcf73093a952e87a63678487486eecc026ce7e54aea35a236b769c0bc63c"}
+  ]
+}
