@@ -13,13 +13,13 @@ identity study of v1–v2 stays below, unchanged ([The identity study](#the-iden
 ```powershell
 pip install -e .
 beat-audit run examples/features.csv --out audit-example
-beat-audit compare features_P2-RC_d8=results/audit/ladder/lee2019/principal/features_P2-RC_d8/report.json commands_shared_tau0.50=results/audit/ladder/lee2019/principal/commands_shared_tau0.50/report.json --utility results/audit/ladder_compare_lee2019_utility.json --out audit-example/ladder.csv --derived-from=commands_shared_tau0.50=features_P2-RC_d8
+beat-audit compare features_P2-RC_d8=results/audit/ladder/lee2019/principal/features_P2-RC_d8/report.slim.json commands_shared_tau0.50=results/audit/ladder/lee2019/principal/commands_shared_tau0.50/report.slim.json --utility results/audit/ladder_compare_lee2019_utility.json --out audit-example/ladder.csv --derived-from=commands_shared_tau0.50=features_P2-RC_d8
 ```
 
 The second line audits a synthetic feature file and writes `report.md`, `report.json` and figures
 to `audit-example/`; the third merges two stored reports with their task utility into a
-comparison table. Its `report.json` inputs are not tracked in Git (size); they are rebuilt as in
-the [builder's case](#builders-case-commands-or-features).
+comparison table. Its inputs are tracked `report.slim.json` files, so all three lines run in a
+fresh clone ([builder's case](#builders-case-commands-or-features)).
 
 **Risk at a glance: linkage by an attacker who never enrolled the user, by outputs observed**
 
@@ -115,12 +115,17 @@ reports of different populations and checks that no command stream links more th
 source features. Rebuild the tables from the stored reports (from the project root):
 
 ```powershell
-python -m beat_audit compare features_P0=results/audit/ladder/yang2025/principal/features_P0/report.json features_P2-RC_d8=results/audit/ladder/yang2025/principal/features_P2-RC_d8/report.json commands_shared_tau0.50=results/audit/ladder/yang2025/principal/commands_shared_tau0.50/report.json commands_shared_tau0.60=results/audit/ladder/yang2025/principal/commands_shared_tau0.60/report.json commands_per_user_tau0.50=results/audit/ladder/yang2025/principal/commands_per_user_tau0.50/report.json commands_per_user_tau0.60=results/audit/ladder/yang2025/principal/commands_per_user_tau0.60/report.json commands_per_user_tau0.80=results/audit/ladder/yang2025/principal/commands_per_user_tau0.80/report.json --utility results/audit/ladder_compare_yang2025_utility.json --out results/audit/ladder_compare_yang2025.csv --derived-from=commands_shared_tau0.50=features_P2-RC_d8 --derived-from=commands_shared_tau0.60=features_P2-RC_d8 --derived-from=commands_per_user_tau0.50=features_P0 --derived-from=commands_per_user_tau0.60=features_P0 --derived-from=commands_per_user_tau0.80=features_P0
-python -m beat_audit compare features_P0=results/audit/ladder/lee2019/principal/features_P0/report.json features_P2-RC_d8=results/audit/ladder/lee2019/principal/features_P2-RC_d8/report.json commands_shared_tau0.50=results/audit/ladder/lee2019/principal/commands_shared_tau0.50/report.json commands_shared_tau0.80=results/audit/ladder/lee2019/principal/commands_shared_tau0.80/report.json commands_per_user_tau0.50=results/audit/ladder/lee2019/principal/commands_per_user_tau0.50/report.json commands_per_user_tau0.60=results/audit/ladder/lee2019/principal/commands_per_user_tau0.60/report.json commands_per_user_tau0.80=results/audit/ladder/lee2019/principal/commands_per_user_tau0.80/report.json --utility results/audit/ladder_compare_lee2019_utility.json --out results/audit/ladder_compare_lee2019.csv --derived-from=commands_shared_tau0.50=features_P2-RC_d8 --derived-from=commands_shared_tau0.80=features_P2-RC_d8 --derived-from=commands_per_user_tau0.50=features_P0 --derived-from=commands_per_user_tau0.60=features_P0 --derived-from=commands_per_user_tau0.80=features_P0
+python -m beat_audit compare features_P0=results/audit/ladder/yang2025/principal/features_P0/report.slim.json features_P2-RC_d8=results/audit/ladder/yang2025/principal/features_P2-RC_d8/report.slim.json commands_shared_tau0.50=results/audit/ladder/yang2025/principal/commands_shared_tau0.50/report.slim.json commands_shared_tau0.60=results/audit/ladder/yang2025/principal/commands_shared_tau0.60/report.slim.json commands_per_user_tau0.50=results/audit/ladder/yang2025/principal/commands_per_user_tau0.50/report.slim.json commands_per_user_tau0.60=results/audit/ladder/yang2025/principal/commands_per_user_tau0.60/report.slim.json commands_per_user_tau0.80=results/audit/ladder/yang2025/principal/commands_per_user_tau0.80/report.slim.json --utility results/audit/ladder_compare_yang2025_utility.json --out results/audit/ladder_compare_yang2025.csv --derived-from=commands_shared_tau0.50=features_P2-RC_d8 --derived-from=commands_shared_tau0.60=features_P2-RC_d8 --derived-from=commands_per_user_tau0.50=features_P0 --derived-from=commands_per_user_tau0.60=features_P0 --derived-from=commands_per_user_tau0.80=features_P0
+python -m beat_audit compare features_P0=results/audit/ladder/lee2019/principal/features_P0/report.slim.json features_P2-RC_d8=results/audit/ladder/lee2019/principal/features_P2-RC_d8/report.slim.json commands_shared_tau0.50=results/audit/ladder/lee2019/principal/commands_shared_tau0.50/report.slim.json commands_shared_tau0.80=results/audit/ladder/lee2019/principal/commands_shared_tau0.80/report.slim.json commands_per_user_tau0.50=results/audit/ladder/lee2019/principal/commands_per_user_tau0.50/report.slim.json commands_per_user_tau0.60=results/audit/ladder/lee2019/principal/commands_per_user_tau0.60/report.slim.json commands_per_user_tau0.80=results/audit/ladder/lee2019/principal/commands_per_user_tau0.80/report.slim.json --utility results/audit/ladder_compare_lee2019_utility.json --out results/audit/ladder_compare_lee2019.csv --derived-from=commands_shared_tau0.50=features_P2-RC_d8 --derived-from=commands_shared_tau0.80=features_P2-RC_d8 --derived-from=commands_per_user_tau0.50=features_P0 --derived-from=commands_per_user_tau0.60=features_P0 --derived-from=commands_per_user_tau0.80=features_P0
 ```
 
-The `report.json` inputs (component-level evidence, up to 208 MB each) are not tracked in
-Git; their sizes and SHA-256 are in `results/audit/report_index.json`. They are regenerated, with
+These commands run in a fresh clone and write the committed tables again (`git diff --exit-code
+results/audit/ladder_compare_*.csv` reports no change). Each `report.slim.json` is its full
+`report.json` with the per-user and component-level fields removed and nothing recomputed
+(`scripts/audit_slim_reports.py`); it records the SHA-256 of the full report and the removed
+fields, and keeps the population record (user labels, folds and row positions, no values) that
+`compare` checks. The full `report.json` files (component-level evidence, up to 208 MB each) are
+not tracked in Git; their sizes and SHA-256 are in `results/audit/report_index.json`. They are regenerated, with
 the exports of `scripts/audit_cohorts.py` in place, by `python scripts/audit_ladder.py prepare
 --cohort yang2025`, then `python scripts/audit_ladder.py run --cohort yang2025` (and likewise for
 `lee2019`, `bnci2014_001` and `--set calibration_day`); `python scripts/audit_ladder.py table`
