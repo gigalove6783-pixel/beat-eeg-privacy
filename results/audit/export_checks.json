@@ -1,0 +1,2568 @@
+{
+  "passed": true,
+  "checks_total": 129,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "command_export_equals_records",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "file": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.50_seed0.npz",
+      "rows_export": 2459,
+      "rows_records": 2459,
+      "mismatches": {
+        "user": 0,
+        "day": 0,
+        "segment": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "segment_vs_cohort_rule_mismatches": 0,
+      "target_vs_stored_label_mismatches": 0
+    },
+    {
+      "check": "command_export_equals_records",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "file": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.80_seed0.npz",
+      "rows_export": 2459,
+      "rows_records": 2459,
+      "mismatches": {
+        "user": 0,
+        "day": 0,
+        "segment": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "segment_vs_cohort_rule_mismatches": 0,
+      "target_vs_stored_label_mismatches": 0
+    },
+    {
+      "check": "command_export_equals_records",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "file": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.50_seed1.npz",
+      "rows_export": 2459,
+      "rows_records": 2459,
+      "mismatches": {
+        "user": 0,
+        "day": 0,
+        "segment": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "segment_vs_cohort_rule_mismatches": 0,
+      "target_vs_stored_label_mismatches": 0
+    },
+    {
+      "check": "command_export_equals_records",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "file": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.80_seed1.npz",
+      "rows_export": 2459,
+      "rows_records": 2459,
+      "mismatches": {
+        "user": 0,
+        "day": 0,
+        "segment": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "segment_vs_cohort_rule_mismatches": 0,
+      "target_vs_stored_label_mismatches": 0
+    },
+    {
+      "check": "command_export_equals_records",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "file": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.50_seed2.npz",
+      "rows_export": 2459,
+      "rows_records": 2459,
+      "mismatches": {
+        "user": 0,
+        "day": 0,
+        "segment": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "segment_vs_cohort_rule_mismatches": 0,
+      "target_vs_stored_label_mismatches": 0
+    },
+    {
+      "check": "command_export_equals_records",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "file": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.80_seed2.npz",
+      "rows_export": 2459,
+      "rows_records": 2459,
+      "mismatches": {
+        "user": 0,
+        "day": 0,
+        "segment": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "segment_vs_cohort_rule_mismatches": 0,
+      "target_vs_stored_label_mismatches": 0
+    },
+    {
+      "check": "command_export_equals_records",
+      "passed": true,
+      "cohort": "lee2019",
+      "file": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.50_seed0.npz",
+      "rows_export": 21600,
+      "rows_records": 21600,
+      "mismatches": {
+        "user": 0,
+        "day": 0,
+        "segment": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "segment_vs_cohort_rule_mismatches": 0,
+      "target_vs_stored_label_mismatches": 0
+    },
+    {
+      "check": "command_export_equals_records",
+      "passed": true,
+      "cohort": "lee2019",
+      "file": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.80_seed0.npz",
+      "rows_export": 21600,
+      "rows_records": 21600,
+      "mismatches": {
+        "user": 0,
+        "day": 0,
+        "segment": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "segment_vs_cohort_rule_mismatches": 0,
+      "target_vs_stored_label_mismatches": 0
+    },
+    {
+      "check": "command_export_equals_records",
+      "passed": true,
+      "cohort": "lee2019",
+      "file": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.50_seed1.npz",
+      "rows_export": 21600,
+      "rows_records": 21600,
+      "mismatches": {
+        "user": 0,
+        "day": 0,
+        "segment": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "segment_vs_cohort_rule_mismatches": 0,
+      "target_vs_stored_label_mismatches": 0
+    },
+    {
+      "check": "command_export_equals_records",
+      "passed": true,
+      "cohort": "lee2019",
+      "file": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.80_seed1.npz",
+      "rows_export": 21600,
+      "rows_records": 21600,
+      "mismatches": {
+        "user": 0,
+        "day": 0,
+        "segment": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "segment_vs_cohort_rule_mismatches": 0,
+      "target_vs_stored_label_mismatches": 0
+    },
+    {
+      "check": "command_export_equals_records",
+      "passed": true,
+      "cohort": "lee2019",
+      "file": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.50_seed2.npz",
+      "rows_export": 21600,
+      "rows_records": 21600,
+      "mismatches": {
+        "user": 0,
+        "day": 0,
+        "segment": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "segment_vs_cohort_rule_mismatches": 0,
+      "target_vs_stored_label_mismatches": 0
+    },
+    {
+      "check": "command_export_equals_records",
+      "passed": true,
+      "cohort": "lee2019",
+      "file": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.80_seed2.npz",
+      "rows_export": 21600,
+      "rows_records": 21600,
+      "mismatches": {
+        "user": 0,
+        "day": 0,
+        "segment": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "segment_vs_cohort_rule_mismatches": 0,
+      "target_vs_stored_label_mismatches": 0
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "bnci2014_001 features P0 seed 0",
+      "reference": "results/exp_b/task_final.csv",
+      "users_compared": 9,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6793784609668433,
+      "mean_ba_ref": 0.6793784609668433
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "bnci2014_001 features P0 seed 1",
+      "reference": "results/exp_b/task_final.csv",
+      "users_compared": 9,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6793784609668433,
+      "mean_ba_ref": 0.6793784609668433
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "bnci2014_001 features P0 seed 2",
+      "reference": "results/exp_b/task_final.csv",
+      "users_compared": 9,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6793784609668433,
+      "mean_ba_ref": 0.6793784609668433
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "bnci2014_001 features P0 seed 3",
+      "reference": "results/exp_b/task_final.csv",
+      "users_compared": 9,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6793784609668433,
+      "mean_ba_ref": 0.6793784609668433
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "bnci2014_001 features P0 seed 4",
+      "reference": "results/exp_b/task_final.csv",
+      "users_compared": 9,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6793784609668433,
+      "mean_ba_ref": 0.6793784609668433
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "bnci2014_001 features P2-RC_d8 seed 0",
+      "reference": "results/exp_b/task_final.csv",
+      "users_compared": 9,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.7222374937687831,
+      "mean_ba_ref": 0.7222374937687831
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "bnci2014_001 features P2-RC_d8 seed 1",
+      "reference": "results/exp_b/task_final.csv",
+      "users_compared": 9,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.7242508891149646,
+      "mean_ba_ref": 0.7242508891149646
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "bnci2014_001 features P2-RC_d8 seed 2",
+      "reference": "results/exp_b/task_final.csv",
+      "users_compared": 9,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.7062647287770107,
+      "mean_ba_ref": 0.7062647287770107
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "bnci2014_001 features P2-RC_d8 seed 3",
+      "reference": "results/exp_b/task_final.csv",
+      "users_compared": 9,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.7161152102285562,
+      "mean_ba_ref": 0.7161152102285562
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "bnci2014_001 features P2-RC_d8 seed 4",
+      "reference": "results/exp_b/task_final.csv",
+      "users_compared": 9,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.7176173619521348,
+      "mean_ba_ref": 0.7176173619521348
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "bnci2014_001 commands P2-RC_d8 seed 0 tau 0.5",
+      "reference": "results/exp_b/task_final.csv",
+      "all_trials": {
+        "users_compared": 9,
+        "users_unmatched": 0,
+        "n_mismatches": 9,
+        "max_abs_ba_diff": 0.05571040594625509,
+        "mean_ba": 0.7137345679012346,
+        "mean_ba_ref": 0.7222374937687831
+      },
+      "quality_masked": {
+        "users_compared": 9,
+        "users_unmatched": 0,
+        "n_mismatches": 0,
+        "max_abs_ba_diff": 0.0,
+        "mean_ba": 0.7222374937687831,
+        "mean_ba_ref": 0.7222374937687831
+      }
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "bnci2014_001 commands P2-RC_d8 seed 0 tau 0.8",
+      "reference": "results/exp_b/task_final.csv",
+      "all_trials": {
+        "users_compared": 9,
+        "users_unmatched": 0,
+        "n_mismatches": 9,
+        "max_abs_ba_diff": 0.05571040594625509,
+        "mean_ba": 0.7137345679012346,
+        "mean_ba_ref": 0.7222374937687831
+      },
+      "quality_masked": {
+        "users_compared": 9,
+        "users_unmatched": 0,
+        "n_mismatches": 0,
+        "max_abs_ba_diff": 0.0,
+        "mean_ba": 0.7222374937687831,
+        "mean_ba_ref": 0.7222374937687831
+      }
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "bnci2014_001 commands P2-RC_d8 seed 1 tau 0.5",
+      "reference": "results/exp_b/task_final.csv",
+      "all_trials": {
+        "users_compared": 9,
+        "users_unmatched": 0,
+        "n_mismatches": 9,
+        "max_abs_ba_diff": 0.02329664570230605,
+        "mean_ba": 0.7183641975308643,
+        "mean_ba_ref": 0.7242508891149646
+      },
+      "quality_masked": {
+        "users_compared": 9,
+        "users_unmatched": 0,
+        "n_mismatches": 0,
+        "max_abs_ba_diff": 0.0,
+        "mean_ba": 0.7242508891149646,
+        "mean_ba_ref": 0.7242508891149646
+      }
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "bnci2014_001 commands P2-RC_d8 seed 1 tau 0.8",
+      "reference": "results/exp_b/task_final.csv",
+      "all_trials": {
+        "users_compared": 9,
+        "users_unmatched": 0,
+        "n_mismatches": 9,
+        "max_abs_ba_diff": 0.02329664570230605,
+        "mean_ba": 0.7183641975308643,
+        "mean_ba_ref": 0.7242508891149646
+      },
+      "quality_masked": {
+        "users_compared": 9,
+        "users_unmatched": 0,
+        "n_mismatches": 0,
+        "max_abs_ba_diff": 0.0,
+        "mean_ba": 0.7242508891149646,
+        "mean_ba_ref": 0.7242508891149646
+      }
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "bnci2014_001 commands P2-RC_d8 seed 2 tau 0.5",
+      "reference": "results/exp_b/task_final.csv",
+      "all_trials": {
+        "users_compared": 9,
+        "users_unmatched": 0,
+        "n_mismatches": 9,
+        "max_abs_ba_diff": 0.02401129943502822,
+        "mean_ba": 0.7021604938271605,
+        "mean_ba_ref": 0.7062647287770107
+      },
+      "quality_masked": {
+        "users_compared": 9,
+        "users_unmatched": 0,
+        "n_mismatches": 0,
+        "max_abs_ba_diff": 0.0,
+        "mean_ba": 0.7062647287770107,
+        "mean_ba_ref": 0.7062647287770107
+      }
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "bnci2014_001 commands P2-RC_d8 seed 2 tau 0.8",
+      "reference": "results/exp_b/task_final.csv",
+      "all_trials": {
+        "users_compared": 9,
+        "users_unmatched": 0,
+        "n_mismatches": 9,
+        "max_abs_ba_diff": 0.02401129943502822,
+        "mean_ba": 0.7021604938271605,
+        "mean_ba_ref": 0.7062647287770107
+      },
+      "quality_masked": {
+        "users_compared": 9,
+        "users_unmatched": 0,
+        "n_mismatches": 0,
+        "max_abs_ba_diff": 0.0,
+        "mean_ba": 0.7062647287770107,
+        "mean_ba_ref": 0.7062647287770107
+      }
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "lee2019 features P0 seed 0",
+      "reference": "results/exp_l/task.csv",
+      "users_compared": 54,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6981481481481481,
+      "mean_ba_ref": 0.6981481481481481
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "lee2019 features P0 seed 1",
+      "reference": "results/exp_l/task.csv",
+      "users_compared": 54,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6981481481481481,
+      "mean_ba_ref": 0.6981481481481481
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "lee2019 features P0 seed 2",
+      "reference": "results/exp_l/task.csv",
+      "users_compared": 54,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6981481481481481,
+      "mean_ba_ref": 0.6981481481481481
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "lee2019 features P0 seed 3",
+      "reference": "results/exp_l/task.csv",
+      "users_compared": 54,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6981481481481481,
+      "mean_ba_ref": 0.6981481481481481
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "lee2019 features P0 seed 4",
+      "reference": "results/exp_l/task.csv",
+      "users_compared": 54,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6981481481481481,
+      "mean_ba_ref": 0.6981481481481481
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "lee2019 features P2-RC_d8 seed 0",
+      "reference": "results/exp_l/task.csv",
+      "users_compared": 54,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6914814814814814,
+      "mean_ba_ref": 0.6914814814814814
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "lee2019 features P2-RC_d8 seed 1",
+      "reference": "results/exp_l/task.csv",
+      "users_compared": 54,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6895370370370371,
+      "mean_ba_ref": 0.6895370370370371
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "lee2019 features P2-RC_d8 seed 2",
+      "reference": "results/exp_l/task.csv",
+      "users_compared": 54,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6940740740740741,
+      "mean_ba_ref": 0.6940740740740741
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "lee2019 features P2-RC_d8 seed 3",
+      "reference": "results/exp_l/task.csv",
+      "users_compared": 54,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6912037037037038,
+      "mean_ba_ref": 0.6912037037037038
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "lee2019 features P2-RC_d8 seed 4",
+      "reference": "results/exp_l/task.csv",
+      "users_compared": 54,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6935185185185184,
+      "mean_ba_ref": 0.6935185185185184
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "lee2019 commands P2-RC_d8 seed 0 tau 0.5",
+      "reference": "results/exp_l/task.csv",
+      "users_compared": 54,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6914814814814814,
+      "mean_ba_ref": 0.6914814814814814
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "lee2019 commands P2-RC_d8 seed 0 tau 0.8",
+      "reference": "results/exp_l/task.csv",
+      "users_compared": 54,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6914814814814814,
+      "mean_ba_ref": 0.6914814814814814
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "lee2019 commands P2-RC_d8 seed 1 tau 0.5",
+      "reference": "results/exp_l/task.csv",
+      "users_compared": 54,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6895370370370371,
+      "mean_ba_ref": 0.6895370370370371
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "lee2019 commands P2-RC_d8 seed 1 tau 0.8",
+      "reference": "results/exp_l/task.csv",
+      "users_compared": 54,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6895370370370371,
+      "mean_ba_ref": 0.6895370370370371
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "lee2019 commands P2-RC_d8 seed 2 tau 0.5",
+      "reference": "results/exp_l/task.csv",
+      "users_compared": 54,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6940740740740741,
+      "mean_ba_ref": 0.6940740740740741
+    },
+    {
+      "check": "task_ba_equals_study",
+      "passed": true,
+      "export": "lee2019 commands P2-RC_d8 seed 2 tau 0.8",
+      "reference": "results/exp_l/task.csv",
+      "users_compared": 54,
+      "users_unmatched": 0,
+      "n_mismatches": 0,
+      "max_abs_ba_diff": 0.0,
+      "mean_ba": 0.6940740740740741,
+      "mean_ba_ref": 0.6940740740740741
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "seed": 0,
+      "tau": 0.5,
+      "source": "cal_oof",
+      "mine": {
+        "trials": 1163,
+        "hold_rate": 0.0,
+        "correct_rate": 0.6964746345657782,
+        "wrong_rate": 0.3035253654342218
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "seed": 0,
+      "tau": 0.5,
+      "source": "dep",
+      "mine": {
+        "trials": 1296,
+        "hold_rate": 0.0,
+        "correct_rate": 0.7137345679012346,
+        "wrong_rate": 0.2862654320987654
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "seed": 0,
+      "tau": 0.8,
+      "source": "cal_oof",
+      "mine": {
+        "trials": 1163,
+        "hold_rate": 0.6887360275150473,
+        "correct_rate": 0.28030954428202925,
+        "wrong_rate": 0.030954428202923472
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "seed": 0,
+      "tau": 0.8,
+      "source": "dep",
+      "mine": {
+        "trials": 1296,
+        "hold_rate": 0.5933641975308642,
+        "correct_rate": 0.3387345679012346,
+        "wrong_rate": 0.06790123456790123
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "seed": 1,
+      "tau": 0.5,
+      "source": "cal_oof",
+      "mine": {
+        "trials": 1163,
+        "hold_rate": 0.0,
+        "correct_rate": 0.7119518486672399,
+        "wrong_rate": 0.2880481513327601
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "seed": 1,
+      "tau": 0.5,
+      "source": "dep",
+      "mine": {
+        "trials": 1296,
+        "hold_rate": 0.0,
+        "correct_rate": 0.7183641975308642,
+        "wrong_rate": 0.2816358024691358
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "seed": 1,
+      "tau": 0.8,
+      "source": "cal_oof",
+      "mine": {
+        "trials": 1163,
+        "hold_rate": 0.6930352536543423,
+        "correct_rate": 0.2751504729148753,
+        "wrong_rate": 0.03181427343078246
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "seed": 1,
+      "tau": 0.8,
+      "source": "dep",
+      "mine": {
+        "trials": 1296,
+        "hold_rate": 0.6041666666666666,
+        "correct_rate": 0.33796296296296297,
+        "wrong_rate": 0.05787037037037037
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "seed": 2,
+      "tau": 0.5,
+      "source": "cal_oof",
+      "mine": {
+        "trials": 1163,
+        "hold_rate": 0.0,
+        "correct_rate": 0.7153912295786758,
+        "wrong_rate": 0.28460877042132415
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "seed": 2,
+      "tau": 0.5,
+      "source": "dep",
+      "mine": {
+        "trials": 1296,
+        "hold_rate": 0.0,
+        "correct_rate": 0.7021604938271605,
+        "wrong_rate": 0.2978395061728395
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "seed": 2,
+      "tau": 0.8,
+      "source": "cal_oof",
+      "mine": {
+        "trials": 1163,
+        "hold_rate": 0.710232158211522,
+        "correct_rate": 0.25709372312983664,
+        "wrong_rate": 0.03267411865864144
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "seed": 2,
+      "tau": 0.8,
+      "source": "dep",
+      "mine": {
+        "trials": 1296,
+        "hold_rate": 0.6165123456790124,
+        "correct_rate": 0.3256172839506173,
+        "wrong_rate": 0.05787037037037037
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "lee2019",
+      "seed": 0,
+      "tau": 0.5,
+      "source": "cal_oof",
+      "mine": {
+        "trials": 10800,
+        "hold_rate": 0.0,
+        "correct_rate": 0.7028703703703704,
+        "wrong_rate": 0.29712962962962963
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "lee2019",
+      "seed": 0,
+      "tau": 0.5,
+      "source": "dep",
+      "mine": {
+        "trials": 10800,
+        "hold_rate": 0.0,
+        "correct_rate": 0.6914814814814815,
+        "wrong_rate": 0.3085185185185185
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "lee2019",
+      "seed": 0,
+      "tau": 0.8,
+      "source": "cal_oof",
+      "mine": {
+        "trials": 10800,
+        "hold_rate": 0.7167592592592592,
+        "correct_rate": 0.25425925925925924,
+        "wrong_rate": 0.028981481481481483
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "lee2019",
+      "seed": 0,
+      "tau": 0.8,
+      "source": "dep",
+      "mine": {
+        "trials": 10800,
+        "hold_rate": 0.6383333333333333,
+        "correct_rate": 0.30398148148148146,
+        "wrong_rate": 0.05768518518518519
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "lee2019",
+      "seed": 1,
+      "tau": 0.5,
+      "source": "cal_oof",
+      "mine": {
+        "trials": 10800,
+        "hold_rate": 0.0,
+        "correct_rate": 0.7072222222222222,
+        "wrong_rate": 0.2927777777777778
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "lee2019",
+      "seed": 1,
+      "tau": 0.5,
+      "source": "dep",
+      "mine": {
+        "trials": 10800,
+        "hold_rate": 0.0,
+        "correct_rate": 0.6895370370370371,
+        "wrong_rate": 0.31046296296296294
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "lee2019",
+      "seed": 1,
+      "tau": 0.8,
+      "source": "cal_oof",
+      "mine": {
+        "trials": 10800,
+        "hold_rate": 0.720925925925926,
+        "correct_rate": 0.2500925925925926,
+        "wrong_rate": 0.028981481481481483
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "lee2019",
+      "seed": 1,
+      "tau": 0.8,
+      "source": "dep",
+      "mine": {
+        "trials": 10800,
+        "hold_rate": 0.6442592592592593,
+        "correct_rate": 0.29953703703703705,
+        "wrong_rate": 0.05620370370370371
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "lee2019",
+      "seed": 2,
+      "tau": 0.5,
+      "source": "cal_oof",
+      "mine": {
+        "trials": 10800,
+        "hold_rate": 0.0,
+        "correct_rate": 0.7028703703703704,
+        "wrong_rate": 0.29712962962962963
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "lee2019",
+      "seed": 2,
+      "tau": 0.5,
+      "source": "dep",
+      "mine": {
+        "trials": 10800,
+        "hold_rate": 0.0,
+        "correct_rate": 0.6940740740740741,
+        "wrong_rate": 0.30592592592592593
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "lee2019",
+      "seed": 2,
+      "tau": 0.8,
+      "source": "cal_oof",
+      "mine": {
+        "trials": 10800,
+        "hold_rate": 0.7226851851851852,
+        "correct_rate": 0.24814814814814815,
+        "wrong_rate": 0.029166666666666667
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "command_rates_equal_stream_summary",
+      "passed": true,
+      "cohort": "lee2019",
+      "seed": 2,
+      "tau": 0.8,
+      "source": "dep",
+      "mine": {
+        "trials": 10800,
+        "hold_rate": 0.6617592592592593,
+        "correct_rate": 0.2860185185185185,
+        "wrong_rate": 0.052222222222222225
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct_rate": 0.0,
+        "wrong_rate": 0.0
+      },
+      "reference": "results/exp_k/stream_summary.csv"
+    },
+    {
+      "check": "yang2025_day1_p0_equals_dev_features",
+      "passed": true,
+      "file": "artifacts/audit/inputs/yang2025/features_P0_seed0.npz",
+      "rows": 10198,
+      "rows_reference": 10198,
+      "max_abs_diff": 0.0,
+      "reference": "artifacts/exp_m/dev_p0_features.joblib"
+    },
+    {
+      "check": "yang2025_day1_p0_equals_dev_features",
+      "passed": true,
+      "file": "artifacts/audit/inputs/yang2025/features_P0_seed1.npz",
+      "rows": 10198,
+      "rows_reference": 10198,
+      "max_abs_diff": 0.0,
+      "reference": "artifacts/exp_m/dev_p0_features.joblib"
+    },
+    {
+      "check": "yang2025_day1_p0_equals_dev_features",
+      "passed": true,
+      "file": "artifacts/audit/inputs/yang2025/features_P0_seed2.npz",
+      "rows": 10198,
+      "rows_reference": 10198,
+      "max_abs_diff": 0.0,
+      "reference": "artifacts/exp_m/dev_p0_features.joblib"
+    },
+    {
+      "check": "yang2025_day23_confusion_rows_reproduced",
+      "passed": true,
+      "key": "P0",
+      "seed": 0,
+      "rows_compared": 102,
+      "rows_unmatched": 0,
+      "rows_mismatching": 0,
+      "max_abs_ba_diff": 0.0,
+      "reference": "results/exp_m/final_task.csv"
+    },
+    {
+      "check": "yang2025_day23_confusion_rows_reproduced",
+      "passed": true,
+      "key": "P0",
+      "seed": 1,
+      "rows_compared": 102,
+      "rows_unmatched": 0,
+      "rows_mismatching": 0,
+      "max_abs_ba_diff": 0.0,
+      "reference": "results/exp_m/final_task.csv"
+    },
+    {
+      "check": "yang2025_day23_confusion_rows_reproduced",
+      "passed": true,
+      "key": "P0",
+      "seed": 2,
+      "rows_compared": 102,
+      "rows_unmatched": 0,
+      "rows_mismatching": 0,
+      "max_abs_ba_diff": 0.0,
+      "reference": "results/exp_m/final_task.csv"
+    },
+    {
+      "check": "yang2025_day23_confusion_rows_reproduced",
+      "passed": true,
+      "key": "P2-RC_d8",
+      "seed": 0,
+      "rows_compared": 102,
+      "rows_unmatched": 0,
+      "rows_mismatching": 0,
+      "max_abs_ba_diff": 0.0,
+      "reference": "results/exp_m/final_task.csv"
+    },
+    {
+      "check": "yang2025_day23_confusion_rows_reproduced",
+      "passed": true,
+      "key": "P2-RC_d8",
+      "seed": 1,
+      "rows_compared": 102,
+      "rows_unmatched": 0,
+      "rows_mismatching": 0,
+      "max_abs_ba_diff": 0.0,
+      "reference": "results/exp_m/final_task.csv"
+    },
+    {
+      "check": "yang2025_day23_confusion_rows_reproduced",
+      "passed": true,
+      "key": "P2-RC_d8",
+      "seed": 2,
+      "rows_compared": 102,
+      "rows_unmatched": 0,
+      "rows_mismatching": 0,
+      "max_abs_ba_diff": 0.0,
+      "reference": "results/exp_m/final_task.csv"
+    },
+    {
+      "check": "yang2025_day1_commands_equal_dev_streams",
+      "passed": true,
+      "seed": 0,
+      "tau": 0.6,
+      "mine": {
+        "trials": 10198,
+        "hold_rate": 0.7253383016277701,
+        "correct": 0.18221006995763128,
+        "wrong": 0.09246181889841366,
+        "hold": 0.7253281111439551
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct": 0.0,
+        "wrong": 0.0,
+        "hold": 0.0
+      },
+      "reference": "results/exp_m/dev_streams.csv"
+    },
+    {
+      "check": "yang2025_day1_commands_equal_dev_streams",
+      "passed": true,
+      "seed": 0,
+      "tau": 0.5,
+      "mine": {
+        "trials": 10198,
+        "hold_rate": 0.0,
+        "correct": 0.5834707852990443,
+        "wrong": 0.4165292147009558,
+        "hold": 0.0
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct": 0.0,
+        "wrong": 0.0,
+        "hold": 0.0
+      },
+      "reference": "results/exp_m/dev_streams.csv"
+    },
+    {
+      "check": "yang2025_day1_commands_equal_dev_streams",
+      "passed": true,
+      "seed": 1,
+      "tau": 0.6,
+      "mine": {
+        "trials": 10198,
+        "hold_rate": 0.7097470092174937,
+        "correct": 0.1971179426544487,
+        "wrong": 0.09315154202384472,
+        "hold": 0.7097305153217066
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct": 0.0,
+        "wrong": 0.0,
+        "hold": 0.0
+      },
+      "reference": "results/exp_m/dev_streams.csv"
+    },
+    {
+      "check": "yang2025_day1_commands_equal_dev_streams",
+      "passed": true,
+      "seed": 1,
+      "tau": 0.5,
+      "mine": {
+        "trials": 10198,
+        "hold_rate": 0.0,
+        "correct": 0.5820992215981869,
+        "wrong": 0.41790077840181294,
+        "hold": 0.0
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct": 0.0,
+        "wrong": 0.0,
+        "hold": 0.0
+      },
+      "reference": "results/exp_m/dev_streams.csv"
+    },
+    {
+      "check": "yang2025_day1_commands_equal_dev_streams",
+      "passed": true,
+      "seed": 2,
+      "tau": 0.6,
+      "mine": {
+        "trials": 10198,
+        "hold_rate": 0.7341635614826436,
+        "correct": 0.17671543994482217,
+        "wrong": 0.08912996354320622,
+        "hold": 0.7341545965119717
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct": 0.0,
+        "wrong": 0.0,
+        "hold": 0.0
+      },
+      "reference": "results/exp_m/dev_streams.csv"
+    },
+    {
+      "check": "yang2025_day1_commands_equal_dev_streams",
+      "passed": true,
+      "seed": 2,
+      "tau": 0.5,
+      "mine": {
+        "trials": 10198,
+        "hold_rate": 0.0,
+        "correct": 0.5812119420632575,
+        "wrong": 0.4187880579367425,
+        "hold": 0.0
+      },
+      "abs_diff": {
+        "trials": 0.0,
+        "hold_rate": 0.0,
+        "correct": 0.0,
+        "wrong": 0.0,
+        "hold": 0.0
+      },
+      "reference": "results/exp_m/dev_streams.csv"
+    },
+    {
+      "check": "yang2025_day23_command_rates_equal_final_estimates",
+      "passed": true,
+      "tau": 0.6,
+      "seeds": 3,
+      "mine": {
+        "hold": 0.47267289541161556,
+        "wrong": 0.22728139856292798,
+        "net": 0.07276430746252845
+      },
+      "abs_diff": {
+        "hold": 0.0,
+        "wrong": 0.0,
+        "net": 0.0
+      },
+      "reference": "results/exp_m/final_estimates_utility.csv",
+      "note": "seed mean of per-user rates over pooled days 2-3, then mean over users (M's cal_to_dep *_undefended estimates)"
+    },
+    {
+      "check": "yang2025_day23_command_rates_equal_final_estimates",
+      "passed": true,
+      "tau": 0.5,
+      "seeds": 3,
+      "mine": {
+        "hold": 0.0,
+        "wrong": 0.4557290390552873,
+        "net": 0.08854192188942546
+      },
+      "abs_diff": {
+        "hold": 0.0,
+        "wrong": 0.0,
+        "net": 0.0
+      },
+      "reference": "results/exp_m/final_estimates_utility.csv",
+      "note": "seed mean of per-user rates over pooled days 2-3, then mean over users (M's cal_to_dep *_undefended estimates)"
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "export": "artifacts/audit/inputs/bnci2014_001/features_P0_seed0.npz",
+      "file": "artifacts/audit/inputs/bnci2014_001/features_P0_seed0.trials.csv",
+      "rows": 2346,
+      "source_rows": 2592,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "export": "artifacts/audit/inputs/bnci2014_001/features_P0_seed1.npz",
+      "file": "artifacts/audit/inputs/bnci2014_001/features_P0_seed1.trials.csv",
+      "rows": 2346,
+      "source_rows": 2592,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "export": "artifacts/audit/inputs/bnci2014_001/features_P0_seed2.npz",
+      "file": "artifacts/audit/inputs/bnci2014_001/features_P0_seed2.trials.csv",
+      "rows": 2346,
+      "source_rows": 2592,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "export": "artifacts/audit/inputs/bnci2014_001/features_P0_seed3.npz",
+      "file": "artifacts/audit/inputs/bnci2014_001/features_P0_seed3.trials.csv",
+      "rows": 2346,
+      "source_rows": 2592,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "export": "artifacts/audit/inputs/bnci2014_001/features_P0_seed4.npz",
+      "file": "artifacts/audit/inputs/bnci2014_001/features_P0_seed4.trials.csv",
+      "rows": 2346,
+      "source_rows": 2592,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "export": "artifacts/audit/inputs/bnci2014_001/features_P2-RC_d8_seed0.npz",
+      "file": "artifacts/audit/inputs/bnci2014_001/features_P2-RC_d8_seed0.trials.csv",
+      "rows": 2346,
+      "source_rows": 2592,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "export": "artifacts/audit/inputs/bnci2014_001/features_P2-RC_d8_seed1.npz",
+      "file": "artifacts/audit/inputs/bnci2014_001/features_P2-RC_d8_seed1.trials.csv",
+      "rows": 2346,
+      "source_rows": 2592,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "export": "artifacts/audit/inputs/bnci2014_001/features_P2-RC_d8_seed2.npz",
+      "file": "artifacts/audit/inputs/bnci2014_001/features_P2-RC_d8_seed2.trials.csv",
+      "rows": 2346,
+      "source_rows": 2592,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "export": "artifacts/audit/inputs/bnci2014_001/features_P2-RC_d8_seed3.npz",
+      "file": "artifacts/audit/inputs/bnci2014_001/features_P2-RC_d8_seed3.trials.csv",
+      "rows": 2346,
+      "source_rows": 2592,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "export": "artifacts/audit/inputs/bnci2014_001/features_P2-RC_d8_seed4.npz",
+      "file": "artifacts/audit/inputs/bnci2014_001/features_P2-RC_d8_seed4.trials.csv",
+      "rows": 2346,
+      "source_rows": 2592,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "export": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.50_seed0.npz",
+      "file": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.50_seed0.trials.csv",
+      "rows": 2459,
+      "source_rows": 2459,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "K's command record at the key after the code map",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/bnci2014_001/features_P2-RC_d8_seed0.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "both": 1163,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "2": {
+            "both": 1183,
+            "commands_only": 113,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 1029
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "export": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.80_seed0.npz",
+      "file": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.80_seed0.trials.csv",
+      "rows": 2459,
+      "source_rows": 2459,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "K's command record at the key after the code map",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/bnci2014_001/features_P2-RC_d8_seed0.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "both": 1163,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "2": {
+            "both": 1183,
+            "commands_only": 113,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 1029
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "export": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.50_seed1.npz",
+      "file": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.50_seed1.trials.csv",
+      "rows": 2459,
+      "source_rows": 2459,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "K's command record at the key after the code map",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/bnci2014_001/features_P2-RC_d8_seed1.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "both": 1163,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "2": {
+            "both": 1183,
+            "commands_only": 113,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 1029
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "export": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.80_seed1.npz",
+      "file": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.80_seed1.trials.csv",
+      "rows": 2459,
+      "source_rows": 2459,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "K's command record at the key after the code map",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/bnci2014_001/features_P2-RC_d8_seed1.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "both": 1163,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "2": {
+            "both": 1183,
+            "commands_only": 113,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 1029
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "export": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.50_seed2.npz",
+      "file": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.50_seed2.trials.csv",
+      "rows": 2459,
+      "source_rows": 2459,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "K's command record at the key after the code map",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/bnci2014_001/features_P2-RC_d8_seed2.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "both": 1163,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "2": {
+            "both": 1183,
+            "commands_only": 113,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 1029
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "bnci2014_001",
+      "export": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.80_seed2.npz",
+      "file": "artifacts/audit/inputs/bnci2014_001/commands_P2-RC_d8_tau0.80_seed2.trials.csv",
+      "rows": 2459,
+      "source_rows": 2459,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "K's command record at the key after the code map",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/bnci2014_001/features_P2-RC_d8_seed2.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "both": 1163,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "2": {
+            "both": 1183,
+            "commands_only": 113,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 1029
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "lee2019",
+      "export": "artifacts/audit/inputs/lee2019/features_P0_seed0.npz",
+      "file": "artifacts/audit/inputs/lee2019/features_P0_seed0.trials.csv",
+      "rows": 21600,
+      "source_rows": 21600,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "lee2019",
+      "export": "artifacts/audit/inputs/lee2019/features_P0_seed1.npz",
+      "file": "artifacts/audit/inputs/lee2019/features_P0_seed1.trials.csv",
+      "rows": 21600,
+      "source_rows": 21600,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "lee2019",
+      "export": "artifacts/audit/inputs/lee2019/features_P0_seed2.npz",
+      "file": "artifacts/audit/inputs/lee2019/features_P0_seed2.trials.csv",
+      "rows": 21600,
+      "source_rows": 21600,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "lee2019",
+      "export": "artifacts/audit/inputs/lee2019/features_P0_seed3.npz",
+      "file": "artifacts/audit/inputs/lee2019/features_P0_seed3.trials.csv",
+      "rows": 21600,
+      "source_rows": 21600,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "lee2019",
+      "export": "artifacts/audit/inputs/lee2019/features_P0_seed4.npz",
+      "file": "artifacts/audit/inputs/lee2019/features_P0_seed4.trials.csv",
+      "rows": 21600,
+      "source_rows": 21600,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "lee2019",
+      "export": "artifacts/audit/inputs/lee2019/features_P2-RC_d8_seed0.npz",
+      "file": "artifacts/audit/inputs/lee2019/features_P2-RC_d8_seed0.trials.csv",
+      "rows": 21600,
+      "source_rows": 21600,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "lee2019",
+      "export": "artifacts/audit/inputs/lee2019/features_P2-RC_d8_seed1.npz",
+      "file": "artifacts/audit/inputs/lee2019/features_P2-RC_d8_seed1.trials.csv",
+      "rows": 21600,
+      "source_rows": 21600,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "lee2019",
+      "export": "artifacts/audit/inputs/lee2019/features_P2-RC_d8_seed2.npz",
+      "file": "artifacts/audit/inputs/lee2019/features_P2-RC_d8_seed2.trials.csv",
+      "rows": 21600,
+      "source_rows": 21600,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "lee2019",
+      "export": "artifacts/audit/inputs/lee2019/features_P2-RC_d8_seed3.npz",
+      "file": "artifacts/audit/inputs/lee2019/features_P2-RC_d8_seed3.trials.csv",
+      "rows": 21600,
+      "source_rows": 21600,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "lee2019",
+      "export": "artifacts/audit/inputs/lee2019/features_P2-RC_d8_seed4.npz",
+      "file": "artifacts/audit/inputs/lee2019/features_P2-RC_d8_seed4.trials.csv",
+      "rows": 21600,
+      "source_rows": 21600,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "lee2019",
+      "export": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.50_seed0.npz",
+      "file": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.50_seed0.trials.csv",
+      "rows": 21600,
+      "source_rows": 21600,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "K's command record at the key after the code map",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/lee2019/features_P2-RC_d8_seed0.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "both": 10800,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "2": {
+            "both": 10800,
+            "commands_only": 0,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "lee2019",
+      "export": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.80_seed0.npz",
+      "file": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.80_seed0.trials.csv",
+      "rows": 21600,
+      "source_rows": 21600,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "K's command record at the key after the code map",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/lee2019/features_P2-RC_d8_seed0.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "both": 10800,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "2": {
+            "both": 10800,
+            "commands_only": 0,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "lee2019",
+      "export": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.50_seed1.npz",
+      "file": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.50_seed1.trials.csv",
+      "rows": 21600,
+      "source_rows": 21600,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "K's command record at the key after the code map",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/lee2019/features_P2-RC_d8_seed1.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "both": 10800,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "2": {
+            "both": 10800,
+            "commands_only": 0,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "lee2019",
+      "export": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.80_seed1.npz",
+      "file": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.80_seed1.trials.csv",
+      "rows": 21600,
+      "source_rows": 21600,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "K's command record at the key after the code map",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/lee2019/features_P2-RC_d8_seed1.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "both": 10800,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "2": {
+            "both": 10800,
+            "commands_only": 0,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "lee2019",
+      "export": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.50_seed2.npz",
+      "file": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.50_seed2.trials.csv",
+      "rows": 21600,
+      "source_rows": 21600,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "K's command record at the key after the code map",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/lee2019/features_P2-RC_d8_seed2.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "both": 10800,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "2": {
+            "both": 10800,
+            "commands_only": 0,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "lee2019",
+      "export": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.80_seed2.npz",
+      "file": "artifacts/audit/inputs/lee2019/commands_P2-RC_d8_tau0.80_seed2.trials.csv",
+      "rows": 21600,
+      "source_rows": 21600,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "K's command record at the key after the code map",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/lee2019/features_P2-RC_d8_seed2.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "both": 10800,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "2": {
+            "both": 10800,
+            "commands_only": 0,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "yang2025",
+      "export": "artifacts/audit/inputs/yang2025/features_P0_seed0.npz",
+      "file": "artifacts/audit/inputs/yang2025/features_P0_seed0.trials.csv",
+      "rows": 30591,
+      "source_rows": 30591,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "yang2025",
+      "export": "artifacts/audit/inputs/yang2025/features_P0_seed1.npz",
+      "file": "artifacts/audit/inputs/yang2025/features_P0_seed1.trials.csv",
+      "rows": 30591,
+      "source_rows": 30591,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "yang2025",
+      "export": "artifacts/audit/inputs/yang2025/features_P0_seed2.npz",
+      "file": "artifacts/audit/inputs/yang2025/features_P0_seed2.trials.csv",
+      "rows": 30591,
+      "source_rows": 30591,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "yang2025",
+      "export": "artifacts/audit/inputs/yang2025/features_P2-RC_d8_seed0.npz",
+      "file": "artifacts/audit/inputs/yang2025/features_P2-RC_d8_seed0.trials.csv",
+      "rows": 20393,
+      "source_rows": 20393,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "yang2025",
+      "export": "artifacts/audit/inputs/yang2025/features_P2-RC_d8_seed1.npz",
+      "file": "artifacts/audit/inputs/yang2025/features_P2-RC_d8_seed1.trials.csv",
+      "rows": 20393,
+      "source_rows": 20393,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "yang2025",
+      "export": "artifacts/audit/inputs/yang2025/features_P2-RC_d8_seed2.npz",
+      "file": "artifacts/audit/inputs/yang2025/features_P2-RC_d8_seed2.trials.csv",
+      "rows": 20393,
+      "source_rows": 20393,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "feature vector at the key (stored or recomputed from the stored model)",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "yang2025",
+      "export": "artifacts/audit/inputs/yang2025/commands_P2-RC_d8_tau0.60_seed0.npz",
+      "file": "artifacts/audit/inputs/yang2025/commands_P2-RC_d8_tau0.60_seed0.trials.csv",
+      "rows": 30591,
+      "source_rows": 30591,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "moves vs the argmax class of the trial's logits",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/yang2025/features_P2-RC_d8_seed0.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "commands_only": 10198,
+            "features_only": 0,
+            "both": 0
+          },
+          "2": {
+            "both": 10198,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "3": {
+            "both": 10195,
+            "commands_only": 0,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "yang2025",
+      "export": "artifacts/audit/inputs/yang2025/commands_P2-RC_d8_tau0.50_seed0.npz",
+      "file": "artifacts/audit/inputs/yang2025/commands_P2-RC_d8_tau0.50_seed0.trials.csv",
+      "rows": 30591,
+      "source_rows": 30591,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "moves vs the argmax class of the trial's logits",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/yang2025/features_P2-RC_d8_seed0.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "commands_only": 10198,
+            "features_only": 0,
+            "both": 0
+          },
+          "2": {
+            "both": 10198,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "3": {
+            "both": 10195,
+            "commands_only": 0,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "yang2025",
+      "export": "artifacts/audit/inputs/yang2025/commands_P2-RC_d8_tau0.60_seed1.npz",
+      "file": "artifacts/audit/inputs/yang2025/commands_P2-RC_d8_tau0.60_seed1.trials.csv",
+      "rows": 30591,
+      "source_rows": 30591,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "moves vs the argmax class of the trial's logits",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/yang2025/features_P2-RC_d8_seed1.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "commands_only": 10198,
+            "features_only": 0,
+            "both": 0
+          },
+          "2": {
+            "both": 10198,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "3": {
+            "both": 10195,
+            "commands_only": 0,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "yang2025",
+      "export": "artifacts/audit/inputs/yang2025/commands_P2-RC_d8_tau0.50_seed1.npz",
+      "file": "artifacts/audit/inputs/yang2025/commands_P2-RC_d8_tau0.50_seed1.trials.csv",
+      "rows": 30591,
+      "source_rows": 30591,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "moves vs the argmax class of the trial's logits",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/yang2025/features_P2-RC_d8_seed1.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "commands_only": 10198,
+            "features_only": 0,
+            "both": 0
+          },
+          "2": {
+            "both": 10198,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "3": {
+            "both": 10195,
+            "commands_only": 0,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "yang2025",
+      "export": "artifacts/audit/inputs/yang2025/commands_P2-RC_d8_tau0.60_seed2.npz",
+      "file": "artifacts/audit/inputs/yang2025/commands_P2-RC_d8_tau0.60_seed2.trials.csv",
+      "rows": 30591,
+      "source_rows": 30591,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "moves vs the argmax class of the trial's logits",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/yang2025/features_P2-RC_d8_seed2.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "commands_only": 10198,
+            "features_only": 0,
+            "both": 0
+          },
+          "2": {
+            "both": 10198,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "3": {
+            "both": 10195,
+            "commands_only": 0,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 0
+      }
+    },
+    {
+      "check": "trial_keys_reproduce_source_rows",
+      "passed": true,
+      "cohort": "yang2025",
+      "export": "artifacts/audit/inputs/yang2025/commands_P2-RC_d8_tau0.50_seed2.npz",
+      "file": "artifacts/audit/inputs/yang2025/commands_P2-RC_d8_tau0.50_seed2.trials.csv",
+      "rows": 30591,
+      "source_rows": 30591,
+      "source_keys_unique": true,
+      "keys_not_found": 0,
+      "duplicate_keys": 0,
+      "aligned_with_export": true,
+      "outputs_compared": "moves vs the argmax class of the trial's logits",
+      "mismatches": {
+        "day": 0,
+        "target": 0,
+        "outputs": 0
+      },
+      "common_support": {
+        "features_file": "artifacts/audit/inputs/yang2025/features_P2-RC_d8_seed2.trials.csv",
+        "rows_by_day": {
+          "1": {
+            "commands_only": 10198,
+            "features_only": 0,
+            "both": 0
+          },
+          "2": {
+            "both": 10198,
+            "commands_only": 0,
+            "features_only": 0
+          },
+          "3": {
+            "both": 10195,
+            "commands_only": 0,
+            "features_only": 0
+          }
+        },
+        "shared_rows_with_different_order": 0
+      }
+    }
+  ]
+}
