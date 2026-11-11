@@ -14,6 +14,7 @@
   <div class="wrap topbar-inner">
     <span class="brand">BEAT</span>
     <nav aria-label="Sections">
+      <a href="#v3" lang="ko">v3 연결</a>
       <a href="#intro" lang="ko">v2 요지</a>
       <a href="#m-result" lang="ko">M 결과</a>
       <a href="#k-frontier">K: RR vs EQ</a>
@@ -30,6 +31,99 @@
 </header>
 
 <main id="main">
+<section id="v3" class="v3 wrap" lang="ko" aria-labelledby="v3-title">
+  <p class="eyebrow">BEAT v3 · beat_audit · 등록하지 않은 사용자의 연결</p>
+  <h1 id="v3-title">공격자가 등록하지 않은 사용자라도, BCI가 밖으로 보내는 출력만으로 두 기록이 같은 사람의 것인지 우연보다 잘 가려낼 수 있다</h1>
+  <p class="lede">그 정도는 무엇을 보내는지, 그리고 두 기록이 같은 날인지 다른 날인지에 따라 다르다.
+    BCI(뇌-컴퓨터 인터페이스)는 머릿속으로 왼손·오른손 움직임을 상상할 때의 뇌파를 읽어 기기를 조작하게 하는 장치다.
+    BEAT v3의 도구 <code>beat_audit</code>은 어느 BCI의 출력에서든 이것을 잰다. 아래 수치에는 모두 증거 등급이 붙어 있다.</p>
+
+  <ol class="v3-flow" aria-label="무엇을 재는가">
+    <li><span class="v3-step" aria-hidden="true">1</span><h3>전송물</h3>
+      <p>BCI가 기기 밖으로 보내는 것: 특징 벡터(전체 특징 또는 8차원 병목) 또는 해독된 왼쪽·오른쪽·정지 명령.</p></li>
+    <li><span class="v3-step" aria-hidden="true">2</span><h3>공격자</h3>
+      <p>대상 사용자를 <b>한 번도 등록하지 않았다</b>. 비교기는 다른 사용자의 기록으로만 적합한다.
+        BCI 자신의 인코더·해독기는 대상 사용자의 보정 자료로 적합됐으므로, 공격자에게만 처음 보는 사용자다.</p></li>
+    <li><span class="v3-step" aria-hidden="true">3</span><h3>두 창</h3>
+      <p>전송된 출력 k개씩의 두 창. 둘은 <b>같은 날</b>(한 기록일의 두 부분)이거나 <b>다른 날</b>의 기록이다.</p></li>
+    <li><span class="v3-step" aria-hidden="true">4</span><h3>연결</h3>
+      <p>두 창이 같은 사람의 것인지 점수를 매긴다. 누구인지 맞히는 식별이 아니다.</p></li>
+  </ol>
+  <div class="v3-def" id="v3-def"></div>
+
+  <div class="v3-block">
+    <h2 id="v3x-title">출력이 쌓이면 연결이 어떻게 변하나</h2>
+    <p class="section-lede" id="v3x-lede"></p>
+    <div class="controls" role="group" aria-label="연결 탐색기 옵션">
+      <fieldset class="ctl"><legend>코호트</legend><div class="seg" id="v3x-cohort"></div></fieldset>
+      <fieldset class="ctl"><legend>전송물</legend><div class="seg" id="v3x-rung"></div></fieldset>
+      <fieldset class="ctl"><legend>두 창의 관계</legend><div class="seg" id="v3x-cond"></div></fieldset>
+      <fieldset class="ctl"><legend>비교기</legend><div class="seg" id="v3x-cmp"></div></fieldset>
+      <fieldset class="ctl"><legend>출력 수 k</legend><div class="seg" id="v3x-k"></div></fieldset>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <h3 id="v3x-head">–</h3>
+        <p class="hint" id="v3x-badge"></p>
+      </div>
+      <dl class="stats k-stats" id="v3x-stats"></dl>
+      <p class="v3-flags" id="v3x-flags"></p>
+      <p class="chart-legend" id="v3x-legend"></p>
+      <div class="chart v3-chart" id="v3x-chart"></div>
+      <details class="table-toggle"><summary>표로 보기: 모든 k</summary><div id="v3x-table"></div></details>
+      <details class="table-toggle"><summary>표로 보기: 이 k의 비교기 전체</summary><div id="v3x-cmps"></div></details>
+      <p class="note" id="v3x-note"></p>
+    </div>
+  </div>
+
+  <div class="v3-block">
+    <h2 id="v3p-title">Yang2025의 사전 지정 결과</h2>
+    <p class="section-tag" id="v3p-tag"></p>
+    <div class="card">
+      <div id="v3p-table"></div>
+      <p class="v3-pspec" id="v3p-pspec"></p>
+      <p class="note" id="v3p-note"></p>
+    </div>
+  </div>
+
+  <div class="v3-block">
+    <h2 id="v3l-title">무엇을 보낼까: 전송 사다리</h2>
+    <p class="section-lede" id="v3l-lede"></p>
+    <div class="controls" role="group" aria-label="전송 사다리 옵션">
+      <fieldset class="ctl"><legend>코호트</legend><div class="seg" id="v3l-cohort"></div></fieldset>
+      <fieldset class="ctl"><legend>연결한 기록</legend><div class="seg" id="v3l-contrast"></div></fieldset>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <h3 id="v3l-head">–</h3>
+        <p class="hint" id="v3l-badge"></p>
+      </div>
+      <div id="v3l-table"></div>
+      <p class="v3-read" id="v3l-read"></p>
+      <p class="note" id="v3l-note"></p>
+    </div>
+    <h3 class="k-limits-title">이 사다리로 말할 수 없는 것</h3>
+    <ul class="k-limits" id="v3l-limits"></ul>
+  </div>
+
+  <div class="v3-block">
+    <h2 id="v3f-title">실패했거나 보류한 것도 결과다</h2>
+    <div class="v3-fail">
+      <div class="card"><h3>갤러리 크기 외삽</h3><p id="v3f-gallery"></p><div id="v3f-gallery-table"></div></div>
+      <div class="card"><h3>순차 공격자: 실제 오류율만</h3><p id="v3f-seq"></p><div id="v3f-seq-table"></div></div>
+      <div class="card"><h3>사용자별 해독기의 과제 BA</h3><p id="v3f-dec"></p><div id="v3f-dec-table"></div></div>
+    </div>
+    <p class="note" id="v3f-note"></p>
+  </div>
+  <h2 class="k-limits-title">v3로 말할 수 없는 것</h2>
+  <ul class="k-limits" id="v3-limits"></ul>
+  <p class="links v3-links">
+    <a class="btn" href="../results/audit/README.md">결과 읽는 법 (results/audit/README.md)</a>
+    <a class="btn" href="../beat_audit/README.md">도구 설명 (beat_audit/README.md)</a>
+    <a class="btn" href="../README.md#builders-case-commands-or-features">Builder's case (README)</a>
+  </p>
+</section>
+
 <section id="intro" class="intro wrap" lang="ko" aria-labelledby="intro-title">
   <p class="eyebrow">BEAT v2 · 운동 상상 BCI · 사용자 신원 노출 감사</p>
   <h1 id="intro-title">같은 날 수치 하나로는 위험도, 보호도 말할 수 없다</h1>

@@ -238,8 +238,20 @@ function onResize(node, draw) {
 }
 
 // ------------------------------------------------------------------ boot
+// Stated on the page when exported data is absent, instead of leaving panels silently empty.
+function dataMissing(text) {
+  ["#v3-def", ".v3-block", "#v3-limits", "#v3 > .k-limits-title"].forEach((s) => document.querySelectorAll(s).forEach((n) => { n.style.display = "none"; }));
+  const p = el("p", { class: "v3-missing", role: "alert", text });
+  $(".v3-flow").after(p);
+}
 const DATA = window.BEAT_DATA;
-const H = { ...DATA.headline, ...DATA.lee2019.headline };
+if (!DATA) {
+  dataMissing( "결과 데이터(demo/data/results.js)를 불러오지 못해 이 페이지의 수치를 표시할 수 없다. "
+    + "python scripts/export_demo_data.py로 데이터를 다시 만든 뒤 페이지를 새로 고쳐라. "
+    + "Result data (demo/data/results.js) could not be loaded, so no numbers are shown.");
+} else {
+// The rest of the page needs DATA; kept unindented so the v1-v2 code stays as it was.
+const H ={ ...DATA.headline, ...DATA.lee2019.headline };
 const L_PENDING = DATA.lee2019.status === "pending";
 // Replication lines in the hero only appear once the sealed run is exported.
 document.querySelectorAll("[data-l]").forEach((n) => { n.hidden = L_PENDING; });
@@ -1207,4 +1219,341 @@ const M_TIMELINE = (() => {
   ];
   const ul = $("#k-limits");
   limits.forEach((t) => el("li", { text: t }, ul));
+}
+
+// ------------------------------------------------------------------ v3: open-set linkage (beat_audit)
+// Tiers and wording follow results/audit/README.md: only V1 and V2 carry verdicts; every other
+// number is an estimate, exploratory for 2a, Lee2019 and the ladder.
+if (!DATA.audit) {
+  dataMissing("v3 연결 결과(데이터의 audit 항목)가 내보내지지 않아 이 패널의 수치를 표시할 수 없다. "
+    + "python scripts/export_demo_data.py로 데이터를 다시 만든 뒤 페이지를 새로 고쳐라. 아래의 v1·v2 패널은 영향을 받지 않는다.");
+} else {
+  const A = DATA.audit, CH = A.chance.value;
+  const COHORT = { yang2025: "Yang2025", lee2019: "Lee2019", bnci2014_001: "BCI IV 2a" };
+  const V3TIER = { "pre-specified (non-blind)": ["pspec", "Pre-specified (non-blind)", "사전 지정(비맹검)"], exploratory: ["expl", "Exploratory", "탐색"] };
+  const tierOf = (t) => `<span class="badge ${V3TIER[t][0]}" title="${V3TIER[t][2]}">${V3TIER[t][1]}</span>`;
+  const CMP = {
+    cosine: "코사인 (평균)", lda_cosine: "LDA 코사인 (평균)", cosine_rich: "코사인 (풍부한 요약)",
+    lda_cosine_rich: "LDA 코사인 (풍부한 요약)", pair_logistic: "쌍 로지스틱", bayes_factor: "베이즈 인자 (단서 인지)",
+  };
+  const cmpName = (c) => CMP[c] || c;
+  const tau2 = (t) => t.toFixed(2);
+  const rungName = (r) => (r.kind === "features"
+    ? (r.rung.includes("P2-RC") ? "8차원 병목 특징 (P2-RC)" : "전체 특징 (P0)")
+    : `명령, ${r.per_user || r.rung.includes("per_user") ? "사용자별 해독기" : "공용 해독기"}, τ = ${tau2(r.tau)}`);
+  const ci = (v, lo, hi) => (v == null ? "–" : `${f3(v)} [${f3(lo)}, ${f3(hi)}]`);
+  const WORD = {
+    "linkage detected": "검출",
+    "not detected: insufficient evidence, not absence": "검출 안 됨: 증거 부족이며 없음이 아님",
+  };
+  const word = (w) => (w == null ? "–" : WORD[w] || w);
+  const GALLERY = { passed: "점검 통과", "independence model not supported": "점검 실패: 더 큰 N 값 없음" };
+  const PERIOD = { observed: "관측", nominal: "명목", minimum: "최소" };
+  const dur = (s) => {
+    const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), r = Math.round(s % 60);
+    return [h ? `${h}시간` : "", m ? `${m}분` : "", r || (!h && !m) ? `${r}초` : ""].filter(Boolean).join(" ");
+  };
+  // Time of k outputs at the cohort's trial period, labelled with the period's kind.
+  const timeOf = (c, k) => {
+    const p = A.cohorts[c].period, t = dur(k * p.seconds);
+    return p.kind === "minimum" ? `최소 ${t}` : `${PERIOD[p.kind]} ${t}`;
+  };
+  const periodText = (c) => { const p = A.cohorts[c].period; return `${PERIOD[p.kind]} 주기 ${p.seconds}초`; };
+  const calOf = (c) => String(A.ladder[c].calibration_day);
+  const condName = (c, cond) => {
+    const { relation, days } = A.cohorts[c].conditions[cond], cal = calOf(c);
+    if (relation === "same-day") return `같은 날 · ${days.join("·")}일차 각각`;
+    return days.includes(cal) ? `다른 날 · ${cal}일차(보정일) ↔ ${days.filter((d) => d !== cal).join("·")}일차`
+      : `다른 날 · ${days.join(" ↔ ")}일차 (보정일 제외)`;
+  };
+  const statBox = (dl, label, valueHtml, source) => {
+    const d = el("div", { title: source, tabindex: "0" }, dl);
+    el("dt", { text: label }, d); el("dd", { html: valueHtml }, d);
+    el("span", { class: "sr", text: source }, d);
+    focusTipOn(d, source);
+  };
+  const cellSrc = (c, r, cond, cmp, k) => srcText({ file: A.cohorts[c].source.file, where: { cohort: c, rung: A.cohorts[c].rungs[r].rung, condition: cond, comparator: cmp, k } });
+  const COHORTS = Object.keys(A.cohorts);
+
+  $("#v3-def").innerHTML = `<p><b>연결 지표</b>: 사용자별 AUC의 평균. <b>${CH} = 우연</b>, 높을수록 두 창이 같은 사람인지 잘 가려낸다. `
+    + "식별률이 아니다(몇 퍼센트를 알아낸다는 뜻이 아니다).</p>"
+    + `<p><b>시간</b>: 출력 1개는 한 시행이다. ${COHORTS.map((c) => `${COHORT[c]} ${periodText(c)}`).join(", ")}. `
+    + "명목 주기는 실험 설계상의 값이다.</p>"
+    + `<p><b>증거 등급</b>: ${COHORTS.map((c) => `${COHORT[c]} ${tierOf(A.tiers[c])}`).join(" ")} · 전송 사다리 ${tierOf("exploratory")}. `
+    + "판정은 Yang2025의 V1·V2 두 개뿐이고 나머지는 모두 추정치다.</p>";
+  $("#v3-def").title = srcText(A.chance.source);
+
+  // ---------------------------------------------------------------- explorer
+  const xs = { c: "yang2025", r: "features_P0", cond: "cross-day", k: "20", cmp: null };
+  const cells = (c = xs.c, r = xs.r, cond = xs.cond) => A.cells[c][r][cond];
+  const strongestAt = (c, r, cond, k) => Object.keys(cells(c, r, cond)).find((m) => cells(c, r, cond)[m][k]?.strongest);
+  const counterpart = (c, cond) => {
+    const cs = A.cohorts[c].conditions, me = cs[cond];
+    return Object.keys(cs).find((o) => cs[o].relation !== me.relation && cs[o].days.join() === me.days.join());
+  };
+  const fix = () => {
+    const R = A.cohorts[xs.c].rungs;
+    if (!R[xs.r]) xs.r = Object.keys(R)[0];
+    if (!R[xs.r].conditions.includes(xs.cond)) {
+      const rel = A.cohorts[xs.c].conditions[xs.cond]?.relation;
+      xs.cond = R[xs.r].conditions.find((o) => A.cohorts[xs.c].conditions[o].relation === rel) || R[xs.r].conditions[0];
+    }
+    if (!A.cohorts[xs.c].ks.map(String).includes(xs.k)) xs.k = String(A.cohorts[xs.c].ks[0]);
+    if (!R[xs.r].comparators.includes(xs.cmp)) xs.cmp = strongestAt(xs.c, xs.r, xs.cond, xs.k) || R[xs.r].comparators[0];
+  };
+  // Re-rendering a group replaces its inputs, which would drop keyboard focus; hand it to the
+  // input with the same value (or the checked one if that option is gone).
+  const radiosKeep = (container, name, options, value) => {
+    const had = container.contains(document.activeElement) ? document.activeElement.value : null;
+    renderRadios(container, name, options, value);
+    if (had === null) return;
+    const ins = [...container.querySelectorAll("input")];
+    (ins.find((i) => i.value === had) || ins.find((i) => i.checked) || ins[0])?.focus();
+  };
+  const controls = () => {
+    const R = A.cohorts[xs.c].rungs;
+    radiosKeep($("#v3x-cohort"), "v3x-cohort", COHORTS.map((c) => ({ value: c, label: `${COHORT[c]} (${A.cohorts[c].users}명)` })), xs.c);
+    radiosKeep($("#v3x-rung"), "v3x-rung", Object.keys(R).map((r) => ({ value: r, label: rungName(R[r]) })), xs.r);
+    radiosKeep($("#v3x-cond"), "v3x-cond", R[xs.r].conditions.map((o) => ({ value: o, label: condName(xs.c, o) })), xs.cond);
+    const best = strongestAt(xs.c, xs.r, xs.cond, xs.k);
+    radiosKeep($("#v3x-cmp"), "v3x-cmp", R[xs.r].comparators.map((m) => ({ value: m, label: `${cmpName(m)}${m === best ? " · 최강(사후)" : ""}`,
+      title: m === best ? "이 k에서 평균 AUC가 가장 높은 비교기. 같은 대상 사용자에서 사후에 매긴 순위다" : null })), xs.cmp);
+    radiosKeep($("#v3x-k"), "v3x-k", A.cohorts[xs.c].ks.map((k) => ({ value: k, label: String(k) })), xs.k);
+  };
+  const on = (id, key) => bindRadios($(id), (v) => { xs[key] = v; fix(); controls(); drawX(); });
+  on("#v3x-cohort", "c"); on("#v3x-rung", "r"); on("#v3x-cond", "cond"); on("#v3x-cmp", "cmp"); on("#v3x-k", "k");
+
+  const yDomainOf = (c) => {
+    const lows = [];
+    for (const r of Object.values(A.cells[c])) for (const cd of Object.values(r)) for (const m of Object.values(cd)) for (const x of Object.values(m)) if (x.ci_low != null) lows.push(x.ci_low);
+    return [Math.min(Math.floor(Math.min(...lows) * 10) / 10, CH - 0.1), 1];
+  };
+
+  function drawX() {
+    const c = xs.c, R = A.cohorts[c].rungs[xs.r], ks = A.cohorts[c].ks, cur = cells()[xs.cmp][xs.k];
+    const other = counterpart(c, xs.cond), otherCells = other && R.conditions.includes(other) ? cells(c, xs.r, other)[xs.cmp] : null;
+    const best = strongestAt(c, xs.r, xs.cond, xs.k);
+    $("#v3x-head").textContent = `${COHORT[c]} · ${rungName(R)} · ${condName(c, xs.cond)} · ${cmpName(xs.cmp)} · 출력 ${xs.k}개`;
+    const role = cur.role === "V1" || cur.role === "V2" ? `사전 지정 예측 ${cur.role}: 판정은 아래 표` : "추정치, 판정 없음";
+    $("#v3x-badge").innerHTML = `${tierOf(A.tiers[c])} ${role}`;
+    $("#v3x-lede").textContent = "코호트, 전송물, 두 창의 관계, 비교기, 창마다 쌓인 출력 수 k를 고르면 연결 지표가 바뀐다. "
+      + `점선 ${CH}은 우연 수준이다. 그래프는 고른 관계를 실선·원으로, 같은 날짜 묶음의 반대 관계를 점선·사각형으로 함께 그린다. `
+      + "'최강(사후)'은 같은 대상 사용자에서 평균 AUC가 가장 높은 비교기라는 사후 순위이며, 사전 지정된 선택이 아니다.";
+
+    const dl = $("#v3x-stats");
+    dl.innerHTML = "";
+    const src = cellSrc(c, xs.r, xs.cond, xs.cmp, xs.k);
+    if (cur.status !== "ok") {
+      statBox(dl, "상태", `${cur.status === "skipped" ? "계산하지 않음" : "평가 불가"}: <span lang="en">${cur.reason}</span>`, src);
+    } else {
+      statBox(dl, "평균 사용자별 AUC [95% 구간]", ci(cur.auc, cur.ci_low, cur.ci_high), src);
+      statBox(dl, "EER (같은 오류율)", f3(cur.eer), src);
+      statBox(dl, `출력 ${xs.k}개의 시간`, timeOf(c, Number(xs.k)), srcText(A.cohorts[c].period.source));
+      statBox(dl, "도구 표기 (칸별)", `${word(cur.wording)}<small>순열 p ${mp(cur.permutation_p)} (${cur.permutation_draws}회) · Holm p (k 격자) ${mp(cur.holm_p_over_k)}</small>`, src);
+      statBox(dl, "갤러리 크기 점검", GALLERY[cur.gallery_check] || "–", src);
+      if (cur.seq_fmr != null) statBox(dl, "순차 공격자 실제 오류율", `FMR ${f3(cur.seq_fmr)} · FNMR ${f3(cur.seq_fnmr)}<small>명목 오류율은 보장하지 않는다</small>`, src);
+    }
+    const flags = [];
+    if (cur.status === "ok" && cur.users_analysed !== cur.users) flags.push(`분석한 사용자 ${cur.users_analysed}/${cur.users}명`);
+    if (cur.excluded) flags.push(`제외된 사용자 ${cur.excluded}명`);
+    if (cur.interval_unreliable) flags.push("도구가 이 구간을 신뢰하기 어렵다고 표시했다");
+    if (cur.day1_note) flags.push(`보정일 표시: <span lang="en">${cur.day1_note}</span>`);
+    flags.push(best ? `이 k에서 가장 강한 비교기: ${cmpName(best)} (같은 사용자에서 고른 사후 순위)` : "이 k에서 계산된 비교기 순위 없음");
+    $("#v3x-flags").innerHTML = flags.join(" · ");
+    $("#v3f-gallery-cell").textContent = `탐색기에서 고른 칸(${COHORT[c]}, ${rungName(R)}, ${condName(c, xs.cond)}, ${cmpName(xs.cmp)}, 출력 ${xs.k}개): `
+      + `${cur.status === "ok" ? GALLERY[cur.gallery_check] : "계산된 값 없음"}.`;
+
+    // Chart: mean per-user AUC with its 95% interval over k.
+    const relName = (o) => (A.cohorts[c].conditions[o].relation === "same-day" ? "같은 날" : "다른 날");
+    const fr = frame($("#v3x-chart"), { xDomain: [ks[0] / 1.25, ks.at(-1) * 1.25], yDomain: yDomainOf(c), xScale: "log", xTicks: ks,
+      yTicks: (() => { const [lo] = yDomainOf(c), t = []; for (let v = lo; v <= 1.0001; v += 0.1) t.push(Math.round(v * 10) / 10); return t; })(),
+      xLabel: "창마다 쌓인 출력 수 k (로그 눈금)", yLabel: "평균 사용자별 AUC" });
+    refLine(fr, { y: CH, label: `우연 ${CH}` });
+    el("rect", { class: "v3-k-band", x: fr.x(Number(xs.k)) - 14, y: fr.m.t, width: 28, height: fr.H - fr.m.t - fr.m.b }, fr.svg);
+    const pts = [];
+    const series = (byK, cond, color, dash, shape, dx) => {
+      const ok = ks.filter((k) => byK[k]?.status === "ok");
+      const layer = el("g", {}, fr.svg);
+      el("polyline", { points: ok.map((k) => `${fr.x(k) + dx},${fr.y(byK[k].auc)}`).join(" "), fill: "none", stroke: color, "stroke-width": 2.5, "stroke-dasharray": dash }, layer);
+      for (const k of ok) {
+        const x = fr.x(k) + dx, v = byK[k];
+        el("line", { x1: x, x2: x, y1: fr.y(v.ci_low), y2: fr.y(v.ci_high), stroke: color, "stroke-width": 1.5 }, layer);
+        const g = el("g", { class: "pt" }, layer);
+        marker(g, shape, x, fr.y(v.auc), 5, color);
+        pts.push({ g, x, y: fr.y(v.auc), html: `<b>${relName(cond)}</b> · ${condName(c, cond)}<br>출력 ${k}개 (${timeOf(c, k)})<br>AUC ${ci(v.auc, v.ci_low, v.ci_high)} · EER ${f3(v.eer)}<br>${word(v.wording)}` });
+      }
+    };
+    const MAIN = PAL.head, OTHER = PAL.raw;
+    if (otherCells) series(otherCells, other, OTHER, "6 4", "square", 4);
+    series(cells()[xs.cmp], xs.cond, MAIN, "", "circle", otherCells ? -4 : 0);
+    plotPoints(fr, pts);
+    $("#v3x-legend").innerHTML = [legendItem(`${condName(c, xs.cond)} (고른 관계)`, MAIN, { shape: "circle" }),
+      otherCells ? legendItem(`${condName(c, other)} (반대 관계)`, OTHER, { shape: "square", dash: "6 4" }) : "",
+      "<span>세로 막대: 95% 구간</span>"].join("");
+
+    const fmtCell = (v) => (!v ? "–" : v.status !== "ok" ? (v.status === "skipped" ? "계산하지 않음" : "평가 불가") : ci(v.auc, v.ci_low, v.ci_high));
+    table($("#v3x-table"), ["k", "시간", `AUC [95%], ${condName(c, xs.cond)}`, "EER", "Holm p (k 격자)", "도구 표기", "갤러리 점검",
+      ...(otherCells ? [`AUC [95%], ${condName(c, other)}`] : [])],
+    ks.map((k) => { const v = cells()[xs.cmp][k]; return [String(k), timeOf(c, k), fmtCell(v), v.status === "ok" ? f3(v.eer) : "–",
+      v.status === "ok" ? mp(v.holm_p_over_k) : "–", word(v.wording), v.status === "ok" ? GALLERY[v.gallery_check] : "–",
+      ...(otherCells ? [fmtCell(otherCells[k])] : [])]; }));
+    table($("#v3x-cmps"), ["비교기", "AUC [95%]", "EER", "사후 순위"],
+      R.comparators.map((m) => { const v = cells()[m][xs.k]; return [cmpName(m), fmtCell(v), v.status === "ok" ? f3(v.eer) : "–", m === best ? "최강" : ""]; }));
+    $("#v3x-note").innerHTML = `이 탐색기의 모든 '검출' 표기는 비교기·조건마다 k 격자에 Holm 보정을 한 순열 검정을 통과했다는 도구의 칸별 관례이며, 판정이 아니다. `
+      + "판정은 아래 사전 지정 결과 표의 V1·V2 두 개뿐이다. "
+      + `EER은 같은 사람으로 잘못 잇는 비율과 놓치는 비율이 같아지는 오류율이다. 출력의 시간: ${periodText(c)} `
+      + `(<span lang="en">${A.cohorts[c].period.basis}</span>). 출처: <code>${A.cohorts[c].source.file}</code> (cohort = ${c}), <code>${A.cohorts[c].period.source.file}</code>.`;
+  }
+
+  // ---------------------------------------------------------------- pre-specified Yang2025 batch
+  {
+    const D = A.decision, P = D.predictions, E = D.estimate, yc = "yang2025";
+    const R = A.cohorts[yc].rungs;
+    const what = (rk, cond, k, cmp) => `${rungName(R[rk])} · ${condName(yc, cond)} · 출력 ${k}개 (${timeOf(yc, k)}) · ${cmpName(cmp)}`;
+    const verdict = (p) => (!p.evaluable ? "평가 불가" : p.supported ? "지지" : "지지 안 됨");
+    $("#v3p-tag").innerHTML = `${tierOf(D.tier)} Yang2025 ${A.cohorts[yc].users}명 · Holm 보정 V1·V2, α = ${D.alpha}`;
+    table($("#v3p-table"), ["예측", "무엇을", "평균 사용자별 AUC [95% 구간]", "순열 p", "Holm p (V1·V2)", "판정"], [
+      ...Object.entries(P).map(([n, p]) => [n, what(p.rung_key, p.condition, p.k, p.comparator), ci(p.auc, p.ci_low, p.ci_high),
+        `${mp(p.p)} (${p.draws}회)`, mp(p.holm_p), verdict(p)]),
+      ["대비", `같은 날 − 다른 날: ${rungName(R[E.rung_key])} · ${condName(yc, E.same_day)} − ${condName(yc, E.cross_day)} · 출력 ${E.k}개 · ${cmpName(E.comparator)}`,
+        ci(E.mean, E.ci_low, E.ci_high), "–", "–", "판정 없음 (사전 지정 추정치)"],
+    ]);
+    $("#v3p-table").querySelector("table").classList.add("v3-table");
+    $("#v3p-table").querySelectorAll("tbody tr").forEach((tr) => {
+      const v = tr.lastChild.textContent;
+      tr.lastChild.classList.add(v === "지지" ? "m-yes" : v === "지지 안 됨" ? "m-no" : "v3-none");
+    });
+    $("#v3p-pspec").textContent = `사전 지정(비맹검)이란: 도구·설정·입력·폴드·seed와 두 예측을 계산 전에 고정하고 배치를 한 번 돌렸다는 뜻이다. `
+      + `이 ${A.cohorts[yc].users}명의 신원 결과는 v3를 설계할 때 연구 M에서 이미 알려져 있었으므로 맹검이 아니며 확증 재현도 아니다.`;
+    $("#v3p-note").innerHTML = `구간은 95% 구간이고, 대비의 구간은 부트스트랩 ${E.replicates}회로 구했다. `
+      + "이 표의 Holm p는 V1·V2 두 예측에 대한 보정이다. 탐색기의 Holm p(k 격자)는 다른 보정 집합이라 같은 칸이라도 값이 다르다. "
+      + "독립 검토자가 별도 코드로 V1·V2·대비를 다시 계산했고 모든 값과 판정이 일치했다(results/audit/README.md). "
+      + `출처: <code>${D.source.file}</code>.`;
+  }
+
+  // ---------------------------------------------------------------- transmission ladder
+  const CONTRAST = { cross_day: "다른 날 (보정일 제외)", same_day: "같은 날", calibration_day_cross_day: "다른 날 (보정일 포함)" };
+  const contrastsOf = (c) => Object.keys(CONTRAST).filter((t) => Object.values(A.ladder[c].rungs).some((r) => r[t].condition));
+  const principal = (c) => (contrastsOf(c).includes("cross_day") ? "cross_day" : "same_day");
+  const overlap = (a, b) => !(a.auc_high < b.auc_low || a.auc_low > b.auc_high);
+  const matched = (c, t) => {
+    const rows = Object.values(A.ladder[c].rungs).filter((r) => r.matched_utility && r[t].status === "ok");
+    const f = rows.find((r) => r.kind === "features");
+    return { f, cmds: rows.filter((r) => r.kind === "commands") };
+  };
+  const ls = { c: "yang2025", t: principal("yang2025") };
+  const lControls = () => {
+    radiosKeep($("#v3l-cohort"), "v3l-cohort", Object.keys(A.ladder).map((c) => ({ value: c, label: `${COHORT[c]} (${A.ladder[c].users}명)` })), ls.c);
+    radiosKeep($("#v3l-contrast"), "v3l-contrast", contrastsOf(ls.c).map((t) => ({ value: t, label: CONTRAST[t] })), ls.t);
+  };
+  bindRadios($("#v3l-cohort"), (v) => { ls.c = v; ls.t = principal(v); lControls(); drawL(); });
+  bindRadios($("#v3l-contrast"), (v) => { ls.t = v; drawL(); });
+  const rate = (r, f) => ci(r[f], r[`${f}_low`], r[`${f}_high`]);
+
+  function drawL() {
+    const L = A.ladder[ls.c], t = ls.t, rows = Object.values(L.rungs);
+    const sides = rows.find((r) => r[t].sides)?.[t].sides;
+    $("#v3l-head").innerHTML = `${COHORT[ls.c]} · ${CONTRAST[t]} · 출력 ${L.k}개 (${timeOf(ls.c, L.k)})${t === principal(ls.c) ? " · 이 코호트의 주 대비" : ""}`
+      + (sides ? ` <small lang="en">(${sides})</small>` : "");
+    $("#v3l-badge").innerHTML = `${tierOf(L.label)} 판정 없음`;
+    const head = ["전송물", "과제 BA [95%]", "정지 비율 [95%]", "오답 이동 비율 [95%]", `연결 AUC [95%], 출력 ${L.k}개`, "비교기", "도구 표기"];
+    const wrap = $("#v3l-table");
+    wrap.innerHTML = "";
+    const tbl = el("table", { class: "v3-table v3-ladder" }, el("div", { class: "table-scroll" }, wrap));
+    el("caption", { class: "sr", text: `${COHORT[ls.c]} 전송 사다리, ${CONTRAST[t]}` }, tbl);
+    const htr = el("tr", {}, el("thead", {}, tbl));
+    head.forEach((h) => el("th", { scope: "col", text: h }, htr));
+    const groups = [
+      ["맞춘 유용성 비교: 8차원 특징과, 그 특징에서 공용 해독기로 만든 명령 (같은 과제 BA)", rows.filter((r) => r.matched_utility), "v3-matched"],
+      ["맞춘 비교가 아님: 과제 BA가 다른 단계 (전체 특징, 사용자별 해독기)", rows.filter((r) => !r.matched_utility), "v3-unmatched"],
+    ];
+    for (const [title, rs, cls] of groups) {
+      const tb = el("tbody", { class: cls }, tbl);
+      el("th", { scope: "rowgroup", colspan: head.length, text: title }, el("tr", { class: "v3-group" }, tb));
+      for (const r of rs) {
+        const x = r[t], tr = el("tr", { title: srcText({ file: L.source.file, where: { cohort: ls.c, rung: r.rung } }) }, tb);
+        el("th", { scope: "row", text: rungName(r), "data-label": head[0] }, tr);
+        const auc = x.status === "ok" ? ci(x.auc, x.auc_low, x.auc_high) : "이 대비 없음";
+        const cmp = x.comparator ? `${cmpName(x.comparator)}${r.kind === "features" ? " (사후 선택된 최강)" : ""}` : "–";
+        [rate(r, "task_ba"), rate(r, "hold_rate"), rate(r, "wrong_move_rate"), auc, cmp, word(x.wording)]
+          .forEach((v, i) => el("td", { text: v, "data-label": head[i + 1] }, tr));
+      }
+    }
+    const { f, cmds } = matched(ls.c, t);
+    const ok = rows.filter((r) => r[t].status === "ok"), det = ok.filter((r) => r[t].wording === "linkage detected");
+    const sep = f ? cmds.filter((r) => !overlap(r[t], f[t])) : [];
+    $("#v3l-read").innerHTML = (f && cmds.length
+      ? `<b>같은 과제 BA ${f3(f.task_ba)}에서</b>: 8차원 특징 ${ci(f[t].auc, f[t].auc_low, f[t].auc_high)} → 공용 해독기 명령 `
+        + `${cmds.map((r) => `${ci(r[t].auc, r[t].auc_low, r[t].auc_high)} (τ = ${tau2(r.tau)})`).join(", ")}. `
+        + (sep.length === cmds.length ? "명령의 구간이 특징의 구간과 겹치지 않는다. " : sep.length === 0 ? "구간이 겹치므로 우열을 말할 수 없다. "
+          : `구간이 겹치지 않는 것은 τ = ${sep.map((r) => tau2(r.tau)).join(", ")}뿐이다. `)
+      : "")
+      + `이 대비에서 ${ok.length}개 단계 중 ${det.length}개에서 연결이 검출됐다. 연결이 없다고 보인 단계는 없다(검출 안 됨은 없음이 아니다).`;
+    const flagged = ok.filter((r) => /flagged/.test(r[t].guard) && !/not flagged/.test(r[t].guard)).length;
+    $("#v3l-note").innerHTML = `과제 유용성: 이후 날 시행 ${L.utility_trials}개(공통 지지 집합)에서 사용자별로 잰 뒤 사용자 평균, 95% 구간은 사용자 부트스트랩. `
+      + "특징 단계의 수신기는 모든 시행에 최댓값 결정을 내리므로 정지가 없다. "
+      + `데이터 처리 가드(명령이 출처 특징보다 더 연결되면 표시): 이 대비에서 표시된 단계 ${flagged}개. `
+      + (t === "calibration_day_cross_day" ? `보정일 포함 대비: <span lang="en">${rows[0].calibration_day_note}</span>. ` : "")
+      + `출처: <code>${L.source.file}</code> (cohort = ${ls.c}).`;
+  }
+  {
+    const noCross = Object.keys(A.ladder).filter((c) => !contrastsOf(c).includes("cross_day"));
+    const read = Object.keys(A.ladder).map((c) => {
+      const p = principal(c), { f, cmds } = matched(c, p);
+      const sepAll = f && cmds.length && cmds.every((r) => !overlap(r[p], f[p]));
+      return `${COHORT[c]} (${CONTRAST[p]}) ${sepAll ? "겹치지 않음" : "겹침"}`;
+    });
+    $("#v3l-lede").textContent = `한 코호트의 같은 사용자, 같은 시행 위에서 전송 방식만 바꿔 출력 ${A.ladder.yang2025.k}개에서 연결을 쟀다. `
+      + "과제 BA는 균형 정확도, 즉 왼손 시행과 오른손 시행 각각에서 명령이 맞은 비율을 평균한 값으로, 명령이 사용자의 의도를 얼마나 맞히는지 나타낸다. "
+      + "빌더가 고를 질문은 같은 과제 BA에서의 비교다: 8차원 특징을 보낼까, 그 특징에서 해독한 명령을 보낼까. 사다리의 모든 값은 탐색적이다.";
+    const limits = [
+      `맞춘 비교의 구간(각 코호트의 주 대비): ${read.join(", ")}. 구간이 겹치는 코호트에서는 명령이 낫다고 말할 수 없다.`,
+      "특징 값은 고정된 특징 비교기 가운데 같은 대상 사용자에서 평균 AUC가 가장 높은 것을 사후에 고른 것이다. 이 선택은 비교를 명령 쪽에 유리하게 만든다.",
+      "명령 공격자(단서를 아는 베이즈 인자)와 특징 공격자(비교기)는 종류가 다르다. 공격자에 따른 측정이지 보장이 아니다.",
+      "연결이 없음을 입증한 단계는 없다. 우연에 가까운 값도 이 공격자가 잇지 못했다는 뜻일 뿐, 안전하거나 익명이라는 근거가 아니다.",
+      noCross.length ? `${noCross.map((c) => COHORT[c]).join("와 ")}에는 보정일과 무관한 다른 날 대비가 없다. '다른 날 (보정일 포함)'에서는 특징이 보정일에 표본 내다.` : "",
+      "전체 특징과 사용자별 해독기는 과제 BA가 달라 공용 해독기 단계와 맞춘 비교가 아니다.",
+    ].filter(Boolean);
+    limits.forEach((s) => el("li", { text: s }, $("#v3l-limits")));
+  }
+
+  // ---------------------------------------------------------------- failed or withheld
+  {
+    $("#v3f-gallery").innerHTML = `점수 분포로 더 큰 갤러리 N의 결과를 예측하는 모듈은 점수 독립 모형을 먼저 점검하고, 실패한 칸에서는 값을 내지 않는다. `
+      + "이 페이지도 더 큰 N의 값을 싣지 않는다. <span id=\"v3f-gallery-cell\"></span>";
+    table($("#v3f-gallery-table"), ["코호트", "등급", "계산된 칸", "점검 통과", "독립 모형 점검 실패"],
+      COHORTS.map((c) => { const g = A.cohorts[c].gallery, n = Object.values(g).reduce((a, b) => a + b, 0);
+        return [COHORT[c], V3TIER[A.tiers[c]][2], String(n), String(g.passed ?? 0), String(g["independence model not supported"] ?? 0)]; }));
+    const S = A.sequential;
+    $("#v3f-seq").textContent = "순차 공격자는 명령을 하나씩 받으며 같은 사람인지 결정을 내린다. "
+      + `오류율은 잘못 연결(FMR)과 놓침(FNMR)이다. 합성 독립 자료(가설마다 ${S.synthetic_iid.simulations}회)에서는 FMR ${f3(S.synthetic_iid.fmr)}, FNMR ${f3(S.synthetic_iid.fnmr)}였지만, `
+      + "실제 명령 흐름은 그 생성 가설을 따르지 않는다. 그래서 명목 오류율을 보장하지 않으며, 실제 오류율만 보고한다.";
+    table($("#v3f-seq-table"), ["코호트", "등급", "명령 칸", "실제 FMR 범위", "실제 FNMR 범위"],
+      COHORTS.map((c) => { const s = S.cohorts[c]; return [COHORT[c], V3TIER[A.tiers[c]][2], String(s.cells), FORMATS.range3(s.fmr), FORMATS.range3(s.fnmr)]; }));
+    $("#v3f-dec").innerHTML = `${tierOf("exploratory")} 사용자별 해독기는 과제 BA를 일관되게 높인다는 것을 입증하지 못했다 `
+      + "(did not demonstrate consistent improvement). 해독기 자체가 약하므로 v3는 작동하는 BCI를 보여 주지 않는다.";
+    table($("#v3f-dec-table"), ["코호트", "사용자별 해독기 과제 BA [95%]", "공용 해독기 과제 BA [95%]"],
+      Object.keys(A.ladder).map((c) => { const rs = Object.values(A.ladder[c].rungs);
+        const pu = rs.find((r) => r.per_user), sh = rs.find((r) => r.matched_utility);
+        return [COHORT[c], rate(pu, "task_ba"), rate(sh, "task_ba")]; }));
+    ["#v3f-gallery-table", "#v3f-seq-table", "#v3f-dec-table"].forEach((s) => $(s).querySelector("table").classList.add("v3-table"));
+    const par = A.parity;
+    $("#v3f-note").innerHTML = `출처: 갤러리 점검 <code>${A.cohorts.lee2019.source.file}</code>·<code>${A.cohorts.yang2025.source.file}</code> (gallery_check); `
+      + `순차 공격자 같은 파일의 seq_fmr·seq_fnmr, 합성 자료 <code>${S.synthetic_iid.source.file}</code>; 과제 BA <code>${A.ladder.yang2025.source.file}</code>. `
+      + `도구 검증: 닫힌 집합 모듈이 연구 L의 등록값을 ${par.passed ? "재현했다" : "재현하지 못했다"} `
+      + `(${Object.entries(par.checks).map(([k, v]) => `${k === "within_day" ? "같은 날" : "다른 날"} ${f3(v.registered)} → ${f3(v.tool)}`).join(", ")}; <code>${par.source.file}</code>).`;
+  }
+
+  const yangBA = range2(Object.values(A.ladder.yang2025.rungs).map((r) => r.task_ba));
+  [
+    "익명성도, 안전도 아니다. 우연에 가까운 값은 이 공격자가 잇지 못했다는 뜻이고, '검출 안 됨'은 결코 '없음'이 아니다. 공격자는 다른 사용자로 적합한 도구의 비교기이며, 적응형·화이트박스 공격자는 시도하지 않았다.",
+    "공격자에게 처음 보는 사용자이지 BCI에게 처음 보는 사용자가 아니다. 인코더·재중심화·해독기는 대상 사용자의 보정 자료로 적합됐다.",
+    "사전 지정은 맹검이 아니다. Yang2025의 신원 결과는 v3 설계 때 이미 알려져 있었고, 동결 전에 개발 코호트에서 도구를 여러 번 돌리고 계획을 바꿨다.",
+    "도구의 report.md는 판정이 아닌 추정치 칸에도 'linkage detected'를 찍는다. 판정은 decision.json의 V1·V2뿐이다.",
+    `작동하는 BCI가 아니다. 해독기가 약하다(Yang2025 과제 BA ${yangBA}, 두 손 과제).`,
+  ].forEach((s) => el("li", { text: s }, $("#v3-limits")));
+
+  fix(); controls(); drawX(); lControls(); drawL();
+  onResize($("#v3x-chart"), drawX);
+}
 }

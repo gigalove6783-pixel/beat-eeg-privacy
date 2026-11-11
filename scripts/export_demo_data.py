@@ -11,7 +11,9 @@ enrolment, scenario and reproduction tables, the audit checklist (report §9), t
 pre-registration timeline (docs/decision_log.md), the Lee2019 replication, experiment K's
 randomized-response vs equalized-decoding frontier (results/exp_k/frontier.csv) and study M's
 sealed decisions and pre-registered EQ estimates (results/exp_m/decision.json and
-final_estimates_*.csv). The
+final_estimates_*.csv), and v3's open-set linkage audit (results/audit/: both summaries, the
+Yang2025 decision, the transmission ladder, the export manifest's trial periods, the sequential
+validation and the closed-set parity; aggregates only, no user IDs). The
 replication stays "pending" until results/exp_l/decision.json exists; re-running this
 script then fills in the claim decisions without any change to the page.
 
@@ -653,6 +655,168 @@ def m_study():
         report_source=src(REPORT, section=section), report_anchor=anchor)
 
 
+# ---------------------------------------------------------------- v3: beat_audit linkage
+
+AU = "results/audit"
+AUDIT_SUMMARY = {"yang2025": f"{AU}/yang2025/summary.csv", "lee2019": f"{AU}/summary.csv",
+                 "bnci2014_001": f"{AU}/summary.csv"}
+AUDIT_CELL = ("status", "reason", "users", "users_analysed", "auc", "ci_low", "ci_high",
+              "interval_unreliable", "permutation_p", "permutation_draws", "holm_p_over_k",
+              "wording", "strongest", "eer", "gallery_check", "seq_share_decided",
+              "seq_median_commands", "seq_fmr", "seq_fnmr", "seq_undecided_mated",
+              "seq_undecided_nonmated", "role", "day1_note")
+LADDER_CONTRASTS = ("same_day", "cross_day", "calibration_day_cross_day")
+LADDER_FIELDS = ("condition", "sides", "status", "comparator", "comparator_selection", "auc",
+                 "auc_low", "auc_high", "p", "holm_p", "wording", "guard")
+# The trial period's kind, as worded in its source text in export_manifest.json.
+PERIOD_KIND = (("nominal", r"\bnominal\b"), ("observed", r"\bobserved\b"),
+               ("minimum", r"\bminimum\b"))
+
+
+def akey(name: str) -> str:
+    """JSON key without dots, so registry paths (dot-separated) can address it."""
+    return str(name).replace(".", "_")
+
+
+def opt(value):
+    """Full-precision float (NaN as None): the page rounds once, so no value is rounded twice."""
+    if isinstance(value, (np.floating, float)):
+        return None if math.isnan(value) else float(value)
+    return clean(value)
+
+
+def cell(row) -> dict:
+    out = {f: opt(row[f]) for f in AUDIT_CELL}
+    # Only the number of excluded users; their IDs stay in the result file.
+    out["excluded"] = len(row["excluded_users"].split()) if isinstance(row["excluded_users"], str) else 0
+    return out
+
+
+def audit():
+    """v3 open-set linkage (beat_audit): aggregates of the tracked result files only."""
+    frames = {f: read_csv(ROOT / f) for f in sorted(set(AUDIT_SUMMARY.values()))}
+    manifest = read_json(ROOT / AU / "export_manifest.json")
+    periods = {}
+    for e in manifest["exports"]:
+        periods.setdefault(e["cohort"], set()).add((e["seconds_per_output"]["value"],
+                                                    e["seconds_per_output"]["source"]))
+    cohorts, cells = {}, {}
+    for cohort, file in AUDIT_SUMMARY.items():
+        frame = frames[file]
+        frame = frame[frame.cohort == cohort]
+        if len(periods.get(cohort, ())) != 1 or set(frame.seconds_per_output) != {next(iter(periods[cohort]))[0]}:
+            raise ValueError(f"Trial period of {cohort} differs between export_manifest.json and {file}")
+        seconds, basis = next(iter(periods[cohort]))
+        kind = [k for k, pattern in PERIOD_KIND if re.search(pattern, basis)]
+        if len(kind) != 1:
+            raise ValueError(f"Cannot tell the kind of {cohort}'s trial period from: {basis}")
+        tiers = set(frame.tier)
+        if len(tiers) != 1:
+            raise ValueError(f"{cohort} mixes tiers in {file}")
+        conditions = {}
+        for (condition, relation, days), g in frame.groupby(["condition", "relation", "days"], sort=False):
+            conditions[condition] = dict(relation=relation, days=str(days).split())
+        rungs = {}
+        for rung, g in frame.groupby("rung", sort=True):
+            first = g.iloc[0]
+            rungs[akey(rung)] = dict(rung=rung, kind=first.kind, tau=opt(first.tau),
+                                     conditions=list(dict.fromkeys(g.condition)),
+                                     comparators=list(dict.fromkeys(g.comparator)))
+            block = cells.setdefault(cohort, {}).setdefault(akey(rung), {})
+            for r in g.to_dict(orient="records"):
+                block.setdefault(r["condition"], {}).setdefault(r["comparator"], {})[str(r["k"])] = cell(r)
+        cohorts[cohort] = dict(
+            users=int(frame.users.max()), tier=tiers.pop(), ks=sorted(int(k) for k in frame.k.unique()),
+            model_seeds=str(frame.model_seeds.iloc[0]).split(), conditions=conditions, rungs=rungs,
+            period=dict(seconds=opt(seconds), kind=kind[0], basis=basis,
+                        source=src(f"{AU}/export_manifest.json", cohort=cohort, field="exports.seconds_per_output")),
+            gallery={str(k): int(v) for k, v in frame[frame.status == "ok"].gallery_check.value_counts().items()},
+            source=src(file, cohort=cohort))
+
+    # Pre-specified predictions V1, V2 and the paired contrast (yang2025/decision.json).
+    dec = read_json(ROOT / AU / "yang2025" / "decision.json")
+    yang = frames[AUDIT_SUMMARY["yang2025"]]
+    predictions = {}
+    for name, p in dec["predictions"].items():
+        row = yang[yang.role == name]
+        if (len(row) != 1 or (row.rung.iloc[0], row.condition.iloc[0], int(row.k.iloc[0]), row.comparator.iloc[0])
+                != (p["rung"], p["condition"], p["k"], p["comparator"])
+                or abs(row.auc.iloc[0] - p["auc"]) > 1e-9 or abs(row.ci_low.iloc[0] - p["interval"][0]) > 1e-9
+                or abs(row.ci_high.iloc[0] - p["interval"][1]) > 1e-9):
+            raise ValueError(f"{name} differs between decision.json and the Yang2025 summary")
+        predictions[name] = dict(rung=p["rung"], rung_key=akey(p["rung"]), condition=p["condition"], k=p["k"],
+                                 comparator=p["comparator"], auc=opt(p["auc"]), ci_low=opt(p["interval"][0]),
+                                 ci_high=opt(p["interval"][1]), p=opt(p["p"]),
+                                 holm_p=opt(p["holm_p"]), draws=p["draws"],
+                                 supported=bool(p["supported"]), evaluable=bool(p["evaluable"]),
+                                 source=src(f"{AU}/yang2025/decision.json", prediction=name))
+    est = dec["estimate"]
+    estimate = dict(rung=est["rung"], rung_key=akey(est["rung"]), same_day=est["same_day"],
+                    cross_day=est["cross_day"], k=est["k"], comparator=est["comparator"],
+                    mean=opt(est["value"]["mean"]), ci_low=opt(est["value"]["interval"][0]),
+                    ci_high=opt(est["value"]["interval"][1]), replicates=est["value"]["replicates"],
+                    status=est["status"], source=src(f"{AU}/yang2025/decision.json", field="estimate"))
+
+    # Transmission ladder (ladder.csv): matched utility = the rungs on the 8-d features' shared decoder.
+    lad = read_csv(ROOT / AU / "ladder.csv")
+    ladder = {}
+    for cohort, g in lad.groupby("cohort", sort=False):
+        ref = g[g.rung == "features_P2-RC_d8"]
+        if len(ref) != 1:
+            raise ValueError(f"ladder.csv: {cohort} lacks the 8-d feature rung")
+        ref = ref.iloc[0]
+        rows = {}
+        for r in g.to_dict(orient="records"):
+            matched = r["decoder"] == ref.decoder
+            if matched and abs(r["task_ba"] - ref.task_ba) > 1e-9:
+                raise ValueError(f"ladder.csv: {cohort} {r['rung']} shares the decoder but not the task BA")
+            rows[akey(r["rung"])] = dict(
+                rung=r["rung"], transmits=r["transmits"], decoder=r["decoder"], kind=r["kind"],
+                tau=opt(r["tau"]), derived_from=r["derived_from"] if isinstance(r["derived_from"], str) else None,
+                matched_utility=bool(matched), per_user=r["decoder"].startswith("per-user"),
+                **{f: opt(r[f]) for f in ("task_ba", "task_ba_low", "task_ba_high", "hold_rate", "hold_rate_low",
+                                            "hold_rate_high", "wrong_move_rate", "wrong_move_rate_low",
+                                            "wrong_move_rate_high")},
+                **{c: {f: opt(r[f"{c}_{f}"]) for f in LADDER_FIELDS}
+                   for c in LADDER_CONTRASTS},
+                calibration_day_note=r["calibration_day_note"])
+        first = g.iloc[0]
+        ladder[cohort] = dict(label=first.label, k=int(first.k), days=str(first.days).split(","),
+                              calibration_day=int(first.calibration_day), users=int(first.users),
+                              utility_trials=int(first.utility_trials), utility_basis=first.utility_basis,
+                              rungs=rows, source=src(f"{AU}/ladder.csv", cohort=cohort))
+
+    # Sequential attacker: realised error rates only. No tracked record of the runs (summaries,
+    # freeze bundle, validation) states the nominal rates the runs used, so none is exported.
+    validation = read_json(ROOT / AU / "validation.json")
+    iid = validation["sequential"]["iid"]
+    sequential = dict(synthetic_iid=dict(fmr=opt(iid["FMR"]), fnmr=opt(iid["FNMR"]),
+                                         simulations=iid["simulations_per_hypothesis"],
+                                         source=src(f"{AU}/validation.json", key="sequential.iid")),
+                      cohorts={})
+    for cohort, file in AUDIT_SUMMARY.items():
+        f = frames[file]
+        f = f[(f.cohort == cohort) & (f.kind == "commands") & (f.status == "ok")]
+        sequential["cohorts"][cohort] = dict(
+            cells=int(len(f)), fmr=[opt(f.seq_fmr.min()), opt(f.seq_fmr.max())],
+            fnmr=[opt(f.seq_fnmr.min()), opt(f.seq_fnmr.max())],
+            source=src(file, cohort=cohort, kind="commands", status="ok", columns="seq_fmr, seq_fnmr"))
+    parity = read_json(ROOT / AU / "parity.json")
+    return dict(
+        # An AUC's chance level holds by definition; exported so the page types no number.
+        chance=dict(value=0.5, source=src(f"{AU}/README.md", section="opening paragraph")),
+        tiers={c: v["tier"] for c, v in cohorts.items()}, cohorts=cohorts, cells=cells,
+        decision=dict(alpha=dec["alpha"], family=dec["family"], tier=dec["tier"], predictions=predictions,
+                      estimate=estimate, source=src(f"{AU}/yang2025/decision.json")),
+        ladder=ladder, sequential=sequential,
+        parity=dict(passed=bool(parity["passed"]),
+                    checks={k: dict(registered=opt(v["registered"]), tool=opt(v["tool"]),
+                                    tolerance=opt(v["tolerance"]), passed=bool(v["passed"]))
+                            for k, v in parity["checks"].items()},
+                    source=src(f"{AU}/parity.json", key="checks")),
+        readme=f"{AU}/README.md")
+
+
 # ---------------------------------------------------------------- headline numbers
 
 def headline(tradeoff, adversary, observation, chance):
@@ -910,6 +1074,7 @@ def main():
         lee2019=lee2019(seals["events"][4]["commit"]),
         k_frontier=k_frontier(),
         m_study=m_study(),
+        audit=audit(),
         tradeoff=dict(rows=data["tradeoff"], source="results/<exp>/tradeoff.csv"),
         adversary=dict(rows=data["adversary"], source="results/<exp>/adversary_comparison.csv"),
         observation=dict(rows=data["observation"],
