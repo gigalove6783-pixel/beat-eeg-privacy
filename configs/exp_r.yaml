@@ -16,3 +16,6 @@ runtime:
   limit_seconds: 12300
   first_refit_seconds: 300   # a refit starts only if the longest refit so far (initially this) fits
   reproduction_seconds: 30   # a reproduction at L's budget starts only if this much time remains
+  # Wall seconds of the run that fitted all 45 refits (mlp_sensitivity.json of that run, before
+  # the field was split); used when a checkpoint-only invocation finds no recorded value.
+  recorded_first_run_wall_seconds: 6601.735

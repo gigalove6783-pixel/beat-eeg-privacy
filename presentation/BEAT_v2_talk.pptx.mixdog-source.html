@@ -5,7 +5,7 @@ reading mode: presentation · argument mode: pyramid
 directions: A v1 흰 바탕 학술 발표 그대로, 날짜 칩과 증거 등급 칩 추가 · B 남색 전면 · selected: A · why: 사용자가 v1 덱을 디자인 기준으로 지정했고 요약 그림이 흰 바탕이다
 style: custom academic · palette: hue 210 · accent hue 20 · accent: #D55E00 · type: MODE presentation → body 12pt · script: ko · pairing: weight · fonts: safe
 motif: 파란 키커와 단언형 제목, 같은 날은 회색 칩, 다른 날은 남색 칩, 확증은 파란 칩, 사전등록 추정치는 흰 바탕 하늘색 테 칩, 탐색은 주황 칩 · rhythm: anchor, breathing, dense, dense, dense, dense, dense, breathing, dense, dense, dense, dense, anchor, dense, dense, dense, dense, dense, dense, dense, dense
-sources: .mixdog/plan_v2.md 절 Decisions after the v2 framing advice 그리고 절 M results · docs/decision_log.md 32행(7b14cee 사전 문구)과 34행(M 감사) · results/exp_m/decision.json · results/exp_m/final_estimates_identification.csv · results/exp_m/final_estimates_utility.csv · results/exp_m/final_estimates_k_curves.csv · results/exp_r/cross_day_table.csv · results/exp_k/frontier.csv · results/exp_k/residual_leakage.csv · results/exp_k/eq_guarantee.md · results/exp_k/information_identity.csv · results/exp_l/decision.json · results/exp_l/identity_summary.csv · results/exp_l/reproduction.json · results/exp_l/enrolment.csv · docs/report.md · docs/preregistration_m.md · seals/manifest.yaml · results/exp_m/seal4_timestamp/verification.json · results/exp_m/selection.json · results/exp_r/pilot.json · presentation/BEAT_final_talk.pptx (디자인 기준)
+sources: .mixdog/plan_v2.md 절 Decisions after the v2 framing advice 그리고 절 M results · docs/decision_log.md 32행(7b14cee 사전 문구)과 34행(M 감사) · results/exp_m/decision.json · results/exp_m/final_estimates_identification.csv · results/exp_m/final_estimates_utility.csv · results/exp_m/final_estimates_k_curves.csv · results/exp_r/cross_day_table.csv · results/exp_k/frontier.csv · results/exp_k/residual_leakage.csv · results/exp_k/eq_guarantee.md · results/exp_k/information_identity.csv · results/exp_l/decision.json · results/exp_l/identity_summary.csv · results/exp_l/reproduction.json · results/exp_l/enrolment.csv · docs/report.md · docs/preregistration_m.md · seals/manifest.yaml · results/exp_m/seal4_timestamp/verification.json · results/exp_m/selection.json · results/exp_r/mlp_refits.csv · results/exp_r/mlp_sensitivity_claims.csv · results/exp_r/mlp_sensitivity_components.csv · presentation/BEAT_final_talk.pptx (디자인 기준)
 facts: F1 BCI IV 2a 9명 22채널 253차원 서로 다른 날 두 세션 봉인 1–2 — docs/report.md §3 그리고 §4.1
   · F2 Lee2019 54명 20채널 210차원 두 세션 C1–C4 봉인 3 — docs/report.md §6.7
   · F3 Yang2025 51명 19채널 190차원 3일 하루 200시행 1일차 2–3일차 M1–M3 봉인 4 — docs/preregistration_m.md §2 그리고 §5
@@ -41,7 +41,9 @@ facts: F1 BCI IV 2a 9명 22채널 253차원 서로 다른 날 두 세션 봉인 
   · F33 백업 H2 P3가 P2보다 노출 5%p 이상 더 낮춤 공통과 재중심화 두 계열 선택된 λ = 0.01 — docs/report.md 142행 그리고 results/exp_b/decision.json h2_accepted families target
   · F34 백업 봉인 커밋 6ab5668 b216b7d 9757c3f — seals/manifest.yaml
   · F35 백업 MLP 미수렴 286/586 확증 45/85 반복 500회 — docs/report.md §6.7 MLP non-convergence
-  · F36 백업 파일럿 seed 0 0.288 → 0.291 0.536 → 0.517 0.058 → 0.060 0.331 → 0.322 0.035 → 0.035 0.089 → 0.081 변화 −0.019–+0.002 반복 한도 20000 — results/exp_r/pilot.json types sealed_ba refit_ba ba_change budget.max_iter
+  · F36 백업 탐색 R 재적합 45개 중 42개 수렴 C3 적합 269 278 280 반복 20000회 미수렴 봉인 적합 45/45 반복 500회 재현 적합별 균형 정확도 변화 최대 2.6%p C1 같은 날 — results/exp_r/mlp_refits.csv 45행 refit_converged reproduced refit_max_iter sealed_max_iter, ba_change 최대 절댓값 job 52 (C1 main offline_to_online −0.0256)
+  · F52 백업 탐색 R C1 격차 0.4744 → 0.4584 C2 식별 감소 0.6538 → 0.6599 같은 날 판정 지지 그대로 C3 지지 안 됨 그대로 C4 미수렴 MLP 없음 — results/exp_r/mlp_sensitivity_claims.csv 행 C1 C2 C3 C4 observed_difference_sealed observed_difference_refit decision_sealed decision_refit decision_changed
+  · F53 백업 탐색 R C3 명령 20개 MLP 공격자 같은 날 0.0763 → 0.0767 — results/exp_r/mlp_sensitivity_components.csv 73행 (C3, mlp/main | threshold) mean_sealed mean_refit
   · F37 백업 w = τ/(1 − τ) τ = 0.8 w = 4 log2(N/g) — results/exp_k/eq_guarantee.md eq_lp 그리고 results/exp_k/information_task.csv wrong_weight
   · F38 백업 과제 정보 0.221 bits ITR 1.02 bits/분 EQ g = 3 과제 0.158 ITR 0.73 — results/exp_k/frontier.csv 111행과 102행 bits_per_trial itr_bits_per_min
   · F39 백업 신원 정보 전체 0.467 → 0.452 그룹 안 0.198 → 0.072 순열 영점 0.014 (1807행 방어 없음 54명 전체 null) — results/exp_k/information_identity.csv 1807행 1645행 1803행 1641행 bits null
@@ -74,7 +76,7 @@ slide plan: 1 job: cover · move: 청중이 논지 한 문장을 잡는다 · co
   · 14 job: backup · relationship: tradeoff · move: v1 방어 비교를 다시 본다 · composition: 왼쪽 fig2, 오른쪽 수치 패널 · carriers: figure, stat panel · texture: chart · rhythm: dense
   · 15 job: backup · relationship: verdict · move: 54명 확증 판정 그림을 본다 · composition: 큰 fig6 한 장과 하단 설명 · carriers: figure, caption · texture: chart · rhythm: dense
   · 16 job: backup · relationship: ledger · move: 지지되지 않은 가설과 봉인 커밋을 본다 · composition: 위 판정 표, 아래 봉인 카드 · carriers: table, seal cards · texture: table · rhythm: dense
-  · 17 job: backup · relationship: comparison · move: MLP 재적합 파일럿의 변화 크기를 본다 · composition: 재적합 표와 오른쪽 설명 · carriers: table, note · texture: table · rhythm: dense
+  · 17 job: backup · relationship: comparison · move: 수렴하지 않은 MLP를 모두 다시 적합해도 판정이 그대로임을 본다 · composition: 봉인 대 재적합 표와 오른쪽 설명 · carriers: table, note · texture: table · rhythm: dense
   · 18 job: backup · relationship: definition · move: EQ 선형계획과 보장 가정을 안다 · composition: 왼쪽 목적과 제약 카드, 오른쪽 가정 목록 · carriers: two cards, list · texture: prose · rhythm: dense
   · 19 job: backup · relationship: comparison · move: 정보량으로 본 EQ 효과를 안다 · composition: 정보량 표와 해석 문장 · carriers: table, note · texture: table · rhythm: dense
   · 20 job: backup · relationship: proof · move: 봉인 4 토큰을 누구나 검증할 수 있음을 안다 · composition: 어두운 명령 상자와 필드 목록 · carriers: command box, field list · texture: prose · rhythm: dense
@@ -431,23 +433,23 @@ slide plan: 1 job: cover · move: 청중이 논지 한 문장을 잡는다 · co
 </section>
 
 <section class="slide">
-  <div class="kicker">백업 B4 · MLP 수렴</div>
-  <div class="title">수렴하지 않은 MLP를 다시 적합한 파일럿에서 식별값 변화는 작았다</div>
-  <table style="position:absolute;left:96px;top:240px;width:1100px;border-collapse:collapse;font-size:24px;line-height:1.35">
-    <tr style="background:#14202E;color:#FFFFFF"><th style="text-align:left;padding:14px 18px">주장 · 표현</th><th style="text-align:left;padding:14px 18px">조건</th><th style="text-align:left;padding:14px 18px">봉인 적합</th><th style="text-align:left;padding:14px 18px">재적합</th></tr>
-    <tr style="background:#F4F7FA"><td style="padding:14px 18px">C1 · P3 λ = 1</td><td style="padding:14px 18px">같은 날</td><td style="padding:14px 18px">0.536</td><td style="padding:14px 18px">0.517</td></tr>
-    <tr><td style="padding:14px 18px">C1 · P3 λ = 1</td><td style="padding:14px 18px">다른 날</td><td style="padding:14px 18px">0.288</td><td style="padding:14px 18px">0.291</td></tr>
-    <tr style="background:#F4F7FA"><td style="padding:14px 18px">C2 · P2-RC d = 8</td><td style="padding:14px 18px">같은 날</td><td style="padding:14px 18px">0.331</td><td style="padding:14px 18px">0.322</td></tr>
-    <tr><td style="padding:14px 18px">C2 · P2-RC d = 8</td><td style="padding:14px 18px">다른 날</td><td style="padding:14px 18px">0.058</td><td style="padding:14px 18px">0.060</td></tr>
-    <tr style="background:#F4F7FA"><td style="padding:14px 18px">C3 · 명령 20개</td><td style="padding:14px 18px">같은 날</td><td style="padding:14px 18px">0.089</td><td style="padding:14px 18px">0.081</td></tr>
-    <tr><td style="padding:14px 18px">C3 · 명령 20개</td><td style="padding:14px 18px">다른 날</td><td style="padding:14px 18px">0.035</td><td style="padding:14px 18px">0.035</td></tr>
+  <div class="kicker">백업 B4 · MLP 수렴 (탐색 R)</div>
+  <div class="title">수렴하지 않은 MLP 45개를 모두 다시 적합해도 확증 판정은 바뀌지 않았다</div>
+  <div class="chips" style="position:absolute;left:96px;top:246px;align-items:center"><div class="chip same">같은 날</div><div class="chip expl">탐색 R</div><div style="font-size:24px;color:#3A4450;margin-left:8px">Lee2019 54명 · 공격자 값은 주 시나리오(같은 날)</div></div>
+  <table style="position:absolute;left:96px;top:310px;width:1100px;border-collapse:collapse;font-size:24px;line-height:1.35">
+    <tr style="background:#14202E;color:#FFFFFF"><th style="text-align:left;padding:14px 18px">주장 · 값</th><th style="text-align:left;padding:14px 18px">봉인 적합<br>반복 500회</th><th style="text-align:left;padding:14px 18px">재적합<br>반복 20000회</th><th style="text-align:left;padding:14px 18px">판정</th></tr>
+    <tr style="background:#F4F7FA"><td style="padding:18px">C1 · 독립 공격자와<br>함께 학습한 식별기의 격차</td><td style="padding:18px">0.4744</td><td style="padding:18px">0.4584</td><td style="padding:18px;font-weight:700;color:#0B4F80">지지 그대로</td></tr>
+    <tr><td style="padding:18px">C2 · P0 대비 P2-RC d = 8의<br>식별 감소</td><td style="padding:18px">0.6538</td><td style="padding:18px">0.6599</td><td style="padding:18px;font-weight:700;color:#0B4F80">지지 그대로</td></tr>
+    <tr style="background:#F4F7FA"><td style="padding:18px">C3 · 명령 20개,<br>MLP 공격자의 식별</td><td style="padding:18px">0.0763</td><td style="padding:18px">0.0767</td><td style="padding:18px;font-weight:700;color:#A04400">지지 안 됨<br>그대로</td></tr>
   </table>
-  <div style="position:absolute;left:1260px;top:240px;width:564px;display:flex;flex-direction:column;gap:26px">
-    <div class="stat gray"><div class="chips"><div class="chip expl">탐색 R 파일럿</div></div><div class="lab">변화 범위</div><div class="val">−0.019–+0.002</div><div class="sub">유형별 seed 0 적합 1회, 반복 한도 20000</div></div>
+  <div class="note" style="position:absolute;left:96px;top:750px;width:1100px;font-size:24px;line-height:1.4">봉인 판정(C1·C2 지지, C3 지지 안 됨)은 MLP 수렴 여부에 좌우되지 않았다.<br>재적합 예측으로 L의 판정 코드를 다시 실행했다. C4에는 수렴하지 않은 MLP가 없었다</div>
+  <div style="position:absolute;left:1260px;top:246px;width:564px;display:flex;flex-direction:column;gap:30px">
+    <div class="stat gray"><div class="chips"><div class="chip expl">탐색 R</div></div><div class="lab">재적합 45개 (반복 20000회)</div><div class="val">42개 수렴</div><div class="sub">C3 적합 269·278·280은 끝내 미수렴,<br>그 예측을 그대로 사용<br>봉인 적합 45/45를 먼저 똑같이 재현</div></div>
+    <div class="stat gray"><div class="chips"><div class="chip same">같은 날</div><div class="chip expl">탐색 R</div></div><div class="lab">적합별 균형 정확도 변화</div><div class="val">최대 2.6%p</div><div class="sub">C1 적합 1개</div></div>
     <div class="stat"><div class="lab">봉인 규칙 (반복 500회)</div><div class="val" style="font-size:36px">286/586 미수렴</div><div class="sub">확증 검정에 들어간 적합 중 45/85. 봉인 규칙대로 예측을 유지했다</div></div>
   </div>
-  <div class="foot">BEAT v2 · 질의응답용 백업 · 자료: results/exp_r/pilot.json, docs/report.md</div><div class="pg">B4</div>
-  <aside class="notes">[질의응답용] 54명 확증에서 MLP 공격자 상당수가 반복 한도 500회 안에 수렴하지 않았고, 봉인 규칙대로 그 예측을 썼습니다. 유형별로 한 번씩 수렴할 때까지 다시 적합한 파일럿에서는 변화가 −0.019에서 +0.002 사이였습니다. 판정은 봉인된 값 그대로입니다.</aside>
+  <div class="foot">BEAT v2 · 질의응답용 백업 · 자료: results/exp_r/mlp_refits.csv, mlp_sensitivity_*.csv</div><div class="pg">B4</div>
+  <aside class="notes">[질의응답용] 54명 확증에서 MLP 공격자 상당수가 반복 한도 500회 안에 수렴하지 않았고, 봉인 규칙대로 그 예측을 썼습니다. 확증 검정에 들어간 미수렴 적합 45개를 같은 데이터와 설정으로 반복 20000회까지 다시 적합했고, 42개가 수렴했습니다. C3의 세 적합은 그래도 수렴하지 않아 그 예측을 썼습니다. 재적합 예측으로 L의 판정 코드를 다시 돌려도 Holm 판정은 하나도 바뀌지 않았습니다. 같은 날 공격자 기준으로 C1 격차는 0.4744에서 0.4584로, C2 식별 감소는 0.6538에서 0.6599로, C3의 MLP 값은 0.0763에서 0.0767로 움직였고, 적합 하나의 균형 정확도 변화는 최대 2.6퍼센트포인트였습니다. 이것은 탐색 분석이고, 판정은 봉인된 값 그대로입니다.</aside>
 </section>
 
 <section class="slide">

@@ -6,7 +6,7 @@ MLP sensitivity. Every confirmatory MLP attacker fit of L that stopped at its fi
 refit through L's own code path (exp_l.execute_job -> attack_stream -> attack), so inputs,
 splits, finite-row filtering, grouping, scaling and seeds are L's; only the attacker fit
 (exp_l._predict_attackers) is replaced, inside this process, by an MLP-only fit with another
-budget. Each target is first refit at L's budget and compared with L's stored fit. L's
+budget. Each target is also refit at L's budget and compared with L's stored fit. L's
 decision function (exp_l.make_decision) is then rerun on L's stored predictions with the
 refitted MLP predictions substituted.
 
@@ -190,11 +190,11 @@ def fit_targets(jobs, state, cfg, deadline):
                    test_rows=len(old), sealed_max_iter=sealed_budget["max_iter"],
                    sealed_converged=sealed_fit["converged"],
                    sealed_iterations=sealed_fit["iterations"], sealed_loss=sealed_fit["loss"],
-                   sealed_ba=job_ba(old), refit_run=False, reproduced=None)
+                   sealed_ba=job_ba(old), refit_run=False, refit_source=None, reproduced=None)
         rows.append(row)
         saved = load_checkpoint(job, cfg["mlp_budget"])
         if saved is not None:
-            row.update(saved[0])
+            row.update(saved[0], refit_source="checkpoint")
             replacements[job["id"]] = saved[1]
             print(f"[{number}/{len(jobs)}] job {job['id']}: refit reused from checkpoint",
                   flush=True)
@@ -206,7 +206,8 @@ def fit_targets(jobs, state, cfg, deadline):
         frame, fit, record = refit(job, state, cfg["mlp_budget"])
         longest = max(longest, time.monotonic() - start)
         new = aligned(old, frame)
-        row.update(refit_run=True, refit_max_iter=fit["max_iter"], refit_max_fun=fit["max_fun"],
+        row.update(refit_run=True, refit_source="this invocation",
+                   refit_max_iter=fit["max_iter"], refit_max_fun=fit["max_fun"],
                    refit_converged=fit["converged"], refit_iterations=fit["iterations"],
                    refit_loss=fit["loss"], refit_seconds=fit["seconds"],
                    refit_warning=fit["warning"], refit_other_warnings=fit["other_warnings"],
@@ -396,9 +397,13 @@ def conclusion(claims, fits):
             f"predictions substituted, {status}; the >= 20 pp effect requirement "
             f"{'is unchanged' if effect.empty else 'changes for ' + ', '.join(effect.claim)}; "
             f"gaps {gaps}.")
-    if converged < len(fits):
-        text += (" Not every target was refit to convergence, so the sensitivity is incomplete "
-                 "for those fits (L's predictions kept).")
+    stopped = fits[fits.refit_run.eq(True) & ~fits.refit_converged.eq(True)]
+    if not stopped.empty:
+        named = "; ".join(f"{claim} jobs {', '.join(map(str, part.job_id))}"
+                          for claim, part in stopped.groupby("claim"))
+        text += (f" {len(stopped)} refits ({named}) still stopped at the larger budget without "
+                 f"converging; their larger-budget predictions are substituted, so the "
+                 f"sensitivity is not fully convergent for those fits.")
     for row in claims[~claims.refits_complete].itertuples():
         text += (f" {row.claim} is incomplete: {int(row.refits_run)} of {int(row.targets)} "
                  f"targets refit, the rest keep L's predictions, so its recomputed decision is "
@@ -457,10 +462,18 @@ def run(cfg):
                                            candidate_rows(refit_store, lcfg))
     candidates = side_by_side(sealed_candidates, refit_candidates,
                               ["claim", "input", "attacker", "scenario", "scenario_label"])
-    write_csv(fits, RESULTS / "mlp_refits.csv")
-    write_csv(claims, RESULTS / "mlp_sensitivity_claims.csv")
-    write_csv(components, RESULTS / "mlp_sensitivity_components.csv")
-    write_csv(candidates, RESULTS / "mlp_sensitivity_candidates.csv")
+    # *_refit columns (decision_refit included) are L's sealed decision function rerun on the
+    # refitted predictions as an exploratory sensitivity, not a new decision on L's claims.
+    for name, table in (("mlp_refits", fits), ("mlp_sensitivity_claims", claims),
+                        ("mlp_sensitivity_components", components),
+                        ("mlp_sensitivity_candidates", candidates)):
+        write_csv(table.assign(label=LABEL)[["label", *table.columns]],
+                  RESULTS / f"{name}.csv")
+    previous_path = RESULTS / "mlp_sensitivity.json"
+    previous = json.loads(previous_path.read_text("utf-8")) if previous_path.exists() else {}
+    reused = int(fits.refit_source.eq("checkpoint").sum())
+    fitted = int(fits.refit_source.eq("this invocation").sum())
+    invocation_seconds = time.monotonic() - start
     write_json(RESULTS / "mlp_sensitivity.json", dict(
         label=LABEL, plan=".mixdog/plan_v2.md revision 4, lane R; acceptance A5",
         seal=dict(commit=state["seal"], verified_by="beat.exp_l.verify_seal"),
@@ -493,7 +506,12 @@ def run(cfg):
                   "differences | <k=1 candidate>: k=20 - k=1 recall > 0",
             "C4": "<G n=5 candidate>: recall > 10/54 (no C4 fit was refit)"},
         method=__doc__.split("\n\n")[2].replace("\n", " "),
-        wall_seconds=time.monotonic() - start))
+        invocation_wall_seconds=invocation_seconds,
+        invocation_refits=dict(reused_from_checkpoints=reused, fitted=fitted),
+        first_run_wall_seconds=invocation_seconds if fitted else previous.get(
+            "first_run_wall_seconds", cfg["runtime"]["recorded_first_run_wall_seconds"]),
+        first_run_basis="wall seconds of the invocation that fitted the refits (later "
+                        "invocations reuse its checkpoints and keep this value)"))
     cross_day(lcfg)
     print(conclusion(claims, fits), flush=True)
 
@@ -559,8 +577,11 @@ def cross_day(lcfg=None):
     table.insert(0, "label", [
         "derived from sealed L seal-3 outputs (difference of rows above)"
         if row.attacker == "difference" else
-        sealed + "; aggregated with beat.exp_l.recalls and beat.exp_l.interval"
-        if row.attacker == "head" else sealed for row in table.itertuples()])
+        "computed from sealed L head predictions (results/exp_l/head_predictions.csv.gz) with "
+        "beat.exp_l.recalls and beat.exp_l.interval; the CI is not stored in L's files"
+        if row.attacker == "head" else
+        sealed + "; within_minus_cross derived here (within_day_ba - cross_day_ba)"
+        if pd.notna(row.within_minus_cross) else sealed for row in table.itertuples()])
     write_csv(table, RESULTS / "cross_day_table.csv")
     return table
 

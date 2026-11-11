@@ -859,18 +859,13 @@ numbers:
     format: {kind: fixed, digits: 3, scale: -1}
     text: "0.019"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["−0.019–+0.002", "다. 유형별로 한 번씩 수렴할 때까지 다시 적합한 파일럿에서는 변화가 −0.019에서 +0.002 사이였습니다. 판정은 봉인된 값 그대로입니다."]
       docs/explainer_ko.md: ["| 재적합 변화 −0.019–+0.002 |", "식별 BA 변화는 −0.019에서 +0.002 사이였습니다"]
-      README.md: ["identity BA changed by between −0.019"]
-      docs/report.md: ["changed by between −0.019 and +0.002", "pilot changed identity BA by −0.019 to +0.002"]
   - id: R_pilot_largest_increase
     value: {file: results/exp_r/pilot.json, json: types.0.ba_change}
     format: {kind: fixed, digits: 3}
     text: "0.002"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["−0.019–+0.002", "번씩 수렴할 때까지 다시 적합한 파일럿에서는 변화가 −0.019에서 +0.002 사이였습니다. 판정은 봉인된 값 그대로입니다."]
       docs/explainer_ko.md: ["| 재적합 변화 −0.019–+0.002 |"]
-      docs/report.md: ["between −0.019 and +0.002", "−0.019 to +0.002"]
 
   # ---------------------------------------------------------------- M (sealed; day-1 selections only)
   - id: M_tau_star
@@ -1782,91 +1777,78 @@ numbers:
     format: {kind: fixed, digits: 0}
     text: "20000"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["유형별 seed 0 적합 1회, 반복 한도 20000"]
       docs/explainer_ko.md: ["반복 한도를 20000회로"]
   - id: R_pilot_C1_within_sealed
     value: {file: results/exp_r/pilot.json, json: types.1.sealed_ba}
     format: {kind: fixed, digits: 3}
     text: "0.536"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:14px 18px\">같은 날</td><td style=\"padding:14px 18px\">0.536</td><"]
       docs/explainer_ko.md: ["| C1 · P3 λ = 1 | 같은 날 | 0.536 | 0.517 |"]
   - id: R_pilot_C1_within_refit
     value: {file: results/exp_r/pilot.json, json: types.1.refit_ba}
     format: {kind: fixed, digits: 3}
     text: "0.517"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["\"padding:14px 18px\">0.536</td><td style=\"padding:14px 18px\">0.517</td><"]
       docs/explainer_ko.md: ["| C1 · P3 λ = 1 | 같은 날 | 0.536 | 0.517 |"]
   - id: R_pilot_C1_cross_sealed
     value: {file: results/exp_r/pilot.json, json: types.0.sealed_ba}
     format: {kind: fixed, digits: 3}
     text: "0.288"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:14px 18px\">다른 날</td><td style=\"padding:14px 18px\">0.288</td><"]
       docs/explainer_ko.md: ["| C1 · P3 λ = 1 | 다른 날 | 0.288 | 0.291 |"]
   - id: R_pilot_C1_cross_refit
     value: {file: results/exp_r/pilot.json, json: types.0.refit_ba}
     format: {kind: fixed, digits: 3}
     text: "0.291"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["\"padding:14px 18px\">0.288</td><td style=\"padding:14px 18px\">0.291</td><"]
       docs/explainer_ko.md: ["| C1 · P3 λ = 1 | 다른 날 | 0.288 | 0.291 |"]
   - id: R_pilot_C2_within_sealed
     value: {file: results/exp_r/pilot.json, json: types.3.sealed_ba}
     format: {kind: fixed, digits: 3}
     text: "0.331"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:14px 18px\">같은 날</td><td style=\"padding:14px 18px\">0.331</td><"]
       docs/explainer_ko.md: ["| C2 · P2-RC d = 8 | 같은 날 | 0.331 | 0.322 |"]
   - id: R_pilot_C2_within_refit
     value: {file: results/exp_r/pilot.json, json: types.3.refit_ba}
     format: {kind: fixed, digits: 3}
     text: "0.322"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["\"padding:14px 18px\">0.331</td><td style=\"padding:14px 18px\">0.322</td><"]
       docs/explainer_ko.md: ["| C2 · P2-RC d = 8 | 같은 날 | 0.331 | 0.322 |"]
   - id: R_pilot_C2_cross_sealed
     value: {file: results/exp_r/pilot.json, json: types.2.sealed_ba}
     format: {kind: fixed, digits: 3}
     text: "0.058"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:14px 18px\">다른 날</td><td style=\"padding:14px 18px\">0.058</td><"]
       docs/explainer_ko.md: ["| C2 · P2-RC d = 8 | 다른 날 | 0.058 | 0.060 |"]
   - id: R_pilot_C2_cross_refit
     value: {file: results/exp_r/pilot.json, json: types.2.refit_ba}
     format: {kind: fixed, digits: 3}
     text: "0.060"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["\"padding:14px 18px\">0.058</td><td style=\"padding:14px 18px\">0.060</td><"]
       docs/explainer_ko.md: ["| C2 · P2-RC d = 8 | 다른 날 | 0.058 | 0.060 |"]
   - id: R_pilot_C3_within_sealed
     value: {file: results/exp_r/pilot.json, json: types.5.sealed_ba}
     format: {kind: fixed, digits: 3}
     text: "0.089"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:14px 18px\">같은 날</td><td style=\"padding:14px 18px\">0.089</td><"]
       docs/explainer_ko.md: ["| C3 · 명령 20개 | 같은 날 | 0.089 | 0.081 |"]
   - id: R_pilot_C3_within_refit
     value: {file: results/exp_r/pilot.json, json: types.5.refit_ba}
     format: {kind: fixed, digits: 3}
     text: "0.081"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["\"padding:14px 18px\">0.089</td><td style=\"padding:14px 18px\">0.081</td><"]
       docs/explainer_ko.md: ["| C3 · 명령 20개 | 같은 날 | 0.089 | 0.081 |"]
   - id: R_pilot_C3_cross_sealed
     value: {file: results/exp_r/pilot.json, json: types.4.sealed_ba}
     format: {kind: fixed, digits: 3}
     text: "0.035"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:14px 18px\">다른 날</td><td style=\"padding:14px 18px\">0.035</td><", "\"padding:14px 18px\">0.035</td><td style=\"padding:14px 18px\">0.035</td><"]
       docs/explainer_ko.md: ["| C3 · 명령 20개 | 다른 날 | 0.035 | 0.035 |"]
   - id: R_pilot_C3_cross_refit
     value: {file: results/exp_r/pilot.json, json: types.4.refit_ba}
     format: {kind: fixed, digits: 3}
     text: "0.035"
     in:
-      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["=\"padding:14px 18px\">다른 날</td><td style=\"padding:14px 18px\">0.035</td><", "\"padding:14px 18px\">0.035</td><td style=\"padding:14px 18px\">0.035</td><"]
       docs/explainer_ko.md: ["| C3 · 명령 20개 | 다른 날 | 0.035 | 0.035 |"]
   # M day-1 gates and power (results/exp_m/selection.json, dev_m3_power.csv); no day-2/3 value.
   - id: M_gate_m2_best_gap
@@ -2008,3 +1990,174 @@ numbers:
     text: "0.01"
     in:
       presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["선택된 λ = 0.01, 차이 없음"]
+
+  # ---------------------------------------------------------------- R MLP sensitivity (exploratory; full refit)
+  # results/exp_r/mlp_sensitivity.json, mlp_sensitivity_claims.csv, mlp_sensitivity_components.csv, mlp_refits.csv.
+  - id: R_refit_targets
+    value: {file: results/exp_r/mlp_sensitivity.json, json: targets.total}
+    format: {kind: fixed, digits: 0}
+    text: "45"
+    in:
+      docs/explainer_ko.md: ["재적합 45개 중 42개 수렴", "대상 45개 전체를 다시 적합", "MLP 적합 45개입니다(주장마다 15개)", "미수렴 MLP 45개를 반복 한도 500회 대신"]
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["재적합 45개 (반복 20000회)</div><div class=\"val\">42개 수렴</div>", "미수렴 적합 45개를 같은 데이터와 설정으로 반복 20000회까지 다시 적합했고, 42개가 수렴했습니다."]
+      README.md: ["refitted all 45", "R refitted all 45 confirmatory"]
+      docs/report.md: ["all 45 non-converged MLP fits refitted", "R refitted all 45 through"]
+  - id: R_refit_converged
+    value: {file: results/exp_r/mlp_sensitivity.json, json: refits.converged}
+    format: {kind: fixed, digits: 0}
+    text: "42"
+    in:
+      docs/explainer_ko.md: ["45개 중 42개 수렴(작업 269", "재적합 45개 중 42개 수렴", "45개 중 42개가 수렴했습니다.", "다시 적합해 42개가 수렴했고", "재적합은 42개가 수렴했고"]
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["재적합 45개 (반복 20000회)</div><div class=\"val\">42개 수렴</div>", "미수렴 적합 45개를 같은 데이터와 설정으로 반복 20000회까지 다시 적합했고, 42개가 수렴했습니다."]
+      README.md: ["iterations; 42 of the refits converged.", "- 42 refits converged; jobs 269"]
+      docs/report.md: ["refitted, 42 converged;", "iterations; 42 of the refits converged."]
+  - id: R_reproduced
+    value: {file: results/exp_r/mlp_sensitivity.json, json: refits.reproduced_at_sealed_budget}
+    format: {kind: fixed, digits: 0}
+    text: "45"
+    in:
+      docs/explainer_ko.md: ["45개 모두 L의 한도에서 봉인 적합 정확히 재현", "45/45 봉인 적합 재현", "정확히 같은지 확인했습니다(45/45)", "먼저 45개 모두 L의 한도에서 봉인된 적합을"]
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["봉인 적합 45/45를 먼저 똑같이 재현"]
+      README.md: ["exactly at L's budget (45 of 45);"]
+      docs/report.md: ["L's budget (45 of 45 sealed fits)"]
+  - id: R_fit_seconds
+    value: {file: results/exp_r/mlp_sensitivity.json, json: refits.fit_seconds}
+    format: {kind: fixed, digits: 0}
+    text: "6479"
+    in:
+      README.md: ["MLP refits: 6479 s of fitting"]
+  - id: R_C1_gap_sealed
+    value: {file: results/exp_r/mlp_sensitivity_claims.csv, column: observed_difference_sealed, where: {claim: C1}}
+    format: {kind: fixed, digits: 4}
+    text: "0.4744"
+    in:
+      docs/explainer_ko.md: ["C1 격차 0.4744 → 0.4584, C2 0.6538", "| C1 격차 0.4744 → 0.4584 /", "head 격차(같은 날) | 0.4744 | 0.4584 |", "C1의 격차는 0.4744에서 0.4584로", "C1 격차는 0.4744 → 0.4584", "C1 격차 0.4744 → 0.4584, C2 격차 0.6538"]
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["<td style=\"padding:18px\">0.4744</td><td style=\"padding:18px\">0.4584</td>", "C1 격차는 0.4744에서 0.4584로, C2 식별 감소는 0.6538에서 0.6599로, C3의 MLP 값은 0.0763에서 0.0767로 움직였고, 적합 하나의 균형 정확도 변화는 최대 2.6퍼센트포인트였습니다."]
+      README.md: ["the C1 gap moved from 0.4744 to 0.4584"]
+      docs/report.md: ["The C1 gap moved from 0.4744 to 0.4584"]
+  - id: R_C1_gap_refit
+    value: {file: results/exp_r/mlp_sensitivity_claims.csv, column: observed_difference_refit, where: {claim: C1}}
+    format: {kind: fixed, digits: 4}
+    text: "0.4584"
+    in:
+      docs/explainer_ko.md: ["C1 격차 0.4744 → 0.4584, C2 0.6538", "| C1 격차 0.4744 → 0.4584 /", "head 격차(같은 날) | 0.4744 | 0.4584 |", "C1의 격차는 0.4744에서 0.4584로", "C1 격차는 0.4744 → 0.4584", "C1 격차 0.4744 → 0.4584, C2 격차 0.6538"]
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["<td style=\"padding:18px\">0.4744</td><td style=\"padding:18px\">0.4584</td>", "C1 격차는 0.4744에서 0.4584로, C2 식별 감소는 0.6538에서 0.6599로, C3의 MLP 값은 0.0763에서 0.0767로 움직였고, 적합 하나의 균형 정확도 변화는 최대 2.6퍼센트포인트였습니다."]
+      README.md: ["the C1 gap moved from 0.4744 to 0.4584"]
+      docs/report.md: ["The C1 gap moved from 0.4744 to 0.4584"]
+  - id: R_C2_gap_sealed
+    value: {file: results/exp_r/mlp_sensitivity_claims.csv, column: observed_difference_sealed, where: {claim: C2}}
+    format: {kind: fixed, digits: 4}
+    text: "0.6538"
+    in:
+      docs/explainer_ko.md: ["C2 0.6538 → 0.6599, C3", "C2 격차 0.6538 → 0.6599 |", "격차(같은 날) | 0.6538 | 0.6599 |", "C2 격차는 0.6538 → 0.6599였습니다", "C2 격차 0.6538 → 0.6599, C3의"]
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["<td style=\"padding:18px\">0.6538</td><td style=\"padding:18px\">0.6599</td>", "C1 격차는 0.4744에서 0.4584로, C2 식별 감소는 0.6538에서 0.6599로, C3의 MLP 값은 0.0763에서 0.0767로 움직였고, 적합 하나의 균형 정확도 변화는 최대 2.6퍼센트포인트였습니다."]
+      README.md: ["the C2 gap from 0.6538 to 0.6599"]
+      docs/report.md: ["the C2 gap from 0.6538 to 0.6599"]
+  - id: R_C2_gap_refit
+    value: {file: results/exp_r/mlp_sensitivity_claims.csv, column: observed_difference_refit, where: {claim: C2}}
+    format: {kind: fixed, digits: 4}
+    text: "0.6599"
+    in:
+      docs/explainer_ko.md: ["C2 0.6538 → 0.6599, C3", "C2 격차 0.6538 → 0.6599 |", "격차(같은 날) | 0.6538 | 0.6599 |", "C2 격차는 0.6538 → 0.6599였습니다", "C2 격차 0.6538 → 0.6599, C3의"]
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["<td style=\"padding:18px\">0.6538</td><td style=\"padding:18px\">0.6599</td>", "C1 격차는 0.4744에서 0.4584로, C2 식별 감소는 0.6538에서 0.6599로, C3의 MLP 값은 0.0763에서 0.0767로 움직였고, 적합 하나의 균형 정확도 변화는 최대 2.6퍼센트포인트였습니다."]
+      README.md: ["the C2 gap from 0.6538 to 0.6599"]
+      docs/report.md: ["the C2 gap from 0.6538 to 0.6599"]
+  - id: R_C3_holm
+    value: {file: results/exp_r/mlp_sensitivity_claims.csv, column: holm_p_refit, where: {claim: C3}}
+    format: {kind: fixed, digits: 4}
+    text: "0.2096"
+    in:
+      docs/explainer_ko.md: ["C3의 p 0.2096은 로지스틱 행이 정함", "그 p가 0.2096입니다", "C3의 p(0.2096)는"]
+      docs/report.md: ["C3's Holm $p$ of 0.2096 is set by"]
+  - id: R_C2_mlp_mlp_sealed
+    value: {file: results/exp_r/mlp_sensitivity_components.csv, column: mean_sealed, where: {claim: C2, component: "mlp/main | mlp/main"}}
+    format: {kind: fixed, digits: 4}
+    text: "0.5907"
+    in:
+      docs/report.md: ["within a day: 0.5907 to 0.5969"]
+  - id: R_C2_mlp_mlp_refit
+    value: {file: results/exp_r/mlp_sensitivity_components.csv, column: mean_refit, where: {claim: C2, component: "mlp/main | mlp/main"}}
+    format: {kind: fixed, digits: 4}
+    text: "0.5969"
+    in:
+      docs/report.md: ["within a day: 0.5907 to 0.5969"]
+  - id: R_C3_mlp_within_sealed
+    value: {file: results/exp_r/mlp_sensitivity_components.csv, column: mean_sealed, where: {claim: C3, component: "mlp/main | threshold"}}
+    format: {kind: fixed, digits: 4}
+    text: "0.0763"
+    in:
+      docs/explainer_ko.md: ["같은 날 0.0763 → 0.0767·다른 날", "C3 MLP 0.0763 → 0.0767 /", "재현율, 같은 날 | 0.0763 | 0.0767 |", "같은 날 0.0763 → 0.0767, 다른 날"]
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["<td style=\"padding:18px\">0.0763</td><td style=\"padding:18px\">0.0767</td>", "C1 격차는 0.4744에서 0.4584로, C2 식별 감소는 0.6538에서 0.6599로, C3의 MLP 값은 0.0763에서 0.0767로 움직였고, 적합 하나의 균형 정확도 변화는 최대 2.6퍼센트포인트였습니다."]
+      README.md: ["within-day MLP identity BA moved from 0.0763 to 0.0767"]
+      docs/report.md: ["within-day MLP identity BA moved from 0.0763 to 0.0767"]
+  - id: R_C3_mlp_within_refit
+    value: {file: results/exp_r/mlp_sensitivity_components.csv, column: mean_refit, where: {claim: C3, component: "mlp/main | threshold"}}
+    format: {kind: fixed, digits: 4}
+    text: "0.0767"
+    in:
+      docs/explainer_ko.md: ["같은 날 0.0763 → 0.0767·다른 날", "C3 MLP 0.0763 → 0.0767 /", "재현율, 같은 날 | 0.0763 | 0.0767 |", "같은 날 0.0763 → 0.0767, 다른 날"]
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["<td style=\"padding:18px\">0.0763</td><td style=\"padding:18px\">0.0767</td>", "C1 격차는 0.4744에서 0.4584로, C2 식별 감소는 0.6538에서 0.6599로, C3의 MLP 값은 0.0763에서 0.0767로 움직였고, 적합 하나의 균형 정확도 변화는 최대 2.6퍼센트포인트였습니다."]
+      README.md: ["within-day MLP identity BA moved from 0.0763 to 0.0767"]
+      docs/report.md: ["within-day MLP identity BA moved from 0.0763 to 0.0767"]
+  - id: R_C3_mlp_within_p_sealed
+    value: {file: results/exp_r/mlp_sensitivity_components.csv, column: p_sealed, where: {claim: C3, component: "mlp/main | threshold"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.068"
+    in:
+      docs/report.md: ["($p$ 0.068 to 0.066)"]
+  - id: R_C3_mlp_within_p_refit
+    value: {file: results/exp_r/mlp_sensitivity_components.csv, column: p_refit, where: {claim: C3, component: "mlp/main | threshold"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.066"
+    in:
+      docs/report.md: ["($p$ 0.068 to 0.066)"]
+  - id: R_C3_mlp_cross_sealed
+    value: {file: results/exp_r/mlp_sensitivity_components.csv, column: mean_sealed, where: {claim: C3, component: "mlp/auxiliary | threshold"}}
+    format: {kind: fixed, digits: 4}
+    text: "0.0289"
+    in:
+      docs/explainer_ko.md: ["다른 날 0.0289 → 0.0241, 적합", "/ 0.0289 → 0.0241 |", "재현율, 다른 날 | 0.0289 | 0.0241 |", "다른 날 0.0289 → 0.0241이었습니다"]
+      README.md: ["cross-day MLP BA from 0.0289"]
+      docs/report.md: ["cross-day MLP BA from 0.0289 to 0.0241"]
+  - id: R_C3_mlp_cross_refit
+    value: {file: results/exp_r/mlp_sensitivity_components.csv, column: mean_refit, where: {claim: C3, component: "mlp/auxiliary | threshold"}}
+    format: {kind: fixed, digits: 4}
+    text: "0.0241"
+    in:
+      docs/explainer_ko.md: ["다른 날 0.0289 → 0.0241, 적합", "/ 0.0289 → 0.0241 |", "재현율, 다른 날 | 0.0289 | 0.0241 |", "다른 날 0.0289 → 0.0241이었습니다"]
+      README.md: ["to 0.0241;"]
+      docs/report.md: ["cross-day MLP BA from 0.0289 to 0.0241"]
+  - id: R_max_change_C1
+    value: {file: results/exp_r/mlp_refits.csv, column: ba_change, where: {job_id: 52}}
+    format: {kind: fixed, digits: 1, scale: -100}
+    text: "2.6"
+    in:
+      docs/explainer_ko.md: ["최대 변화 2.6%p. 파일럿", "| 적합 하나의 최대 변화 2.6%p |", "가장 크게 바뀐 것은 2.6%p(C1)", "가장 커도 2.6%p였습니다"]
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["<div class=\"val\">최대 2.6%p</div><div class=\"sub\">C1 적합 1개</div>", "C1 격차는 0.4744에서 0.4584로, C2 식별 감소는 0.6538에서 0.6599로, C3의 MLP 값은 0.0763에서 0.0767로 움직였고, 적합 하나의 균형 정확도 변화는 최대 2.6퍼센트포인트였습니다."]
+      README.md: ["per-fit change in identity BA is 2.6 pp", "identity BA was 2.6 pp (C1)"]
+      docs/report.md: ["identity BA was 2.6 pp for C1"]
+  - id: R_max_change_C2
+    value: {file: results/exp_r/mlp_refits.csv, column: ba_change, where: {job_id: 80}}
+    format: {kind: fixed, digits: 1, scale: -100}
+    text: "1.3"
+    in:
+      docs/report.md: ["1.3 pp for C2"]
+  - id: R_max_change_C3
+    value: {file: results/exp_r/mlp_refits.csv, column: ba_change, where: {job_id: 270}}
+    format: {kind: fixed, digits: 1, scale: -100}
+    text: "1.9"
+    in:
+      docs/report.md: ["1.9 pp for C3"]
+  - id: R_C1_gap_change
+    value: {file: results/exp_r/mlp_sensitivity_claims.csv, column: observed_difference_change, where: {claim: C1}}
+    format: {kind: fixed, digits: 3, scale: -1}
+    text: "0.016"
+    in:
+      docs/explainer_ko.md: ["0.4584로 약 0.016 줄었지만"]
+  - id: R_refit_max_iter
+    value: {file: results/exp_r/mlp_sensitivity.json, json: refit_budget.max_iter}
+    format: {kind: fixed, digits: 0}
+    text: "20000"
+    in:
+      presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["재적합 45개 (반복 20000회)</div>", "미수렴 적합 45개를 같은 데이터와 설정으로 반복 20000회까지 다시 적합했고, 42개가 수렴했습니다."]
+      docs/explainer_ko.md: ["20000회에서도 멈춤), 45개 모두", "반복 20000회로 재적합", "반복 한도만 20000회로 늘렸습니다", "20000회에서도 멈췄고, 그 예측을", "R에서 반복 한도 20000회로 다시", "500회 대신 20000회로"]

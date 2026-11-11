@@ -906,7 +906,18 @@ onResize($("#p2-chart"), drawP2);
     el("p", { html: `<b>MLP attacker non-convergence.</b> ${n.failed} of ${n.total} MLP attacker fits (${n.confirmatory_failed} of ${n.confirmatory_total} that enter confirmatory tests) `
       + `reached the fixed ${n.budget}-iteration budget without converging, including the strongest attackers for C1 and C2. `
       + `Their fixed-budget predictions are retained under the sealed rule <code>${n.rule}</code>; identity values from these attackers may differ from fully converged ones in either direction.` }, box);
-    el("p", { class: "hint", text: `Sources: ${n.source.map((s) => s.file).join(", ")}.` }, box);
+    const rf = n.refit;
+    const KO = { supported: "지지", not_supported: "지지 안 됨" };
+    const changed = rf.claims.filter((c) => c.changed);
+    const kept = ["supported", "not_supported"].map((d) => rf.claims.filter((c) => !c.changed && c.refit === d).map((c) => c.claim))
+      .map((ids, i) => (ids.length ? `${ids.join("·")} ${KO[["supported", "not_supported"][i]]} 유지` : "")).filter(Boolean).join(", ");
+    el("p", { html: `<span class="badge expl">Exploratory</span> <b>탐색 (연구 R).</b> `
+      + `수렴하지 않은 MLP 적합 ${rf.run}개를 모두 ${rf.max_iter}회 반복으로 다시 적합했고, ${rf.converged}개가 수렴했다. `
+      + `다시 적합한 예측으로 L의 판정 코드를 그대로 다시 돌린 결과, `
+      + (changed.length ? `Holm 판정이 바뀐 주장: ${changed.map((c) => `${c.claim} ${KO[c.sealed]} → ${KO[c.refit]}`).join(", ")}${kept ? ` (${kept})` : ""}. `
+        : `Holm 판정은 하나도 바뀌지 않았다(${kept}). `)
+      + `적합 하나의 BA 변화는 최대 ${(rf.max_abs_ba_change * 100).toFixed(1)}%p였다.` }, box);
+    el("p", { class: "hint", text: `Sources: ${[...n.source, ...rf.source].map((s) => s.file).join(", ")}.` }, box);
   }
   $("#repl-note").textContent = `Claim definitions: ${L.definition_source.map((s) => s.file).join(", ")}. `
     + (pending ? "Status: pending; nothing from the replication is shown until its decision file exists." : `Results: ${L.source.file}.`);

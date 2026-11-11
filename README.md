@@ -181,10 +181,10 @@ Sources: `results/exp_l/identity_summary.csv` and `decision.json`, `results/exp_
    used by the within-day attacker). With one group of all 54 users the best equalizing release is "always hold"
    (utility 0.000, hold rate 1.000), hence groups of 3.
 7. **Robustness addendum (R, *exploratory*).** R compiles L's within- and cross-day values for
-   P0, P2-RC, P3 and the co-trained head into one table. It is also refitting the 45
-   non-converged confirmatory MLP attackers with a larger budget. In a pilot of six refits, one
-   per claim × scenario type, every refit converged, and identity BA changed by between −0.019
-   and +0.002. The full refit is still running.
+   P0, P2-RC, P3 and the co-trained head into one table. It also refitted all 45
+   non-converged confirmatory MLP attackers of L with up to 20,000 iterations; 42 of the refits converged.
+   With the refitted predictions, L's own decision code changes no Holm decision, and the largest
+   per-fit change in identity BA is 2.6 pp.
 8. **51 new users, sealed and time-stamped: 2 of 3 claims supported (M,
    *confirmatory-sealed*).** The pre-registration was sealed at commit `e88154c` (tag `seal-4`;
    commit time 2026-11-10 20:25:51 UTC), and FreeTSA's RFC 3161 token shows that the commit
@@ -356,13 +356,22 @@ R reads L's result files and does not re-decide any of L's claims (`beat/exp_r.p
   exists. Across days the strongest independent attacker on P3 λ = 1 reaches 0.239 against the
   head's 0.040, a gap of 19.9 pp. These cross-day values come from L's sealed plan as
   *pre-registered estimates*; R only compiles them.
-- **MLP sensitivity.** R is refitting the 45 confirmatory MLP fits that stopped at L's 500-iteration
-  budget, with up to 20,000 iterations (`results/exp_r/pilot.json`, `budget`). The pilot refit one
-  target of each of six claim × scenario types:
-  - every refit converged;
-  - identity BA changed by between −0.019 and +0.002.
+- **MLP sensitivity** (`results/exp_r/mlp_sensitivity.json`, `mlp_refits.csv`,
+  `mlp_sensitivity_claims.csv`, `mlp_sensitivity_components.csv`). R refitted all 45 confirmatory
+  MLP fits that stopped at L's 500-iteration budget, through L's own code path with up to 20,000
+  iterations:
+  - every sealed fit was first reproduced exactly at L's budget (45 of 45);
+  - 42 refits converged; jobs 269, 278 and 280 (C3, k = 20, within-day) stopped again at
+    20,000 iterations, and their larger-budget predictions were used;
+  - L's decision code, rerun with the refitted predictions, changes no Holm decision (C1 and C2
+    supported, C3 not supported; C4 had no non-converged MLP);
+  - the C1 gap moved from 0.4744 to 0.4584 and the C2 gap from 0.6538 to 0.6599; C3's
+    within-day MLP identity BA moved from 0.0763 to 0.0767 and its cross-day MLP BA from 0.0289
+    to 0.0241;
+  - the largest per-fit change in identity BA was 2.6 pp (C1).
 
-  The full refit is running, and its results are not reported yet.
+  These values are *exploratory*. Two optional R items, open-set verification and per-trial
+  identity information, were not done.
 
 ### Study M: cross-day replication on 51 new users (sealed; 2 of 3 claims supported)
 
@@ -590,7 +599,7 @@ file as a stream (about 66 GB, nothing written to disk) and compares it with the
 | G | `python -m beat.exp_g bnci` | not timed |
 | L | `python -m beat.exp_l dev`, then `timing`, then `final --seal-commit 9757c3fceca585db3f56530d54091ab0fa28ce0b` | 34.3 min (6 workers requested, 5 scheduled) |
 | K | `python -m beat.exp_k pilot`, then `run` (needs B's and L's stored outputs in `artifacts/`) | 97 min first run |
-| R | `python -m beat.exp_r crossday`; MLP refits: `pilot`, then `run` | not yet timed |
+| R | `python -m beat.exp_r crossday`; MLP refits: `pilot`, then `run` | MLP refits: 6479 s of fitting (`results/exp_r/mlp_sensitivity.json`) |
 | M | `python scripts/fetch_yang2025.py` (day 1), `python -m beat.exp_m dev`, then `streams`; after seal 4: `python scripts/fetch_yang2025.py --days 2 3 --seal-commit e88154c6f0b3d1a7887f2368763808fc91d9a81a`, then `python -m beat.exp_m final --seal-commit e88154c6f0b3d1a7887f2368763808fc91d9a81a --result-dir results/exp_m --artifact-dir artifacts/exp_m` | final stage 22:36:31–22:39:54 UTC, one attempt (`results/exp_m/final_attempts.jsonl`); day-2/3 fetch about 2 h |
 | Figures | `python scripts/make_summary_figures.py` | — |
 

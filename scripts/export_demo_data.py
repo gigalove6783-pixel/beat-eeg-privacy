@@ -447,13 +447,31 @@ def lee_disclosures(decision, config):
     if not adapted:
         raise ValueError("C4 adaptation caveat not found in the report")
     failed, total, conf_failed, conf_total, budget = map(int, m.groups())
+    # Study R (exploratory) refitted exactly these non-converged confirmatory fits; aggregates only.
+    rc = read_csv(ROOT / "results" / "exp_r" / "mlp_sensitivity_claims.csv")
+    refits = read_csv(ROOT / "results" / "exp_r" / "mlp_refits.csv")
+    rj = read_json(ROOT / "results" / "exp_r" / "mlp_sensitivity.json")
+    if len(refits) != conf_failed or not refits.refit_run.all() or rj["sealed_budget"]["max_iter"] != budget:
+        raise ValueError("Study R refits do not match L's non-converged confirmatory MLP fits")
+    refit = dict(
+        evidence="exploratory", run=int(refits.refit_run.sum()),
+        converged=int(refits.refit_converged.sum()), max_iter=rj["refit_budget"]["max_iter"],
+        max_abs_ba_change=clean(refits.ba_change.abs().max()),
+        claims=[dict(claim=r.claim, sealed=r.decision_sealed, refit=r.decision_refit,
+                     changed=bool(r.decision_changed))
+                for r in rc.itertuples() if r.refits_run > 0],
+        source=[src("results/exp_r/mlp_sensitivity_claims.csv",
+                    columns="decision_sealed, decision_refit, decision_changed"),
+                src("results/exp_r/mlp_refits.csv", columns="refit_run, refit_converged, ba_change"),
+                src("results/exp_r/mlp_sensitivity.json", key="refit_budget.max_iter")])
     return dict(
         nonconvergence=dict(
             failed=failed, total=total, confirmatory_failed=conf_failed, confirmatory_total=conf_total,
             budget=budget, strongest_c1_c2=True, rule=config["failure_rules"]["nonconvergence"],
             source=[src(REPORT, section="6.7", paragraph="MLP non-convergence"),
                     src("docs/decision_log.md", entry="Independent audit of L results"),
-                    src("configs/exp_l.yaml", key="failure_rules.nonconvergence")]),
+                    src("configs/exp_l.yaml", key="failure_rules.nonconvergence")],
+            refit=refit),
         c4_caveat=dict(
             reproduction_caveat=decision["reproduction_caveat"], text=plain(adapted.group(1)),
             source=[src(LD, field="reproduction_caveat"),

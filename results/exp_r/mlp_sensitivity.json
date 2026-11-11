@@ -1,0 +1,193 @@
+{
+  "label": "EXPLORATORY (plan v2 lane R): descriptive addendum; the sealed decisions of L stand",
+  "plan": ".mixdog/plan_v2.md revision 4, lane R; acceptance A5",
+  "seal": {
+    "commit": "9757c3fceca585db3f56530d54091ab0fa28ce0b",
+    "verified_by": "beat.exp_l.verify_seal"
+  },
+  "sealed_rule": "retain_fixed_budget_predictions_report_warning",
+  "sealed_budget": {
+    "max_iter": 500,
+    "max_fun": 10000
+  },
+  "refit_budget": {
+    "max_iter": 20000,
+    "max_fun": 200000
+  },
+  "targets": {
+    "total": 45,
+    "by_claim": {
+      "C1": 15,
+      "C2": 15,
+      "C3": 15
+    },
+    "confirmatory_mlp_fits": 85,
+    "rule": "sealed convergence record false"
+  },
+  "refits": {
+    "run": 45,
+    "converged": 42,
+    "reproduction_checked": 45,
+    "reproduced_at_sealed_budget": 45,
+    "iterations_min": 1670,
+    "iterations_max": 20000,
+    "fit_seconds": 6478.553298401181,
+    "peak_mib": 477.0703125,
+    "minimum_available_mib": 5195.046875
+  },
+  "recomputation": {
+    "max_abs_deviation_from_decision_json": 0.0,
+    "decisions_equal": true
+  },
+  "strongest": {
+    "sealed": {
+      "P0": {
+        "candidate": "logistic/main",
+        "ba": 0.9942592592592592
+      },
+      "P2-RC_d8": {
+        "candidate": "mlp/main",
+        "ba": 0.34046296296296286
+      },
+      "P3_lambda1": {
+        "candidate": "mlp/main",
+        "ba": 0.513962962962963
+      },
+      "P2-RC_d8 command tau=0.5 k=1": {
+        "candidate": "logistic/main",
+        "ba": 0.037037037037037035
+      },
+      "P2-RC_d8 command tau=0.5 k=20": {
+        "candidate": "logistic/main",
+        "ba": 0.0848148148148148
+      }
+    },
+    "refit": {
+      "P0": {
+        "candidate": "logistic/main",
+        "ba": 0.9942592592592592
+      },
+      "P2-RC_d8": {
+        "candidate": "mlp/main",
+        "ba": 0.33433333333333326
+      },
+      "P3_lambda1": {
+        "candidate": "mlp/main",
+        "ba": 0.4979444444444444
+      },
+      "P2-RC_d8 command tau=0.5 k=1": {
+        "candidate": "logistic/main",
+        "ba": 0.037037037037037035
+      },
+      "P2-RC_d8 command tau=0.5 k=20": {
+        "candidate": "logistic/main",
+        "ba": 0.0848148148148148
+      }
+    }
+  },
+  "claims": [
+    {
+      "claim": "C1",
+      "observed_difference_sealed": 0.47438888888888886,
+      "observed_difference_refit": 0.4583703703703703,
+      "observed_difference_change": -0.016018518518518543,
+      "effect_requirement_sealed": true,
+      "effect_requirement_refit": true,
+      "effect_requirement_changed": false,
+      "p_sealed": 2.9534938162636294e-26,
+      "p_refit": 3.9137798877312217e-26,
+      "p_change": 9.602860714675922e-27,
+      "holm_p_sealed": 8.860481448790889e-26,
+      "holm_p_refit": 1.1741339663193664e-25,
+      "holm_p_change": 2.880858214402775e-26,
+      "decision_sealed": "supported",
+      "decision_refit": "supported",
+      "decision_changed": false,
+      "targets": 15.0,
+      "refits_run": 15.0,
+      "refits_converged": 15.0,
+      "refits_complete": true
+    },
+    {
+      "claim": "C2",
+      "observed_difference_sealed": 0.6537962962962963,
+      "observed_difference_refit": 0.6599259259259259,
+      "observed_difference_change": 0.006129629629629596,
+      "effect_requirement_sealed": true,
+      "effect_requirement_refit": true,
+      "effect_requirement_changed": false,
+      "p_sealed": 2.291508626842325e-05,
+      "p_refit": 2.291508626842325e-05,
+      "p_change": 0.0,
+      "holm_p_sealed": 4.58301725368465e-05,
+      "holm_p_refit": 4.58301725368465e-05,
+      "holm_p_change": 0.0,
+      "decision_sealed": "supported",
+      "decision_refit": "supported",
+      "decision_changed": false,
+      "targets": 15.0,
+      "refits_run": 15.0,
+      "refits_converged": 15.0,
+      "refits_complete": true
+    },
+    {
+      "claim": "C3",
+      "observed_difference_sealed": null,
+      "observed_difference_refit": null,
+      "observed_difference_change": null,
+      "effect_requirement_sealed": null,
+      "effect_requirement_refit": null,
+      "effect_requirement_changed": false,
+      "p_sealed": 0.20964810501480485,
+      "p_refit": 0.20964810501480485,
+      "p_change": 0.0,
+      "holm_p_sealed": 0.20964810501480485,
+      "holm_p_refit": 0.20964810501480485,
+      "holm_p_change": 0.0,
+      "decision_sealed": "not_supported",
+      "decision_refit": "not_supported",
+      "decision_changed": false,
+      "targets": 15.0,
+      "refits_run": 15.0,
+      "refits_converged": 12.0,
+      "refits_complete": true
+    },
+    {
+      "claim": "C4",
+      "observed_difference_sealed": null,
+      "observed_difference_refit": null,
+      "observed_difference_change": null,
+      "effect_requirement_sealed": null,
+      "effect_requirement_refit": null,
+      "effect_requirement_changed": false,
+      "p_sealed": 1.1163636408807333e-35,
+      "p_refit": 1.1163636408807333e-35,
+      "p_change": 0.0,
+      "holm_p_sealed": 4.4654545635229334e-35,
+      "holm_p_refit": 4.4654545635229334e-35,
+      "holm_p_change": 0.0,
+      "decision_sealed": "supported",
+      "decision_refit": "supported",
+      "decision_changed": false,
+      "targets": null,
+      "refits_run": null,
+      "refits_converged": null,
+      "refits_complete": true
+    }
+  ],
+  "conclusion": "Exploratory sensitivity: 45 of 45 target MLP fits refit, 42 of them converged (45 of 45 checked sealed fits reproduced exactly at L's budget). With the refitted MLP predictions substituted, no Holm decision of L changes; the >= 20 pp effect requirement is unchanged; gaps C1 0.4744 -> 0.4584, C2 0.6538 -> 0.6599. 3 refits (C3 jobs 269, 278, 280) still stopped at the larger budget without converging; their larger-budget predictions are substituted, so the sensitivity is not fully convergent for those fits.",
+  "component_names": {
+    "C1": "<P3_lambda1 candidate>: independent recall - co-trained head recall > 0",
+    "C2": "<P0 candidate> | <P2-RC_d8 candidate>: P0 - P2-RC_d8 recall > 0; utility: P2-RC_d8 - P0 task BA > -0.05",
+    "C3": "<k=20 candidate> | threshold: recall > 2/54; <k=20 candidate> | differences | <k=1 candidate>: k=20 - k=1 recall > 0",
+    "C4": "<G n=5 candidate>: recall > 10/54 (no C4 fit was refit)"
+  },
+  "method": "MLP sensitivity. Every confirmatory MLP attacker fit of L that stopped at its fixed budget is refit through L's own code path (exp_l.execute_job -> attack_stream -> attack), so inputs, splits, finite-row filtering, grouping, scaling and seeds are L's; only the attacker fit (exp_l._predict_attackers) is replaced, inside this process, by an MLP-only fit with another budget. Each target is also refit at L's budget and compared with L's stored fit. L's decision function (exp_l.make_decision) is then rerun on L's stored predictions with the refitted MLP predictions substituted.",
+  "invocation_wall_seconds": 26.07799999997951,
+  "invocation_refits": {
+    "reused_from_checkpoints": 45,
+    "fitted": 0
+  },
+  "first_run_wall_seconds": 6601.735,
+  "first_run_basis": "wall seconds of the invocation that fitted the refits (later invocations reuse its checkpoints and keep this value)"
+}
