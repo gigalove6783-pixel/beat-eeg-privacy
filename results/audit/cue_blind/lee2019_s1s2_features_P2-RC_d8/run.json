@@ -1,0 +1,60 @@
+{
+  "id": "lee2019_s1s2_features_P2-RC_d8",
+  "tier": "exploratory, post hoc",
+  "source_sha256": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+  "reference": {
+    "path": "results/audit/ladder/lee2019/calibration_day/features_P2-RC_d8/report.json",
+    "sha256": "1484ade0634006ba24ad91fdf601fe1e9ae29da9dc19abc286825bb62707f166"
+  },
+  "inputs": {
+    "0": "483374f277ae03ebfe6d5c007948dd42ac4041b09321551391ff7bfa5bf30500",
+    "1": "56d1c9ea9a2a05f53e012dfec1bf779041cecef38e4e7417b16d81fb81574ef4",
+    "2": "c52a9659c203bbe0874623566848e55e214f51034675c69782e4521ab04a8b43"
+  },
+  "blind_inputs": {
+    "0": {
+      "file": "results/audit/cue_blind/inputs/lee2019/ladder_calibration_day/features_P2-RC_d8_seed0.npz",
+      "sha256": "11b09d4426673ccf1b72894aa9d6451c4f7ceb4726a8b14020f4140f9d9dace7"
+    },
+    "1": {
+      "file": "results/audit/cue_blind/inputs/lee2019/ladder_calibration_day/features_P2-RC_d8_seed1.npz",
+      "sha256": "2ab85c72974cda2e869bb673897337494b17e0485ef34b2ff3015bcd648cffcc"
+    },
+    "2": {
+      "file": "results/audit/cue_blind/inputs/lee2019/ladder_calibration_day/features_P2-RC_d8_seed2.npz",
+      "sha256": "3181279cc60e56f3695ff7123610aaf941a16b75adf98c5c2e291077b2e7deda"
+    }
+  },
+  "variants": {
+    "cue_aware_reproduction": {
+      "seconds": 44.91770560000441,
+      "tool_runtime_seconds": 43.942354600003455,
+      "report": "results/audit/cue_blind/lee2019_s1s2_features_P2-RC_d8/cue_aware_reproduction/report.json",
+      "slim": "results/audit/cue_blind/lee2019_s1s2_features_P2-RC_d8/cue_aware_reproduction/report.slim.json",
+      "configuration": "b58b9937f4b1b33caed0e096e1ec9ae2427a49c7275549cfbbadea8bc600bf55",
+      "inputs": {
+        "0": "483374f277ae03ebfe6d5c007948dd42ac4041b09321551391ff7bfa5bf30500",
+        "1": "56d1c9ea9a2a05f53e012dfec1bf779041cecef38e4e7417b16d81fb81574ef4",
+        "2": "c52a9659c203bbe0874623566848e55e214f51034675c69782e4521ab04a8b43"
+      },
+      "source": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+      "support_mismatches": []
+    },
+    "cue_blind": {
+      "seconds": 52.303000700005214,
+      "tool_runtime_seconds": 50.28005210000265,
+      "report": "results/audit/cue_blind/lee2019_s1s2_features_P2-RC_d8/cue_blind/report.json",
+      "slim": "results/audit/cue_blind/lee2019_s1s2_features_P2-RC_d8/cue_blind/report.slim.json",
+      "configuration": "b58b9937f4b1b33caed0e096e1ec9ae2427a49c7275549cfbbadea8bc600bf55",
+      "inputs": {
+        "0": "11b09d4426673ccf1b72894aa9d6451c4f7ceb4726a8b14020f4140f9d9dace7",
+        "1": "2ab85c72974cda2e869bb673897337494b17e0485ef34b2ff3015bcd648cffcc",
+        "2": "3181279cc60e56f3695ff7123610aaf941a16b75adf98c5c2e291077b2e7deda"
+      },
+      "source": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+      "support_mismatches": []
+    }
+  },
+  "reproduction": "exact",
+  "seconds": 98.0336421999964
+}

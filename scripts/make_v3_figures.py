@@ -4,7 +4,8 @@ Every plotted value is read from ``results/audit/``; no number is typed in. Each
 at the size it occupies on its slide, so one figure point is one slide point and the label sizes
 set here are the sizes the audience sees. Sources and tiers are written on the slides.
 
-Output: ``presentation/figures/v3/*.png`` (Korean labels).
+Output: ``presentation/figures/v3/*.png`` (Korean labels) and, for the shorter story deck,
+``presentation/figures/demo/*.png`` (larger type, one accent colour, values written on the marks).
 Run from the project root: ``python scripts/make_v3_figures.py``
 """
 
@@ -380,6 +381,157 @@ def yang2025_comparators(size: tuple[int, int]) -> None:
     save(fig, "v3_fig6_yang2025_comparators.png")
 
 
+# ------------------------------------------------------------------ story deck (demo talk)
+
+DEMO_OUT = ROOT / "presentation" / "figures" / "demo"
+DARK = "#3A4450"
+DEMO_RC = {"font.size": 24, "xtick.labelsize": 20, "axes.grid": False}
+
+
+def save_demo(fig: plt.Figure, name: str) -> None:
+    DEMO_OUT.mkdir(parents=True, exist_ok=True)
+    fig.savefig(DEMO_OUT / name, dpi=DPI)
+    plt.close(fig)
+    print(f"wrote {(DEMO_OUT / name).relative_to(ROOT).as_posix()}")
+
+
+def row_labels(ax: plt.Axes, y: float, label: str, note: str | None) -> None:
+    side = ax.get_yaxis_transform()
+    ax.text(-0.03, y if note is None else y - 0.17, label, transform=side, ha="right",
+            va="center", fontsize=26, color=INK)
+    if note is not None:
+        ax.text(-0.03, y + 0.21, note, transform=side, ha="right", va="center", fontsize=20,
+                color=MUTED)
+
+
+def demo_bars(rows: list[tuple[str, str | None, float, str, str]], chance: float, name: str,
+              size: tuple[int, int]) -> None:
+    """Identification accuracy as two bars on the 0-1 scale: the reading first given (grey)
+    above the reading that holds (accent); rows are (label, note, value, bar, text colour)."""
+    with plt.rc_context(DEMO_RC):
+        fig, ax = figure(*size)
+        fig.subplots_adjust(left=0.38, right=0.97, top=0.84, bottom=0.04)
+        for i, (label, note, value, bar, text) in enumerate(rows):
+            ax.barh(i, value, height=0.5, color=bar, zorder=2)
+            ax.text(max(value, chance) + 0.015, i, f"{value:.3f}", ha="left", va="center",
+                    fontsize=40, fontweight="bold", color=text)
+            row_labels(ax, i, label, note)
+        ax.axvline(chance, color=MUTED, ls=":", lw=2.5, zorder=3)
+        ax.text(chance, -0.5, f"우연 {chance:.3f}", ha="left", va="bottom", fontsize=20,
+                color=MUTED)
+        ax.axvline(0, color=DARK, lw=1.5)
+        ax.set_xlim(0, 1.34)
+        ax.set_ylim(len(rows) - 0.55, -0.55)
+        ax.set_xticks([])
+        ax.set_yticks([])
+        for spine in ax.spines.values():
+            spine.set_visible(False)
+        save_demo(fig, name)
+
+
+def demo_dots(rows: list[tuple[str, str | None, float | None, float, float, str]],
+              xlim: tuple[float, float], name: str, size: tuple[int, int],
+              floor: tuple[float, str] | None = None, left: float = 0.30) -> None:
+    """Linkage AUC as points with 95% intervals; rows are (label, note, value, low, high,
+    colour). A row without a value is a range between two results, drawn as two points.
+    ``floor`` draws a dashed reference line with its label."""
+    with plt.rc_context(DEMO_RC):
+        fig, ax = figure(*size)
+        fig.subplots_adjust(left=left, right=0.97, top=0.88, bottom=0.13)
+        for i, (label, note, value, low, high, colour) in enumerate(rows):
+            if value is None:
+                ax.plot([low, high], [i, i], color=colour, lw=5, solid_capstyle="butt", zorder=3)
+                ax.plot([low, high], [i, i], "o", ms=16, color=colour, zorder=4)
+                text = f"{low:.3f}–{high:.3f}"
+            else:
+                ax.plot([low, high], [i, i], color=colour, lw=4, solid_capstyle="butt", zorder=3)
+                ax.plot(value, i, "o", ms=20, color=colour, zorder=4)
+                text = f"{value:.3f}"
+            ax.text(high + 0.012, i, text, ha="left", va="center", fontsize=36,
+                    fontweight="bold", color=colour)
+            row_labels(ax, i, label, note)
+        ax.axvline(0.5, color=MUTED, ls=":", lw=2.5, zorder=1)
+        ax.text(0.5, -0.62, "우연 0.5", ha="center", va="bottom", fontsize=20, color=MUTED)
+        if floor is not None:
+            x, text = floor
+            ax.axvline(x, color=DARK, ls="--", lw=1.8, zorder=1)
+            ax.text(x + 0.004, -0.62, text, ha="left", va="bottom", fontsize=20, color=DARK)
+        ax.set_xlim(*xlim)
+        ax.set_ylim(len(rows) - 0.5, -0.6)
+        ticks = [t for t in (0.5, 0.6, 0.7, 0.8, 0.9, 1.0) if xlim[0] <= t <= xlim[1]]
+        ax.set_xticks(ticks, [f"{t:.1f}" for t in ticks], color=MUTED)
+        ax.set_yticks([])
+        for spine in ("left", "top", "right"):
+            ax.spines[spine].set_visible(False)
+        ax.spines["bottom"].set_color(LIGHT)
+        ax.tick_params(axis="x", length=0, pad=8)
+        save_demo(fig, name)
+
+
+def yang2025_seconds_per_output() -> float:
+    manifest = json.loads((AUDIT / "export_manifest.json").read_text(encoding="utf-8"))
+    values = {e["seconds_per_output"]["value"] for e in manifest["exports"]
+              if e["cohort"] == "yang2025"}
+    if len(values) != 1:
+        raise ValueError(f"Yang2025 exports disagree on seconds per output: {values}")
+    return values.pop()
+
+
+def demo_figures() -> None:
+    adversary = pd.read_csv(ROOT / "results" / "exp_b" / "adversary_comparison.csv")
+    b = adversary[(adversary.condition == "P3") & (adversary.target == 1.0)].iloc[0]
+    selection = json.loads((ROOT / "results" / "exp_b" / "selection.json")
+                           .read_text(encoding="utf-8"))
+    demo_bars([("함께 학습한 평가자", "방어가 속이도록 함께 학습", b.adversary_main_ba, GRAY, DARK),
+               ("따로 학습한 공격자", "같은 출력으로 새로 학습", b.independent_ba, BLUE, BLUE)],
+              selection["config"]["statistics"]["chance"], "demo_fig1_cotrained_evaluator.png",
+              (1728, 440))
+
+    identity = pd.read_csv(ROOT / "results" / "exp_l" / "identity_summary.csv")
+    p0 = identity[(identity.kind == "representation") & (identity.key == "P0")
+                  & (identity.attacker == "logistic")].set_index("scenario")
+    demo_bars([("같은 날 기록으로 등록", "확증 C2 기준값", p0.loc["main", "ba"], GRAY, DARK),
+               ("다른 날 기록으로 등록", "사전등록 추정치", p0.loc["auxiliary", "ba"], BLUE, BLUE)],
+              1 / p0.loc["main", "identities"], "demo_fig2_day_moves.png", (1728, 440))
+
+    predictions = json.loads((AUDIT / "yang2025" / "decision.json")
+                             .read_text(encoding="utf-8"))["predictions"]
+    seconds = yang2025_seconds_per_output()
+
+    def duration(k: int) -> str:
+        minutes, rest = divmod(int(k * seconds), 60)
+        return f"{minutes}분 {rest}초"
+
+    v1, v2 = predictions["V1"], predictions["V2"]
+    demo_dots([("전체 특징", f"출력 {v1['k']}개 · {duration(v1['k'])}", v1["auc"], *v1["interval"],
+                DARK),
+               ("왼쪽·오른쪽·정지 명령", f"명령 {v2['k']}개 · {duration(v2['k'])}", v2["auc"],
+                *v2["interval"], BLUE)],
+              (0.45, 1.08), "demo_fig3_predictions.png", (1728, 420), left=0.38)
+
+    rows = ladder_rows("yang2025", ["features_P2-RC_d8", "commands_shared_tau0.50",
+                                    "commands_shared_tau0.60"])
+    if rows.task_ba.round(3).nunique() != 1:
+        raise ValueError("the matched rungs differ in task BA")
+    labels = [("8차원 특징", "명령의 원천", DARK), ("해독한 명령", "정지 기준 τ 0.50", BLUE),
+              ("해독한 명령", "정지 기준 τ 0.60", BLUE)]
+    demo_dots([(label, note, r.cross_day_auc, r.cross_day_auc_low, r.cross_day_auc_high, colour)
+               for (label, note, colour), (_, r) in zip(labels, rows.iterrows())],
+              (0.45, 1.05), "demo_fig4_what_to_send.png", (1728, 620))
+
+    summary = pd.read_csv(AUDIT / "summary.csv")
+    cell = summary[(summary.cohort == "lee2019") & (summary.condition == "cross-day")
+                   & (summary.k == 20) & (summary.status == "ok")]
+    feat = cell[cell.rung == "features_P2-RC_d8"].set_index("comparator")
+    commands = cell[cell.rung.str.startswith("commands")].auc
+    weak, rich = feat.loc["lda_cosine"], feat.loc["cosine_rich"]
+    demo_dots([("평균만 보던 첫 공격자", "8차원 특징", weak.auc, weak.ci_low, weak.ci_high, GRAY),
+               ("그 특징에서 계산한 명령", "정지 기준 두 가지", None, commands.min(), commands.max(), DARK),
+               ("고친 공격자", "풍부한 요약 · 8차원 특징", rich.auc, rich.ci_low, rich.ci_high, BLUE)],
+              (0.45, 0.88), "demo_fig5_caught_builder.png", (1728, 580),
+              floor=(commands.max(), "이보다 낮으면 약한 공격자"), left=0.40)
+
+
 def main() -> None:
     style()
     rungs = [("features_P0", BLUE), ("features_P2-RC_d8", GREEN),
@@ -391,6 +543,7 @@ def main() -> None:
     ladders_lee2019_2a((1728, 600))
     validation((1728, 560))
     yang2025_comparators((1240, 680))
+    demo_figures()
 
 
 if __name__ == "__main__":

@@ -361,8 +361,8 @@ are equal. *Use* (plan §2, §3 "Protocol", "Metrics and inference"): a referenc
 against a probe window is a mated comparison when the probe is from u and a non-mated comparison
 when it is from another target user; the tool reports FMR, FNMR, EER, TPR at fixed FPR and DET
 curves. *Adaptation*: the "biometric system" is an attacker the tool builds from transmitted
-outputs and, in BEAT's audits, each trial's task cue (an attacker without the cues was not
-measured); comparators are fitted on development users only, so every scored pair involves
+outputs and, in BEAT's audits, each trial's task cue (an attacker without the cue was run only as
+an exploratory, post hoc rerun, `results/audit/cue_blind/`); comparators are fitted on development users only, so every scored pair involves
 users the comparator never saw, and the deciding statistic is a per-user AUC with a matching
 permutation test rather than a pooled error rate. *Limit*: 19795-1 evaluates a system built to
 recognise its enrolled users; BEAT's outputs were produced by a task decoder that was never meant

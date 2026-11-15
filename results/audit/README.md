@@ -8,8 +8,12 @@ chance). It is not an identification rate.
 What the attacker is given: the transmitted outputs and each trial's task
 cue (the `target` column: left or right). The rich feature summaries (`cosine_rich`,
 `lda_cosine_rich`) and the command Bayes factor condition on that cue, and these are the
-comparators of V1 and V2. An attacker who sees the outputs without the cues was not measured;
-the mean-based comparators (`cosine`, `lda_cosine`) do not use the cue.
+comparators of V1 and V2; the mean-based comparators (`cosine`, `lda_cosine`) do not use the
+cue. An attacker who sees the outputs without the cue was run afterwards, as an exploratory and
+post hoc rerun with only the `target` column withheld (`cue_blind/`, read its README first): it
+linked almost as strongly (V1 0.852 against 0.855, V2 0.554 against 0.567) except for Lee2019's
+shared commands at τ = 0.50 (0.507, not detected: insufficient evidence, not absence). It changes
+no recorded value or verdict. An attacker who infers the cue from the outputs was not measured.
 
 ## Tiers
 
@@ -18,6 +22,7 @@ the mean-based comparators (`cosine`, `lda_cosine`) do not use the cue.
 | `bnci2014_001/` | BCI IV 2a, 9 users | *exploratory* | none |
 | `lee2019/` | Lee2019, 54 users | *exploratory*; the tool was developed on it | none |
 | `yang2025/` | Yang2025, 51 users | *pre-specified (non-blind)*: fixed at `freeze-5` (commit `55cd01e`) before computation, run once | V1 and V2 only (`yang2025/decision.json`) |
+| `cue_blind/` | Yang2025 and Lee2019, recorded cells | *exploratory, post hoc*: the `target` cue withheld after all results were known | none |
 
 Yang2025 was already analysed in study M, whose identity results were known when v3 was designed.
 The batch is therefore not blind and not a confirmatory replication.

@@ -1,0 +1,455 @@
+{
+ "stored": true,
+ "stored_utc": "2026-11-15T17:00:32+00:00",
+ "sha256": "67bf2edcb1d6915e6bfa69d415b1cddfe87247fac30a03d966c1ff4b71df8ad4",
+ "summary": {
+  "filename": "B_yang2025_commands.csv",
+  "finished_utc": "2026-11-15T17:00:32+00:00",
+  "elapsed_seconds": 2.8176699000032386,
+  "tool_runtime_seconds": 2.762789700005669,
+  "input": {
+   "kind": "commands",
+   "rows": 4000,
+   "users": 20,
+   "days": [
+    "2",
+    "3"
+   ],
+   "day_order": [
+    "2",
+    "3"
+   ],
+   "dimension": null,
+   "alphabet": 3,
+   "cues": true,
+   "cue_levels": [
+    "0",
+    "1"
+   ],
+   "sha256": "67bf2edcb1d6915e6bfa69d415b1cddfe87247fac30a03d966c1ff4b71df8ad4"
+  },
+  "settings": {
+   "k_grid": [
+    1,
+    5,
+    10,
+    25
+   ],
+   "permutations": 2000,
+   "bootstraps": 1000,
+   "standard": {
+    "permutations": 10000,
+    "bootstraps": 2000,
+    "comparators": [
+     "bayes_factor"
+    ]
+   },
+   "comparators": [
+    "bayes_factor"
+   ],
+   "gallery": false,
+   "closed_set": false,
+   "sequential": false,
+   "threads": 4,
+   "seed": 20261112,
+   "fold_seed": 20261111,
+   "seconds_per_output": null
+  },
+  "conditions": [
+   {
+    "name": "same-day",
+    "relation": "same-day",
+    "days": [
+     "2",
+     "3"
+    ],
+    "cells": [
+     {
+      "k": 1,
+      "status": "ok",
+      "reason": null,
+      "users_analysed": 20,
+      "excluded_users": [],
+      "wording": "linkage detected",
+      "comparator": "bayes_factor",
+      "auc": 0.6153547008547009,
+      "interval": [
+       0.5690066439636752,
+       0.6676699318910255
+      ],
+      "p": 0.0004997501249375312,
+      "holm_p": 0.001999000499750125,
+      "comparator_wording": "linkage detected",
+      "unreliable": false,
+      "strongest": "bayes_factor",
+      "strongest_auc": 0.6153547008547009,
+      "detected_comparators": [
+       "bayes_factor"
+      ],
+      "comparators": [
+       "bayes_factor"
+      ]
+     },
+     {
+      "k": 5,
+      "status": "ok",
+      "reason": null,
+      "users_analysed": 20,
+      "excluded_users": [],
+      "wording": "linkage detected",
+      "comparator": "bayes_factor",
+      "auc": 0.7838923611111112,
+      "interval": [
+       0.6986070112179488,
+       0.8697927617521368
+      ],
+      "p": 0.0004997501249375312,
+      "holm_p": 0.001999000499750125,
+      "comparator_wording": "linkage detected",
+      "unreliable": false,
+      "strongest": "bayes_factor",
+      "strongest_auc": 0.7838923611111112,
+      "detected_comparators": [
+       "bayes_factor"
+      ],
+      "comparators": [
+       "bayes_factor"
+      ]
+     },
+     {
+      "k": 10,
+      "status": "ok",
+      "reason": null,
+      "users_analysed": 20,
+      "excluded_users": [],
+      "wording": "linkage detected",
+      "comparator": "bayes_factor",
+      "auc": 0.8324476495726495,
+      "interval": [
+       0.7435569577991452,
+       0.913130375267094
+      ],
+      "p": 0.0004997501249375312,
+      "holm_p": 0.001999000499750125,
+      "comparator_wording": "linkage detected",
+      "unreliable": false,
+      "strongest": "bayes_factor",
+      "strongest_auc": 0.8324476495726495,
+      "detected_comparators": [
+       "bayes_factor"
+      ],
+      "comparators": [
+       "bayes_factor"
+      ]
+     },
+     {
+      "k": 25,
+      "status": "ok",
+      "reason": null,
+      "users_analysed": 20,
+      "excluded_users": [],
+      "wording": "linkage detected",
+      "comparator": "bayes_factor",
+      "auc": 0.8986979166666667,
+      "interval": [
+       0.8226302083333333,
+       0.9588541666666666
+      ],
+      "p": 0.0004997501249375312,
+      "holm_p": 0.001999000499750125,
+      "comparator_wording": "linkage detected",
+      "unreliable": false,
+      "strongest": "bayes_factor",
+      "strongest_auc": 0.8986979166666667,
+      "detected_comparators": [
+       "bayes_factor"
+      ],
+      "comparators": [
+       "bayes_factor"
+      ]
+     }
+    ]
+   },
+   {
+    "name": "cross-day",
+    "relation": "cross-day",
+    "days": [
+     "2",
+     "3"
+    ],
+    "cells": [
+     {
+      "k": 1,
+      "status": "ok",
+      "reason": null,
+      "users_analysed": 20,
+      "excluded_users": [],
+      "wording": "linkage detected",
+      "comparator": "bayes_factor",
+      "auc": 0.5792550000000001,
+      "interval": [
+       0.5269459583333334,
+       0.6362628645833335
+      ],
+      "p": 0.0009995002498750624,
+      "holm_p": 0.00399800099950025,
+      "comparator_wording": "linkage detected",
+      "unreliable": false,
+      "strongest": "bayes_factor",
+      "strongest_auc": 0.5792550000000001,
+      "detected_comparators": [
+       "bayes_factor"
+      ],
+      "comparators": [
+       "bayes_factor"
+      ]
+     },
+     {
+      "k": 5,
+      "status": "ok",
+      "reason": null,
+      "users_analysed": 20,
+      "excluded_users": [],
+      "wording": "linkage detected",
+      "comparator": "bayes_factor",
+      "auc": 0.6869600000000001,
+      "interval": [
+       0.5727747083333333,
+       0.8044197604166666
+      ],
+      "p": 0.0009995002498750624,
+      "holm_p": 0.00399800099950025,
+      "comparator_wording": "linkage detected",
+      "unreliable": false,
+      "strongest": "bayes_factor",
+      "strongest_auc": 0.6869600000000001,
+      "detected_comparators": [
+       "bayes_factor"
+      ],
+      "comparators": [
+       "bayes_factor"
+      ]
+     },
+     {
+      "k": 10,
+      "status": "ok",
+      "reason": null,
+      "users_analysed": 20,
+      "excluded_users": [],
+      "wording": "linkage detected",
+      "comparator": "bayes_factor",
+      "auc": 0.6856616666666667,
+      "interval": [
+       0.5577127395833333,
+       0.818060125
+      ],
+      "p": 0.0009995002498750624,
+      "holm_p": 0.00399800099950025,
+      "comparator_wording": "linkage detected",
+      "unreliable": false,
+      "strongest": "bayes_factor",
+      "strongest_auc": 0.6856616666666667,
+      "detected_comparators": [
+       "bayes_factor"
+      ],
+      "comparators": [
+       "bayes_factor"
+      ]
+     },
+     {
+      "k": 25,
+      "status": "ok",
+      "reason": null,
+      "users_analysed": 20,
+      "excluded_users": [],
+      "wording": "linkage detected",
+      "comparator": "bayes_factor",
+      "auc": 0.7052408854166666,
+      "interval": [
+       0.5501993815104167,
+       0.8531209309895834
+      ],
+      "p": 0.001999000499750125,
+      "holm_p": 0.00399800099950025,
+      "comparator_wording": "linkage detected",
+      "unreliable": false,
+      "strongest": "bayes_factor",
+      "strongest_auc": 0.7052408854166666,
+      "detected_comparators": [
+       "bayes_factor"
+      ],
+      "comparators": [
+       "bayes_factor"
+      ]
+     }
+    ]
+   }
+  ],
+  "contrasts": [
+   {
+    "k": 1,
+    "comparator": "bayes_factor",
+    "mean": 0.03609970085470082,
+    "interval": [
+     0.008245978632478654,
+     0.06939919898504271
+    ]
+   },
+   {
+    "k": 5,
+    "comparator": "bayes_factor",
+    "mean": 0.09693236111111103,
+    "interval": [
+     0.034542693108974364,
+     0.173175517094017
+    ]
+   },
+   {
+    "k": 10,
+    "comparator": "bayes_factor",
+    "mean": 0.14678598290598277,
+    "interval": [
+     0.0615006770833333,
+     0.241365406517094
+    ]
+   },
+   {
+    "k": 25,
+    "comparator": "bayes_factor",
+    "mean": 0.19345703125000002,
+    "interval": [
+     0.07574788411458333,
+     0.3287931315104166
+    ]
+   }
+  ],
+  "smallest_detected_k": {
+   "same-day": 1,
+   "cross-day": 1
+  },
+  "warnings": [
+   "Nonstandard inference budget; not the full §3 procedure"
+  ],
+  "interpretation": "Unseen by the attacker's comparator, not necessarily unseen by the BCI. No anonymity, safety or legal conclusion. Transmitted outputs only.",
+  "hashes": {
+   "source": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+   "configuration": "c975433e642ae72e4593343cb19656d9a40bf2005596dc83da22d45e549fbcc6",
+   "input": "67bf2edcb1d6915e6bfa69d415b1cddfe87247fac30a03d966c1ff4b71df8ad4"
+  },
+  "tool_version": "0.1.0"
+ },
+ "points": [
+  {
+   "type": "progress",
+   "phase": "point",
+   "done": 1,
+   "total": 8,
+   "k": 1,
+   "relation": "same-day",
+   "comparator": "bayes_factor",
+   "auc": 0.6153547008547009,
+   "interval": [
+    0.5690066439636752,
+    0.6676699318910255
+   ]
+  },
+  {
+   "type": "progress",
+   "phase": "point",
+   "done": 2,
+   "total": 8,
+   "k": 1,
+   "relation": "cross-day",
+   "comparator": "bayes_factor",
+   "auc": 0.5792550000000001,
+   "interval": [
+    0.5269459583333334,
+    0.6362628645833335
+   ]
+  },
+  {
+   "type": "progress",
+   "phase": "point",
+   "done": 3,
+   "total": 8,
+   "k": 5,
+   "relation": "same-day",
+   "comparator": "bayes_factor",
+   "auc": 0.7838923611111112,
+   "interval": [
+    0.6986070112179488,
+    0.8697927617521368
+   ]
+  },
+  {
+   "type": "progress",
+   "phase": "point",
+   "done": 4,
+   "total": 8,
+   "k": 5,
+   "relation": "cross-day",
+   "comparator": "bayes_factor",
+   "auc": 0.6869600000000001,
+   "interval": [
+    0.5727747083333333,
+    0.8044197604166666
+   ]
+  },
+  {
+   "type": "progress",
+   "phase": "point",
+   "done": 5,
+   "total": 8,
+   "k": 10,
+   "relation": "same-day",
+   "comparator": "bayes_factor",
+   "auc": 0.8324476495726495,
+   "interval": [
+    0.7435569577991452,
+    0.913130375267094
+   ]
+  },
+  {
+   "type": "progress",
+   "phase": "point",
+   "done": 6,
+   "total": 8,
+   "k": 10,
+   "relation": "cross-day",
+   "comparator": "bayes_factor",
+   "auc": 0.6856616666666667,
+   "interval": [
+    0.5577127395833333,
+    0.818060125
+   ]
+  },
+  {
+   "type": "progress",
+   "phase": "point",
+   "done": 7,
+   "total": 8,
+   "k": 25,
+   "relation": "same-day",
+   "comparator": "bayes_factor",
+   "auc": 0.8986979166666667,
+   "interval": [
+    0.8226302083333333,
+    0.9588541666666666
+   ]
+  },
+  {
+   "type": "progress",
+   "phase": "point",
+   "done": 8,
+   "total": 8,
+   "k": 25,
+   "relation": "cross-day",
+   "comparator": "bayes_factor",
+   "auc": 0.7052408854166666,
+   "interval": [
+    0.5501993815104167,
+    0.8531209309895834
+   ]
+  }
+ ]
+}

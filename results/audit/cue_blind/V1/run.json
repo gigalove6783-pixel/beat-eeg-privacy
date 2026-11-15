@@ -1,0 +1,60 @@
+{
+  "id": "V1",
+  "tier": "exploratory, post hoc",
+  "source_sha256": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+  "reference": {
+    "path": "results/audit/yang2025/features_P0/report.json",
+    "sha256": "bbacef6e958a4e3f5c712a4b18be4c2da2bd6bf4c5aecee76765cf1250cc13c1"
+  },
+  "inputs": {
+    "0": "1bed558318d9f56050366b0cd48fcadec2320d0270553f38f087077c322ba49e",
+    "1": "1bed558318d9f56050366b0cd48fcadec2320d0270553f38f087077c322ba49e",
+    "2": "1bed558318d9f56050366b0cd48fcadec2320d0270553f38f087077c322ba49e"
+  },
+  "blind_inputs": {
+    "0": {
+      "file": "results/audit/cue_blind/inputs/yang2025/frozen/features_P0_seed0.npz",
+      "sha256": "8f8ec94d02327a3616f8bf9a4cb283b5944b80ecae4cde1470f67c22c3fd0ce7"
+    },
+    "1": {
+      "file": "results/audit/cue_blind/inputs/yang2025/frozen/features_P0_seed1.npz",
+      "sha256": "8f8ec94d02327a3616f8bf9a4cb283b5944b80ecae4cde1470f67c22c3fd0ce7"
+    },
+    "2": {
+      "file": "results/audit/cue_blind/inputs/yang2025/frozen/features_P0_seed2.npz",
+      "sha256": "8f8ec94d02327a3616f8bf9a4cb283b5944b80ecae4cde1470f67c22c3fd0ce7"
+    }
+  },
+  "variants": {
+    "cue_aware_reproduction": {
+      "seconds": 104.80367850000039,
+      "tool_runtime_seconds": 103.33420920000935,
+      "report": "results/audit/cue_blind/V1/cue_aware_reproduction/report.json",
+      "slim": "results/audit/cue_blind/V1/cue_aware_reproduction/report.slim.json",
+      "configuration": "8696e9f9b2f356c36f922400b10e20c8968f576d447c7c763a37eba6d93bad89",
+      "inputs": {
+        "0": "1bed558318d9f56050366b0cd48fcadec2320d0270553f38f087077c322ba49e",
+        "1": "1bed558318d9f56050366b0cd48fcadec2320d0270553f38f087077c322ba49e",
+        "2": "1bed558318d9f56050366b0cd48fcadec2320d0270553f38f087077c322ba49e"
+      },
+      "source": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+      "support_mismatches": []
+    },
+    "cue_blind": {
+      "seconds": 94.14350909998757,
+      "tool_runtime_seconds": 92.2272912000044,
+      "report": "results/audit/cue_blind/V1/cue_blind/report.json",
+      "slim": "results/audit/cue_blind/V1/cue_blind/report.slim.json",
+      "configuration": "81bb8c7bd5b8f7391ebb89d3e2e2d896eb0dede50bcd49e420c5614e2dc3351c",
+      "inputs": {
+        "0": "8f8ec94d02327a3616f8bf9a4cb283b5944b80ecae4cde1470f67c22c3fd0ce7",
+        "1": "8f8ec94d02327a3616f8bf9a4cb283b5944b80ecae4cde1470f67c22c3fd0ce7",
+        "2": "8f8ec94d02327a3616f8bf9a4cb283b5944b80ecae4cde1470f67c22c3fd0ce7"
+      },
+      "source": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+      "support_mismatches": []
+    }
+  },
+  "reproduction": "exact",
+  "seconds": 202.6332914999948
+}

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BEAT Audit Live — 출력 연결 감사</title>
+<link rel="stylesheet" href="live.css">
+</head>
+<body>
+<a class="skip" href="#pick">파일 선택으로 건너뛰기</a>
+<header class="bar">
+  <div class="brand">BEAT Audit Live</div>
+  <p class="lede">BCI(뇌-컴퓨터 인터페이스)가 내보내는 출력으로, 두 기록이 <strong>같은 사람의 것인지 연결할 수 있는지</strong> 지금 이 자리에서 잽니다.</p>
+</header>
+
+<section class="explain" aria-label="읽는 법">
+  <p><b>공격자</b>는 BCI 출력과, 있으면 각 시행의 과제 단서를 봅니다. 대상 사용자를 등록한 적은 없습니다.</p>
+  <p><b>AUC</b>(구별 점수): <b>0.5 = 우연</b>, 1 = 항상 구별. 두 기록을 같은 사람으로 연결하는 점수이며 신원 확인율이 아닙니다.</p>
+</section>
+
+<section id="offline" class="offline" hidden aria-labelledby="offline-title">
+  <h1 id="offline-title">이 페이지는 로컬 감사 서버와 함께 동작합니다</h1>
+  <p>파일을 끌어 놓으면 이 컴퓨터의 서버가 <code>beat_audit</code>로 실제 감사를 계산합니다. 지금은 서버에 연결되어 있지 않습니다.</p>
+  <ol>
+    <li>프로젝트 폴더(<code>BEAT PROJECT</code>)에서 터미널을 엽니다.</li>
+    <li><code>.venv\Scripts\python demo/live/server.py</code> 를 실행합니다.</li>
+    <li>표시된 주소 <code>http://127.0.0.1:8737/</code> 를 브라우저로 엽니다.</li>
+  </ol>
+  <p>네트워크는 쓰지 않습니다. 서버는 이 컴퓨터(127.0.0.1)에서만 열립니다.</p>
+</section>
+
+<main id="app">
+  <div class="tools" role="group" aria-label="파일 넣기">
+    <input id="file" class="sr" type="file" accept=".csv,text/csv" tabindex="-1" aria-hidden="true">
+    <button id="pick" type="button" class="primary">CSV 파일 선택</button>
+    <span class="hint">또는 화면 아무 곳에나 파일을 끌어 놓기 · 최대 세 장을 나란히 비교</span>
+    <label class="period" for="period">출력 1개의 시간 <input id="period" type="number" inputmode="decimal" min="0" step="any" placeholder="선택"> 초</label>
+    <button id="clear" type="button" class="quiet" hidden>모두 지우기</button>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+  </div>
+  <div id="cards" class="cards"></div>
+</main>
+
+<div id="drop-veil" class="veil" hidden aria-hidden="true"><p>놓으면 감사를 시작합니다</p></div>
+
+<div id="print-view" class="print-view" hidden role="dialog" aria-modal="true" aria-labelledby="print-title">
+  <div class="print-actions">
+    <button type="button" id="print-now" class="primary">인쇄</button>
+    <button type="button" id="print-close" class="quiet">닫기</button>
+  </div>
+  <div id="print-sheet" class="sheet"></div>
+</div>
+
+<template id="tpl-card">
+  <article class="card" tabindex="-1">
+    <p class="stored-banner" hidden></p>
+    <header class="card-head">
+      <div class="title-row"><h2 class="card-title"></h2><div class="actions"></div></div>
+      <p class="file"></p>
+      <p class="what"></p>
+    </header>
+    <div class="card-body"></div>
+    <footer class="card-foot"></footer>
+  </article>
+</template>
+
+<script src="live.js"></script>
+</body>
+</html>

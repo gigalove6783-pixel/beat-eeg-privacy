@@ -14,5 +14,9 @@ presentation/*.mixdog-html-page-*
 # beat_audit full reports (component-level evidence, up to 157 MB each); report.md, figures,
 # summary.csv and the decision files are tracked
 results/audit/**/report.json
+# BEAT Audit Live: real-cohort demo samples are built locally by scripts/make_live_samples.py
+demo/live/samples/yang2025/
+# local inputs of the cue-blind audit
+results/audit/cue_blind/inputs/
 # Office lock files
 ~$*

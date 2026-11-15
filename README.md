@@ -5,8 +5,11 @@ transmits. Its tool, `beat_audit`, takes any BCI's outputs (feature vectors or d
 with user and day labels and, optionally, each trial's task cue) and measures whether an attacker
 who never enrolled a user can link two recordings of that user, and how this depends on what is
 transmitted. In BEAT's audits the attacker is given the outputs and each trial's task cue (the
-`target` column: left or right); the comparators of V1 and V2 condition on that cue, and an
-attacker who sees the outputs without the cues was not measured.
+`target` column: left or right), and the comparators of V1 and V2 condition on that cue. A rerun
+with only the cue withheld, exploratory and decided after all results were known, linked almost
+as strongly (V1 0.852 against 0.855, V2 0.554 against 0.567) with one exception among the command
+streams ([`results/audit/cue_blind/`](results/audit/cue_blind/README.md)); an attacker who infers
+the cue from the outputs was not measured.
 Its methods are taken from biometric testing, template-protection unlinkability,
 speaker-anonymisation evaluation, forensic likelihood ratios, sequential analysis and
 large-population biometrics ([`docs/related_work.md`](docs/related_work.md) Section 8), and each
@@ -28,6 +31,25 @@ The example is deliberately small (12 users), and the second line prints warning
 scikit-learn `ConvergenceWarning` lines for the MLP comparator and `not_evaluable` lines for
 k = 20, 50 and 100 ("12/12 excluded; supply a window in every required segment …"), so a
 successful run is a working installation, not a clean empirical audit.
+
+**Live demonstration.** [`demo/live/`](demo/live/README.md) is a local, offline page on which a
+presenter drops a CSV of BCI outputs and the audience watches `beat_audit` measure, on the spot,
+whether those outputs let an attacker link two recordings of the same person. Start it from the
+repository root with the installed package:
+
+```powershell
+python demo/live/server.py
+```
+
+and open the address it prints (it listens on 127.0.0.1 only). The tracked synthetic samples in
+`demo/live/samples/synthetic/` (A features, B commands decoded from A, C = A with user labels
+permuted) let anyone run it from a clone; the real-cohort samples (Yang2025) are not tracked and
+are built locally from the exported audit inputs by `python scripts/make_live_samples.py`, which
+subsets users, days and rows by a rule fixed in advance and copies values unchanged. The page
+runs the real tool, with reduced inference budgets labelled "시연 설정" on every card, on a
+demonstration subset; its numbers are a demonstration ("시연용 부분집합, 탐색"), not the
+project's registered results. Presenter steps, the subset rule and the stored runs used when a
+live run fails: [`demo/live/README.md`](demo/live/README.md).
 
 **Risk at a glance: linkage by an attacker who never enrolled the user, by outputs observed**
 
@@ -71,6 +93,17 @@ pre-specified predictions, is [`docs/plan_v3.md`](docs/plan_v3.md); the full acc
   cross-day linkage is 0.144 [0.094, 0.197]. An independent audit reproduced every
   decision-driving number.
 - **Exploratory, Lee2019 and 2a.** The same pattern, and the transmission ladder below.
+- **Exploratory and post hoc: the attacker without the cue.** Run after every other result was
+  known, with the same frozen tool, settings, users, folds and windows and only the `target`
+  column withheld; the cue-aware reruns reproduced the recorded values exactly
+  ([`results/audit/cue_blind/`](results/audit/cue_blind/README.md)). Cue-aware against cue-blind:
+  V1 0.855 against 0.852 [0.806, 0.896], difference +0.002 [−0.011, +0.015]; V2 0.567 against
+  0.554 [0.526, 0.582], difference +0.013 [+0.004, +0.023] (subject-bootstrap estimates, no
+  verdict). On Yang2025 day 2 vs day 3 the shared commands stay below the 8-d features without the
+  cue (τ = 0.50: 0.650, τ = 0.60: 0.685, features 0.834; separate intervals, not a paired test).
+  The exception: Lee2019's shared commands at τ = 0.50, session 1 vs 2, fall from 0.630 to 0.507
+  [0.494, 0.519], not detected (insufficient evidence, not absence; difference +0.123 [+0.082,
+  +0.163]); why was not tested. V1, V2, their tier and every earlier number are unchanged.
 - **What the tool caught about itself.** Mean-based feature comparators understated the exposure
   of recentred 8-d features (Lee2019, session 1 vs 2, 20 outputs, stored run of the final tool:
   0.543 with LDA against 0.688 with the rich-summary cosine; the first development run gave 0.542). This was detected because the best attack available to a holder of the
@@ -97,9 +130,11 @@ number, including the contrast and the ladder, is an estimate.
 > - **Not anonymity, not safety.** A value near 0.5 means this attacker did not link the outputs;
 >   "not detected" is never "absent". The attackers are the tool's comparators fitted on other
 >   users; no adaptive or white-box attacker was tried.
-> - **Cue-aware attacker.** The attacker is given each trial's task cue with the outputs; the
->   comparators of V1 and V2 use it. An attacker who sees the outputs without the cues was not
->   measured.
+> - **Cue-aware attacker; the cue-blind check is post hoc.** Every reported result's attacker is
+>   given each trial's task cue with the outputs; the comparators of V1 and V2 use it. Withholding
+>   the cue, in an exploratory rerun decided after the results were known, changed little except
+>   for Lee2019's commands at τ = 0.50 (see above). Not measured: an attacker who infers the cue
+>   from the outputs (not bounded by the two measured attacks), sequence or timing models, other k.
 > - **Unseen by the attacker, not by the BCI.** Encoders, recentring and decoders were fitted
 >   with the target users' calibration data. On Yang2025 the full-feature tangent reference was
 >   fitted on day 1, as in study M's claim M1.
@@ -756,13 +791,13 @@ The full list of ten items, with evidence for each, is in
 | `beat_audit/` | v3 audit tool (`beat-audit run`, `beat-audit compare`): input checks, comparators, inference, closed-set parity module, sequential attacker, gallery module, reports; see [`beat_audit/README.md`](beat_audit/README.md) |
 | `examples/` | Synthetic `features.csv` and `commands.csv` for the tool, and `generate.py`, which writes them |
 | `configs/` | Data settings and one YAML per experiment, fixed at the seals; `audit.yaml` (v3, fixed at `freeze-5`) |
-| `scripts/` | `download_data.py` (BNCI2014-001), `prepare_lee2019.py` (Lee2019), `fetch_yang2025.py` (Yang2025, allowlisted byte ranges), `verify_inputs.py`, `check_references.py`, `make_summary_figures.py`, `export_demo_data.py`; v3: `make_v3_figures.py` (v3 talk figures from `results/audit/`), `audit_cohorts.py` (exports, validation, development runs, frozen batch) and `audit_ladder.py` (transmission ladder) |
+| `scripts/` | `download_data.py` (BNCI2014-001), `prepare_lee2019.py` (Lee2019), `fetch_yang2025.py` (Yang2025, allowlisted byte ranges), `verify_inputs.py`, `check_references.py`, `make_summary_figures.py`, `export_demo_data.py`; v3: `make_v3_figures.py` (v3 talk figures from `results/audit/`), `audit_cohorts.py` (exports, validation, development runs, frozen batch), `audit_ladder.py` (transmission ladder), `audit_cue_blind.py` (post hoc cue-blind rerun, `results/audit/cue_blind/`) and `make_live_samples.py` (real-cohort samples for the live demonstration) |
 | `seals/`, `checksums/` | Seal manifest (`manifest.yaml`) and committed input hashes |
 | `tests/` | Leakage guards, unit tests and synthetic end-to-end runs (see [Tests and CI](#tests-and-ci)) |
 | `results/` | Tables (CSV/JSON) and figures per experiment; `results/figures/summary/` holds the summary figures; `results/audit/` holds the v3 audit (read [`results/audit/README.md`](results/audit/README.md) first) |
 | `docs/` | [`report.md`](docs/report.md) (technical report), [`explainer_ko.md`](docs/explainer_ko.md) (Korean explainer), `analysis_plan.md`, [`preregistration_m.md`](docs/preregistration_m.md), `decision_log.md`, `related_work.md`, `numbers.yaml` (number registry), [`plan_v3.md`](docs/plan_v3.md) (v3 plan, predictions and state) |
-| `demo/` | Static interactive results page |
-| `presentation/` | Current talk (v3) slides in Korean with speaker notes (`BEAT_v3_talk.pptx`, PDF copy `BEAT_v3_talk.pdf`, text source `BEAT_v3_talk.pptx.mixdog-source.html`) and its figures in `presentation/figures/v3/` (drawn by `scripts/make_v3_figures.py`); earlier versions: the v2 talk (`BEAT_v2_talk.pptx`, `BEAT_v2_talk.pdf`) and the v1 talk (`BEAT_final_talk.pptx`, `BEAT_final_talk.pdf`) |
+| `demo/` | Static interactive results page (`demo/index.html`); live demonstration of the audit tool in `demo/live/` (server, page, tracked synthetic samples, stored runs; see [`demo/live/README.md`](demo/live/README.md)) |
+| `presentation/` | The talk given on 2026-11-16: a 20-minute storytelling talk in Korean with speaker notes and time budgets (`BEAT_demo_talk.pptx`, PDF copy `BEAT_demo_talk.pdf`, text source `BEAT_demo_talk.pptx.mixdog-source.html`; 13 main slides and 6 backups; slide 7 holds the live demonstration, slide 8 a fallback screenshot of it). The detailed version of the v3 talk, slides in Korean with speaker notes (`BEAT_v3_talk.pptx`, PDF copy `BEAT_v3_talk.pdf`, text source `BEAT_v3_talk.pptx.mixdog-source.html`) and its figures in `presentation/figures/v3/` (drawn by `scripts/make_v3_figures.py`); earlier versions: the v2 talk (`BEAT_v2_talk.pptx`, `BEAT_v2_talk.pdf`) and the v1 talk (`BEAT_final_talk.pptx`, `BEAT_final_talk.pdf`) |
 
 ## Reproduction
 
@@ -859,6 +894,11 @@ the checklist. Its data (`demo/data/`) is generated by
 `artifacts/exp_c/`. That data contains decoded commands and aggregate results only, with no EEG
 or features. `demo/data/` is committed, so the page works in a fresh clone; regenerating it
 requires experiment C's artifacts (not tracked) and the export script.
+
+The live demonstration of the v3 audit tool (`demo/live/`, started with
+`python demo/live/server.py`) is described [after the quickstart](#beat-what-a-motor-imagery-bci-transmits-about-its-user-measured-and-audited)
+and in [`demo/live/README.md`](demo/live/README.md); unlike this page it needs the local server
+and the installed `beat_audit`.
 
 ## Licence and data
 

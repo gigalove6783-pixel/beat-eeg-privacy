@@ -1,0 +1,443 @@
+{
+ "stored": true,
+ "stored_utc": "2026-11-15T17:00:48+00:00",
+ "sha256": "5e6277f5a0cff742b52c5ca954a86c081eeb45af9c9d8440947c8c9fe8d350c8",
+ "summary": {
+  "filename": "C_yang2025_shuffled_users.csv",
+  "finished_utc": "2026-11-15T17:00:48+00:00",
+  "elapsed_seconds": 13.382412100007059,
+  "tool_runtime_seconds": 13.27971780000371,
+  "input": {
+   "kind": "features",
+   "rows": 4000,
+   "users": 20,
+   "days": [
+    "2",
+    "3"
+   ],
+   "day_order": [
+    "2",
+    "3"
+   ],
+   "dimension": 190,
+   "alphabet": null,
+   "cues": true,
+   "cue_levels": [
+    "0",
+    "1"
+   ],
+   "sha256": "5e6277f5a0cff742b52c5ca954a86c081eeb45af9c9d8440947c8c9fe8d350c8"
+  },
+  "settings": {
+   "k_grid": [
+    1,
+    5,
+    10,
+    25
+   ],
+   "permutations": 2000,
+   "bootstraps": 1000,
+   "standard": {
+    "permutations": 10000,
+    "bootstraps": 2000,
+    "comparators": [
+     "cosine",
+     "lda_cosine",
+     "pair_logistic",
+     "cosine_rich",
+     "lda_cosine_rich"
+    ]
+   },
+   "comparators": [
+    "cosine"
+   ],
+   "gallery": false,
+   "closed_set": false,
+   "sequential": false,
+   "threads": 4,
+   "seed": 20261112,
+   "fold_seed": 20261111,
+   "seconds_per_output": null
+  },
+  "conditions": [
+   {
+    "name": "same-day",
+    "relation": "same-day",
+    "days": [
+     "2",
+     "3"
+    ],
+    "cells": [
+     {
+      "k": 1,
+      "status": "ok",
+      "reason": null,
+      "users_analysed": 20,
+      "excluded_users": [],
+      "wording": "not detected: insufficient evidence, not absence",
+      "comparator": "cosine",
+      "auc": 0.5053370726495727,
+      "interval": [
+       0.4836656917735042,
+       0.5264091813568376
+      ],
+      "p": 0.31784107946026985,
+      "holm_p": 1.0,
+      "comparator_wording": "not detected: insufficient evidence, not absence",
+      "unreliable": false,
+      "strongest": "cosine",
+      "strongest_auc": 0.5053370726495727,
+      "detected_comparators": [],
+      "comparators": [
+       "cosine"
+      ]
+     },
+     {
+      "k": 5,
+      "status": "ok",
+      "reason": null,
+      "users_analysed": 20,
+      "excluded_users": [],
+      "wording": "not detected: insufficient evidence, not absence",
+      "comparator": "cosine",
+      "auc": 0.489920405982906,
+      "interval": [
+       0.4730493656517094,
+       0.5079337473290599
+      ],
+      "p": 0.6351824087956022,
+      "holm_p": 1.0,
+      "comparator_wording": "not detected: insufficient evidence, not absence",
+      "unreliable": false,
+      "strongest": "cosine",
+      "strongest_auc": 0.489920405982906,
+      "detected_comparators": [],
+      "comparators": [
+       "cosine"
+      ]
+     },
+     {
+      "k": 10,
+      "status": "ok",
+      "reason": null,
+      "users_analysed": 20,
+      "excluded_users": [],
+      "wording": "not detected: insufficient evidence, not absence",
+      "comparator": "cosine",
+      "auc": 0.487732905982906,
+      "interval": [
+       0.4613376602564102,
+       0.5146328258547008
+      ],
+      "p": 0.7716141929035483,
+      "holm_p": 1.0,
+      "comparator_wording": "not detected: insufficient evidence, not absence",
+      "unreliable": false,
+      "strongest": "cosine",
+      "strongest_auc": 0.487732905982906,
+      "detected_comparators": [],
+      "comparators": [
+       "cosine"
+      ]
+     },
+     {
+      "k": 25,
+      "status": "ok",
+      "reason": null,
+      "users_analysed": 20,
+      "excluded_users": [],
+      "wording": "not detected: insufficient evidence, not absence",
+      "comparator": "cosine",
+      "auc": 0.45546875,
+      "interval": [
+       0.4012955729166666,
+       0.5065234375000001
+      ],
+      "p": 0.9570214892553723,
+      "holm_p": 1.0,
+      "comparator_wording": "not detected: insufficient evidence, not absence",
+      "unreliable": false,
+      "strongest": "cosine",
+      "strongest_auc": 0.45546875,
+      "detected_comparators": [],
+      "comparators": [
+       "cosine"
+      ]
+     }
+    ]
+   },
+   {
+    "name": "cross-day",
+    "relation": "cross-day",
+    "days": [
+     "2",
+     "3"
+    ],
+    "cells": [
+     {
+      "k": 1,
+      "status": "ok",
+      "reason": null,
+      "users_analysed": 20,
+      "excluded_users": [],
+      "wording": "not detected: insufficient evidence, not absence",
+      "comparator": "cosine",
+      "auc": 0.5059266666666666,
+      "interval": [
+       0.4871512499999999,
+       0.5264319166666668
+      ],
+      "p": 0.09795102448775612,
+      "holm_p": 0.2938530734632684,
+      "comparator_wording": "not detected: insufficient evidence, not absence",
+      "unreliable": false,
+      "strongest": "cosine",
+      "strongest_auc": 0.5059266666666666,
+      "detected_comparators": [],
+      "comparators": [
+       "cosine"
+      ]
+     },
+     {
+      "k": 5,
+      "status": "ok",
+      "reason": null,
+      "users_analysed": 20,
+      "excluded_users": [],
+      "wording": "not detected: insufficient evidence, not absence",
+      "comparator": "cosine",
+      "auc": 0.5060066666666667,
+      "interval": [
+       0.48973266666666665,
+       0.5236594999999999
+      ],
+      "p": 0.050474762618690654,
+      "holm_p": 0.20189905047476261,
+      "comparator_wording": "not detected: insufficient evidence, not absence",
+      "unreliable": false,
+      "strongest": "cosine",
+      "strongest_auc": 0.5060066666666667,
+      "detected_comparators": [],
+      "comparators": [
+       "cosine"
+      ]
+     },
+     {
+      "k": 10,
+      "status": "ok",
+      "reason": null,
+      "users_analysed": 20,
+      "excluded_users": [],
+      "wording": "not detected: insufficient evidence, not absence",
+      "comparator": "cosine",
+      "auc": 0.5016433333333333,
+      "interval": [
+       0.4876529166666667,
+       0.5161710000000002
+      ],
+      "p": 0.1629185407296352,
+      "holm_p": 0.3258370814592704,
+      "comparator_wording": "not detected: insufficient evidence, not absence",
+      "unreliable": false,
+      "strongest": "cosine",
+      "strongest_auc": 0.5016433333333333,
+      "detected_comparators": [],
+      "comparators": [
+       "cosine"
+      ]
+     },
+     {
+      "k": 25,
+      "status": "ok",
+      "reason": null,
+      "users_analysed": 20,
+      "excluded_users": [],
+      "wording": "not detected: insufficient evidence, not absence",
+      "comparator": "cosine",
+      "auc": 0.50908203125,
+      "interval": [
+       0.4875880940755209,
+       0.53213134765625
+      ],
+      "p": 0.22588705647176413,
+      "holm_p": 0.3258370814592704,
+      "comparator_wording": "not detected: insufficient evidence, not absence",
+      "unreliable": false,
+      "strongest": "cosine",
+      "strongest_auc": 0.50908203125,
+      "detected_comparators": [],
+      "comparators": [
+       "cosine"
+      ]
+     }
+    ]
+   }
+  ],
+  "contrasts": [
+   {
+    "k": 1,
+    "comparator": "cosine",
+    "mean": -0.0005895940170939085,
+    "interval": [
+     -0.03686830074786326,
+     0.026767985176282025
+    ]
+   },
+   {
+    "k": 5,
+    "comparator": "cosine",
+    "mean": -0.016086260683760734,
+    "interval": [
+     -0.037765537927350455,
+     0.0042388044871794995
+    ]
+   },
+   {
+    "k": 10,
+    "comparator": "cosine",
+    "mean": -0.013910427350427357,
+    "interval": [
+     -0.04323166025641024,
+     0.017951344017094004
+    ]
+   },
+   {
+    "k": 25,
+    "comparator": "cosine",
+    "mean": -0.05361328124999998,
+    "interval": [
+     -0.11690185546875,
+     0.0037963867187499516
+    ]
+   }
+  ],
+  "smallest_detected_k": {
+   "same-day": null,
+   "cross-day": null
+  },
+  "warnings": [
+   "Nonstandard inference budget; not the full §3 procedure"
+  ],
+  "interpretation": "Unseen by the attacker's comparator, not necessarily unseen by the BCI. No anonymity, safety or legal conclusion. Transmitted outputs only.",
+  "hashes": {
+   "source": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+   "configuration": "3e11913ad7de803667349b8bf3688e1086815d216823b354540219ed0eb46f70",
+   "input": "5e6277f5a0cff742b52c5ca954a86c081eeb45af9c9d8440947c8c9fe8d350c8"
+  },
+  "tool_version": "0.1.0"
+ },
+ "points": [
+  {
+   "type": "progress",
+   "phase": "point",
+   "done": 1,
+   "total": 8,
+   "k": 1,
+   "relation": "same-day",
+   "comparator": "cosine",
+   "auc": 0.5053370726495727,
+   "interval": [
+    0.4836656917735042,
+    0.5264091813568376
+   ]
+  },
+  {
+   "type": "progress",
+   "phase": "point",
+   "done": 2,
+   "total": 8,
+   "k": 1,
+   "relation": "cross-day",
+   "comparator": "cosine",
+   "auc": 0.5059266666666666,
+   "interval": [
+    0.4871512499999999,
+    0.5264319166666668
+   ]
+  },
+  {
+   "type": "progress",
+   "phase": "point",
+   "done": 3,
+   "total": 8,
+   "k": 5,
+   "relation": "same-day",
+   "comparator": "cosine",
+   "auc": 0.489920405982906,
+   "interval": [
+    0.4730493656517094,
+    0.5079337473290599
+   ]
+  },
+  {
+   "type": "progress",
+   "phase": "point",
+   "done": 4,
+   "total": 8,
+   "k": 5,
+   "relation": "cross-day",
+   "comparator": "cosine",
+   "auc": 0.5060066666666667,
+   "interval": [
+    0.48973266666666665,
+    0.5236594999999999
+   ]
+  },
+  {
+   "type": "progress",
+   "phase": "point",
+   "done": 5,
+   "total": 8,
+   "k": 10,
+   "relation": "same-day",
+   "comparator": "cosine",
+   "auc": 0.487732905982906,
+   "interval": [
+    0.4613376602564102,
+    0.5146328258547008
+   ]
+  },
+  {
+   "type": "progress",
+   "phase": "point",
+   "done": 6,
+   "total": 8,
+   "k": 10,
+   "relation": "cross-day",
+   "comparator": "cosine",
+   "auc": 0.5016433333333333,
+   "interval": [
+    0.4876529166666667,
+    0.5161710000000002
+   ]
+  },
+  {
+   "type": "progress",
+   "phase": "point",
+   "done": 7,
+   "total": 8,
+   "k": 25,
+   "relation": "same-day",
+   "comparator": "cosine",
+   "auc": 0.45546875,
+   "interval": [
+    0.4012955729166666,
+    0.5065234375000001
+   ]
+  },
+  {
+   "type": "progress",
+   "phase": "point",
+   "done": 8,
+   "total": 8,
+   "k": 25,
+   "relation": "cross-day",
+   "comparator": "cosine",
+   "auc": 0.50908203125,
+   "interval": [
+    0.4875880940755209,
+    0.53213134765625
+   ]
+  }
+ ]
+}

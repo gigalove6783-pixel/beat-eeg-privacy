@@ -1,0 +1,393 @@
+<!-- BRIEF
+subject/audience/action: BEAT 이야기 발표 · 2026년 11월 16일, 20분 안팎(시연 약 4분 포함, 25분을 넘지 않음), 결과 발표이자 대학원·연구실 지원용 포트폴리오 · 뇌파를 모르는 청중이 "왼쪽·오른쪽만 내보내는 BCI 앱도 기록을 이을 수 있고, 그 정도는 날과 공격자에 따라 다르며, 이제 beat_audit로 누구나 잴 수 있다"를 등급 그대로 받아들이고 발표를 다시 이야기할 수 있게 한다
+concept: 발표자의 기획안(BEAT 프로젝트 기획안.pdf)과 같은 손. 슬라이드는 키커, 여섯 단어 이하의 열쇠말 제목, 영웅 요소 하나(굵은 단언, 거대한 숫자 한두세 개, 또는 화면 하나)만 싣고, 이야기는 발표자 메모가 나른다. 흑백만, 왼쪽 128px(64pt) 여백, 2pt와 1pt 검은 가로 규칙선, 꼬리말에 등급과 집단, 쪽마다 3분의 1 이상 비움
+reading mode: presentation · argument mode: narrative
+directions: A 기획안의 문법(흑백, 왼쪽 정렬, 규칙선, 키커, 꼬리말, 굵은 단언과 숫자)을 투사용으로 키움 · B 이전 흰 바탕 이야기형 덱 · selected: A · why: 발표자가 이전 덱을 '너무 빈약하다'며 거부하고 자기 기획안을 기준으로 지정했고, 원칙은 슬라이드에 산문 없음, 열쇠말 중심, 이야기 중심, 비움의 미학
+style: custom reference-mono · palette: black #000000 on white #FFFFFF only · type: Noto Sans KR Black (단언, 숫자, 제목), Bold (키커, 칸 이름), Regular (이름표, 꼬리말) · script: ko · fonts: Noto Sans KR
+motif: 왼쪽 위 키커(막의 번호), 그 아래 열쇠말 제목, 규칙선 아래 거대한 숫자와 짧은 이름표, 맨 아래 11pt 꼬리말과 두 자리 쪽 번호; 1쪽과 13쪽은 같은 표지 문법으로 처음 장면과 질문을 되돌린다 · rhythm: anchor, breathing, anchor, dense, dense, breathing, breathing, dense, anchor, dense, dense, breathing, anchor, dense, dense, dense, dense, dense, dense
+sources: 'BEAT 프로젝트 기획안.pdf' (디자인 기준 1, 2, 3, 7, 10, 16, 23쪽) · results/audit/yang2025/decision.json · results/audit/ladder.csv · results/audit/summary.csv · results/audit/validation.json · results/audit/parity.json · results/audit/yang2025/summary.csv · results/audit/export_manifest.json · results/audit/README.md · results/audit/cue_blind/summary.csv · results/audit/cue_blind/README.md · results/exp_l/identity_summary.csv · results/exp_b/adversary_comparison.csv · results/exp_b/selection.json · docs/numbers.yaml (v1–v2 항목 L_P0_within_day, L_P0_cross_day_logistic, 2a_B_head_lambda1, 2a_B_independent_lambda1) · docs/related_work.md §8.10 · docs/decision_log.md · README.md (The identity study v1–v2) · beat_audit/cli.py · beat_audit/README.md · git remote origin · demo/live/README.md · demo/live/static/ · demo/live/stored/ (저장 실행 JSON) · demo/live/screenshots/01_three_cards.png
+facts: F1 발표일 2026년 11월 16일(표지 표기 2026.11.16), 팀 이동현과 장규범, 본문 1–13쪽(마지막 쪽 번호 13), 백업 B1–B6 — 발표 일정(과제 지시), Lead 슬라이드 문안
+  · F2 메모 시간 70 55 70 80 90 75 240 0 135 105 95 95 90초 = 1,200초 = 20분 00초, 시연 블록 240초 = 4분(7쪽, 8쪽 대체 화면은 그 안에서만 쓰고 라이브가 되면 건너뜀), 시연이 5분이 되면 끊는다, 최대 21분으로 25분 미만 — 발표자 지시(20분, 시연 약 4분, 25분 상한)
+  · F3 규제 콜로라도 HB24-1058 2024년 4월 17일 서명, 신경 데이터를 포함하는 생물학적 데이터를 민감 정보에 추가, 입법 취지 모든 사람의 뇌는 고유하다; 캘리포니아 SB 1223 신경 데이터를 민감한 개인정보에 추가(연도는 원문에서 확인하지 않아 적지 않음) — docs/related_work.md §8.10
+  · F23 UNESCO 신경기술 윤리 권고 2025년 11월 11일 채택, 신경 데이터 수집, 처리, 공유에 사전 동의(49항), 프라이버시 영향 평가(80(d)항); BEAT는 법적 결론을 내리지 않음 — docs/related_work.md §8.10
+  · F4 Lee2019 54명 전체 특징(P0) 로지스틱 공격자 식별 정확도 같은 날 0.994 (확증 C2 기준값), 다른 날 0.520 (사전등록 추정치), 우연 1/54 = 0.019 — results/exp_l/identity_summary.csv kind representation key P0 attacker logistic, scenario main ba 0.994259 / auxiliary ba 0.520093, identities 54 (docs/numbers.yaml L_P0_within_day, L_P0_cross_day_logistic)
+  · F5 BCI IV 2a 9명 P3 λ = 1 같은 날, 함께 학습한 평가자 0.026, 따로 학습한 공격자 0.951, 확증(실험 B), 우연 0.111 — results/exp_b/adversary_comparison.csv condition P3 target 1.0 adversary_main_ba 0.025805 independent_ba 0.95094, results/exp_b/selection.json config.statistics.chance 0.1111 (docs/numbers.yaml 2a_B_head_lambda1, 2a_B_independent_lambda1); λ 격자 0.01–3이라 1은 최대가 아님
+  · F6 v1 역사: 분석 계획 v1의 실험 B가 방어(적대 학습 P3), 개발 중 함께 학습한 평가자 점수는 우연 이하인데 독립 공격자는 높았고, 평가자 점수는 증거로 쓰지 않기로 함, 9명 같은 날 전체 특징은 9명을 모두 가려냄(BA 1.00), 54명 확증 C1에서도 같은 방향 — docs/decision_log.md 2026-11-10 항목, README.md v1–v2, docs/report.md §2 pitfall 1
+  · F7 v2 방어 EQ(3명씩 묶음) 맞춘 날 기준 묶음 안 초과 0.112 → 0.009, 배포일 안에서 등록하면 0.316 → 0.150 (탐색), v2 논지는 연구 M 결과를 읽기 전에 결정 로그에 고정: "BCI 전송물의 신원 노출과 방어 효과는 공격자가 어느 날의 기록으로 등록하느냐에 따라 달라지므로, 같은 날 수치 하나로는 위험도 보호도 주장할 수 없다." — README.md The identity study (Defence), docs/decision_log.md 2026-11-11 Pre-committed reporting rules for study M
+  · F8 V1 Yang2025 51명 전체 특징 1일차 ↔ 2–3일차 출력 20개 cosine_rich 연결 AUC 0.855, 95% 구간 [0.802, 0.905] Holm p 2.0 × 10⁻⁴ 지지, V2 8차원 병목의 명령 τ 0.60(왼쪽·오른쪽·정지) 명령 50개 베이즈 인자 0.567 [0.540, 0.596] Holm p 2.0 × 10⁻⁴ 지지, 등급 사전 지정(비맹검), 우연 0.5 — results/audit/yang2025/decision.json predictions.V1 (auc 0.85460, interval, k 20, holm_p) predictions.V2 (auc 0.56709, interval, k 50, holm_p), tier
+  · F9 출력 1개 8초(관측) → 출력 20개 = 2분 40초, 명령 50개 = 6분 40초 — results/audit/export_manifest.json exports[cohort = yang2025].seconds_per_output.value 8.0
+  · F10 대비 같은 날 − 다른 날 0.144 [0.094, 0.197] 판정 없는 추정치, Holm 두 예측 α = 0.05 — results/audit/yang2025/decision.json estimate.value, alpha, family
+  · F11 Yang2025 사다리 2–3일차 다른 날 출력 20개 (탐색): 8차원 특징 0.835 [0.781, 0.880], 공용 해독기 명령 τ 0.50 0.663 [0.590, 0.727], τ 0.60 0.696 [0.619, 0.759], 세 단계 과제 BA 0.544 — results/audit/ladder.csv cohort yang2025 cross_day_auc cross_day_auc_low cross_day_auc_high task_ba
+  · F24 Yang2025 사다리 다른 날 (탐색): 전체 특징 0.910 [0.864, 0.950] BA 0.555, 사용자별 명령 τ 0.50 0.634 [0.557, 0.707], τ 0.60 0.627 [0.550, 0.701], τ 0.80 0.635 [0.556, 0.710] BA 0.545 — results/audit/ladder.csv cohort yang2025 cross_day_auc task_ba
+  · F25 Yang2025 사다리 같은 날 (탐색): 1.000, 0.988, 0.827, 0.864, 0.826, 0.815, 0.829, 일곱 단계 같은 날과 다른 날 모두 linkage detected — results/audit/ladder.csv cohort yang2025 same_day_auc same_day_wording cross_day_wording
+  · F12 Yang2025 과제 BA 0.544–0.555, 두 손 우연 0.5 (탐색) — results/audit/ladder.csv yang2025 task_ba 최소 0.544289 최대 0.554508
+  · F13 Lee2019 54명 8차원 병목 다른 날 출력 20개: 평균만 보는 공격자 lda_cosine 0.543 [0.523, 0.565] (최종 도구의 저장 실행), 같은 특징의 명령 τ 0.50 0.630, τ 0.80 0.677, 풍부한 요약 cosine_rich 0.688 [0.641, 0.731] (탐색), 첫 개발 실행 0.542 — results/audit/summary.csv cohort lee2019 condition cross-day k 20 rung features_P2-RC_d8 comparator lda_cosine, cosine_rich, rung commands_P2-RC_d8_tau0.50 / 0.80 bayes_factor; docs/decision_log.md BEAT v3 scope and pre-freeze record (1)
+  · F14 검증 거짓 검출률 1,000회씩 9명×2일 0.031, 54명×2일 0.047, 51명×3일 0.049 (최대), 명목 0.05 — results/audit/validation.json whole_procedure effect 0 rejection_rate
+  · F26 참값 포함률 게이트 대상 54명×2일 AUC 0.969 대비 0.954 (게이트 대상 최저, 대비 구간), 51명×3일 AUC 0.974 대비 0.967, 요구 0.90–0.99, 게이트 아닌 9명×2일 AUC 0.938 대비 0.977 — results/audit/validation.json whole_procedure effect 2 auc_coverage contrast_coverage
+  · F27 확장 영가설 비교기 3종 200회씩 최대 15/200, 99% 허용 3–19회, 명목 5% — results/audit/validation.json additional_null_validation
+  · F28 패리티 0.994 → 0.994, 0.520 → 0.520, 차이 0.0 — results/audit/parity.json checks
+  · F15 갤러리 점검 실패 Yang2025 180칸 중 62칸 V1 칸 포함; 순차 공격자 명목 0.05, V2 칸 잘못 연결 0.131 놓침 0.693, 합성 0.047 0.024 — results/audit/yang2025/summary.csv gallery_check seq_fmr seq_fnmr, results/audit/validation.json sequential.iid
+  · F29 사용자별 대 공용 해독기 과제 BA Yang2025 0.545 대 0.544, Lee2019 0.646 대 0.692, 2a 0.759 대 0.718 (탐색, 일관된 개선을 입증하지 못함) — results/audit/ladder.csv task_ba
+  · F30 report.md는 판정 아닌 177칸에도 linkage detected; 동결 커밋과 태그가 배치보다 21초 앞섬(Git과 로그 시각), 그와 별개인 push 순서는 자기 증명 — results/audit/README.md, docs/decision_log.md 2026-11-12
+  · F16 동결 freeze-5 커밋 55cd01e, 배치 한 번, 180칸 모두 정상, 독립 감사 재계산 일치 — docs/decision_log.md 2026-11-12, results/audit/yang2025/cells.json
+  · F17 사다리 검출: Lee2019 일곱 단계 같은 날 모두 linkage detected, 2a 명령 다섯 단계 not detected (증거 부족, 없음 아님) — results/audit/ladder.csv same_day_wording, results/audit/ladder_compare_bnci2014_001.md
+  · F18 v1–v2 판정 2a H1 H2 지지 안 됨, Lee2019 C1 C2 C4 지지 C3 지지 안 됨, Yang2025 M1 M3 지지 M2 지지 안 됨, 봉인 주장 9개(아홉 개) 중 5개(다섯 개) 지지 — README.md The identity study, v3 덱 B4
+  · F19 공격자가 보는 것: 출력과 각 시행의 과제 단서(target 열, 왼쪽 또는 오른쪽), 뇌파 원본과 이름은 모름; 본 결과의 공격자는 모두 단서를 봤고, 단서 없는 공격자는 결과를 본 뒤 사후 탐색 실험으로 따로 잼(F31–F39), 출력에서 단서를 추측하는 공격자는 재지 않음 — results/audit/README.md 둘째 문단, docs/plan_v3.md §3, results/audit/cue_blind/README.md
+  · F20 도구 사용 beat-audit run 입력 파일 --out, 줄마다 user와 day 열, 같은 날과 다른 날 기본, 0.5 = 우연, 검출되지 않음은 증거 부족이지 없음이 아니고 안전을 말하지 않음, --derived-from 선언 시 명령이 특징보다 세면 표시 — beat_audit/cli.py run compare, beat_audit/README.md, beat_audit/engine.py
+  · F21 저장소 github.com/gigalove6783-pixel/beat-eeg-privacy — git remote origin
+  · F22 시연 앱: 발표 전 .venv\Scripts\python demo/live/server.py, 브라우저 http://127.0.0.1:8737/, F11 전체 화면; 파일 세 개 demo/live/samples/yang2025/ 의 A_yang2025_features.csv, B_yang2025_commands.csv, C_yang2025_shuffled_users.csv; 화면 아무 곳에 끌어 놓기 또는 버튼 "CSV 파일 선택"; 카드는 왼쪽부터 쌓이고 최대 세 장; 실패하면 카드의 "저장된 실행 보기"; 카드마다 다른 날 출력 25개 AUC와 95% 구간, 0에서 1 척도와 '0.5 우연' 표시, 검출되면 검은 칸 '연결 검출됨', 아니면 흰 칸 '검출되지 않음', 출력 수 k에 따른 같은 날 점선과 다른 날 실선; 화면 캡처 1920×1080은 Lead가 실제 실행에서 찍음, 덱에 넣은 캡처는 2026-11-16 03:32:06 판(SHA-256 앞자리 76357d0d34a3fe4d, C 설명 'A의 사용자 라벨만 섞은 대조군') — demo/live/README.md Start, Presenter steps; demo/live/static/live.css verdict, s-same; demo/live/screenshots/01_three_cards.png; Lead 전달
+  · F40 시연 부분 자료(탐색, 등록 수치 아님): Yang2025 사용자 번호가 가장 작은 20명, 2일차와 3일차, 구간마다 처음 50시행, 결과를 보기 전에 고정한 규칙, 파일마다 4,000행; C는 A의 사용자 라벨을 고정 seed 20261116으로 섞은 것; 순열 2,000회(표준 10,000), 부트스트랩 1,000회(표준 2,000), k 1, 5, 10, 25, 비교기 하나(특징 cosine, 명령 bayes_factor); 특징 비교기를 cosine 하나로 줄인 것은 실행 시간을 재던 중 파일 A의 두 값(k 25 다른 날 cosine 0.786, cosine_rich 0.818)을 본 뒤 정함, 결과를 보기 전에 고정한 것은 사용자, 기록일, 시행 규칙뿐 — demo/live/README.md Samples, Demo settings
+  · F41 시연 결과, 다른 날 출력 25개 AUC [95%]와 도구 문구: A 전체 특징 0.79 [0.66, 0.90] linkage detected, B 명령 0.71 [0.55, 0.85] linkage detected, C 라벨 섞은 대조 0.51 [0.49, 0.53] not detected (증거 부족, 없음 아님); 같은 날 1.00, 0.90, 0.46; A와 B의 구간이 겹쳐 둘의 차이를 보이지 않음 — demo/live/stored/1c6e91850c63….json (A), 67bf2edcb1d6….json (B), 5e6277f5a0cf….json (C) summary.conditions[relation = cross-day 또는 same-day].cells[k = 25] auc 0.78558, 0.70524, 0.50908 / 0.99948, 0.89870, 0.45547, interval, wording; demo/live/screenshots/01_three_cards.png
+  · F42 시연 계산 시간: Lead 실행 약 16초, 4초, 16초(A, B, C), 저장 실행 15.5초, 2.8초, 13.4초 — Lead 전달, demo/live/stored/ summary.elapsed_seconds
+  · F32 단서 봄 → 단서 없음, 사용자별 평균 AUC [95%], V1 칸 Yang2025 features_P0 cross-day k 20 cosine_rich: 0.855 [0.802, 0.905] → 0.852 [0.806, 0.896], 차이 +0.002 [−0.011, +0.015], 단서 없이 linkage detected — results/audit/cue_blind/summary.csv recorded_strongest True, aware_auc, aware_ci_low, aware_ci_high, blind_auc 0.852106, blind_ci_low, blind_ci_high, diff_aware_minus_blind 0.002497, diff_ci_low, diff_ci_high, blind_wording_in_recorded_family
+  · F33 V2 칸 Yang2025 commands_P2-RC_d8_tau0.60 cross-day k 50 bayes_factor: 0.567 [0.540, 0.596] → 0.554 [0.526, 0.582], 차이 +0.013 [+0.004, +0.023], 단서 없이 linkage detected — results/audit/cue_blind/summary.csv 같은 열 (blind_auc 0.553933, diff_aware_minus_blind 0.013157)
+  · F34 Yang2025 2일차 ↔ 3일차 cross-day-d2-d3 k 20, 8차원 병목 features_P2-RC_d8 lda_cosine_rich: 0.835 → 0.834 [0.778, 0.881], 차이 +0.001 [−0.006, +0.009], 단서 없이 linkage detected — results/audit/cue_blind/summary.csv 같은 열
+  · F35 Yang2025 2일차 ↔ 3일차 k 20, 공용 해독기 명령 bayes_factor: τ 0.50 0.663 → 0.650 [0.577, 0.715], 차이 +0.013 [+0.000, +0.029]; τ 0.60 0.696 → 0.685 [0.608, 0.750], 차이 +0.011 [+0.003, +0.020]; 단서 없이 모두 linkage detected, 명령 구간이 특징 구간과 겹치지 않음(구간 비교, 짝 검정 아님) — results/audit/cue_blind/summary.csv commands_shared_tau0.50, commands_shared_tau0.60 같은 열
+  · F36 Lee2019 세션 1 ↔ 2 cross-day-session1-session2 k 20, 전체 특징 features_P0 cosine_rich: 0.954 → 0.952 [0.929, 0.971], 차이 +0.003 [−0.006, +0.010], 단서 없이 linkage detected — results/audit/cue_blind/summary.csv 같은 열
+  · F37 Lee2019 세션 1 ↔ 2 k 20, 8차원 병목 features_P2-RC_d8 cosine_rich: 0.688 → 0.681 [0.636, 0.721], 차이 +0.007 [−0.003, +0.017], 단서 없이 linkage detected — results/audit/cue_blind/summary.csv 같은 열
+  · F38 Lee2019 세션 1 ↔ 2 k 20, 공용 해독기 명령 τ 0.80 commands_shared_tau0.80 bayes_factor: 0.677 → 0.670 [0.619, 0.715], 차이 +0.008 [−0.001, +0.016], 단서 없이 linkage detected — results/audit/cue_blind/summary.csv 같은 열
+  · F39 Lee2019 세션 1 ↔ 2 k 20, 공용 해독기 명령 τ 0.50 commands_shared_tau0.50 bayes_factor: 0.630 [0.588, 0.672] → 0.507 [0.494, 0.519], blind_p 0.112, 단서 없이 검출 안 됨(증거 부족, 없음 아님), 차이 +0.123 [+0.082, +0.163]; τ 0.50 명령에는 정지 기호가 없고 왼쪽과 오른쪽만 들어 있어 단서 없이는 출력 20개마다 왼쪽과 오른쪽 개수가 베이즈 인자에 들어감, 왜 우연 근처인지는 시험하지 않음, p = 0.11은 blind_p 0.112 — results/audit/cue_blind/summary.csv 같은 열, blind_p, blind_wording_in_recorded_family; results/audit/cue_blind/README.md Reading
+  · F31 단서 없는 공격자 실험(F32–F39): 등급 탐색, 사후(다른 모든 결과를 안 뒤 결정), 같은 동결 beat_audit 소스와 설정, 사용자, 폴드, 창, seed, 입력에서 target 배열과 단서 선언만 뺌, 단서 봄 재실행은 11개 조건 모두 기록값과 정확히 일치, 짝지은 차이는 판정 없는 추정치, 재지 않은 것: 출력에서 단서를 추측하는 공격자, 순서와 시간 모형과 부가 정보, 다른 k와 비교기와 조건, 조건 사이 다중성 보정, Lee2019 세션 1은 보정 세션 — results/audit/cue_blind/README.md What this does not cover; results/audit/cue_blind/summary.csv tier, reproduction
+  · F43 9쪽 메모: 처음 앱처럼 왼쪽과 오른쪽만 보내는 명령(공용 해독기 τ 0.50, 정지 없음)을 단서 없이 잰 사후 탐색에서 Yang2025 2일차 ↔ 3일차 0.650 linkage detected, Lee2019 세션 1 ↔ 2 0.507 not detected(증거 부족, 없음 아님, p = 0.11); V2는 τ 0.60 왼쪽·오른쪽·정지 명령을 단서를 본 공격자로 잰 것 — results/audit/cue_blind/summary.csv commands_shared_tau0.50 bayes_factor blind_auc, blind_p; results/audit/cue_blind/README.md Reading; results/audit/yang2025/decision.json predictions.V2
+images: I1 slide 8 — user — 1920×1080 → 1280×720 — demo/live/screenshots/01_three_cards.png (Lead가 실제 실행에서 찍은 세 카드 화면, 그대로 축소, 1pt 검은 테두리)
+slide plan: 1 job: hook · relationship: scene · move: 청중이 가상의 앱 안내문 한 줄을 읽고 스스로 의심한다 · composition: 기획안 표지처럼 키커, 3분의 1 지점에서 두 줄 굵은 인용, 그 아래 보통 한 줄, 아래 전폭 규칙선과 이름·날짜 · carriers: statement · texture: statement · rhythm: anchor
+  · 2 job: stakes · relationship: contrast · move: 바꿀 수 있는 것과 없는 것, 법이 따로 적기 시작한 것을 한눈에 본다 · composition: 굵은 질문 한 줄, 아래 규칙선 세 칸에 이름과 짧은 값, 연도는 꼬리말 · carriers: statement · texture: statement · rhythm: breathing
+  · 3 job: act one · relationship: evidence · move: 특징이 사람을 알아본다는 숫자 하나를 기억한다 · composition: 키커와 제목, 규칙선 아래 거대한 숫자 하나와 짧은 이름표, 오른쪽 절반 비움 · carriers: hero · texture: numbers · rhythm: anchor
+  · 4 job: reversal one · relationship: contrast · move: 함께 학습한 평가자와 따로 학습한 공격자의 숫자가 정반대임을 본다 · composition: 규칙선 아래 두 숫자 나란히, 각 이름표 · carriers: hero · texture: numbers · rhythm: dense
+  · 5 job: reversal two · relationship: contrast · move: 같은 날 숫자가 다른 날 거의 절반이 됨을 본다 · composition: 두 숫자 나란히, 사이에 검은 화살표 · carriers: hero · texture: numbers · rhythm: dense
+  · 6 job: turn · relationship: flow · move: 주장을 멈추고 만든 도구 이름과 넣고 돌리고 받는 세 단계를 안다 · composition: 굵은 도구 이름, 아래 규칙선 세 칸 · carriers: hero · texture: statement · rhythm: breathing
+  · 7 job: demonstration · relationship: sequence · move: 시연에 넣을 파일 세 개와 대조군이 무엇인지 안다 · composition: 규칙선 아래 거대한 글자 A, B, C와 이름표 세 개 · carriers: hero · texture: numbers · rhythm: breathing
+  · 8 job: demonstration fallback · relationship: evidence · move: 라이브가 멈춰도 미리 찍은 세 카드 화면을 본다 · composition: 키커 아래 왼쪽 정렬 큰 화면 캡처 하나, 1pt 테두리, 오른쪽 비움 · carriers: picture · texture: screenshot · rhythm: dense
+  · 9 job: answer · relationship: evidence · move: 미리 적은 두 예측의 숫자와 관측 시간을 보고 명령만 보내도 기록이 이어진다는 답을 안다 · composition: 제목, 규칙선 아래 두 숫자 나란히, 두 줄 이름표 · carriers: hero · texture: numbers · rhythm: anchor
+  · 10 job: recommendation · relationship: tradeoff · move: 특징보다 명령이 덜 이어지지만 끊기지 않았음을 본다 · composition: 위아래 두 줄 숫자, 사이 아래 화살표, 오른쪽 셋째 칸에 이름표 · carriers: hero · texture: numbers · rhythm: dense
+  · 11 job: honesty · relationship: ranking · move: 첫 공격자가 명령보다 낮았고 고친 공격자가 위로 올라갔음을 본다 · composition: 규칙선으로 나눈 세 줄 숫자, 오른쪽 셋째 칸에 이름표 · carriers: hero · texture: numbers · rhythm: dense
+  · 12 job: limits · relationship: list · move: 주장하지 않는 세 가지를 번호로 가져간다 · composition: 기획안 3쪽처럼 규칙선 세 칸, 큰 번호 01 02 03, 굵은 이름과 짧은 값 · carriers: hero · texture: statement · rhythm: breathing
+  · 13 job: close · relationship: return · move: 처음 장면의 앱에 물을 질문과 저장소를 가져간다 · composition: 기획안 마지막 쪽처럼 키커, 두 줄 굵은 질문, 보통 한 줄, 전폭 규칙선과 이름, 쪽 번호 · carriers: statement · texture: statement · rhythm: anchor
+  · 14 job: backup · relationship: ledger · move: v1–v2 판정과 논지를 본다 · composition: 제목, 규칙선만 쓴 세 줄 표, 아래 논지 인용 · carriers: table, quote · texture: table · rhythm: dense
+  · 15 job: backup · relationship: proof · move: 도구 검증의 네 숫자를 본다 · composition: 기획안 7쪽처럼 네 칸 규칙선 아래 숫자와 이름표, 세부 세 줄 · carriers: hero · texture: numbers · rhythm: dense
+  · 16 job: backup · relationship: verdict · move: V1, V2와 대비를 구간과 함께 본다 · composition: 규칙선 표 세 줄, 아래 조건 네 줄 · carriers: table · texture: table · rhythm: dense
+  · 17 job: backup · relationship: ledger · move: Yang2025 사다리 일곱 단계 전체를 본다 · composition: 규칙선 표 일곱 줄, 아래 읽기 두 줄 · carriers: table · texture: table · rhythm: dense
+  · 18 job: backup · relationship: ledger · move: 단서를 빼도 거의 그대로였고 예외 한 칸과 재지 않은 것을 본다 · composition: 규칙선 표 아홉 줄, 아래 예외와 재지 않은 것 세 줄 · carriers: table · texture: table · rhythm: dense
+  · 19 job: backup · relationship: ledger · move: 실패하거나 입증하지 못한 다섯 항목을 본다 · composition: 규칙선 표 다섯 줄 세 칸 · carriers: table · texture: table · rhythm: dense
+-->
+<html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0;padding:0}
+.slide{width:1920px;height:1080px;position:relative;overflow:hidden;background:#FFFFFF;color:#000000;font-family:'Noto Sans KR',sans-serif;font-weight:400;word-break:keep-all;overflow-wrap:break-word}
+.h{font-family:'Noto Sans KR Black','Noto Sans KR',sans-serif;font-weight:400}
+.k{position:absolute;left:128px;top:124px;font-weight:700;font-size:28px;line-height:1.2;letter-spacing:0.04em;white-space:nowrap}
+.t{position:absolute;left:128px;top:172px;width:1664px;font-size:80px;line-height:1.2}
+.bt{position:absolute;left:128px;top:172px;width:1664px;font-size:60px;line-height:1.2}
+.st{position:absolute;left:128px;width:1664px;font-size:112px;line-height:1.25}
+.sub{position:absolute;left:128px;font-size:38px;line-height:1.3}
+.r{position:absolute;height:4px;background:#000000}
+.num{position:absolute;line-height:1.0;white-space:nowrap}
+.lab{position:absolute;font-size:40px;line-height:1.35}
+.cl{position:absolute;font-weight:700;font-size:32px;line-height:1.3}
+.cv{position:absolute;font-size:40px;line-height:1.3}
+.ft{position:absolute;left:128px;top:980px;width:1540px;font-size:22px;line-height:1.3;white-space:nowrap}
+.pn{position:absolute;right:128px;top:978px;font-size:24px;line-height:1.3;text-align:right}
+.nm{position:absolute;top:978px;font-size:24px;line-height:1.3}
+.tb{position:absolute;left:128px;width:1664px;border-collapse:collapse;font-size:32px;line-height:1.35}
+.tb th{font-weight:700;text-align:left;vertical-align:bottom;border-bottom:4px solid #000000}
+.tb td{text-align:left;vertical-align:top;border-bottom:2px solid #000000}
+.ln{position:absolute;left:128px;width:1664px;font-size:32px;line-height:1.4}
+</style></head><body>
+
+<section class="slide">
+  <div class="k"><span style="letter-spacing:0.16em">BEAT PROJECT&nbsp;·&nbsp;</span><span style="letter-spacing:0.05em">결과 발표</span></div>
+  <div class="st h" style="top:316px">“밖으로 나가는 것은<br>‘왼쪽’과 ‘오른쪽’뿐입니다.”</div>
+  <div class="sub" style="top:664px">가상의 BCI 앱 · 개인정보 안내</div>
+  <div class="r" style="left:128px;top:946px;width:1664px"></div>
+  <div class="nm" style="left:128px"><b>팀</b> 이동현 · 장규범</div>
+  <div class="nm" style="right:128px;text-align:right">2026.11.16</div>
+  <aside class="notes">[약 70초] (화면을 띄우고 2초 기다린다) 게임 속 캐릭터를 생각만으로 움직이는 앱을 떠올려 보세요. 헤드셋을 쓰고 왼손을 쥐는 상상을 하면 캐릭터가 왼쪽으로 갑니다. 오른손을 상상하면 오른쪽으로 갑니다. 이 앱의 개인정보 안내에는 이렇게 쓰여 있습니다. "뇌파 원본은 기기를 떠나지 않습니다. 밖으로 나가는 것은 왼쪽과 오른쪽뿐입니다." 실제 제품이 아니라, 설명을 위해 만든 가상의 앱입니다. 여러분이라면 이 문장을 믿고 쓰시겠어요? (쉼, 3초. 손을 들어 보게 해도 좋다) 오늘은 이 질문에 답해 보려고 합니다. 그 답에 닿기까지 제 생각이 두 번 뒤집힌 이야기이기도 합니다. [직접 한 문장: 이 주제를 고른 이유] 안녕하세요, BEAT 팀 이동현입니다. → 다음 장으로: "왼쪽과 오른쪽만 나간다면, 그걸로 충분할까요?" [발표하지 않음: 가상의 앱이며 실제 제품을 가리키지 않는다.]</aside>
+</section>
+
+<section class="slide">
+  <div class="k">01 질문</div>
+  <div class="st h" style="top:320px;font-size:120px;line-height:1.2">그것으로 충분한가?</div>
+  <div class="r" style="left:128px;top:790px;width:523px"></div>
+  <div class="r" style="left:698px;top:790px;width:523px"></div>
+  <div class="r" style="left:1270px;top:790px;width:522px"></div>
+  <div class="cl" style="left:128px;top:818px">비밀번호</div>
+  <div class="cl" style="left:698px;top:818px">뇌</div>
+  <div class="cl" style="left:1270px;top:818px">법</div>
+  <div class="cv" style="left:128px;top:862px;width:523px">바꿀 수 있다</div>
+  <div class="cv" style="left:698px;top:862px;width:523px">바꿀 수 없다</div>
+  <div class="cv" style="left:1270px;top:862px;width:522px">신경 데이터를 따로 적기 시작</div>
+  <div class="ft">BEAT 결과 발표 · 콜로라도 HB24-1058(2024) · 캘리포니아 SB 1223 · UNESCO 권고(2025) · 법적 결론은 내리지 않는다</div>
+  <div class="pn">02</div>
+  <aside class="notes">[약 55초] (질문을 띄우고 2초 쉰다) 그것으로 충분할까요? 먼저 이게 왜 중요한지부터 말씀드리겠습니다. 비밀번호는 새어 나가면 바꾸면 됩니다. 뇌는 바꿀 수 없습니다. (쉼) 법도 이 점을 보기 시작했습니다. 미국 콜로라도 주는 2024년에 신경 데이터를 민감 정보에 넣었습니다. 그 법의 취지에는 모든 사람의 뇌가 고유하다고 적혀 있습니다. 캘리포니아 주도 신경 데이터를 민감한 개인정보로 정했습니다. 유네스코는 2025년 권고에서, 신경 데이터를 모으고 나누려면 미리 동의를 받아야 한다고 했습니다. 다만 저는 법을 판단하지 않습니다. 오늘 보여 드릴 것은 기술 수치뿐입니다. → 다음 장으로: "그럼 BCI가 계산하는 것으로, 정말 사람을 알아볼 수 있을까요?" [자료: docs/related_work.md §8.10]</aside>
+</section>
+
+<section class="slide">
+  <div class="k">02 첫 답</div>
+  <div class="t h">특징은 사람을 알아본다</div>
+  <div class="r" style="left:128px;top:372px;width:1093px"></div>
+  <div class="num h" style="left:128px;top:392px;font-size:280px">0.994</div>
+  <div class="lab" style="left:128px;top:736px">같은 날 · 54명</div>
+  <div class="ft">BEAT 결과 발표 · 확증 C2 기준값 · Lee2019 54명 · 같은 날 · 식별 정확도 · 우연 0.019</div>
+  <div class="pn">03</div>
+  <aside class="notes">[약 70초] BCI는 뇌파를 그대로 쓰지 않습니다. 기기 안에서 뇌파를 숫자 묶음으로 바꾸는데, 이것을 특징이라고 부릅니다. 그 특징으로 왼손인지 오른손인지를 판단합니다. 저는 이 특징으로 사람도 가려낼 수 있는지 봤습니다. 처음 쓴 9명 자료에서는, 같은 날 기록이면 9명이 모두 가려졌습니다. 54명 공개 데이터로 늘려서, 결과를 보기 전에 봉인한 시험에서도 같은 날 정확도가 0.994였습니다. 우연이면 54명 중 한 명, 약 0.02입니다. 이 값은 그 확증 시험의 기준값입니다. (쉼) 다음 생각은 자연스러웠습니다. 특징이 사람을 드러낸다면, 사람 정보를 지우는 방어를 만들자. 처음 분석 계획에 이미 방어 실험이 들어 있었습니다. → 다음 장으로: "그런데 방어를 재는 순간, 이상한 일이 생겼습니다." [자료: results/exp_l/identity_summary.csv P0 logistic main · docs/decision_log.md 2026-11-10 · README.md v1–v2]</aside>
+</section>
+
+<section class="slide">
+  <div class="k">03 반전 하나</div>
+  <div class="t h">채점자가 한편이었다</div>
+  <div class="r" style="left:128px;top:372px;width:808px"></div>
+  <div class="r" style="left:984px;top:372px;width:808px"></div>
+  <div class="num h" style="left:128px;top:392px;font-size:240px">0.026</div>
+  <div class="num h" style="left:984px;top:392px;font-size:240px">0.951</div>
+  <div class="lab" style="left:128px;top:690px">함께 학습한 평가자</div>
+  <div class="lab" style="left:984px;top:690px">따로 학습한 공격자</div>
+  <div class="ft">BEAT 결과 발표 · 확증(실험 B) · BCI IV 2a 9명 · 같은 날 · 식별 정확도 · 우연 0.111</div>
+  <div class="pn">04</div>
+  <aside class="notes">[약 80초] 제가 시험한 방어 중 하나는 이렇게 작동합니다. 기기 안에 사람을 맞히는 평가자를 하나 두고, 특징이 그 평가자를 속이도록 둘을 함께 학습시킵니다. 평가자가 못 맞히면 방어가 된 것처럼 보입니다. 9명 자료에서 방어 강도 λ를 1로 걸었을 때, 그 평가자의 정확도는 0.026이었습니다. 우연인 0.111보다도 낮습니다. 완벽해 보였죠. (쉼) 그런데 같은 출력을 받아서, 방어와 상관없이 따로 학습한 공격자는 0.951을 맞혔습니다. 채점자가 방어와 한편이었던 겁니다. 사람을 가려낼 정보는 여전히 남았습니다. 배운 것은 그 평가자를 속이는 법이었습니다. 이 두 값은 봉인한 확증 실험에서 나왔고, 54명 자료에서도 같은 방향의 차이가 확증됐습니다. 방어와 함께 학습한 평가자의 점수는 보호의 증거가 아닙니다. (쉼) → 다음 장으로: "이건 방어 기법만의 문제가 아니었습니다. 제가 믿던 숫자도 흔들렸습니다." [자료: results/exp_b/adversary_comparison.csv P3 target 1.0 · results/exp_b/selection.json chance · 확증(실험 B), 54명은 확증 C1]</aside>
+</section>
+
+<section class="slide">
+  <div class="k">03 반전 둘</div>
+  <div class="t h">날이 바뀌면 숫자도 바뀐다</div>
+  <div class="r" style="left:128px;top:372px;width:808px"></div>
+  <div class="r" style="left:984px;top:372px;width:808px"></div>
+  <div class="num h" style="left:128px;top:400px;font-size:220px">0.994</div>
+  <svg data-alt="같은 날 값에서 다른 날 값으로 가는 검은 화살표" style="position:absolute;left:984px;top:497px" width="112" height="56" viewBox="0 0 112 56"><rect x="0" y="22" width="80" height="12" fill="#000000"/><polygon points="72,0 112,28 72,56" fill="#000000"/></svg>
+  <div class="num h" style="left:1136px;top:400px;font-size:220px">0.520</div>
+  <div class="lab" style="left:128px;top:690px">같은 날</div>
+  <div class="lab" style="left:1136px;top:690px">다른 날</div>
+  <div class="ft">BEAT 결과 발표 · Lee2019 54명 · 식별 정확도 · 0.994 확증 기준값 · 0.520 사전등록 추정치 · 우연 0.019</div>
+  <div class="pn">05</div>
+  <aside class="notes">[약 90초] 아까 0.994를 기억하시나요? 그 값은 공격자가 같은 날 기록으로 사람들을 등록하고, 같은 날의 다른 부분을 맞힌 값이었습니다. 그런데 첫날 기록으로 등록하고 다른 날 기록을 맞히게 하면 0.520으로 떨어집니다. 우연보다는 훨씬 높지만, 거의 절반입니다. 이 값은 사전등록한 추정치입니다. (쉼) 제 방어도 그랬습니다. 사람들을 세 명씩 묶어서, 묶음 안에서는 서로 구분되지 않게 만드는 방어를 시험했습니다. 방어를 맞춘 날을 기준으로 재면 묶음 안의 신원 정보가 거의 사라졌습니다. 그런데 실제로 쓰는 날의 기록으로 등록한 공격자에게는 절반 가까이 남았습니다. 이건 탐색 결과입니다. 같은 시스템, 같은 사람인데, 날을 바꾸면 위험도 보호도 다른 숫자가 됩니다. 마지막 확증 결과를 보기 전에, 저는 결정 로그에 이 문장을 고정했습니다. "같은 날 수치 하나로는 위험도 보호도 주장할 수 없다." (쉼) → 다음 장으로: "그렇다면 제가 할 일은, 더 좋은 방어를 주장하는 게 아니었습니다." [자료: results/exp_l/identity_summary.csv P0 logistic main, auxiliary · EQ는 README.md v1–v2 Defence(탐색) · docs/decision_log.md 2026-11-11 Pre-committed reporting rules for study M, 인용은 논지 문장의 뒷부분]</aside>
+</section>
+
+<section class="slide">
+  <div class="k">04 전환</div>
+  <div class="t h">주장 대신, 측정</div>
+  <div class="num h" style="left:128px;top:340px;font-size:200px">beat_audit</div>
+  <div class="r" style="left:128px;top:720px;width:523px"></div>
+  <div class="r" style="left:698px;top:720px;width:523px"></div>
+  <div class="r" style="left:1270px;top:720px;width:522px"></div>
+  <div class="cl" style="left:128px;top:748px">넣는다</div>
+  <div class="cl" style="left:698px;top:748px">돌린다</div>
+  <div class="cl" style="left:1270px;top:748px">받는다</div>
+  <div class="cv" style="left:128px;top:792px;width:523px">출력 파일</div>
+  <div class="cv" style="left:698px;top:792px;width:523px">beat-audit run</div>
+  <div class="cv" style="left:1270px;top:792px;width:522px">연결 보고서</div>
+  <div class="ft">BEAT 결과 발표 · 공격자는 출력과 과제 단서만 본다 · 뇌파 원본과 이름은 모른다</div>
+  <div class="pn">06</div>
+  <aside class="notes">[약 75초] 주장은 멈췄습니다. 대신, 누가 재도 같은 방법으로 재는 도구를 만들었습니다. 이름은 beat_audit입니다. 쓰는 법은 단순합니다. BCI가 실제로 내보낸 출력을 파일 하나에 모읍니다. 줄마다 누구의 것인지 가명과, 어느 날 것인지만 붙입니다. 명령 한 줄, beat-audit run을 돌리면 연결 보고서가 나옵니다. 여기서 재는 것이 바뀝니다. 앞에서는 등록된 사람 중 누구인지 맞혔고, 이제는 처음 보는 두 기록 묶음이 같은 사람의 것인지만 가립니다. 이 도구의 공격자는 아무도 등록하지 않습니다. 이것을 연결이라고 부릅니다. 점수는 0.5가 동전 던지기, 1이 늘 가려냄입니다. 공격자는 출력과 함께, 각 시행에서 어느 손을 상상하라고 했는지, 즉 과제 단서도 봅니다. 뇌파 원본과 이름은 모릅니다. 보고서는 같은 날과 다른 날을 늘 나란히 보여 주고, 검출되지 않음은 증거가 부족하다는 뜻이지 없다는 뜻이 아니라고 먼저 적습니다. → 다음 장으로: "말보다 직접 보시는 게 빠릅니다. 파일 세 개를 넣어 보겠습니다." [자료: beat_audit/cli.py run · beat_audit/README.md user, day 열 · beat_audit/engine.py 같은 날, 다른 날 기본 · results/audit/README.md 둘째 문단]</aside>
+</section>
+
+<section class="slide">
+  <div class="k">04 시연</div>
+  <div class="t h">파일 셋</div>
+  <div class="r" style="left:128px;top:372px;width:523px"></div>
+  <div class="r" style="left:698px;top:372px;width:523px"></div>
+  <div class="r" style="left:1270px;top:372px;width:522px"></div>
+  <div class="num h" style="left:128px;top:392px;font-size:220px">A</div>
+  <div class="num h" style="left:698px;top:392px;font-size:220px">B</div>
+  <div class="num h" style="left:1270px;top:392px;font-size:220px">C</div>
+  <div class="lab" style="left:128px;top:668px">특징</div>
+  <div class="lab" style="left:698px;top:668px">명령</div>
+  <div class="lab" style="left:1270px;top:668px">이름표를 섞은 대조</div>
+  <div class="ft">BEAT 결과 발표 · 시연용 부분 자료 · Yang2025 20명 · 탐색 · 등록된 결과와 섞지 않는다</div>
+  <div class="pn">07</div>
+  <aside class="notes">[약 240초 · 시연 블록. 이 장을 띄운 채 파일을 소개하고 브라우저로 넘어간다. 시연이 5분이 되면 어디서든 끊는다. 아직 보여 주지 못한 카드가 있으면 8쪽을 10초쯤 띄워 그 카드를 가리킨 뒤 9쪽으로 간다] 발표 전 준비: .venv\Scripts\python demo/live/server.py 를 켜고 브라우저에서 http://127.0.0.1:8737/ 을 연 뒤 F11로 전체 화면. 리허설 카드가 남아 있으면 '모두 지우기'. 파일 세 개는 demo/live/samples/yang2025/ 에 있다. ① (0:00, 약 20초) 이 장에서 말한다: "파일 세 개를 넣겠습니다. A는 특징, B는 명령, C는 A의 이름표만 섞은 대조군입니다." 브라우저로 넘어가 화면 맨 위 두 줄을 가리킨다: "이 화면은 방금 말씀드린 beat_audit를 그대로 돌리는 페이지입니다. 공격자는 출력과 과제 단서를 보지만, 이 사람들을 등록한 적은 없습니다." ② (0:20) 'CSV 파일 선택'을 눌러 A_yang2025_features.csv를 고른다. 창 모드라면 파일을 화면 아무 곳에나 끌어 놓아도 된다. 계산에 15초쯤 걸린다. 그동안: "첫 파일은 BCI가 내보내는 특징 벡터 전체입니다. 20명이 이틀 동안 기록한 것입니다. 공격자는 다른 날에 기록한 출력 25개씩을 받아서, 두 묶음이 같은 사람 것인지만 가립니다. 누가 누구인지 미리 배운 적은 없습니다." ③ (0:50) 카드 A가 뜨면 큰 수치를 가리키고, 그 아래 척도의 '0.5 우연' 표시를 가리킨다: "0.5가 동전 던지기입니다. 다른 날인데도 0.79, 연결이 검출됐습니다." 검은 칸의 '연결 검출됨'을 짚고, 아래 곡선에서 점선이 같은 날, 실선이 다른 날이라고 짚는다. (쉼) ④ (1:20) 같은 방법으로 B_yang2025_commands.csv를 넣는다. 4초쯤 걸린다. "이번엔 명령 파일입니다. 처음 앱과 비슷하지만, 왼쪽과 오른쪽에 정지도 들어 있습니다." 카드 B를 가리킨다: "명령만으로도 0.71, 연결이 검출됩니다." 한 문장 덧붙인다: "다만 이 화면에서 A와 B의 구간은 겹칩니다. 특징과 명령 중 어느 쪽이 더 이어지는지는 이 시연으로 말할 수 없고, 그 비교는 10쪽에서 51명 전체로 하겠습니다. 10쪽은 이 전체 특징이 아니라 8차원으로 줄인 특징과 명령을 비교합니다." ⑤ (1:50) C_yang2025_shuffled_users.csv를 넣는다. 다시 15초쯤 걸린다. 그동안: "마지막 파일은 대조군입니다. A와 숫자가 하나도 다르지 않습니다. 누구의 기록인지 적은 이름표만 섞었습니다. 이름표를 섞었으니, 여기서는 연결이 검출되지 않을 것으로 예상합니다." 카드 C가 뜨면 0.51과 흰 칸의 '검출되지 않음'을 가리킨다: "숫자는 그대로이고 이름표만 섞은 이 대조군은 우연 수준이었고, 연결이 검출되지 않았습니다." (쉼, 3초) "검출되지 않음은 증거 부족이지 없음이 아닙니다." ⑥ (2:40) 카드 아래 작은 글씨는 객석에서 읽히지 않으니 가리키지 말고 말로 한다: "화면의 수치는 20명만 쓴 시연용 부분 자료이고 탐색 결과입니다. 특징 파일은 시간 때문에 공격자를 하나로 줄였고, 그 결정은 파일 A의 값을 본 뒤에 내렸습니다. 더 강한 공격자라면 더 높게 잴 수 있습니다. 잠시 뒤 보여 드릴 등록된 결과와 섞지 않습니다." ⑦ (3:00) 발표 화면으로 돌아와 9를 누르고 Enter. 시연이 잘 됐으면 8쪽 대체 화면은 건너뛴다. 남는 1분은 반응과 지연을 위한 여유다. 실패하면: 카드가 30초 넘게 멈추거나 오류가 나면 그 카드의 '저장된 실행 보기'를 누르고 "지금 계산한 것이 아니라 미리 저장해 둔 실행입니다"라고 말한다. 서버나 브라우저가 멈추면 고치지 말고 발표 화면으로 돌아와 8쪽을 띄운 뒤, 8쪽 메모대로 세 카드를 가리킨다. 5분이 되면 어디서든 끊는다. → 다음 장으로: "이제 처음 질문으로 돌아가겠습니다." [자료: demo/live/README.md · demo/live/static/ · demo/live/stored/ 저장 실행 · 시연 수치는 등록 수치와 섞지 않는다]</aside>
+</section>
+
+<section class="slide">
+  <div class="k">04 시연 · 대체 화면</div>
+  <img src="../demo/live/screenshots/01_three_cards.png" alt="시연 화면 캡처. 카드 세 장이 나란히 있다. A 특징 벡터와 B 명령은 연결 검출됨, 사용자 라벨만 섞은 C 대조군은 검출되지 않음, 증거 부족이지 없음이 아님" style="position:absolute;left:128px;top:200px;width:1280px;height:720px">
+  <div style="position:absolute;left:128px;top:200px;width:1280px;height:720px;border:2px solid #000000"></div>
+  <div class="ft">BEAT 결과 발표 · 미리 찍은 시연 화면 · 시연용 부분 자료 · Yang2025 20명 · 탐색 · 등록된 결과와 섞지 않는다</div>
+  <div class="pn">08</div>
+  <aside class="notes">[약 0초 · 시연 블록 240초 안에서만 쓴다. 라이브가 되면 건너뛴다] 라이브 시연이 멈췄을 때만 띄운다. 먼저 말한다: "지금 계산한 화면이 아니라, 미리 실행해 둔 화면입니다." 그다음 7쪽 메모 ③–⑤의 말 그대로 세 카드를 왼쪽부터 가리킨다. A는 0.79로 연결 검출됨, B는 0.71로 연결 검출됨, 그리고 두 구간이 겹친다는 한 문장. C는 0.51로 검출되지 않음: "숫자는 그대로이고 이름표만 섞은 이 대조군은 우연 수준이었고, 연결이 검출되지 않았습니다. 검출되지 않음은 증거 부족이지 없음이 아닙니다." 화면 아래 작은 글씨는 읽히지 않으니 7쪽 ⑥대로 말로 한다: "20명만 쓴 시연용 부분 자료이고 탐색 결과입니다. 특징 파일의 공격자는 파일 A의 값을 본 뒤 하나로 줄였습니다. 등록된 결과와 섞지 않습니다." 시연 블록 전체가 5분이 되면 여기서 끊는다. → 다음 장으로: "이제 처음 질문으로 돌아가겠습니다." [자료: demo/live/screenshots/01_three_cards.png (2026-11-16 03:32:06 판, SHA-256 앞자리 76357d0d34a3fe4d) · demo/live/stored/ 같은 파일의 저장 실행]</aside>
+</section>
+
+<section class="slide">
+  <div class="k">05 답</div>
+  <div class="t h">명령만 보내도 이어진다</div>
+  <div class="r" style="left:128px;top:372px;width:808px"></div>
+  <div class="r" style="left:984px;top:372px;width:808px"></div>
+  <div class="num h" style="left:128px;top:392px;font-size:240px">0.855</div>
+  <div class="num h" style="left:984px;top:392px;font-size:240px">0.567</div>
+  <div class="lab" style="left:128px;top:690px">전체 특징<br>2분 40초</div>
+  <div class="lab" style="left:984px;top:690px">왼쪽·오른쪽·정지 명령<br>6분 40초</div>
+  <div class="ft">BEAT 결과 발표 · 사전 지정(비맹검) · Yang2025 51명 · 첫날 ↔ 다른 날 · 연결 AUC · 공격자는 과제 단서를 봄 · 0.5 = 우연</div>
+  <div class="pn">09</div>
+  <aside class="notes">[약 135초] 이제 처음 질문으로 돌아가겠습니다. 왼쪽과 오른쪽만 나가면 충분할까요? 이번에는 계산하기 전에 예측 두 개를 적었습니다. 도구와 설정, 입력 파일의 지문까지 한 커밋에 묶어 올린 다음, 딱 한 번 돌렸습니다. 대상은 51명이 사흘에 걸쳐 기록한 공개 데이터입니다. 첫째 예측입니다. 특징을 통째로 보내면, 첫날 기록과 다른 날 기록이 이어진다. 출력 20개, 약 2분 40초 분량에서 연결 점수가 0.855였습니다. 0.5가 우연입니다. 둘째 예측은 처음 앱과 비슷하지만, 정지 명령도 포함한 경우입니다. 왼쪽, 오른쪽, 정지 같은 명령만 보내도 이어진다. 명령 50개, 6분 40초 분량에서 0.567이었습니다. 약하지만, 우연과 구별됐습니다. 두 예측 모두 지지됐습니다. (쉼) 처음 질문의 답은 이렇습니다. 왼쪽과 오른쪽만 나간다는 말로는, 기록이 이어지지 않는다고 말하기에 충분하지 않습니다. ◆ 틀리면 안 되는 문장: "0.855는 같은 사람인지 가리는 연결 점수이지, 85퍼센트를 식별한다는 뜻이 아닙니다." (쉼) 조건이 있습니다. 이 51명의 신원 결과를 저는 앞선 연구에서 이미 봤습니다. 이 시험은 사전 지정이지만 비맹검이고, 확증 재현이라고 부르지 않습니다. 두 공격자 모두 각 시행의 과제 단서도 봤습니다. 마지막으로, 처음 앱처럼 왼쪽과 오른쪽만 보내는 경우의 증거입니다. 결과를 본 뒤 단서를 빼고 다시 잰 사후 탐색 실험에서, 왼쪽과 오른쪽만 보내는 명령은 51명 자료에서 0.650으로 연결이 검출됐고, 54명 자료에서는 0.507로 검출되지 않았습니다. 증거가 부족하다는 뜻이지 없다는 뜻은 아닙니다. → 다음 장으로: "그럼 앱을 만드는 사람은, 무엇을 보내야 할까요?" [자료: results/audit/yang2025/decision.json predictions.V1, V2, tier · results/audit/export_manifest.json 출력 1개 8초 · 단서 없는 재실행 results/audit/cue_blind/summary.csv commands_shared_tau0.50 bayes_factor blind_auc, Yang2025 2일차 ↔ 3일차, Lee2019 세션 1 ↔ 2 (탐색, 사후)]</aside>
+</section>
+
+<section class="slide">
+  <div class="k">05 선택</div>
+  <div class="t h">덜 이어질 뿐, 끊겼다는 증거는 없다</div>
+  <div class="r" style="left:128px;top:336px;width:1664px"></div>
+  <div class="num h" style="left:128px;top:352px;font-size:180px">0.835</div>
+  <div class="lab" style="left:1270px;top:476px">8차원 특징</div>
+  <svg data-alt="위 값에서 아래 값으로 내려가는 검은 화살표" style="position:absolute;left:140px;top:586px" width="48" height="76" viewBox="0 0 48 76"><rect x="18" y="0" width="12" height="48" fill="#000000"/><polygon points="0,40 48,40 24,76" fill="#000000"/></svg>
+  <div class="r" style="left:128px;top:684px;width:1664px"></div>
+  <div class="num h" style="left:128px;top:700px;font-size:180px">0.663–0.696</div>
+  <div class="lab" style="left:1270px;top:824px">그 특징의 명령</div>
+  <div class="ft">BEAT 결과 발표 · 탐색 · 연결 AUC · Yang2025 51명 · 2일차 ↔ 3일차 · 다른 날 · 출력 20개 · 과제 정확도 모두 0.544 · 0.5 = 우연</div>
+  <div class="pn">10</div>
+  <aside class="notes">[약 105초] 같은 51명의 둘째 날과 셋째 날, 어떤 모델도 맞추지 않은 날로, 보낼 것의 후보를 비교했습니다. 공정하려면 앱이 손을 맞히는 정확도가 같아야 합니다. 정확도가 똑같이 0.544인 후보끼리만 나란히 놓았습니다. 우연이 0.5니까 해독기 자체는 약합니다. 그 이야기는 조금 뒤에 다시 하겠습니다. 8차원으로 줄인 특징은 다른 날 연결이 0.835였습니다. 그 특징에서 해독한 명령은 0.663과 0.696으로 내려갔고, 구간이 겹치지 않았습니다. τ는 해독기가 그만큼 확신하지 못하면 정지를 보내는 기준이고, 두 값은 τ 0.50과 0.60입니다. 같은 정확도라면, 명령을 보내는 쪽이 덜 이어집니다. (쉼) 하지만 연결이 사라진 후보는 없었습니다. 이 데이터에서는 모든 단계에서 연결이 검출됐고, 연결이 없음을 입증한 단계는 없습니다. 이건 탐색 결과입니다. 특징 쪽 값은 여러 공격자 가운데 가장 높은 것을 나중에 골랐고, 특징과 명령은 서로 다른 공격자로 쟀습니다. ◆ 틀리면 안 되는 문장: "명령이 덜 이어졌다는 것이지, 명령이 안전하다는 뜻이 아닙니다." → 다음 장으로: "사실 이 결과들을 내기 전에, 도구가 먼저 잡은 것이 있었습니다. 바로 저였습니다." [자료: results/audit/ladder.csv yang2025 cross_day_auc, task_ba, cross_day_wording]</aside>
+</section>
+
+<section class="slide">
+  <div class="k">06 자백</div>
+  <div class="t h">먼저 잡힌 것은 나였다</div>
+  <div class="r" style="left:128px;top:316px;width:1664px"></div>
+  <div class="num h" style="left:128px;top:330px;font-size:150px">0.543</div>
+  <div class="lab" style="left:1270px;top:426px">평균만 본 공격자</div>
+  <div class="r" style="left:128px;top:528px;width:1664px"></div>
+  <div class="num h" style="left:128px;top:542px;font-size:150px">0.630–0.677</div>
+  <div class="lab" style="left:1270px;top:638px">그 특징의 명령</div>
+  <div class="r" style="left:128px;top:740px;width:1664px"></div>
+  <div class="num h" style="left:128px;top:754px;font-size:150px">0.688</div>
+  <div class="lab" style="left:1270px;top:850px">고친 공격자</div>
+  <div class="ft">BEAT 결과 발표 · 탐색 · 연결 AUC · Lee2019 54명 · 8차원 특징 · 다른 날 · 출력 20개 · 0.543은 최종 도구의 저장 실행</div>
+  <div class="pn">11</div>
+  <aside class="notes">[약 95초] 도구를 개발하던 중이었습니다. 54명 자료에서 8차원 특징을 평균만 보는 공격자로 재니, 다른 날 출력 20개에서 0.54 정도가 나왔습니다. 화면의 0.543은 최종 도구로 저장한 실행의 값이고, 처음 발견한 개발 실행에서는 0.542였습니다. 그런데 같은 특징에서 계산한 명령은 0.630에서 0.677이었습니다. (쉼) 이건 말이 안 됩니다. 명령은 특징에서 계산합니다. 특징을 가진 공격자는 명령도 직접 계산할 수 있습니다. 특징을 제대로 공격했다면 명령보다 약할 수 없습니다. 틀린 것은 데이터가 아니라 제 공격자였습니다. 공격자를 고쳐서 과제 단서별 평균과 분산까지 보게 했더니 0.688이 나왔습니다. 그리고 이 점검을 도구에 넣었습니다. 명령이 어느 특징에서 나왔는지 알려 주면, 명령이 특징보다 세게 나올 때 도구가 표시합니다. (쉼) 이 수치들도 탐색 결과입니다. → 다음 장으로: "이 결과로 주장하지 않는 것도, 분명히 말씀드리겠습니다." [자료: results/audit/summary.csv lee2019 features_P2-RC_d8 cross-day k 20 lda_cosine, cosine_rich, 명령 τ 0.50과 0.80 · docs/decision_log.md BEAT v3 scope and pre-freeze record (1)]</aside>
+</section>
+
+<section class="slide">
+  <div class="k">07 주장하지 않는 것</div>
+  <div class="r" style="left:128px;top:340px;width:523px"></div>
+  <div class="r" style="left:698px;top:340px;width:523px"></div>
+  <div class="r" style="left:1270px;top:340px;width:522px"></div>
+  <div class="num h" style="left:128px;top:360px;font-size:160px">01</div>
+  <div class="num h" style="left:698px;top:360px;font-size:160px">02</div>
+  <div class="num h" style="left:1270px;top:360px;font-size:160px">03</div>
+  <div class="cl" style="left:128px;top:568px;font-size:48px;line-height:1.25">약한 해독기</div>
+  <div class="cl" style="left:698px;top:568px;font-size:48px;line-height:1.25">비맹검</div>
+  <div class="cl" style="left:1270px;top:568px;font-size:48px;line-height:1.25">과제 단서</div>
+  <div class="cv" style="left:128px;top:640px;width:523px">0.544–0.555</div>
+  <div class="cv" style="left:698px;top:640px;width:523px">결과를 이미 아는 51명</div>
+  <div class="cv" style="left:1270px;top:640px;width:522px">빼도 0.855 → 0.852</div>
+  <div class="ft" style="width:1580px;font-size:21px">BEAT 결과 발표 · 01 탐색, Yang2025 과제 정확도, 우연 0.5 · 02 사전 지정(비맹검), 연구자가 이 51명의 신원 결과를 알고 정한 시험 · 03 탐색 · 사후, Yang2025 V1, 연결 AUC</div>
+  <div class="pn">12</div>
+  <aside class="notes">[약 95초] 세 가지는 주장하지 않습니다. 첫째, 해독기가 약했습니다. 두 손을 구분하는 정확도가 0.544에서 0.555로, 우연인 0.5를 조금 넘었습니다. 쓸 만한 BCI에서 같은 결과가 나온다고 말할 수 없습니다. 이것도 탐색 결과입니다. 둘째, 51명 시험은 미리 정하고 한 번 돌렸지만, 시험을 정할 때 저는 이 51명의 신원 결과를 이미 알고 있었습니다. 공격자가 이 사람들을 본 적이 있다는 뜻은 아닙니다. 공격자가 노린 사용자는 등록된 적이 없습니다. 사전 지정이지만 비맹검입니다. 셋째, 오늘 보여 드린 공격자는 출력과 함께 각 시행의 과제 단서를 봤습니다. 결과를 다 본 뒤에, 같은 설정에서 단서만 빼고 다시 재 봤습니다. 두 대표 값은 거의 그대로였습니다. 0.855가 0.852로, 0.567이 0.554로요. 다만 나중에 덧붙인 탐색 실험이고, 출력에서 단서를 추측하는 공격자는 재지 않았습니다. (쉼) 또 오늘 수치는 도구에 든 공격자로 잰 값이라, 더 강한 공격자 앞에서는 더 높을 수 있는 하한입니다. 어떤 숫자도 안전이나 익명을 뜻하지 않습니다. 사용자별로 맞춘 해독기도 일관된 개선을 입증하지 못했습니다. [직접 한 문장: 다시 한다면 무엇을 다르게 할지] → 다음 장으로: "이제 처음의 그 앱으로 돌아가 보겠습니다." [자료: results/audit/ladder.csv yang2025 task_ba · results/audit/yang2025/decision.json tier · results/audit/README.md 둘째 문단 · results/audit/cue_blind/summary.csv recorded_strongest V1, V2 aware_auc, blind_auc · results/audit/cue_blind/README.md]</aside>
+</section>
+
+<section class="slide">
+  <div class="k"><span style="letter-spacing:0.16em">BEAT PROJECT&nbsp;·&nbsp;</span><span style="letter-spacing:0.05em">결과 발표</span></div>
+  <div class="st h" style="top:360px">다른 날, 강한 공격자로<br>재 봤습니까?</div>
+  <div class="sub" style="top:700px">beat-audit run · github.com/gigalove6783-pixel/beat-eeg-privacy</div>
+  <div class="r" style="left:128px;top:946px;width:1664px"></div>
+  <div class="nm" style="left:128px"><b>BEAT 팀</b> 이동현 · 장규범</div>
+  <div class="pn">13</div>
+  <aside class="notes">[약 90초] 처음의 그 앱을 다시 떠올려 보겠습니다. 뇌파 원본은 기기를 떠나지 않고, 왼쪽과 오른쪽만 나간다. 오늘 보신 것처럼, 그 문장만으로는 기록이 이어지지 않는다고 말하기에 충분하지 않습니다. (쉼) 대신 이렇게 물을 수 있습니다. 다른 날의 기록으로, 강한 공격자로 재 봤습니까? 왜 이 두 가지일까요. 5쪽에서 보셨듯, 같은 날 숫자와 다른 날 숫자는 크게 다릅니다. 11쪽에서 보셨듯, 약한 공격자는 위험을 작게 보이게 합니다. beat_audit는 같은 날과 다른 날을 늘 나란히 보여 주고, 명령이 어느 특징에서 나왔는지 알려 주면 특징 공격자가 약해 보일 때 표시합니다. 앱을 만드는 분이라면 내일 할 수 있는 일이 있습니다. 내보낼 출력에 가명과 날 라벨을 붙여 beat-audit run을 돌리고, 같은 날과 다른 날을 함께 보세요. 결과가 검출 안 됨이어도 안전하다고 쓰지 마세요. 증거가 부족하다는 뜻일 뿐입니다. 코드와 결과, 오늘 보여 드린 수치의 출처는 모두 화면의 저장소에 있습니다. (쉼) 감사합니다. 질문 받겠습니다. [발표하지 않음: 메모 합계 20분 00초 = 70 + 55 + 70 + 80 + 90 + 75 + 240(시연, 8쪽 대체 화면 포함) + 0 + 135 + 105 + 95 + 95 + 90초. 시연이 5분이 되면 어디서든 끊는다. 아직 보여 주지 못한 카드가 있으면 8쪽을 10초쯤 띄워 그 카드를 가리킨 뒤 9쪽으로 간다. 그래도 넘치면 4쪽의 방어 이야기와 10쪽의 탐색 단서를 한 문장씩 줄인다. 9쪽의 답과 등급, 12쪽의 세 칸은 빼지 않는다. 어떤 경우에도 25분을 넘기지 않는다. 자세한 수치는 v3 덱 BEAT_v3_talk와 백업 B1–B6.]</aside>
+</section>
+
+<section class="slide">
+  <div class="k">백업 B1 · v1–v2</div>
+  <div class="bt h">봉인한 주장 아홉 개 중 다섯 개 지지</div>
+  <table class="tb" style="top:300px">
+    <tr><th style="padding:12px 24px 12px 0;width:620px">데이터</th><th style="padding:12px 0">사전등록한 주장의 판정</th></tr>
+    <tr><td style="padding:14px 24px 14px 0">BCI IV 2a · 9명</td><td style="padding:14px 0">H1, H2 지지 안 됨</td></tr>
+    <tr><td style="padding:14px 24px 14px 0">Lee2019 · 54명</td><td style="padding:14px 0">C1, C2, C4 지지 · C3 지지 안 됨</td></tr>
+    <tr><td style="padding:14px 24px 14px 0">Yang2025 · 51명 · 다른 날</td><td style="padding:14px 0">M1, M3 지지 · M2 지지 안 됨</td></tr>
+  </table>
+  <div class="cl" style="left:128px;top:664px">v2 논지 · 연구 M의 결과를 보기 전에 결정 로그에 고정</div>
+  <div class="cv" style="left:128px;top:726px;width:1664px;line-height:1.4">“BCI 전송물의 신원 노출과 방어 효과는 공격자가 어느 날의 기록으로 등록하느냐에 따라 달라지므로, 같은 날 수치 하나로는 위험도 보호도 주장할 수 없다.”</div>
+  <div class="ft">BEAT 결과 발표 · v1–v2 수치는 등록한 공격자의 식별 정확도로, 연결 AUC와 다른 척도다</div>
+  <div class="pn">B1</div>
+  <aside class="notes">[질의응답용] v1과 v2에서 결과를 보기 전에 봉인한 주장은 아홉 개였고, 다섯 개가 지지되고 네 개는 지지되지 않았습니다. 지지되지 않은 H1, H2, C3, M2도 그대로 보고했습니다. 논지 문장은 연구 M의 최종 결과를 읽기 전에 결정 로그에 고정했습니다. v3는 이 판정과 등급, 등록 수치를 바꾸지 않았습니다. [자료: README.md The identity study (v1–v2) · docs/decision_log.md 2026-11-11 · 상세는 BEAT_v3_talk B3–B4]</aside>
+</section>
+
+<section class="slide">
+  <div class="k">백업 B2 · 도구 검증</div>
+  <div class="bt h">정답을 아는 합성 자료로 먼저 검증했다</div>
+  <div class="r" style="left:128px;top:330px;width:380px"></div>
+  <div class="r" style="left:556px;top:330px;width:380px"></div>
+  <div class="r" style="left:984px;top:330px;width:380px"></div>
+  <div class="r" style="left:1412px;top:330px;width:380px"></div>
+  <div class="num h" style="left:128px;top:354px;font-size:104px">0.049</div>
+  <div class="num h" style="left:556px;top:354px;font-size:104px">0.954</div>
+  <div class="num h" style="left:984px;top:354px;font-size:104px">15/200</div>
+  <div class="num h" style="left:1412px;top:354px;font-size:104px">0.0</div>
+  <div class="cl" style="left:128px;top:510px;width:380px">거짓 검출률 최대</div>
+  <div class="cl" style="left:556px;top:510px;width:380px">참값 포함률 최저</div>
+  <div class="cl" style="left:984px;top:510px;width:380px">확장 영가설 최대</div>
+  <div class="cl" style="left:1412px;top:510px;width:380px">등록 수치 재현 차이</div>
+  <div class="ln" style="left:128px;top:574px;width:380px">명목 0.05 이하<br>세 크기 1,000회씩<br>0.031 · 0.047 · 0.049</div>
+  <div class="ln" style="left:556px;top:574px;width:380px">요구 0.90–0.99 안<br>게이트 대상 두 설계<br>9명 설계 AUC 0.938</div>
+  <div class="ln" style="left:984px;top:574px;width:380px">99% 허용 3–19회 안<br>비교기 3종 200회씩<br>명목 5%보다 높다</div>
+  <div class="ln" style="left:1412px;top:574px;width:380px">0.994 → 0.994<br>0.520 → 0.520<br>닫힌 집합 모듈</div>
+  <div class="ft">BEAT 결과 발표 · 합성 자료 검증 · 연결 측정은 합성 검증이, 닫힌 집합 모듈은 재현이 맡는다 · 포함률 최저는 대비 구간</div>
+  <div class="pn">B2</div>
+  <aside class="notes">[질의응답용] 실제 데이터에 쓰기 전에 정답을 아는 합성 자료로 검증했습니다. 신원 정보가 없을 때 거짓 검출률은 세 크기 모두 명목 0.05 이하였고, 가장 높은 값이 0.049였습니다. 기준을 적용한 두 설계에서 구간 포함률은 가장 낮아도 0.954로 요구 범위 안이었고, 이 최저값은 대비 구간의 값입니다. 9명 설계는 포함률 기준을 적용하지 않으며 평균 AUC 구간이 0.938이었습니다. 실제 배치 설정의 확장 실행에서는 한 비교기가 200회 중 15회로 명목보다 높았지만 미리 정한 허용 범위 안이었습니다. 닫힌 집합 모듈은 등록 수치 0.994와 0.520을 차이 없이 재현했습니다. [자료: results/audit/validation.json · results/audit/parity.json]</aside>
+</section>
+
+<section class="slide">
+  <div class="k">백업 B3 · V1과 V2</div>
+  <div class="bt h">계산 전에 고정하고 한 번 돌린 배치</div>
+  <table class="tb" style="top:300px">
+    <tr><th style="padding:12px 24px 12px 0;width:130px">예측</th><th style="padding:12px 24px 12px 0;width:640px">무엇을 이었나</th><th style="padding:12px 24px 12px 0;width:390px">연결 AUC [95%]</th><th style="padding:12px 24px 12px 0;width:230px">Holm p</th><th style="padding:12px 0">판정</th></tr>
+    <tr><td style="padding:14px 24px 14px 0;font-weight:700">V1</td><td style="padding:14px 24px 14px 0">전체 특징, 1일차 ↔ 2–3일차, 출력 20개</td><td style="padding:14px 24px 14px 0">0.855 [0.802, 0.905]</td><td style="padding:14px 24px 14px 0">2.0 × 10⁻⁴</td><td style="padding:14px 0;font-weight:700">지지</td></tr>
+    <tr><td style="padding:14px 24px 14px 0;font-weight:700">V2</td><td style="padding:14px 24px 14px 0">8차원 병목의 명령 τ 0.60, 명령 50개</td><td style="padding:14px 24px 14px 0">0.567 [0.540, 0.596]</td><td style="padding:14px 24px 14px 0">2.0 × 10⁻⁴</td><td style="padding:14px 0;font-weight:700">지지</td></tr>
+    <tr><td style="padding:14px 24px 14px 0;font-weight:700">대비</td><td style="padding:14px 24px 14px 0">전체 특징, 같은 날 − 다른 날</td><td style="padding:14px 24px 14px 0">0.144 [0.094, 0.197]</td><td style="padding:14px 24px 14px 0">검정 없음</td><td style="padding:14px 0">판정 없는 추정치</td></tr>
+  </table>
+  <div class="ln" style="top:660px">Holm 보정: V1과 V2, α = 0.05<br>freeze-5 (커밋 55cd01e) 뒤 배치 한 번 · 180칸 모두 정상 · 독립 감사 재계산 일치<br>두 공격자 모두 출력과 각 시행의 과제 단서를 봤다<br>이 51명의 신원 결과는 연구 M에서 이미 알았으므로 확증 재현이 아니다</div>
+  <div class="ft">BEAT 결과 발표 · 사전 지정(비맹검) · Yang2025 51명 · 연결 AUC · 0.5 = 우연</div>
+  <div class="pn">B3</div>
+  <aside class="notes">[질의응답용] 도구, 설정, 입력 해시, 폴드와 seed, 예측 두 개를 freeze-5 커밋으로 고정해 올린 뒤 배치를 한 번 돌렸고, 180칸이 모두 정상으로 끝났습니다. V1과 V2 모두 지지됐고, 같은 날에서 다른 날을 뺀 대비 0.144는 판정 없는 추정치입니다. 판정은 이 두 예측에만 있습니다. [자료: results/audit/yang2025/decision.json · docs/decision_log.md 2026-11-12 · 상세는 BEAT_v3_talk 10쪽과 B6]</aside>
+</section>
+
+<section class="slide">
+  <div class="k">백업 B4 · 전송 사다리</div>
+  <div class="bt h">일곱 단계 모두에서 연결이 검출됐다</div>
+  <table class="tb" style="top:290px">
+    <tr><th style="padding:10px 24px 10px 0;width:600px">단계 (출력 20개)</th><th style="padding:10px 24px 10px 0;width:240px">과제 BA</th><th style="padding:10px 24px 10px 0;width:300px">같은 날</th><th style="padding:10px 0">다른 날 [95%]</th></tr>
+    <tr><td style="padding:9px 24px 9px 0">전체 특징</td><td style="padding:9px 24px 9px 0">0.555</td><td style="padding:9px 24px 9px 0">1.000</td><td style="padding:9px 0">0.910 [0.864, 0.950]</td></tr>
+    <tr><td style="padding:9px 24px 9px 0">8차원 병목</td><td style="padding:9px 24px 9px 0">0.544</td><td style="padding:9px 24px 9px 0">0.988</td><td style="padding:9px 0">0.835 [0.781, 0.880]</td></tr>
+    <tr><td style="padding:9px 24px 9px 0">공용 해독기 명령 τ 0.50</td><td style="padding:9px 24px 9px 0">0.544</td><td style="padding:9px 24px 9px 0">0.827</td><td style="padding:9px 0">0.663 [0.590, 0.727]</td></tr>
+    <tr><td style="padding:9px 24px 9px 0">공용 해독기 명령 τ 0.60</td><td style="padding:9px 24px 9px 0">0.544</td><td style="padding:9px 24px 9px 0">0.864</td><td style="padding:9px 0">0.696 [0.619, 0.759]</td></tr>
+    <tr><td style="padding:9px 24px 9px 0">사용자별 해독기 명령 τ 0.50</td><td style="padding:9px 24px 9px 0">0.545</td><td style="padding:9px 24px 9px 0">0.826</td><td style="padding:9px 0">0.634 [0.557, 0.707]</td></tr>
+    <tr><td style="padding:9px 24px 9px 0">사용자별 해독기 명령 τ 0.60</td><td style="padding:9px 24px 9px 0">0.545</td><td style="padding:9px 24px 9px 0">0.815</td><td style="padding:9px 0">0.627 [0.550, 0.701]</td></tr>
+    <tr><td style="padding:9px 24px 9px 0">사용자별 해독기 명령 τ 0.80</td><td style="padding:9px 24px 9px 0">0.545</td><td style="padding:9px 24px 9px 0">0.829</td><td style="padding:9px 0">0.635 [0.556, 0.710]</td></tr>
+  </table>
+  <div class="ln" style="top:830px">맞춘 비교는 과제 BA 0.544인 8차원 병목과 공용 해독기 명령뿐 · 연결이 없음을 입증한 단계는 없다<br>Lee2019: 일곱 단계 모두 같은 날 검출 · 2a: 명령 다섯 단계 검출 안 됨 = 증거 부족, 없음 아님</div>
+  <div class="ft">BEAT 결과 발표 · 탐색 · Yang2025 51명 · 2–3일차 · 출력 20개 · 0.5 = 우연</div>
+  <div class="pn">B4</div>
+  <aside class="notes">[질의응답용] 10쪽에서 뺀 단계까지 포함한 전체 표입니다. Yang2025에서는 일곱 단계 모두 같은 날과 다른 날에 연결이 검출됐습니다. 2a의 명령 다섯 단계는 검출 안 됨이었고, 그것은 증거 부족이지 없음이 아닙니다. 연결이 없음을 입증한 단계는 없습니다. 사용자별 해독기는 일관된 개선을 입증하지 못했습니다. [자료: results/audit/ladder.csv · results/audit/ladder_compare_bnci2014_001.md · 상세는 BEAT_v3_talk B9–B10]</aside>
+</section>
+
+<section class="slide">
+  <div class="k">백업 B5 · 단서 없는 공격자</div>
+  <div class="bt h">단서를 빼도 거의 그대로, 예외 한 칸</div>
+  <table class="tb" style="top:268px;font-size:30px">
+    <tr><th style="padding:5px 24px 5px 0;width:880px">조건 · 출력 20개, V2만 명령 50개</th><th style="padding:5px 24px 5px 0;width:200px">단서 봄</th><th style="padding:5px 24px 5px 0;width:380px">단서 없음 [95%]</th><th style="padding:5px 0">단서 없이</th></tr>
+    <tr><td style="padding:5px 24px 5px 0">V1 · Yang2025 전체 특징 · 1일차 ↔ 2–3일차</td><td style="padding:5px 24px 5px 0">0.855</td><td style="padding:5px 24px 5px 0">0.852 [0.806, 0.896]</td><td style="padding:5px 0">검출</td></tr>
+    <tr><td style="padding:5px 24px 5px 0">V2 · Yang2025 8차원 병목 명령 τ 0.60 · 1일차 ↔ 2–3일차</td><td style="padding:5px 24px 5px 0">0.567</td><td style="padding:5px 24px 5px 0">0.554 [0.526, 0.582]</td><td style="padding:5px 0">검출</td></tr>
+    <tr><td style="padding:5px 24px 5px 0">Yang2025 8차원 병목 · 2일차 ↔ 3일차</td><td style="padding:5px 24px 5px 0">0.835</td><td style="padding:5px 24px 5px 0">0.834 [0.778, 0.881]</td><td style="padding:5px 0">검출</td></tr>
+    <tr><td style="padding:5px 24px 5px 0">Yang2025 공용 해독기 명령 τ 0.50 · 2일차 ↔ 3일차</td><td style="padding:5px 24px 5px 0">0.663</td><td style="padding:5px 24px 5px 0">0.650 [0.577, 0.715]</td><td style="padding:5px 0">검출</td></tr>
+    <tr><td style="padding:5px 24px 5px 0">Yang2025 공용 해독기 명령 τ 0.60 · 2일차 ↔ 3일차</td><td style="padding:5px 24px 5px 0">0.696</td><td style="padding:5px 24px 5px 0">0.685 [0.608, 0.750]</td><td style="padding:5px 0">검출</td></tr>
+    <tr><td style="padding:5px 24px 5px 0">Lee2019 전체 특징 · 세션 1 ↔ 2</td><td style="padding:5px 24px 5px 0">0.954</td><td style="padding:5px 24px 5px 0">0.952 [0.929, 0.971]</td><td style="padding:5px 0">검출</td></tr>
+    <tr><td style="padding:5px 24px 5px 0">Lee2019 8차원 병목 · 세션 1 ↔ 2</td><td style="padding:5px 24px 5px 0">0.688</td><td style="padding:5px 24px 5px 0">0.681 [0.636, 0.721]</td><td style="padding:5px 0">검출</td></tr>
+    <tr><td style="padding:5px 24px 5px 0;font-weight:700">Lee2019 공용 해독기 명령 τ 0.50 · 세션 1 ↔ 2</td><td style="padding:5px 24px 5px 0;font-weight:700">0.630</td><td style="padding:5px 24px 5px 0;font-weight:700">0.507 [0.494, 0.519]</td><td style="padding:5px 0;font-weight:700">검출 안 됨</td></tr>
+    <tr><td style="padding:5px 24px 5px 0">Lee2019 공용 해독기 명령 τ 0.80 · 세션 1 ↔ 2</td><td style="padding:5px 24px 5px 0">0.677</td><td style="padding:5px 24px 5px 0">0.670 [0.619, 0.715]</td><td style="padding:5px 0">검출</td></tr>
+  </table>
+  <div class="ln" style="top:820px;font-size:30px;line-height:1.38">예외: 정지 없는 왼쪽·오른쪽 명령(τ 0.50)은 Lee2019에서 단서 없이 우연 근처였고 검출되지 않았다(p = 0.11)<br>증거 부족이지 없음이 아니며, 이유는 시험하지 않았다 · Yang2025에서는 같은 명령이 단서 없이도 이어졌다<br>재지 않은 것: 출력에서 단서를 추측하는 공격자 · 순서·시간 모형 · 다른 k와 비교기 · 조건 사이 다중성 보정</div>
+  <div class="ft">BEAT 결과 발표 · 탐색 · 사후: 결과를 본 뒤 target 열만 뺀 재실행 · 단서 봄 재실행은 기록값과 정확히 일치</div>
+  <div class="pn">B5</div>
+  <aside class="notes">[질의응답용] 오늘 보고한 V1, V2와 사다리의 공격자는 모두 출력과 함께 각 시행의 과제 단서를 봤습니다. 모든 결과를 본 뒤에, 같은 동결 도구와 설정, 같은 사용자와 폴드와 창에서 단서 열만 빼고 다시 쟀습니다. 단서를 준 재실행은 기록된 값과 정확히 같았습니다. 이 표는 탐색이고 사후 결과입니다. 두 대표 값의 짝지은 차이는 반올림 전 값으로 V1 +0.002 [−0.011, +0.015], V2 +0.013 [+0.004, +0.023]이고, 판정 없는 추정치입니다. 예외는 하나입니다. Lee2019에서 정지 없이 왼쪽과 오른쪽만 보내는 명령은, 단서 없이 보면 0.507로 우연 근처였고 검출되지 않았습니다(p = 0.11). 증거가 부족하다는 뜻이지 연결이 없다는 뜻이 아닙니다. 차이는 +0.123 [+0.082, +0.163]입니다. 이 명령 흐름에는 정지 기호가 없고 왼쪽과 오른쪽만 들어 있습니다. 단서가 없으면 공격자가 쓰는 것은 출력 20개마다의 왼쪽과 오른쪽 개수입니다. 왜 여기서 우연 근처였는지는 시험하지 않았습니다. Yang2025에서는 같은 종류의 명령이 단서 없이도 0.650으로 이어졌습니다. 또 Yang2025 2일차와 3일차에서는 단서 없이도 명령 0.650과 0.685가 특징 0.834보다 낮았고 구간이 겹치지 않았습니다. 짝지은 검정은 아닙니다. Lee2019의 세션 1은 보정 세션이라 Yang2025의 뒷날 행과 바로 비교하지 않습니다. 출력에서 단서를 추측하는 공격자, 순서와 시간 모형, 다른 k와 비교기, 조건 사이의 다중성 보정은 다루지 않았습니다. 처음 앱에 가장 가까운 왼쪽·오른쪽 명령이 두 자료에서 갈렸으므로, 9쪽의 답은 ‘언제나 이어진다’가 아니라 ‘이어지지 않는다고 말할 수 없다’입니다. [자료: results/audit/cue_blind/summary.csv recorded_strongest = True 행의 aware_auc, blind_auc, blind_ci_low, blind_ci_high, diff_aware_minus_blind, diff_ci_low, diff_ci_high, blind_p, blind_wording_in_recorded_family · results/audit/cue_blind/README.md Reading, What this does not cover]</aside>
+</section>
+
+<section class="slide">
+  <div class="k">백업 B6 · 실패와 미입증</div>
+  <div class="bt h">실패했거나 입증하지 못한 것</div>
+  <table class="tb" style="top:290px">
+    <tr><th style="padding:10px 24px 10px 0;width:360px">상태</th><th style="padding:10px 24px 10px 0;width:340px">항목</th><th style="padding:10px 0">내용</th></tr>
+    <tr><td style="padding:12px 24px 12px 0">점검 실패</td><td style="padding:12px 24px 12px 0">갤러리 크기 외삽</td><td style="padding:12px 0">Yang2025 180칸 중 62칸(V1 칸 포함)이<br>독립 모형 점검에 실패, 그 칸은 큰 N을 내지 않는다</td></tr>
+    <tr><td style="padding:12px 24px 12px 0">명목과 다름</td><td style="padding:12px 24px 12px 0">순차 공격자</td><td style="padding:12px 0">명목 0.05 · V2 칸 잘못 연결 0.131, 놓침 0.693<br>합성 자료에서는 0.047, 0.024</td></tr>
+    <tr><td style="padding:12px 24px 12px 0">일관된 개선을<br>입증하지 못함 (탐색)</td><td style="padding:12px 24px 12px 0">사용자별 해독기의<br>과제 BA</td><td style="padding:12px 0">사용자별 대 공용: Yang2025 0.545 대 0.544 ·<br>Lee2019 0.646 대 0.692 · 2a 0.759 대 0.718</td></tr>
+    <tr><td style="padding:12px 24px 12px 0">자기 증명</td><td style="padding:12px 24px 12px 0">저장소로<br>증명할 수 없는 것</td><td style="padding:12px 0">동결 커밋과 태그가 배치보다 21초 앞선다는 Git·로그 시각,<br>기록되지 않은 실행이 없다는 것, 그와 별개인 push 순서</td></tr>
+    <tr><td style="padding:12px 24px 12px 0">표기 주의</td><td style="padding:12px 24px 12px 0">보고서 문구</td><td style="padding:12px 0">report.md는 판정이 아닌 177칸에도 “linkage detected”를<br>찍는다. 판정은 V1과 V2뿐이다</td></tr>
+  </table>
+  <div class="ft">BEAT 결과 발표 · 순차 공격자는 모형 기반 상한이며 실제 기록에서는 성립하지 않았다</div>
+  <div class="pn">B6</div>
+  <aside class="notes">[질의응답용] 실패하거나 입증하지 못한 것도 결과입니다. 사람 수가 늘 때의 예측은 V1 칸을 포함해 180칸 중 62칸에서 스스로 점검에 실패했습니다. 순차 공격자는 실제 V2 칸에서 명목값과 달랐고, 실제 기록에서는 명목값도 모형 기반 상한도 성립하지 않았습니다. 사용자별 해독기는 일관된 개선을 입증하지 못했습니다. 커밋 시각과 기록되지 않은 실행이 없다는 것은 저희 스스로만 증명할 수 있습니다. [자료: results/audit/yang2025/summary.csv · results/audit/validation.json · results/audit/ladder.csv · results/audit/README.md · 상세는 BEAT_v3_talk B14]</aside>
+</section>
+
+</body></html>

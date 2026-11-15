@@ -1,0 +1,38 @@
+{
+ "set": "synthetic",
+ "files": [
+  {
+   "file": "A_synthetic_features.csv",
+   "sha256": "f50be9616e783595c1b0d30bd7fc3f34f508c0709eb02aa1da5197fe287bb7d2",
+   "role": "A",
+   "title": "특징 벡터",
+   "description": "BCI가 보내는 특징 벡터 전체",
+   "derivation": "generated features (16 dimensions)",
+   "source": "synthetic, 20 users, 2 days, 100 trials per day",
+   "selection": "합성 데이터: 사용자 20명, 2일, 구간마다 50개 시행(실제 코호트 표본과 같은 크기). C는 A의 사용자 라벨을 고정 시드로 섞은 것.",
+   "tier": "시연용 부분집합, 탐색"
+  },
+  {
+   "file": "B_synthetic_commands.csv",
+   "sha256": "38c542cd99bb0eedecc17ee8be008aba6300383cc823960accacfc472c38250e",
+   "role": "B",
+   "title": "명령",
+   "description": "같은 기록에서 해독한 명령(왼쪽·오른쪽·정지)",
+   "derivation": "commands decoded from file A's features by a fixed threshold rule",
+   "source": "synthetic, 20 users, 2 days, 100 trials per day",
+   "selection": "합성 데이터: 사용자 20명, 2일, 구간마다 50개 시행(실제 코호트 표본과 같은 크기). C는 A의 사용자 라벨을 고정 시드로 섞은 것.",
+   "tier": "시연용 부분집합, 탐색"
+  },
+  {
+   "file": "C_synthetic_shuffled_users.csv",
+   "sha256": "961c1007f0cd4b593970be903f11f0377963bd0772c44a0443b485d02c8642c3",
+   "role": "C",
+   "title": "대조군",
+   "description": "A의 사용자 라벨만 섞은 대조군",
+   "derivation": "file A, user labels permuted within each (day, segment, order)",
+   "source": "synthetic, 20 users, 2 days, 100 trials per day",
+   "selection": "합성 데이터: 사용자 20명, 2일, 구간마다 50개 시행(실제 코호트 표본과 같은 크기). C는 A의 사용자 라벨을 고정 시드로 섞은 것.",
+   "tier": "시연용 부분집합, 탐색"
+  }
+ ]
+}

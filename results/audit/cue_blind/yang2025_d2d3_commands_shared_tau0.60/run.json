@@ -1,0 +1,60 @@
+{
+  "id": "yang2025_d2d3_commands_shared_tau0.60",
+  "tier": "exploratory, post hoc",
+  "source_sha256": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+  "reference": {
+    "path": "results/audit/ladder/yang2025/principal/commands_shared_tau0.60/report.json",
+    "sha256": "7fd89829414ac5bb81abb062c0699a427c695e5ef32cb27a2a18b510358a7e8f"
+  },
+  "inputs": {
+    "0": "3c7ecd1a7fda7ad4a5576beae6c54206247ce7a275cdfcbfcefe806af7abdc23",
+    "1": "cff3a10046d2c05bf9cd9e20e8f26307244672c9d7940afca17f3650453ca9d6",
+    "2": "ea62934d242f4c47ef67ad2f252ecf39c7a40f256b4e2809a5aca6a1699d77c0"
+  },
+  "blind_inputs": {
+    "0": {
+      "file": "results/audit/cue_blind/inputs/yang2025/ladder_principal/commands_shared_tau0.60_seed0.npz",
+      "sha256": "cf4f8d9485d47d0cf58ce90fefcc89c41a20b09e837b71cf2828ce7a1e837664"
+    },
+    "1": {
+      "file": "results/audit/cue_blind/inputs/yang2025/ladder_principal/commands_shared_tau0.60_seed1.npz",
+      "sha256": "f7f5f44147832a3aaabe8d55d45cbe23f00435875592af9b6efe33845be76ac8"
+    },
+    "2": {
+      "file": "results/audit/cue_blind/inputs/yang2025/ladder_principal/commands_shared_tau0.60_seed2.npz",
+      "sha256": "a909f57bb5020820523626e620dfc3ba1660373e110ce977a0083daad0b4fa4b"
+    }
+  },
+  "variants": {
+    "cue_aware_reproduction": {
+      "seconds": 10.322275099999388,
+      "tool_runtime_seconds": 9.6445015000063,
+      "report": "results/audit/cue_blind/yang2025_d2d3_commands_shared_tau0.60/cue_aware_reproduction/report.json",
+      "slim": "results/audit/cue_blind/yang2025_d2d3_commands_shared_tau0.60/cue_aware_reproduction/report.slim.json",
+      "configuration": "a34f79a9b332a966949cb821b1089d8afe90aa48e994884ed5716a98c0794ed8",
+      "inputs": {
+        "0": "3c7ecd1a7fda7ad4a5576beae6c54206247ce7a275cdfcbfcefe806af7abdc23",
+        "1": "cff3a10046d2c05bf9cd9e20e8f26307244672c9d7940afca17f3650453ca9d6",
+        "2": "ea62934d242f4c47ef67ad2f252ecf39c7a40f256b4e2809a5aca6a1699d77c0"
+      },
+      "source": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+      "support_mismatches": []
+    },
+    "cue_blind": {
+      "seconds": 11.37503110000398,
+      "tool_runtime_seconds": 10.909121799995773,
+      "report": "results/audit/cue_blind/yang2025_d2d3_commands_shared_tau0.60/cue_blind/report.json",
+      "slim": "results/audit/cue_blind/yang2025_d2d3_commands_shared_tau0.60/cue_blind/report.slim.json",
+      "configuration": "a34f79a9b332a966949cb821b1089d8afe90aa48e994884ed5716a98c0794ed8",
+      "inputs": {
+        "0": "cf4f8d9485d47d0cf58ce90fefcc89c41a20b09e837b71cf2828ce7a1e837664",
+        "1": "f7f5f44147832a3aaabe8d55d45cbe23f00435875592af9b6efe33845be76ac8",
+        "2": "a909f57bb5020820523626e620dfc3ba1660373e110ce977a0083daad0b4fa4b"
+      },
+      "source": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+      "support_mismatches": []
+    }
+  },
+  "reproduction": "exact",
+  "seconds": 22.04402349999873
+}

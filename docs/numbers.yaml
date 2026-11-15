@@ -16,10 +16,11 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.994"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px;top:392px;font-size:280px\">0.994</div>", "결과를 보기 전에 봉인한 시험에서도 같은 날 정확도가 0.994였습니다. 우연이면 54명 중 한 명, ", "px;top:400px;font-size:220px\">0.994</div>", "과 발표 · Lee2019 54명 · 식별 정확도 · 0.994 확증 기준값 · 0.520 사전등록 추", "side class=\"notes\">[약 90초] 아까 0.994를 기억하시나요? 그 값은 공격자가 같은", "1412px;top:574px;width:380px\">0.994 → 0.994<br>0.520 → 0.", "허용 범위 안이었습니다. 닫힌 집합 모듈은 등록 수치 0.994와 0.520을 차이 없이 재현했습니다."]
       presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["근거: 자체 핵심 수치(같은 날 0.994, 다른 날 0.520), 자체 방어 EQ, 그리고 새 사용자 51명에", "가공하지 않은 특징은 같은 날 0.994, 다른 날 0.520으로 사용자를 식별한다", "t-size:110px;line-height:1.1;font-weight:700;color:#D55E00\">0.994</div>", "C2 확증 (같은 날): 0.994 → 0.340, 과제 정확도 변화 −0.6%p (하한 −2.3%p, 허", "초] 아무 방어 없이 210차원 특징을 보내면, 54명에서 균형 정확도 0.994(사용자별 재현율의 평균)가 나옵니다. 그런데 이 0.994는 같은 날", "균형 정확도 0.994(사용자별 재현율의 평균)가 나옵니다. 그런데 이 0.994는 같은 날 수치입니다. 같은 날 기록의 한 부분으로 등록하고 다른 부분", "화 병목으로, 같은 날 0.340, 다른 날 0.054입니다. 같은 날 0.994를 0.340으로 낮춘 것이 확증 주장 C2였고, 과제 정확도 손실은 0", "같은 날 0.994였던 식별이 다른 날 등록에서는 0.520이었다. 낮아졌지만 우연 0.0", "[약 45초] 정리하겠습니다. 같은 날 0.994였던 식별이 다른 날 등록에서는 0.520이었습니다. 낮아졌지만 우연보다"]
       README.md: ["Within-day 0.994 → 0.340 (cross-day 0.520 → 0.054)", "identity BA from 0.994 to 0.340"]
-      docs/report.md: ["0.994 identity BA within a day and 0.520 across days", "0.520 rather than 0.994"]
-      docs/explainer_ko.md: ["210차원 접공간 특징이 0.994(우연 0.0185)"]
+      docs/report.md: ["0.994 identity BA within a day and 0.520 across days", "0.520 rather than 0.994", "neck lowered identity BA from 0.994 to 0.340, still 18 ti", "ed users at 0.520 rather than 0.994 (a pre-registered est"]
+      docs/explainer_ko.md: ["210차원 접공간 특징이 0.994(우연 0.0185)", "같은 54명의 같은 특징도 같은 날 기록으로 등록하면 0.994, 다른 날 기록으로 등록하면 0.520", "지막 확증 결과를 보기 전에 결정 로그에 고정했습니다(0.994는 확증 C2 기준값, 0.520은 사전", "봉인한 시험에서 같은 날 정확도가 0.994였고(우연은 54명 중 한 명, 약 0.02)", "- 말할 것: 같은 날 등록이면 0.994였던 식별이 첫날로 등록하고 다른 날을 "]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["t-weight:700;color:#14202E\">0.994</div><div cla", "M2는 지지되지 않았습니다. 핵심 수치는 같은 날 0.994, 다른 날 0.520이었", "/div></div><div class=\"val\">0.994 → 0.994</div>", " 도구의 닫힌 집합 모듈이 확증 연구 L에 등록된 0.994와 0.520을 차이 없이", "td style=\"padding:7px 14px\">0.994 → 0.340, 과제 −", "티</b> (같은 마스크, 방향, seed)<br>0.994 → 0.994 · 0.5"]
     demo:
       - {file: demo/data/results.json, json: lee2019.claims.1.quantities.0.value}
@@ -29,8 +30,10 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.520"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px;top:400px;font-size:220px\">0.520</div>", "54명 · 식별 정확도 · 0.994 확증 기준값 · 0.520 사전등록 추정치 · 우연 0.019</", " 첫날 기록으로 등록하고 다른 날 기록을 맞히게 하면 0.520으로 떨어집니다. 우연보다는 훨씬 높지만", "width:380px\">0.994 → 0.994<br>0.520 → 0.520<br>닫힌 집합 모듈</", "이었습니다. 닫힌 집합 모듈은 등록 수치 0.994와 0.520을 차이 없이 재현했습니다. [자료: r"]
+      docs/report.md: ["nt vector identified users at 0.520 rather than 0.994 (a ", "1 vs 2, commands at τ = 0.50 (0.520) and τ = 0.80 (0.537)"]
       presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["근거: 자체 핵심 수치(같은 날 0.994, 다른 날 0.520), 자체 방어 EQ, 그리고 새 사용자 51명에 대한", "가공하지 않은 특징은 같은 날 0.994, 다른 날 0.520으로 사용자를 식별한다", "t-size:110px;line-height:1.1;font-weight:700;color:#D55E00\">0.520</div>", "분으로 등록하고 다른 부분을 맞힌 값입니다. 다른 날 기록으로 등록하면 0.520으로 내려갑니다. 절반 가까이 떨어졌지만 우연 수준 0.019보다는 훨씬", "같은 날 0.994였던 식별이 다른 날 등록에서는 0.520이었다. 낮아졌지만 우연 0.019보다 훨씬 높다", "초] 정리하겠습니다. 같은 날 0.994였던 식별이 다른 날 등록에서는 0.520이었습니다. 낮아졌지만 우연보다 훨씬 높습니다. 두 함정은 54명의 같은"]
-      docs/explainer_ko.md: ["| 0.520 | 같은 특징(RBF SVM 0.510, MLP 0.368) | 다른 날 | 사전등록 추정치 |"]
+      docs/explainer_ko.md: ["| 0.520 | 같은 특징(RBF SVM 0.510, MLP 0.368) | 다른 날 | 사전등록 추정치 |", "으로 등록하면 0.994, 다른 날 기록으로 등록하면 0.520이어서, \"같은 날 수치 하나로는 위험도", " 로그에 고정했습니다(0.994는 확증 C2 기준값, 0.520은 사전등록 추정치; 5쪽).", ".994였던 식별이 첫날로 등록하고 다른 날을 맞히면 0.520(사전등록 추정치)입니다. 세 명씩 묶는"]
       README.md: ["and 0.520 on 54 users", "| L | 0.994 | 0.520 | within: *confirmatory-sealed* (L, C2); cross: *pre-registered estimate* |"]
       docs/report.md: ["the full tangent vector gives 0.520 (logistic regression; 0.510 RBF-SVM, 0.368 MLP)",
                        "| 0.951 (T→E) | 0.520 (session 1 → 2) |", "0.520 for the full tangent vector (0.994 within a day"]
@@ -1655,8 +1658,10 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.026"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px;top:392px;font-size:240px\">0.026</div>", "어 강도 λ를 1로 걸었을 때, 그 평가자의 정확도는 0.026이었습니다. 우연인 0.111보다도 낮습"]
+      docs/report.md: ["nt-reversal adversary reports 0.026 BA while independentl"]
       presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["CI IV 2a 9명, λ = 1</div><div class=\"val\"><span class=\"blue\">0.026</span", "키고, 그 식별기를 속이도록 인코더를 훈련합니다. 9명에서 그 식별기는 0.026이었지만, 같은 출력으로 새로 학습시킨 공격자는 0.951을 맞힙니다."]
-      docs/explainer_ko.md: ["| head 0.026 / 독립 0.951 |"]
+      docs/explainer_ko.md: ["| head 0.026 / 독립 0.951 |", "우는 방어를 만들었지만, 방어와 함께 학습한 평가자가 0.026으로 우연보다 낮았던 바로 그 출력에서 ", " 것: 방어 강도 λ = 1에서 함께 학습한 평가자는 0.026으로 우연 0.111보다 낮았지만, 같은"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["λ = 1</div><div class=\"val\">0.026 대 0.951</div>", "2의 두 함정입니다. 방어와 함께 학습한 식별기는 0.026이라고 말하지만 독립 공격"]
   - id: 2a_B_independent_lambda1
     value: {file: results/exp_b/adversary_comparison.csv, column: independent_ba,
@@ -1664,8 +1669,10 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.951"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px;top:392px;font-size:240px\">0.951</div>", "출력을 받아서, 방어와 상관없이 따로 학습한 공격자는 0.951을 맞혔습니다. 채점자가 방어와 한편이었"]
+      docs/report.md: ["y, BA, 1.00; chance 0.11) and 0.951 across days (a pre-re"]
       presentation/BEAT_v2_talk.pptx.mixdog-source.html: ["s=\"val\"><span class=\"blue\">0.026</span> 대 <span class=\"red\">0.951</span", "그 식별기는 0.026이었지만, 같은 출력으로 새로 학습시킨 공격자는 0.951을 맞힙니다. 54명 확증 주장 C1에서도 같은 날 독립 공격자는 0.5"]
-      docs/explainer_ko.md: ["| head 0.026 / 독립 0.951 |"]
+      docs/explainer_ko.md: ["| head 0.026 / 독립 0.951 |", "연보다 낮았던 바로 그 출력에서 따로 학습한 공격자는 0.951을 맞혔으므로, 그 평가자의 점수는 보호", "1보다 낮았지만, 같은 출력으로 따로 학습한 공격자는 0.951을 맞혔습니다. 사람 정보는 그대로였고,"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["iv><div class=\"val\">0.026 대 0.951</div><div cla", " 식별기는 0.026이라고 말하지만 독립 공격자는 0.951을 맞혔습니다. 54명 확"]
   - id: G_paper_undefended
     value: {file: results/exp_g/bnci/paper_table1_comparison.csv, column: observed_accuracy_percent,
@@ -2211,10 +2218,12 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.855"
     in:
-      README.md: ["| 20 (2.7 min) | 0.855 [0.802, 0.905] | 0.233 |", "0.855 at 20 outputs"]
-      docs/report.md: ["(mean per-user AUC 0.855 at 20 outputs; 0.5 is chance)", "| `cosine_rich` | 0.855 [0.802, 0.905] | 0.233 |", "V1 and V2 supported (mean per-user AUC 0.855 and 0.567)", "(V1, 0.855)"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px;top:392px;font-size:240px\">0.855</div>", " 출력 20개, 약 2분 40초 분량에서 연결 점수가 0.855였습니다. 0.5가 우연입니다. 둘째 예", "기에 충분하지 않습니다. ◆ 틀리면 안 되는 문장: \"0.855는 같은 사람인지 가리는 연결 점수이지,", "0px;top:640px;width:522px\">빼도 0.855 → 0.852</div>", "시 재 봤습니다. 두 대표 값은 거의 그대로였습니다. 0.855가 0.852로, 0.567이 0.554", "le=\"padding:14px 24px 14px 0\">0.855 [0.802, 0.905]</td><t", "tyle=\"padding:5px 24px 5px 0\">0.855</td><td style=\"paddin"]
+      docs/decision_log.md: ["sine_rich`: mean per-user AUC 0.855, 95% interval 0.802–0", "ns the conditions. Result: V1 0.855 → 0.852, V2 0.567 → 0"]
+      README.md: ["| 20 (2.7 min) | 0.855 [0.802, 0.905] | 0.233 |", "0.855 at 20 outputs", "  V1 0.855 against 0.852 [0.806,"]
+      docs/report.md: ["(mean per-user AUC 0.855 at 20 outputs; 0.5 is chance)", "| `cosine_rich` | 0.855 [0.802, 0.905] | 0.233 |", "V1 and V2 supported (mean per-user AUC 0.855 and 0.567)", "(V1, 0.855)", "as strongly (V1 0.852 against 0.855, V2 0.554 against 0.5", "cross days (mean per-user AUC 0.855 at 20 outputs; 0.5 is", "vs days 2–3 | `cosine_rich` | 0.855 | 0.852 [0.806, 0.896", "ull features across days (V1, 0.855) and weak but present"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["tyle=\"padding:12px 18px\"><b>0.855</b> [0.802, 0", "분 40초 분량에서 풍부한 요약의 코사인 비교기로 0.855, 구간 0.802에서 0", "인(풍부)</div><div class=\"val\">0.855</div><div cla"]
-      docs/explainer_ko.md: ["–3일차 사이에서 출력 20개로 평균 사용자별 AUC 0.855, 명령만으로는 명령 50개로 0", "번만 돌렸습니다. 전체 특징은 다른 날 출력 20개로 0.855, 명령은 50개로 0.567이었", "출력 20개(2.7분)에서 `cosine_rich`로 0.855 [0.802, 0.905]였고 ", "| 0.855 [0.802, 0.905], E", "정확도(우연은 사용자 수 분의 1)이고, v3의 V1 0.855는 두 출력 묶음이 같은 사람 것", "| 20 (2.7분) | `cosine_rich` | 0.855 [0.802, 0.905] | ", "**Q85. AUC 0.855면 85.5%를 식별한다는 뜻입니", "아닙니다. 0.855는 같은 사람 쌍과 다른 사람 쌍", "**Q86. v2의 다른 날 0.520과 v3의 V1 0.855는 왜 이렇게 다릅니까?**"]
+      docs/explainer_ko.md: ["–3일차 사이에서 출력 20개로 평균 사용자별 AUC 0.855, 명령만으로는 명령 50개로 0", "번만 돌렸습니다. 전체 특징은 다른 날 출력 20개로 0.855, 명령은 50개로 0.567이었", "출력 20개(2.7분)에서 `cosine_rich`로 0.855 [0.802, 0.905]였고 ", "| 0.855 [0.802, 0.905], E", "정확도(우연은 사용자 수 분의 1)이고, v3의 V1 0.855는 두 출력 묶음이 같은 사람 것", "| 20 (2.7분) | `cosine_rich` | 0.855 [0.802, 0.905] | ", "**Q85. AUC 0.855면 85.5%를 식별한다는 뜻입니", "아닙니다. 0.855는 같은 사람 쌍과 다른 사람 쌍", "**Q86. v2의 다른 날 0.520과 v3의 V1 0.855는 왜 이렇게 다릅니까?**", "한계) 계산 전에 적은 두 예측이 지지되어(전체 특징 0.855, 왼쪽·오른쪽·정지 명령 0.567", "습니다. 전체 특징은 출력 20개(약 2분 40초)로 0.855, 왼쪽·오른쪽·정지 명령은 명령 50개", "- 틀리면 안 되는 문장(◆): \"0.855는 같은 사람인지 가리는 연결 점수이지,", "과를 다 본 뒤 단서만 빼고 다시 재도 두 대표 값은 0.855가 0.852로, 0.567이 0.554", "ang2025 전체 특징 · 1일차 ↔ 2–3일차 | 0.855 | 0.852 [0.806, 0.896", "는 대상과 설정이 다르기 때문입니다. 슬라이드 9쪽의 0.855와 0.567은 51명 전원, 1일차 대", "준 재실행은 기록된 값을 정확히 재현했습니다. V1은 0.855에서 0.852 [0.806, 0.896"]
     demo:
       - {file: demo/data/results.json, json: audit.decision.predictions.V1.auc}
   - id: AUD_V1_ci_low
@@ -2222,6 +2231,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.802"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["ding:14px 24px 14px 0\">0.855 [0.802, 0.905]</td><td style"]
       README.md: ["0.855 [0.802, 0.905]"]
       docs/report.md: ["0.855 [0.802, 0.905]"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["ng:12px 18px\"><b>0.855</b> [0.802, 0.905]</td><", " 풍부한 요약의 코사인 비교기로 0.855, 구간 0.802에서 0.905였고 지지됐"]
@@ -2233,6 +2243,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.905"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px 24px 14px 0\">0.855 [0.802, 0.905]</td><td style=\"paddi"]
       README.md: ["0.855 [0.802, 0.905]"]
       docs/report.md: ["0.855 [0.802, 0.905]"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: [" 18px\"><b>0.855</b> [0.802, 0.905]</td><td styl", " 코사인 비교기로 0.855, 구간 0.802에서 0.905였고 지지됐습니다. V2는"]
@@ -2253,6 +2264,7 @@ numbers:
     format: {kind: sci, digits: 1}
     text: "2.0 × 10⁻⁴"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["le=\"padding:14px 24px 14px 0\">2.0 × 10⁻⁴</td><td style=\"paddin"]
       README.md: ["Holm p 2.0 × 10⁻⁴ each"]
       docs/report.md: ["| 0.855 [0.802, 0.905] | 0.233 | 2.0 × 10⁻⁴ | supported |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["d style=\"padding:12px 18px\">2.0 × 10⁻⁴</td><td style"]
@@ -2264,10 +2276,12 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.567"
     in:
-      README.md: ["| 50 (6.7 min) | 0.567 [0.540, 0.596] | 0.454 |", "0.567 at 50"]
-      docs/report.md: ["(0.567 at 50 commands)", "| cue-aware Bayes factor | 0.567 [0.540, 0.596] | 0.454 |", "(V2, 0.567)"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px;top:392px;font-size:240px\">0.567</div>", "보내도 이어진다. 명령 50개, 6분 40초 분량에서 0.567이었습니다. 약하지만, 우연과 구별됐습니", "값은 거의 그대로였습니다. 0.855가 0.852로, 0.567이 0.554로요. 다만 나중에 덧붙인 ", "le=\"padding:14px 24px 14px 0\">0.567 [0.540, 0.596]</td><t", "tyle=\"padding:5px 24px 5px 0\">0.567</td><td style=\"paddin"]
+      docs/decision_log.md: ["ands, cue-aware Bayes factor: 0.567, 0.540–0.596, Holm p ", " Result: V1 0.855 → 0.852, V2 0.567 → 0.554, linkage stil"]
+      README.md: ["| 50 (6.7 min) | 0.567 [0.540, 0.596] | 0.454 |", "0.567 at 50", "e +0.002 [−0.011, +0.015]; V2 0.567 against"]
+      docs/report.md: ["(0.567 at 50 commands)", "| cue-aware Bayes factor | 0.567 [0.540, 0.596] | 0.454 |", "(V2, 0.567)", "ainst 0.855, V2 0.554 against 0.567) except in one comman", "linked weakly but detectably (0.567 at 50 commands). In a", "n) | cue-aware Bayes factor | 0.567 [0.540, 0.596] | 0.45", " vs days 2–3 | Bayes factor | 0.567 | 0.554 [0.526, 0.582", "but present for commands (V2, 0.567), and same-day linkag"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["tyle=\"padding:12px 18px\"><b>0.567</b> [0.540, 0", "0개, 6분 40초 분량에서 베이즈 인자 공격자로 0.567, 구간 0.540에서 0"]
-      docs/explainer_ko.md: ["용자별 AUC 0.855, 명령만으로는 명령 50개로 0.567이었고, 사전 지정한 예측 V1과", " 다른 날 출력 20개로 0.855, 명령은 50개로 0.567이었고, 미리 정한 두 예측이 모", " 명령만, 50개(6.7분)에서 베이즈 인자 공격자로 0.567 [0.540, 0.596]였고 ", "| 0.567 [0.540, 0.596], E", "  - 예: V2의 0.567 [0.540, 0.596]은 구", "  - 예: V2는 이 공격자로 명령 50개에서 0.567이었습니다. Lee2019 개발 ", " 2–3일차 | 50 (6.7분) | 베이즈 인자 | 0.567 [0.540, 0.596] | "]
+      docs/explainer_ko.md: ["용자별 AUC 0.855, 명령만으로는 명령 50개로 0.567이었고, 사전 지정한 예측 V1과", " 다른 날 출력 20개로 0.855, 명령은 50개로 0.567이었고, 미리 정한 두 예측이 모", " 명령만, 50개(6.7분)에서 베이즈 인자 공격자로 0.567 [0.540, 0.596]였고 ", "| 0.567 [0.540, 0.596], E", "  - 예: V2의 0.567 [0.540, 0.596]은 구", "  - 예: V2는 이 공격자로 명령 50개에서 0.567이었습니다. Lee2019 개발 ", " 2–3일차 | 50 (6.7분) | 베이즈 인자 | 0.567 [0.540, 0.596] | ", "은 두 예측이 지지되어(전체 특징 0.855, 왼쪽·오른쪽·정지 명령 0.567, 사전 지정·비맹검) '왼쪽·오른쪽만'", "0.855, 왼쪽·오른쪽·정지 명령은 명령 50개(6분 40초)로 0.567입니다. 이 51명은 앞선 연구에서 이미", " 다시 재도 두 대표 값은 0.855가 0.852로, 0.567이 0.554로 거의 그대로였지만, 나중", " 병목 명령 τ 0.60 · 1일차 ↔ 2–3일차 | 0.567 | 0.554 [0.526, 0.582", "정이 다르기 때문입니다. 슬라이드 9쪽의 0.855와 0.567은 51명 전원, 1일차 대 2–3일차,", "5에서 0.852 [0.806, 0.896], V2는 0.567에서 0.554 [0.526, 0.582"]
     demo:
       - {file: demo/data/results.json, json: audit.decision.predictions.V2.auc}
   - id: AUD_V2_ci_low
@@ -2275,6 +2289,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.540"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["ding:14px 24px 14px 0\">0.567 [0.540, 0.596]</td><td style"]
       README.md: ["0.567 [0.540, 0.596]"]
       docs/report.md: ["0.567 [0.540, 0.596]"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["ng:12px 18px\"><b>0.567</b> [0.540, 0.596]</td><", " 분량에서 베이즈 인자 공격자로 0.567, 구간 0.540에서 0.596으로 역시 "]
@@ -2286,6 +2301,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.596"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px 24px 14px 0\">0.567 [0.540, 0.596]</td><td style=\"paddi"]
       README.md: ["0.567 [0.540, 0.596]"]
       docs/report.md: ["0.567 [0.540, 0.596]"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: [" 18px\"><b>0.567</b> [0.540, 0.596]</td><td styl", "즈 인자 공격자로 0.567, 구간 0.540에서 0.596으로 역시 지지됐습니다. "]
@@ -2305,6 +2321,7 @@ numbers:
     format: {kind: sci, digits: 1}
     text: "2.0 × 10⁻⁴"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["le=\"padding:14px 24px 14px 0\">2.0 × 10⁻⁴</td><td style=\"paddin"]
       README.md: ["Holm p 2.0 × 10⁻⁴ each"]
       docs/report.md: ["| 0.567 [0.540, 0.596] | 0.454 | 2.0 × 10⁻⁴ | supported |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["d style=\"padding:12px 18px\">2.0 × 10⁻⁴</td><td style"]
@@ -2316,6 +2333,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.144"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["le=\"padding:14px 24px 14px 0\">0.144 [0.094, 0.197]</td><t", "V2 모두 지지됐고, 같은 날에서 다른 날을 뺀 대비 0.144는 판정 없는 추정치입니다. 판정은 이 "]
       README.md: ["0.144 [0.094, 0.197]"]
       docs/report.md: ["| 0.144 [0.094, 0.197] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["tyle=\"padding:12px 18px\"><b>0.144</b> [0.094, 0", " 지지됐습니다. 같은 날에서 다른 날을 뺀 대비는 0.144로, 판정 없는 추정치입니"]
@@ -2327,6 +2345,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.094"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["ding:14px 24px 14px 0\">0.144 [0.094, 0.197]</td><td style"]
       README.md: ["0.144 [0.094, 0.197]"]
       docs/report.md: ["| 0.144 [0.094, 0.197] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["ng:12px 18px\"><b>0.144</b> [0.094, 0.197]</td><"]
@@ -2338,6 +2357,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.197"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px 24px 14px 0\">0.144 [0.094, 0.197]</td><td style=\"paddi"]
       README.md: ["0.144 [0.094, 0.197]"]
       docs/report.md: ["| 0.144 [0.094, 0.197] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: [" 18px\"><b>0.144</b> [0.094, 0.197]</td><td styl"]
@@ -2432,6 +2452,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.131"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: [":12px 0\">명목 0.05 · V2 칸 잘못 연결 0.131, 놓침 0.693<br>합성 자료에서는"]
       docs/report.md: ["in the V2 cell it is 0.131 with a false non-match rate of 0.693"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["오류율 0.05. V2 칸의 실제 값은 잘못 연결 0.131, 놓침 0.693 (합성", "퍼센트인데, 실제 V2 칸에서는 잘못 잇는 비율이 0.131, 놓치는 비율이 0.69", "x 16px\">명목 0.05. V2 칸 잘못 연결 0.131, 놓침 0.693 (합성"]
       docs/explainer_ko.md: ["명목 오류율이 5%인데 V2 칸에서 잘못 잇는 비율이 0.131, 놓치는 비율이 0.693이었고", "| 0.131 / 0.693 (합성 0.047", "Yang2025 V2 칸에서는 0.131과 0.693이었고, Yang2025 명령 칸 가운데", "성립하지 않았습니다(V2 칸 0.131 / 0.693, Yang2025 최대 0.244", "실제 V2 칸에서는 0.131과 0.693으로, 실제 기록에서는"]
@@ -2442,6 +2463,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.693"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["목 0.05 · V2 칸 잘못 연결 0.131, 놓침 0.693<br>합성 자료에서는 0.047, 0."]
       docs/report.md: ["in the V2 cell it is 0.131 with a false non-match rate of 0.693"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["V2 칸의 실제 값은 잘못 연결 0.131, 놓침 0.693 (합성 자료에서는 0.0", "서는 잘못 잇는 비율이 0.131, 놓치는 비율이 0.693이었습니다. 합성 자료에서", " 0.05. V2 칸 잘못 연결 0.131, 놓침 0.693 (합성 자료 0.047,"]
       docs/explainer_ko.md: [" 칸에서 잘못 잇는 비율이 0.131, 놓치는 비율이 0.693이었고, 합성 자료에서는 0.04", "| 0.131 / 0.693 (합성 0.047 / 0.024", "Yang2025 V2 칸에서는 0.131과 0.693이었고, Yang2025 명령 칸 가운데", "성립하지 않았습니다(V2 칸 0.131 / 0.693, Yang2025 최대 0.244", "실제 V2 칸에서는 0.131과 0.693으로, 실제 기록에서는"]
@@ -2547,10 +2569,11 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.688"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px;top:754px;font-size:150px\">0.688</div>", "자를 고쳐서 과제 단서별 평균과 분산까지 보게 했더니 0.688이 나왔습니다. 그리고 이 점검을 도구에"]
       docs/report.md: ["| 0.688 [0.641, 0.731] | 0.357 |", "the rich summary gives 0.688 [0.641, 0.731]", "0.542 against 0.688 on Lee2019", "the 8-d features (0.688 [0.641, 0.731])"]
       README.md: ["| 20 (4.3 min) | 0.688 [0.641, 0.731] | 0.357 |", "0.543 with LDA against 0.688", "overlap (8-d features 0.688"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["병목 특징</div><div class=\"val\">0.688<span class=\"i", "5까지 올라갑니다. 같은 20개에서 8차원 병목은 0.688, 전체 특징은 0.954", " 더한 뒤</div><div class=\"val\">0.688<span class=\"i", "분산을 쓰는 풍부한 요약을 더하자 코사인 비교기는 0.688로 올라갔습니다. 다만 개"]
-      docs/explainer_ko.md: ["745까지 올라갑니다. 같은 20개에서 8차원 병목은 0.688, 전체 특징은 0.954입니다.", "그 분산을 쓰는 풍부한 요약을 더하자 코사인 비교기는 0.688이 됐지만, LDA 풍부는 0.6", "| 0.954 / 0.688 / 0.630 / 0.677 |", "첫 개발 실행은 0.542) → 0.688 (풍부한 요약), LDA 풍부", "모순이 약한 공격자를 드러냈고, 풍부한 요약을 더하자 0.688이 됐습니다. LDA 풍부는 지금", "| Lee2019, 8차원 특징 | 4.3분 | 0.688 [0.641, 0.731] | ", "터 처리 가드를 더했습니다. 풍부한 요약으로 코사인은 0.688이 됐고, LDA 풍부는 0.67", "19 세션 1 대 2(보정일 포함)에서는 8차원 특징 0.688과 명령 0.630, 0.677의", "그 예입니다. 가장 강한 특징 비교기인 코사인 풍부는 0.688로 명령보다 높습니다. 그래서 가"]
+      docs/explainer_ko.md: ["745까지 올라갑니다. 같은 20개에서 8차원 병목은 0.688, 전체 특징은 0.954입니다.", "그 분산을 쓰는 풍부한 요약을 더하자 코사인 비교기는 0.688이 됐지만, LDA 풍부는 0.6", "| 0.954 / 0.688 / 0.630 / 0.677 |", "첫 개발 실행은 0.542) → 0.688 (풍부한 요약), LDA 풍부", "모순이 약한 공격자를 드러냈고, 풍부한 요약을 더하자 0.688이 됐습니다. LDA 풍부는 지금", "| Lee2019, 8차원 특징 | 4.3분 | 0.688 [0.641, 0.731] | ", "터 처리 가드를 더했습니다. 풍부한 요약으로 코사인은 0.688이 됐고, LDA 풍부는 0.67", "19 세션 1 대 2(보정일 포함)에서는 8차원 특징 0.688과 명령 0.630, 0.677의", "그 예입니다. 가장 강한 특징 비교기인 코사인 풍부는 0.688로 명령보다 높습니다. 그래서 가", "공격자였고, 과제 단서별 평균과 분산까지 보게 고치자 0.688이 나왔으며, 명령이 어느 특징에서"]
   - id: AUD_dev_lee_features_P2RC_d8_ci_low
     value: {file: results/audit/summary.csv, column: ci_low, where: {cohort: lee2019, rung: features_P2-RC_d8, condition: cross-day, k: 20, comparator: cosine_rich}}
     format: {kind: fixed, digits: 3}
@@ -2582,10 +2605,11 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.630"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px;top:542px;font-size:150px\">0.630–0.677</div>", ".542였습니다. 그런데 같은 특징에서 계산한 명령은 0.630에서 0.677이었습니다. (쉼) 이건 "]
       docs/report.md: ["| 0.630 [0.588, 0.672] | 0.400 |", "(0.630 [0.588, 0.672] at τ = 0.50", "while the commands decoded from it gave 0.630–0.677"]
       README.md: ["| 20 (4.3 min) | 0.630 [0.588, 0.672] | 0.400 |", "the commands scored 0.630–0.677", "against commands 0.630 [0.588, 0.672]"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["독한 명령</div><div class=\"val\">0.630–0.677</div></", "3이었습니다. 그런데 같은 특징에서 해독한 명령은 0.630에서 0.677이었습니다."]
-      docs/explainer_ko.md: ["0.542)이었는데, 같은 특징에서 해독한 명령은 0.630에서 0.677이었습니다. 명령은", "| 0.954 / 0.688 / 0.630 / 0.677 | 전체 특징 /", "| Lee2019, 명령 τ 0.50 | 4.3분 | 0.630 [0.588, 0.672] | ", "는 비교기로 낮게 나왔고, 같은 특징에서 해독한 명령(0.630–0.677)이 더 높았습니다. ", "2(보정일 포함)에서는 8차원 특징 0.688과 명령 0.630, 0.677의 구간이 겹칩니다."]
+      docs/explainer_ko.md: ["0.542)이었는데, 같은 특징에서 해독한 명령은 0.630에서 0.677이었습니다. 명령은", "| 0.954 / 0.688 / 0.630 / 0.677 | 전체 특징 /", "| Lee2019, 명령 τ 0.50 | 4.3분 | 0.630 [0.588, 0.672] | ", "는 비교기로 낮게 나왔고, 같은 특징에서 해독한 명령(0.630–0.677)이 더 높았습니다. ", "2(보정일 포함)에서는 8차원 특징 0.688과 명령 0.630, 0.677의 구간이 겹칩니다.", " 날 0.543이었는데, 같은 특징에서 계산한 명령은 0.630–0.677이었습니다. 특징을 가진 공격"]
   - id: AUD_dev_lee_commands_P2RC_d8_tau050_ci_low
     value: {file: results/audit/summary.csv, column: ci_low, where: {cohort: lee2019, rung: commands_P2-RC_d8_tau0.50, condition: cross-day, k: 20, comparator: bayes_factor}}
     format: {kind: fixed, digits: 3}
@@ -2615,10 +2639,11 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.677"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: [":542px;font-size:150px\">0.630–0.677</div>", ". 그런데 같은 특징에서 계산한 명령은 0.630에서 0.677이었습니다. (쉼) 이건 말이 안 됩니다"]
       docs/report.md: ["| 0.677 [0.627, 0.722] | 0.358 |", "0.677 [0.627, 0.722] at τ = 0.80", "while the commands decoded from it gave 0.630–0.677"]
       README.md: ["| 20 (4.3 min) | 0.677 [0.627, 0.722] | 0.358 |", "the commands scored 0.630–0.677", "and 0.677 [0.627, 0.722]"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["0.80)</div><div class=\"val\">0.677<span class=\"i", "일 때 0.537에서 20개, 명목 4분 20초면 0.677, 100개면 0.745까", "다. ◆ 틀리면 안 되는 문장: \"탐색 결과이고, 0.677은 같은 사람인지 가리는 ", "/div><div class=\"val\">0.630–0.677</div></div>", " 수 있다 (LDA 풍부 0.675 &lt; 명령 0.677)<br><b style=", "그런데 같은 특징에서 해독한 명령은 0.630에서 0.677이었습니다. 명령은 특징에"]
-      docs/explainer_ko.md: ["0.542)으로 낮게 보였는데, 같은 특징에서 해독한 명령이 0.677로 더 높게 나와 모순이 드러났습니다", "명령 하나일 때 0.537, 20개(명목 4.3분)면 0.677, 100개면 0.745까지 올라", "- 틀리면 안 되는 문장: \"탐색 결과이고, 0.677은 같은 사람인지 가리는 연결 점", "이었는데, 같은 특징에서 해독한 명령은 0.630에서 0.677이었습니다. 명령은 특징에서 해독", "| 0.954 / 0.688 / 0.630 / 0.677 | 전체 특징 / 8차원 특징 ", "0.542)으로 보였지만 그 특징에서 나온 명령은 0.677이었습니다. 이 모순이 약한 공격자를", "| Lee2019, 명령 τ 0.80 | 4.3분 | 0.677 [0.627, 0.722] | ", " 낮게 나왔고, 같은 특징에서 해독한 명령(0.630–0.677)이 더 높았습니다. 보고서는 첫", "함)에서는 8차원 특징 0.688과 명령 0.630, 0.677의 구간이 겹칩니다. 가드는 세 코호트의", "89. 특징의 LDA 풍부 비교기는 0.675로 명령 0.677보다 낮습니다. 데이터 처리 논리"]
+      docs/explainer_ko.md: ["0.542)으로 낮게 보였는데, 같은 특징에서 해독한 명령이 0.677로 더 높게 나와 모순이 드러났습니다", "명령 하나일 때 0.537, 20개(명목 4.3분)면 0.677, 100개면 0.745까지 올라", "- 틀리면 안 되는 문장: \"탐색 결과이고, 0.677은 같은 사람인지 가리는 연결 점", "이었는데, 같은 특징에서 해독한 명령은 0.630에서 0.677이었습니다. 명령은 특징에서 해독", "| 0.954 / 0.688 / 0.630 / 0.677 | 전체 특징 / 8차원 특징 ", "0.542)으로 보였지만 그 특징에서 나온 명령은 0.677이었습니다. 이 모순이 약한 공격자를", "| Lee2019, 명령 τ 0.80 | 4.3분 | 0.677 [0.627, 0.722] | ", " 낮게 나왔고, 같은 특징에서 해독한 명령(0.630–0.677)이 더 높았습니다. 보고서는 첫", "함)에서는 8차원 특징 0.688과 명령 0.630, 0.677의 구간이 겹칩니다. 가드는 세 코호트의", "89. 특징의 LDA 풍부 비교기는 0.675로 명령 0.677보다 낮습니다. 데이터 처리 논리", "43이었는데, 같은 특징에서 계산한 명령은 0.630–0.677이었습니다. 특징을 가진 공격자는 명령도"]
   - id: AUD_dev_lee_commands_P2RC_d8_tau080_ci_low
     value: {file: results/audit/summary.csv, column: ci_low, where: {cohort: lee2019, rung: commands_P2-RC_d8_tau0.80, condition: cross-day, k: 20, comparator: bayes_factor}}
     format: {kind: fixed, digits: 3}
@@ -2770,10 +2795,11 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.543"
     in:
-      docs/report.md: ["0.543 (LDA)", "the stored run of the final tool gives 0.543"]
-      README.md: ["0.543 with LDA against 0.688"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px;top:330px;font-size:150px\">0.543</div>", "4명 · 8차원 특징 · 다른 날 · 출력 20개 · 0.543은 최종 도구의 저장 실행</div>", " 출력 20개에서 0.54 정도가 나왔습니다. 화면의 0.543은 최종 도구로 저장한 실행의 값이고, "]
+      docs/report.md: ["0.543 (LDA)", "the stored run of the final tool gives 0.543", "ators give 0.518 (cosine) and 0.543 (LDA), and the rich s", "d run of the final tool gives 0.543) and was caught only "]
+      README.md: ["0.543 with LDA against 0.688", "  0.543 with LDA against 0.68"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: [" 중 최고</div><div class=\"val\">0.543<span class=\"i", "공격했더니, 다른 날 출력 20개에서 가장 높아야 0.543이었습니다. 그런데 같은 "]
-      docs/explainer_ko.md: ["노출을 최종 도구의 저장 실행에서 0.543(첫 개발 실행에서는 0.542)으로 낮게 보였는데", "다른 날 출력 20개에서 가장 높아야 0.543(최종 도구의 저장 실행, 첫 개발 실행은 0.542)", "| 0.543 (평균 비교기, 최종 도구의 저장 실행; 첫 개발 실행은 0.542) → 0.688", "평균 비교기는 8차원 특징을 0.543(최종 도구의 저장 실행, 첫 개발 실행은 0.542)으로 보였지만", " 보고된 셋째 실행의 저장값은 `lda_cosine` 0.543, `cosine` 0.518입니"]
+      docs/explainer_ko.md: ["노출을 최종 도구의 저장 실행에서 0.543(첫 개발 실행에서는 0.542)으로 낮게 보였는데", "다른 날 출력 20개에서 가장 높아야 0.543(최종 도구의 저장 실행, 첫 개발 실행은 0.542)", "| 0.543 (평균 비교기, 최종 도구의 저장 실행; 첫 개발 실행은 0.542) → 0.688", "평균 비교기는 8차원 특징을 0.543(최종 도구의 저장 실행, 첫 개발 실행은 0.542)으로 보였지만", " 보고된 셋째 실행의 저장값은 `lda_cosine` 0.543, `cosine` 0.518입니", "의 8차원 특징을 평균만 보는 공격자로 재니 다른 날 0.543이었는데, 같은 특징에서 계산한 명령은 ", "- 틀리면 안 되는 문장: \"화면의 0.543은 최종 도구로 저장한 실행의 값이고, "]
   - id: AUD_dev_lee_P0_lda_cosine_rich_k10
     value: {file: results/audit/summary.csv, column: auc, where: {cohort: lee2019, rung: features_P0, condition: cross-day, k: 10, comparator: lda_cosine_rich}}
     format: {kind: fixed, digits: 3}
@@ -2800,6 +2826,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.031"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["명목 0.05 이하<br>세 크기 1,000회씩<br>0.031 · 0.047 · 0.049</div>"]
       docs/report.md: ["rejected the null in 0.031 of simulations with 9 users"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["안 됩니다. 세 가지 크기에서 1,000번씩 돌려 0.031, 0.047, 0.049", "짓 검출률, 1,000회씩</b><br>9명×2일 0.031 · 54명×2일 0.04"]
       docs/explainer_ko.md: ["지 않은 합성 자료에서 거짓 검출 비율은 세 크기에서 0.031, 0.047, 0.049로 모두", "| 0.031 / 0.047 / 0.049 |", "에서 코사인 비교기의 전체 절차는 9명·이틀 설정에서 0.031, 54명 설정에서 0.047만큼"]
@@ -2808,6 +2835,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.047"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["이하<br>세 크기 1,000회씩<br>0.031 · 0.047 · 0.049</div>"]
       docs/report.md: ["and in 0.047 with 54 users"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["세 가지 크기에서 1,000번씩 돌려 0.031, 0.047, 0.049였고, 가장 ", "/b><br>9명×2일 0.031 · 54명×2일 0.047 · 51명×3일 0.04"]
       docs/explainer_ko.md: [" 자료에서 거짓 검출 비율은 세 크기에서 0.031, 0.047, 0.049로 모두 명목 0.0", "| 0.031 / 0.047 / 0.049 | 합성 영가설의", "차는 9명·이틀 설정에서 0.031, 54명 설정에서 0.047만큼 영가설을 기각했습니다(명목 "]
@@ -2816,6 +2844,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.938"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["안<br>게이트 대상 두 설계<br>9명 설계 AUC 0.938</div>", "는 포함률 기준을 적용하지 않으며 평균 AUC 구간이 0.938이었습니다. 실제 배치 설정의 확장 실행"]
       docs/report.md: ["covered the large-sample value in 0.938 and 0.969", "lowest AUC coverage overall is 0.938 (9 users).", "lowest AUC coverage overall is 0.938 (9 users, not gated)"]
       docs/explainer_ko.md: ["000회). 연결을 심었을 때 AUC 구간의 포함률은 0.938과 0.969, 대비 구간은 0.", "9명 설계의 평균 AUC 구간은 0.938로", "9명 설계 AUC 0.938)", "9명 × 2일(0.938, 0.977)", "/ 0.938, 0.977 |", "9명 설계의 0.938입니다"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["9명 설계(게이트 아님) AUC 0.938", "기준 밖인 9명 설계의 평균 AUC 구간은 0.938이었습니다", "9명×2일(게이트 아님) 0.938, 0.977", "평균 AUC 구간의 0.938이 전체에서 가장 낮습니다"]
@@ -2840,6 +2869,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.954"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px;top:354px;font-size:104px\">0.954</div>", "기준을 적용한 두 설계에서 구간 포함률은 가장 낮아도 0.954로 요구 범위 안이었고, 이 최저값은 대"]
       docs/report.md: ["the contrast interval in 0.977 and 0.954", "lowest coverage among the gated designs is 0.954", "gated synthetic designs is 0.954 (a contrast interval)"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["비율</div><div class=\"val\">최저 0.954<span class=\"i", "5퍼센트 구간이 참값을 포함한 비율은 가장 낮아도 0.954로, 요구 범위 0.90에", "균 AUC, 대비)<br>54명×2일 0.969, 0.954 · 51명×3일 0.97", "그중 가장 낮은 값은 대비 구간의 0.954입니다"]
       docs/explainer_ko.md: ["참값을 포함한 비율은 가장 낮아도 0.954로 요구 범위 0.90–0.99 안이었습니다", "대비 구간은 0.977과 0.954였습니다. 실제 배치 모양(51명 × 3일)", "게이트 대상 두 설계 최저 0.954, 대비 구간", "(AUC 0.969, 대비 0.954)", "| 0.969, 0.954 /", "대비 구간의 0.954이고"]
@@ -2857,6 +2887,7 @@ numbers:
     format: {kind: fixed, digits: 0}
     text: "15"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px;top:354px;font-size:104px\">15/200</div>", "배치 설정의 확장 실행에서는 한 비교기가 200회 중 15회로 명목보다 높았지만 미리 정한 허용 "]
       README.md: ["rejected 9, 15", "15 of 200 is above"]
       docs/report.md: ["15 (`lda_cosine_rich`", "rejected 9, 15 and 10 of 200 times", "15 of 200 is above the nominal 5%"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["최대 15/200", "LDA 풍부 15 = 0.075", "LDA 풍부 15/200 = 0.075", "200회 중 15회"]
@@ -2916,10 +2947,11 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.555"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: [";top:640px;width:523px\">0.544–0.555</div>", "약했습니다. 두 손을 구분하는 정확도가 0.544에서 0.555로, 우연인 0.5를 조금 넘었습니다. ", "tyle=\"padding:9px 24px 9px 0\">0.555</td><td style=\"paddin"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | full features (P0) | 0.555 | 0.000 | 0.910 [0.864, 0.950] |"]
       README.md: ["| Yang2025, day 2 vs day 3 | full features (P0) | 0.555 | 0.000 | 0.910 [0.864, 0.950] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["ng2025 두 손 구분 정확도(BA) 0.544–0.555, 우연 0.5</div>", "ng2025의 두 손 구분 정확도가 0.544에서 0.555로, 우연인 0.5를 조금", "d style=\"padding:11px 14px\">0.555</td><td style"]
-      docs/explainer_ko.md: ["ng2025의 두 손 구분 과제 BA가 0.544에서 0.555로 우연 0.5를 조금 넘는 수준", "간이 겹치지 않았습니다. 아래 묶음의 전체 특징(BA 0.555)과 사용자별 해독기(BA 0.5", "| 0.910 [0.864, 0.950] (BA 0.555) / 0.634 [0.557, ", "Yang2025, 2일차 대 3일차 | 전체 특징 | 0.555 | 0.000 | 0.910 [", "만한 해독기: Yang2025 과제 BA는 0.544–0.555에 머물렀고, 사용자별 해독기는 ", " 같고, 이 쌍만 맞춘 비교입니다. 전체 특징은 BA 0.555, 사용자별 해독기는 BA 0.5", "**Q97. 해독기가 0.544–0.555로 약한데, 사다리의 결론이 쓸 "]
+      docs/explainer_ko.md: ["ng2025의 두 손 구분 과제 BA가 0.544에서 0.555로 우연 0.5를 조금 넘는 수준", "간이 겹치지 않았습니다. 아래 묶음의 전체 특징(BA 0.555)과 사용자별 해독기(BA 0.5", "| 0.910 [0.864, 0.950] (BA 0.555) / 0.634 [0.557, ", "Yang2025, 2일차 대 3일차 | 전체 특징 | 0.555 | 0.000 | 0.910 [", "만한 해독기: Yang2025 과제 BA는 0.544–0.555에 머물렀고, 사용자별 해독기는 ", " 같고, 이 쌍만 맞춘 비교입니다. 전체 특징은 BA 0.555, 사용자별 해독기는 BA 0.5", "**Q97. 해독기가 0.544–0.555로 약한데, 사다리의 결론이 쓸 ", ": 첫째, 해독기가 약했습니다(두 손 구분 0.544–0.555, 우연 0.5, 탐색). 둘째, 시험을"]
     demo:
       - {file: demo/data/results.json, json: audit.ladder.yang2025.rungs.features_P0.task_ba}
   - id: AUD_ladder_yang2025_features_P0_auc
@@ -2927,6 +2959,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.910"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["/td><td style=\"padding:9px 0\">0.910 [0.864, 0.950]</td></"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | full features (P0) | 0.555 | 0.000 | 0.910 [0.864, 0.950] |"]
       README.md: ["| Yang2025, day 2 vs day 3 | full features (P0) | 0.555 | 0.000 | 0.910 [0.864, 0.950] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["d style=\"padding:11px 14px\">0.910 [0.864, 0.950"]
@@ -2938,6 +2971,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.864"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: [" style=\"padding:9px 0\">0.910 [0.864, 0.950]</td></tr>"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | full features (P0) | 0.555 | 0.000 | 0.910 [0.864, 0.950] |"]
       README.md: ["| Yang2025, day 2 vs day 3 | full features (P0) | 0.555 | 0.000 | 0.910 [0.864, 0.950] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["=\"padding:11px 14px\">0.910 [0.864, 0.950]</td><"]
@@ -2949,6 +2983,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.950"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["\"padding:9px 0\">0.910 [0.864, 0.950]</td></tr>"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | full features (P0) | 0.555 | 0.000 | 0.910 [0.864, 0.950] |"]
       README.md: ["| Yang2025, day 2 vs day 3 | full features (P0) | 0.555 | 0.000 | 0.910 [0.864, 0.950] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["ng:11px 14px\">0.910 [0.864, 0.950]</td></tr>"]
@@ -2960,10 +2995,11 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.544"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["차 · 다른 날 · 출력 20개 · 과제 정확도 모두 0.544 · 0.5 = 우연</div>", "손을 맞히는 정확도가 같아야 합니다. 정확도가 똑같이 0.544인 후보끼리만 나란히 놓았습니다. 우연이", ":128px;top:640px;width:523px\">0.544–0.555</div>", "째, 해독기가 약했습니다. 두 손을 구분하는 정확도가 0.544에서 0.555로, 우연인 0.5를 조금", "tyle=\"padding:9px 24px 9px 0\">0.544</td><td style=\"paddin", "tyle=\"top:830px\">맞춘 비교는 과제 BA 0.544인 8차원 병목과 공용 해독기 명령뿐 ·"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | 8-d features (P2-RC) | 0.544 | 0.000 | 0.835 [0.781, 0.880] |"]
-      README.md: ["| Yang2025, day 2 vs day 3 | 8-d features (P2-RC) | 0.544 | 0.000 | 0.835 [0.781, 0.880] |"]
+      README.md: ["| Yang2025, day 2 vs day 3 | 8-d features (P2-RC) | 0.544 | 0.000 | 0.835 [0.781, 0.880] |", "curacy: task BA 0.545 against 0.544 for the shared decode"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["px\">Yang2025 두 손 구분 정확도(BA) 0.544–0.555, 우연 0.5", "했습니다. Yang2025의 두 손 구분 정확도가 0.544에서 0.555로, 우연인", "\"><div class=\"lab\">같은 과제 BA 0.544, 출력 20개</div>", "에서 공용 해독기로 만든 명령은 과제 BA가 모두 0.544입니다. 다른 날 연결은 ", "d style=\"padding:11px 14px\">0.544</td><td style", "단. 정지와 오답은 전체 시행 대비.<br>BA가 0.544로 같은 맞춘 비교는 8차"]
-      docs/explainer_ko.md: [" 무엇을 보내는지와 날에 따라 다릅니다. 과제 BA가 0.544로 같은 비교에서 공용 해독기의 ", ". 셋째, Yang2025의 두 손 구분 과제 BA가 0.544에서 0.555로 우연 0.5를 ", "징에서 공용 해독기로 만든 명령이며 과제 BA가 모두 0.544입니다. 다른 날 연결은 특징 0", " 명령 τ 0.50 / τ 0.60, 과제 BA 모두 0.544 | Yang2025 2일차 대 ", "ang2025, 2일차 대 3일차 | 8차원 특징 | 0.544 | 0.000 | 0.835 [", "- 쓸 만한 해독기: Yang2025 과제 BA는 0.544–0.555에 머물렀고, 사용자별", "그 간격의 크기입니다. Yang2025에서 과제 BA 0.544로 같을 때 특징 0.835, 명", "**Q97. 해독기가 0.544–0.555로 약한데, 사다리의 "]
+      docs/explainer_ko.md: [" 무엇을 보내는지와 날에 따라 다릅니다. 과제 BA가 0.544로 같은 비교에서 공용 해독기의 ", ". 셋째, Yang2025의 두 손 구분 과제 BA가 0.544에서 0.555로 우연 0.5를 ", "징에서 공용 해독기로 만든 명령이며 과제 BA가 모두 0.544입니다. 다른 날 연결은 특징 0", " 명령 τ 0.50 / τ 0.60, 과제 BA 모두 0.544 | Yang2025 2일차 대 ", "ang2025, 2일차 대 3일차 | 8차원 특징 | 0.544 | 0.000 | 0.835 [", "- 쓸 만한 해독기: Yang2025 과제 BA는 0.544–0.555에 머물렀고, 사용자별", "그 간격의 크기입니다. Yang2025에서 과제 BA 0.544로 같을 때 특징 0.835, 명", "**Q97. 해독기가 0.544–0.555로 약한데, 사다리의 ", "델도 맞추지 않은 2–3일차에서 과제 정확도가 똑같이 0.544인 후보만 나란히 놓으면, 8차원 특징 ", "- 말할 것: 첫째, 해독기가 약했습니다(두 손 구분 0.544–0.555, 우연 0.5, 탐색). 둘"]
     demo:
       - {file: demo/data/results.json, json: audit.ladder.yang2025.rungs.features_P2-RC_d8.task_ba}
   - id: AUD_ladder_yang2025_features_P2RC_d8_auc
@@ -2971,10 +3007,11 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.835"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px;top:352px;font-size:180px\">0.835</div>", " 하겠습니다. 8차원으로 줄인 특징은 다른 날 연결이 0.835였습니다. 그 특징에서 해독한 명령은 0", "/td><td style=\"padding:9px 0\">0.835 [0.781, 0.880]</td></"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | 8-d features (P2-RC) | 0.544 | 0.000 | 0.835 [0.781, 0.880] |"]
       README.md: ["| Yang2025, day 2 vs day 3 | 8-d features (P2-RC) | 0.544 | 0.000 | 0.835 [0.781, 0.880] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["val\" style=\"font-size:52px\">0.835 → 0.663–0.696", "가 모두 0.544입니다. 다른 날 연결은 특징의 0.835에서 명령의 0.663과 ", "d style=\"padding:11px 14px\">0.835 [0.781, 0.880"]
-      docs/explainer_ko.md: ["(명령 0.663과 0.696, 특징 0.835), 연결이 없음을 입증한 단계는 없었습니다", " BA가 모두 0.544입니다. 다른 날 연결은 특징 0.835에서 명령 0.663(τ 0.50", "| 0.835 [0.781, 0.880] / ", "일차 | 8차원 특징 | 0.544 | 0.000 | 0.835 [0.781, 0.880] |", "ng2025에서 과제 BA 0.544로 같을 때 특징 0.835, 명령 0.663과 0.696이"]
+      docs/explainer_ko.md: ["(명령 0.663과 0.696, 특징 0.835), 연결이 없음을 입증한 단계는 없었습니다", " BA가 모두 0.544입니다. 다른 날 연결은 특징 0.835에서 명령 0.663(τ 0.50", "| 0.835 [0.781, 0.880] / ", "일차 | 8차원 특징 | 0.544 | 0.000 | 0.835 [0.781, 0.880] |", "ng2025에서 과제 BA 0.544로 같을 때 특징 0.835, 명령 0.663과 0.696이", "같이 0.544인 후보만 나란히 놓으면, 8차원 특징 0.835에 비해 그 특징에서 해독한 명령은 0."]
     demo:
       - {file: demo/data/results.json, json: audit.ladder.yang2025.rungs.features_P2-RC_d8.cross_day.auc}
   - id: AUD_ladder_yang2025_features_P2RC_d8_auc_low
@@ -2982,6 +3019,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.781"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: [" style=\"padding:9px 0\">0.835 [0.781, 0.880]</td></tr>"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | 8-d features (P2-RC) | 0.544 | 0.000 | 0.835 [0.781, 0.880] |"]
       README.md: ["| Yang2025, day 2 vs day 3 | 8-d features (P2-RC) | 0.544 | 0.000 | 0.835 [0.781, 0.880] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["=\"padding:11px 14px\">0.835 [0.781, 0.880]</td><"]
@@ -2993,6 +3031,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.880"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["\"padding:9px 0\">0.835 [0.781, 0.880]</td></tr>"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | 8-d features (P2-RC) | 0.544 | 0.000 | 0.835 [0.781, 0.880] |"]
       README.md: ["| Yang2025, day 2 vs day 3 | 8-d features (P2-RC) | 0.544 | 0.000 | 0.835 [0.781, 0.880] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["ng:11px 14px\">0.835 [0.781, 0.880]</td></tr>"]
@@ -3004,6 +3043,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.544"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["차 · 다른 날 · 출력 20개 · 과제 정확도 모두 0.544 · 0.5 = 우연</div>", "손을 맞히는 정확도가 같아야 합니다. 정확도가 똑같이 0.544인 후보끼리만 나란히 놓았습니다. 우연이", "tyle=\"padding:9px 24px 9px 0\">0.544</td><td style=\"paddin", "tyle=\"top:830px\">맞춘 비교는 과제 BA 0.544인 8차원 병목과 공용 해독기 명령뿐 ·", "\">사용자별 대 공용: Yang2025 0.545 대 0.544 ·<br>Lee2019 0.646 대 "]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.50 | 0.544 | 0.000 | 0.663 [0.590, 0.727] |", "task BA 0.545 against 0.544 for the shared decoder on Yang2025"]
       README.md: ["| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.50 | 0.544 | 0.000 | 0.663 [0.590, 0.727] |", "task BA 0.545 against 0.544 for the shared decoder on"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["\"><div class=\"lab\">같은 과제 BA 0.544, 출력 20개</div>", "에서 공용 해독기로 만든 명령은 과제 BA가 모두 0.544입니다. 다른 날 연결은 ", "사용자별 대 공용: Yang2025 0.545 대 0.544, Lee2019 0.64", "d style=\"padding:11px 14px\">0.544</td><td style", "단. 정지와 오답은 전체 시행 대비.<br>BA가 0.544로 같은 맞춘 비교는 8차", "x 16px\">Yang2025 0.545 대 공용 0.544, Lee2019 0.64"]
@@ -3015,10 +3055,11 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.663"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px;top:700px;font-size:180px\">0.663–0.696</div>", "연결이 0.835였습니다. 그 특징에서 해독한 명령은 0.663과 0.696으로 내려갔고, 구간이 겹치", "/td><td style=\"padding:9px 0\">0.663 [0.590, 0.727]</td></"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.50 | 0.544 | 0.000 | 0.663 [0.590, 0.727] |"]
       README.md: ["| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.50 | 0.544 | 0.000 | 0.663 [0.590, 0.727] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["le=\"font-size:52px\">0.835 → 0.663–0.696</div><d", "다. 다른 날 연결은 특징의 0.835에서 명령의 0.663과 0.696으로 내려갔고", "d style=\"padding:11px 14px\">0.663 [0.590, 0.727"]
-      docs/explainer_ko.md: ["원천인 8차원 특징보다 다른 날 연결이 낮았지만(명령 0.663과 0.696, 특징 0.835)", "44입니다. 다른 날 연결은 특징 0.835에서 명령 0.663(τ 0.50)과 0.696(τ ", "| 0.835 [0.781, 0.880] / 0.663 [0.590, 0.727] / ", " 명령, τ 0.50 | 0.544 | 0.000 | 0.663 [0.590, 0.727] |", "제 BA 0.544로 같을 때 특징 0.835, 명령 0.663과 0.696이었습니다. 이 해석"]
+      docs/explainer_ko.md: ["원천인 8차원 특징보다 다른 날 연결이 낮았지만(명령 0.663과 0.696, 특징 0.835)", "44입니다. 다른 날 연결은 특징 0.835에서 명령 0.663(τ 0.50)과 0.696(τ ", "| 0.835 [0.781, 0.880] / 0.663 [0.590, 0.727] / ", " 명령, τ 0.50 | 0.544 | 0.000 | 0.663 [0.590, 0.727] |", "제 BA 0.544로 같을 때 특징 0.835, 명령 0.663과 0.696이었습니다. 이 해석", "원 특징 0.835에 비해 그 특징에서 해독한 명령은 0.663과 0.696(τ 0.50과 0.60)으로 낮고"]
     demo:
       - {file: demo/data/results.json, json: audit.ladder.yang2025.rungs.commands_shared_tau0_50.cross_day.auc}
   - id: AUD_ladder_yang2025_commands_shared_tau050_auc_low
@@ -3026,6 +3067,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.590"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: [" style=\"padding:9px 0\">0.663 [0.590, 0.727]</td></tr>"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.50 | 0.544 | 0.000 | 0.663 [0.590, 0.727] |"]
       README.md: ["| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.50 | 0.544 | 0.000 | 0.663 [0.590, 0.727] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["=\"padding:11px 14px\">0.663 [0.590, 0.727]</td><"]
@@ -3037,6 +3079,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.727"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["\"padding:9px 0\">0.663 [0.590, 0.727]</td></tr>"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.50 | 0.544 | 0.000 | 0.663 [0.590, 0.727] |"]
       README.md: ["| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.50 | 0.544 | 0.000 | 0.663 [0.590, 0.727] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["ng:11px 14px\">0.663 [0.590, 0.727]</td></tr>"]
@@ -3048,6 +3091,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.544"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["차 · 다른 날 · 출력 20개 · 과제 정확도 모두 0.544 · 0.5 = 우연</div>", "손을 맞히는 정확도가 같아야 합니다. 정확도가 똑같이 0.544인 후보끼리만 나란히 놓았습니다. 우연이", "tyle=\"padding:9px 24px 9px 0\">0.544</td><td style=\"paddin", "tyle=\"top:830px\">맞춘 비교는 과제 BA 0.544인 8차원 병목과 공용 해독기 명령뿐 ·"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.60 | 0.544 | 0.473 | 0.696 [0.619, 0.759] |"]
       README.md: ["| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.60 | 0.544 | 0.473 | 0.696 [0.619, 0.759] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["\"><div class=\"lab\">같은 과제 BA 0.544, 출력 20개</div>", "에서 공용 해독기로 만든 명령은 과제 BA가 모두 0.544입니다. 다른 날 연결은 ", "d style=\"padding:11px 14px\">0.544</td><td style"]
@@ -3059,10 +3103,11 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.696"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: [":700px;font-size:180px\">0.663–0.696</div>", "35였습니다. 그 특징에서 해독한 명령은 0.663과 0.696으로 내려갔고, 구간이 겹치지 않았습니다", "/td><td style=\"padding:9px 0\">0.696 [0.619, 0.759]</td></"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.60 | 0.544 | 0.473 | 0.696 [0.619, 0.759] |"]
       README.md: ["| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.60 | 0.544 | 0.473 | 0.696 [0.619, 0.759] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["nt-size:52px\">0.835 → 0.663–0.696</div><div cla", " 연결은 특징의 0.835에서 명령의 0.663과 0.696으로 내려갔고 구간이 겹치", "d style=\"padding:11px 14px\">0.696 [0.619, 0.759"]
-      docs/explainer_ko.md: ["다른 날 연결이 낮았지만(명령 0.663과 0.696, 특징 0.835), 연결이 없음을", " 특징 0.835에서 명령 0.663(τ 0.50)과 0.696(τ 0.60)으로 내려갔고 구간", "880] / 0.663 [0.590, 0.727] / 0.696 [0.619, 0.759] | ", " 명령, τ 0.60 | 0.544 | 0.473 | 0.696 [0.619, 0.759] |", "544로 같을 때 특징 0.835, 명령 0.663과 0.696이었습니다. 이 해석을 흔들 수 "]
+      docs/explainer_ko.md: ["다른 날 연결이 낮았지만(명령 0.663과 0.696, 특징 0.835), 연결이 없음을", " 특징 0.835에서 명령 0.663(τ 0.50)과 0.696(τ 0.60)으로 내려갔고 구간", "880] / 0.663 [0.590, 0.727] / 0.696 [0.619, 0.759] | ", " 명령, τ 0.60 | 0.544 | 0.473 | 0.696 [0.619, 0.759] |", "544로 같을 때 특징 0.835, 명령 0.663과 0.696이었습니다. 이 해석을 흔들 수 ", "835에 비해 그 특징에서 해독한 명령은 0.663과 0.696(τ 0.50과 0.60)으로 낮고 구간이 겹치지 않습니다. 하지"]
     demo:
       - {file: demo/data/results.json, json: audit.ladder.yang2025.rungs.commands_shared_tau0_60.cross_day.auc}
   - id: AUD_ladder_yang2025_commands_shared_tau060_auc_low
@@ -3070,6 +3115,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.619"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: [" style=\"padding:9px 0\">0.696 [0.619, 0.759]</td></tr>"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.60 | 0.544 | 0.473 | 0.696 [0.619, 0.759] |"]
       README.md: ["| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.60 | 0.544 | 0.473 | 0.696 [0.619, 0.759] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["=\"padding:11px 14px\">0.696 [0.619, 0.759]</td><"]
@@ -3081,6 +3127,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.759"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["\"padding:9px 0\">0.696 [0.619, 0.759]</td></tr>"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.60 | 0.544 | 0.473 | 0.696 [0.619, 0.759] |"]
       README.md: ["| Yang2025, day 2 vs day 3 | commands, shared decoder, τ = 0.60 | 0.544 | 0.473 | 0.696 [0.619, 0.759] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["ng:11px 14px\">0.696 [0.619, 0.759]</td></tr>"]
@@ -3103,6 +3150,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.545"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:9px 24px 9px 0\">0.545</td><td style=\"paddin", "g:12px 0\">사용자별 대 공용: Yang2025 0.545 대 0.544 ·<br>Lee2019 "]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | commands, per-user decoders, τ = 0.50 | 0.545 | 0.000 | 0.634 [0.557, 0.707] |", "task BA 0.545 against 0.544 for the shared decoder on Yang2025"]
       README.md: ["| Yang2025, day 2 vs day 3 | commands, per-user decoders, τ = 0.50 | 0.545 | 0.000 | 0.634 [0.557, 0.707] |", "task BA 0.545 against 0.544 for the shared decoder on"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["ass=\"t\">사용자별 대 공용: Yang2025 0.545 대 0.544, Lee2", "d style=\"padding:11px 14px\">0.545</td><td style", "padding:10px 16px\">Yang2025 0.545 대 공용 0.544, L"]
@@ -3114,6 +3162,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.634"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["/td><td style=\"padding:9px 0\">0.634 [0.557, 0.707]</td></"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | commands, per-user decoders, τ = 0.50 | 0.545 | 0.000 | 0.634 [0.557, 0.707] |"]
       README.md: ["| Yang2025, day 2 vs day 3 | commands, per-user decoders, τ = 0.50 | 0.545 | 0.000 | 0.634 [0.557, 0.707] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["d style=\"padding:11px 14px\">0.634 [0.557, 0.707"]
@@ -3125,6 +3174,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.557"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: [" style=\"padding:9px 0\">0.634 [0.557, 0.707]</td></tr>"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | commands, per-user decoders, τ = 0.50 | 0.545 | 0.000 | 0.634 [0.557, 0.707] |"]
       README.md: ["| Yang2025, day 2 vs day 3 | commands, per-user decoders, τ = 0.50 | 0.545 | 0.000 | 0.634 [0.557, 0.707] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["=\"padding:11px 14px\">0.634 [0.557, 0.707]</td><"]
@@ -3136,6 +3186,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.707"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["\"padding:9px 0\">0.634 [0.557, 0.707]</td></tr>"]
       docs/report.md: ["| Yang2025, day 2 vs day 3 | commands, per-user decoders, τ = 0.50 | 0.545 | 0.000 | 0.634 [0.557, 0.707] |"]
       README.md: ["| Yang2025, day 2 vs day 3 | commands, per-user decoders, τ = 0.50 | 0.545 | 0.000 | 0.634 [0.557, 0.707] |"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["ng:11px 14px\">0.634 [0.557, 0.707]</td></tr>"]
@@ -3227,6 +3278,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.692"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: [" 대 0.544 ·<br>Lee2019 0.646 대 0.692 · 2a 0.759 대 0.718</t"]
       docs/report.md: ["| Lee2019, session 2 offline vs online | commands, shared decoder, τ = 0.50 | 0.692 | 0.000 | 0.789 [0.740, 0.832] |", "0.646 against 0.692 on Lee2019"]
       README.md: ["| Lee2019, session 2 offline vs online | commands, shared decoder, τ = 0.50 | 0.692 | 0.000 | 0.789 [0.740, 0.832] |", "Yang2025, 0.646 against 0.692 on Lee2019 and 0.759 against 0.718 on 2a (9 users)"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["45 대 0.544, Lee2019 0.646 대 0.692, 2a 0.759 대 0", "대 명령 0.789–0.832 · 과제 BA 공용 0.692, 사용자별 0.646<b", "대 공용 0.544, Lee2019 0.646 대 0.692,<br>2a 0.759 "]
@@ -3317,6 +3369,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.646"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["25 0.545 대 0.544 ·<br>Lee2019 0.646 대 0.692 · 2a 0.759 대 "]
       docs/report.md: ["| Lee2019, session 2 offline vs online | commands, per-user decoders, τ = 0.50 | 0.646 | 0.000 | 0.811 [0.768, 0.852] |", "0.646 against 0.692 on Lee2019"]
       README.md: ["| Lee2019, session 2 offline vs online | commands, per-user decoders, τ = 0.50 | 0.646 | 0.000 | 0.811 [0.768, 0.852] |", "Yang2025, 0.646 against 0.692 on Lee2019 and 0.759 against 0.718 on 2a (9 users)"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["2025 0.545 대 0.544, Lee2019 0.646 대 0.692, 2a 0", ".832 · 과제 BA 공용 0.692, 사용자별 0.646<br>2a: 8차원 0.", "5 0.545 대 공용 0.544, Lee2019 0.646 대 0.692,<br>2"]
@@ -3426,6 +3479,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.718"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["19 0.646 대 0.692 · 2a 0.759 대 0.718</td></tr>"]
       docs/report.md: ["| 2a, session E runs 1–3 vs 4–6 | commands, shared decoder, τ = 0.50 | 0.718 | 0.000 | 0.740 [0.596, 0.919] |", "0.759 against 0.718 on 2a (9 users)"]
       README.md: ["Yang2025, 0.646 against 0.692 on Lee2019 and 0.759 against 0.718 on 2a (9 users)"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["9 0.646 대 0.692, 2a 0.759 대 0.718 (9명, 구간 겹침)</", "대 명령 0.703–0.796 · 과제 BA 공용 0.718, 사용자별 0.759</", "r>2a 0.759 [0.674, 0.847] 대 0.718 [0.634, 0.803"]
@@ -3508,6 +3562,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.759"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["br>Lee2019 0.646 대 0.692 · 2a 0.759 대 0.718</td></tr>"]
       docs/report.md: ["| 2a, session E runs 1–3 vs 4–6 | commands, per-user decoders, τ = 0.50 | 0.759 | 0.000 | 0.713 [0.494, 0.934] |", "0.759 against 0.718 on 2a (9 users)"]
       README.md: ["Yang2025, 0.646 against 0.692 on Lee2019 and 0.759 against 0.718 on 2a (9 users)"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: [", Lee2019 0.646 대 0.692, 2a 0.759 대 0.718 (9명, ", ".796 · 과제 BA 공용 0.718, 사용자별 0.759</div>", "ee2019 0.646 대 0.692,<br>2a 0.759 [0.674, 0.847"]
@@ -3590,6 +3645,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.049"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px;top:354px;font-size:104px\">0.049</div>", "크기 1,000회씩<br>0.031 · 0.047 · 0.049</div>", " 크기 모두 명목 0.05 이하였고, 가장 높은 값이 0.049였습니다. 기준을 적용한 두 설계에서 구"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["씩)</div><div class=\"val\">최대 0.049<span class=\"i", "에서 1,000번씩 돌려 0.031, 0.047, 0.049였고, 가장 높은 값도 0", "031 · 54명×2일 0.047 · 51명×3일 0.049, 명목 0.05</div"]
       docs/explainer_ko.md: ["짓 검출 비율은 세 크기에서 0.031, 0.047, 0.049로 모두 명목 0.05 아래였습니", "| 0.031 / 0.047 / 0.049 | 합성 영가설의 거짓 검출 비", "거짓 검출 0.049, 포함률"]
       docs/report.md: ["the null was rejected in 0.049 of simulations"]
@@ -3598,6 +3654,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.994"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["op:574px;width:380px\">0.994 → 0.994<br>0.520 → 0.520<br>닫", "허용 범위 안이었습니다. 닫힌 집합 모듈은 등록 수치 0.994와 0.520을 차이 없이 재현했습니다."]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["iv><div class=\"val\">0.994 → 0.994</div></div>", "은 마스크, 방향, seed)<br>0.994 → 0.994 · 0.520 → 0.5"]
       docs/explainer_ko.md: [" 안이었습니다. 도구의 닫힌 집합 모듈은 L에 등록된 0.994와 0.520을 차이 없이 재현했", "| 0.994 / 0.520, 차이 0.0 |", "듈은 L의 저장된 P0 출력에서 L에 등록된 같은 날 0.994와 다른 날 0.520을 차이 0"]
       README.md: ["study L's registered 0.994 and 0.520 exactly"]
@@ -3609,6 +3666,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.520"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["0px\">0.994 → 0.994<br>0.520 → 0.520<br>닫힌 집합 모듈</div>", "이었습니다. 닫힌 집합 모듈은 등록 수치 0.994와 0.520을 차이 없이 재현했습니다. [자료: r"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["iv><div class=\"val\">0.520 → 0.520</div><div cla", "<br>0.994 → 0.994 · 0.520 → 0.520, 차이 0.0 · 명령 "]
       docs/explainer_ko.md: [". 도구의 닫힌 집합 모듈은 L에 등록된 0.994와 0.520을 차이 없이 재현했습니다.", "| 0.994 / 0.520, 차이 0.0 | 패리티: 닫힌", " 출력에서 L에 등록된 같은 날 0.994와 다른 날 0.520을 차이 0.0으로 재현했습니다(", "**Q86. v2의 다른 날 0.520과 v3의 V1 0.855는 왜 ", " 공격자도 다릅니다. 도구의 닫힌 집합 모듈이 v2의 0.520을 그대로 재현했다는 것(패리티)"]
       README.md: ["study L's registered 0.994 and 0.520 exactly"]
@@ -3620,6 +3678,7 @@ numbers:
     format: {kind: fixed, digits: 1}
     text: "0.0"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px;top:354px;font-size:104px\">0.0</div>"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["iv class=\"sub\">등록값 → 도구, 차이 0.0 (허용 0.01)</di", "→ 0.994 · 0.520 → 0.520, 차이 0.0 · 명령 우도 최대 차이"]
       docs/explainer_ko.md: ["| 0.994 / 0.520, 차이 0.0 | 패리티: 닫힌 집합 모듈이 "]
   - id: AUD_parity_cross_diff
@@ -3627,6 +3686,7 @@ numbers:
     format: {kind: fixed, digits: 1}
     text: "0.0"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["px;top:354px;font-size:104px\">0.0</div>"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["iv class=\"sub\">등록값 → 도구, 차이 0.0 (허용 0.01)</di", "→ 0.994 · 0.520 → 0.520, 차이 0.0 · 명령 우도 최대 차이"]
       docs/explainer_ko.md: ["록된 같은 날 0.994와 다른 날 0.520을 차이 0.0으로 재현했습니다(`results"]
   - id: AUD_dev_lee_cmd080_k20_same_auc
@@ -3751,6 +3811,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.047"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["결 0.131, 놓침 0.693<br>합성 자료에서는 0.047, 0.024</td></tr>"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["결 0.131, 놓침 0.693 (합성 자료에서는 0.047, 0.024)</div>", "치는 비율이 0.693이었습니다. 합성 자료에서는 0.047과 0.024였으니, 실제", "못 연결 0.131, 놓침 0.693 (합성 자료 0.047, 0.024)</td><"]
       docs/explainer_ko.md: ["1, 놓치는 비율이 0.693이었고, 합성 자료에서는 0.047과 0.024였습니다. 사용자별 ", "| 0.131 / 0.693 (합성 0.047 / 0.024) | 순차 공격자", "독립 합성 흐름에서는 잘못 잇는 비율 0.047, 놓치는 비율 0.024였지만", "독립 합성 흐름에서 실제로 잰 비율은 0.047과 0.024였습니다", "독립 합성 흐름에서 잘못 잇는 비율 0.047, 놓치는 비율 0.024로", "흐름에서만 맞았고(0.047, 0.024)"]
       README.md: ["it realised 0.047 and 0.024"]
@@ -3762,6 +3823,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.024"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: [", 놓침 0.693<br>합성 자료에서는 0.047, 0.024</td></tr>"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: [", 놓침 0.693 (합성 자료에서는 0.047, 0.024)</div></div>", "0.693이었습니다. 합성 자료에서는 0.047과 0.024였으니, 실제 기록에서는 ", "131, 놓침 0.693 (합성 자료 0.047, 0.024)</td></tr>"]
       docs/explainer_ko.md: ["비율이 0.693이었고, 합성 자료에서는 0.047과 0.024였습니다. 사용자별 해독기는 일관", "| 0.131 / 0.693 (합성 0.047 / 0.024) | 순차 공격자의 실제 잘못 ", "독립 합성 흐름에서는 잘못 잇는 비율 0.047, 놓치는 비율 0.024였지만", "독립 합성 흐름에서 실제로 잰 비율은 0.047과 0.024였습니다", "독립 합성 흐름에서 잘못 잇는 비율 0.047, 놓치는 비율 0.024로", "흐름에서만 맞았고(0.047, 0.024)"]
       README.md: ["it realised 0.047 and 0.024"]
@@ -3865,6 +3927,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "1.000"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:9px 24px 9px 0\">1.000</td><td style=\"paddin"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["d style=\"padding:11px 14px\">1.000 [1.000, 1.000"]
   - id: AUD_ladder_Y_P0_same_day_auc_low
     value: {file: results/audit/ladder.csv, column: same_day_auc_low, where: {cohort: yang2025, rung: features_P0, k: 20}}
@@ -3900,6 +3963,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.988"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:9px 24px 9px 0\">0.988</td><td style=\"paddin"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["d style=\"padding:11px 14px\">0.988 [0.979, 0.994"]
   - id: AUD_ladder_Y_P2RC_d8_same_day_auc_low
     value: {file: results/audit/ladder.csv, column: same_day_auc_low, where: {cohort: yang2025, rung: features_P2-RC_d8, k: 20}}
@@ -3935,6 +3999,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.827"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:9px 24px 9px 0\">0.827</td><td style=\"paddin"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["d style=\"padding:11px 14px\">0.827 [0.794, 0.859"]
   - id: AUD_ladder_Y_shared050_same_day_auc_low
     value: {file: results/audit/ladder.csv, column: same_day_auc_low, where: {cohort: yang2025, rung: commands_shared_tau0.50, k: 20}}
@@ -3959,6 +4024,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.864"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:9px 24px 9px 0\">0.864</td><td style=\"paddin"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["d style=\"padding:11px 14px\">0.864 [0.829, 0.895"]
   - id: AUD_ladder_Y_shared060_same_day_auc_low
     value: {file: results/audit/ladder.csv, column: same_day_auc_low, where: {cohort: yang2025, rung: commands_shared_tau0.60, k: 20}}
@@ -3994,6 +4060,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.826"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:9px 24px 9px 0\">0.826</td><td style=\"paddin"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["d style=\"padding:11px 14px\">0.826 [0.789, 0.860"]
   - id: AUD_ladder_Y_pu050_same_day_auc_low
     value: {file: results/audit/ladder.csv, column: same_day_auc_low, where: {cohort: yang2025, rung: commands_per_user_tau0.50, k: 20}}
@@ -4012,6 +4079,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.545"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:9px 24px 9px 0\">0.545</td><td style=\"paddin"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["d style=\"padding:11px 14px\">0.545</td><td style"]
   - id: AUD_ladder_Y_pu060_hold_rate
     value: {file: results/audit/ladder.csv, column: hold_rate, where: {cohort: yang2025, rung: commands_per_user_tau0.60, k: 20}}
@@ -4030,6 +4098,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.815"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:9px 24px 9px 0\">0.815</td><td style=\"paddin"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["d style=\"padding:11px 14px\">0.815 [0.777, 0.849"]
   - id: AUD_ladder_Y_pu060_same_day_auc_low
     value: {file: results/audit/ladder.csv, column: same_day_auc_low, where: {cohort: yang2025, rung: commands_per_user_tau0.60, k: 20}}
@@ -4048,24 +4117,28 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.627"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["/td><td style=\"padding:9px 0\">0.627 [0.550, 0.701]</td></"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["d style=\"padding:11px 14px\">0.627 [0.550, 0.701"]
   - id: AUD_ladder_Y_pu060_cross_day_auc_low
     value: {file: results/audit/ladder.csv, column: cross_day_auc_low, where: {cohort: yang2025, rung: commands_per_user_tau0.60, k: 20}}
     format: {kind: fixed, digits: 3}
     text: "0.550"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: [" style=\"padding:9px 0\">0.627 [0.550, 0.701]</td></tr>"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["=\"padding:11px 14px\">0.627 [0.550, 0.701]</td><"]
   - id: AUD_ladder_Y_pu060_cross_day_auc_high
     value: {file: results/audit/ladder.csv, column: cross_day_auc_high, where: {cohort: yang2025, rung: commands_per_user_tau0.60, k: 20}}
     format: {kind: fixed, digits: 3}
     text: "0.701"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["\"padding:9px 0\">0.627 [0.550, 0.701]</td></tr>"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["ng:11px 14px\">0.627 [0.550, 0.701]</td></tr>"]
   - id: AUD_ladder_Y_pu080_task_ba
     value: {file: results/audit/ladder.csv, column: task_ba, where: {cohort: yang2025, rung: commands_per_user_tau0.80, k: 20}}
     format: {kind: fixed, digits: 3}
     text: "0.545"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:9px 24px 9px 0\">0.545</td><td style=\"paddin"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["d style=\"padding:11px 14px\">0.545</td><td style"]
   - id: AUD_ladder_Y_pu080_hold_rate
     value: {file: results/audit/ladder.csv, column: hold_rate, where: {cohort: yang2025, rung: commands_per_user_tau0.80, k: 20}}
@@ -4084,6 +4157,7 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.829"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:9px 24px 9px 0\">0.829</td><td style=\"paddin"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["d style=\"padding:11px 14px\">0.829 [0.790, 0.863"]
   - id: AUD_ladder_Y_pu080_same_day_auc_low
     value: {file: results/audit/ladder.csv, column: same_day_auc_low, where: {cohort: yang2025, rung: commands_per_user_tau0.80, k: 20}}
@@ -4102,18 +4176,21 @@ numbers:
     format: {kind: fixed, digits: 3}
     text: "0.635"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["/td><td style=\"padding:9px 0\">0.635 [0.556, 0.710]</td></"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["d style=\"padding:11px 14px\">0.635 [0.556, 0.710"]
   - id: AUD_ladder_Y_pu080_cross_day_auc_low
     value: {file: results/audit/ladder.csv, column: cross_day_auc_low, where: {cohort: yang2025, rung: commands_per_user_tau0.80, k: 20}}
     format: {kind: fixed, digits: 3}
     text: "0.556"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: [" style=\"padding:9px 0\">0.635 [0.556, 0.710]</td></tr>"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["=\"padding:11px 14px\">0.635 [0.556, 0.710]</td><"]
   - id: AUD_ladder_Y_pu080_cross_day_auc_high
     value: {file: results/audit/ladder.csv, column: cross_day_auc_high, where: {cohort: yang2025, rung: commands_per_user_tau0.80, k: 20}}
     format: {kind: fixed, digits: 3}
     text: "0.710"
     in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["\"padding:9px 0\">0.635 [0.556, 0.710]</td></tr>"]
       presentation/BEAT_v3_talk.pptx.mixdog-source.html: ["ng:11px 14px\">0.635 [0.556, 0.710]</td></tr>"]
   - id: AUD_val_auc_cov_51users
     value: {file: results/audit/validation.json, json: whole_procedure.5.auc_coverage}
@@ -4252,3 +4329,529 @@ numbers:
     text: "85.5"
     in:
       docs/explainer_ko.md: ["**Q85. AUC 0.855면 85.5%를 식별한다는 뜻입니까?**"]
+  # ---------------------------------------------------------------- v3 cue-blind attacker (exploratory, post hoc)
+  - id: CB_V1_blind
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_auc, where: {condition_id: "V1", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.852"
+    in:
+      README.md: ["  V1 0.855 against 0.852 [0.806, 0.896], diffe"]
+      docs/report.md: ["linked almost as strongly (V1 0.852 against 0.855, V2 0.5", "2–3 | `cosine_rich` | 0.855 | 0.852 [0.806, 0.896] | +0.0"]
+      docs/explainer_ko.md: ["뒤 단서만 빼고 다시 재도 두 대표 값은 0.855가 0.852로, 0.567이 0.554로 거의 그대", "전체 특징 · 1일차 ↔ 2–3일차 | 0.855 | 0.852 [0.806, 0.896] | +0.0", "록된 값을 정확히 재현했습니다. V1은 0.855에서 0.852 [0.806, 0.896], V2는 0"]
+      docs/decision_log.md: ["onditions. Result: V1 0.855 → 0.852, V2 0.567 → 0.554, li"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["640px;width:522px\">빼도 0.855 → 0.852</div>", "다. 두 대표 값은 거의 그대로였습니다. 0.855가 0.852로, 0.567이 0.554로요. 다만 ", "tyle=\"padding:5px 24px 5px 0\">0.852 [0.806, 0.896]</td><t"]
+  - id: CB_V1_blo
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_low, where: {condition_id: "V1", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.806"
+    in:
+      README.md: ["  V1 0.855 against 0.852 [0.806, 0.896], difference +"]
+      docs/report.md: ["cosine_rich` | 0.855 | 0.852 [0.806, 0.896] | +0.002 [−0."]
+      docs/explainer_ko.md: [" 1일차 ↔ 2–3일차 | 0.855 | 0.852 [0.806, 0.896] | +0.002 [−0.", "확히 재현했습니다. V1은 0.855에서 0.852 [0.806, 0.896], V2는 0.567에서 "]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["adding:5px 24px 5px 0\">0.852 [0.806, 0.896]</td><td style"]
+  - id: CB_V1_bhi
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_high, where: {condition_id: "V1", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.896"
+    in:
+      README.md: ["1 0.855 against 0.852 [0.806, 0.896], difference +0.002 ["]
+      docs/report.md: ["rich` | 0.855 | 0.852 [0.806, 0.896] | +0.002 [−0.011, +0"]
+      docs/explainer_ko.md: ["2–3일차 | 0.855 | 0.852 [0.806, 0.896] | +0.002 [−0.011, +0", "니다. V1은 0.855에서 0.852 [0.806, 0.896], V2는 0.567에서 0.554 ["]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["5px 24px 5px 0\">0.852 [0.806, 0.896]</td><td style=\"paddi"]
+  - id: CB_V1_diff
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_aware_minus_blind, where: {condition_id: "V1", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.002"
+    in:
+      README.md: ["2 [0.806, 0.896], difference +0.002 [−0.011, +0.015]; V2 "]
+      docs/report.md: ["855 | 0.852 [0.806, 0.896] | +0.002 [−0.011, +0.015] |"]
+      docs/explainer_ko.md: ["855 | 0.852 [0.806, 0.896] | +0.002 [−0.011, +0.015] |", "였습니다. 짝지은 차이(단서 있음 − 없음)는 V1 +0.002 [−0.011, +0.015], V2 "]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["두 대표 값의 짝지은 차이는 반올림 전 값으로 V1 +0.002 [−0.011, +0.015], V2 "]
+  - id: CB_V1_dlo
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_low, where: {condition_id: "V1", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3, scale: -1}
+    text: "0.011"
+    in:
+      README.md: [", 0.896], difference +0.002 [−0.011, +0.015]; V2 0.567 ag"]
+      docs/report.md: ["852 [0.806, 0.896] | +0.002 [−0.011, +0.015] |"]
+      docs/explainer_ko.md: ["852 [0.806, 0.896] | +0.002 [−0.011, +0.015] |", "은 차이(단서 있음 − 없음)는 V1 +0.002 [−0.011, +0.015], V2 +0.013 ["]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["짝지은 차이는 반올림 전 값으로 V1 +0.002 [−0.011, +0.015], V2 +0.013 ["]
+  - id: CB_V1_dhi
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_high, where: {condition_id: "V1", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.015"
+    in:
+      README.md: [", difference +0.002 [−0.011, +0.015]; V2 0.567 against"]
+      docs/report.md: ["06, 0.896] | +0.002 [−0.011, +0.015] |"]
+      docs/explainer_ko.md: ["06, 0.896] | +0.002 [−0.011, +0.015] |", "있음 − 없음)는 V1 +0.002 [−0.011, +0.015], V2 +0.013 [+0.004, "]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["반올림 전 값으로 V1 +0.002 [−0.011, +0.015], V2 +0.013 [+0.004, "]
+  - id: CB_V2_blind
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_auc, where: {condition_id: "V2", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.554"
+    in:
+      README.md: ["  0.554 [0.526, 0.582], diffe"]
+      docs/report.md: ["y (V1 0.852 against 0.855, V2 0.554 against 0.567) except", " 2–3 | Bayes factor | 0.567 | 0.554 [0.526, 0.582] | +0.0"]
+      docs/explainer_ko.md: ["두 대표 값은 0.855가 0.852로, 0.567이 0.554로 거의 그대로였지만, 나중에 덧붙인 탐", " 0.60 · 1일차 ↔ 2–3일차 | 0.567 | 0.554 [0.526, 0.582] | +0.0", "2 [0.806, 0.896], V2는 0.567에서 0.554 [0.526, 0.582]로 거의 그대"]
+      docs/decision_log.md: [" V1 0.855 → 0.852, V2 0.567 → 0.554, linkage still detect"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["대로였습니다. 0.855가 0.852로, 0.567이 0.554로요. 다만 나중에 덧붙인 탐색 실험이고", "tyle=\"padding:5px 24px 5px 0\">0.554 [0.526, 0.582]</td><t"]
+  - id: CB_V2_blo
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_low, where: {condition_id: "V2", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.526"
+    in:
+      README.md: ["  0.554 [0.526, 0.582], difference +"]
+      docs/report.md: ["Bayes factor | 0.567 | 0.554 [0.526, 0.582] | +0.013 [+0."]
+      docs/explainer_ko.md: [" 1일차 ↔ 2–3일차 | 0.567 | 0.554 [0.526, 0.582] | +0.013 [+0.", "6, 0.896], V2는 0.567에서 0.554 [0.526, 0.582]로 거의 그대로였습니다. "]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["adding:5px 24px 5px 0\">0.554 [0.526, 0.582]</td><td style"]
+  - id: CB_V2_bhi
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_high, where: {condition_id: "V2", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.582"
+    in:
+      README.md: ["  0.554 [0.526, 0.582], difference +0.013 ["]
+      docs/report.md: ["actor | 0.567 | 0.554 [0.526, 0.582] | +0.013 [+0.004, +0"]
+      docs/explainer_ko.md: ["2–3일차 | 0.567 | 0.554 [0.526, 0.582] | +0.013 [+0.004, +0", "6], V2는 0.567에서 0.554 [0.526, 0.582]로 거의 그대로였습니다. 짝지은 차이("]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["5px 24px 5px 0\">0.554 [0.526, 0.582]</td><td style=\"paddi"]
+  - id: CB_V2_diff
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_aware_minus_blind, where: {condition_id: "V2", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.013"
+    in:
+      README.md: ["4 [0.526, 0.582], difference +0.013 [+0.004, +0.023] (sub"]
+      docs/report.md: ["567 | 0.554 [0.526, 0.582] | +0.013 [+0.004, +0.023] |"]
+      docs/explainer_ko.md: ["567 | 0.554 [0.526, 0.582] | +0.013 [+0.004, +0.023] |", " +0.002 [−0.011, +0.015], V2 +0.013 [+0.004, +0.023]이고, 판"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: [" +0.002 [−0.011, +0.015], V2 +0.013 [+0.004, +0.023]이고, 판"]
+  - id: CB_V2_dlo
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_low, where: {condition_id: "V2", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.004"
+    in:
+      README.md: [", 0.582], difference +0.013 [+0.004, +0.023] (subject-boo"]
+      docs/report.md: ["554 [0.526, 0.582] | +0.013 [+0.004, +0.023] |"]
+      docs/explainer_ko.md: ["554 [0.526, 0.582] | +0.013 [+0.004, +0.023] |", "[−0.011, +0.015], V2 +0.013 [+0.004, +0.023]이고, 판정 없는 참가자"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["[−0.011, +0.015], V2 +0.013 [+0.004, +0.023]이고, 판정 없는 추정치"]
+  - id: CB_V2_dhi
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_high, where: {condition_id: "V2", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.023"
+    in:
+      README.md: [", difference +0.013 [+0.004, +0.023] (subject-bootstrap e"]
+      docs/report.md: ["26, 0.582] | +0.013 [+0.004, +0.023] |"]
+      docs/explainer_ko.md: ["26, 0.582] | +0.013 [+0.004, +0.023] |", " +0.015], V2 +0.013 [+0.004, +0.023]이고, 판정 없는 참가자 bootstr"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: [" +0.015], V2 +0.013 [+0.004, +0.023]이고, 판정 없는 추정치입니다. 예외는"]
+  - id: CB_Y8d_aware
+    value: {file: results/audit/cue_blind/summary.csv, column: aware_auc, where: {condition_id: "yang2025_d2d3_features_P2-RC_d8", comparator: "lda_cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.835"
+    in:
+      docs/report.md: ["s day 3 | `lda_cosine_rich` | 0.835 | 0.834 [0.778, 0.881"]
+      docs/explainer_ko.md: ["Yang2025 8차원 특징 · 2일차 ↔ 3일차 | 0.835 | 0.834 [0.778, 0.881"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:5px 24px 5px 0\">0.835</td><td style=\"paddin"]
+  - id: CB_Y8d_blind
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_auc, where: {condition_id: "yang2025_d2d3_features_P2-RC_d8", comparator: "lda_cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.834"
+    in:
+      README.md: ["50, τ = 0.60: 0.685, features 0.834; separate intervals, "]
+      docs/report.md: ["| `lda_cosine_rich` | 0.835 | 0.834 [0.778, 0.881] | +0.0", " stay below the 8-d features (0.834) without the cue; the"]
+      docs/explainer_ko.md: [" 8차원 특징 · 2일차 ↔ 3일차 | 0.835 | 0.834 [0.778, 0.881] | +0.0", "서 없이도 명령 0.650과 0.685가 8차원 특징 0.834보다 낮았고 구간이 겹치지 않았습니다. "]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:5px 24px 5px 0\">0.834 [0.778, 0.881]</td><t", "서는 단서 없이도 명령 0.650과 0.685가 특징 0.834보다 낮았고 구간이 겹치지 않았습니다. "]
+  - id: CB_Y8d_blo
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_low, where: {condition_id: "yang2025_d2d3_features_P2-RC_d8", comparator: "lda_cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.778"
+    in:
+      docs/report.md: ["cosine_rich` | 0.835 | 0.834 [0.778, 0.881] | +0.001 [−0."]
+      docs/explainer_ko.md: [" · 2일차 ↔ 3일차 | 0.835 | 0.834 [0.778, 0.881] | +0.001 [−0."]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["adding:5px 24px 5px 0\">0.834 [0.778, 0.881]</td><td style"]
+  - id: CB_Y8d_bhi
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_high, where: {condition_id: "yang2025_d2d3_features_P2-RC_d8", comparator: "lda_cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.881"
+    in:
+      docs/report.md: ["rich` | 0.835 | 0.834 [0.778, 0.881] | +0.001 [−0.006, +0"]
+      docs/explainer_ko.md: ["↔ 3일차 | 0.835 | 0.834 [0.778, 0.881] | +0.001 [−0.006, +0"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["5px 24px 5px 0\">0.834 [0.778, 0.881]</td><td style=\"paddi"]
+  - id: CB_Y8d_diff
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_aware_minus_blind, where: {condition_id: "yang2025_d2d3_features_P2-RC_d8", comparator: "lda_cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.001"
+    in:
+      docs/report.md: ["835 | 0.834 [0.778, 0.881] | +0.001 [−0.006, +0.009] |"]
+      docs/explainer_ko.md: ["835 | 0.834 [0.778, 0.881] | +0.001 [−0.006, +0.009] |"]
+  - id: CB_Y8d_dlo
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_low, where: {condition_id: "yang2025_d2d3_features_P2-RC_d8", comparator: "lda_cosine_rich"}}
+    format: {kind: fixed, digits: 3, scale: -1}
+    text: "0.006"
+    in:
+      docs/report.md: ["834 [0.778, 0.881] | +0.001 [−0.006, +0.009] |"]
+      docs/explainer_ko.md: ["834 [0.778, 0.881] | +0.001 [−0.006, +0.009] |"]
+  - id: CB_Y8d_dhi
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_high, where: {condition_id: "yang2025_d2d3_features_P2-RC_d8", comparator: "lda_cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.009"
+    in:
+      docs/report.md: ["78, 0.881] | +0.001 [−0.006, +0.009] |"]
+      docs/explainer_ko.md: ["78, 0.881] | +0.001 [−0.006, +0.009] |"]
+  - id: CB_Y050_aware
+    value: {file: results/audit/cue_blind/summary.csv, column: aware_auc, where: {condition_id: "yang2025_d2d3_commands_shared_tau0.50", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.663"
+    in:
+      docs/report.md: ["y 2 vs day 3 | Bayes factor | 0.663 | 0.650 [0.577, 0.715"]
+      docs/explainer_ko.md: ["용 해독기 명령 τ 0.50 · 2일차 ↔ 3일차 | 0.663 | 0.650 [0.577, 0.715"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:5px 24px 5px 0\">0.663</td><td style=\"paddin"]
+  - id: CB_Y050_blind
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_auc, where: {condition_id: "yang2025_d2d3_commands_shared_tau0.50", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.650"
+    in:
+      README.md: ["  cue (τ = 0.50: 0.650, τ = 0.60: 0.685, fea"]
+      docs/report.md: ["ay 3 | Bayes factor | 0.663 | 0.650 [0.577, 0.715] | +0.0", "vs day 3 the shared commands (0.650 and 0.685) stay below"]
+      docs/explainer_ko.md: [" τ 0.50 · 2일차 ↔ 3일차 | 0.663 | 0.650 [0.577, 0.715] | +0.0", "ang2025 2일차 ↔ 3일차에서 단서 없이도 명령 0.650과 0.685가 8차원 특징 0.834보"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["에서, 왼쪽과 오른쪽만 보내는 명령은 51명 자료에서 0.650으로 연결이 검출됐고, 54명 자료에서는", "tyle=\"padding:5px 24px 5px 0\">0.650 [0.577, 0.715]</td><t", "Yang2025에서는 같은 종류의 명령이 단서 없이도 0.650으로 이어졌습니다. 또 Yang2025 ", "ang2025 2일차와 3일차에서는 단서 없이도 명령 0.650과 0.685가 특징 0.834보다 낮았"]
+  - id: CB_Y050_blo
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_low, where: {condition_id: "yang2025_d2d3_commands_shared_tau0.50", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.577"
+    in:
+      docs/report.md: ["Bayes factor | 0.663 | 0.650 [0.577, 0.715] | +0.013 [+0."]
+      docs/explainer_ko.md: [" · 2일차 ↔ 3일차 | 0.663 | 0.650 [0.577, 0.715] | +0.013 [+0."]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["adding:5px 24px 5px 0\">0.650 [0.577, 0.715]</td><td style"]
+  - id: CB_Y050_bhi
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_high, where: {condition_id: "yang2025_d2d3_commands_shared_tau0.50", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.715"
+    in:
+      docs/report.md: ["actor | 0.663 | 0.650 [0.577, 0.715] | +0.013 [+0.000, +0"]
+      docs/explainer_ko.md: ["↔ 3일차 | 0.663 | 0.650 [0.577, 0.715] | +0.013 [+0.000, +0"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["5px 24px 5px 0\">0.650 [0.577, 0.715]</td><td style=\"paddi"]
+  - id: CB_Y050_diff
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_aware_minus_blind, where: {condition_id: "yang2025_d2d3_commands_shared_tau0.50", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.013"
+    in:
+      docs/report.md: ["663 | 0.650 [0.577, 0.715] | +0.013 [+0.000, +0.029] |"]
+      docs/explainer_ko.md: ["663 | 0.650 [0.577, 0.715] | +0.013 [+0.000, +0.029] |"]
+  - id: CB_Y050_dlo
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_low, where: {condition_id: "yang2025_d2d3_commands_shared_tau0.50", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.000"
+    in:
+      docs/report.md: ["650 [0.577, 0.715] | +0.013 [+0.000, +0.029] |"]
+      docs/explainer_ko.md: ["650 [0.577, 0.715] | +0.013 [+0.000, +0.029] |"]
+  - id: CB_Y050_dhi
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_high, where: {condition_id: "yang2025_d2d3_commands_shared_tau0.50", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.029"
+    in:
+      docs/report.md: ["77, 0.715] | +0.013 [+0.000, +0.029] |"]
+      docs/explainer_ko.md: ["77, 0.715] | +0.013 [+0.000, +0.029] |"]
+  - id: CB_Y060_aware
+    value: {file: results/audit/cue_blind/summary.csv, column: aware_auc, where: {condition_id: "yang2025_d2d3_commands_shared_tau0.60", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.696"
+    in:
+      docs/report.md: ["y 2 vs day 3 | Bayes factor | 0.696 | 0.685 [0.608, 0.750"]
+      docs/explainer_ko.md: ["용 해독기 명령 τ 0.60 · 2일차 ↔ 3일차 | 0.696 | 0.685 [0.608, 0.750"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:5px 24px 5px 0\">0.696</td><td style=\"paddin"]
+  - id: CB_Y060_blind
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_auc, where: {condition_id: "yang2025_d2d3_commands_shared_tau0.60", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.685"
+    in:
+      README.md: ["e (τ = 0.50: 0.650, τ = 0.60: 0.685, features 0.834; sepa"]
+      docs/report.md: ["ay 3 | Bayes factor | 0.696 | 0.685 [0.608, 0.750] | +0.0", "he shared commands (0.650 and 0.685) stay below the 8-d f"]
+      docs/explainer_ko.md: [" τ 0.60 · 2일차 ↔ 3일차 | 0.696 | 0.685 [0.608, 0.750] | +0.0", " 2일차 ↔ 3일차에서 단서 없이도 명령 0.650과 0.685가 8차원 특징 0.834보다 낮았고 구"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:5px 24px 5px 0\">0.685 [0.608, 0.750]</td><t", " 2일차와 3일차에서는 단서 없이도 명령 0.650과 0.685가 특징 0.834보다 낮았고 구간이 겹"]
+  - id: CB_Y060_blo
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_low, where: {condition_id: "yang2025_d2d3_commands_shared_tau0.60", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.608"
+    in:
+      docs/report.md: ["Bayes factor | 0.696 | 0.685 [0.608, 0.750] | +0.011 [+0."]
+      docs/explainer_ko.md: [" · 2일차 ↔ 3일차 | 0.696 | 0.685 [0.608, 0.750] | +0.011 [+0."]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["adding:5px 24px 5px 0\">0.685 [0.608, 0.750]</td><td style"]
+  - id: CB_Y060_bhi
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_high, where: {condition_id: "yang2025_d2d3_commands_shared_tau0.60", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.750"
+    in:
+      docs/report.md: ["actor | 0.696 | 0.685 [0.608, 0.750] | +0.011 [+0.003, +0"]
+      docs/explainer_ko.md: ["↔ 3일차 | 0.696 | 0.685 [0.608, 0.750] | +0.011 [+0.003, +0"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["5px 24px 5px 0\">0.685 [0.608, 0.750]</td><td style=\"paddi"]
+  - id: CB_Y060_diff
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_aware_minus_blind, where: {condition_id: "yang2025_d2d3_commands_shared_tau0.60", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.011"
+    in:
+      docs/report.md: ["696 | 0.685 [0.608, 0.750] | +0.011 [+0.003, +0.020] |"]
+      docs/explainer_ko.md: ["696 | 0.685 [0.608, 0.750] | +0.011 [+0.003, +0.020] |"]
+  - id: CB_Y060_dlo
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_low, where: {condition_id: "yang2025_d2d3_commands_shared_tau0.60", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.003"
+    in:
+      docs/report.md: ["685 [0.608, 0.750] | +0.011 [+0.003, +0.020] |"]
+      docs/explainer_ko.md: ["685 [0.608, 0.750] | +0.011 [+0.003, +0.020] |"]
+  - id: CB_Y060_dhi
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_high, where: {condition_id: "yang2025_d2d3_commands_shared_tau0.60", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.020"
+    in:
+      docs/report.md: ["08, 0.750] | +0.011 [+0.003, +0.020] |"]
+      docs/explainer_ko.md: ["08, 0.750] | +0.011 [+0.003, +0.020] |"]
+  - id: CB_LP0_aware
+    value: {file: results/audit/cue_blind/summary.csv, column: aware_auc, where: {condition_id: "lee2019_s1s2_features_P0", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.954"
+    in:
+      docs/report.md: ["sion 1 vs 2 | `cosine_rich` | 0.954 | 0.952 [0.929, 0.971"]
+      docs/explainer_ko.md: ["| Lee2019 전체 특징 · 세션 1 ↔ 2 | 0.954 | 0.952 [0.929, 0.971"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:5px 24px 5px 0\">0.954</td><td style=\"paddin"]
+  - id: CB_LP0_blind
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_auc, where: {condition_id: "lee2019_s1s2_features_P0", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.952"
+    in:
+      docs/report.md: ["s 2 | `cosine_rich` | 0.954 | 0.952 [0.929, 0.971] | +0.0"]
+      docs/explainer_ko.md: ["19 전체 특징 · 세션 1 ↔ 2 | 0.954 | 0.952 [0.929, 0.971] | +0.0"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:5px 24px 5px 0\">0.952 [0.929, 0.971]</td><t"]
+  - id: CB_LP0_blo
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_low, where: {condition_id: "lee2019_s1s2_features_P0", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.929"
+    in:
+      docs/report.md: ["cosine_rich` | 0.954 | 0.952 [0.929, 0.971] | +0.003 [−0."]
+      docs/explainer_ko.md: ["징 · 세션 1 ↔ 2 | 0.954 | 0.952 [0.929, 0.971] | +0.003 [−0."]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["adding:5px 24px 5px 0\">0.952 [0.929, 0.971]</td><td style"]
+  - id: CB_LP0_bhi
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_high, where: {condition_id: "lee2019_s1s2_features_P0", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.971"
+    in:
+      docs/report.md: ["rich` | 0.954 | 0.952 [0.929, 0.971] | +0.003 [−0.006, +0"]
+      docs/explainer_ko.md: ["1 ↔ 2 | 0.954 | 0.952 [0.929, 0.971] | +0.003 [−0.006, +0"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["5px 24px 5px 0\">0.952 [0.929, 0.971]</td><td style=\"paddi"]
+  - id: CB_LP0_diff
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_aware_minus_blind, where: {condition_id: "lee2019_s1s2_features_P0", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.003"
+    in:
+      docs/report.md: ["954 | 0.952 [0.929, 0.971] | +0.003 [−0.006, +0.010] |"]
+      docs/explainer_ko.md: ["954 | 0.952 [0.929, 0.971] | +0.003 [−0.006, +0.010] |"]
+  - id: CB_LP0_dlo
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_low, where: {condition_id: "lee2019_s1s2_features_P0", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3, scale: -1}
+    text: "0.006"
+    in:
+      docs/report.md: ["952 [0.929, 0.971] | +0.003 [−0.006, +0.010] |"]
+      docs/explainer_ko.md: ["952 [0.929, 0.971] | +0.003 [−0.006, +0.010] |"]
+  - id: CB_LP0_dhi
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_high, where: {condition_id: "lee2019_s1s2_features_P0", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.010"
+    in:
+      docs/report.md: ["29, 0.971] | +0.003 [−0.006, +0.010] |"]
+      docs/explainer_ko.md: ["29, 0.971] | +0.003 [−0.006, +0.010] |"]
+  - id: CB_L8d_aware
+    value: {file: results/audit/cue_blind/summary.csv, column: aware_auc, where: {condition_id: "lee2019_s1s2_features_P2-RC_d8", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.688"
+    in:
+      README.md: ["  0.543 with LDA against 0.688 with the rich-summary"]
+      docs/report.md: ["), and the rich summary gives 0.688 [0.641, 0.731]. The t", "ns 1 and 2, the 8-d features (0.688 [0.641, 0.731]) and t", "sion 1 vs 2 | `cosine_rich` | 0.688 | 0.681 [0.636, 0.721", "eck's exposure (0.542 against 0.688 on Lee2019 across ses"]
+      docs/explainer_ko.md: ["| Lee2019 8차원 특징 · 세션 1 ↔ 2 | 0.688 | 0.681 [0.636, 0.721"]
+      docs/decision_log.md: ["ded, and the 8-d value became 0.688. (2) Plan change, run"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:5px 24px 5px 0\">0.688</td><td style=\"paddin"]
+  - id: CB_L8d_blind
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_auc, where: {condition_id: "lee2019_s1s2_features_P2-RC_d8", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.681"
+    in:
+      docs/report.md: ["s 2 | `cosine_rich` | 0.688 | 0.681 [0.636, 0.721] | +0.0"]
+      docs/explainer_ko.md: ["9 8차원 특징 · 세션 1 ↔ 2 | 0.688 | 0.681 [0.636, 0.721] | +0.0"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:5px 24px 5px 0\">0.681 [0.636, 0.721]</td><t"]
+  - id: CB_L8d_blo
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_low, where: {condition_id: "lee2019_s1s2_features_P2-RC_d8", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.636"
+    in:
+      docs/report.md: ["cosine_rich` | 0.688 | 0.681 [0.636, 0.721] | +0.007 [−0."]
+      docs/explainer_ko.md: ["징 · 세션 1 ↔ 2 | 0.688 | 0.681 [0.636, 0.721] | +0.007 [−0."]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["adding:5px 24px 5px 0\">0.681 [0.636, 0.721]</td><td style"]
+  - id: CB_L8d_bhi
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_high, where: {condition_id: "lee2019_s1s2_features_P2-RC_d8", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.721"
+    in:
+      docs/report.md: ["rich` | 0.688 | 0.681 [0.636, 0.721] | +0.007 [−0.003, +0"]
+      docs/explainer_ko.md: ["1 ↔ 2 | 0.688 | 0.681 [0.636, 0.721] | +0.007 [−0.003, +0"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["5px 24px 5px 0\">0.681 [0.636, 0.721]</td><td style=\"paddi"]
+  - id: CB_L8d_diff
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_aware_minus_blind, where: {condition_id: "lee2019_s1s2_features_P2-RC_d8", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.007"
+    in:
+      docs/report.md: ["688 | 0.681 [0.636, 0.721] | +0.007 [−0.003, +0.017] |"]
+      docs/explainer_ko.md: ["688 | 0.681 [0.636, 0.721] | +0.007 [−0.003, +0.017] |"]
+  - id: CB_L8d_dlo
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_low, where: {condition_id: "lee2019_s1s2_features_P2-RC_d8", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3, scale: -1}
+    text: "0.003"
+    in:
+      docs/report.md: ["681 [0.636, 0.721] | +0.007 [−0.003, +0.017] |"]
+      docs/explainer_ko.md: ["681 [0.636, 0.721] | +0.007 [−0.003, +0.017] |"]
+  - id: CB_L8d_dhi
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_high, where: {condition_id: "lee2019_s1s2_features_P2-RC_d8", comparator: "cosine_rich"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.017"
+    in:
+      docs/report.md: ["36, 0.721] | +0.007 [−0.003, +0.017] |"]
+      docs/explainer_ko.md: ["36, 0.721] | +0.007 [−0.003, +0.017] |"]
+  - id: CB_L050_aware
+    value: {file: results/audit/cue_blind/summary.csv, column: aware_auc, where: {condition_id: "lee2019_s1s2_commands_shared_tau0.50", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.630"
+    in:
+      README.md: ["50, session 1 vs 2, fall from 0.630 to 0.507", " be), and the commands scored 0.630–0.677; `compare` now "]
+      docs/report.md: ["commands decoded from it gave 0.630–0.677 with the cue-aw", "41, 0.731]) and the commands (0.630 [0.588, 0.672] at τ =", "ssion 1 vs 2 | Bayes factor | 0.630 | 0.507 [0.494, 0.519", " shared commands at τ = 0.50: 0.630 with the cue and 0.50", " shared commands at τ = 0.50 (0.630 → 0.507, not detected"]
+      docs/explainer_ko.md: ["공용 해독기 명령 τ 0.50 · 세션 1 ↔ 2 | 0.630 | 0.507 [0.494, 0.519", "Lee2019 1세션 대 2세션의 τ 0.50 명령은 0.630에서 0.507 [0.494, 0.519"]
+      docs/decision_log.md: ["-based comparators, below the 0.630–0.677 of the commands", " shared commands at τ = 0.50 (0.630 → 0.507; insufficient"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["x 24px 5px 0;font-weight:700\">0.630</td><td style=\"paddin"]
+  - id: CB_L050_blind
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_auc, where: {condition_id: "lee2019_s1s2_commands_shared_tau0.50", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.507"
+    in:
+      README.md: ["on 1 vs 2, fall from 0.630 to 0.507"]
+      docs/report.md: ["vs 2 | Bayes factor | 0.630 | 0.507 [0.494, 0.519], not d", " 0.50: 0.630 with the cue and 0.507 [0.494, 0.519] withou", "commands at τ = 0.50 (0.630 → 0.507, not detected: insuff"]
+      docs/explainer_ko.md: ["령 τ 0.50 · 세션 1 ↔ 2 | 0.630 | 0.507 [0.494, 0.519], 검출 안 ", "e2019 공용 해독기 명령 τ 0.50은 단서 없이 0.507로, 검출 안 됨(p = 0.112, 증", "1세션 대 2세션의 τ 0.50 명령은 0.630에서 0.507 [0.494, 0.519]로 검출 안 "]
+      docs/decision_log.md: ["commands at τ = 0.50 (0.630 → 0.507; insufficient evidenc"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["서 0.650으로 연결이 검출됐고, 54명 자료에서는 0.507로 검출되지 않았습니다. 증거가 부족하다", "x 24px 5px 0;font-weight:700\">0.507 [0.494, 0.519]</td><t", "없이 왼쪽과 오른쪽만 보내는 명령은, 단서 없이 보면 0.507로 우연 근처였고 검출되지 않았습니다(p"]
+  - id: CB_L050_blo
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_low, where: {condition_id: "lee2019_s1s2_commands_shared_tau0.50", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.494"
+    in:
+      README.md: ["  [0.494, 0.519], not detected"]
+      docs/report.md: ["Bayes factor | 0.630 | 0.507 [0.494, 0.519], not detected", "0.630 with the cue and 0.507 [0.494, 0.519] without it, n"]
+      docs/explainer_ko.md: ["0 · 세션 1 ↔ 2 | 0.630 | 0.507 [0.494, 0.519], 검출 안 됨 | +0.", "세션의 τ 0.50 명령은 0.630에서 0.507 [0.494, 0.519]로 검출 안 됨(증거 부족"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["5px 0;font-weight:700\">0.507 [0.494, 0.519]</td><td style"]
+  - id: CB_L050_bhi
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_high, where: {condition_id: "lee2019_s1s2_commands_shared_tau0.50", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.519"
+    in:
+      README.md: ["  [0.494, 0.519], not detected (insuf"]
+      docs/report.md: ["actor | 0.630 | 0.507 [0.494, 0.519], not detected | +0.1", "ith the cue and 0.507 [0.494, 0.519] without it, not dete"]
+      docs/explainer_ko.md: ["1 ↔ 2 | 0.630 | 0.507 [0.494, 0.519], 검출 안 됨 | +0.123 [+0", ".50 명령은 0.630에서 0.507 [0.494, 0.519]로 검출 안 됨(증거 부족, 없음이 아"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["ont-weight:700\">0.507 [0.494, 0.519]</td><td style=\"paddi"]
+  - id: CB_L050_diff
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_aware_minus_blind, where: {condition_id: "lee2019_s1s2_commands_shared_tau0.50", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.123"
+    in:
+      README.md: ["nce, not absence; difference +0.123 [+0.082,"]
+      docs/report.md: [".494, 0.519], not detected | +0.123 [+0.082, +0.163] |", "ce, not absence), difference +0.123 [+0.082, +0.163]. At "]
+      docs/explainer_ko.md: ["507 [0.494, 0.519], 검출 안 됨 | +0.123 [+0.082, +0.163] |", "출 안 됨(증거 부족, 없음이 아님)이었고, 차이는 +0.123 [+0.082, +0.163]입니다. "]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["하다는 뜻이지 연결이 없다는 뜻이 아닙니다. 차이는 +0.123 [+0.082, +0.163]입니다. "]
+  - id: CB_L050_dlo
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_low, where: {condition_id: "lee2019_s1s2_commands_shared_tau0.50", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.082"
+    in:
+      README.md: [" absence; difference +0.123 [+0.082,"]
+      docs/report.md: ["519], not detected | +0.123 [+0.082, +0.163] |", "absence), difference +0.123 [+0.082, +0.163]. At τ = 0.50"]
+      docs/explainer_ko.md: ["94, 0.519], 검출 안 됨 | +0.123 [+0.082, +0.163] |", " 부족, 없음이 아님)이었고, 차이는 +0.123 [+0.082, +0.163]입니다. 같은 Lee20"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["연결이 없다는 뜻이 아닙니다. 차이는 +0.123 [+0.082, +0.163]입니다. 이 명령 흐름에"]
+  - id: CB_L050_dhi
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_high, where: {condition_id: "lee2019_s1s2_commands_shared_tau0.50", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.163"
+    in:
+      README.md: ["  +0.163]); why was not tested"]
+      docs/report.md: ["t detected | +0.123 [+0.082, +0.163] |", ", difference +0.123 [+0.082, +0.163]. At τ = 0.50 these s"]
+      docs/explainer_ko.md: ["9], 검출 안 됨 | +0.123 [+0.082, +0.163] |", " 아님)이었고, 차이는 +0.123 [+0.082, +0.163]입니다. 같은 Lee2019의 τ 0."]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["뜻이 아닙니다. 차이는 +0.123 [+0.082, +0.163]입니다. 이 명령 흐름에는 정지 기호가"]
+  - id: CB_L050_alo
+    value: {file: results/audit/cue_blind/summary.csv, column: aware_ci_low, where: {condition_id: "lee2019_s1s2_commands_shared_tau0.50", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.588"
+    in:
+      docs/report.md: ["31]) and the commands (0.630 [0.588, 0.672] at τ = 0.50; "]
+  - id: CB_L050_ahi
+    value: {file: results/audit/cue_blind/summary.csv, column: aware_ci_high, where: {condition_id: "lee2019_s1s2_commands_shared_tau0.50", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.672"
+    in:
+      docs/report.md: ["d the commands (0.630 [0.588, 0.672] at τ = 0.50; 0.677 ["]
+  - id: CB_L050_p
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_p, where: {condition_id: "lee2019_s1s2_commands_shared_tau0.50", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.112"
+    in:
+      docs/report.md: ["on excess at 20 commands from 0.112 to 0.009 for an attac", "without it, not detected (p = 0.112; insufficient evidenc"]
+      docs/explainer_ko.md: [".50은 단서 없이 0.507로, 검출 안 됨(p = 0.112, 증거 부족이지 없음이 아님)이었습니다"]
+  - id: CB_L080_aware
+    value: {file: results/audit/cue_blind/summary.csv, column: aware_auc, where: {condition_id: "lee2019_s1s2_commands_shared_tau0.80", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.677"
+    in:
+      README.md: ["and the commands scored 0.630–0.677; `compare` now carrie"]
+      docs/report.md: ["ds decoded from it gave 0.630–0.677 with the cue-aware Ba", "0 [0.588, 0.672] at τ = 0.50; 0.677 [0.627, 0.722] at τ =", "ssion 1 vs 2 | Bayes factor | 0.677 | 0.670 [0.619, 0.715"]
+      docs/explainer_ko.md: ["공용 해독기 명령 τ 0.80 · 세션 1 ↔ 2 | 0.677 | 0.670 [0.619, 0.715", "63]입니다. 같은 Lee2019의 τ 0.80 명령(0.677 → 0.670)과 특징은 거의 그대로였"]
+      docs/decision_log.md: [" comparators, below the 0.630–0.677 of the commands decod"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:5px 24px 5px 0\">0.677</td><td style=\"paddin"]
+  - id: CB_L080_blind
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_auc, where: {condition_id: "lee2019_s1s2_commands_shared_tau0.80", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.670"
+    in:
+      docs/report.md: ["vs 2 | Bayes factor | 0.677 | 0.670 [0.619, 0.715] | +0.0"]
+      docs/explainer_ko.md: ["령 τ 0.80 · 세션 1 ↔ 2 | 0.677 | 0.670 [0.619, 0.715] | +0.0", "같은 Lee2019의 τ 0.80 명령(0.677 → 0.670)과 특징은 거의 그대로였습니다. 이 예"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["tyle=\"padding:5px 24px 5px 0\">0.670 [0.619, 0.715]</td><t"]
+  - id: CB_L080_blo
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_low, where: {condition_id: "lee2019_s1s2_commands_shared_tau0.80", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.619"
+    in:
+      docs/report.md: ["Bayes factor | 0.677 | 0.670 [0.619, 0.715] | +0.008 [−0."]
+      docs/explainer_ko.md: ["0 · 세션 1 ↔ 2 | 0.677 | 0.670 [0.619, 0.715] | +0.008 [−0."]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["adding:5px 24px 5px 0\">0.670 [0.619, 0.715]</td><td style"]
+  - id: CB_L080_bhi
+    value: {file: results/audit/cue_blind/summary.csv, column: blind_ci_high, where: {condition_id: "lee2019_s1s2_commands_shared_tau0.80", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.715"
+    in:
+      docs/report.md: ["actor | 0.677 | 0.670 [0.619, 0.715] | +0.008 [−0.001, +0"]
+      docs/explainer_ko.md: ["1 ↔ 2 | 0.677 | 0.670 [0.619, 0.715] | +0.008 [−0.001, +0"]
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["5px 24px 5px 0\">0.670 [0.619, 0.715]</td><td style=\"paddi"]
+  - id: CB_L080_diff
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_aware_minus_blind, where: {condition_id: "lee2019_s1s2_commands_shared_tau0.80", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.008"
+    in:
+      docs/report.md: ["677 | 0.670 [0.619, 0.715] | +0.008 [−0.001, +0.016] |"]
+      docs/explainer_ko.md: ["677 | 0.670 [0.619, 0.715] | +0.008 [−0.001, +0.016] |"]
+  - id: CB_L080_dlo
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_low, where: {condition_id: "lee2019_s1s2_commands_shared_tau0.80", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3, scale: -1}
+    text: "0.001"
+    in:
+      docs/report.md: ["670 [0.619, 0.715] | +0.008 [−0.001, +0.016] |"]
+      docs/explainer_ko.md: ["670 [0.619, 0.715] | +0.008 [−0.001, +0.016] |"]
+  - id: CB_L080_dhi
+    value: {file: results/audit/cue_blind/summary.csv, column: diff_ci_high, where: {condition_id: "lee2019_s1s2_commands_shared_tau0.80", comparator: "bayes_factor"}}
+    format: {kind: fixed, digits: 3}
+    text: "0.016"
+    in:
+      docs/report.md: ["19, 0.715] | +0.008 [−0.001, +0.016] |"]
+      docs/explainer_ko.md: ["19, 0.715] | +0.008 [−0.001, +0.016] |"]
+  - id: AUD_dev_lee_P2RC_lda_cosine_2dp
+    value: {file: results/audit/summary.csv, column: auc, where: {cohort: "lee2019", rung: "features_P2-RC_d8", condition: "cross-day", k: 20, comparator: "lda_cosine"}}
+    format: {kind: fixed, digits: 2}
+    text: "0.54"
+    in:
+      presentation/BEAT_demo_talk.pptx.mixdog-source.html: ["평균만 보는 공격자로 재니, 다른 날 출력 20개에서 0.54 정도가 나왔습니다. 화면의 0.543은"]

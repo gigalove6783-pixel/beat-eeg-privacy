@@ -464,3 +464,12 @@ admissible result.
   reference in the explainer) were corrected and checked by the Lead against the result files,
   without a further review round. Acceptance A6–A10 are met; the Linux path of the runner's
   lock, a screen reader and a projector remain unchecked.
+- 2026-11-16 (talk day), after the plan's gates: three additions requested by the speaker, none
+  changing an earlier number or verdict. (1) Cue-blind attacker rerun, exploratory and post hoc
+  (`results/audit/cue_blind/`): V1 0.855 against 0.852, V2 0.567 against 0.554 without the task
+  cue; one exception among command streams; independently reviewed. (2) Live demonstration
+  `demo/live/` (the frozen tool on dropped files, reduced and labelled budgets, outcome-independent
+  sample rule; independently reviewed, one repair round). (3) The talk given: a keyword deck in
+  the proposal's black-and-white style, `presentation/BEAT_demo_talk.*` (13 main slides, 6
+  backups, 20 minutes with a 4-minute demonstration); content reviewed twice. Unchecked: a real
+  mouse drag on stage, the projector, PPTX on a PC without Noto Sans KR (present from the PDF).

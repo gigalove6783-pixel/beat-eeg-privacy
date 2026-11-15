@@ -1,0 +1,60 @@
+{
+  "id": "lee2019_s1s2_commands_shared_tau0.80",
+  "tier": "exploratory, post hoc",
+  "source_sha256": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+  "reference": {
+    "path": "results/audit/ladder/lee2019/calibration_day/commands_shared_tau0.80/report.json",
+    "sha256": "e52dec42d057b49313002a614f8ac599d6ef8106f364978d7d218b74069a5b29"
+  },
+  "inputs": {
+    "0": "75eef43d38e158aef9546ff18548260b69b1e9b667be7591761a67e547fcd58e",
+    "1": "57fae71d3e07422e164b9442664c8d95fa67ed82183faa0cb838e5af19314721",
+    "2": "87a1669839e1a0bce01b1bc6aedf644bc31968c0d0a5918554671bccb2ee426c"
+  },
+  "blind_inputs": {
+    "0": {
+      "file": "results/audit/cue_blind/inputs/lee2019/ladder_calibration_day/commands_shared_tau0.80_seed0.npz",
+      "sha256": "07468a93664f1a2c4a4c95411abab88a950a1eae6237d6d427ba2b4036f28f51"
+    },
+    "1": {
+      "file": "results/audit/cue_blind/inputs/lee2019/ladder_calibration_day/commands_shared_tau0.80_seed1.npz",
+      "sha256": "8d8998b77755dabebaec1fb2c500110598de00b275ab833a07b9f8c4d1e10806"
+    },
+    "2": {
+      "file": "results/audit/cue_blind/inputs/lee2019/ladder_calibration_day/commands_shared_tau0.80_seed2.npz",
+      "sha256": "ba0246303db0d95a3bfaa93b147b373ac3481c649c47244f7eceb8ec11b4d642"
+    }
+  },
+  "variants": {
+    "cue_aware_reproduction": {
+      "seconds": 15.06848249999166,
+      "tool_runtime_seconds": 14.291171600008965,
+      "report": "results/audit/cue_blind/lee2019_s1s2_commands_shared_tau0.80/cue_aware_reproduction/report.json",
+      "slim": "results/audit/cue_blind/lee2019_s1s2_commands_shared_tau0.80/cue_aware_reproduction/report.slim.json",
+      "configuration": "2979df290ad896d6ae71249282bc674f097e4ec724e8d02e51798f2d3fb56390",
+      "inputs": {
+        "0": "75eef43d38e158aef9546ff18548260b69b1e9b667be7591761a67e547fcd58e",
+        "1": "57fae71d3e07422e164b9442664c8d95fa67ed82183faa0cb838e5af19314721",
+        "2": "87a1669839e1a0bce01b1bc6aedf644bc31968c0d0a5918554671bccb2ee426c"
+      },
+      "source": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+      "support_mismatches": []
+    },
+    "cue_blind": {
+      "seconds": 14.860392599992338,
+      "tool_runtime_seconds": 14.332940500011318,
+      "report": "results/audit/cue_blind/lee2019_s1s2_commands_shared_tau0.80/cue_blind/report.json",
+      "slim": "results/audit/cue_blind/lee2019_s1s2_commands_shared_tau0.80/cue_blind/report.slim.json",
+      "configuration": "2979df290ad896d6ae71249282bc674f097e4ec724e8d02e51798f2d3fb56390",
+      "inputs": {
+        "0": "07468a93664f1a2c4a4c95411abab88a950a1eae6237d6d427ba2b4036f28f51",
+        "1": "8d8998b77755dabebaec1fb2c500110598de00b275ab833a07b9f8c4d1e10806",
+        "2": "ba0246303db0d95a3bfaa93b147b373ac3481c649c47244f7eceb8ec11b4d642"
+      },
+      "source": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+      "support_mismatches": []
+    }
+  },
+  "reproduction": "exact",
+  "seconds": 30.269113400005153
+}

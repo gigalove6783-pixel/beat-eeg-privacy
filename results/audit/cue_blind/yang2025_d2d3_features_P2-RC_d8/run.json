@@ -1,0 +1,60 @@
+{
+  "id": "yang2025_d2d3_features_P2-RC_d8",
+  "tier": "exploratory, post hoc",
+  "source_sha256": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+  "reference": {
+    "path": "results/audit/ladder/yang2025/principal/features_P2-RC_d8/report.json",
+    "sha256": "2dfffd3497301382989b231bb2377a38f728507758ea0ab327b0b7616e7fa945"
+  },
+  "inputs": {
+    "0": "2110d2d348152071dc0942a0c93a92ee2c4f4c1abd8be5fcb17bb081ceda5f80",
+    "1": "cc50438d7eac54af3b64258aa6ee36b5968c4b175addea9345d771f294324061",
+    "2": "26beb2e2ad27dc06478e150dadad6487922877fbadd5a7bb39d800672b32ba54"
+  },
+  "blind_inputs": {
+    "0": {
+      "file": "results/audit/cue_blind/inputs/yang2025/ladder_principal/features_P2-RC_d8_seed0.npz",
+      "sha256": "c1aa20409f016a601d63a70ed3a693bfc0db869983c5b097780289277b9f8333"
+    },
+    "1": {
+      "file": "results/audit/cue_blind/inputs/yang2025/ladder_principal/features_P2-RC_d8_seed1.npz",
+      "sha256": "e2b2ad692b5e49679990360551cd93149ffca358a9023efde5a0ac6a227f082c"
+    },
+    "2": {
+      "file": "results/audit/cue_blind/inputs/yang2025/ladder_principal/features_P2-RC_d8_seed2.npz",
+      "sha256": "42294d92b36f75b0b94614b62a1581dca249d2fce57ecc7dcf9eca2ee58e4bb3"
+    }
+  },
+  "variants": {
+    "cue_aware_reproduction": {
+      "seconds": 49.40603420000116,
+      "tool_runtime_seconds": 46.864665599990985,
+      "report": "results/audit/cue_blind/yang2025_d2d3_features_P2-RC_d8/cue_aware_reproduction/report.json",
+      "slim": "results/audit/cue_blind/yang2025_d2d3_features_P2-RC_d8/cue_aware_reproduction/report.slim.json",
+      "configuration": "a9046fff0a918ff393b4b341e22177ea54995341b0c53693d36a63032a57817d",
+      "inputs": {
+        "0": "2110d2d348152071dc0942a0c93a92ee2c4f4c1abd8be5fcb17bb081ceda5f80",
+        "1": "cc50438d7eac54af3b64258aa6ee36b5968c4b175addea9345d771f294324061",
+        "2": "26beb2e2ad27dc06478e150dadad6487922877fbadd5a7bb39d800672b32ba54"
+      },
+      "source": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+      "support_mismatches": []
+    },
+    "cue_blind": {
+      "seconds": 46.2263743999938,
+      "tool_runtime_seconds": 44.965139700012514,
+      "report": "results/audit/cue_blind/yang2025_d2d3_features_P2-RC_d8/cue_blind/report.json",
+      "slim": "results/audit/cue_blind/yang2025_d2d3_features_P2-RC_d8/cue_blind/report.slim.json",
+      "configuration": "a9046fff0a918ff393b4b341e22177ea54995341b0c53693d36a63032a57817d",
+      "inputs": {
+        "0": "c1aa20409f016a601d63a70ed3a693bfc0db869983c5b097780289277b9f8333",
+        "1": "e2b2ad692b5e49679990360551cd93149ffca358a9023efde5a0ac6a227f082c",
+        "2": "42294d92b36f75b0b94614b62a1581dca249d2fce57ecc7dcf9eca2ee58e4bb3"
+      },
+      "source": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+      "support_mismatches": []
+    }
+  },
+  "reproduction": "exact",
+  "seconds": 96.6377885999973
+}

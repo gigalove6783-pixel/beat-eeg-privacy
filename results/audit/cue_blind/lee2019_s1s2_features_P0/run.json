@@ -1,0 +1,60 @@
+{
+  "id": "lee2019_s1s2_features_P0",
+  "tier": "exploratory, post hoc",
+  "source_sha256": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+  "reference": {
+    "path": "results/audit/ladder/lee2019/calibration_day/features_P0/report.json",
+    "sha256": "c37e66f5ee80afdf0fcc5009528af668f937233dbc1b4f8fb3ec7dc436ec1109"
+  },
+  "inputs": {
+    "0": "6c18280a2f60b9534f8fe8f8863bd7f67ed4564829bc93fd12e77a7cfd9f210e",
+    "1": "6c18280a2f60b9534f8fe8f8863bd7f67ed4564829bc93fd12e77a7cfd9f210e",
+    "2": "6c18280a2f60b9534f8fe8f8863bd7f67ed4564829bc93fd12e77a7cfd9f210e"
+  },
+  "blind_inputs": {
+    "0": {
+      "file": "results/audit/cue_blind/inputs/lee2019/ladder_calibration_day/features_P0_seed0.npz",
+      "sha256": "ebcfa6bf2457f719f68d82391d4b68d17de0bf53549a413d562aa9687b156d15"
+    },
+    "1": {
+      "file": "results/audit/cue_blind/inputs/lee2019/ladder_calibration_day/features_P0_seed1.npz",
+      "sha256": "ebcfa6bf2457f719f68d82391d4b68d17de0bf53549a413d562aa9687b156d15"
+    },
+    "2": {
+      "file": "results/audit/cue_blind/inputs/lee2019/ladder_calibration_day/features_P0_seed2.npz",
+      "sha256": "ebcfa6bf2457f719f68d82391d4b68d17de0bf53549a413d562aa9687b156d15"
+    }
+  },
+  "variants": {
+    "cue_aware_reproduction": {
+      "seconds": 142.33418700000038,
+      "tool_runtime_seconds": 140.5565709000075,
+      "report": "results/audit/cue_blind/lee2019_s1s2_features_P0/cue_aware_reproduction/report.json",
+      "slim": "results/audit/cue_blind/lee2019_s1s2_features_P0/cue_aware_reproduction/report.slim.json",
+      "configuration": "b58b9937f4b1b33caed0e096e1ec9ae2427a49c7275549cfbbadea8bc600bf55",
+      "inputs": {
+        "0": "6c18280a2f60b9534f8fe8f8863bd7f67ed4564829bc93fd12e77a7cfd9f210e",
+        "1": "6c18280a2f60b9534f8fe8f8863bd7f67ed4564829bc93fd12e77a7cfd9f210e",
+        "2": "6c18280a2f60b9534f8fe8f8863bd7f67ed4564829bc93fd12e77a7cfd9f210e"
+      },
+      "source": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+      "support_mismatches": []
+    },
+    "cue_blind": {
+      "seconds": 114.0745806999912,
+      "tool_runtime_seconds": 113.06170109999948,
+      "report": "results/audit/cue_blind/lee2019_s1s2_features_P0/cue_blind/report.json",
+      "slim": "results/audit/cue_blind/lee2019_s1s2_features_P0/cue_blind/report.slim.json",
+      "configuration": "b58b9937f4b1b33caed0e096e1ec9ae2427a49c7275549cfbbadea8bc600bf55",
+      "inputs": {
+        "0": "ebcfa6bf2457f719f68d82391d4b68d17de0bf53549a413d562aa9687b156d15",
+        "1": "ebcfa6bf2457f719f68d82391d4b68d17de0bf53549a413d562aa9687b156d15",
+        "2": "ebcfa6bf2457f719f68d82391d4b68d17de0bf53549a413d562aa9687b156d15"
+      },
+      "source": "73ce3bec1b47c4433d7ab7fa98768022b6e8c1d3f495ec53a1833e98ec8a3525",
+      "support_mismatches": []
+    }
+  },
+  "reproduction": "exact",
+  "seconds": 258.97582380000676
+}
