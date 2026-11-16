@@ -486,3 +486,10 @@ admissible result.
   Committed at `0ee7a7f` (CI passed on Windows and Ubuntu); the explainer, README and decision
   log followed in the next commit. Unchecked: a real clicker, the launcher's double-click by the
   Lead (checked by its author), the projector, a screen reader.
+- Handoff, 2026-11-17: the documents followed at `670a870` (CI passed on Windows and Ubuntu;
+  local `beat.verify`, ruff and the full test suite passed at `0ee7a7f`, the documents' commit
+  was checked by `beat.verify`, ruff and CI). The last edits to the explainer and README were
+  not independently reviewed. Open for the speaker: the two speaker-written sentences in the
+  script (pages 1 and 16) and the explainer's Q82; whether the repository returns to private;
+  reading the four references confirmed only shallowly (Brümmer and du Preez 2006, Wald 1945,
+  Mosimann 1962, Cover and Thomas) in the original. No experiment is running and none is planned.
