@@ -493,3 +493,14 @@ admissible result.
   script (pages 1 and 16) and the explainer's Q82; whether the repository returns to private;
   reading the four references confirmed only shallowly (Brümmer and du Preez 2006, Wald 1945,
   Mosimann 1962, Cover and Thomas) in the original. No experiment is running and none is planned.
+- Storage, 2026-11-17, at the owner's request: the files excluded from Git under `data/`,
+  `artifacts/` and `results/` (3,326 files, 9.87 GB: datasets, intermediate artifacts and the
+  full audit reports whose slim copies are tracked) were moved out of the working copy into the
+  owner's cloud storage as three archives with a SHA-256 manifest (`beat_data.zip`,
+  `beat_artifacts.zip`, `beat_results_untracked.zip`, `MANIFEST.sha256.txt`; folder
+  `Data/beat-eeg-privacy`). The archives were read back, then downloaded again from the cloud and
+  compared file by file with the originals (no mismatch) before the local copies were deleted.
+  Restore by unpacking the three archives at the repository root. Nothing tracked changed;
+  `beat.verify` and the live-demonstration tests pass without these files, and the demonstration
+  samples and the virtual environment stay in place. Rerunning an experiment or the full audit
+  needs the archives restored first.
