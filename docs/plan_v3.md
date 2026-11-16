@@ -473,3 +473,16 @@ admissible result.
   the proposal's black-and-white style, `presentation/BEAT_demo_talk.*` (13 main slides, 6
   backups, 20 minutes with a 4-minute demonstration); content reviewed twice. Unchecked: a real
   mouse drag on stage, the projector, PPTX on a PC without Noto Sans KR (present from the PDF).
+- 2026-11-16, later the same day, at the speaker's request and again without changing a number,
+  tier or verdict: (3) was superseded. The talk given is `presentation/BEAT_demo_talk.*`
+  restructured as the proposal's sequel: 18 main pages and 7 appendix pages, numbered sections,
+  noun-phrase titles, no repository names on slides, evidence figures
+  (`presentation/figures/demo/demo_ev1`–`demo_ev4`), notes of 23:15 with a 4-minute
+  demonstration; the restructured text was independently rechecked and four wordings corrected.
+  The demonstration became button-only: `demo/live/start_demo.bat`, then Page Down or the right
+  arrow three times; each press runs a prepared sample file live through the upload path, nothing
+  precomputed. The spoken text is in `presentation/BEAT_demo_talk_script.md`. The repository has
+  been public since 2026-11-12 (earlier "private origin" wording records the state at that time).
+  Committed at `0ee7a7f` (CI passed on Windows and Ubuntu); the explainer, README and decision
+  log followed in the next commit. Unchecked: a real clicker, the launcher's double-click by the
+  Lead (checked by its author), the projector, a screen reader.

@@ -32,24 +32,28 @@ scikit-learn `ConvergenceWarning` lines for the MLP comparator and `not_evaluabl
 k = 20, 50 and 100 ("12/12 excluded; supply a window in every required segment …"), so a
 successful run is a working installation, not a clean empirical audit.
 
-**Live demonstration.** [`demo/live/`](demo/live/README.md) is a local, offline page on which a
-presenter drops a CSV of BCI outputs and the audience watches `beat_audit` measure, on the spot,
-whether those outputs let an attacker link two recordings of the same person. Start it from the
-repository root with the installed package:
-
-```powershell
-python demo/live/server.py
-```
-
-and open the address it prints (it listens on 127.0.0.1 only). The tracked synthetic samples in
-`demo/live/samples/synthetic/` (A features, B commands decoded from A, C = A with user labels
-permuted) let anyone run it from a clone; the real-cohort samples (Yang2025) are not tracked and
+**Live demonstration.** [`demo/live/`](demo/live/README.md) is a local, offline page on which the
+audience watches `beat_audit` measure, on the spot, whether a file of BCI outputs lets an attacker
+link two recordings of the same person. On stage it is operated with buttons only. Before the
+talk, double-click `demo/live/start_demo.bat` (it starts the server with the project's `.venv`,
+listening on 127.0.0.1 only, and opens a full-screen page) and check that the top line reads
+"준비 완료 · 실제 코호트 표본 3개". Then press Page Down, the right arrow or "다음 실행" three times,
+once each time the previous card has finished, to run A (features), B (commands decoded from A)
+and C (A with user labels permuted, the control). Each press makes the server read that prepared
+sample file from disk and compute it then, through the same validation and audit path as an
+uploaded file; nothing is precomputed. Presses during a run are ignored; "취소" undoes an
+accidental start and the next press runs the same file again; if a live run fails, "저장된 실행
+보기" shows a stored run of the same file, labelled with its timestamp. Off stage, the page also
+accepts a CSV of one's own, and the server can be started by hand with
+`python demo/live/server.py`. The tracked synthetic samples in `demo/live/samples/synthetic/`
+(same three roles) let anyone run it from a clone, and the readiness line then names the
+synthetic set; the real-cohort samples (Yang2025) are not tracked and
 are built locally from the exported audit inputs by `python scripts/make_live_samples.py`, which
 subsets users, days and rows by a rule fixed in advance and copies values unchanged. The page
 runs the real tool, with reduced inference budgets labelled "시연 설정" on every card, on a
 demonstration subset; its numbers are a demonstration ("시연용 부분집합, 탐색"), not the
-project's registered results. Presenter steps, the subset rule and the stored runs used when a
-live run fails: [`demo/live/README.md`](demo/live/README.md).
+project's registered results. Stage procedure, page controls, the subset rule and the stored
+runs: [`demo/live/README.md`](demo/live/README.md).
 
 **Risk at a glance: linkage by an attacker who never enrolled the user, by outputs observed**
 
@@ -797,7 +801,7 @@ The full list of ten items, with evidence for each, is in
 | `results/` | Tables (CSV/JSON) and figures per experiment; `results/figures/summary/` holds the summary figures; `results/audit/` holds the v3 audit (read [`results/audit/README.md`](results/audit/README.md) first) |
 | `docs/` | [`report.md`](docs/report.md) (technical report), [`explainer_ko.md`](docs/explainer_ko.md) (Korean explainer), `analysis_plan.md`, [`preregistration_m.md`](docs/preregistration_m.md), `decision_log.md`, `related_work.md`, `numbers.yaml` (number registry), [`plan_v3.md`](docs/plan_v3.md) (v3 plan, predictions and state) |
 | `demo/` | Static interactive results page (`demo/index.html`); live demonstration of the audit tool in `demo/live/` (server, page, tracked synthetic samples, stored runs; see [`demo/live/README.md`](demo/live/README.md)) |
-| `presentation/` | The talk given on 2026-11-16: a storytelling talk in Korean with speaker notes and time budgets (`BEAT_demo_talk.pptx`, PDF copy `BEAT_demo_talk.pdf`, text source `BEAT_demo_talk.pptx.mixdog-source.html`), holding the live demonstration and a fallback screenshot of it; its figures are in `presentation/figures/demo/` (`demo_fig1`–`demo_fig5` and the evidence figures `demo_ev1`–`demo_ev4`, drawn by `scripts/make_v3_figures.py`). The detailed version of the v3 talk, slides in Korean with speaker notes (`BEAT_v3_talk.pptx`, PDF copy `BEAT_v3_talk.pdf`, text source `BEAT_v3_talk.pptx.mixdog-source.html`) and its figures in `presentation/figures/v3/` (drawn by `scripts/make_v3_figures.py`); earlier versions: the v2 talk (`BEAT_v2_talk.pptx`, `BEAT_v2_talk.pdf`) and the v1 talk (`BEAT_final_talk.pptx`, `BEAT_final_talk.pdf`) |
+| `presentation/` | The talk given on 2026-11-16: a results talk in Korean that follows up the project proposal, with 18 main pages (numbered sections 01–06 and a Q&A page) and 7 appendix pages, about 23 minutes including the live demonstration on page 9 (speaker-note budgets 1,395 s, 240 s of them for the demonstration; page 10 is a fallback capture of the three result cards, used only if the live run stops) (`BEAT_demo_talk.pptx`, PDF copy `BEAT_demo_talk.pdf`, text source `BEAT_demo_talk.pptx.mixdog-source.html`); the speaker script, the notes in speaking order with the pre-talk preparation steps, is `BEAT_demo_talk_script.md`. The deck's figures are the evidence figures `demo_ev1`–`demo_ev4` and the card capture `demo_screen_cards.png` in `presentation/figures/demo/`, drawn by `scripts/make_v3_figures.py` (the folder also keeps `demo_fig1`–`demo_fig5`, which the final deck does not show). The detailed version of the v3 talk, slides in Korean with speaker notes (`BEAT_v3_talk.pptx`, PDF copy `BEAT_v3_talk.pdf`, text source `BEAT_v3_talk.pptx.mixdog-source.html`) and its figures in `presentation/figures/v3/` (drawn by `scripts/make_v3_figures.py`); earlier versions: the v2 talk (`BEAT_v2_talk.pptx`, `BEAT_v2_talk.pdf`) and the v1 talk (`BEAT_final_talk.pptx`, `BEAT_final_talk.pdf`) |
 
 ## Reproduction
 
@@ -895,8 +899,8 @@ the checklist. Its data (`demo/data/`) is generated by
 or features. `demo/data/` is committed, so the page works in a fresh clone; regenerating it
 requires experiment C's artifacts (not tracked) and the export script.
 
-The live demonstration of the v3 audit tool (`demo/live/`, started with
-`python demo/live/server.py`) is described [after the quickstart](#beat-what-a-motor-imagery-bci-transmits-about-its-user-measured-and-audited)
+The live demonstration of the v3 audit tool (`demo/live/`, started with a double-click on
+`demo/live/start_demo.bat`, or by hand with `python demo/live/server.py`) is described [after the quickstart](#beat-what-a-motor-imagery-bci-transmits-about-its-user-measured-and-audited)
 and in [`demo/live/README.md`](demo/live/README.md); unlike this page it needs the local server
 and the installed `beat_audit`.
 

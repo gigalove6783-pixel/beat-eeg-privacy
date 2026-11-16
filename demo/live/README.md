@@ -1,8 +1,8 @@
 # BEAT Audit Live
 
-A local, offline page on which a presenter drops a CSV of BCI outputs and the audience watches
-`beat_audit` measure, on the spot, whether those outputs let an attacker link two recordings of
-the same person. Reading rules: `results/audit/README.md`. The numbers shown are a demo subset
+A local, offline page on which a presenter runs prepared CSV files of BCI outputs with one key
+(or drops a CSV of their own) and the audience watches `beat_audit` measure, on the spot, whether
+those outputs let an attacker link two recordings of the same person. Reading rules: `results/audit/README.md`. The numbers shown are a demo subset
 ("시연용 부분집합, 탐색"), not the project's registered results.
 
 ## Stage procedure
@@ -10,7 +10,7 @@ the same person. Reading rules: `results/audit/README.md`. The numbers shown are
 1. Before the talk, double-click `demo/live/start_demo.bat`; wait for the full-screen page and
    check that the top line reads "준비 완료 · 실제 코호트 표본 3개". For about two seconds after
    the page appears it reads "입력 대기 중 …" and nothing starts a run.
-2. On stage, press Page Down (clicker) or the right arrow three times, once each time the previous
+2. On stage, press Page Down (clicker), the right arrow or the "다음 실행" button three times, once each time the previous
    card has finished: A 특징 벡터, B 명령, C 대조군. Space and Enter do not advance the sequence;
    they only press a button that has keyboard focus, and no button has focus when the page opens.
    If a run starts by accident, press "취소" on its card (Tab reaches it); the next Page Down runs
