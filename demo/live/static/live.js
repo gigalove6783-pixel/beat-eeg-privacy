@@ -8,7 +8,8 @@ const REL = { "same-day": "같은 날", "cross-day": "다른 날" };
 const HEADLINE_RELATIONS = ["cross-day", "same-day"];
 const STANDARD_TEXT = "표준";
 
-const state = { cards: [], maxBytes: 32 * 1024 * 1024, seq: 0, printReturn: null };
+const state = { cards: [], maxBytes: 32 * 1024 * 1024, seq: 0, printReturn: null,
+  prepared: null, toolReady: false, stageIdx: 0, armedAt: Infinity };
 const $ = (id) => document.getElementById(id);
 
 function h(tag, attrs, ...children) {
@@ -210,6 +211,7 @@ function removeCard(card, silent) {
   state.cards = state.cards.filter((c) => c !== card);
   $("clear").hidden = state.cards.length === 0;
   layout();
+  updateStage();
   if (!silent) { announce(`${card.filename} 카드를 닫았습니다.`); $("pick").focus(); }
 }
 
@@ -270,6 +272,7 @@ function renderProgress(card) {
       h("p", { class: "note", text: "진행 중 값: 다중비교 보정 전이며 최종 판정이 아닙니다." }));
   }
   actions(card, [...storedButton(card), ["취소", () => cancel(card)]]);
+  updateStage();
 }
 
 const reduced = (st) => st.comparators.join(",") !== st.standard.comparators.join(",");
@@ -370,6 +373,7 @@ function renderResult(card) {
   const foot = el.querySelector(".card-foot");
   foot.replaceChildren(metaFoot(card));
   actions(card, [["인쇄용 페이지", () => openPrint(card)], ["닫기", () => removeCard(card)]]);
+  updateStage();
 }
 
 function renderError(card, message, detail) {
@@ -386,6 +390,7 @@ function renderError(card, message, detail) {
   el.querySelector(".card-foot").replaceChildren();
   actions(card, [...storedButton(card), ["닫기", () => removeCard(card)]]);
   announce(`${card.filename}: ${message}`);
+  updateStage();
 }
 
 /* ---------- running ---------- */
@@ -403,6 +408,27 @@ async function handleFile(file) {
   if (!/\.csv$/i.test(file.name)) { card.status = "error"; return renderError(card, "CSV 파일(.csv)만 받습니다."); }
   if (file.size > state.maxBytes) { card.status = "error"; return renderError(card, `파일이 너무 큽니다(${(file.size / 1048576).toFixed(1)} MB). 최대 ${Math.round(state.maxBytes / 1048576)} MB까지 받습니다.`); }
   if (periodValue && !(Number(periodValue) > 0)) { card.status = "error"; return renderError(card, "출력 1개의 시간(초)은 0보다 큰 숫자로 적어 주세요."); }
+  return startRun(card, file.name, () => fetch("/api/runs", { method: "POST", body: file, headers: {
+    "Content-Type": "text/csv", "X-File-Name": encodeURIComponent(file.name),
+    ...(card.period ? { "X-Seconds-Per-Output": String(card.period) } : {}) } }));
+}
+
+/* A prepared sample is named by its role only; the server reads that file and runs it through the
+   same validation and audit path as an upload. Returns the started card, or null. */
+function runPrepared(role) {
+  const entry = preparedEntry(role);
+  if (!entry || running()) return null;
+  const card = newCard(entry.file);
+  setHead(card, null);
+  const periodValue = $("period").value.trim();
+  card.period = periodValue && Number(periodValue) > 0 ? Number(periodValue) : null;
+  if (periodValue && !(Number(periodValue) > 0)) { card.status = "error"; renderError(card, "출력 1개의 시간(초)은 0보다 큰 숫자로 적어 주세요."); return card; }
+  startRun(card, entry.file, () => fetch(`/api/samples/${role}`, { method: "POST",
+    headers: card.period ? { "X-Seconds-Per-Output": String(card.period) } : {} }));
+  return card;
+}
+
+async function startRun(card, name, send) {
   card.t0 = performance.now();
   renderProgress(card);
   card.ticker = setInterval(() => {
@@ -410,12 +436,10 @@ async function handleFile(file) {
     const t = card.el.querySelector(".run-time");
     if (t) t.textContent = duration(card.elapsed);
   }, 200);
-  announce(`${file.name} 감사를 시작합니다.`);
+  announce(`${name} 감사를 시작합니다.`);
   let response, body;
   try {
-    response = await fetch("/api/runs", { method: "POST", body: file, headers: {
-      "Content-Type": "text/csv", "X-File-Name": encodeURIComponent(file.name),
-      ...(card.period ? { "X-Seconds-Per-Output": String(card.period) } : {}) } });
+    response = await send();
     body = await response.json();
   } catch (err) {
     card.status = "error";
@@ -497,6 +521,8 @@ async function cancel(card) {
   if (card.runId) await fetch(`/api/runs/${card.runId}/cancel`, { method: "POST" }).catch(() => {});
   card.status = "cancelled";
   stopPolling(card);
+  // An accidental start is undone in one press: the sequence returns to the cancelled file.
+  if (card.stageIdx !== undefined && state.stageIdx === card.stageIdx + 1) state.stageIdx = card.stageIdx;
   renderError(card, "실행을 취소했습니다.");
 }
 
@@ -610,6 +636,102 @@ function trapPrintFocus(e) {
   else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
 }
 
+/* ---------- prepared sequence (stage) ---------- */
+
+const STAGE = ["A", "B", "C"];
+const ROLE_TITLE = { A: "특징 벡터", B: "명령", C: "대조군" };
+/* What a presentation clicker sends. Space and Enter only activate the focused button, as usual. */
+const STAGE_KEYS = ["ArrowRight", "PageDown"];
+const SETTLE_MS = 2000;
+const roleLabel = (role) => `${role} ${ROLE_TITLE[role]}`;
+
+function preparedEntry(role) { return state.prepared?.files.find((f) => f.role === role); }
+
+function armed() { return performance.now() >= state.armedAt; }
+
+function stageReady() { return Boolean(state.prepared?.set && state.toolReady && armed()); }
+
+/* aria-disabled rather than disabled, so a focused control keeps focus while a run is in progress. */
+function updateStage() {
+  const blocked = !stageReady() || Boolean(running());
+  const restart = state.stageIdx >= STAGE.length;
+  const next = $("next");
+  next.textContent = `${restart ? "처음부터 다시" : "다음 실행"}: ${roleLabel(STAGE[restart ? 0 : state.stageIdx])}`;
+  next.setAttribute("aria-disabled", String(blocked));
+  for (const b of document.querySelectorAll(".stage-each button")) {
+    b.setAttribute("aria-disabled", String(blocked || !preparedEntry(b.dataset.role)));
+  }
+}
+
+function stageNext() {
+  if ($("next").getAttribute("aria-disabled") === "true") return;
+  if (state.stageIdx >= STAGE.length) {
+    [...state.cards].forEach((c) => removeCard(c, true));
+    state.stageIdx = 0;
+  }
+  const card = runPrepared(STAGE[state.stageIdx]);
+  if (card) { card.stageIdx = state.stageIdx; state.stageIdx++; }
+  updateStage();
+}
+
+function stageOne(button) {
+  if (button.getAttribute("aria-disabled") === "true") return;
+  runPrepared(button.dataset.role);
+}
+
+/* Presentation clickers send Page Down or the right arrow; these advance from anywhere except a
+   field. A key already down while the page settled (e.g. the Enter that started the launcher) and
+   auto-repeat never advance, and a held Enter or Space does not click a run button repeatedly. */
+const held = new Set();
+
+function guardKey(e) {
+  if (!armed()) held.add(e.key);
+  if (e.repeat && (e.key === "Enter" || e.key === " ") && e.target instanceof Element && e.target.closest(".stage button")) e.preventDefault();
+}
+
+function stageKey(e) {
+  if (!$("print-view").hidden || $("app").hidden) return;
+  if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || e.repeat || !STAGE_KEYS.includes(e.key) || held.has(e.key)) return;
+  const target = e.target instanceof Element ? e.target : document.body;
+  if (target.closest("input, textarea, select, [contenteditable]")) return;
+  e.preventDefault();
+  stageNext();
+}
+
+function readyText() {
+  const p = state.prepared;
+  const missing = (set) => {
+    const roles = p.missing[set] || [];
+    return roles.length === STAGE.length ? "없음" : `중 ${roles.map(roleLabel).join(", ")} 없음`;
+  };
+  if (!p.set) return `준비 안 됨 · 실제 코호트 표본 ${missing("yang2025")} · 합성 표본 ${missing("synthetic")}`;
+  if (!state.toolReady) return `서버 연결됨 · 감사 도구 준비 중 … · ${p.label} 3개`;
+  if (!armed()) return `입력 대기 중 … 잠시 후 실행 버튼과 키를 받습니다 · ${p.label} 3개`;
+  const fallback = p.set === "synthetic" ? ` (실제 코호트 표본 ${missing("yang2025")})` : "";
+  return `준비 완료 · ${p.label} 3개${fallback} · 버튼은 준비된 표본 파일을 그대로 실행합니다`;
+}
+
+async function refreshReady() {
+  try {
+    const r = await fetch("/api/info");
+    if (!r.ok) throw new Error(String(r.status));
+    const info = await r.json();
+    state.maxBytes = info.max_bytes;
+    state.prepared = info.prepared;
+    state.toolReady = info.tool_ready;
+  } catch (err) {
+    return offline();
+  }
+  showReady();
+  if (state.prepared.set && !state.toolReady) setTimeout(refreshReady, 1000);
+}
+
+function showReady() {
+  $("ready").textContent = readyText();
+  $("ready").classList.toggle("not-ready", !stageReady());
+  updateStage();
+}
+
 /* ---------- wiring ---------- */
 
 function announce(text) { $("status").textContent = text; }
@@ -620,6 +742,12 @@ function wire() {
   $("clear").addEventListener("click", () => { [...state.cards].forEach((c) => removeCard(c, true)); announce("카드를 모두 지웠습니다."); $("pick").focus(); });
   $("print-now").addEventListener("click", () => window.print());
   $("print-close").addEventListener("click", closePrint);
+  $("next").addEventListener("click", stageNext);
+  for (const b of document.querySelectorAll(".stage-each button")) b.addEventListener("click", () => stageOne(b));
+  document.addEventListener("keydown", guardKey, true);
+  document.addEventListener("keyup", (e) => held.delete(e.key), true);
+  window.addEventListener("blur", () => held.clear());
+  document.addEventListener("keydown", stageKey);
   document.addEventListener("keydown", (e) => {
     if ($("print-view").hidden) return;
     if (e.key === "Escape") closePrint();
@@ -644,14 +772,10 @@ async function init() {
   wire();
   layout();
   if (location.protocol === "file:") return offline();
-  try {
-    const r = await fetch("/api/info");
-    if (!r.ok) throw new Error(String(r.status));
-    const info = await r.json();
-    state.maxBytes = info.max_bytes;
-  } catch (err) {
-    offline();
-  }
+  // Settling period: nothing pressed or clicked while the window appears can start a run.
+  state.armedAt = performance.now() + SETTLE_MS;
+  setTimeout(() => { if (state.prepared) showReady(); }, SETTLE_MS + 50);
+  await refreshReady();
 }
 
 function offline() {

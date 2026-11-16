@@ -8,6 +8,7 @@
 </head>
 <body>
 <a class="skip" href="#pick">파일 선택으로 건너뛰기</a>
+<p id="ready" class="ready">서버 확인 중 …</p>
 <header class="bar">
   <div class="brand">BEAT Audit Live</div>
   <p class="lede">BCI(뇌-컴퓨터 인터페이스)가 내보내는 출력으로, 두 기록이 <strong>같은 사람의 것인지 연결할 수 있는지</strong> 지금 이 자리에서 잽니다.</p>
@@ -30,6 +31,15 @@
 </section>
 
 <main id="app">
+  <div class="stage" role="group" aria-label="준비된 표본 실행">
+    <button id="next" type="button" class="primary" aria-disabled="true">다음 실행: A 특징 벡터</button>
+    <span class="stage-each">
+      <button type="button" class="quiet" data-role="A" aria-disabled="true">A 특징 벡터</button>
+      <button type="button" class="quiet" data-role="B" aria-disabled="true">B 명령</button>
+      <button type="button" class="quiet" data-role="C" aria-disabled="true">C 대조군</button>
+    </span>
+    <span class="hint">→ · Page Down으로도 다음 파일 실행</span>
+  </div>
   <div class="tools" role="group" aria-label="파일 넣기">
     <input id="file" class="sr" type="file" accept=".csv,text/csv" tabindex="-1" aria-hidden="true">
     <button id="pick" type="button" class="primary">CSV 파일 선택</button>

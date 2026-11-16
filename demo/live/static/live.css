@@ -31,6 +31,14 @@ code { font-family: var(--mono); font-size: .88em; overflow-wrap: anywhere; }
 .explain { display: grid; grid-template-columns: 1fr 1.25fr; gap: var(--gap); padding: 0 var(--pad) 14px; color: var(--muted); font-size: .9em; }
 .explain b { color: var(--ink); }
 
+/* readiness line and the prepared sequence */
+.ready { padding: 10px var(--pad) 0; font-size: .78em; color: var(--muted); }
+.ready.not-ready { color: var(--ink); font-weight: 800; }
+.stage { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; padding: 14px 0; margin: 0 var(--pad); border-top: var(--rule); }
+.stage-each { display: inline-flex; flex-wrap: wrap; gap: 10px; }
+#next { min-width: 15em; text-align: left; }
+button[aria-disabled="true"], button.primary[aria-disabled="true"], button.primary[aria-disabled="true"]:hover, button.quiet[aria-disabled="true"]:hover { background: #fff; color: #000; border-style: dashed; cursor: not-allowed; }
+
 .tools { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; padding: 12px var(--pad) 18px; border-top: var(--rule-thin); margin: 0 var(--pad); padding-left: 0; padding-right: 0; }
 .hint { color: var(--muted); font-size: .9em; }
 .period { color: var(--muted); font-size: .9em; display: inline-flex; align-items: center; gap: 8px; }

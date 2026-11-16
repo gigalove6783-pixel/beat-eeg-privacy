@@ -146,6 +146,47 @@ def sample_manifest():
     return entries
 
 
+PREPARED_ROLES = ("A", "B", "C")
+PREPARED_SETS = ("yang2025", "synthetic")  # real cohort first, tracked synthetic otherwise
+SET_LABELS = {"yang2025": "실제 코호트 표본", "synthetic": "합성 표본"}
+
+
+def _set_files(name):
+    """The A, B and C entries of one sample set's manifest, each with its on-disk path."""
+    manifest = SAMPLES / name / "manifest.json"
+    if not manifest.is_file():
+        return {}
+    entries = {}
+    for entry in json.loads(manifest.read_text(encoding="utf-8"))["files"]:
+        # The manifest is ours, but its file name must still be a bare name in that folder.
+        if entry.get("role") in PREPARED_ROLES and Path(entry["file"]).name == entry["file"]:
+            entries[entry["role"]] = {**entry, "path": SAMPLES / name / entry["file"]}
+    return entries
+
+
+def prepared_set():
+    """The active prepared set: real-cohort samples when all three are present, else synthetic.
+
+    Returns (set name or None, {role: entry}, {set name: [missing roles]}).
+    """
+    missing = {}
+    for name in PREPARED_SETS:
+        files = _set_files(name)
+        missing[name] = [r for r in PREPARED_ROLES if r not in files or not files[r]["path"].is_file()]
+        if not missing[name]:
+            return name, files, missing
+    return None, {}, missing
+
+
+def prepared_info():
+    """What the page needs for its readiness line and run buttons (no paths)."""
+    name, files, missing = prepared_set()
+    return {"set": name, "label": SET_LABELS.get(name),
+            "files": [{"role": r, "title": files[r]["title"], "file": files[r]["file"]}
+                      for r in PREPARED_ROLES if r in files],
+            "missing": missing}
+
+
 def stored_run(sha256):
     if not re.fullmatch(r"[0-9a-f]{64}", sha256):
         return None
@@ -263,6 +304,19 @@ class App:
         return {"id": run_id, "sha256": sha256, "filename": filename, "precheck": summary,
                 "sample": sample_manifest().get(sha256), "stored": stored_run(sha256) is not None}
 
+    def submit_prepared(self, role, seconds_per_output):
+        """Run a prepared sample exactly as an upload of that file: read it now, same path."""
+        if role not in PREPARED_ROLES:
+            raise InputError("준비된 표본은 A, B, C만 있습니다.", HTTPStatus.NOT_FOUND)
+        _, files, _ = prepared_set()
+        if role not in files:
+            raise InputError(f"준비된 표본 {role} 파일이 없습니다.", HTTPStatus.NOT_FOUND)
+        entry = files[role]
+        return self.submit(entry["file"], entry["path"].read_bytes(), seconds_per_output)
+
+    def tool_ready(self):
+        return self.spare.ready.is_set() and self.spare.process.poll() is None
+
     def cancel(self, run_id):
         run = self.runs.get(run_id)
         if run is None:
@@ -343,7 +397,8 @@ class Handler(BaseHTTPRequestHandler):
         if url.path == "/api/info":
             return self._send(HTTPStatus.OK, {
                 "max_bytes": MAX_BYTES, "min_users": MIN_USERS,
-                "stored": sorted(p.stem for p in STORED.glob("*.json"))})
+                "stored": sorted(p.stem for p in STORED.glob("*.json")),
+                "prepared": prepared_info(), "tool_ready": self.app.tool_ready()})
         match = re.fullmatch(r"/api/runs/([0-9a-f]{12})", url.path)
         if match and match.group(1) in self.app.runs:
             since = parse_qs(url.query).get("since", ["0"])[0]
@@ -366,6 +421,16 @@ class Handler(BaseHTTPRequestHandler):
             if self.app.cancel(match.group(1)):
                 return self._send(HTTPStatus.OK, {"cancelled": True})
             return self._error(HTTPStatus.NOT_FOUND, "없는 실행입니다.")
+        if url.path.startswith("/api/samples/"):
+            # The client names a prepared file by role only; no body, name or path is read.
+            role = url.path[len("/api/samples/"):]
+            self.close_connection = True  # any body the client sent is left unread
+            try:
+                seconds = parse_seconds(self.headers.get("X-Seconds-Per-Output"))
+                body = self.app.submit_prepared(role, seconds)
+            except InputError as exc:
+                return self._error(exc.status, str(exc))
+            return self._send(HTTPStatus.ACCEPTED, body)
         if url.path != "/api/runs":
             return self._error(HTTPStatus.NOT_FOUND, "없는 주소입니다.")
         try:

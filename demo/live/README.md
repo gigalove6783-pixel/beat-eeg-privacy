@@ -5,7 +5,33 @@ A local, offline page on which a presenter drops a CSV of BCI outputs and the au
 the same person. Reading rules: `results/audit/README.md`. The numbers shown are a demo subset
 ("시연용 부분집합, 탐색"), not the project's registered results.
 
+## Stage procedure
+
+1. Before the talk, double-click `demo/live/start_demo.bat`; wait for the full-screen page and
+   check that the top line reads "준비 완료 · 실제 코호트 표본 3개". For about two seconds after
+   the page appears it reads "입력 대기 중 …" and nothing starts a run.
+2. On stage, press Page Down (clicker) or the right arrow three times, once each time the previous
+   card has finished: A 특징 벡터, B 명령, C 대조군. Space and Enter do not advance the sequence;
+   they only press a button that has keyboard focus, and no button has focus when the page opens.
+   If a run starts by accident, press "취소" on its card (Tab reaches it); the next Page Down runs
+   the same file again.
+3. If a run fails or stalls, press "저장된 실행 보기" on that card.
+
+Leave the console window open during the talk; closing it stops the server. Alt+F4 closes the
+page window.
+
 ## Start
+
+`start_demo.bat` (ASCII, CRLF) runs `launch.py` with `.venv\Scripts\python.exe`. The launcher
+reports a missing `.venv`, missing samples (and falls back to the tracked synthetic set when the
+real-cohort samples are incomplete) or a busy port (it takes the next free port from 8737),
+starts the server in its own process, waits until the page and the audit tool answer and opens
+Chrome as a full-screen app window with a profile of its own
+(`%LOCALAPPDATA%\BEATAuditLive\chrome-profile`), or the default browser if Chrome is absent
+(then press F11). A second double-click while it runs opens the running page and starts no second
+server. Closing the console window stops the server and its audit workers.
+
+By hand:
 
 ```
 .venv\Scripts\python demo/live/server.py            # http://127.0.0.1:8737/
@@ -15,16 +41,26 @@ the same person. Reading rules: `results/audit/README.md`. The numbers shown are
 Standard library plus the installed `beat_audit`; listens on 127.0.0.1 only; no network, CDN or
 web fonts. Opening `static/index.html` without the server shows how to start it.
 
-## Presenter steps
+## Page controls
 
-1. Start the server, open the address in a browser, press F11.
-2. Optionally type the seconds per output in "출력 1개의 시간"; the curve then shows time too.
-3. Drop `A_…features.csv`, then `B_…commands.csv`, then `C_…shuffled_users.csv` (drag anywhere,
-   or Tab to "CSV 파일 선택" and press Enter). Each card stays; up to three side by side.
-4. If a run fails or is slow, press "저장된 실행 보기" on the card: a stored run of the same file,
-   labelled with its timestamp.
-5. "인쇄용 페이지" on a card opens a one-page print view (card, settings, SHA-256, limits);
-   print with Ctrl+P.
+- The readiness line at the top names the active set (real-cohort samples when all three files
+  are present locally, the tracked synthetic set otherwise) or the missing file, and says that the
+  buttons run prepared sample files.
+- "다음 실행: …" runs the next file of the sequence A, B, C and after C offers "처음부터 다시"
+  (which clears the cards). It is disabled while a run is in progress and for about two seconds
+  after the page loads. Page Down and the right arrow do the same from anywhere on the page except a
+  text field; auto-repeated presses and a key already held while the page loaded are ignored.
+  Cancelling a run started this way returns the sequence to that file. "A 특징 벡터", "B 명령",
+  "C 대조군" rerun one file.
+- A prepared file is named to the server by its role only (`POST /api/samples/A|B|C`); the server
+  reads that file of the active set from disk in that request and runs it through the same
+  validation and audit path as an upload. No path or body from the client is used; nothing is
+  precomputed or cached. Any other identifier is refused.
+- Optionally type the seconds per output in "출력 1개의 시간"; the curve then shows time too.
+- Dropping a CSV anywhere, or "CSV 파일 선택", still runs one's own file as before.
+- "저장된 실행 보기" on a card shows a stored run of the same file, labelled with its timestamp.
+- "인쇄용 페이지" on a card opens a one-page print view (card, settings, SHA-256, limits);
+  print with Ctrl+P.
 
 ## Samples
 

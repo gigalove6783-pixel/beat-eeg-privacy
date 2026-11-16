@@ -115,6 +115,61 @@ def test_server_refuses_bad_uploads_and_stays_usable(served):
     assert "명령" in state["error"]["message"] and "Traceback" not in json.dumps(state)
 
 
+def _sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+@pytest.fixture
+def synthetic_only(monkeypatch):
+    monkeypatch.setattr(live, "PREPARED_SETS", ("synthetic",))
+
+
+def test_prepared_samples_run_by_identifier_only(synthetic_only, served):
+    status, info = _request(served, "GET", "/api/info")
+    assert status == 200 and info["prepared"]["set"] == "synthetic"
+    assert [f["role"] for f in info["prepared"]["files"]] == ["A", "B", "C"]
+    assert str(ROOT) not in json.dumps(info, ensure_ascii=False) and "path" not in info["prepared"]["files"][0]
+    files = {p.name[0]: p for p in SYNTHETIC.glob("*.csv")}
+    for role in ("A", "C"):
+        status, body = _request(served, "POST", f"/api/samples/{role}")
+        assert status == 202 and body["sha256"] == _sha(files[role]) and body["sample"]["role"] == role
+        status, busy = _request(served, "POST", "/api/samples/B")
+        assert status == 409
+        assert _request(served, "POST", f"/api/runs/{body['id']}/cancel")[0] == 200
+    # A body, file name or path sent by the client is never read: B runs file B.
+    status, body = _request(served, "POST", "/api/samples/B", str(files["A"]).encode(),
+                            {"X-File-Name": quote(str(files["A"])), "Content-Type": "text/csv"})
+    assert status == 202 and body["sha256"] == _sha(files["B"]) and body["filename"] == files["B"].name
+    state, _ = _finish(served, body["id"])
+    assert state["status"] == "done", state.get("error")
+    assert state["summary"]["input"]["sha256"] == _sha(files["B"])
+    assert state["summary"]["input"]["kind"] == "commands"
+
+
+@pytest.mark.parametrize("identifier", [
+    "D", "a", "AB", "", "A/", "A.csv", "../A", "..%2Fsynthetic%2FA_synthetic_features.csv",
+    "%2E%2E", "C:%5CWindows%5Cwin.ini", quote(str(SYNTHETIC / "A_synthetic_features.csv"))])
+def test_prepared_samples_refuse_other_identifiers(synthetic_only, served, identifier):
+    status, body = _request(served, "POST", f"/api/samples/{identifier}")
+    assert status == 404 and "A, B, C" in body["error"]["message"]
+    assert _request(served, "GET", f"/api/samples/{identifier}")[0] == 404
+
+
+def test_prepared_samples_missing_file_reported(monkeypatch, tmp_path, served):
+    folder = tmp_path / "synthetic"
+    folder.mkdir()
+    manifest = json.loads((SYNTHETIC / "manifest.json").read_text(encoding="utf-8"))
+    (folder / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+    for name in ("A_synthetic_features.csv", "C_synthetic_shuffled_users.csv"):
+        (folder / name).write_bytes((SYNTHETIC / name).read_bytes())
+    monkeypatch.setattr(live, "SAMPLES", tmp_path)
+    status, info = _request(served, "GET", "/api/info")
+    assert info["prepared"]["set"] is None
+    assert info["prepared"]["missing"] == {"yang2025": ["A", "B", "C"], "synthetic": ["B"]}
+    status, body = _request(served, "POST", "/api/samples/B")
+    assert status == 404 and "B 파일이 없습니다" in body["error"]["message"]
+
+
 def test_end_to_end_synthetic_features_run(served):
     path = SYNTHETIC / "A_synthetic_features.csv"
     data = path.read_bytes()

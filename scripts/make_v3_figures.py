@@ -6,12 +6,15 @@ set here are the sizes the audience sees. Sources and tiers are written on the s
 
 Output: ``presentation/figures/v3/*.png`` (Korean labels) and, for the shorter story deck,
 ``presentation/figures/demo/*.png`` (larger type, one accent colour, values written on the marks).
-Run from the project root: ``python scripts/make_v3_figures.py``
+Run from the project root: ``python scripts/make_v3_figures.py``; with the argument
+``evidence`` only the story deck's evidence figures (``presentation/figures/demo/demo_ev*.png``,
+black on white, Noto Sans KR) are drawn.
 """
 
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -532,7 +535,406 @@ def demo_figures() -> None:
               floor=(commands.max(), "이보다 낮으면 약한 공격자"), left=0.40)
 
 
+# ------------------------------------------------------------------ story deck: evidence pages
+#
+# The evidence pages of BEAT_demo_talk are drawn in the deck's own hand: black on white,
+# Noto Sans KR, left and bottom axes only, no grid and no legend box, intervals as thin
+# whiskers, chance as a dotted line. Filled marks are pre-specified (or matched) and hollow
+# marks estimates (or unmatched, with dashed whiskers). Each figure has its placed slide size,
+# so a figure point is a slide point, and is written at three pixels per slide pixel (432 dpi).
+
+BLACK = "#000000"
+EVIDENCE_DPI = 3 * SLIDE_PX_PER_INCH
+FONT_CACHE = ROOT / "artifacts" / "fonts"
+
+
+def noto_sans_kr() -> dict[str, str]:
+    """Family names of static Noto Sans KR instances at weights 400 and 700.
+
+    matplotlib draws a variable font at its default instance, which for the installed
+    Noto Sans KR is Thin; the two weights are cut from it once with fontTools and cached under
+    artifacts/ (not in Git)."""
+    from fontTools.ttLib import TTFont
+    from fontTools.varLib import instancer
+    from matplotlib import font_manager
+
+    source = str(Path(font_manager.findfont("Noto Sans KR", fallback_to_default=False)))
+    families = {}
+    for role, weight in (("regular", 400), ("bold", 700)):
+        family = f"BEAT Noto Sans KR {weight}"
+        path = FONT_CACHE / f"NotoSansKR-{weight}.ttf"
+        if not path.exists():
+            FONT_CACHE.mkdir(parents=True, exist_ok=True)
+            font = instancer.instantiateVariableFont(TTFont(source), {"wght": weight})
+            font["OS/2"].usWeightClass = weight
+            for record in font["name"].names:
+                if record.nameID in (1, 4, 16):
+                    record.string = family
+                elif record.nameID in (2, 17):
+                    record.string = "Regular"
+                elif record.nameID == 6:
+                    record.string = family.replace(" ", "")
+            font.save(path)
+        font_manager.fontManager.addfont(str(path))
+        families[role] = family
+    return families
+
+
+def evidence_rc(fonts: dict[str, str]) -> dict:
+    return {
+        "font.family": fonts["regular"], "font.size": 16, "axes.unicode_minus": False,
+        "axes.spines.top": False, "axes.spines.right": False, "axes.grid": False,
+        "axes.edgecolor": BLACK, "axes.labelcolor": BLACK, "axes.linewidth": 1.0,
+        "text.color": BLACK, "xtick.color": BLACK, "ytick.color": BLACK,
+        "xtick.labelsize": 15, "ytick.labelsize": 15, "xtick.major.width": 1.0,
+        "ytick.major.width": 1.0, "xtick.major.size": 6, "ytick.major.size": 6,
+        "xtick.minor.size": 0, "ytick.minor.size": 0,
+        "savefig.facecolor": "white", "figure.facecolor": "white",
+    }
+
+
+def save_evidence(fig: plt.Figure, name: str) -> None:
+    DEMO_OUT.mkdir(parents=True, exist_ok=True)
+    fig.savefig(DEMO_OUT / name, dpi=EVIDENCE_DPI, metadata={"Software": None})
+    plt.close(fig)
+    print(f"wrote {(DEMO_OUT / name).relative_to(ROOT).as_posix()}")
+
+
+def auc_text(auc: float, low: float, high: float) -> str:
+    return f"{auc:.3f} [{low:.3f}, {high:.3f}]"
+
+
+def tick_text(value: float) -> str:
+    return "1.0" if value == 1 else f"{value:g}"
+
+
+class Sheet:
+    """A figure laid out in slide pixels from the top left, for interval tables."""
+
+    def __init__(self, size: tuple[int, int], fonts: dict[str, str]):
+        self.width, self.height = size
+        self.right = self.width - 4   # right-aligned text ends inside the canvas
+        self.fonts = fonts
+        self.fig = plt.figure(figsize=(self.width / SLIDE_PX_PER_INCH,
+                                       self.height / SLIDE_PX_PER_INCH))
+        self.ax = self.fig.add_axes((0, 0, 1, 1))
+        self.ax.set_xlim(0, self.width)
+        self.ax.set_ylim(self.height, 0)
+        self.ax.axis("off")
+
+    def text(self, x: float, y: float, s: str, *, bold: bool = False, size: float = 16,
+             ha: str = "left", va: str = "center") -> None:
+        self.ax.text(x, y, s, fontsize=size, ha=ha, va=va, color=BLACK,
+                     fontfamily=self.fonts["bold" if bold else "regular"])
+
+    def line(self, xs: list[float], ys: list[float], *, width: float = 1.0,
+             style: str | tuple = "-") -> None:
+        self.ax.plot(xs, ys, color=BLACK, lw=width, ls=style, solid_capstyle="butt",
+                     dash_capstyle="butt")
+
+    def rule(self, y: float, *, heavy: bool = False) -> None:
+        """The deck's rules: 2 pt above a header, 1 pt elsewhere."""
+        self.line([0, self.width], [y, y], width=2.0 if heavy else 1.0)
+
+    def interval(self, x, y: float, auc: float, low: float, high: float, *,
+                 filled: bool = True, dashed: bool = False, cap: float = 7,
+                 size: float = 11) -> None:
+        self.line([x(low), x(high)], [y, y], width=1.25, style=(0, (4, 3)) if dashed else "-")
+        for end in (low, high):
+            self.line([x(end), x(end)], [y - cap, y + cap], width=1.25)
+        self.ax.plot(x(auc), y, marker="o", ms=size, mfc=BLACK if filled else "white",
+                     mec=BLACK, mew=1.5, ls="none", zorder=3)
+
+    def auc_axis(self, x, *, top: float, bottom: float, ticks: list[float], end: float) -> None:
+        """Bottom AUC axis from chance 0.5 to ``end``; chance dotted from ``top`` down and
+        labelled "우연" beside its tick."""
+        self.line([x(0.5), x(end)], [bottom, bottom])
+        for tick in ticks:
+            self.line([x(tick), x(tick)], [bottom, bottom + 10])
+            self.text(x(tick), bottom + 16, tick_text(tick), size=15, ha="center", va="top")
+        self.text(x(0.5) - 34, bottom + 16, "우연", size=15, ha="right", va="top")
+        self.line([x(0.5), x(0.5)], [top, bottom], width=1.25, style=":")
+
+    def save(self, name: str) -> None:
+        save_evidence(self.fig, name)
+
+
+def ladder_label(rung: str, tau: float) -> str:
+    if rung == "features_P0":
+        return "전체 특징"
+    if rung == "features_P2-RC_d8":
+        return "8차원 병목 특징"
+    decoder = "공용" if rung.startswith("commands_shared") else "사용자별"
+    return f"{decoder} 해독기 명령 τ {tau:.2f}"
+
+
+def evidence_accumulation(fonts: dict[str, str], size: tuple[int, int] = (1664, 600)) -> None:
+    """Yang2025, day 1 against days 2-3: mean per-user linkage AUC over k for V1's full
+    features and comparator and V2's command stream, 95% intervals at every evaluated k.
+    The two pre-specified cells are filled and labelled; every other point is hollow."""
+    summary = pd.read_csv(AUDIT / "yang2025" / "summary.csv")
+    predictions = json.loads((AUDIT / "yang2025" / "decision.json")
+                             .read_text(encoding="utf-8"))["predictions"]
+    seconds = yang2025_seconds_per_output()
+    width, height = size
+    left, right, top, bottom = 110, 1250, 70, 440
+
+    def duration(k: int) -> str:
+        minutes, rest = divmod(int(round(k * seconds)), 60)
+        return " ".join(part for part in (f"{minutes}분" if minutes else "",
+                                          f"{rest}초" if rest else "") if part)
+
+    with plt.rc_context(evidence_rc(fonts)):
+        fig = plt.figure(figsize=(width / SLIDE_PX_PER_INCH, height / SLIDE_PX_PER_INCH))
+        ax = fig.add_axes((left / width, 1 - bottom / height, (right - left) / width,
+                           (bottom - top) / height))
+        bold = fonts["bold"]
+        series = (("V1", "o", "전체 특징", "코사인 · 풍부한 요약"),
+                  ("V2", "s", "명령 τ 0.60", "베이즈 인자"))
+        for key, marker, label, note in series:
+            p = predictions[key]
+            cells = summary[(summary.rung == p["rung"]) & (summary.condition == p["condition"])
+                            & (summary.comparator == p["comparator"])
+                            & (summary.status == "ok")].sort_values("k")
+            verdict = cells[cells.role == key]
+            if (len(verdict) != 1 or int(verdict.k.iloc[0]) != p["k"]
+                    or not np.isclose(verdict.auc.iloc[0], p["auc"])):
+                raise ValueError(f"{key}: summary.csv and decision.json disagree")
+            ax.plot(cells.k, cells.auc, color=BLACK, lw=1.25, zorder=2)
+            bars = ax.errorbar(cells.k, cells.auc,
+                               yerr=[cells.auc - cells.ci_low, cells.ci_high - cells.auc],
+                               fmt="none", ecolor=BLACK, elinewidth=1.25, capsize=5,
+                               capthick=1.25, zorder=2)
+            for artist in (*bars.lines[1], *bars.lines[2]):
+                artist.set_clip_on(False)
+            for _, cell in cells.iterrows():
+                filled = cell.role == key
+                ax.plot(cell.k, cell.auc, marker=marker, ms=11 if marker == "o" else 10,
+                        mfc=BLACK if filled else "white", mec=BLACK, mew=1.5, ls="none",
+                        zorder=3, clip_on=False)
+            text = f"{key} 사전 지정 · {auc_text(p['auc'], *p['interval'])}"
+            label_y = p["interval"][1] + 0.03
+            ax.text(p["k"] * 1.04, label_y, text, ha="right", va="bottom", fontsize=16,
+                    fontfamily=bold)
+            ax.plot([p["k"], p["k"]], [p["interval"][1] + 0.006, label_y], color=BLACK,
+                    lw=1.0)
+            end = cells.iloc[-1].auc + (0.037 if key == "V2" else 0.022)
+            side = ax.get_yaxis_transform()
+            ax.text(1.02, end, label, transform=side, ha="left", va="center", fontsize=16,
+                    fontfamily=bold)
+            ax.text(1.02, end - 0.044, note, transform=side, ha="left", va="center",
+                    fontsize=15)
+        ax.axhline(0.5, color=BLACK, ls=":", lw=1.25, zorder=1)
+        ax.text(1.02, 0.5, "우연 0.5", transform=ax.get_yaxis_transform(), ha="left",
+                va="center", fontsize=15)
+        ax.set_xscale("log")
+        ax.xaxis.set_major_locator(FixedLocator(KS))
+        ax.xaxis.set_minor_locator(NullLocator())
+        ax.set_xticks(KS, [f"{k}\n{duration(k)}" for k in KS])
+        ax.set_xlim(KS[0] / 1.25, KS[-1] * 1.25)
+        ax.set_ylim(0.5, 1.0)
+        ax.set_yticks([0.5, 0.6, 0.7, 0.8, 0.9, 1.0], ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0"])
+        for spine in ("left", "bottom"):
+            ax.spines[spine].set_position(("outward", 10))
+        ax.set_xlabel("출력 수 k · 로그 눈금  ·  아래 줄: 관측 시간(출력 1개 8초)", loc="left",
+                      fontsize=15, labelpad=10)
+        fig.text(0, 1 - 24 / height, "사용자별 평균 연결 AUC · 세로 막대 95% 구간",
+                 ha="left", va="center", fontsize=16)
+        save_evidence(fig, "demo_ev1_accumulation.png")
+
+
+def evidence_ladder(fonts: dict[str, str], size: tuple[int, int] = (1664, 600)) -> None:
+    """Yang2025 transmission ladder, day 2 against day 3: task BA and hold rate as numbers and
+    the cross-day linkage AUC with its 95% interval on one axis. The matched-utility rungs (8-d
+    features and the shared-decoder commands decoded from them) are filled; the rungs at another
+    task BA are hollow with dashed whiskers."""
+    ladder = pd.read_csv(AUDIT / "ladder.csv")
+    rows = ladder[ladder.cohort == "yang2025"].set_index("rung")
+    matched = ["features_P2-RC_d8", "commands_shared_tau0.50", "commands_shared_tau0.60"]
+    other = ["features_P0", "commands_per_user_tau0.50", "commands_per_user_tau0.60",
+             "commands_per_user_tau0.80"]
+    if sorted(rows.index) != sorted(matched + other):
+        raise ValueError("Yang2025 ladder rungs changed")
+    if rows.loc[matched].task_ba.nunique() != 1 or rows.loc[other].task_ba.isin(
+            rows.loc[matched].task_ba).any():
+        raise ValueError("matched-utility group no longer separates by task BA")
+    if rows.k.nunique() != 1 or rows.cross_day_condition.nunique() != 1:
+        raise ValueError("ladder rows differ in k or condition")
+    sheet = Sheet(size, fonts)
+    x0, x1 = 900, 1360
+
+    def x(v: float) -> float:
+        return x0 + (v - 0.5) / 0.5 * (x1 - x0)
+
+    sheet.rule(2, heavy=True)
+    sheet.text(0, 36, f"대안 · 출력 {int(rows.k.iloc[0])}개", bold=True)
+    sheet.text(680, 36, "과제 BA", bold=True, ha="right")
+    sheet.text(830, 36, "정지 비율", bold=True, ha="right")
+    sheet.text(x0, 36, "다른 날 연결 AUC · 95% 구간", bold=True)
+    sheet.rule(70)
+    groups = ((f"맞춘 비교 · 같은 과제 BA {rows.loc[matched[0]].task_ba:.3f}", matched, True),
+              ("과제 BA가 다른 단계", other, False))
+    y = 102
+    for index, (title, rungs, filled) in enumerate(groups):
+        if index:
+            sheet.rule(y - 26)
+        sheet.text(0, y, title, bold=True, size=15)
+        for rung in rungs:
+            y += 48
+            r = rows.loc[rung]
+            sheet.text(0, y, ladder_label(rung, r.tau))
+            sheet.text(680, y, f"{r.task_ba:.3f}", ha="right")
+            sheet.text(830, y, f"{r.hold_rate:.3f}", ha="right")
+            sheet.interval(x, y, r.cross_day_auc, r.cross_day_auc_low, r.cross_day_auc_high,
+                           filled=filled, dashed=not filled)
+            sheet.text(sheet.right, y, auc_text(r.cross_day_auc, r.cross_day_auc_low,
+                                                r.cross_day_auc_high), ha="right")
+        y += 78
+    sheet.auc_axis(x, top=76, bottom=y - 44, ticks=[0.5, 0.75, 1.0], end=1.0)
+    sheet.save("demo_ev2_ladder.png")
+
+
+def evidence_weak_attacker(fonts: dict[str, str], size: tuple[int, int] = (1664, 620)) -> None:
+    """Lee2019, 8-d features, session 1 against 2, k = 20: the mean-summary feature
+    comparators, the commands decoded from those features and the rich-summary comparators,
+    with the strongest command value as the floor for the best attack achievable on the
+    features (data-processing guard); a single comparator's estimate can fall below it."""
+    summary = pd.read_csv(AUDIT / "summary.csv")
+    cell = summary[(summary.cohort == "lee2019") & (summary.condition == "cross-day")
+                   & (summary.k == 20) & (summary.status == "ok")]
+    feat = cell[cell.rung == "features_P2-RC_d8"].set_index("comparator")
+    commands = cell[cell.rung.str.startswith("commands_P2-RC_d8")].sort_values("tau")
+    if len(feat) != 5 or len(commands) != 2:
+        raise ValueError("Lee2019 k = 20 cell changed")
+    groups = (
+        ("평균만 보는 특징 공격자",
+         [(f"{COMPARATOR_NAMES[c]} · 평균", feat.loc[c])
+          for c in ("pair_logistic", "cosine", "lda_cosine")]),
+        ("그 특징에서 해독한 명령 · 베이즈 인자",
+         [(f"명령 τ {r.tau:.2f}", r) for _, r in commands.iterrows()]),
+        ("단서별 평균과 분산까지 보는 특징 공격자",
+         [(f"{COMPARATOR_NAMES[c]} · 풍부한 요약", feat.loc[c])
+          for c in ("lda_cosine_rich", "cosine_rich")]),
+    )
+    bound = commands.auc.max()
+    sheet = Sheet(size, fonts)
+    x0, x1 = 640, 1240
+
+    def x(v: float) -> float:
+        return x0 + (v - 0.5) / 0.25 * (x1 - x0)
+
+    sheet.rule(2, heavy=True)
+    sheet.text(0, 36, "공격자 · 8차원 병목 특징 · 출력 20개", bold=True)
+    sheet.text(x0, 36, "다른 날 연결 AUC · 95% 구간", bold=True)
+    sheet.rule(70)
+    sheet.text(x(bound) - 10, 102, f"명령 최고 {bound:.3f} · 특징으로 가능한 최고 공격의 하한",
+               size=15, ha="right")
+    y = 138
+    for index, (title, items) in enumerate(groups):
+        if index:
+            sheet.rule(y - 25)
+        sheet.text(0, y, title, bold=True, size=15)
+        for label, r in items:
+            y += 40
+            sheet.text(0, y, label)
+            sheet.interval(x, y, r.auc, r.ci_low, r.ci_high)
+            sheet.text(sheet.right, y, auc_text(r.auc, r.ci_low, r.ci_high), ha="right")
+        y += 62
+    bottom = y - 36
+    sheet.line([x(bound), x(bound)], [86, bottom], width=1.25, style=(0, (6, 4)))
+    sheet.auc_axis(x, top=122, bottom=bottom, ticks=[0.5, 0.6, 0.7], end=0.75)
+    sheet.save("demo_ev3_weak_attacker.png")
+
+
+def evidence_cue_blind(fonts: dict[str, str], size: tuple[int, int] = (1664, 620)) -> None:
+    """Cue-aware (filled) against cue-blind (hollow) mean per-user linkage AUC with 95%
+    intervals for the nine recorded cross-day conditions (exploratory, post hoc rerun)."""
+    table = pd.read_csv(AUDIT / "cue_blind" / "summary.csv")
+    rows = table[table.recorded_strongest & table.relation.eq("cross-day")]
+    if len(rows) != 9 or (rows.reproduction != "exact").any():
+        raise ValueError("cue-blind rows changed")
+    names = {"features_P0": "전체 특징", "features_P2-RC_d8": "8차원 병목 특징"}
+
+    def label(r) -> str:
+        if r.rung in names:
+            name = names[r.rung]
+        elif r.rung.startswith("commands_P2-RC_d8"):
+            name = f"8차원 병목 특징의 명령 τ {float(r.rung[-4:]):.2f}"
+        else:
+            name = f"공용 해독기 명령 τ {float(r.rung[-4:]):.2f}"
+        days = {"cross-day": "1일차 ↔ 2–3일차", "cross-day-d2-d3": "2일차 ↔ 3일차",
+                "cross-day-session1-session2": "세션 1 ↔ 2"}[r.condition]
+        prefix = {("features_P0", "cross-day"): "V1 · ",
+                  ("commands_P2-RC_d8_tau0.60", "cross-day"): "V2 · "}.get(
+            (r.rung, r.condition), "")
+        if prefix == "V2 · ":
+            name = f"명령 τ {float(r.rung[-4:]):.2f}"
+        return f"{prefix}{name} · {days}"
+
+    if set(rows.k) - {20} != {50} or (rows.k == 50).sum() != 1:
+        raise ValueError("cue-blind k differs from 20 outside V2")
+    sheet = Sheet(size, fonts)
+    x0, x1 = 700, 1120
+
+    def x(v: float) -> float:
+        return x0 + (v - 0.5) / 0.5 * (x1 - x0)
+
+    sheet.rule(2, heavy=True)
+    sheet.text(0, 36, "조건 · 출력 20개(V2만 50개)", bold=True)
+    sheet.text(x0, 36, "연결 AUC", bold=True)
+    sheet.text(1290, 36, "● 단서 봄", bold=True, ha="right")
+    sheet.text(sheet.right, 36, "○ 단서 없음 [95% 구간]", bold=True, ha="right")
+    sheet.rule(70)
+    y = 100
+    for index, (cohort, title) in enumerate((("yang2025", "Yang2025 · 51명"),
+                                              ("lee2019", "Lee2019 · 54명"))):
+        if index:
+            sheet.rule(y - 24)
+        sheet.text(0, y, title, bold=True, size=15)
+        for _, r in rows[rows.cohort == cohort].iterrows():
+            y += 44
+            exception = r.blind_wording != DETECTED
+            sheet.text(0, y, label(r), bold=exception, size=15)
+            sheet.interval(x, y - 10, r.aware_auc, r.aware_ci_low, r.aware_ci_high, cap=5,
+                           size=9)
+            sheet.interval(x, y + 10, r.blind_auc, r.blind_ci_low, r.blind_ci_high,
+                           filled=False, cap=5, size=9)
+            sheet.text(1290, y, f"{r.aware_auc:.3f}", bold=exception, size=15, ha="right")
+            sheet.text(sheet.right, y, auc_text(r.blind_auc, r.blind_ci_low, r.blind_ci_high),
+                       bold=exception, size=15, ha="right")
+        y += 54
+    sheet.auc_axis(x, top=76, bottom=y - 36, ticks=[0.5, 0.75, 1.0], end=1.0)
+    sheet.save("demo_ev4_cue_blind.png")
+
+
+def demo_screen_cards() -> None:
+    """The three result cards cut from the Lead's demo screenshot. Above the cards the page
+    shows the readiness line, the sequence row with its key hint, and a row naming the last
+    file run; below them the capture cuts off the
+    cards' value rows. The talk shows none of these, so the crop keeps the rule above the cards
+    down to the rule under their linkage curves."""
+    from PIL import Image
+
+    shot = Image.open(ROOT / "demo" / "live" / "screenshots" / "01_three_cards.png")
+    shot.crop((50, 352, 1870, 1060)).save(DEMO_OUT / "demo_screen_cards.png")
+    print(f"wrote {(DEMO_OUT / 'demo_screen_cards.png').relative_to(ROOT).as_posix()}")
+
+
+def evidence_figures() -> None:
+    plt.switch_backend("Agg")
+    fonts = noto_sans_kr()
+    with plt.rc_context(evidence_rc(fonts)):
+        evidence_accumulation(fonts)
+        evidence_ladder(fonts)
+        evidence_weak_attacker(fonts)
+        evidence_cue_blind(fonts)
+    demo_screen_cards()
+
+
 def main() -> None:
+    if sys.argv[1:] == ["evidence"]:
+        evidence_figures()
+        return
     style()
     rungs = [("features_P0", BLUE), ("features_P2-RC_d8", GREEN),
              ("commands_P2-RC_d8_tau0.80", VERMILION)]
@@ -544,6 +946,7 @@ def main() -> None:
     validation((1728, 560))
     yang2025_comparators((1240, 680))
     demo_figures()
+    evidence_figures()
 
 
 if __name__ == "__main__":
